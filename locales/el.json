@@ -97,6 +97,7 @@
       "sold_out_button": "Εξαντλήθηκε",
       "unavailable_button": "Μη διαθέσιμο",
       "choose_options": "Επιλέξτε χαρακτηριστικά",
+      "choose_options_with_title": "Επιλέξτε χαρακτηριστικά για {{ title }}",
       "view_details": "Λεπτομέρειες",
       "added_to_cart": "Προστέθηκε στο καλάθι σας!",
       "added_to_cart_with_title": "Το {{ product_title }} προστέθηκε στο καλάθι.",
@@ -116,6 +117,7 @@
       }
     },
     "gallery": {
+      "title": "Γκαλερί προϊόντος",
       "close": "Κλείσιμο γκαλερί",
       "zoom": "Μεγέθυνση",
       "error": "Η εικόνα δεν μπορεί να φορτωθεί"
@@ -167,6 +169,9 @@
       "pick_up_currently_unavailable": "Παραλαβή προς το παρόν μη διαθέσιμη",
       "pick_up_available_at": "Παραλαβή διαθέσιμη στο {{ location_name }}",
       "pick_up_unavailable_at": "Παραλαβή προς το παρόν μη διαθέσιμη στο {{ location_name }}"
+    },
+    "disclosures": {
+      "title": "Επισημάνσεις"
     }
   },
   "collection": {
@@ -368,7 +373,7 @@
       "we_accept": "Δεχόμαστε",
       "taxes_and_shipping_policy_at_checkout_html": "Οι φόροι και τα <a href=\"{{ link }}\" class=\"link\">έξοδα αποστολής</a> υπολογίζονται στο ταμείο",
       "taxes_included_but_shipping_at_checkout": "Ο φόρος περιλαμβάνεται και τα έξοδα αποστολής υπολογίζονται στο ταμείο",
-      "taxes_included_and_shipping_policy_html": "Ο φόρος περιλαμβάνεται. <a href=\"{{ link }}}\" class=\"link\">Τα έξοδα αποστολής</a> υπολογίζονται στο ταμείο.",
+      "taxes_included_and_shipping_policy_html": "Ο φόρος περιλαμβάνεται. <a href=\"{{ link }}\" class=\"link\">Τα έξοδα αποστολής</a> υπολογίζονται στο ταμείο.",
       "taxes_and_shipping_at_checkout": "Οι φόροι και τα έξοδα αποστολής υπολογίζονται στο ταμείο"
     },
     "order": {

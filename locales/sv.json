@@ -97,6 +97,7 @@
       "sold_out_button": "Utsåld",
       "unavailable_button": "Inte tillgänglig",
       "choose_options": "Välj alternativ",
+      "choose_options_with_title": "Välj alternativ för {{ title }}",
       "view_details": "Visa detaljer",
       "added_to_cart": "Tillagt i din varukorg!",
       "added_to_cart_with_title": "{{ product_title }} har lagts till i varukorgen.",
@@ -116,6 +117,7 @@
       }
     },
     "gallery": {
+      "title": "Produktgalleri",
       "close": "Stäng bildgalleriet",
       "zoom": "Zooma",
       "error": "Bilden kan inte laddas"
@@ -166,6 +168,9 @@
       "pick_up_currently_unavailable": "Upphämtning för närvarande inte tillgänglig",
       "pick_up_available_at": "Upphämtning tillgänglig på {{ location_name }}",
       "pick_up_unavailable_at": "Upphämtning för närvarande inte tillgänglig på {{ location_name }}"
+    },
+    "disclosures": {
+      "title": "Anmärkningar"
     }
   },
   "collection": {

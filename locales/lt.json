@@ -97,6 +97,7 @@
       "sold_out_button": "Išparduota",
       "unavailable_button": "Neprieinama",
       "choose_options": "Pasirinkti parinktis",
+      "choose_options_with_title": "Pasirinkti „{{ title }}“ parinktis",
       "view_details": "Peržiūrėti išsamią informaciją",
       "added_to_cart": "Įdėta į jūsų krepšelį!",
       "added_to_cart_with_title": "Į krepšelį pridėta: {{ product_title }}.",
@@ -117,6 +118,7 @@
       }
     },
     "gallery": {
+      "title": "Produkto galerija",
       "close": "Uždaryti galeriją",
       "zoom": "Priartinti",
       "error": "Vaizdo įkelti negalima"
@@ -170,6 +172,9 @@
       "pick_up_currently_unavailable": "Šiuo metu atsiimti patiems negalima",
       "pick_up_available_at": "Galima atsiimti patiems {{ location_name }}",
       "pick_up_unavailable_at": "Šiuo metu atsiimti patiems {{ location_name }} negalima"
+    },
+    "disclosures": {
+      "title": "Pranešimai"
     }
   },
   "collection": {

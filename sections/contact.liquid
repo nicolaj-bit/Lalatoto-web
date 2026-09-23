@@ -3,7 +3,13 @@
 <div class="section-spacing color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }} {% if section.settings.separate_section_with_border %}bordered-section{% endif %}">
   <div class="container container--xs">
     <div class="section-stack text-center">
-      {%- render 'section-header', subheading: section.settings.subheading, heading: section.settings.title, content: section.settings.content, text_alignment: 'center' -%}
+      {%- render 'section-header',
+        subheading: section.settings.subheading,
+        heading: section.settings.title,
+        heading_style: section.settings.heading_style,
+        content: section.settings.content,
+        text_alignment: 'center'
+      -%}
 
       {%- form 'contact', class: 'form' -%}
         {%- if form.posted_successfully? -%}
@@ -18,10 +24,10 @@
 
         <div class="fieldset">
           <div class="fieldset-row">
-            {%- assign label  = 'contact.form.name' | t -%}
+            {%- assign label = 'contact.form.name' | t -%}
             {%- render 'input', type: 'text', name: 'contact[name]', label: label, value: customer.name, required: true, autocomplete: 'name' -%}
 
-            {%- assign label  = 'contact.form.email' | t -%}
+            {%- assign label = 'contact.form.email' | t -%}
             {%- render 'input', type: 'email', name: 'contact[email]', label: label, value: customer.email, required: true, autocomplete: 'email' -%}
           </div>
 
@@ -88,6 +94,38 @@
       "id": "title",
       "label": "t:global.text.heading",
       "default": "Contact"
+    },
+    {
+      "type": "select",
+      "id": "heading_style",
+      "label": "t:global.text.style",
+      "options": [
+        {
+          "value": "h1",
+          "label": "H1"
+        },
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h3",
+          "label": "H3"
+        },
+        {
+          "value": "h4",
+          "label": "H4"
+        },
+        {
+          "value": "h5",
+          "label": "H5"
+        },
+        {
+          "value": "h6",
+          "label": "H6"
+        }
+      ],
+      "default": "h2"
     },
     {
       "type": "richtext",

@@ -1,20 +1,12 @@
-{%- comment -%}
-----------------------------------------------------------------------------------------------------------------------
-VARIANT INVENTORY COMPONENT
-----------------------------------------------------------------------------------------------------------------------
+{%- doc -%}
+  This component is used to display the inventory of a given variant.
 
-This component is used to display the inventory of a given variant
-
-********************************************
-Supported variables
-********************************************
-
-* variant: the variant from which the inventory is extracted. If the variant is nil, then nothing is rendered
-* show_in_stock_quantity: decide if the quantity in stock is shown or not
-* low_threshold: the inventory quantity threshold below which the inventory is shown as "red"
-* show_progress_bar: if true, a progress bar is added
-* progress_bar_max_value: the value used as a max value to calculate the progress advancement
-{%- endcomment -%}
+  @param {object} [variant] - the variant from which the inventory is extracted. If the variant is nil, then nothing is rendered
+  @param {boolean} [show_in_stock_quantity] - decide if the quantity in stock is shown or not
+  @param {number} [low_threshold] - the inventory quantity threshold below which the inventory is shown as "red"
+  @param {boolean} [show_progress_bar] - if true, a progress bar is added
+  @param {number} [progress_bar_max_value] - the value used as a max value to calculate the progress advancement
+{%- enddoc -%}
 
 {%- capture inventory_for_variant -%}
   {%- if variant -%}

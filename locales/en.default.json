@@ -99,6 +99,7 @@
       "sold_out_button": "Sold out",
       "unavailable_button": "Unavailable",
       "choose_options": "Choose options",
+      "choose_options_with_title": "Choose options for {{ title }}",
       "added_to_cart": "Added to your cart!",
       "added_to_cart_with_title": "{{ product_title }} added to cart.",
       "sold_out_badge": "Sold out",
@@ -117,6 +118,7 @@
       }
     },
     "gallery": {
+      "title": "Product gallery",
       "close": "Close gallery",
       "zoom": "Zoom picture",
       "error": "Image cannot be loaded"
@@ -168,6 +170,9 @@
       "pick_up_currently_unavailable": "Pickup currently unavailable",
       "pick_up_available_at": "Pickup available at {{ location_name }}",
       "pick_up_unavailable_at": "Pickup currently unavailable at {{ location_name }}"
+    },
+    "disclosures": {
+      "title": "Disclosures"
     }
   },
   "collection": {

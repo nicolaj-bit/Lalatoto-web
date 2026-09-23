@@ -53,7 +53,14 @@
         {%- else -%}
           {%- assign carousel_id = 'text-with-icons-' | append: section.id -%}
 
-          <text-with-icons-carousel disabled-on="sm" allow-swipe id="{{ carousel_id }}" class="text-with-icons full-bleed sm:unbleed" role="region" style="{% render 'surface', text_color: section.settings.text_color %}">
+          <text-with-icons-carousel
+            disabled-on="sm"
+            allow-swipe
+            id="{{ carousel_id }}"
+            class="text-with-icons full-bleed sm:unbleed"
+            role="region"
+            style="{% render 'surface', text_color: section.settings.text_color %}"
+          >
             {{- section_content -}}
           </text-with-icons-carousel>
 

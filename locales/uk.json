@@ -97,6 +97,7 @@
       "sold_out_button": "Розпродано",
       "unavailable_button": "Недоступно",
       "choose_options": "Виберіть варіанти",
+      "choose_options_with_title": "Виберіть варіанти для {{ title }}",
       "view_details": "Докладніше",
       "added_to_cart": "Додано в кошик!",
       "added_to_cart_with_title": "{{ product_title }} додано до кошика.",
@@ -116,6 +117,7 @@
       }
     },
     "gallery": {
+      "title": "Галерея товару",
       "close": "Закрити галерею",
       "zoom": "Збільшити",
       "error": "Неможливо завантажити зображення"
@@ -167,6 +169,9 @@
       "pick_up_currently_unavailable": "Самовивіз зараз неможливий",
       "pick_up_available_at": "{{ location_name }} – можливий самовивіз",
       "pick_up_unavailable_at": "{{ location_name }} – самовивіз зараз неможливий"
+    },
+    "disclosures": {
+      "title": "Повідомлення"
     }
   },
   "collection": {

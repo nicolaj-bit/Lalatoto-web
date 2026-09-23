@@ -20,23 +20,35 @@
       {%- assign wrapper_carousel_id = 'featured-collections-carousel-' | append: section.id -%}
 
       <div class="section-stack">
-        <div class="v-stack justify-self-center gap-4 text-center sm:gap-5">
-          {%- if section.settings.subheading != blank -%}
-            <p class="h6 text-center">{{- section.settings.subheading -}}</p>
-          {%- endif -%}
+        {%- liquid
+          assign hide_section_header = false
 
-          {%- if section.blocks.size > 1 -%}
-            <carousel-navigation align-selected class="featured-collections-navigation scroll-area bleed" aria-controls="{{ wrapper_carousel_id }}">
-              {%- for block in section.blocks -%}
-                <button class="h2" aria-current="{% if forloop.first %}true{% else %}false{% endif %}">
-                  {{- block.settings.title | default: block.settings.collection.title | default: 'Collection' -}}
-                </button>
-              {%- endfor -%}
-            </carousel-navigation>
-          {%- else -%}
-            <h2 class="h2">{{ section.blocks.first.settings.title | default: section.blocks.first.settings.collection.title | default: 'Collection' }}</h2>
-          {%- endif -%}
-        </div>
+          if section.blocks.size <= 1 and section.settings.hide_collection_title and section.settings.subheading == blank
+            assign hide_section_header = true
+          endif
+        -%}
+
+        {%- unless hide_section_header -%}
+          <div class="v-stack justify-self-{{ section.settings.header_alignment | replace: 'left', 'start' | replace: 'right', 'end' }} gap-4 text-center sm:gap-5">
+            {%- if section.settings.subheading != blank -%}
+              <p class="h6 text-center">{{- section.settings.subheading -}}</p>
+            {%- endif -%}
+
+            {%- if section.blocks.size > 1 -%}
+              <carousel-navigation align-selected class="featured-collections-navigation scroll-area bleed" aria-controls="{{ wrapper_carousel_id }}">
+                {%- for block in section.blocks -%}
+                  <button class="{{ section.settings.heading_style }}" aria-current="{% if forloop.first %}true{% else %}false{% endif %}">
+                    {{- block.settings.title | default: block.settings.collection.title | default: 'Collection' -}}
+                  </button>
+                {%- endfor -%}
+              </carousel-navigation>
+            {%- elsif section.settings.hide_collection_title != true -%}
+              <h2 class="{{ section.settings.heading_style }}">
+                {{ section.blocks.first.settings.title | default: section.blocks.first.settings.collection.title | default: 'Collection' }}
+              </h2>
+            {%- endif -%}
+          </div>
+        {%- endunless -%}
 
         <featured-collections-carousel id="{{ wrapper_carousel_id }}" class="featured-collections-carousel">
           {%- for block in section.blocks -%}
@@ -72,10 +84,15 @@
                     </button>
                   </carousel-prev-button>
 
-                  <scroll-carousel id="{{ product_carousel_id }}" group-cells allow-drag class="product-list {% if section.settings.hide_product_information %}product-list--compact{% endif %} product-list--carousel scroll-area bleed md:unbleed">
+                  <scroll-carousel
+                    id="{{ product_carousel_id }}"
+                    group-cells
+                    allow-drag
+                    class="product-list {% if section.settings.hide_product_information %}product-list--compact{% endif %} product-list--carousel scroll-area bleed md:unbleed"
+                  >
                     {{- product_list -}}
                   </scroll-carousel>
-                  
+
                   <carousel-next-button class="floating-controls-container__control" aria-controls="{{ product_carousel_id }}">
                     <button type="button" class="prev-next-button prev-next-button--next circle-button hover:animate-icon-inline">
                       <span class="sr-only">{{ 'general.accessibility.next' | t }}</span>
@@ -194,10 +211,55 @@
       "content": "t:global.section.header_category"
     },
     {
+      "type": "text_alignment",
+      "id": "header_alignment",
+      "label": "t:global.text.alignment",
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "heading_style",
+      "label": "t:global.text.heading_style",
+      "options": [
+        {
+          "value": "h1",
+          "label": "H1"
+        },
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h3",
+          "label": "H3"
+        },
+        {
+          "value": "h4",
+          "label": "H4"
+        },
+        {
+          "value": "h5",
+          "label": "H5"
+        },
+        {
+          "value": "h6",
+          "label": "H6"
+        }
+      ],
+      "default": "h2"
+    },
+    {
       "type": "inline_richtext",
       "id": "subheading",
       "label": "t:global.text.subheading",
       "default": "Featured collection"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_collection_title",
+      "label": "t:sections.featured_collections.hide_collection_title",
+      "info": "t:sections.featured_collections.hide_collection_title_info",
+      "default": false
     }
   ],
   "blocks": [

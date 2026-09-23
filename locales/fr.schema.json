@@ -34,12 +34,14 @@
       "button_text": "Texte du bouton",
       "overlay_color": "Overlay",
       "overlay_opacity": "Opacité de l'overlay",
-      "gradient_overlay": "Dégradé de l'overlay"
+      "gradient_overlay": "Dégradé de l'overlay",
+      "image_overlay_color": "Overlay de l'image"
     },
     "sizes": {
       "size": "Taille",
       "section_width": "Largeur de la section",
       "content_width": "Largeur du contenu",
+      "xx_small": "Le plus petit",
       "x_small": "Très petit",
       "small": "Petit",
       "medium": "Moyen",
@@ -81,12 +83,21 @@
         "solid": "Plein"
       }
     },
+    "media": {
+      "category": "Media",
+      "media_type": "Type de media",
+      "media_type_options": {
+        "image": "Image",
+        "video": "Video"
+      }
+    },
     "image": {
       "image": "Image",
       "background_image": "Image de fond",
       "mobile_image": "Image mobile",
       "mobile_background_image": "Image de fond mobile",
       "alignment": "Alignement",
+      "caption": "Légende",
       "image_alignment": "Alignment de l'image",
       "size": "Taille de l'image",
       "width": "Largeur de l'image",
@@ -103,7 +114,8 @@
       "header_category": "Header de section",
       "separate_section_with_border": "Séparer la section par une bordure",
       "allow_transparent_header": "Autoriser le header transparent",
-      "allow_transparent_header_info": "Ce réglage ne s'applique que si cette section est la première."
+      "allow_transparent_header_info": "Ce réglage ne s'applique que si cette section est la première.",
+      "transparent_header_use_primary_colors": "Use header primary colors when transparent"
     },
     "video": {
       "video": "Video",
@@ -141,7 +153,9 @@
       "spacing": "Espacement",
       "column_spacing": "Espacement des colonnes",
       "remove_vertical_spacing": "Supprimer l'espace vertical",
-      "remove_horizontal_spacing": "Supprimer l'espace horizontal"
+      "remove_horizontal_spacing": "Supprimer l'espace horizontal",
+      "add_vertical_spacing": "Ajouter de l'espace vertical",
+      "add_horizontal_spacing": "Ajouter de l'espace horizontal"
     },
     "localization": {
       "country_region_selector_category": "Sélecteur de pays/région",
@@ -362,6 +376,7 @@
     "animation": {
       "name": "Animation",
       "minimize_motion_paragraph": "Les animations sont automatiquement réduites pour les utilisateurs ayant configuré leur système afin de réduire les animations non-essentielles.",
+      "show_page_transition": "Activer la transition des pages",
       "show_button_transition": "Activer la transition du bouton",
       "show_image_zoom_on_hover": "Activer le zoom des images au survol",
       "show_image_zoom_on_hover_info": "S'applique sur différentes sections comme la liste de collections, les mega-menu...",
@@ -396,6 +411,12 @@
       "text_font_options": {
         "heading": "Titre",
         "body": "Corps du texte"
+      },
+      "text_casing": "Casse du texte",
+      "text_casing_options": {
+        "inherit": "Hériter",
+        "uppercase": "Majuscule",
+        "lowercase": "Minuscule"
       },
       "show_vendor": "Afficher la marque",
       "product_title_max_lines": "Nombre maximum de lignes pour le titre du produit (0 pour jamais tronquer)",
@@ -706,6 +727,51 @@
     "custom_section": {
       "name": "Section personnalisée"
     },
+    "dynamic_grid": {
+      "name": "Grille dynamique",
+      "instructions": "Créez des pages uniques avec un système de grille. Ré-ordonnez les blocs afin de controler leur ordre d'affichage. [En savoir plus](https://support.maestrooo.com/article/817-using-the-dynamic-grid)",
+      "instructions_second": "Les guides visuels ne s'affichent que dans l'éditeur afin de vous aider à configurer la section. Ils ne s'afficheront pas dans votre boutique.",
+      "background_category": "Fond",
+      "background_mode": "Mode",
+      "background_mode_options": {
+        "none": "Aucun"
+      },
+      "background_image_recommendation": "2800 x 1000px .jpg recommandé",
+      "mobile_background_image_recommendation": "1200 x 1600px .jpg recommandé",
+      "background_video_recommendation": "Format 16/9 recommandé. Remplace l'image de fond si les deux sont spécifiés.",
+      "mobile_background_video_recommendation": "Format portrait recommandé. Remplace l'image de fond si les deux sont spécifiés.",
+      "desktop_grid_category": "Grille desktop",
+      "desktop_grid_category_info": "Utilise une grille de 16 colonnes. Le nombre de lignes s'ajuste automatiquement par rapport au contenu.",
+      "mobile_grid_category": "Grille mobile",
+      "mobile_grid_category_info": "Utilise une grille de 8 colonnes. Le nombre de lignes s'ajuste automatiquement par rapport au contenu. Utilisez le mode mobile de l'éditeur pour vous aider à configurer la section.",
+      "gap": "Gap",
+      "blocks": {
+        "cell": {
+          "name": "Cellule",
+          "visibility": "Visibilité",
+          "visibility_options": {
+            "mobile_only": "Mobile",
+            "desktop_only": "Desktop",
+            "both": "Mobile et desktop"
+          },
+          "desktop": "Desktop",
+          "mobile": "Mobile",
+          "column_start": "Colonne de début",
+          "span_columns": "Nombre de colonnes",
+          "row_start": "Ligne de début",
+          "horizontal_adjustment": "Ajustement horizontal",
+          "vertical_adjustment": "Ajustement vertical",
+          "parallax_category": "Parallax",
+          "parallax_direction": "Direction",
+          "parallax_direction_options": {
+            "vertical": "Verticale",
+            "horizontal": "Horizontale"
+          },
+          "parallax_speed": "Vitesse",
+          "parallax_speed_info": "Laissez à 0 pour désactiver le parallax"
+        }
+      }
+    },
     "faq": {
       "name": "FAQ",
       "show_categories": "Afficher les catégories",
@@ -727,6 +793,8 @@
     },
     "featured_collections": {
       "name": "Collection",
+      "hide_collection_title": "Cacher le titre de la collection",
+      "hide_collection_title_info": "Ignoré si plus d'une collection est mise en avant.",
       "blocks": {
         "collection": {
           "name": "Collection",
@@ -770,6 +838,7 @@
           "name": "Liens",
           "menu": "Menu",
           "menu_info": "Les menus déroulants ne sont pas affichés.",
+          "collapse_on_mobile": "Afficher en menu déroulant en mobile",
           "show_menu_title": "Afficher le titre du menu",
           "menu_title": "Titre",
           "menu_title_info": "Remplace le titre par défaut du menu"
@@ -811,6 +880,7 @@
       },
       "sidebar_show_dividers": "Afficher les separateurs sur le menu latéral",
       "sidebar_open_second_level_menus": "Ouvrir les menus de second niveau par défault",
+      "customer_account_menu": "Menu du compte client",
       "desktop_category": "Desktop",
       "layout": "Disposition",
       "layout_options": {
@@ -971,9 +1041,13 @@
     "main_article": {
       "name": "Article de blog",
       "comments_category_info": "Configurez votre blog pour permettre les commentaires. [En savoir plus](https://help.shopify.com/en/manual/online-store/blogs/managing-comments#allow-or-disable-comments-on-a-blog)",
-      "show_share_buttons": "Afficher les boutons de partage",
       "show_image": "Afficher l'image",
       "image_height": "Hauteur de l'image",
+      "show_author": "Afficher l'auteur",
+      "author_bio": "Bio de l'auteur",
+      "author_homepage": "Site de l'auteur",
+      "author_image": "Image de l'auteur",
+      "show_share_buttons": "Afficher les boutons de partage",
       "enable_parallax": "Activer le parallax sur l'image",
       "toolbar_category": "Barre fixe",
       "show_sticky_bar": "Afficher la barre fixe"
@@ -1008,16 +1082,18 @@
       "quick_links_menu": "Liens rapides",
       "quick_links_menu_info": "Les menus déroulants ne sont pas affichés.",
       "blocks": {
-        "image": {
-          "name": "Image",
-          "image_info": "900 x 1200px .jpg recommandé",
-          "position_in_grid": "Position dans la grille",
-          "position_in_grid_info": "Caché si pas assez de produits.",
-          "enlarge_card": "Élargir la card",
-          "content_category": "Contenu"
-        },
-        "video": {
-          "name": "Vidéo"
+        "push_promo": {
+          "name": "Push promotionnel",
+          "bordered": "Afficher avec une bordure",
+          "position": "Position dans la grille",
+          "position_info": "Masqué s'il n'y a pas assez de produits.",
+          "sizes": {
+            "1": "1 colonne",
+            "2": "2 colonnes"
+          },
+          "image_size_recommendation": "1600 x 2000 px .jpg recommandé",
+          "mobile_image_size_recommendation": "1600 x 2000 px .jpg recommandé. Par défaut, l’image desktop est utilisée.",
+          "mobile_video_info": "Par défaut, la vidéo desktop est utilisée."
         }
       }
     },
@@ -1191,17 +1267,21 @@
           "selector_style_options": {
             "block": "Bloc",
             "dropdown": "Menu déroulant",
-            "variant_image": "Image de variante"
+            "variant_image": "Image de variante",
+            "variant_image_underline": "Image de variante (souligné)",
+            "underline": "Souligné"
           },
           "swatch_selector_style": "Style des swatchs",
           "swatch_selector_style_info": "Activez les [swatches](https://help.shopify.com/en/manual/online-store/themes/theme-structure/theme-settings#options-with-swatches) dans les options de produit.",
           "swatch_selector_style_options": {
             "swatch": "Pastille",
+            "swatch_underline": "Pastille (souligné)",
             "block_swatch": "Bloc avec pastille de couleur",
-            "none": "Aucun"
+            "none": "Hérité du style des sélecteurs"
           },
           "variant_image_options": "Afficher les images de variante pour les options",
           "variant_image_options_info": "Une liste de noms d'options séparés par une virgule pour lesquelles les valeurs affichent l'image de variante. [En savoir plus](https://support.maestrooo.com/article/767-variant-image-for-color-options)",
+          "variant_image_show_underline": "Soulignement pour les images de variante",
           "size_chart_page": "Guide des tailles",
           "size_chart_page_info": "Afficher le contenu d'une page pour l'option de taille"
         },
@@ -1328,6 +1408,11 @@
           "name": "Plus d'information",
           "instructions": "Sur desktop, affiche un lien qui scroll vers les informations sous la galerie d'image. Si aucun contenu supplémentaire n'existe, ce bouton est caché automatiquement.",
           "text": "Texte"
+        },
+        "disclosures": {
+          "name": "Avertissements",
+          "info": "Avertissements de sécurité et mentions réglementaires obligatoires concernant ce produit. [En savoir plus](https://help.shopify.com/en/manual/products/product-disclosures).",
+          "collapse_content": "Fermer le contenu"
         }
       }
     },
@@ -1348,7 +1433,8 @@
           "column_width": "Largeur de colonne",
           "column_width_info": "Sur desktop, la somme doit etre de 100% pour remplir la ligne.",
           "row_count": "Nombre de lignes",
-          "row_count_info": "Contrôlez la hauteur d'une ligne dans les réglages généraux de la section."
+          "row_count_info": "Contrôlez la hauteur d'une ligne dans les réglages généraux de la section.",
+          "add_padding": "Ajouter du padding (desktop uniquement)"
         },
         "video": {
           "name": "Vidéo"
@@ -1597,6 +1683,8 @@
           "name": "Image",
           "desktop_image_size_recommendation": "3200 x 1200px .jpg recommandé",
           "mobile_image_size_recommendation": "1200 x 1600px .jpg recommandé",
+          "split_image": "Image secondaire",
+          "split_image_info": "1600 x 1600px .jpg recommandé. Masquée sur mobile, ajustez l'image principale pour correspondre à cette taille.",
           "content_category": "Contenu",
           "content_maximum_width": "Largeur maximale du contenu",
           "button_1_link_info": "Pour rendre le slide entièrement cliquable, laissez les réglages \"Texte du bouton 1\" et \"Bouton 2\" vides.",

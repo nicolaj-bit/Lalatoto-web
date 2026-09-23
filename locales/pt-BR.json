@@ -98,6 +98,7 @@
       "sold_out_button": "Esgotado",
       "unavailable_button": "Unavailable",
       "choose_options": "Escolher opções",
+      "choose_options_with_title": "Escolher opções para {{ title }}",
       "added_to_cart": "Adicionado ao carrinho!",
       "added_to_cart_with_title": "{{ product_title }} foi adicionado ao carrinho.",
       "sold_out_badge": "Esgotado",
@@ -116,6 +117,7 @@
       }
     },
     "gallery": {
+      "title": "Galeria do produto",
       "close": "Fechar galeria",
       "zoom": "Zoom na imagem",
       "error": "Imagem não pode ser carregada"
@@ -167,6 +169,9 @@
       "pick_up_currently_unavailable": "Retirada indisponível no momento",
       "pick_up_available_at": "Retirada disponível em {{ location_name }}",
       "pick_up_unavailable_at": "Retirada em {{ location_name }} indisponível no momento"
+    },
+    "disclosures": {
+      "title": "Avisos"
     }
   },
   "collection": {

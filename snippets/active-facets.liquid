@@ -1,17 +1,10 @@
-{%- comment -%}
-----------------------------------------------------------------------------------------------------------------------
-ACTIVE FACETS
-----------------------------------------------------------------------------------------------------------------------
+{%- doc -%}
+  Show the active facets for a given faceted search. This snippet automatically reads some global section settings to
+  decide to show or not the filter group name
 
-Show the active facets for a given faceted search. This snippet automatically reads some global section settings to
-decide to show or not the filter group name
-
-********************************************
-Supported variables
-********************************************
-
-* results: either collection or search drop to extract the active facets from
-{%- endcomment -%}
+  @param {object} results - : either collection or search drop to extract the active facets from
+  @param {object} [section]
+{%- enddoc -%}
 
 {%- assign active_values_count = 0 -%}
 

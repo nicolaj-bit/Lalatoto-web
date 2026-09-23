@@ -33,7 +33,14 @@ src="https://www.facebook.com/tr?id=1109357397358472&ev=PageView&noscript=1"
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0, maximum-scale=5.0">
 
-    <title>{% if page_title == blank %}{{ shop.name }}{% else %}{{ page_title }}{% if current_page != 1 %} &ndash; {{ 'general.page' | t: page: current_page }}{% endif %}{% endif %}</title>
+    <title>
+      {% if page_title == blank -%}
+        {{- shop.name -}}
+      {%- else -%}
+        {{- page_title -}}
+        {%- if current_page != 1 %} &ndash; {{ 'general.page' | t: page: current_page }}{% endif -%}
+      {%- endif %}
+    </title>
 
     {%- if page_description -%}
       <meta name="description" content="{{ page_description | escape }}">
@@ -67,15 +74,6 @@ src="https://www.facebook.com/tr?id=1109357397358472&ev=PageView&noscript=1"
     {%- endif -%}
 
 
-    <script>
-      if (!(HTMLScriptElement.supports && HTMLScriptElement.supports('importmap'))) {
-        const importMapPolyfill = document.createElement('script');
-        importMapPolyfill.async = true;
-        importMapPolyfill.src = "{{ 'es-module-shims.min.js' | asset_url }}";
-
-        document.head.appendChild(importMapPolyfill);
-      }
-    </script>
 
     <script type="importmap">
       {%- comment -%}On Safari 16.3 and lower, a polyfill is used to load importmap{%- endcomment -%}
@@ -98,11 +96,11 @@ src="https://www.facebook.com/tr?id=1109357397358472&ev=PageView&noscript=1"
 
   {% liquid
     assign features_class = ''
-  
+
     if settings.show_button_transition
       assign features_class = features_class | append: 'features--button-transition '
     endif
-  
+
     if settings.show_image_zoom_on_hover
       assign features_class = features_class | append: 'features--zoom-image '
     endif
@@ -115,7 +113,7 @@ src="https://www.facebook.com/tr?id=1109357397358472&ev=PageView&noscript=1"
     <a href="#main" allow-hash-change class="skip-to-content sr-only">{{ 'general.accessibility.skip_to_content' | t }}</a>
 
     {%- comment -%}
-    This placeholder will be filled to screen readers for any kind of announcements
+      This placeholder will be filled to screen readers for any kind of announcements
     {%- endcomment -%}
     <div class="sr-only" role="status" aria-live="polite" aria-atomic="true">
       <span id="status-announcement"></span>
@@ -141,9 +139,9 @@ src="https://www.facebook.com/tr?id=1109357397358472&ev=PageView&noscript=1"
       {{ content_for_layout }}
 
       {%- comment -%}
-      IMPLEMENTATION NOTE: For best semantics, having the footer group outside the main would be slightly better, but
-        moving it inside the main allows to have all the sections (including sections inside the footer group) to be
-        consecutive, and hence having a cleaner margin collapsing management.
+        IMPLEMENTATION NOTE: For best semantics, having the footer group outside the main would be slightly better, but
+          moving it inside the main allows to have all the sections (including sections inside the footer group) to be
+          consecutive, and hence having a cleaner margin collapsing management.
       {%- endcomment -%}
       {%- if request.page_type != 'password' -%}
         {%- sections 'footer-group' -%}

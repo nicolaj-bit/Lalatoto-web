@@ -1,4 +1,10 @@
-<cart-drawer id="cart-drawer" aria-label="{{ 'cart.general.title' | t | escape_once }}" class="cart-drawer drawer {% if cart.empty? %}drawer--center-body{% endif %} color-scheme color-scheme--{{ section.settings.color_scheme.id }}" initial-focus="false" handle-editor-events>
+<cart-drawer
+  id="cart-drawer"
+  aria-label="{{ 'cart.general.title' | t | escape_once }}"
+  class="cart-drawer drawer {% if cart.empty? %}drawer--center-body{% endif %} color-scheme color-scheme--{{ section.settings.color_scheme.id }}"
+  initial-focus="false"
+  handle-editor-events
+>
   <p class="h4" slot="header">{{ 'cart.general.title' | t }}</p>
 
   {%- if cart.empty? -%}

@@ -1,7 +1,8 @@
- <style>
+<style>
   @media print {
     /* Hide anything but the main content when printing */
-    *:has(~ #main), #main ~ * {
+    *:has(~ #main),
+    #main ~ * {
       display: none;
     }
   }
@@ -56,7 +57,14 @@
             <div class="v-stack gap-5">
               <p>{{ 'gift_card.issued.redeem_instructions' | t }}</p>
 
-              <input type="text" class="input text-center" value="{{ gift_card.code | format_code }}" readonly aria-label="{{ 'gift_card.issued.code' | t }}" onclick="this.select()">
+              <input
+                type="text"
+                class="input text-center"
+                value="{{ gift_card.code | format_code }}"
+                readonly
+                aria-label="{{ 'gift_card.issued.code' | t }}"
+                onclick="this.select()"
+              >
 
               <div class="button-group button-group--same-width justify-center">
                 <button type="button" class="button w-full" onclick="window.print()">{{ 'gift_card.general.print' | t }}</button>
@@ -84,7 +92,13 @@
 
             {%- if gift_card.pass_url -%}
               <a href="{{ gift_card.pass_url }}" class="gift-card__apple-wallet">
-                <img src="{{ 'gift-card/add-to-apple-wallet.svg' | shopify_asset_url }}" width="145" height="45" alt="{{ 'gift_card.issued.add_to_apple_wallet' | t }}" loading="lazy">
+                <img
+                  src="{{ 'gift-card/add-to-apple-wallet.svg' | shopify_asset_url }}"
+                  width="145"
+                  height="45"
+                  alt="{{ 'gift_card.issued.add_to_apple_wallet' | t }}"
+                  loading="lazy"
+                >
               </a>
             {%- endif -%}
           </div>

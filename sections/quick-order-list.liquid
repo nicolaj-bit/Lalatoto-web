@@ -1,6 +1,6 @@
 {%- comment -%}
-The quick order list is a specialized section allowing customers to add a lot of products and variants quickly. It is mostly
-used in B2B context.
+  The quick order list is a specialized section allowing customers to add a lot of products and variants quickly. It is mostly
+  used in B2B context.
 {%- endcomment -%}
 
 {%- if section.settings.show_only_to_b2b_customers == false or customer.b2b? -%}
@@ -19,12 +19,17 @@ used in B2B context.
   <div class="section-spacing color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }} {% if section.settings.separate_section_with_border %}bordered-section{% endif %}">
     <div class="container container--lg">
       <div class="section-stack">
-        {%- render 'section-header', subheading: section.settings.subheading, heading: section.settings.title, text_alignment: 'start' -%}
+        {%- render 'section-header',
+          subheading: section.settings.subheading,
+          heading: section.settings.title,
+          heading_style: section.settings.heading_style,
+          text_alignment: 'start'
+        -%}
 
         {%- liquid
           # We do this trick to accumulate the products in an array, to simplify rendering
           assign products = product | sort
-  
+
           for additional_product in section.settings.additional_products
             assign additional_product_as_arr = additional_product | sort
             assign products = products | concat: additional_product_as_arr
@@ -40,7 +45,7 @@ used in B2B context.
             endif
           endfor
         -%}
-        
+
         <quick-order-list class="quick-order-list">
           <table class="quick-order-list__table table--no-border">
             <thead class="quick-order-list__table-head">
@@ -67,9 +72,18 @@ used in B2B context.
                       <div class="h-stack">
                         <div class="h-stack gap-5">
                           {%- if section.settings.show_image and product.featured_media != blank -%}
-                            {{- product.featured_media | image_url: width: product.featured_media.width | image_tag: loading: 'lazy', sizes: '(max-width: 740px) 40px, 68px', widths: '40,68,80,120,136,204', class: 'constrained-image shrink-0', style: '--image-mobile-max-width: 40px; --image-max-width: 68px' -}}
+                            {{-
+                              product.featured_media
+                              | image_url: width: product.featured_media.width
+                              | image_tag:
+                                loading: 'lazy',
+                                sizes: '(max-width: 740px) 40px, 68px',
+                                widths: '40,68,80,120,136,204',
+                                class: 'constrained-image shrink-0',
+                                style: '--image-mobile-max-width: 40px; --image-max-width: 68px'
+                            -}}
                           {%- endif -%}
-                          
+
                           <a href="{{ product.url }}" class="h6">{{ product.title }}</a>
                         </div>
                       </div>
@@ -94,7 +108,7 @@ used in B2B context.
                             endif
                           endif
                         -%}
-                        
+
                         <div class="v-stack gap-1">
                           <div class="v-stack">
                             {%- if product.variants.size > 1 -%}
@@ -107,11 +121,11 @@ used in B2B context.
                               <span class="smallcaps text-subdued">{{ variant.sku }}</span>
                             {%- endif -%}
                           </div>
-                          
+
                           <div class="sm:hidden">
                             <div class="v-stack gap-2">
                               <div class="h-stack gap-2">
-                                {%- liquid 
+                                {%- liquid
                                   assign popover_id = section.id | append: '-quantity-break-popover-' | append: variant.id
 
                                   if variant.quantity_price_breaks.size <= 1
@@ -119,7 +133,7 @@ used in B2B context.
                                   else
                                     assign price_breaks_array = variant.quantity_price_breaks | sort: 'quantity' | reverse
                                     assign cart_quantity = cart | item_count_for_variant: variant.id
-            
+
                                     for price_break in price_breaks_array
                                       if cart_quantity >= price_break.minimum_quantity
                                         assign price = price_break.price | money
@@ -127,19 +141,24 @@ used in B2B context.
                                       endif
                                     endfor
                                   endif
-          
+
                                   echo 'product.volume_pricing.price_at_each' | t: price: price
                                 -%}
 
-                                {%- if variant.quantity_price_breaks.size > 1 or variant.quantity_rule.max != nil or variant.quantity_rule.increment > 1 -%}
-                                  <button type="button" class="block link-faded" aria-controls="{{ popover_id }}" aria-label="{{ 'sections.quick_order_list.volume_pricing_available' | t | escape }}">
+                                {%- if variant.quantity_price_breaks.size > 1 or variant.quantity_rule.max != null or variant.quantity_rule.increment > 1 -%}
+                                  <button
+                                    type="button"
+                                    class="block link-faded"
+                                    aria-controls="{{ popover_id }}"
+                                    aria-label="{{ 'sections.quick_order_list.volume_pricing_available' | t | escape }}"
+                                  >
                                     {%- render 'icon' with 'info-bubble' -%}
                                   </button>
                                 {%- endif -%}
                               </div>
 
                               <div class="quick-order-list__quantity-actions">
-                                {%- if variant.quantity_price_breaks.size > 1 or variant.quantity_rule.max != nil or variant.quantity_rule.increment > 1 -%}
+                                {%- if variant.quantity_price_breaks.size > 1 or variant.quantity_rule.max != null or variant.quantity_rule.increment > 1 -%}
                                   <div class="relative justify-self-end sm-max:hidden">
                                     {%- liquid
                                       if variant.quantity_price_breaks.size > 1
@@ -148,13 +167,18 @@ used in B2B context.
                                         assign popover_title = 'sections.quick_order_list.quantity_rules' | t
                                       endif
                                     -%}
-          
-                                    <button type="button" class="block link-faded" aria-controls="{{ popover_id }}" aria-label="{{ 'sections.quick_order_list.volume_pricing_available' | t | escape }}">
+
+                                    <button
+                                      type="button"
+                                      class="block link-faded"
+                                      aria-controls="{{ popover_id }}"
+                                      aria-label="{{ 'sections.quick_order_list.volume_pricing_available' | t | escape }}"
+                                    >
                                       {%- render 'icon' with 'info-bubble' -%}
                                     </button>
                                   </div>
                                 {%- endif -%}
-          
+
                                 <div class="quick-order-list__quantity-selector">
                                   {%- if variant.available -%}
                                     <quick-order-list-quantity-selector variant-id="{{ variant.id }}">
@@ -164,7 +188,7 @@ used in B2B context.
                                     <p class="h6 text-subdued">{{ 'product.general.sold_out_button' | t }}</p>
                                   {%- endif -%}
                                 </div>
-          
+
                                 {%- if line_items_for_variant.size > 0 -%}
                                   <quick-order-list-remove-variant class="quick-order-list__remove-variant sm-max:hidden" variant-id="{{ variant.id }}">
                                     <button type="button" class="link text-xs">{{ 'sections.quick_order_list.remove' | t }}</button>
@@ -179,57 +203,62 @@ used in B2B context.
 
                     <td class="text-center">
                       <div class="quick-order-list__quantity-actions">
-                        {%- if variant.quantity_price_breaks.size > 1 or variant.quantity_rule.max != nil or variant.quantity_rule.increment > 1 -%}
+                        {%- if variant.quantity_price_breaks.size > 1 or variant.quantity_rule.max != null or variant.quantity_rule.increment > 1 -%}
                           <div class="relative justify-self-end sm-max:hidden">
                             {%- liquid
                               assign popover_id = section.id | append: '-quantity-break-popover-' | append: variant.id
-                              
+
                               if variant.quantity_price_breaks.size > 1
                                 assign popover_title = 'sections.quick_order_list.volume_pricing' | t
                               else
                                 assign popover_title = 'sections.quick_order_list.quantity_rules' | t
                               endif
                             -%}
-  
-                            <button type="button" class="block link-faded" aria-controls="{{ popover_id }}" aria-label="{{ 'sections.quick_order_list.volume_pricing_available' | t | escape }}">
+
+                            <button
+                              type="button"
+                              class="block link-faded"
+                              aria-controls="{{ popover_id }}"
+                              aria-label="{{ 'sections.quick_order_list.volume_pricing_available' | t | escape }}"
+                            >
                               {%- render 'icon' with 'info-bubble' -%}
                             </button>
-  
+
                             <x-popover id="{{ popover_id }}" class="popover popover--quantity-breaks color-scheme color-scheme--dialog">
                               <p class="h6" slot="header">{{ popover_title }}</p>
-                              
+
                               <div>
                                 <div class="v-stack gap-3 text-start">
                                   <p class="h6 sm-max:hidden">{{ popover_title }}</p>
-  
+
                                   {%- liquid
                                     assign quantity_rules = ''
-                  
+
                                     if variant.quantity_rule.min > 1
                                       assign rule = 'sections.quick_order_list.minimum_of' | t: min: variant.quantity_rule.min
                                       assign quantity_rules = quantity_rules | append: ' / ' | append: rule
                                     endif
-                  
-                                    if variant.quantity_rule.max != nil
+
+                                    if variant.quantity_rule.max != null
                                       assign rule = 'sections.quick_order_list.maximum_of' | t: max: variant.quantity_rule.max
                                       assign quantity_rules = quantity_rules | append: ' / ' | append: rule
                                     endif
-                  
+
                                     if variant.quantity_rule.increment > 1
                                       assign rule = 'sections.quick_order_list.increment_of' | t: step: variant.quantity_rule.increment
                                       assign quantity_rules = quantity_rules | append: ' / ' | append: rule
                                     endif
                                   -%}
-                  
+
                                   {%- if quantity_rules != blank -%}
                                     <p class="text-sm">{{ quantity_rules | remove_first: ' / ' | capitalize }}</p>
                                   {%- endif -%}
-  
+
                                   <ol class="quantity-breaks-table border-t divide-y">
                                     {%- for quantity_break in variant.quantity_price_breaks -%}
                                       <li class="h-stack justify-between">
                                         {%- assign price = quantity_break.price | money -%}
-  
+
                                         <span class="text-sm">{{ quantity_break.minimum_quantity }}+</span>
                                         <span class="text-sm">{{ 'product.volume_pricing.price_at_each' | t: price: price }}</span>
                                       </li>
@@ -240,7 +269,7 @@ used in B2B context.
                             </x-popover>
                           </div>
                         {%- endif -%}
-  
+
                         <div class="quick-order-list__quantity-selector">
                           {%- if variant.available -%}
                             <quick-order-list-quantity-selector variant-id="{{ variant.id }}">
@@ -250,7 +279,7 @@ used in B2B context.
                             <p class="h6 text-subdued">{{ 'product.general.sold_out_button' | t }}</p>
                           {%- endif -%}
                         </div>
-  
+
                         {%- if line_items_for_variant.size > 0 -%}
                           <quick-order-list-remove-variant class="quick-order-list__remove-variant sm-max:hidden" variant-id="{{ variant.id }}">
                             <button type="button" class="link text-xs">{{ 'sections.quick_order_list.remove' | t }}</button>
@@ -260,13 +289,13 @@ used in B2B context.
                     </td>
 
                     <td class="text-center">
-                      {%- liquid 
+                      {%- liquid
                         if variant.quantity_price_breaks.size <= 1
                           assign price = variant.price | money
                         else
                           assign price_breaks_array = variant.quantity_price_breaks | sort: 'quantity' | reverse
                           assign cart_quantity = cart | item_count_for_variant: variant.id
-  
+
                           for price_break in price_breaks_array
                             if cart_quantity >= price_break.minimum_quantity
                               assign price = price_break.price | money
@@ -291,7 +320,7 @@ used in B2B context.
               {%- liquid
                 assign total_item_count = 0
                 assign total_price = 0
-                
+
                 for product in products
                   assign product_item_count = cart | line_items_for: product | sum: 'quantity'
                   assign product_item_total_price = cart | line_items_for: product | sum: 'original_line_price'
@@ -360,12 +389,12 @@ used in B2B context.
     {
       "type": "checkbox",
       "id": "show_only_to_b2b_customers",
-      "label": "t:sections.quick_order_list.show_only_to_b2b_customers",
+      "label": "t:sections.quick_order_list.show_only_to_b2b_customers"
     },
     {
       "type": "checkbox",
       "id": "hide_on_mobile",
-      "label": "t:sections.quick_order_list.hide_on_mobile",
+      "label": "t:sections.quick_order_list.hide_on_mobile"
     },
     {
       "type": "checkbox",
@@ -383,6 +412,38 @@ used in B2B context.
       "id": "title",
       "label": "t:global.text.heading",
       "default": "Quick order list"
+    },
+    {
+      "type": "select",
+      "id": "heading_style",
+      "label": "t:global.text.style",
+      "options": [
+        {
+          "value": "h1",
+          "label": "H1"
+        },
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h3",
+          "label": "H3"
+        },
+        {
+          "value": "h4",
+          "label": "H4"
+        },
+        {
+          "value": "h5",
+          "label": "H5"
+        },
+        {
+          "value": "h6",
+          "label": "H6"
+        }
+      ],
+      "default": "h2"
     },
     {
       "type": "header",
@@ -404,7 +465,7 @@ used in B2B context.
       "type": "product_list",
       "id": "additional_products",
       "label": "t:sections.quick_order_list.additional_products",
-      "info": "t:sections.quick_order_list.additional_products_info",
+      "info": "t:sections.quick_order_list.additional_products_info"
     },
     {
       "type": "checkbox",

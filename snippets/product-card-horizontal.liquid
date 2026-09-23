@@ -1,22 +1,19 @@
-{%- comment -%}
-----------------------------------------------------------------------------------------------------------------------
-PRODUCT CARD HORIZONTAL COMPONENT
-----------------------------------------------------------------------------------------------------------------------
+{%- doc -%}
+  This component is used in complementary product to show a condensed view of the product.
 
-This component is used in complementary product to show a condensed view of the product
-
-********************************************
-Supported variables
-********************************************
-
-* product: the product to render
-* show_quick_buy: show or not the quick buy (which open a modal if the product contains more than 1 choice)
-{%- endcomment -%}
+  @param {object} product - the product to render
+  @param {boolean} [show_quick_buy] - show or not the quick buy (which opens a modal if the product contains more than 1 choice)
+  @param {object} [block]
+{%- enddoc -%}
 
 <div class="horizontal-product-card">
   {%- if product.featured_media -%}
     <a href="{{ product.url }}" class="horizontal-product-card__figure" data-instant>
-      {{- product.featured_media | image_url: width: product.featured_media.width | image_tag: loading: 'lazy', sizes: '100px', widths: '100,150,200,250,300', class: 'horizontal-product-card__image' -}}
+      {{-
+        product.featured_media
+        | image_url: width: product.featured_media.width
+        | image_tag: loading: 'lazy', sizes: '100px', widths: '100,150,200,250,300', class: 'horizontal-product-card__image'
+      -}}
     </a>
   {%- endif -%}
 
@@ -43,13 +40,20 @@ Supported variables
         {%- comment -%}Otherwise, we need to open a modal{%- endcomment -%}
         {%- assign modal_id = 'modal-' | append: block.id | append: '-' | append: product.id -%}
 
-        <quick-buy-modal id="{{ modal_id }}" handle="{{ product.handle }}?variant={{ product.selected_or_first_available_variant.id }}" class="quick-buy-modal modal modal--lg color-scheme color-scheme--dialog">
+        <quick-buy-modal
+          id="{{ modal_id }}"
+          handle="{{ product.handle }}?variant={{ product.selected_or_first_available_variant.id }}"
+          class="quick-buy-modal modal modal--lg color-scheme color-scheme--dialog"
+          aria-label="{{ 'product.general.choose_options_with_title' | t: title: product.title | escape }}"
+        >
           {%- comment -%}Content is filled dynamically in Ajax for performance reasons{%- endcomment -%}
           LOADING
         </quick-buy-modal>
 
         <button aria-controls="{{ modal_id }}" class="@narrow:horizontal-product-card__button link">{{ 'product.general.add_to_cart_button' | t }}</button>
-        <button aria-controls="{{ modal_id }}" class="@large:horizontal-product-card__button button button--outline button--subdued">{{ 'product.general.add_to_cart_button' | t }}</button>
+        <button aria-controls="{{ modal_id }}" class="@large:horizontal-product-card__button button button--outline button--subdued">
+          {{ 'product.general.add_to_cart_button' | t }}
+        </button>
       {%- endif -%}
     {%- endif -%}
   </div>

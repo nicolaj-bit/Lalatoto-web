@@ -34,12 +34,14 @@
       "button_text": "Button text",
       "overlay_color": "Overlay",
       "overlay_opacity": "Overlay opacity",
-      "gradient_overlay": "Gradient overlay"
+      "gradient_overlay": "Gradient overlay",
+      "image_overlay_color": "Image overlay"
     },
     "sizes": {
       "size": "Size",
       "section_width": "Section width",
       "content_width": "Content width",
+      "xx_small": "XX-Small",
       "x_small": "X-Small",
       "small": "Small",
       "medium": "Medium",
@@ -81,12 +83,21 @@
         "solid": "Solid"
       }
     },
+    "media": {
+      "category": "Media",
+      "media_type": "Media type",
+      "media_type_options": {
+        "image": "Image",
+        "video": "Video"
+      }
+    },
     "image": {
       "image": "Image",
       "background_image": "Background image",
       "mobile_image": "Mobile image",
       "mobile_background_image": "Mobile background image",
       "alignment": "Alignment",
+      "caption": "Caption",
       "image_alignment": "Image alignment",
       "size": "Image size",
       "width": "Image width",
@@ -103,7 +114,8 @@
       "header_category": "Section header",
       "separate_section_with_border": "Separate section with border",
       "allow_transparent_header": "Allow transparent header",
-      "allow_transparent_header_info": "This setting only applies when this section is the first one."
+      "allow_transparent_header_info": "This setting only applies when this section is the first one.",
+      "transparent_header_use_primary_colors": "Use header primary colors when transparent"
     },
     "video": {
       "video": "Video",
@@ -141,7 +153,9 @@
       "spacing": "Spacing",
       "column_spacing": "Column spacing",
       "remove_vertical_spacing": "Remove vertical spacing",
-      "remove_horizontal_spacing": "Remove horizontal spacing"
+      "remove_horizontal_spacing": "Remove horizontal spacing",
+      "add_vertical_spacing": "Add vertical spacing",
+      "add_horizontal_spacing": "Add horizontal spacing"
     },
     "localization": {
       "country_region_selector_category": "Country/region selector",
@@ -362,6 +376,7 @@
     "animation": {
       "name": "Animation",
       "minimize_motion_paragraph": "Users who configured their preferences to minimize non-essential motion will automatically experience reduced animations.",
+      "show_page_transition": "Show page transition",
       "show_button_transition": "Show button transition",
       "show_image_zoom_on_hover": "Show image zoom on hover",
       "show_image_zoom_on_hover_info": "Applies to different sections such as collection list, mega-menu...",
@@ -396,6 +411,12 @@
       "text_font_options": {
         "heading": "Heading",
         "body": "Body text"
+      },
+      "text_casing": "Text casing",
+      "text_casing_options": {
+        "inherit": "Inherit",
+        "uppercase": "Uppercase",
+        "lowercase": "Lowercase"
       },
       "show_vendor": "Show vendor",
       "product_title_max_lines": "Title maximum lines (0 to never truncate)",
@@ -705,7 +726,52 @@
     },
     "custom_section": {
       "name": "Custom section"
-    },    
+    },
+    "dynamic_grid": {
+      "name": "Dynamic grid",
+      "instructions": "Create a unique page layout with a grid system. Re-order blocks to control which one appears on top. [Learn more](https://support.maestrooo.com/article/817-using-the-dynamic-grid)",
+      "instructions_second": "Visual guides help you to set up the section in the theme editor. They won't show in the live store.",
+      "background_category": "Background",
+      "background_mode": "Mode",
+      "background_mode_options": {
+        "none": "None"
+      },
+      "background_image_recommendation": "2800 x 1000px .jpg recommended",
+      "mobile_background_image_recommendation": "1200 x 1600px .jpg recommended",
+      "background_video_recommendation": "16/9 ratio recommended",
+      "mobile_background_video_recommendation": "Portrait ratio recommended",
+      "desktop_grid_category": "Desktop grid",
+      "desktop_grid_category_info": "It uses an 16-column grid. Rows adjust automatically to fit your content.",
+      "mobile_grid_category": "Mobile grid",
+      "mobile_grid_category_info": "It uses an 8-column grid. Rows adjust automatically to fit your content. Switch to mobile preview to configure the section more easily.",
+      "gap": "Gap",
+      "blocks": {
+        "cell": {
+          "name": "Grid item",
+          "visibility": "Visibility",
+          "visibility_options": {
+            "mobile_only": "Mobile",
+            "desktop_only": "Desktop",
+            "both": "Both"
+          },
+          "desktop": "Desktop",
+          "mobile": "Mobile",
+          "column_start": "Start at column",
+          "span_columns": "Span columns",
+          "row_start": "Start at row",
+          "horizontal_adjustment": "Horizontal shift",
+          "vertical_adjustment": "Vertical shift",
+          "parallax_category": "Parallax",
+          "parallax_direction": "Direction",
+          "parallax_direction_options": {
+            "vertical": "Vertical",
+            "horizontal": "Horizontal"
+          },
+          "parallax_speed": "Speed",
+          "parallax_speed_info": "Leave to 0 to turn off parallax."
+        }
+      }
+    },
     "faq": {
       "name": "FAQ",
       "show_categories": "Show sidebar categories",
@@ -727,6 +793,8 @@
     },
     "featured_collections": {
       "name": "Featured collections",
+      "hide_collection_title": "Hide collection title",
+      "hide_collection_title_info": "Ignored if more than one collection is featured.",
       "blocks": {
         "collection": {
           "name": "Collection",
@@ -770,6 +838,7 @@
           "name": "Links",
           "menu": "Menu",
           "menu_info": "This menu won't show dropdown items.",
+          "collapse_on_mobile": "Collapse on mobile",
           "show_menu_title": "Show menu title",
           "menu_title": "Title",
           "menu_title_info": "Replaces default menu title"
@@ -811,6 +880,7 @@
       },
       "sidebar_show_dividers": "Show sidebar menu dividers",
       "sidebar_open_second_level_menus": "Open second-level menus by default",
+      "customer_account_menu": "Customer account menu",
       "desktop_category": "Desktop",
       "layout": "Layout",
       "layout_options": {
@@ -971,6 +1041,10 @@
     "main_article": {
       "name": "Blog post",
       "comments_category_info": "Configure your blog to allow comments. [Learn more](https://help.shopify.com/en/manual/online-store/blogs/managing-comments#allow-or-disable-comments-on-a-blog)",
+      "show_author": "Show author",
+      "author_bio": "Author bio",
+      "author_homepage": "Author website",
+      "author_image": "Author image",
       "show_share_buttons": "Show share buttons",
       "show_image": "Show image",
       "image_height": "Image height",
@@ -1008,16 +1082,18 @@
       "quick_links_menu": "Quick links menu",
       "quick_links_menu_info": "This menu won't show dropdown items.",
       "blocks": {
-        "image": {
-          "name": "Image",
-          "image_info": "900 x 1200px .jpg recommended",
-          "position_in_grid": "Position in grid",
-          "position_in_grid_info": "Hidden if not enough products.",
-          "enlarge_card": "Enlarge card",
-          "content_category": "Content"
-        },
-        "video": {
-          "name": "Video"
+        "push_promo": {
+          "name": "Promo push",
+          "bordered": "Show border",
+          "position": "Position in grid",
+          "position_info": "Hidden if not enough products.",
+          "sizes": {
+            "1": "1 column",
+            "2": "2 columns"
+          },
+          "image_size_recommendation": "1600 x 2000px .jpg recommended",
+          "mobile_image_size_recommendation": "1600 x 2000px .jpg recommended. Default to desktop image.",
+          "mobile_video_info": "Default to desktop video."
         }
       }
     },
@@ -1191,17 +1267,21 @@
           "selector_style_options": {
             "block": "Block",
             "dropdown": "Dropdown",
-            "variant_image": "Variant image"
+            "variant_image": "Variant image",
+            "variant_image_underline": "Variant image (underline)",
+            "underline": "Underline"
           },
           "swatch_selector_style": "Swatch selector style",
           "swatch_selector_style_info": "Enable [swatches](https://help.shopify.com/en/manual/online-store/themes/theme-structure/theme-settings#options-with-swatches) on product options.",
           "swatch_selector_style_options": {
             "swatch": "Swatch",
+            "swatch_underline": "Swatch (underline)",
             "block_swatch": "Block with color",
-            "none": "None"
+            "none": "Inherit from selector style"
           },
           "variant_image_options": "Show variant image for options",
           "variant_image_options_info": "List of comma separated option names where option values show the attached variant image. [Learn more](https://support.maestrooo.com/article/767-variant-image-for-color-options)",
+          "variant_image_show_underline": "Underline for variant images",
           "size_chart_page": "Size chart page",
           "size_chart_page_info": "Feature a page for size option"
         },
@@ -1328,6 +1408,11 @@
           "name": "More information",
           "instructions": "On desktop, display a link that scroll to extra information below image gallery. If no extra information is specified, this block is automatically hidden.",
           "text": "Text"
+        },
+        "disclosures": {
+          "name": "Disclosures",
+          "info": "Required safety warnings and regulatory disclosures for this product. [Learn more](https://help.shopify.com/en/manual/products/product-disclosures).",
+          "collapse_content": "Collapse content"
         }
       }
     },
@@ -1348,7 +1433,8 @@
           "column_width": "Column width",
           "column_width_info": "On desktop, the sum must be equal to 100% to fill a row.",
           "row_count": "Row count",
-          "row_count_info": "Control the row size in the section general settings."
+          "row_count_info": "Control the row size in the section general settings.",
+          "add_padding": "Add padding (desktop only)"
         },
         "video": {
           "name": "Video"
@@ -1597,6 +1683,8 @@
           "name": "Image",
           "desktop_image_size_recommendation": "3200 x 1200px .jpg recommended",
           "mobile_image_size_recommendation": "1200 x 1600px .jpg recommended",
+          "split_image": "Split image",
+          "split_image_info": "1600 x 1600px .jpg recommended. Hidden on mobile, adjust primary image to match this size.",
           "content_category": "Content",
           "content_maximum_width": "Content maximum width",
           "button_1_link_info": "To make the slide fully clickable, leave the \"Button 1 text\" and \"Button 2\" settings empty.",

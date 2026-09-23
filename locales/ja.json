@@ -15,8 +15,8 @@
       "skip_to_content": "コンテンツへスキップ",
       "pagination": "パジネーション",
       "go_to_page": "ページに移動する {{page}}",
-      "go_to_item": "項目に移動する {{page}}",
-      "item_nth_of_count": "Item {{ index }} of {{ count }}",
+      "go_to_item": "項目に移動する {{index}}",
+      "item_nth_of_count": "{{ count }} 件中 {{ index }} 件目",
       "drag": "引っ張る",
       "close": "閉める",
       "next": "次へ",
@@ -97,6 +97,7 @@
       "sold_out_button": "売り切れ",
       "unavailable_button": "選択不可能",
       "choose_options": "オプションを選択",
+      "choose_options_with_title": "{{ title }} のオプションを選択",
       "view_details": "詳細を表示",
       "added_to_cart": "カートに追加されました！",
       "added_to_cart_with_title": "{{ product_title }} がカートに追加されました。",
@@ -116,6 +117,7 @@
       }
     },
     "gallery": {
+      "title": "商品ギャラリー",
       "close": "閉じる",
       "zoom": "ズームイン",
       "error": "画像を表示できません"
@@ -165,6 +167,9 @@
       "pick_up_currently_unavailable": "商品のピックアップは現在利用できません",
       "pick_up_available_at": "{{ location_name }}でピックアップ可能です",
       "pick_up_unavailable_at": "現在{{ location_name }}でピックアップは利用できません"
+    },
+    "disclosures": {
+      "title": "注意事項"
     }
   },
   "collection": {

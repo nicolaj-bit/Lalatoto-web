@@ -98,6 +98,7 @@
       "sold_out_button": "Udsolgt",
       "unavailable_button": "Ikke tilgængelig",
       "choose_options": "Vælg muligheder",
+      "choose_options_with_title": "Vælg muligheder for {{ title }}",
       "view_details": "Vis oplysninger",
       "added_to_cart": "Føjet til din indkøbskurv!",
       "added_to_cart_with_title": "{{ product_title }} er blevet tilføjet til kurven.",
@@ -117,6 +118,7 @@
       }
     },
     "gallery": {
+      "title": "Produktgalleri",
       "close": "Luk gallery",
       "zoom": "Zoom",
       "error": "Billede kunne ikke indlæses"
@@ -168,6 +170,9 @@
       "pick_up_currently_unavailable": "Ingen mulighed for afhentning i øjeblikket",
       "pick_up_available_at": "Mulighed for afhentning hos {{ location_name }}",
       "pick_up_unavailable_at": "Ingen mulighed for afhentning hos {{ location_name }} i øjeblikket"
+    },
+    "disclosures": {
+      "title": "Meddelelser"
     }
   },
   "collection": {

@@ -1,21 +1,18 @@
-{%- comment -%}
-----------------------------------------------------------------------------------------------------------------------
-LINE ITEM
-----------------------------------------------------------------------------------------------------------------------
+{%- doc -%}
+  This component renders a single line item product information, and is used on order and cart page.
 
-This component renders a single line item product information, and is used on order and cart page.
-
-********************************************
-Supported variables
-********************************************
-
-* line_item: the line item to render (required)
-* show_quantity_selector: if set to true, the quantity selector is displayed (useful for instance of mini-cart)
-{%- endcomment -%}
+  @param {object} line_item - the line item to render
+  @param {boolean} [show_quantity_selector] - if set to true, the quantity selector is displayed (useful for instance in mini-cart)
+  @param {object} [section]
+{%- enddoc -%}
 
 <line-item class="line-item">
   {%- if line_item.image != blank -%}
-    {{- line_item.image | image_url: width: line_item.image.width | image_tag: loading: 'lazy', sizes: '(max-width: 699px) 70px, 120px', widths: '70,120,140,210,240,360', class: 'line-item__media' -}}
+    {{-
+      line_item.image
+      | image_url: width: line_item.image.width
+      | image_tag: loading: 'lazy', sizes: '(max-width: 699px) 70px, 120px', widths: '70,120,140,210,240,360', class: 'line-item__media'
+    -}}
   {%- endif -%}
 
   <div class="line-item-info">
@@ -60,7 +57,7 @@ Supported variables
               {%- endif -%}
 
               <li>
-                {%- if property.last contains '/uploads/' -%}
+                {%- if property.last contains '/uploads/' or property.last contains '/files/' -%}
                   <a href="{{ property.last }}">{{ property.last | split: '/' | last }}</a>
                 {%- else -%}
                   {{ property.first }}: {{ property.last }}
@@ -77,10 +74,12 @@ Supported variables
         </div>
       {%- endif -%}
 
+      {%- render 'cart-disclosures', product: line_item.product -%}
+
       {%- if show_quantity_selector -%}
         <line-item-quantity class="h-stack gap-4 {% if request.page_type == 'cart' %}sm:hidden{% endif %}">
           {%- render 'quantity-selector', line_item: line_item, size: 'sm' -%}
-          
+
           <a href="{{ line_item.url_to_remove }}" class="link text-xs" aria-label="{{ 'cart.order.remove_with_title' | t: title: line_item.title | escape }}">
             {{- 'cart.order.remove' | t -}}
           </a>

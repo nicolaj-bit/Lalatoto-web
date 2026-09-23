@@ -18,9 +18,21 @@
           >
         {%- endif -%}
 
-        {{- block.settings.image | image_url: width: block.settings.image.width | image_tag: sizes: image_sizes_attribute, widths: '200,300,400,500,600,800,1000,1200,1400', class: 'constrained-image', style: image_style_attribute -}}
+        {{-
+          block.settings.image
+          | image_url: width: block.settings.image.width
+          | image_tag: sizes: image_sizes_attribute, widths: '200,300,400,500,600,800,1000,1200,1400', class: 'constrained-image', style: image_style_attribute
+        -}}
       </picture>
+
+      {%- if block.settings.caption != blank -%}
+        <figcaption class="h6">{{ block.settings.caption }}</figcaption>
+      {%- endif -%}
     </div>
+  </div>
+{%- elsif request.design_mode -%}
+  <div class="grid" {{ block.shopify_attributes }}>
+    {{- 'image' | placeholder_svg_tag: 'placeholder' -}}
   </div>
 {%- endif -%}
 
@@ -42,13 +54,12 @@
       "info": "t:blocks.image.mobile_image_size_recommendation"
     },
     {
-      "type": "text_alignment",
-      "id": "alignment",
-      "label": "t:global.image.alignment",
-      "default": "center"
+      "type": "text",
+      "id": "caption",
+      "label": "t:global.image.caption"
     },
     {
-      "type": "radio",
+      "type": "select",
       "id": "width_mode",
       "label": "t:global.image.width",
       "options": [
@@ -62,6 +73,13 @@
         }
       ],
       "default": "custom"
+    },
+    {
+      "type": "text_alignment",
+      "id": "alignment",
+      "visible_if": "{{ block.settings.width_mode == 'custom' }}",
+      "label": "t:global.image.alignment",
+      "default": "center"
     },
     {
       "type": "range",

@@ -39,9 +39,9 @@
 -%}
 
 {%- comment -%}
-------------------------------------------------------------------------------------------------------------------------
-CSS
-------------------------------------------------------------------------------------------------------------------------
+  ------------------------------------------------------------------------------------------------------------------------
+  CSS
+  ------------------------------------------------------------------------------------------------------------------------
 {%- endcomment -%}
 
 <style>
@@ -103,9 +103,9 @@ CSS
 </style>
 
 {%- comment -%}
-------------------------------------------------------------------------------------------------------------------------
-LIQUID
-------------------------------------------------------------------------------------------------------------------------
+  ------------------------------------------------------------------------------------------------------------------------
+  LIQUID
+  ------------------------------------------------------------------------------------------------------------------------
 {%- endcomment -%}
 
 <div class="color-scheme color-scheme--{{ section.settings.color_scheme.id }}">
@@ -128,7 +128,8 @@ LIQUID
               {%- if show_filters -%}
                 <div class="collection-toolbar__button-container {% if section.settings.filter_layout == 'sidebar' %}md:hidden{% endif %}">
                   <button type="button" aria-controls="facets-drawer" class="collection-toolbar__button heading text-xxs w-full">
-                    {{- 'collection.faceting.filter_button' | t }} {% if active_values_count > 0 %}({{ active_values_count }}){% endif -%}
+                    {{- 'collection.faceting.filter_button' | t }}
+                    {% if active_values_count > 0 %}({{ active_values_count }}){% endif -%}
                   </button>
                 </div>
               {%- endif -%}
@@ -144,13 +145,26 @@ LIQUID
                     </span>
                   </button>
 
-                  <facets-sort-popover id="sort-by-popover" section-id="{{ section.id }}" class="popover popover--bottom-end color-scheme color-scheme--dialog" close-on-listbox-select>
+                  <facets-sort-popover
+                    id="sort-by-popover"
+                    section-id="{{ section.id }}"
+                    class="popover popover--bottom-end color-scheme color-scheme--dialog"
+                    close-on-listbox-select
+                  >
                     <p class="h4" slot="header">{{ 'collection.faceting.sort_by' | t }}</p>
 
                     <x-listbox class="popover__value-list">
                       {%- for sort_option in collection.sort_options -%}
                         {%- if sort_option.name != blank -%}
-                          <button type="button" class="popover__value-option group" role="option" value="{{ sort_option.value }}" {% if sort_option.value == selected_sort_by_value %}aria-selected="true"{% endif %}>
+                          <button
+                            type="button"
+                            class="popover__value-option group"
+                            role="option"
+                            value="{{ sort_option.value }}"
+                            {% if sort_option.value == selected_sort_by_value %}
+                              aria-selected="true"
+                            {% endif %}
+                          >
                             <span class="reversed-link">{{ sort_option.name }}</span>
                           </button>
                         {%- endif -%}
@@ -169,14 +183,49 @@ LIQUID
 
             {%- if section.settings.show_grid_mode_selector -%}
               <collection-layout-switch device="mobile" class="collection-toolbar__layout-switch-list sm:hidden" aria-controls="product-list-{{ section.id }}">
-                <button type="button" value="large" class="collection-toolbar__button {% if products_mobile_grid_mode == 'large' %}is-active{% endif %}" aria-label="Switch to larger product images">{%- render 'icon' with 'collection-layout-1' -%}</button>
-                <button type="button" value="medium" class="collection-toolbar__button {% if products_mobile_grid_mode == 'medium' %}is-active{% endif %}" aria-label="Switch to smaller product images">{%- render 'icon' with 'collection-layout-2' -%}</button>
+                <button
+                  type="button"
+                  value="large"
+                  class="collection-toolbar__button {% if products_mobile_grid_mode == 'large' %}is-active{% endif %}"
+                  aria-label="Switch to larger product images"
+                >
+                  {%- render 'icon' with 'collection-layout-1' -%}
+                </button>
+                <button
+                  type="button"
+                  value="medium"
+                  class="collection-toolbar__button {% if products_mobile_grid_mode == 'medium' %}is-active{% endif %}"
+                  aria-label="Switch to smaller product images"
+                >
+                  {%- render 'icon' with 'collection-layout-2' -%}
+                </button>
               </collection-layout-switch>
 
               <collection-layout-switch device="desktop" class="collection-toolbar__layout-switch-list sm-max:hidden" aria-controls="product-list-{{ section.id }}">
-                <button type="button" value="large" class="collection-toolbar__button {% if products_desktop_grid_mode == 'large' %}is-active{% endif %}" aria-label="Switch to larger product images">{%- render 'icon' with 'collection-layout-2' -%}</button>
-                <button type="button" value="medium" class="collection-toolbar__button {% if products_desktop_grid_mode == 'medium' %}is-active{% endif %}" aria-label="Switch to smaller product images">{%- render 'icon' with 'collection-layout-3' -%}</button>
-                <button type="button" value="compact" class="collection-toolbar__button {% if products_desktop_grid_mode == 'compact' %}is-active{% endif %}" aria-label="Switch to compact product images">{%- render 'icon' with 'collection-layout-4' -%}</button>
+                <button
+                  type="button"
+                  value="large"
+                  class="collection-toolbar__button {% if products_desktop_grid_mode == 'large' %}is-active{% endif %}"
+                  aria-label="Switch to larger product images"
+                >
+                  {%- render 'icon' with 'collection-layout-2' -%}
+                </button>
+                <button
+                  type="button"
+                  value="medium"
+                  class="collection-toolbar__button {% if products_desktop_grid_mode == 'medium' %}is-active{% endif %}"
+                  aria-label="Switch to smaller product images"
+                >
+                  {%- render 'icon' with 'collection-layout-3' -%}
+                </button>
+                <button
+                  type="button"
+                  value="compact"
+                  class="collection-toolbar__button {% if products_desktop_grid_mode == 'compact' %}is-active{% endif %}"
+                  aria-label="Switch to compact product images"
+                >
+                  {%- render 'icon' with 'collection-layout-4' -%}
+                </button>
               </collection-layout-switch>
             {%- endif -%}
           </height-observer>
@@ -185,10 +234,20 @@ LIQUID
         <div class="collection">
           {%- paginate collection.products by section.settings.products_per_page -%}
             {%- if show_filters -%}
-              <facets-drawer id="facets-drawer" class="facets-drawer drawer drawer--sm color-scheme color-scheme--dialog {% if section.settings.filter_layout == 'sidebar' %}md:hidden{% endif %}">
+              <facets-drawer
+                id="facets-drawer"
+                class="facets-drawer drawer drawer--sm color-scheme color-scheme--dialog {% if section.settings.filter_layout == 'sidebar' %}md:hidden{% endif %}"
+              >
                 <p class="h4" slot="header">{{ 'collection.faceting.filters' | t }}</p>
 
-                {%- render 'facets', results: collection, show_filters: section.settings.show_filters, open_filters_by_default: section.settings.open_filters_by_default, update_on_change: false, quick_links_menu: section.settings.quick_links_menu, context: 'drawer' -%}
+                {%- render 'facets',
+                  results: collection,
+                  show_filters: section.settings.show_filters,
+                  open_filters_by_default: section.settings.open_filters_by_default,
+                  update_on_change: false,
+                  quick_links_menu: section.settings.quick_links_menu,
+                  context: 'drawer'
+                -%}
 
                 <div slot="footer">
                   {%- assign button_content = 'collection.faceting.apply_filters' | t -%}
@@ -201,7 +260,14 @@ LIQUID
 
               {%- if section.settings.filter_layout == 'sidebar' -%}
                 <safe-sticky class="facets-sidebar md-max:hidden">
-                  {%- render 'facets', results: collection, show_filters: section.settings.show_filters, open_filters_by_default: section.settings.open_filters_by_default, update_on_change: true, quick_links_menu: section.settings.quick_links_menu, context: 'sidebar' -%}
+                  {%- render 'facets',
+                    results: collection,
+                    show_filters: section.settings.show_filters,
+                    open_filters_by_default: section.settings.open_filters_by_default,
+                    update_on_change: true,
+                    quick_links_menu: section.settings.quick_links_menu,
+                    context: 'sidebar'
+                  -%}
                 </safe-sticky>
               {%- endif -%}
             {%- endif -%}
@@ -222,10 +288,23 @@ LIQUID
               <div class="collection__main">
                 {%- render 'active-facets', results: collection -%}
 
-                <product-list id="product-list-{{ section.id }}" class="product-list" collection-mobile-layout="{{ products_mobile_grid_mode }}" collection-desktop-layout="{{ products_desktop_grid_mode }}">
-                  {%- for product in collection.products -%}
-                    {%- render 'product-card', product: product, reveal: settings.stagger_products_apparition, position: forloop.index, hide_product_information: section.settings.hide_product_information, stacked: true -%}
-                  {%- endfor -%}
+                <product-list
+                  id="product-list-{{ section.id }}"
+                  class="product-list"
+                  collection-mobile-layout="{{ products_mobile_grid_mode }}"
+                  collection-desktop-layout="{{ products_desktop_grid_mode }}"
+                >
+                  {% liquid
+                    for product in collection.products
+                      for block in section.blocks
+                        if forloop.parentloop.index == block.settings.position
+                          render 'collection-promo-block', block: block, reveal: true
+                        endif
+                      endfor
+
+                      render 'product-card', product: product, reveal: settings.stagger_products_apparition, position: forloop.index, hide_product_information: section.settings.hide_product_information, stacked: true
+                    endfor
+                  %}
                 </product-list>
 
                 {%- render 'pagination', paginate: paginate, facet: true -%}
@@ -399,6 +478,209 @@ LIQUID
       "id": "open_filters_by_default",
       "label": "t:global.faceting.open_filters_by_default",
       "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "push_promo",
+      "name": "t:sections.main_collection.blocks.push_promo.name",
+      "settings": [
+        {
+          "type": "color_scheme",
+          "id": "color_scheme",
+          "label": "t:global.colors.scheme",
+          "default": "scheme-1"
+        },
+        {
+          "type": "checkbox",
+          "id": "bordered",
+          "label": "t:sections.main_collection.blocks.push_promo.bordered"
+        },
+        {
+          "type": "range",
+          "id": "position",
+          "label": "t:sections.main_collection.blocks.push_promo.position",
+          "info": "t:sections.main_collection.blocks.push_promo.position_info",
+          "min": 1,
+          "max": 50,
+          "default": 5
+        },
+        {
+          "type": "select",
+          "id": "size",
+          "options": [
+            {
+              "value": "1",
+              "label": "t:sections.main_collection.blocks.push_promo.sizes.1"
+            },
+            {
+              "value": "2",
+              "label": "t:sections.main_collection.blocks.push_promo.sizes.2"
+            }
+          ],
+          "default": "1",
+          "label": "t:global.sizes.size"
+        },
+        {
+          "type": "header",
+          "content": "t:global.media.category"
+        },
+        {
+          "type": "select",
+          "id": "media_type",
+          "label": "t:global.media.media_type",
+          "options": [
+            {
+              "value": "image",
+              "label": "t:global.media.media_type_options.image"
+            },
+            {
+              "value": "video",
+              "label": "t:global.media.media_type_options.video"
+            }
+          ],
+          "default": "image"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "visible_if": "{{ block.settings.media_type == 'image' }}",
+          "label": "t:global.image.image",
+          "info": "t:sections.main_collection.blocks.push_promo.image_size_recommendation"
+        },
+        {
+          "type": "image_picker",
+          "id": "mobile_image",
+          "visible_if": "{{ block.settings.media_type == 'image' }}",
+          "label": "t:global.image.mobile_image",
+          "info": "t:sections.main_collection.blocks.push_promo.mobile_image_size_recommendation"
+        },
+        {
+          "type": "video",
+          "id": "video",
+          "visible_if": "{{ block.settings.media_type == 'video' }}",
+          "label": "t:global.video.video"
+        },
+        {
+          "type": "video",
+          "id": "mobile_video",
+          "visible_if": "{{ block.settings.media_type == 'video' }}",
+          "label": "t:global.video.mobile_video",
+          "info": "t:sections.main_collection.blocks.push_promo.mobile_video_info"
+        },
+        {
+          "type": "color",
+          "id": "overlay_color",
+          "label": "t:global.colors.overlay_color",
+          "default": "rgb(0 0 0 / 0.3)",
+          "alpha": true
+        },
+        {
+          "type": "header",
+          "content": "t:global.text.content"
+        },
+        {
+          "type": "select",
+          "id": "content_position",
+          "label": "t:global.position.content_position",
+          "options": [
+            {
+              "value": "align-self-start",
+              "label": "t:global.position.top"
+            },
+            {
+              "value": "align-self-center",
+              "label": "t:global.position.middle"
+            },
+            {
+              "value": "align-self-end",
+              "label": "t:global.position.bottom"
+            }
+          ],
+          "default": "align-self-center"
+        },
+        {
+          "type": "text_alignment",
+          "id": "alignment",
+          "label": "t:global.text.alignment",
+          "default": "center"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "subheading",
+          "label": "t:global.text.subheading",
+          "default": "Subheading"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "label": "t:global.text.heading",
+          "default": "Heading"
+        },
+        {
+          "type": "select",
+          "id": "heading_tag",
+          "label": "t:global.text.style",
+          "options": [
+            {
+              "value": "h1",
+              "label": "H1"
+            },
+            {
+              "value": "h2",
+              "label": "H2"
+            },
+            {
+              "value": "h3",
+              "label": "H3"
+            },
+            {
+              "value": "h4",
+              "label": "H4"
+            },
+            {
+              "value": "h5",
+              "label": "H5"
+            },
+            {
+              "value": "h6",
+              "label": "H6"
+            }
+          ],
+          "default": "h4"
+        },
+        {
+          "type": "select",
+          "id": "style",
+          "label": "t:global.text.link_style",
+          "options": [
+            {
+              "value": "outline",
+              "label": "t:global.text.link_style_options.outline"
+            },
+            {
+              "value": "solid",
+              "label": "t:global.text.link_style_options.solid"
+            },
+            {
+              "value": "link",
+              "label": "t:global.text.link_style_options.link"
+            }
+          ],
+          "default": "solid"
+        },
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "t:global.text.link_text",
+          "default": "Link text"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "t:global.text.link"
+        }
+      ]
     }
   ]
 }

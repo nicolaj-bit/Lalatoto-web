@@ -29,11 +29,20 @@
   <div class="section-spacing color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }} {% if section.settings.separate_section_with_border %}bordered-section{% endif %}">
     <div class="container">
       <div class="section-stack">
-        {%- render 'section-header', subheading: section.settings.subheading, heading: section.settings.title, content: section.settings.content, text_alignment: section.settings.content_alignment -%}
+        {%- render 'section-header',
+          subheading: section.settings.subheading,
+          heading: section.settings.title,
+          heading_style: section.settings.heading_style,
+          content: section.settings.content,
+          text_alignment: section.settings.content_alignment
+        -%}
 
         <multi-column class="multi-column {% unless section.settings.stack_on_mobile %}scroll-area snap-x bleed md:unbleed{% endunless %}">
           {%- for block in section.blocks -%}
-            <div class="multi-column__item {% if section.settings.overlap_image and block.settings.title != blank %}multi-column__item--overlap{% endif %} snap-center group" {{ block.shopify_attributes }}>
+            <div
+              class="multi-column__item {% if section.settings.overlap_image and block.settings.title != blank %}multi-column__item--overlap{% endif %} snap-center group"
+              {{ block.shopify_attributes }}
+            >
               {%- capture sizes_attribute -%}
                 (max-width: 699px) 53vw, (max-width: 999px) 38vw, calc((100vw - 3rem * 2) / {{ section.settings.columns_per_row }})
               {%- endcapture -%}
@@ -41,7 +50,7 @@
               {%- liquid
                 capture media_content
                   if block.type == 'image_with_text' and block.settings.image != blank
-                    assign loading_strategy = nil
+                    assign loading_strategy = null
 
                     if forloop.index > 2 or section.location == 'footer'
                       assign loading_strategy = 'lazy'
@@ -61,12 +70,22 @@
               -%}
 
               {%- if media_content != blank -%}
-                {%- if block.type == 'image_with_text' and block.settings.link_url != blank -%}
-                  <a href="{{ block.settings.link_url }}" class="overflow-hidden">
+                {% liquid
+                  assign add_link = false
+
+                  if block.type == 'video_with_text' and block.settings.autoplay and block.settings.link_url != blank
+                    assign add_link = true
+                  elsif block.type == 'image_with_text' and block.settings.link_url != blank
+                    assign add_link = true
+                  endif
+                -%}
+
+                {%- if add_link -%}
+                  <a href="{{ block.settings.link_url }}" class="multi-column__media overflow-hidden">
                     {{- media_content -}}
                   </a>
                 {%- else -%}
-                  <div class="overflow-hidden">
+                  <div class="multi-column__media overflow-hidden">
                     {{- media_content -}}
                   </div>
                 {%- endif -%}
@@ -213,6 +232,38 @@
       "id": "title",
       "label": "t:global.text.heading",
       "default": "Multi-column"
+    },
+    {
+      "type": "select",
+      "id": "heading_style",
+      "label": "t:global.text.style",
+      "options": [
+        {
+          "value": "h1",
+          "label": "H1"
+        },
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h3",
+          "label": "H3"
+        },
+        {
+          "value": "h4",
+          "label": "H4"
+        },
+        {
+          "value": "h5",
+          "label": "H5"
+        },
+        {
+          "value": "h6",
+          "label": "H6"
+        }
+      ],
+      "default": "h2"
     },
     {
       "type": "richtext",

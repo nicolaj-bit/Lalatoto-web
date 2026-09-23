@@ -29,7 +29,12 @@
   <div class="section-spacing color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }} {% if section.settings.separate_section_with_border %}bordered-section{% endif %}">
     <div class="container container--xl">
       <div class="section-stack">
-        {%- render 'section-header', subheading: section.settings.subheading, heading: section.settings.title, text_alignment: 'center' -%}
+        {%- render 'section-header',
+          subheading: section.settings.subheading,
+          heading: section.settings.title,
+          heading_style: section.settings.heading_style,
+          text_alignment: 'center'
+        -%}
 
         <div class="logo-list {% if section.settings.stack_on_mobile == false %}scroll-area bleed sm:unbleed{% endif %}">
           {%- for block in section.blocks -%}
@@ -45,7 +50,12 @@
             {%- endcapture -%}
 
             {%- if block.settings.link != blank -%}
-              <a class="logo-list__item" href="{{ block.settings.link }}" style="{% render 'surface', background: section.settings.logo_item_background %}" {{ block.shopify_attributes }}>
+              <a
+                class="logo-list__item"
+                href="{{ block.settings.link }}"
+                style="{% render 'surface', background: section.settings.logo_item_background %}"
+                {{ block.shopify_attributes }}
+              >
                 {{- block_content -}}
               </a>
             {%- else -%}
@@ -88,6 +98,38 @@
       "id": "title",
       "label": "t:global.text.heading",
       "default": "Logo list"
+    },
+    {
+      "type": "select",
+      "id": "heading_style",
+      "label": "t:global.text.style",
+      "options": [
+        {
+          "value": "h1",
+          "label": "H1"
+        },
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h3",
+          "label": "H3"
+        },
+        {
+          "value": "h4",
+          "label": "H4"
+        },
+        {
+          "value": "h5",
+          "label": "H5"
+        },
+        {
+          "value": "h6",
+          "label": "H6"
+        }
+      ],
+      "default": "h2"
     },
     {
       "type": "checkbox",

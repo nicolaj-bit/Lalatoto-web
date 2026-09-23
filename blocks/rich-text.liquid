@@ -1,11 +1,17 @@
 {%- if block.settings.text != blank -%}
-  {%- assign text_position = block.settings.text_position | replace: 'left', 'start' | replace: 'right', 'end' -%}
-  
+  {%- if section.settings.remove_rich_text_content_control_settings -%}
+    <div {{ block.shopify_attributes }}>
+      {{- block.settings.text -}}
+    </div>
+  {%- else -%}
+    {%- assign text_position = block.settings.text_position | replace: 'left', 'start' | replace: 'right', 'end' -%}
+
     <div class="container container--{{ block.settings.content_width }}" {{ block.shopify_attributes }}>
       <div class="prose text-{{ text_position }}">
         {{- block.settings.text -}}
       </div>
     </div>
+  {%- endif -%}
 {%- endif -%}
 
 {% schema %}
@@ -22,6 +28,7 @@
     {
       "type": "select",
       "id": "content_width",
+      "visible_if": "{{ section.settings.remove_rich_text_content_control_settings != true }}",
       "label": "t:global.sizes.content_width",
       "options": [
         {
@@ -44,10 +51,11 @@
       "default": "sm"
     },
     {
-        "type": "text_alignment",
-        "id": "text_position",
-        "label": "t:global.position.content_position",
-        "default": "center"
+      "type": "text_alignment",
+      "id": "text_position",
+      "visible_if": "{{ section.settings.remove_rich_text_content_control_settings != true }}",
+      "label": "t:global.position.content_position",
+      "default": "center"
     }
   ],
   "presets": [

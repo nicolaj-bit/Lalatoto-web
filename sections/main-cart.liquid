@@ -32,9 +32,9 @@
 
           <div class="v-stack gap-6">
             {%- comment -%}
-            ----------------------------------------------------------------------------------------------------------------
-            ORDER SUMMARY
-            ----------------------------------------------------------------------------------------------------------------
+              ----------------------------------------------------------------------------------------------------------------
+              ORDER SUMMARY
+              ----------------------------------------------------------------------------------------------------------------
             {%- endcomment -%}
             <table class="order-summary table--reduce-border">
               <thead class="order-summary__header">
@@ -75,9 +75,9 @@
             </table>
 
             {%- comment -%}
-            ----------------------------------------------------------------------------------------------------------------
-            CART FOOTER
-            ----------------------------------------------------------------------------------------------------------------
+              ----------------------------------------------------------------------------------------------------------------
+              CART FOOTER
+              ----------------------------------------------------------------------------------------------------------------
             {%- endcomment -%}
             <div class="cart-footer">
               {%- if section.settings.show_cart_note -%}
@@ -99,7 +99,8 @@
                       <div class="h-stack justify-start gap-2">
                         <span class="discount-badge text-xs">
                           {%- render 'icon' with 'discount', width: 12 -%}
-                          {{- discount_application.title -}} (-{{ discount_application.total_allocated_amount | money }})
+                          {{- discount_application.title -}}
+                          (-{{ discount_application.total_allocated_amount | money }})
 
                           {%- if section.settings.allow_discount_application and discount_application.type != '' -%}
                             <cart-discount-remove-button discount-code="{{ discount_application.title | escape }}" class="h-stack align-center">
@@ -174,9 +175,9 @@
           </div>
 
           {%- comment -%}
-          ----------------------------------------------------------------------------------------------------------------
-          SHIPPING ESTIMATOR
-          ----------------------------------------------------------------------------------------------------------------
+            ----------------------------------------------------------------------------------------------------------------
+            SHIPPING ESTIMATOR
+            ----------------------------------------------------------------------------------------------------------------
           {%- endcomment -%}
 
           {%- if section.settings.show_shipping_estimator and cart.requires_shipping -%}
@@ -239,8 +240,6 @@
     }
   ],
 
-  "blocks": [
-    { "type": "@app" }
-  ]
+  "blocks": [{ "type": "@app" }]
 }
 {% endschema %}

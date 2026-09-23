@@ -1,18 +1,10 @@
-{%- comment -%}
-----------------------------------------------------------------------------------------------------------------------
-BANNER COMPONENT
-----------------------------------------------------------------------------------------------------------------------
+{%- doc -%}
+  This component is used to create a banner. This is used on every form status or to convey information.
 
-This component is used to create banner. This is used on every form status or to convey information.
-
-********************************************
-Supported variables
-********************************************
-
-* status: can be "success" or "error" (if none is set the colors must be set on the parent)
-* content: the textual content to use
-* text_alignment: can be "start" or "center" (default to start)
-{%- endcomment -%}
+  @param {string} [status] - can be "success" or "error" (if none is set the colors must be set on the parent)
+  @param {string} content - the textual content to use
+  @param {string} [text_alignment] - can be "start" or "center" (default to start)
+{%- enddoc -%}
 
 <div class="banner banner--{{ status }} text-{{ text_alignment | default: 'start' }}">
   {{- content -}}

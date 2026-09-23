@@ -97,6 +97,7 @@
       "sold_out_button": "Tükendi",
       "unavailable_button": "Mevcut değil",
       "choose_options": "Seçenekleri belirleyin",
+      "choose_options_with_title": "{{ title }} için seçenekleri belirleyin",
       "view_details": "Ayrıntıları göster",
       "added_to_cart": "Sepetinize eklendi!",
       "added_to_cart_with_title": "{{ product_title }} sepete eklendi.",
@@ -116,6 +117,7 @@
       }
     },
     "gallery": {
+      "title": "Ürün galerisi",
       "close": "Galeriyi kapat",
       "zoom": "Yakınlaştır",
       "error": "Resim yüklenemiyor"
@@ -167,6 +169,9 @@
       "pick_up_currently_unavailable": "Gel-al şu anda kullanılamıyor",
       "pick_up_available_at": "Gel-al {{ location_name }} konumunda mevcut",
       "pick_up_unavailable_at": "Gel-al {{ location_name }} konumunda şu anda kullanılamıyor"
+    },
+    "disclosures": {
+      "title": "Bildirimler"
     }
   },
   "collection": {

@@ -9,7 +9,18 @@
       {%- endform -%}
     {%- endcapture -%}
 
-    <newsletter-popup class="pop-in newsletter-popup color-scheme color-scheme--{{ section.settings.color_scheme.id }}" title="Newsletter popup" {% if section.settings.show_only_once %}only-once{% endif %} apparition-delay="{{ section.settings.apparition_delay }}" {% if posted_successfully %}open{% endif %} handle-editor-events>
+    <newsletter-popup
+      class="pop-in newsletter-popup color-scheme color-scheme--{{ section.settings.color_scheme.id }}"
+      title="Newsletter popup"
+      {% if section.settings.show_only_once %}
+        only-once
+      {% endif %}
+      apparition-delay="{{ section.settings.apparition_delay }}"
+      {% if posted_successfully %}
+        open
+      {% endif %}
+      handle-editor-events
+    >
       <dialog-close-button class="contents">
         <button class="pop-in__close-button tap-area">
           <span class="sr-only">{{ 'general.accessibility.close' | t }}</span>

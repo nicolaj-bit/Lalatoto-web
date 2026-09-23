@@ -1,8 +1,8 @@
 {%- if section.blocks.size > 0 -%}
   {%- comment -%}
-  ------------------------------------------------------------------------------------------------------------------------
-  CSS
-  ------------------------------------------------------------------------------------------------------------------------
+    ------------------------------------------------------------------------------------------------------------------------
+    CSS
+    ------------------------------------------------------------------------------------------------------------------------
   {%- endcomment -%}
 
   <style>
@@ -12,24 +12,40 @@
   </style>
 
   {%- comment -%}
-  ------------------------------------------------------------------------------------------------------------------------
-  LIQUID
-  ------------------------------------------------------------------------------------------------------------------------
+    ------------------------------------------------------------------------------------------------------------------------
+    LIQUID
+    ------------------------------------------------------------------------------------------------------------------------
   {%- endcomment -%}
 
   {%- assign color_scheme_hash = section.settings.color_scheme.settings.background_gradient | default: section.settings.color_scheme.settings.background | md5 -%}
 
-  <div class="section-spacing color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }} {% if section.settings.separate_section_with_border %}bordered-section{% endif %}" style="{% render 'surface', background: section.settings.background, text_color: section.settings.text_color %}">
+  <div
+    class="section-spacing color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }} {% if section.settings.separate_section_with_border %}bordered-section{% endif %}"
+    style="{% render 'surface', background: section.settings.background, text_color: section.settings.text_color %}"
+  >
     <div class="container">
       <div class="section-stack">
         {%- if section.settings.title != blank or section.settings.subheading != blank or section.settings.content != blank -%}
-          {%- render 'section-header', subheading: section.settings.subheading, heading: section.settings.title, content: section.settings.content, text_alignment: 'center' -%}
+          {%- render 'section-header',
+            subheading: section.settings.subheading,
+            heading: section.settings.title,
+            heading_style: section.settings.heading_style,
+            content: section.settings.content,
+            text_alignment: 'center'
+          -%}
         {%- endif -%}
 
         <div class="testimonial-list">
           {%- assign carousel_id = 'carousel-' | append: section.id -%}
 
-          <testimonial-carousel allow-swipe {% if section.settings.auto_rotate_between_testimonials %}autoplay="{{ section.settings.cycle_speed }}"{% endif %} class="testimonial-carousel" id="{{ carousel_id }}">
+          <testimonial-carousel
+            allow-swipe
+            {% if section.settings.auto_rotate_between_testimonials %}
+              autoplay="{{ section.settings.cycle_speed }}"
+            {% endif %}
+            class="testimonial-carousel"
+            id="{{ carousel_id }}"
+          >
             {%- assign testimonials_with_image = section.blocks | map: 'settings' | where: 'image' -%}
 
             {%- for block in section.blocks -%}
@@ -50,7 +66,11 @@
                       {%- capture sizes -%}(max-width: 699px) {{ mobile_width }}px, {{ desktop_width }}px{%- endcapture -%}
                       {%- capture style_attribute -%}--image-mobile-max-width: {{ mobile_width }}px; --image-max-width: {{ desktop_width }}px{%- endcapture -%}
 
-                      {{- block.settings.image | image_url: width: block.settings.image.width | image_tag: sizes: sizes, widths: widths, class: 'constrained-image md:hidden', style: style_attribute -}}
+                      {{-
+                        block.settings.image
+                        | image_url: width: block.settings.image.width
+                        | image_tag: sizes: sizes, widths: widths, class: 'constrained-image md:hidden', style: style_attribute
+                      -}}
                     {%- endif -%}
 
                     {%- if block.settings.author != blank -%}
@@ -65,7 +85,11 @@
           {%- if section.blocks.size > 1 -%}
             <carousel-navigation aria-controls="{{ carousel_id }}" class="page-dots {% if testimonials_with_image.size > 0 %}md:hidden{% endif %}">
               {%- for i in (1..section.blocks.size) -%}
-                <button class="tap-area" aria-current="{% if forloop.first %}true{% else %}false{% endif %}" aria-label="{{ 'general.accessibility.go_to_item' | t: index: forloop.index | escape }}">
+                <button
+                  class="tap-area"
+                  aria-current="{% if forloop.first %}true{% else %}false{% endif %}"
+                  aria-label="{{ 'general.accessibility.go_to_item' | t: index: forloop.index | escape }}"
+                >
                   <span class="sr-only">{{- 'general.accessibility.go_to_item' | t: index: forloop.index -}}</span>
                 </button>
               {%- endfor -%}
@@ -75,7 +99,14 @@
           {%- if testimonials_with_image.size > 0 -%}
             <carousel-navigation aria-controls="{{ carousel_id }}" class="testimonial-list__thumbnail-scroller hidden md:flex">
               {%- for block in section.blocks -%}
-                <button class="testimonial-list__thumbnail" aria-current="{% if forloop.first %}true{% else %}false{% endif %}" {% if block.settings.author == blank %}aria-label="{{ 'general.accessibility.go_to_item' | t: index: forloop.index | escape }}"{% endif %} {{ block.shopify_attributes }}>
+                <button
+                  class="testimonial-list__thumbnail"
+                  aria-current="{% if forloop.first %}true{% else %}false{% endif %}"
+                  {% if block.settings.author == blank %}
+                    aria-label="{{ 'general.accessibility.go_to_item' | t: index: forloop.index | escape }}"
+                  {% endif %}
+                  {{ block.shopify_attributes }}
+                >
                   <div class="v-stack justify-items-center gap-4">
                     {%- if block.settings.image -%}
                       {%- assign desktop_width = block.settings.image.width | at_most: block.settings.logo_max_width -%}
@@ -163,6 +194,38 @@
       "type": "inline_richtext",
       "id": "title",
       "label": "t:global.text.heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_style",
+      "label": "t:global.text.style",
+      "options": [
+        {
+          "value": "h1",
+          "label": "H1"
+        },
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h3",
+          "label": "H3"
+        },
+        {
+          "value": "h4",
+          "label": "H4"
+        },
+        {
+          "value": "h5",
+          "label": "H5"
+        },
+        {
+          "value": "h6",
+          "label": "H6"
+        }
+      ],
+      "default": "h2"
     },
     {
       "type": "richtext",

@@ -97,6 +97,7 @@
       "sold_out_button": "Izpārdots",
       "unavailable_button": "Nav pieejams",
       "choose_options": "Izvēlieties variantus",
+      "choose_options_with_title": "Izvēlieties “{{ title }}” variantus",
       "view_details": "Skatīt informāciju",
       "added_to_cart": "Pievienots grozam!",
       "added_to_cart_with_title": "{{ product_title }} pievienots grozam.",
@@ -116,6 +117,7 @@
       }
     },
     "gallery": {
+      "title": "Produkta galerija",
       "close": "Aizvērt galeriju",
       "zoom": "Pietuvināt",
       "error": "Attēlu nevar ielādēt"
@@ -167,6 +169,9 @@
       "pick_up_currently_unavailable": "Saņemšana klātienē pašlaik nav pieejama",
       "pick_up_available_at": "{{ location_name }}: saņemšana klātienē pieejama",
       "pick_up_unavailable_at": "{{ location_name }}: saņemšana klātienē pašlaik nav pieejama"
+    },
+    "disclosures": {
+      "title": "Paziņojumi"
     }
   },
   "collection": {

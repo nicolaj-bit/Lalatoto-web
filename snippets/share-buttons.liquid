@@ -1,19 +1,11 @@
-{%- comment -%}
-----------------------------------------------------------------------------------------------------------------------
-SHARE BUTTONS
-----------------------------------------------------------------------------------------------------------------------
+{%- doc -%}
+  Generate share buttons for Twitter, Facebook, Pinterest and email.
 
-Generate share buttons for Twitter, Facebook, Pinterest and email
-
-********************************************
-Supported variables
-********************************************
-
-* url: the URL to share
-* title: the title of the resource being shared (can be for instance a product or blog post title)
-* description: the description of the content to share for Pinterest. It is truncated automatically to 200 characters
-* layout: either support "list" or "block" (default to list)
-{%- endcomment -%}
+  @param {string} url - the URL to share
+  @param {string} title - the title of the resource being shared (can be for instance a product or blog post title)
+  @param {string} [description] - the description of the content to share for Pinterest. It is truncated automatically to 200 characters
+  @param {string} [layout] - either "list" or "block" (default to list)
+{%- enddoc -%}
 
 {%- assign url = request.origin | append: url -%}
 

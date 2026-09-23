@@ -97,6 +97,7 @@
       "sold_out_button": "已售完",
       "unavailable_button": "暫不提供",
       "choose_options": "選擇選項",
+      "choose_options_with_title": "選擇{{ title }}的選項",
       "view_details": "查看詳細資訊",
       "added_to_cart": "已加入購物車！",
       "added_to_cart_with_title": "{{ product_title }} 已加入購物車。",
@@ -116,6 +117,7 @@
       }
     },
     "gallery": {
+      "title": "產品圖片庫",
       "close": "關閉圖片庫",
       "zoom": "縮放",
       "error": "無法載入圖片。"
@@ -166,6 +168,9 @@
       "pick_up_currently_unavailable": "目前無法取貨",
       "pick_up_available_at": "可於 {{ location_name }} 取貨",
       "pick_up_unavailable_at": "目前無法於 {{ location_name }} 取貨"
+    },
+    "disclosures": {
+      "title": "聲明"
     }
   },
   "collection": {

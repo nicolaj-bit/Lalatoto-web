@@ -1,20 +1,12 @@
-{%- comment -%}
-----------------------------------------------------------------------------------------------------------------------
-PRODUCT RATING BADGE
-----------------------------------------------------------------------------------------------------------------------
+{%- doc -%}
+  This component generates a review badge from the product metafields information.
 
-This component generates a review badge from the product metafields information.
-
-********************************************
-Supported variables
-********************************************
-
-* product: the product from which ratings are extracted
-* show_empty: if set to true, the theme shows a 0.0 if there are no rating yet
-* show_placeholder: if set to true, show random value (useful for the product card placeholder)
-* show_single_star: if set to true, only one star is shown (otherwise, the number of scale)
-* display_mode: either "rating" (e.g.: 3.5) or "count" (e.g.: 4 reviews). Default to "rating" if none is passed
-{%- endcomment -%}
+  @param {object} product - the product from which ratings are extracted
+  @param {boolean} [show_empty] - if set to true, the theme shows a 0.0 if there are no ratings yet
+  @param {boolean} [show_placeholder] - if set to true, show random value (useful for the product card placeholder)
+  @param {boolean} [show_single_star] - if set to true, only one star is shown (otherwise, the number of the scale)
+  @param {string} [display_mode] - either "rating" (e.g.: 3.5) or "count" (e.g.: 4 reviews). Default to "rating" if none is passed
+{%- enddoc -%}
 
 {%- liquid
   if product.metafields.reviews.rating.value != blank

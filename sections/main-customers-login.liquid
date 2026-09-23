@@ -37,7 +37,7 @@
 
                   <div class="fieldset">
                     {%- if form.errors -%}
-                      {%- render 'banner', status: 'error', content: form.errors.messages['form'] -%}
+                      {%- render 'banner', status: 'error', content: form.errors.messages.form -%}
                     {%- endif -%}
 
                     {%- if form_recover_status != blank -%}
@@ -79,7 +79,7 @@
         {%- form 'recover_customer_password', class: 'form' -%}
           <div class="fieldset">
             {%- if form.errors -%}
-              {%- render 'banner', status: 'error', content: form.errors.messages['form'] -%}
+              {%- render 'banner', status: 'error', content: form.errors.messages.form -%}
             {%- endif -%}
 
             {%- assign email_label = 'customer.recover_password.email' | t -%}

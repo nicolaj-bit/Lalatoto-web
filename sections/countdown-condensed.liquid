@@ -1,6 +1,6 @@
 {%- comment -%}
-This countdown section can only be added on the header group (as a condensed section). For the bigger countdown section
-usable in the main template, please look at the "countdown.liquid" section instead.
+  This countdown section can only be added on the header group (as a condensed section). For the bigger countdown section
+  usable in the main template, please look at the "countdown.liquid" section instead.
 {%- endcomment -%}
 
 <style>
@@ -27,7 +27,13 @@ usable in the main template, please look at the "countdown.liquid" section inste
   {%- assign accessibility_expiration_date = section.settings.expiration_date | date: format: 'date_at_time' -%}
   {%- assign accessibility_text = 'sections.countdown_timer.expires_accessibility_text' | t: expiration_date: accessibility_expiration_date -%}
 
-  <countdown-timer class="countdown-condensed__timer" role="timer" aria-label="{{ accessibility_text | escape }}" expires-at="{{ section.settings.expiration_date | date: '%FT%T%:z' | escape }}" expiration-behavior="{{ section.settings.expiration_behavior }}">
+  <countdown-timer
+    class="countdown-condensed__timer"
+    role="timer"
+    aria-label="{{ accessibility_text | escape }}"
+    expires-at="{{ section.settings.expiration_date | date: '%FT%T%:z' | escape }}"
+    expiration-behavior="{{ section.settings.expiration_behavior }}"
+  >
     <div class="countdown-condensed__timer-item" aria-hidden="true">
       <countdown-timer-flip type="days" class="countdown-condensed__timer-flip">00</countdown-timer-flip>
       <span class="countdown-condensed__timer-unit">{{ 'sections.countdown_timer.days' | t }}</span>

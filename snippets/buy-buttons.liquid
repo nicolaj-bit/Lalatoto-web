@@ -1,23 +1,16 @@
-{%- comment -%}
-----------------------------------------------------------------------------------------------------------------------
-BUY BUTTONS
-----------------------------------------------------------------------------------------------------------------------
+{%- doc -%}
+  This component is used to show the buy buttons.
 
-This component is used to show the buy buttons
-
-********************************************
-Supported variables
-********************************************
-
-* product: the product from which to show the buttons (if empty, a placeholder is displayed)
-* show_payment_button: if we show or not the dynamic checkout button
-* show_gift_card_recipient: for gift card products, an optional message/email to be sent to the recipient
-* atc_button_background: the background of the ATC button
-* atc_button_text_color: the color of the ATC button
-* payment_button_background: the background of the dynamic payment button
-* payment_button_background: the color of the dynamic payment button
-* form_id: if specified, define the form ID linked to this input
-{%- endcomment -%}
+  @param {object} product - the product from which to show the buttons (if empty, a placeholder is displayed)
+  @param {boolean} [show_payment_button] - if set to true, shows the dynamic checkout button
+  @param {boolean} [show_gift_card_recipient] - for gift card products, shows an optional message/email to be sent to the recipient
+  @param {string} [atc_button_background] - the background of the ATC button
+  @param {string} [atc_button_text_color] - the color of the ATC button
+  @param {string} [payment_button_background] - the background of the dynamic payment button
+  @param {string} [payment_button_text_color] - the color of the dynamic payment button
+  @param {string} [form_id] - if specified, define the form ID linked to this input
+  @param {object} [section]
+{%- enddoc -%}
 
 {%- if product != blank -%}
   {%- liquid
@@ -32,12 +25,19 @@ Supported variables
 
   <product-form>
     {%- form 'product', product, id: form_id -%}
-      <input type="hidden" {% if variant_picker_block != blank %}disabled{% endif %} name="id" value="{{ product.selected_or_first_available_variant.id }}">
+      <input
+        type="hidden"
+        {% if variant_picker_block != blank %}
+          disabled
+        {% endif %}
+        name="id"
+        value="{{ product.selected_or_first_available_variant.id }}"
+      >
 
       {% liquid
         assign button_disabled = false
 
-        if product.selected_or_first_available_variant == nil
+        if product.selected_or_first_available_variant == null
           assign button_disabled = true
           assign button_content = 'product.general.unavailable_button' | t
         elsif product.selected_or_first_available_variant.available == false
@@ -86,7 +86,15 @@ Supported variables
             {%- assign atc_button_style = 'solid' -%}
           {%- endif -%}
 
-          {%- render 'button', content: button_content, type: 'submit', disabled: button_disabled, style: atc_button_style, background: atc_button_background, text_color: atc_button_text_color, stretch: true -%}
+          {%- render 'button',
+            content: button_content,
+            type: 'submit',
+            disabled: button_disabled,
+            style: atc_button_style,
+            background: atc_button_background,
+            text_color: atc_button_text_color,
+            stretch: true
+          -%}
 
           {%- if show_payment_button -%}
             {{- form | payment_button -}}
@@ -114,6 +122,6 @@ Supported variables
 {%- else -%}
   <buy-buttons class="buy-buttons" template="{{ product.template_suffix | escape }}" form="{{ form_id }}">
     {%- assign button_content = 'product.general.add_to_cart_button' | t -%}
-    {%- render 'button', content: button_content, type: 'submit', background: variant_picker_block.settings.atc_button_background, text_color: variant_picker.settings.atc_button_text_color, stretch: true -%}
+    {%- render 'button', content: button_content, type: 'submit', background: atc_button_background, text_color: atc_button_text_color, stretch: true -%}
   </buy-buttons>
 {%- endif -%}

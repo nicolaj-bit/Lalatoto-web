@@ -1,12 +1,8 @@
-{%- comment -%}
-----------------------------------------------------------------------------------------------------------------------
-SOCIAL MEDIA
-----------------------------------------------------------------------------------------------------------------------
+{%- doc -%}
+  Output a list of social media icons based on the social URL settings.
 
-Output a list of social media icons based on the social URL settings.
-
-* layout: either support "list" or "block" (default to list)
-{%- endcomment -%}
+  @param {string} [layout] - either "list" or "block" (default to list)
+{%- enddoc -%}
 
 {%- capture social_media -%}
   {%- if settings.social_facebook != blank or shop.brand.metafields.social_links.facebook != blank -%}

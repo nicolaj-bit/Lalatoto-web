@@ -97,6 +97,7 @@
       "sold_out_button": "Нет в наличии",
       "unavailable_button": "Недоступно",
       "choose_options": "Выберите параметры",
+      "choose_options_with_title": "Выберите параметры для {{ title }}",
       "view_details": "Подробнее",
       "added_to_cart": "Добавлено в корзину!",
       "added_to_cart_with_title": "{{ product_title }} добавлен в корзину.",
@@ -118,6 +119,7 @@
       }
     },
     "gallery": {
+      "title": "Галерея товара",
       "close": "Закрыть галерею",
       "zoom": "Увеличить",
       "error": "Не удалось загрузить изображение"
@@ -173,6 +175,9 @@
       "pick_up_currently_unavailable": "Самовывоз в настоящее время недоступен",
       "pick_up_available_at": "Самовывоз доступен в {{ location_name }}",
       "pick_up_unavailable_at": "Самовывоз в {{ location_name }} в настоящее время недоступен"
+    },
+    "disclosures": {
+      "title": "Уведомления"
     }
   },
   "collection": {

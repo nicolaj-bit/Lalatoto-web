@@ -1,17 +1,9 @@
-{%- comment -%}
-----------------------------------------------------------------------------------------------------------------------
-MEGA MENU IMAGES COMPONENT
-----------------------------------------------------------------------------------------------------------------------
+{%- doc -%}
+  Render the images for a given mega-menu.
 
-Render the images for a given mega-menu
-
-********************************************
-Supported variables
-********************************************
-
-* context: can be "menu" or "sidebar". This info slightly changes the alignment
-* block: the block containing all the information about the menu to render
-{%- endcomment -%}
+  @param {string} [context] - can be "menu" or "sidebar". This info slightly changes the alignment
+  @param {object} block - the block containing all the information about the menu to render
+{%- enddoc -%}
 
 {%- for i in (1..2) -%}
   {%- assign image_setting = 'image_' | append: i -%}

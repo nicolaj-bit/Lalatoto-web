@@ -97,6 +97,7 @@
       "sold_out_button": "매진",
       "unavailable_button": "이용 불가",
       "choose_options": "옵션 선택",
+      "choose_options_with_title": "{{ title }} 옵션 선택",
       "view_details": "상세 보기",
       "added_to_cart": "장바구니에 추가되었습니다!",
       "added_to_cart_with_title": "{{ product_title }}이(가) 장바구니에 추가되었습니다.",
@@ -115,6 +116,7 @@
       }
     },
     "gallery": {
+      "title": "제품 갤러리",
       "close": "갤러리 닫기",
       "zoom": "확대/축소",
       "error": "사진을 불러 올 수 없습니다"
@@ -165,6 +167,9 @@
       "pick_up_currently_unavailable": "현재 픽업 불가능",
       "pick_up_available_at": "{{ location_name }}에서 픽업 가능",
       "pick_up_unavailable_at": "{{ location_name }}에서 픽업 불가능"
+    },
+    "disclosures": {
+      "title": "고지사항"
     }
   },
   "collection": {

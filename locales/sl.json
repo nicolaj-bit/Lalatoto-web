@@ -97,6 +97,7 @@
       "sold_out_button": "Razprodano",
       "unavailable_button": "Ni na voljo",
       "choose_options": "Izberite možnosti",
+      "choose_options_with_title": "Izberite možnosti za {{ title }}",
       "view_details": "Prikaz podrobnosti",
       "added_to_cart": "Dodano v vašo košarico!",
       "added_to_cart_with_title": "{{ product_title }} je bil dodan v košarico.",
@@ -118,6 +119,7 @@
       }
     },
     "gallery": {
+      "title": "Galerija izdelka",
       "close": "Zapri galerijo",
       "zoom": "Povečava",
       "error": "Slike ni mogoče naložiti"
@@ -173,6 +175,9 @@
       "pick_up_currently_unavailable": "Osebni prevzem trenutno ni na voljo",
       "pick_up_available_at": "Osebni prevzem je na voljo v mestu {{ location_name }}",
       "pick_up_unavailable_at": "Osebni prevzem trenutno ni na voljo v mestu {{ location_name }}"
+    },
+    "disclosures": {
+      "title": "Obvestila"
     }
   },
   "collection": {

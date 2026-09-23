@@ -10,13 +10,15 @@
   <div class="container">
     <div class="footer__inner">
       {%- comment -%}
-      ------------------------------------------------------------------------------------------------------------------
-      FOOTER BLOCKS (MAIN CONTENT)
-      ------------------------------------------------------------------------------------------------------------------
+        ------------------------------------------------------------------------------------------------------------------
+        FOOTER BLOCKS (MAIN CONTENT)
+        ------------------------------------------------------------------------------------------------------------------
       {%- endcomment -%}
 
       {%- if section.blocks.size > 0 -%}
         <div class="footer__block-list">
+          {%- assign accordion_group_content = '' -%}
+
           {%- for block in section.blocks -%}
             {%- capture block_content -%}
               {%- case block.type -%}
@@ -63,11 +65,9 @@
                   {%- assign menu = block.settings.menu -%}
 
                   {%- if menu != blank and menu.links.size > 0 -%}
-                    <div class="v-stack gap-4 sm:gap-5">
-                      {%- if block.settings.show_menu_title != blank -%}
-                        <p class="h6">{{ block.settings.menu_title | default: menu.title }}</p>
-                      {%- endif -%}
-
+                    {%- assign menu_title = block.settings.menu_title | default: menu.title -%}
+                    
+                    {%- capture menu_content -%}
                       <ul class="v-stack gap-2.5 unstyled-list" role="list">
                         {%- for link in menu.links -%}
                           <li>
@@ -75,7 +75,19 @@
                           </li>
                         {%- endfor -%}
                       </ul>
+                    {%- endcapture -%}
+
+                    <div class="v-stack gap-4 sm:gap-5 {% if block.settings.collapse_on_mobile %}sm-max:hidden{% endif %}">
+                      {%- if block.settings.show_menu_title != blank -%}
+                        <p class="h6">{{ menu_title }}</p>
+                      {%- endif -%}
+
+                      {{- menu_content -}}
                     </div>
+
+                    {%- if block.settings.collapse_on_mobile -%}
+                      {%- render 'accordion', title: menu_title, content: menu_content, class: 'sm:hidden' -%}
+                    {%- endif -%}
                   {%- endif -%}
 
                 {%- when 'newsletter' -%}
@@ -119,18 +131,47 @@
             {%- endcapture -%}
 
             {%- if block_content != blank -%}
-              <div class="footer__block footer__block--{{ block.type | remove_first: '@' }}" {{ block.shopify_attributes }}>
-                {{- block_content -}}
-              </div>
+              {%- liquid
+                assign collapse_block = false
+
+                if block.type == 'links' and block.settings.collapse_on_mobile
+                  assign collapse_block = true
+                endif
+              -%}
+
+              {%- capture current_block -%}
+                <div class="footer__block footer__block--{{ block.type | remove_first: '@' }}" {{ block.shopify_attributes }}>
+                  {{- block_content -}}
+                </div>
+              {%- endcapture -%}
+
+              {%- if collapse_block -%}
+                {%- assign accordion_group_content = accordion_group_content | append: current_block -%}
+              {%- else -%}
+                {%- if accordion_group_content != blank -%}
+                  <div class="footer__accordion-group accordion-group">
+                    {{- accordion_group_content -}}
+                  </div>
+                  {%- assign accordion_group_content = '' -%}
+                {%- endif -%}
+
+                {{- current_block -}}
+              {%- endif -%}
             {%- endif -%}
           {%- endfor -%}
+
+          {%- if accordion_group_content != blank -%}
+            <div class="footer__accordion-group accordion-group">
+              {{- accordion_group_content -}}
+            </div>
+          {%- endif -%}
         </div>
       {%- endif -%}
 
       {%- comment -%}
-      ------------------------------------------------------------------------------------------------------------------
-      FOOTER SOCIAL MEDIA
-      ------------------------------------------------------------------------------------------------------------------
+        ------------------------------------------------------------------------------------------------------------------
+        FOOTER SOCIAL MEDIA
+        ------------------------------------------------------------------------------------------------------------------
       {%- endcomment -%}
 
       {%- if section.settings.show_social_media -%}
@@ -138,9 +179,9 @@
       {%- endif -%}
 
       {%- comment -%}
-      ------------------------------------------------------------------------------------------------------------------
-      FOOTER ASIDE (COPYRIGHT + LOCALIZATION SELECTORS + PAYMENT METHODS)
-      ------------------------------------------------------------------------------------------------------------------
+        ------------------------------------------------------------------------------------------------------------------
+        FOOTER ASIDE (COPYRIGHT + LOCALIZATION SELECTORS + PAYMENT METHODS)
+        ------------------------------------------------------------------------------------------------------------------
       {%- endcomment -%}
 
       <div class="footer__aside">
@@ -155,7 +196,12 @@
         {%- if show_country_selector or show_locale_selector -%}
           <div class="localization-selectors">
             {%- if show_country_selector -%}
-              {%- render 'localization-selector', type: 'country', placement: 'top-start', show_country_name: section.settings.show_country_name, show_country_flag: section.settings.show_country_flag -%}
+              {%- render 'localization-selector',
+                type: 'country',
+                placement: 'top-start',
+                show_country_name: section.settings.show_country_name,
+                show_country_flag: section.settings.show_country_flag
+              -%}
             {%- endif -%}
 
             {%- if show_locale_selector -%}
@@ -164,7 +210,10 @@
           </div>
         {%- endif -%}
 
-      <p class="heading text-subdued text-xxs">© {{ 'now' | date: '%Y' }} - {{ shop.name }} {%- if section.settings.show_powered_by_shopify -%}{{ powered_by_link }}{%- endif -%}</p>
+        <p class="heading text-subdued text-xxs">
+          © {{ 'now' | date: '%Y' }} - {{ shop.name }}
+          {%- if section.settings.show_powered_by_shopify -%}{{ powered_by_link }}{%- endif -%}
+        </p>
 
         {%- if section.settings.show_payment_icons and shop.enabled_payment_types.size > 0 -%}
           <ul class="payment-methods unstyled-list">
@@ -319,6 +368,12 @@
           "label": "t:sections.footer.blocks.links.menu",
           "info": "t:sections.footer.blocks.links.menu_info",
           "default": "footer"
+        },
+        {
+          "type": "checkbox",
+          "id": "collapse_on_mobile",
+          "label": "t:sections.footer.blocks.links.collapse_on_mobile",
+          "default": false
         },
         {
           "type": "checkbox",

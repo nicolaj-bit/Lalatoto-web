@@ -97,6 +97,7 @@
       "sold_out_button": "Vypredané",
       "unavailable_button": "Nedostupné",
       "choose_options": "Vyberte možnosti",
+      "choose_options_with_title": "Vyberte možnosti pre {{ title }}",
       "view_details": "Zobraziť podrobnosti",
       "added_to_cart": "Pridané do košíka!",
       "added_to_cart_with_title": "{{ product_title }} bol pridaný do košíka.",
@@ -119,6 +120,7 @@
       }
     },
     "gallery": {
+      "title": "Galéria produktu",
       "close": "Zatvoriť galériu",
       "zoom": "Priblížiť",
       "error": "Obrázok sa nedá načítať"
@@ -174,6 +176,9 @@
       "pick_up_currently_unavailable": "Vyzdvihnutie momentálne nie je možné",
       "pick_up_available_at": "Vyzdvihnutie je možné na {{ location_name }}",
       "pick_up_unavailable_at": "Vyzdvihnutie na {{ location_name }} momentálne nie je možné"
+    },
+    "disclosures": {
+      "title": "Upozornenia"
     }
   },
   "collection": {

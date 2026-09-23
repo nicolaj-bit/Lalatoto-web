@@ -1,11 +1,6 @@
-{%- comment -%}
-----------------------------------------------------------------------------------------------------------------------
-FREE SHIPPING BAR
-----------------------------------------------------------------------------------------------------------------------
-
-Renders the free shipping bar component. It is used on cart page and cart drawer to render the remaining amount before
-being eligible for free shipping.
-{%- endcomment -%}
+{%- doc -%}
+  Renders the free shipping bar component. It is used on cart page and cart drawer to render the remaining amount before being eligible for free shipping.
+{%- enddoc -%}
 
 {%- liquid
   assign calculated_total_price = 0
@@ -28,7 +23,13 @@ being eligible for free shipping.
 -%}
 
 {%- if cart.requires_shipping -%}
-  <free-shipping-bar class="free-shipping-bar" threshold="{{ settings.cart_free_shipping_threshold }}" total-price="{{ calculated_total_price }}" reached-message="{{ 'cart.free_shipping_bar.limit_reached_html' | t | escape }}" unreached-message="{{ 'cart.free_shipping_bar.limit_unreached_html' | t | escape }}">
+  <free-shipping-bar
+    class="free-shipping-bar"
+    threshold="{{ settings.cart_free_shipping_threshold }}"
+    total-price="{{ calculated_total_price }}"
+    reached-message="{{ 'cart.free_shipping_bar.limit_reached_html' | t | escape }}"
+    unreached-message="{{ 'cart.free_shipping_bar.limit_unreached_html' | t | escape }}"
+  >
     {%- comment -%}The span below is the placeholder where the content will be inserted in JS{%- endcomment -%}
     <span class="text-subdued">&nbsp;</span>
   </free-shipping-bar>

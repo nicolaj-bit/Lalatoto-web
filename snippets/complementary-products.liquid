@@ -1,18 +1,10 @@
-{%- comment -%}
-----------------------------------------------------------------------------------------------------------------------
-COMPLEMENTARY PRODUCTS
-----------------------------------------------------------------------------------------------------------------------
+{%- doc -%}
+  This snippet renders the complementary products block used on product page. Because those complementary products can be added both below the gallery or on the right, this is extracted into its own snippet to reduce code duplication.
 
-This snippet renders the complementary products block used on product page. Because those complementary products can
-be added both below the gallery or on the right, this is extracted into its own snippet to reduce code duplication
-
-********************************************
-Supported variables
-********************************************
-
-* product: the product to which we render the complementary products
-* block: the block containing the information to render itself
-{%- endcomment -%}
+  @param {object} product - the product to which we render the complementary products
+  @param {object} block - the block containing the information to render itself
+  @param {object} [recommendations]
+{%- enddoc -%}
 
 <product-recommendations class="block" hidden product="{{ product.id }}" limit="{{ block.settings.products_count }}" intent="complementary">
   {%- if recommendations.performed and recommendations.intent == 'complementary' and recommendations.products_count > 0 -%}
@@ -57,7 +49,15 @@ Supported variables
 
           <scroll-carousel id="{{ carousel_mobile_id }}" class="complementary-products__product-list complementary-products__product-list--carousel bleed scroll-area snap-x">
             {%- for product in recommendations.products -%}
-              {%- render 'product-card', product: product, show_quick_buy: block.settings.show_quick_buy, show_badges: false, show_vendor: false, show_rating: false, show_secondary_image: false, show_swatches: false -%}
+              {%- render 'product-card',
+                product: product,
+                show_quick_buy: block.settings.show_quick_buy,
+                show_badges: false,
+                show_vendor: false,
+                show_rating: false,
+                show_secondary_image: false,
+                show_swatches: false
+              -%}
             {%- endfor -%}
           </scroll-carousel>
 

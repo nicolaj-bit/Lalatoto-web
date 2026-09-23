@@ -1,30 +1,30 @@
-{%- comment -%}
-----------------------------------------------------------------------------------------------------------------------
-ACCORDION COMPONENT
-----------------------------------------------------------------------------------------------------------------------
+{%- doc -%}
+  This component is used to create an accordion (also called as collapsible). It internally uses the "details" HTML
+  tag so that it can also be used without any JavaScript.
 
-This component is used to create an accordion (also called as collapsible). It internally uses the "details" HTML
-tag so that it can also be used without any JavaScript.
+  @param {string} title - the title to use for the toggle button
+  @param {string} content - the hidden content inside the accordion
+  @param {string} [icon] - icon name outputted before the title
+  @param {string} [custom_icon] - an optional custom icon file outputted before the title
+  @param {boolean} [open] - if set to true the accordion is open by default
+  @param {boolean} [prose_content] - if set to true, the content is considered as prose and the associated class is added
+  @param {boolean} [show_title_as_text] - if set to true the title is shown as text instead of using heading style
+  @param {boolean} [show_arrow] - if set to true, the accordion will show an arrow instead of the standard + icon
+  @param {string} [size] - can be "sm" or "lg" (if none is passed, the small size is used)
+  @param {boolean} [bleed] - if set to true, the accordion will bleed on mobile
+  @param {object} [block] - an optional block to output theme editor attributes
+  @param {string} [class] - extra class to add on the parent
+{%- enddoc -%}
 
-********************************************
-Supported parameters
-********************************************
-
-* title: the title to use for the toggle button
-* content: the hidden content inside the accordion
-* icon: an optional icon name outputted before the title
-* custom_icon: an optional custom icon file outputted before the title
-* open: if set to true the accordion is open by default
-* prose_content: if set to true, the content is considered as prose and the associated class is added
-* show_title_as_text: if set to true the title is shown as text instead of using heading style
-* show_arrow: if set to true, the accordion will show an arrow instead of the standard + icon
-* size: can be "sm" or "lg" (if none is passed, the small size is used)
-* bleed: if set to true, the accordion will bleed on mobile
-* block: an optional block to output theme editor attributes
-{%- endcomment -%}
-
-<accordion-disclosure class="accordion {% if size %}accordion--{{ size }}{% endif %} {% if bleed %}bleed sm:unbleed{% endif %}" {{ block.shopify_attributes }}>
-  <details class="accordion__disclosure group" {% if open %}open aria-expanded="true"{% else %}aria-expanded="false"{% endif %}>
+<accordion-disclosure class="accordion {% if size %}accordion--{{ size }}{% endif %} {% if bleed %}bleed sm:unbleed{% endif %} {{ class }}" {{ block.shopify_attributes }}>
+  <details
+    class="accordion__disclosure group"
+    {% if open %}
+      open aria-expanded="true"
+    {% else %}
+      aria-expanded="false"
+    {% endif %}
+  >
     <summary>
       {%- comment -%}iOS 14 does not support flex on the summary itself, so we have to use this extra div{%- endcomment -%}
       <span class="accordion__toggle {% if show_title_as_text %}text-lg{% else %}h6{% endif %}">

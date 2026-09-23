@@ -1,5 +1,17 @@
 {%- liquid
+  assign has_product_page_disclosures = false
+
+  for disclosure in product.metafields.shopify.disclosure.value
+    if disclosure.display_preferences.value.surfaces contains 'product_page'
+      assign has_product_page_disclosures = true
+      break
+    endif
+  endfor
+
   assign has_content_below_gallery = false
+  assign allow_transparent_header = section.settings.allow_transparent_header
+  assign desktop_media_layout = section.settings.desktop_media_layout
+  assign product_info_size = section.settings.product_info_size
 
   for block in section.blocks
     if block.type == 'complementary_products'
@@ -17,21 +29,44 @@
     elsif block.type == 'description' and product.description != blank
       assign has_content_below_gallery = true
       break
+    elsif block.type == 'disclosures' and has_product_page_disclosures
+      assign has_content_below_gallery = true
+      break
     endif
   endfor
+
+  if allow_transparent_header
+    assign desktop_media_layout = 'grid_2x_highlighted'
+    assign product_info_size = 50
+  endif
 -%}
 
 <style>
+  {%- if section.settings.allow_transparent_header and section.settings.transparent_header_use_primary_colors -%}
+    {%- comment -%}
+    When this setting is enabled, we use the transparent header, but we force the header to use the primary colors and primary logo.
+    {%- endcomment -%}
+
+    .header {
+      --header-show-transparent-logo: 0 !important;
+      --header-transparent-header-text-color: initial;
+    }
+  {%- endif -%}
+
   #shopify-section-{{ section.id }} {
     --product-grid: "product-gallery" "product-info" {% if has_content_below_gallery %}"product-content"{% endif %} / minmax(0, 1fr);
+
+    {%- if allow_transparent_header -%}
+      --product-gallery-zoom-button-inset-block-start: calc(var(--sticky-area-height, 0px) + 1.25rem); /* 1.25rem is the default block padding, we want the zoom button to be at least 1.25rem away from the sticky header */
+    {%- endif -%}
   }
 
   @media screen and (min-width: 1000px) {
     #shopify-section-{{ section.id }} {
       {%- if has_content_below_gallery -%}
-        --product-grid: "product-gallery product-info" auto "product-content product-info" minmax(0, 1fr) / minmax(0, {{ 100.0 | minus: section.settings.product_info_size | divided_by: 100.0 }}fr) minmax(0, {{ section.settings.product_info_size | divided_by: 100.0 }}fr);
+        --product-grid: "product-gallery product-info" auto "product-content product-info" minmax(0, 1fr) / minmax(0, {{ 100.0 | minus: product_info_size | divided_by: 100.0 }}fr) minmax(0, {{ product_info_size | divided_by: 100.0 }}fr);
       {%- else -%}
-        --product-grid: "product-gallery product-info" / minmax(0, {{ 100.0 | minus: section.settings.product_info_size | divided_by: 100.0 }}fr) minmax(0, {{ section.settings.product_info_size | divided_by: 100.0 }}fr);
+        --product-grid: "product-gallery product-info" / minmax(0, {{ 100.0 | minus: product_info_size | divided_by: 100.0 }}fr) minmax(0, {{ product_info_size | divided_by: 100.0 }}fr);
       {%- endif -%}
     }
   }
@@ -40,28 +75,35 @@
 {%- assign color_scheme_hash = section.settings.color_scheme.settings.background_gradient | default: section.settings.color_scheme.settings.background | md5 -%}
 {%- capture product_form_id -%}product-form-main-{{ product.id }}-{{ section.id }}{%- endcapture -%}
 
-<div class="section-spacing section-spacing--tight color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }}">
+<div
+  class="section-spacing section-spacing--tight color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }}"
+  {% if allow_transparent_header %}
+    allow-transparent-header
+  {% endif %}
+>
   <div class="container {% unless section.settings.container_size == 'full' %}container--{{ section.settings.container_size }}{% endunless %}">
     <product-rerender id="product-info-{{ product.id }}-{{ section.id }}" observe-form="{{ product_form_id }}" allow-partial-rerender>
       <div class="product">
         {%- if product.media.size > 0 -%}
           {%- render 'product-gallery',
-              product: product,
-              product_form_id: product_form_id,
-              desktop_layout: section.settings.desktop_media_layout,
-              mobile_controls: section.settings.mobile_controls,
-              enable_media_autoplay: section.settings.enable_media_autoplay,
-              enable_video_looping: section.settings.enable_video_looping,
-              enable_image_zoom: section.settings.enable_image_zoom,
-              max_image_zoom_level: section.settings.max_image_zoom_level -%}
+            product: product,
+            product_form_id: product_form_id,
+            desktop_layout: desktop_media_layout,
+            mobile_controls: section.settings.mobile_controls,
+            enable_media_autoplay: section.settings.enable_media_autoplay,
+            enable_video_looping: section.settings.enable_video_looping,
+            enable_image_zoom: section.settings.enable_image_zoom,
+            max_image_zoom_level: section.settings.max_image_zoom_level
+          -%}
         {%- endif -%}
 
-        {%- render 'product-info', 
-          product: product, 
+        {%- render 'product-info',
+          product: product,
           product_form_id: product_form_id,
-          center_basic_info: section.settings.center_basic_info, 
-          has_content_below_gallery: has_content_below_gallery, 
-          context: 'main_product' 
+          center_basic_info: section.settings.center_basic_info,
+          has_content_below_gallery: has_content_below_gallery,
+          has_product_page_disclosures: has_product_page_disclosures,
+          context: 'main_product'
         -%}
 
         {%- comment -%}On Prestige, some content may be on the left part below the product gallery{%- endcomment -%}
@@ -87,13 +129,16 @@
 
                 {%- when 'accordion' -%}
                   {%- liquid
-                    assign accordion_title = block.settings.page.title | default: block.settings.title 
+                    assign accordion_title = block.settings.title | default: block.settings.page.title
                     assign accordion_content = block.settings.page.content | default: block.settings.liquid | default: block.settings.content
 
                     if accordion_title != blank and accordion_content != blank
                       render 'accordion', title: accordion_title, content: accordion_content, size: 'lg', prose_content: true, icon: block.settings.icon, custom_icon: block.settings.custom_icon, block: block
                     endif
                   -%}
+
+                {%- when 'disclosures' -%}
+                  {%- render 'product-disclosures', product: product, collapse_content: block.settings.collapse_content, block: block -%}
 
                 {%- when 'complementary_products' -%}
                   {%- render 'complementary-products', product: product, block: block -%}
@@ -119,7 +164,7 @@
           <div class="v-stack">
             <span class="h6">{{ product.title }}</span>
 
-            {%- if product.selected_or_first_available_variant != nil -%}
+            {%- if product.selected_or_first_available_variant != null -%}
               {%- render 'price-list', variant: product.selected_or_first_available_variant, hide_unit_price: true, context: 'card' -%}
             {%- endif -%}
           </div>
@@ -131,7 +176,7 @@
           assign button_disabled = false
           assign button_style = 'solid'
 
-          if product.selected_or_first_available_variant == nil
+          if product.selected_or_first_available_variant == null
             assign button_disabled = true
             assign button_style = 'outline'
             assign button_content = 'product.general.unavailable_button' | t
@@ -155,10 +200,10 @@
 {%- endif -%}
 
 {%- comment -%}
-IMPLEMENTATION NOTE: Shopify does not currently allows to render a given section within the context of a given product. However,
-when rendering the quick buy drawers/popovers, we want to be able to re-use the merchant's choices (such as the selector type). This
-is however only possible by rendering the whole product page, and extracting the relevant part. Here, we therefore render the
-quick buy information in a template, that will be extracted in JS, which ensures it is not visible in the main product page
+  IMPLEMENTATION NOTE: Shopify does not currently allows to render a given section within the context of a given product. However,
+  when rendering the quick buy drawers/popovers, we want to be able to re-use the merchant's choices (such as the selector type). This
+  is however only possible by rendering the whole product page, and extracting the relevant part. Here, we therefore render the
+  quick buy information in a template, that will be extracted in JS, which ensures it is not visible in the main product page
 {%- endcomment -%}
 {%- render 'product-quick-buy', product: product -%}
 
@@ -182,15 +227,30 @@ quick buy information in a template, that will be extracted in JS, which ensures
   "class": "shopify-section--main-product",
   "tag": "section",
   "settings": [
-   {
+    {
       "type": "color_scheme",
       "id": "color_scheme",
       "label": "t:global.colors.scheme",
       "default": "scheme-1"
     },
     {
+      "type": "checkbox",
+      "id": "allow_transparent_header",
+      "label": "t:global.section.allow_transparent_header",
+      "info": "t:global.section.allow_transparent_header_info",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "transparent_header_use_primary_colors",
+      "visible_if": "{{ section.settings.allow_transparent_header }}",
+      "label": "t:global.section.transparent_header_use_primary_colors",
+      "default": false
+    },
+    {
       "type": "select",
       "id": "container_size",
+      "visible_if": "{{ section.settings.allow_transparent_header == false }}",
       "label": "t:global.sizes.section_width",
       "options": [
         {
@@ -211,6 +271,7 @@ quick buy information in a template, that will be extracted in JS, which ensures
     {
       "type": "range",
       "id": "product_info_size",
+      "visible_if": "{{ section.settings.allow_transparent_header == false }}",
       "label": "t:sections.main_product.product_info_size",
       "info": "t:sections.main_product.product_info_size_info",
       "min": 30,
@@ -240,6 +301,7 @@ quick buy information in a template, that will be extracted in JS, which ensures
     {
       "type": "select",
       "id": "desktop_media_layout",
+      "visible_if": "{{ section.settings.allow_transparent_header == false }}",
       "label": "t:sections.main_product.desktop_media_layout",
       "options": [
         {
@@ -325,6 +387,7 @@ quick buy information in a template, that will be extracted in JS, which ensures
     {
       "type": "range",
       "id": "max_image_zoom_level",
+      "visible_if": "{{ section.settings.enable_image_zoom }}",
       "min": 1,
       "max": 4,
       "step": 0.5,
@@ -499,6 +562,10 @@ quick buy information in a template, that will be extracted in JS, which ensures
             {
               "value": "dropdown",
               "label": "t:sections.main_product.blocks.variant_picker.selector_style_options.dropdown"
+            },
+            {
+              "value": "underline",
+              "label": "t:sections.main_product.blocks.variant_picker.selector_style_options.underline"
             }
           ],
           "default": "block"
@@ -512,6 +579,10 @@ quick buy information in a template, that will be extracted in JS, which ensures
             {
               "value": "swatch",
               "label": "t:sections.main_product.blocks.variant_picker.swatch_selector_style_options.swatch"
+            },
+            {
+              "value": "swatch_underline",
+              "label": "t:sections.main_product.blocks.variant_picker.swatch_selector_style_options.swatch_underline"
             },
             {
               "value": "block_swatch",
@@ -529,6 +600,13 @@ quick buy information in a template, that will be extracted in JS, which ensures
           "id": "variant_image_options",
           "label": "t:sections.main_product.blocks.variant_picker.variant_image_options",
           "info": "t:sections.main_product.blocks.variant_picker.variant_image_options_info"
+        },
+        {
+          "type": "checkbox",
+          "id": "variant_image_show_underline",
+          "visible_if": "{{ block.settings.variant_image_options != blank }}",
+          "label": "t:sections.main_product.blocks.variant_picker.variant_image_show_underline",
+          "default": false
         },
         {
           "type": "page",
@@ -582,8 +660,16 @@ quick buy information in a template, that will be extracted in JS, which ensures
               "label": "t:sections.main_product.blocks.variant_picker.swatch_selector_style_options.swatch"
             },
             {
+              "value": "swatch_underline",
+              "label": "t:sections.main_product.blocks.variant_picker.swatch_selector_style_options.swatch_underline"
+            },
+            {
               "value": "variant_image",
               "label": "t:sections.main_product.blocks.variant_picker.selector_style_options.variant_image"
+            },
+            {
+              "value": "variant_image_underline",
+              "label": "t:sections.main_product.blocks.variant_picker.selector_style_options.variant_image_underline"
             }
           ],
           "default": "swatch"
@@ -1590,6 +1676,29 @@ quick buy information in a template, that will be extracted in JS, which ensures
           "id": "page",
           "label": "t:sections.main_product.blocks.collapsible_text.page",
           "info": "t:sections.main_product.blocks.collapsible_text.page_info"
+        }
+      ]
+    },
+    {
+      "type": "disclosures",
+      "name": "t:sections.main_product.blocks.disclosures.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "t:sections.main_product.blocks.disclosures.info"
+        },
+        {
+          "type": "checkbox",
+          "id": "collapse_content",
+          "label": "t:sections.main_product.blocks.disclosures.collapse_content",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "show_below_gallery",
+          "label": "t:sections.main_product.blocks.collapsible_text.show_below_gallery",
+          "default": false
         }
       ]
     },

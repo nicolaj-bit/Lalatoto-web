@@ -50,10 +50,18 @@
     <div class="article__image">
       {%- if section.settings.enable_parallax -%}
         <image-parallax class="contents">
-          {{- article.image | image_url: width: article.image.width | image_tag: widths: '200,300,400,500,600,700,800,900,1000,1200,1400,1600,1800,2000,2200,2400,2600,2800,3000,3200', class: 'w-full' -}}
+          {{-
+            article.image
+            | image_url: width: article.image.width
+            | image_tag: widths: '200,300,400,500,600,700,800,900,1000,1200,1400,1600,1800,2000,2200,2400,2600,2800,3000,3200', class: 'w-full'
+          -}}
         </image-parallax>
       {%- else -%}
-        {{- article.image | image_url: width: article.image.width | image_tag: widths: '200,300,400,500,600,700,800,900,1000,1200,1400,1600,1800,2000,2200,2400,2600,2800,3000,3200', class: 'w-full' -}}
+        {{-
+          article.image
+          | image_url: width: article.image.width
+          | image_tag: widths: '200,300,400,500,600,700,800,900,1000,1200,1400,1600,1800,2000,2200,2400,2600,2800,3000,3200', class: 'w-full'
+        -}}
       {%- endif -%}
     </div>
   {%- endif -%}
@@ -65,7 +73,9 @@
           {%- if section.settings.show_date or section.settings.show_category and article.tags.size > 0 -%}
             <div class="h-stack gap-4">
               {%- if section.settings.show_date -%}
-                <span class="h6 text-subdued"><time>{{- article.published_at | date: format: 'abbreviated_date' -}}</time></span>
+                <span class="h6 text-subdued"
+                  ><time>{{- article.published_at | date: format: 'abbreviated_date' -}}</time></span
+                >
               {%- endif -%}
 
               {%- if section.settings.show_category and article.tags.size > 0 -%}
@@ -87,30 +97,38 @@
       </div>
 
       {%- if section.settings.show_author or section.settings.show_share_buttons -%}
-        {%- if section.settings.show_author and article.user.bio != blank or article.user.image != blank or article.user.homepage != blank -%}
-          {%- assign has_extended_profile = true -%}
-        {%- else -%}
-          {%- assign has_extended_profile = false -%}
-        {%- endif -%}
+        {%- liquid
+          assign has_extended_profile = false
+
+          if section.settings.show_author
+            assign author_bio = section.settings.author_bio | default: article.user.bio
+            assign author_image = section.settings.author_image | default: article.user.image
+            assign author_homepage = section.settings.author_homepage | default: article.user.homepage
+
+            if author_bio != blank or author_image != blank or author_homepage != blank
+              assign has_extended_profile = true
+            endif
+          endif
+        -%}
 
         <div class="article__footer">
           {%- if has_extended_profile -%}
             <div class="article__author">
-              {%- if article.user.image != blank -%}
-                {{- article.user.image | image_url: width: article.user.image.width | image_tag: loading: 'lazy', sizes: '60px', widths: '60,120,180', class: 'article__author-image' -}}
+              {%- if author_image != blank -%}
+                {{- author_image | image_url: width: author_image.width | image_tag: loading: 'lazy', sizes: '60px', widths: '60,120,180', class: 'article__author-image' -}}
               {%- endif -%}
 
               <div class="v-stack gap-3 justify-items-start">
                 <p class="h6">{{ 'blog.post.written_by' | t: author: article.author }}</p>
 
-                {%- if article.user.bio != blank -%}
+                {%- if author_bio != blank -%}
                   <div class="prose">
-                    {{- article.user.bio -}}
+                    {{- author_bio -}}
                   </div>
                 {%- endif -%}
 
-                {%- if article.user.homepage != blank -%}
-                  <a href="{{ article.user.homepage }}" class="link" target="_blank">{{ 'blog.post.visit_author_website' | t }}</a>
+                {%- if author_homepage != blank -%}
+                  <a href="{{ author_homepage }}" class="link" target="_blank">{{ 'blog.post.visit_author_website' | t }}</a>
                 {%- endif -%}
               </div>
             </div>
@@ -318,6 +336,24 @@
       "id": "show_author",
       "label": "t:global.blog.show_author",
       "default": true
+    },
+    {
+      "type": "richtext",
+      "id": "author_bio",
+      "label": "t:sections.main_article.author_bio",
+      "visible_if": "{{ section.settings.show_author }}"
+    },
+    {
+      "type": "url",
+      "id": "author_homepage",
+      "label": "t:sections.main_article.author_homepage",
+      "visible_if": "{{ section.settings.show_author }}"
+    },
+    {
+      "type": "image_picker",
+      "id": "author_image",
+      "label": "t:sections.main_article.author_image",
+      "visible_if": "{{ section.settings.show_author }}"
     },
     {
       "type": "checkbox",

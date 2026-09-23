@@ -99,6 +99,7 @@
       "added_to_cart": "התווסף לעגלת הקניות שלך!",
       "added_to_cart_with_title": "{{ product_title }} נוסף לעגלת הקניות.",
       "choose_options": "בחר אפשרויות",
+      "choose_options_with_title": "בחר אפשרויות עבור {{ title }}",
       "view_details": "הצג פרטים",
       "sold_out_badge": "אזל מהמלאי",
       "on_sale_badge": "במבצע",
@@ -116,6 +117,7 @@
       }
     },
     "gallery": {
+      "title": "גלריית המוצר",
       "close": "סגירת גלריה",
       "zoom": "תקריב",
       "error": "לא ניתן לטעון את התמונה"
@@ -167,6 +169,9 @@
       "pick_up_currently_unavailable": "איסוף עצמי לא זמין כעת",
       "pick_up_available_at": "איסוף עצמי ב-{{ location_name }}",
       "pick_up_unavailable_at": "איסוף עצמי לא זמין כעת ב-{{ location_name }}"
+    },
+    "disclosures": {
+      "title": "הודעות"
     }
   },
   "collection": {

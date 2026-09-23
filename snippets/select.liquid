@@ -1,26 +1,19 @@
-{%- comment -%}
-----------------------------------------------------------------------------------------------------------------------
-SELECT COMPONENT
-----------------------------------------------------------------------------------------------------------------------
+{%- doc -%}
+  This snippet generates a styled select using the native "select" element. If you wish to create a styled select, you need to use the "select-menu" snippet instead.
 
-This snippet generates a styled select using the native "select" element. If you wish to create a styled select, you
-need to use the "select-menu" snippet instead.
-
-********************************************
-Supported variables
-********************************************
-
-* name: the HTML name attribute that is used when the field is submitted.
-* form: if specified, define the form ID linked to this input
-* label: the label to show
-* show_label_as_block: if set to true, the label is shown as a block instead
-* options: HTML of the rendered options (when used, the options_values must not be used)
-* option_values: an array of options, where the value is used as the label (when used, the options must not be used)
-* show_empty_value: when true, an empty value is set from the label (only usable when option_values is set and label is not as block)
-* required: if set to true, the "required" attribute is added to the input
-* autocomplete: a hint to the browser for help autocompletion. List can be found here: https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete#values
-* id_prefix: an optional prefix to be used to dissociate the ID
-{%- endcomment -%}
+  @param {string} name - the HTML name attribute that is used when the field is submitted
+  @param {string} [form] - if specified, define the form ID linked to this input
+  @param {string} [label] - the label to show
+  @param {boolean} [show_label_as_block] - if set to true, the label is shown as a block instead
+  @param {string} [options] - HTML of the rendered options (when used, the option_values must not be used)
+  @param {array} [option_values] - an array of options, where the value is used as the label (when used, the options must not be used)
+  @param {boolean} [show_empty_value] - when true, an empty value is set from the label (only usable when option_values is set and label is not as block)
+  @param {boolean} [required] - if set to true, the "required" attribute is added to the input
+  @param {string} [autocomplete] - a hint to the browser for autocompletion
+  @param {string} [id_prefix] - an optional prefix to be used to dissociate the ID
+  @param {object} [section]
+  @param {object} [block]
+{%- enddoc -%}
 
 {%- capture id -%}select-{{ id_prefix }}-{{ section.id }}-{{ form }}-{{ name | handle }}{%- endcapture -%}
 
@@ -40,7 +33,9 @@ Supported variables
       {{- options -}}
     {%- else -%}
       {%- if show_empty_value -%}
-        <option value="" selected disabled>{% if required %}{{ label }}{% else %}--{% endif %}</option>
+        <option value="" selected disabled>
+          {% if required %}{{ label }}{% else %}--{% endif %}
+        </option>
       {%- endif -%}
 
       {%- for value in option_values -%}

@@ -1,4 +1,12 @@
 {%- if section.blocks.size > 0 -%}
+  {%- liquid
+    assign has_header_content = true
+
+    if section.settings.subheading == blank and section.settings.title == blank and section.settings.content == blank
+      assign has_header_content = false
+    endif
+  -%}
+
   <style>
     #shopify-section-{{ section.id }} {
       --media-grid-row-height: {{ section.settings.mobile_row_height }}px;
@@ -28,10 +36,15 @@
 
   {%- assign color_scheme_hash = section.settings.color_scheme.settings.background_gradient | default: section.settings.color_scheme.settings.background | md5 -%}
 
-  <div class="section-spacing color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }} {% if section.settings.separate_section_with_border %}bordered-section{% endif %}">
+  <div class="{% if has_header_content or section.settings.spacing != 'none' %}section-spacing{% endif %} color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }} {% if section.settings.separate_section_with_border %}bordered-section{% endif %}">
     <div class="container {% unless section.settings.section_width == 'full' %}container--{{ section.settings.section_width }}{% endunless %}">
       <div class="section-stack">
-        {%- render 'section-header', subheading: section.settings.subheading, heading: section.settings.title, content: section.settings.content -%}
+        {%- render 'section-header',
+          subheading: section.settings.subheading,
+          heading: section.settings.title,
+          heading_style: section.settings.heading_style,
+          content: section.settings.content
+        -%}
 
         <media-grid class="media-grid">
           {%- for block in section.blocks -%}
@@ -84,11 +97,20 @@
             {%- endcapture -%}
 
             {%- if block.settings.link_url -%}
-              <a href="{{ block.settings.link_url }}" class="media-grid__item" style="--media-grid-item-column-span: {{ block.settings.column_count }}; --media-grid-item-row-span: {{ block.settings.row_count }}" {{ block.shopify_attributes }}>
+              <a
+                href="{{ block.settings.link_url }}"
+                class="media-grid__item {% if block.settings.add_padding %}media-grid__item--padded{% endif %}"
+                style="--media-grid-item-column-span: {{ block.settings.column_count }}; --media-grid-item-row-span: {{ block.settings.row_count }}"
+                {{ block.shopify_attributes }}
+              >
                 {{- block_content -}}
               </a>
             {%- else -%}
-              <div class="media-grid__item" style="--media-grid-item-column-span: {{ block.settings.column_count }}; --media-grid-item-row-span: {{ block.settings.row_count }}" {{ block.shopify_attributes }}>
+              <div
+                class="media-grid__item {% if block.settings.add_padding %}media-grid__item--padded{% endif %}"
+                style="--media-grid-item-column-span: {{ block.settings.column_count }}; --media-grid-item-row-span: {{ block.settings.row_count }}"
+                {{ block.shopify_attributes }}
+              >
                 {{- block_content -}}
               </div>
             {%- endif -%}
@@ -124,7 +146,7 @@
       "type": "range",
       "id": "desktop_row_height",
       "min": 100,
-      "max": 400,
+      "max": 800,
       "step": 10,
       "unit": "px",
       "label": "t:sections.media_grid.desktop_row_height",
@@ -134,7 +156,7 @@
       "type": "range",
       "id": "mobile_row_height",
       "min": 100,
-      "max": 400,
+      "max": 500,
       "step": 10,
       "unit": "px",
       "label": "t:sections.media_grid.mobile_row_height",
@@ -212,6 +234,38 @@
       "default": "Media grid"
     },
     {
+      "type": "select",
+      "id": "heading_style",
+      "label": "t:global.text.style",
+      "options": [
+        {
+          "value": "h1",
+          "label": "H1"
+        },
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h3",
+          "label": "H3"
+        },
+        {
+          "value": "h4",
+          "label": "H4"
+        },
+        {
+          "value": "h5",
+          "label": "H5"
+        },
+        {
+          "value": "h6",
+          "label": "H6"
+        }
+      ],
+      "default": "h2"
+    },
+    {
       "type": "richtext",
       "id": "content",
       "label": "t:global.text.content"
@@ -271,6 +325,12 @@
           "label": "t:sections.media_grid.blocks.image.row_count",
           "info": "t:sections.media_grid.blocks.image.row_count_info",
           "default": 2
+        },
+        {
+          "type": "checkbox",
+          "id": "add_padding",
+          "label": "t:sections.media_grid.blocks.image.add_padding",
+          "default": false
         },
         {
           "type": "header",
@@ -479,6 +539,12 @@
           "label": "t:sections.media_grid.blocks.image.row_count",
           "info": "t:sections.media_grid.blocks.image.row_count_info",
           "default": 2
+        },
+        {
+          "type": "checkbox",
+          "id": "add_padding",
+          "label": "t:sections.media_grid.blocks.image.add_padding",
+          "default": false
         },
         {
           "type": "header",

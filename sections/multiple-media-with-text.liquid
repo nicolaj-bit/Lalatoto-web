@@ -1,8 +1,8 @@
 {%- if section.blocks.size > 0 -%}
   {%- comment -%}
-  ------------------------------------------------------------------------------------------------------------------------
-  CSS
-  ------------------------------------------------------------------------------------------------------------------------
+    ------------------------------------------------------------------------------------------------------------------------
+    CSS
+    ------------------------------------------------------------------------------------------------------------------------
   {%- endcomment -%}
 
   {%- liquid
@@ -69,20 +69,28 @@
   </style>
 
   {%- comment -%}
-  ------------------------------------------------------------------------------------------------------------------------
-  LIQUID
-  ------------------------------------------------------------------------------------------------------------------------
+    ------------------------------------------------------------------------------------------------------------------------
+    LIQUID
+    ------------------------------------------------------------------------------------------------------------------------
   {%- endcomment -%}
 
   {%- assign color_scheme_hash = section.settings.color_scheme.settings.background_gradient | default: section.settings.color_scheme.settings.background | md5 -%}
 
   <div class="section-spacing color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }} {% if section.settings.separate_section_with_border %}bordered-section{% endif %}">
     <div class="container container--md">
-      <multiple-media-with-text {% if section.settings.reveal_on_scroll %}reveal-on-scroll="true"{% endif %} class="multiple-media-with-text {% if use_overlap_layout %}multiple-media-with-text--overlap{% endif %} {% if section.settings.media_position_desktop == 'after_text' %}multiple-media-with-text--reverse{% endif %}">
+      <multiple-media-with-text
+        {% if section.settings.reveal_on_scroll %}
+          reveal-on-scroll="true"
+        {% endif %}
+        class="multiple-media-with-text {% if use_overlap_layout %}multiple-media-with-text--overlap{% endif %} {% if section.settings.media_position_desktop == 'after_text' %}multiple-media-with-text--reverse{% endif %}"
+      >
         <div class="multiple-media-with-text__media-wrapper">
           {%- for block in section.blocks -%}
-            
-            <div {{ block.shopify_attributes }} class="align-self-{{ section.settings.media_alignment }}" style="--media-rotate: {{ block.settings.rotation }}deg; {% if forloop.first %}{% if section.settings.media_alignment == 'start' %}grid-row-start: offset-end;{% elsif section.settings.media_alignment == 'end' %}grid-row-end: main-end;{% endif %}{% endif %}">
+            <div
+              {{ block.shopify_attributes }}
+              class="align-self-{{ section.settings.media_alignment }}"
+              style="--media-rotate: {{ block.settings.rotation }}deg; {% if forloop.first %}{% if section.settings.media_alignment == 'start' %}grid-row-start: offset-end;{% elsif section.settings.media_alignment == 'end' %}grid-row-end: main-end;{% endif %}{% endif %}"
+            >
               {%- if block.type == 'image' and block.settings.image -%}
                 {%- liquid
                   assign loading_strategy = 'lazy'
@@ -93,7 +101,11 @@
                 -%}
 
                 {%- capture sizes_attribute -%}{% if loading_strategy != 'eager' %}auto, {% endif %}(max-width: 699px) 50vw, 500px{%- endcapture -%}
-                {{- block.settings.image | image_url: width: block.settings.image.width | image_tag: loading: loading_strategy, sizes: sizes_attribute, widths: '200,300,400,500,600,700,800,900,1000,1200,1400' -}}
+                {{-
+                  block.settings.image
+                  | image_url: width: block.settings.image.width
+                  | image_tag: loading: loading_strategy, sizes: sizes_attribute, widths: '200,300,400,500,600,700,800,900,1000,1200,1400'
+                -}}
               {%- elsif block.type == 'video' and block.settings.video -%}
                 {%- render 'media', media: block.settings.video, autoplay: true, loop: true -%}
               {%- else -%}
@@ -120,7 +132,7 @@
             {%- endif -%}
 
             {%- if section.settings.title != blank -%}
-              <p class="h3">{{ section.settings.title }}</p>
+              <p class="{{ section.settings.heading_style }}">{{ section.settings.title }}</p>
             {%- endif -%}
 
             {{- section.settings.content -}}
@@ -209,7 +221,7 @@
     },
     {
       "type": "header",
-      "content": "t:sections.multiple_media_with_text.media_category",
+      "content": "t:sections.multiple_media_with_text.media_category"
     },
     {
       "type": "select",
@@ -304,6 +316,38 @@
       "id": "title",
       "label": "t:global.text.heading",
       "default": "Showcase your product"
+    },
+    {
+      "type": "select",
+      "id": "heading_style",
+      "label": "t:global.text.style",
+      "options": [
+        {
+          "value": "h1",
+          "label": "H1"
+        },
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h3",
+          "label": "H3"
+        },
+        {
+          "value": "h4",
+          "label": "H4"
+        },
+        {
+          "value": "h5",
+          "label": "H5"
+        },
+        {
+          "value": "h6",
+          "label": "H6"
+        }
+      ],
+      "default": "h3"
     },
     {
       "type": "richtext",

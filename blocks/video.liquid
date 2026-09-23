@@ -1,7 +1,9 @@
 {%- if block.settings.video != blank -%}
-
   <div {{ block.shopify_attributes }}>
-    <div class="content-over-media {% if block.settings.video_size != 'auto' %}content-over-media--{{ block.settings.video_size }}{% endif %}" style="{% render 'surface', text_color: section.settings.color %}">
+    <div
+      class="content-over-media {% if block.settings.video_size != 'auto' %}content-over-media--{{ block.settings.video_size }}{% endif %}"
+      style="{% render 'surface', text_color: section.settings.color %}"
+    >
       {%- capture poster -%}
         {%- assign poster_image = block.settings.poster | default: block.settings.video.preview_image -%}
   
@@ -10,21 +12,54 @@
           {{- poster_image | image_url: width: poster_image.width | image_tag: sizes: sizes, widths: '200,300,400,500,600,700,800,900,1000,1200,1400,1600,1800,2000,2200,2400,2600,2800,3000,3200' -}}
         {%- endif -%}
       {%- endcapture -%}
-  
+
       {%- if block.settings.mobile_video != blank -%}
         {%- assign poster_image = block.settings.poster | default: block.settings.mobile_video.preview_image -%}
-  
-        <video-media {% if block.settings.autoplay %}autoplay{% endif %} class="sm:hidden" style="--aspect-ratio: {{ block.settings.video_size }}">
-          {{- block.settings.mobile_video | video_tag: class: 'object-cover sm:hidden', controls: block.settings.show_controls, playsinline: true, muted: block.settings.autoplay, loop: block.settings.autoplay, preload: 'metadata', image_size: '400x' -}}
+
+        <video-media
+          {% if block.settings.autoplay %}
+            autoplay
+          {% endif %}
+          class="sm:hidden"
+          style="--aspect-ratio: {{ block.settings.video_size }}"
+        >
+          {{-
+            block.settings.mobile_video
+            | video_tag:
+              class: 'object-cover sm:hidden',
+              controls: block.settings.show_controls,
+              playsinline: true,
+              muted: block.settings.autoplay,
+              loop: block.settings.autoplay,
+              preload: 'metadata',
+              image_size: '400x'
+          -}}
           {{- poster_image | image_url: width: poster_image.width | image_tag: sizes: '100vw', widths: '200,300,400,500,600,700,800,900,1000,1200' -}}
         </video-media>
       {%- endif -%}
-  
-      <video-media {% if block.settings.autoplay %}autoplay{% endif %} {% if block.settings.mobile_video != blank %}class="object-cover hidden sm:block"{% endif %} style="--aspect-ratio: {{ block.settings.video_size }}">
-        {{- block.settings.video | video_tag: playsinline: true, preload: 'metadata', muted: block.settings.autoplay, loop: block.settings.autoplay, controls: block.settings.show_controls, image_size: '800x' -}}
+
+      <video-media
+        {% if block.settings.autoplay %}
+          autoplay
+        {% endif %}
+        {% if block.settings.mobile_video != blank %}
+          class="object-cover hidden sm:block"
+        {% endif %}
+        style="--aspect-ratio: {{ block.settings.video_size }}"
+      >
+        {{-
+          block.settings.video
+          | video_tag:
+            playsinline: true,
+            preload: 'metadata',
+            muted: block.settings.autoplay,
+            loop: block.settings.autoplay,
+            controls: block.settings.show_controls,
+            image_size: '800x'
+        -}}
         {{- poster -}}
       </video-media>
-  
+
       {%- unless block.settings.autoplay -%}
         <button class="play-button" type="button">
           <span class="sr-only">{{ 'general.accessibility.play_video' | t }}</span>
@@ -37,7 +72,7 @@
     </div>
   </div>
 {%- endif -%}
-  
+
 {% schema %}
 {
   "name": "t:blocks.video.name",
