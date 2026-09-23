@@ -1,0 +1,738 @@
+{% comment %}
+  Section: Flipbook (Shopify PDF) — Prestige color-scheme, PageFlip + PDF.js (workerless) + robust fallback
+  - Grid på desktop (2/4 kolonner), vandret swipe/scroll på mobil
+  - Modal-ID i Prestige-stil (aria-controls + data-action="open-modal")
+  - PDF → billeder via PDF.js → PageFlip
+  - 3D åbne-animation + fallback til <object>
+  - Mobil: modal/flip fylder 100% af skærmen
+{% endcomment %}
+
+{%- assign color_scheme_hash = section.settings.color_scheme.settings.background_gradient | default: section.settings.color_scheme.settings.background | md5 -%}
+{%- assign modal_id = 'Modal-' | append: section.id -%}
+
+<div class="section-spacing color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }} {% if section.settings.separate_section_with_border %}bordered-section{% endif %}">
+  <section class="lt-wrap">
+    {% if section.settings.use_prestige_container %}<div class="Container">{% endif %}
+    {%- render 'section-header', subheading: section.settings.subheading, heading: section.settings.title, default: section.settings.heading, content: section.settings.content, text_alignment: section.settings.content_alignment -%}
+
+    <div class="lt-grid" id="lt-grid-{{ section.id }}">
+      {% for block in section.blocks %}
+  <article class="lt-card" {{ block.shopify_attributes }}>
+    {% if block.settings.thumb != blank %}
+      {% assign thumb_url = block.settings.thumb | image_url: width: 960 %}
+      <div class="lt-thumb lt-thumb--bg" style="background-image:url({{ thumb_url }});" role="img" aria-label="{{ block.settings.thumb.alt | escape }}"></div>
+    {% else %}
+      <div class="lt-thumb lt-thumb--placeholder" aria-hidden="true"></div>
+    {% endif %}
+
+    <div class="lt-meta">
+      {% if block.settings.title != blank %}
+        <h3 class="lt-title">{{ block.settings.title | escape }}</h3>
+      {% endif %}
+
+      {% if block.settings.content != blank %}
+        <div class="lt-text rte">{{ block.settings.content }}</div>
+      {% elsif block.settings.text != blank %}
+        <p class="lt-text">{{ block.settings.text }}</p>
+      {% endif %}
+
+      {% if block.settings.pdf_url != blank %}
+        <button
+          class="lt-btn {% if section.settings.use_theme_button %}Button Button--primary{% endif %} lt-open"
+          type="button"
+          data-action="open-modal"
+          aria-controls="{{ modal_id }}"
+          data-modal-id="{{ modal_id }}"
+          data-pdf="{{ block.settings.pdf_url }}"
+          data-title="{{ block.settings.title | escape }}">
+          {{ block.settings.button_label | default: 'Åbn som bog' }}
+        </button>
+      {% endif %}
+    </div>
+  </article>
+{% endfor %}
+    </div>
+
+    {% if section.settings.use_prestige_container %}</div>{% endif %}
+
+    <!-- Modal -->
+    <div class="lt-overlay" id="{{ modal_id }}" role="dialog" aria-modal="true" aria-label="Flipbook" hidden>
+      <div class="lt-modal">
+        <div class="lt-modal-header">
+          <div class="lt-modal-title" id="lt-modal-title">Flipbook</div>
+          <button class="lt-close" type="button" id="lt-close" data-action="close-modal">Luk</button>
+        </div>
+        <div class="lt-stage">
+          <div class="lt-loader" id="lt-loader"><span class="lt-spin" aria-hidden="true"></span>Indlæser sider…</div>
+
+          <!-- 3D wrapper omkring flip -->
+          <div class="lt-book" id="lt-book">
+            <div id="lt-flip" aria-live="polite"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<style>
+  /* Layout */
+  .lt-wrap{max-width:1200px;margin:48px auto;padding:0 20px}
+  .lt-h2{margin:0 0 20px;font-size:clamp(18px,3vw,24px)}
+
+  /* Desktop / tablet grid */
+  .lt-grid{display:grid;gap:20px;grid-template-columns:1fr}
+  @media(min-width:700px){.lt-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(min-width:1060px){.lt-grid{grid-template-columns:repeat(5,1fr)}}
+
+  /* --- Mobil: vandret swipe/scroll med scroll-snap --- */
+  @media(max-width:699px){
+    .lt-grid{
+      display:flex; gap:16px; overflow-x:auto; overflow-y:visible; padding-bottom:6px;
+      scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch;
+      scroll-padding-left:20px;
+      margin:0 -20px; padding-left:20px; padding-right:20px;
+    }
+    .lt-grid::-webkit-scrollbar{display:none}
+    .lt-card{
+      scroll-snap-align:start;
+      flex:0 0 84%;
+      max-width:84%;
+    }
+    .lt-grid::after{content:""; flex:0 0 8%}
+  }
+  .lt-grid { touch-action: pan-x; }
+
+  /* Kort følger Prestige-farver */
+  .lt-card{
+    display:flex;flex-direction:column;overflow:hidden;border-radius:16px;
+    background: rgb(var(--color-background,255 255 255));
+    color: rgb(var(--color-foreground,17 17 17));
+    border: 1px solid rgba(var(--color-foreground,17 17 17), .08);
+    box-shadow: 0 10px 30px rgba(0,0,0,.08);
+  }
+  .lt-thumb{width:100%;aspect-ratio:3/4;border-bottom:1px solid rgba(var(--color-foreground,17 17 17), .08)}
+  .lt-thumb--bg{background-size:cover;background-position:center}
+  .lt-thumb--placeholder{background:#f3f4f6}
+  .lt-meta{padding:16px}
+  .lt-title{margin:0 0 6px;font-size:clamp(16px,2.4vw,18px)}
+  .lt-text{margin:0 0 12px;opacity:.8;font-size:14px}
+  .lt-btn{
+    display:inline-flex;gap:10px;align-items:center;justify-content:center;
+    border:none;border-radius:999px;padding:10px 14px;font-weight:600;cursor:pointer;
+    transition:transform .08s ease;background: rgb(var(--color-foreground, 17 17 17));
+    color: rgb(var(--color-background, 255 255 255));
+  }
+  .lt-btn:hover{transform: translateY(-1px)}
+
+  /* Modal + overlay følger scheme */
+  .lt-overlay{
+    position:fixed;inset:0;
+    background: color-mix(in srgb, rgb(var(--color-foreground,17 17 17)) 60%, transparent);
+    backdrop-filter: blur(3px);
+    display:grid;place-items:center;z-index:50
+  }
+  .lt-overlay[hidden]{display:none}
+
+  .lt-modal{
+    width:min(1100px,92vw);height:min(720px,86vh);
+    background: rgb(var(--color-background,255 255 255));
+    color: rgb(var(--color-foreground,17 17 17));
+    border-radius:18px;overflow:hidden;position:relative;
+    border:1px solid rgba(var(--color-foreground,17 17 17), .08);
+    box-shadow:0 30px 60px rgba(0,0,0,.25);
+  }
+  .lt-modal *{color:inherit}
+  .lt-modal-header{
+    position:absolute;inset:12px 12px auto 12px;display:flex;justify-content:space-between;align-items:center;z-index:10;
+    background: color-mix(in srgb, rgb(var(--color-background,255 255 255)) 85%, transparent);
+    border: 1px solid rgba(var(--color-foreground,17 17 17), .08);
+    border-radius:12px;padding:8px 12px
+  }
+  .lt-modal-title{font-size:14px;letter-spacing:.3px}
+  .lt-close{
+    appearance:none;background:transparent;border:1px solid rgba(var(--color-foreground,17 17 17), .25);
+    border-radius:10px;padding:6px 10px;cursor:pointer
+  }
+  .lt-stage{position:absolute;inset:0;display:grid;place-items:center;padding:40px 24px 24px}
+  .lt-loader{display:none;place-items:center;gap:10px;font-size:14px;opacity:.8}
+  .lt-loader.active{display:grid}
+  .lt-spin{width:18px;height:18px;border:2px solid currentColor;border-top-color: transparent;border-radius:50%;display:inline-block;animation:ltspin 1s linear infinite}
+  @keyframes ltspin{to{transform:rotate(360deg)}}
+
+  /* 3D scene for første åbning */
+  .lt-book{width:100%;height:100%;perspective:1600px;perspective-origin:18% 50%}
+  .lt-book.lt-opening .stf__wrapper{
+    transform-origin:left center;
+    animation:ltBookOpen 800ms cubic-bezier(.2,.7,.1,1) both;
+    will-change:transform,filter;
+    filter:drop-shadow(0 10px 30px rgba(0,0,0,.25))
+  }
+  @keyframes ltBookOpen{
+    0%{transform:rotateY(-78deg) translateZ(0) scale(.98)}
+    60%{transform:rotateY(-12deg) translateZ(0) scale(1)}
+    100%{transform:rotateY(0deg) translateZ(0) scale(1)}
+  }
+  .lt-book.lt-opening .stf__wrapper::after{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(120% 100% at 0% 50%, rgba(0,0,0,.18), transparent 60%);
+    animation:ltBookVanish 1200ms ease-out forwards
+  }
+  @keyframes ltBookVanish{0%{opacity:.8}100%{opacity:0}}
+
+  /* Flip container & sider */
+  #lt-flip{width:100%;height:100%;max-height:100%;background: rgb(var(--color-background,255 255 255))}
+  #lt-flip .page{width:100%;height:100%; box-shadow: 0 0 0 1px rgba(0,0,0,.05);}
+  #lt-flip .page .page-content{
+    width:100%;height:100%;display:grid;place-items:center;position:relative;
+    background: rgb(var(--color-background,255 255 255));
+    background-image: radial-gradient(rgba(0,0,0,.015) 1px, transparent 1px);
+    background-size: 4px 4px;background-position: center;
+  }
+  #lt-flip .page .page-content img{
+    max-width:100%;max-height:100%;width:100%;height:100%;object-fit:contain;display:block;
+  }
+  #lt-flip .page[data-density="hard"] .page-content{
+    box-shadow: inset 0 0 0 2px rgba(0,0,0,.06), 0 2px 6px rgba(0,0,0,.18);
+    background: linear-gradient(180deg, rgba(0,0,0,.03), rgba(0,0,0,0)), rgb(var(--color-background,255 255 255));
+  }
+  #lt-flip .page .page-content::before{
+    content:""; position:absolute; top:0; bottom:0; width:26px; left:0;
+    pointer-events:none;
+    background: radial-gradient(closest-side, rgba(0,0,0,.14), rgba(0,0,0,0) 70%);
+    opacity:.25; filter: blur(10px); transform: translateX(-8px);
+  }
+
+  /* Fallback-objekt */
+  .lt-view{width:100%;height:100%;border:0;border-radius:12px;background: rgb(var(--color-background,255 255 255))}
+  .lt-fallback-msg{font-size:14px;padding:16px}
+
+  /* === Mobil: modal og flip fylder hele skærmen === */
+  @media (max-width: 699px){
+   /* Ryk flipbooken mod højre */
+  #lt-flip {
+    transform: scale(0.92) translateX(-8%);
+    transform-origin: center top; /* hvorfra der skal skaleres */
+  } 
+  #lt-flip, .page, .page .page-content {
+    width: 100% !important;
+    height: 100% !important;
+    max-height: none !important;
+  }
+  .page img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+  }
+}
+  .lt-modal-header{
+    inset: 0 0 auto 0;
+    border-radius: 0;
+    padding: 10px 12px; /* ~48px total headerhøjde med linjehøjde */
+  }
+  .lt-stage{
+    position: absolute;
+    inset: 0;
+    padding: 48px 0 0;   /* skal matche HEADER_H i JS */
+    display: flex;
+    align-items: stretch;   /* stræk indhold i højden */
+    justify-content: center;
+    overflow: visible;
+  }
+  #lt-flip, .lt-view{
+    width: 100%;
+    height: 100%;
+    max-height: none;
+  }
+}
+    .lt-overlay{ backdrop-filter: blur(2px); }
+  }
+/* === Ens spacing mellem overskrift og flipbook-grid på alle skærmstørrelser === */
+.section-lt-flipbook-shopify .SectionHeader,
+.section-lt-flipbook-shopify .section-header {
+  margin-bottom: 2.5rem; /* ca. 40px – standardafstand */
+}
+
+/* Lidt ekstra luft på store skærme */
+@media (min-width: 990px) {
+  .section-lt-flipbook-shopify .SectionHeader,
+  .section-lt-flipbook-shopify .section-header {
+    margin-bottom: 3.5rem; /* ca. 56px */
+  }
+}
+
+/* Mobil: lidt mindre afstand, men stadig tydelig separation */
+@media (max-width: 699px) {
+  .section-lt-flipbook-shopify .SectionHeader,
+  .section-lt-flipbook-shopify .section-header {
+    margin-bottom: 2rem; /* ca. 32px – passer til Prestiges vertikale rytme */
+  }
+
+  /* Tilføj evt. lidt ekstra luft under grid */
+  .section-lt-flipbook-shopify .lt-grid {
+    padding-top: 0.5rem;
+  }
+}
+</style>
+
+<!-- PageFlip (flip-effekt) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/css/page-flip.css">
+<script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.min.js" defer></script>
+<!-- PDF.js (uden worker) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" defer></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+
+  function q(sel, root=document){ return root.querySelector(sel); }
+
+  /* --- Mobil: drag-to-scroll på grid --- */
+  function enableDragScroll(scroller){
+    let isDown=false, startX=0, scrollLeft=0;
+    const pageX = (e)=> (e.touches? e.touches[0].pageX : e.pageX);
+    const onDown = (e)=>{ isDown=true; startX=pageX(e)-scroller.offsetLeft; scrollLeft=scroller.scrollLeft; scroller.classList.add('is-dragging'); };
+    const onMove = (e)=>{ if(!isDown) return; const x=pageX(e)-scroller.offsetLeft; const walk=(x-startX); scroller.scrollLeft = scrollLeft - walk; if(e.cancelable) e.preventDefault(); };
+    const onUp   = ()=>{ if(!isDown) return; isDown=false; scroller.classList.remove('is-dragging'); };
+    scroller.addEventListener('mousedown', onDown, {passive:true});
+    scroller.addEventListener('mousemove', onMove, {passive:true});
+    scroller.addEventListener('mouseup', onUp, {passive:true});
+    scroller.addEventListener('mouseleave', onUp, {passive:true});
+    scroller.addEventListener('touchstart', onDown, {passive:true});
+    scroller.addEventListener('touchmove', onMove, {passive:true}); /* <- vi kalder preventDefault() */
+    scroller.addEventListener('touchend', onUp, {passive:true});
+  }
+
+  const gridEl = document.getElementById('lt-grid-{{ section.id }}');
+  function initHorizontalIfMobile(){
+    if(!gridEl) return;
+    const isMobile = window.matchMedia('(max-width: 699px)').matches;
+    if(isMobile && !gridEl.__dragInit){
+      gridEl.__dragInit = true;
+      enableDragScroll(gridEl);
+    }
+  }
+  initHorizontalIfMobile();
+  window.addEventListener('resize', initHorizontalIfMobile, {passive:true});
+
+  /* --------- Helpers for robust genåbning --------- */
+  function nextFrame(){ return new Promise(r => requestAnimationFrame(() => r())); }
+  function doubleRAF(){ return nextFrame().then(nextFrame); }
+
+  // Erstat lt-flip containeren med et helt nyt element (hard reset)
+  function recreateFlipRoot(overlay){
+    const oldRoot = overlay.__lt?.flipRoot;
+    if(!oldRoot || !oldRoot.parentNode) return;
+    const fresh = oldRoot.cloneNode(true); // samme id/attrs, intet indhold
+    fresh.removeAttribute('style');         // fjern gamle inline styles
+    oldRoot.parentNode.replaceChild(fresh, oldRoot);
+    overlay.__lt.flipRoot = fresh;          // opdatér ref
+  }
+
+  function waitForVisible(el, maxMs = 3000){
+  return new Promise((resolve, reject) => {
+    const start = performance.now();
+    (function check(){
+      // Brug kun layout-mål og display/visibility – ikke opacity
+      const r = el.getBoundingClientRect();
+      const cs = getComputedStyle(el);
+      const visible =
+        r.width > 2 &&
+        r.height > 2 &&
+        cs.display !== 'none' &&
+        cs.visibility !== 'hidden';
+
+      if (visible) return resolve(true);
+      if (performance.now() - start > maxMs)
+        return reject(new Error('Timeout: element not visible'));
+      requestAnimationFrame(check);
+    })();
+  });
+}
+
+  // ------- Modal open/close + robust re-open -------
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.lt-open');
+    if(!btn) return;
+
+    // ignorér klik hvis man var i gang med at trække listen
+    const scroller = btn.closest('.lt-grid');
+    if(scroller && scroller.classList.contains('is-dragging')) return;
+
+    e.preventDefault();
+
+    const modalId = btn.getAttribute('aria-controls') || btn.dataset.modalId;
+    const overlay = document.getElementById(modalId);
+    if(!overlay){ console.warn('Modal findes ikke for id:', modalId); return; }
+
+    // cache elementrefs pr. overlay
+    if(!overlay.__lt){
+      overlay.__lt = {
+        closeBtn: q('#lt-close', overlay) || q('[data-action="close-modal"]', overlay),
+        loader:   q('#lt-loader', overlay),
+        flipRoot: q('#lt-flip', overlay),
+        titleEl:  q('#lt-modal-title', overlay),
+        bookWrap: q('#lt-book', overlay)
+      };
+      overlay.__lt.closeBtn && (overlay.__lt.closeBtn.onclick = () => closeModal(overlay));
+    }
+
+    openModal(overlay, btn.dataset.pdf, btn.dataset.title || 'Flipbook');
+  });
+
+  document.addEventListener('click', (e) => {
+    const overlay = e.target.classList && e.target.classList.contains('lt-overlay') ? e.target : null;
+    if(overlay) closeModal(overlay);
+  });
+  document.addEventListener('keydown', (e) => {
+    if(e.key !== 'Escape') return;
+    const overlay = document.querySelector('.lt-overlay:not([hidden])');
+    if(overlay) closeModal(overlay);
+  });
+
+  function showLoader(overlay, on){ overlay.__lt?.loader?.classList.toggle('active', !!on); }
+
+  function openModal(overlay, pdfUrl, title){
+  if(!pdfUrl){ console.warn('[Flipbook] Mangler pdfUrl'); return; }
+  if(overlay.__busy) return;
+
+  overlay.__busy = true;
+  overlay.__aborter = new AbortController();
+  overlay.__closing = false;
+
+  if(overlay.__lt?.titleEl) overlay.__lt.titleEl.textContent = title || 'Flipbook';
+  overlay.hidden = false;                         // vis modal først
+  document.body.style.overflow = 'hidden';
+
+  // Ryd state og lav en frisk flip-root
+  safeResetFlip(overlay);
+  recreateFlipRoot(overlay);
+
+  (async () => {
+    try {
+      // Tving reflow (nogle browsere har brug for den “poke”)
+      // eslint-disable-next-line no-unused-expressions
+      overlay.offsetWidth;
+
+      // VENT til modal og flipRoot faktisk har mål > 0
+      await waitForVisible(overlay);
+      await waitForVisible(overlay.__lt.flipRoot);
+
+      // Ekstra sikkerhed: to frames, så alt er “settled”
+      await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
+
+      await initFlipbook(overlay, pdfUrl);
+    } catch (e) {
+      console.error('[Flipbook] openModal fejl (synlighed/init)', e);
+      alert('Der opstod en fejl under indlæsning af flipbooken.');
+    } finally {
+      overlay.__busy = false;
+    }
+  })();
+}
+
+
+  function closeModal(overlay){
+    overlay.__closing = true;
+    // afbryd igangværende fetch/render
+    try{ overlay.__aborter && overlay.__aborter.abort(); }catch(_){}
+    overlay.__aborter = null;
+
+    // destroy PageFlip og ryd DOM
+    safeResetFlip(overlay);
+
+    overlay.hidden = true;
+    document.body.style.overflow = '';
+    overlay.__busy = false; // defensiv reset
+  }
+
+  function safeResetFlip(overlay){
+    try{ overlay.__flip && overlay.__flip.destroy(); }catch(_){}
+    overlay.__flip = null;
+    if(overlay.__lt?.flipRoot){
+      overlay.__lt.flipRoot.replaceChildren();   // fjern ALT indhold
+      overlay.__lt.flipRoot.removeAttribute('style');
+    }
+    if(overlay.__lt?.bookWrap) overlay.__lt.bookWrap.classList.remove('lt-opening');
+  }
+
+  function waitForLibs(maxMs = 6000) {
+  return new Promise((resolve, reject) => {
+    const start = performance.now();
+    (function check() {
+      const ready = !!(window.pdfjsLib && window.St && window.St.PageFlip);
+      if (ready) return resolve(true);
+      if (performance.now() - start > maxMs)
+        return reject(new Error('Libraries not loaded'));
+      requestAnimationFrame(check);
+    })();
+  });
+}
+
+  // Mobil: fuld højde; desktop: 42% bredde pr. side
+  function pickFlipSize(overlay){
+    const modal = overlay.querySelector('.lt-modal');
+    const r = modal?.getBoundingClientRect() || { width: 800, height: 600 };
+    const isMobile = window.matchMedia('(max-width: 699px)').matches;
+    const A = 1.41421356237;
+    if (isMobile){
+      const HEADER_H = 48;
+      const h = Math.max(320, Math.floor(r.height - HEADER_H));
+      const w = Math.floor(h / A);
+      return { w, h };
+    }
+    const maxW = Math.max(320, Math.floor(r.width * 0.42));
+    const w = Math.min(900, maxW);
+    const h = Math.floor(w * A);
+    return { w, h };
+  }
+
+  // Hovedflow m. abort-sikring og genåbning
+  async function initFlipbook(overlay, pdfUrl){
+    const { flipRoot, bookWrap } = overlay.__lt;
+    const signal = overlay.__aborter?.signal;
+
+    showLoader(overlay, true);
+    try{
+      await waitForLibs();
+      if(overlay.__closing) return;   // hvis lukket imens
+
+      // Vent 2 frames, så modal er 100% layoutet (kritisk for genåbning)
+      await doubleRAF();
+      if(overlay.__closing) return;
+
+      pdfjsLib.disableWorker = true;
+
+      // Hent PDF (kan afbrydes) — med cache-buster
+      const bustUrl = pdfUrl + (pdfUrl.includes('?') ? '&' : '?') + 'cb=' + Date.now();
+      const resp = await fetch(bustUrl, { mode: 'cors', credentials: 'omit', cache: 'no-store', signal });
+      if(!resp.ok) throw new Error('Kunne ikke hente PDF (' + resp.status + ')');
+      const buffer = await resp.arrayBuffer();
+      if(overlay.__closing) return;
+
+      const images = await renderPdfArrayBufferToImages(buffer, signal);
+      if(overlay.__closing) return;
+      if(!images.length) throw new Error('Ingen renderbare sider');
+
+      const { w, h } = pickFlipSize(overlay);
+      const flip = new St.PageFlip(flipRoot, {
+        width: w,
+        height: h,
+        size: 'fixed',
+        usePortrait: window.matchMedia('(max-width: 699px)').matches,
+        showCover: true,
+        flippingTime: 900,
+        maxShadowOpacity: 0.95,
+        drawShadow: true,
+        autoSize: true,                // <- slå PageFlip auto-resize fra
+        mobileScrollSupport: true,
+        useMouseEvents: true
+      });
+      overlay.__flip = flip;
+
+      // stræk container/canvas til modal
+      flipRoot.style.width = '100%';
+      flipRoot.style.height = '100%';
+      setTimeout(() => {
+        const canvas = flipRoot.querySelector('canvas');
+        if (canvas) {
+          canvas.style.width = '100%';
+          canvas.style.height = '100%';
+          canvas.style.objectFit = 'cover';
+        }
+      }, 250);
+
+      // Byg sider
+      const pages = images.map((src, i, arr) => {
+        const page = document.createElement('div');
+        page.className = 'page';
+        if(i === 0 || i === arr.length - 1) page.setAttribute('data-density', 'hard');
+        const inner = document.createElement('div'); inner.className = 'page-content';
+        const img = new Image(); img.decoding = 'async'; img.loading = 'eager'; img.alt = ''; img.src = src;
+        inner.appendChild(img); page.appendChild(inner); return page;
+      });
+      try { flip.loadFromHTML(pages); }
+      catch(e){ console.warn('[Flipbook] loadFromHTML fejlede', e); throw e; }
+
+      // 3D intro (kun kosmetisk)
+      if (bookWrap){ bookWrap.classList.add('lt-opening'); setTimeout(()=>bookWrap.classList.remove('lt-opening'), 900); }
+
+    }catch(err){
+      if(err?.name === 'AbortError'){ /* lukket – ignorer */ }
+      else {
+        console.warn('[Flipbook] Fejl:', err);
+        alert('Der opstod en fejl under indlæsning af flipbooken.');
+      }
+    }finally{
+      showLoader(overlay, false);
+    }
+  }
+
+  // Renderer der respekterer abort
+  async function renderPdfArrayBufferToImages(buffer, signal){
+    const pdf = await pdfjsLib.getDocument({
+      data: buffer,
+      isEvalSupported: false,
+      disableAutoFetch: true,
+      disableStream: true,
+      disableRange: true
+    }).promise;
+
+    const images = [];
+    const MAX_PAGES = Math.min(pdf.numPages, 8);
+    const MAX_DIM   = 1600;
+    const JPEG_Q    = 0.88;
+
+    for(let p = 1; p <= MAX_PAGES; p++){
+      if(signal?.aborted) throw new DOMException('Aborted', 'AbortError');
+      const page = await pdf.getPage(p);
+      const v1 = page.getViewport({ scale: 1 });
+      const longest = Math.max(v1.width, v1.height);
+      const scale = Math.max(Math.min(MAX_DIM / longest, 1.5), 0.7);
+      const viewport = page.getViewport({ scale });
+
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d', { willReadFrequently: true, alpha: false });
+      canvas.width  = Math.floor(viewport.width);
+      canvas.height = Math.floor(viewport.height);
+
+      await page.render({ canvasContext: ctx, viewport }).promise;
+      images.push(canvas.toDataURL('image/jpeg', JPEG_Q));
+
+      await new Promise(r => setTimeout(r, 30));  // slip main thread lidt
+    }
+    return images;
+  }
+});
+</script>
+
+{% schema %}
+{
+  "name": "Flipbook (Shopify PDF)",
+  "class": "section-lt-flipbook-shopify",
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "background-1"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_prestige_container",
+      "label": "Brug Prestige Container-ramme",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "separate_section_with_border",
+      "label": "Vis kantlinje omkring sektionen",
+      "default": false
+    },
+
+    /* --- Titel og tekst (Prestige-kompatibel) --- */
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Underoverskrift",
+      "default": "Text"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Sektionstitel",
+      "default": "Vejledninger"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Intro-tekst",
+      "default": "<p>Vælg en vejledning for at åbne den som flipbook.</p>"
+    },
+    {
+      "type": "select",
+      "id": "content_alignment",
+      "label": "Tekstjustering",
+      "default": "center",
+      "options": [
+        { "value": "start", "label": "Venstre" },
+        { "value": "center", "label": "Centreret" }
+      ]
+    },
+
+    /* --- Legacy felt for ældre versioner --- */
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Sektionstitel (legacy)",
+      "default": "Text"
+    }
+  ],
+
+  "blocks": [
+    {
+      "type": "flipbook",
+      "name": "Flipbook-kort",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "thumb",
+          "label": "Thumbnail/billede"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Titel",
+          "default": "Vaskevejledning"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Beskrivelse",
+          "default": "<p>Læs vores detaljerede vejledning som en interaktiv flipbook.</p>"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Kort beskrivelse (legacy)",
+          "default": "Læs mere om denne vejledning."
+        },
+        {
+          "type": "url",
+          "id": "pdf_url",
+          "label": "PDF URL (fra Files)",
+          "info": "Upload PDF under Content → Files og indsæt linket her."
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Knap-tekst",
+          "default": "Åbn som bog"
+        }
+      ]
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "Flipbook (Shopify PDF)",
+      "category": "LALATOTO"
+    }
+  ]
+}
+{% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'section-header',\r\n  subheading: section.settings.subheading,\r\n
+    \ heading: section.settings.title | default: section.settings.heading,\r\n  content:
+    section.settings.content,\r\n  text_alignment: section.settings.content_alignment
+    -%}"
+  to: "{%- render 'section-header', subheading: section.settings.subheading, heading:
+    section.settings.title, default: section.settings.heading, content: section.settings.content,
+    text_alignment: section.settings.content_alignment -%}"
+  position: 981..1208
+{% endcomment %}

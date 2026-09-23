@@ -1,0 +1,675 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {
+            "heading_tag": "h1"
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "show_taxes_notice": false
+          }
+        },
+        "payment_terms": {
+          "type": "payment_terms",
+          "settings": {}
+        },
+        "badges_imc3bX": {
+          "type": "badges",
+          "disabled": true,
+          "settings": {}
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "hide_sold_out_variants": false,
+            "selector_style": "block",
+            "swatch_selector_style": "swatch",
+            "variant_image_options": "",
+            "size_chart_page": ""
+          }
+        },
+        "feature_with_icon_cbaWBY": {
+          "type": "feature_with_icon",
+          "disabled": true,
+          "settings": {
+            "text": "{{ product.metafields.custom.forvent_levering.value }} {{ product.metafields.custom.leveringsuge.value }}",
+            "link": "",
+            "icon": "picto-delivery-truck",
+            "icon_width": 28,
+            "background": "#f4f4f4",
+            "text_color": "#45b03b",
+            "border_color": ""
+          }
+        },
+        "inventory_99cbWJ": {
+          "type": "inventory",
+          "settings": {
+            "show_in_stock_quantity": true,
+            "low_inventory_threshold": 25,
+            "show_progress_bar": false,
+            "progress_bar_max_value": 50
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_payment_button": false,
+            "show_gift_card_recipient": false,
+            "atc_button_background": "#643c20",
+            "atc_button_text_color": "",
+            "payment_button_background": "",
+            "payment_button_text_color": ""
+          }
+        },
+        "liquid_yF9XFq": {
+          "type": "liquid",
+          "settings": {
+            "liquid": "<div id='ss-trust-badge'></div>"
+          }
+        },
+        "forms_inline_qYzC6X": {
+          "type": "shopify://apps/forms/blocks/inline/8744a304-fcb1-4347-b211-bb6b4759a76a",
+          "disabled": true,
+          "settings": {
+            "form_id": "452474",
+            "text_color": "#202020",
+            "button_background_color": "#c1ab92",
+            "button_label_color": "#ffffff",
+            "links_color": "#1878b9",
+            "errors_color": "#e02229",
+            "text_alignment": "center",
+            "form_alignment": "center",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "padding_right": 0,
+            "padding_left": 0
+          }
+        },
+        "oenskeskyen_wishlist_button_f8par3": {
+          "type": "shopify://apps/oenskeskyen/blocks/wishlist-button/be6e5a80-54ea-40af-aa80-5746282173b8",
+          "settings": {
+            "text": "Tilføj til ønskeskyen",
+            "rounded": "medium",
+            "size": "medium",
+            "position": "center",
+            "width": "fit-content",
+            "icon": "gowish",
+            "font": "inherit",
+            "color": "#1c1c1c",
+            "background": "rgba(0,0,0,0)",
+            "border": "",
+            "icon_color": "#0099bb",
+            "data-region": "denmark"
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {
+            "collapse_content": false,
+            "show_below_gallery": false
+          }
+        },
+        "accordion_663b3m": {
+          "type": "accordion",
+          "settings": {
+            "show_below_gallery": false,
+            "icon": "none",
+            "title": "Beskrivelse af sengelomme",
+            "content": "<p>Vi tilføjer en ny, blød opbevaringsløsning i matchende fløjl til tremmesengen, så nusseklud, sutter og så videre er lige inden for rækkevidde, selv i de mørke nattetimer. Lommen bindes fast til sengen og fuldender det luksuriøse og matchende sovemiljø.<br/>Stropperne er særligt udformet til at holde. Og de holder!</p>",
+            "liquid": "",
+            "page": ""
+          }
+        },
+        "accordion_VnT6ti": {
+          "type": "accordion",
+          "settings": {
+            "show_below_gallery": false,
+            "icon": "none",
+            "title": "Produceret med omtanke",
+            "content": "<p>Vores produkter er syet med størst mulig omsorg for familiens mindste, men også for den syerske, som har tryllet metervarer om til dette smukke produkt.</p><p>Vi har nemlig sagt \"nej tak\" til samlebåndsarbejde i vores produktion, og \"ja tak\" til arbejdsglæde og faglig stolthed. Derfor syes alle vores tekstilprodukter af dygtige kvinder på en danskejet systue i Hanoi, hvor fair løn og arbejdsforhold er en selvfølge, og hvor den gode dialog og det tætte samarbejde i alle led vægtes højt.</p><p>Vi er nemlig slet ikke i tvivl om, at den gode energi kan både ses og mærkes i det færdige produkt. Vi kalder det; god arbejdslyst og god karma.</p>",
+            "liquid": "",
+            "page": ""
+          }
+        },
+        "accordion_3DCEhy": {
+          "type": "accordion",
+          "settings": {
+            "show_below_gallery": false,
+            "icon": "none",
+            "title": "Produktpleje",
+            "content": "<p><strong>Vaskeanvisning<br/></strong>Sengelommen kan vaskes ved 40 grader og tørretumbles ved lav varme. </p><p><strong>Sådan passer du bedst på produktet</strong><br/>Vi opfordrer til, at du ikke vasker sengelommen mere end højst nødvendigt, og har du god tid, så lad det tørre på tørresnoren frem for i tørretumbleren. På<br/>den måde skåner du ikke kun sengelommen men også miljøet.</p>",
+            "liquid": "",
+            "page": ""
+          }
+        },
+        "accordion_BEMeBJ": {
+          "type": "accordion",
+          "settings": {
+            "show_below_gallery": false,
+            "icon": "none",
+            "title": "Specifikationer Sengelomme",
+            "content": "<p><strong>Mål</strong>: 44 x 26 cm. </p><p><strong>Materiale</strong>: 100 % bomuld</p><p><strong>Vaskevejledning</strong>: <a href=\"https://www.lalatoto.dk/pages/vaksevejledning\" title=\"Vaksevejledning\">Klik her</a></p>",
+            "liquid": "",
+            "page": ""
+          }
+        },
+        "complementary_products": {
+          "type": "complementary_products",
+          "disabled": true,
+          "settings": {
+            "title": "Tilføj og spar 20%",
+            "products_count": 2,
+            "show_below_gallery": false,
+            "stack_products": true,
+            "show_quick_buy": true
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "price",
+        "payment_terms",
+        "badges_imc3bX",
+        "variant_picker",
+        "feature_with_icon_cbaWBY",
+        "inventory_99cbWJ",
+        "buy_buttons",
+        "liquid_yF9XFq",
+        "forms_inline_qYzC6X",
+        "oenskeskyen_wishlist_button_f8par3",
+        "description",
+        "accordion_663b3m",
+        "accordion_VnT6ti",
+        "accordion_3DCEhy",
+        "accordion_BEMeBJ",
+        "complementary_products"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "container_size": "lg",
+        "product_info_size": 35,
+        "show_sticky_add_to_cart": true,
+        "center_basic_info": true,
+        "desktop_media_layout": "carousel_thumbnails_bottom",
+        "desktop_media_grid_gap": 30,
+        "mobile_controls": "thumbnails",
+        "enable_media_autoplay": false,
+        "enable_video_looping": true,
+        "enable_image_zoom": false,
+        "max_image_zoom_level": 3
+      }
+    },
+    "ss_trust_badges_pro_FcMDCY": {
+      "type": "ss-trust-badges-pro",
+      "blocks": {
+        "item_8mcF93": {
+          "type": "item",
+          "settings": {
+            "icon": "plant",
+            "text": "Naturlige materialer",
+            "url": "",
+            "action": false,
+            "video_url": "",
+            "controls": false,
+            "autoplay": false,
+            "loop": false
+          }
+        },
+        "item_qeEV8H": {
+          "type": "item",
+          "settings": {
+            "icon": "shield",
+            "text": "Nej tak til polyester",
+            "url": "",
+            "action": false,
+            "video_url": "",
+            "controls": false,
+            "autoplay": false,
+            "loop": false
+          }
+        },
+        "item_PmLdN7": {
+          "type": "item",
+          "settings": {
+            "icon": "heart",
+            "text": "håndsyet i Vietnam",
+            "url": "",
+            "action": false,
+            "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+            "controls": true,
+            "autoplay": true,
+            "loop": true
+          }
+        },
+        "item_LeMTzR": {
+          "type": "item",
+          "settings": {
+            "icon": "truck",
+            "text": "Gratis fragt over 599 kr.",
+            "url": "",
+            "action": false,
+            "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+            "controls": true,
+            "autoplay": true,
+            "loop": true
+          }
+        }
+      },
+      "block_order": [
+        "item_8mcF93",
+        "item_qeEV8H",
+        "item_PmLdN7",
+        "item_LeMTzR"
+      ],
+      "name": "SS - Trust Badges Pro",
+      "settings": {
+        "badge_position": "below_buy",
+        "heading": "",
+        "heading_custom": false,
+        "heading_font": "assistant_n4",
+        "heading_size": 48,
+        "heading_size_mobile": 32,
+        "heading_height": 130,
+        "heading_align": "center",
+        "heading_align_mobile": "center",
+        "items_row": 4,
+        "items_row_mobile": 4,
+        "items_gap": 10,
+        "items_gap_mobile": 10,
+        "items_mt": 0,
+        "badge_icon_size": 30,
+        "badge_icon_size_mobile": 30,
+        "icon_align": "center",
+        "icon_align_mobile": "center",
+        "text_custom": false,
+        "text_font": "assistant_n4",
+        "text_size": 12,
+        "text_size_mobile": 12,
+        "text_height": 130,
+        "text_align": "center",
+        "text_align_mobile": "center",
+        "text_mt": 6,
+        "modal_width": 70,
+        "modal_width_mobile": 100,
+        "modal_padding_vertical": 0,
+        "modal_padding_vertical_mobile": 0,
+        "modal_padding_horizontal": 0,
+        "modal_padding_horizontal_mobile": 0,
+        "modal_radius": 16,
+        "modal_border_thickness": 0,
+        "modal_overlay": 50,
+        "close_size": 42,
+        "close_size_mobile": 42,
+        "close_icon_size": 16,
+        "close_icon_size_mobile": 16,
+        "modal_video_ratio": "landscape",
+        "modal_video_ratio_mobile": "landscape",
+        "text_color": "#121212",
+        "icon_color": "#121212",
+        "close_bg": "#000000",
+        "close_icon": "#f4f4f4",
+        "heading_color": "#232323",
+        "background_color": "#f4f4f4",
+        "background_gradient": "",
+        "border_color": "#000000",
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "padding_top": 12,
+        "padding_bottom": 12,
+        "padding_horizontal": 0,
+        "padding_horizontal_mobile": 0,
+        "border_thickness": 0,
+        "lazy": true
+      }
+    },
+    "scrolling_content_4FkL3g": {
+      "type": "scrolling-content",
+      "blocks": {
+        "image_4YJNrh": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/52.png"
+          }
+        },
+        "image_A3TVbX": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/54.png"
+          }
+        },
+        "image_Ng6npi": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/60.png"
+          }
+        },
+        "image_MaiDNb": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/57.png"
+          }
+        },
+        "image_8LeMGU": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/61.png"
+          }
+        },
+        "image_wWjjBt": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/49.png"
+          }
+        },
+        "image_A4pmH8": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/44.png"
+          }
+        },
+        "image_Pkn7QH": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/43.png"
+          }
+        },
+        "image_bidX4k": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/51.png"
+          }
+        }
+      },
+      "block_order": [
+        "image_4YJNrh",
+        "image_A3TVbX",
+        "image_Ng6npi",
+        "image_MaiDNb",
+        "image_8LeMGU",
+        "image_wWjjBt",
+        "image_A4pmH8",
+        "image_Pkn7QH",
+        "image_bidX4k"
+      ],
+      "settings": {
+        "separate_section_with_border": false,
+        "scrolling_speed": 0.1,
+        "scroll_direction": "right",
+        "pause_on_hover": false,
+        "text_font": "heading",
+        "text_font_size_mobile": 60,
+        "text_font_size_desktop": 110,
+        "section_vertical_spacing_mobile": 10,
+        "section_vertical_spacing_desktop": 10,
+        "item_horizontal_spacing_mobile": 10,
+        "item_horizontal_spacing_desktop": 10,
+        "background": "",
+        "text_color": ""
+      }
+    },
+    "rich_text_qVFQMG": {
+      "type": "rich-text",
+      "blocks": {
+        "richtext_RNr89R": {
+          "type": "richtext",
+          "settings": {
+            "content": "<h3>SIKKER SØVN ER TRYG SØVN</h3>"
+          }
+        },
+        "richtext_RDqcx3": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Alle <a href=\"/collections/sengerand\" title=\"Sengerand\">sengerande</a> har til formål, at sikre barnet mod at få sine små bløde arme eller ben imellem tremmerne.</p><p>Men nysgerrige, som de små størrelser nu en gang er, vil de før eller siden finde ud af, at det blot er et spørgsmål om at løfte sengeranden op. Dette har vi lavet en løsning på. Noget helt særligt ved <a href=\"/collections/sengerand\" title=\"Sengerand\">sengeranden</a> fra LALATOTO er nemlig det ekstra panel af tekstil, som foldes omkring og under madrassen. På denne måde er der lukket HELT af for tremmerne, så den lille kan sove trygt og godt, og de voksne have ro i maven når barnet er puttet. </p>"
+          }
+        }
+      },
+      "block_order": [
+        "richtext_RNr89R",
+        "richtext_RDqcx3"
+      ],
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": false,
+        "content_width": "sm",
+        "text_position": "center",
+        "remove_vertical_spacing": false
+      }
+    },
+    "image_with_text_GRXmYA": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_dijqfz": {
+          "type": "heading",
+          "settings": {
+            "text": "Den klassiske sengrand - bare bedre",
+            "heading_tag": "h2"
+          }
+        },
+        "richtext_geCdCW": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>De første år af et barns liv, sover det mere, end det er vågent. Det stiler høje krav til sovemiljøet, synes vi. Derfor synes vi også, at det er ærgerligt, at langt de fleste sengrande, som sælges på det danske marked, er med fyld af polyester. Altså plast. Det vil vi lave om på. Både af hensyn til barnets sundhed og til miljøet.<br/>Vores <a href=\"/collections/sengerand\" title=\"Sengerand\">sengerand</a> er derfor med fyld af Kapok, som både er allergivenligt og helt naturligt.</p><p>Samtidig er <a href=\"/blogs/bloggen/kapok-alt-du-skal-vide-om-fiberens-egenskaber-og-fordele\" title=\"Kapok - Alt du skal vide om fiberens egenskaber og fordele\">Kapokfibrene</a> fri for fugt og husstøvmider, hvilket gør det helt ideelt til et sundt sovemiljø. Men udover at skabe et sundt sovemiljø, er vores sengerand også med til at skabe et trygt sted at sove, for de helt små. En ekstra detalje, som adskiller vores sengerand fra andre sengerande på markedet, er nemlig et ekstra panel af tekstil, som foldes omkring madrassen. Dette sikrer, at små arme og ben ikke kan komme imellem tremmerne, hvilket ikke kun giver ro i puttesituationen, men også giver mor og far ro i maven, velvidende at deres mindste guld sover trygt og sikkert.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_dijqfz",
+        "richtext_geCdCW"
+      ],
+      "settings": {
+        "color_scheme": "scheme-3",
+        "separate_section_with_border": false,
+        "image": "shopify://shop_images/BIlleder_webshop_computer_1.png",
+        "mobile_image": "shopify://shop_images/Billeder_webshop_mobil.png",
+        "reveal_on_scroll": true,
+        "image_position": "start",
+        "content_width": "sm",
+        "remove_vertical_spacing": true
+      }
+    },
+    "anmeldelser_YQWifA": {
+      "type": "Anmeldelser",
+      "blocks": {
+        "custom_GaEYWF": {
+          "type": "custom",
+          "settings": {
+            "name": "Sheila Fuglsang",
+            "date": "4. nov. 2024",
+            "des": "<p><strong>Nicolaj og Sara som vi kender.</strong><br/>Lalatoto er hush little one's nye navn. Med samme fantastiske produkter og de samme søde mennesker. Køb køb 🤩</p>",
+            "product": ""
+          }
+        },
+        "custom_4tCVK4": {
+          "type": "custom",
+          "settings": {
+            "name": "Mille Hallgreen",
+            "date": "3. nov. 2024",
+            "des": "<p><strong>Verdens bedste redning til forældre og deres børn.</strong><br/>Vi har igennem flere år brugt produkter fra LALATOTO. Både deres babydyne, juniordyne og deres natdragter til vores drenge, med stor succes.<br/>Sara og Nicolaj er altid hurtige til at svare og vejlede i den bedste oplevelse af deres produkter.<br/>Jeg vil altid anbefale det skønne firma og deres geniale produkter!</p>",
+            "product": ""
+          }
+        },
+        "custom_6GrqbB": {
+          "type": "custom",
+          "settings": {
+            "name": "Henriette",
+            "date": "4. nov. 2024",
+            "des": "<p><strong>Et valg du ikke fortryder!!</strong><br/>Et valg du ikke fortryder!!<br/>(Tidligere Hush Little One), fantastisk brand med fantastiske produkter. Pengene værd. God service, høj kvalitet</p>",
+            "product": ""
+          }
+        },
+        "custom_z3BQF4": {
+          "type": "custom",
+          "settings": {
+            "name": "Anne Sofie Evert",
+            "date": "4. nov. 2024",
+            "des": "<p><strong>Overgik alle mine forventninger.</strong><br/>Oplevelsen med at handle ved lalatoto (tidl. Hush little one) overgår virkelig alle mine forventninger. Jeg tør næsten ikke sige det højt, men min datter er gået fra meget urolig søvn med mange opvågninger til at sove lange stræk på op til syv timer med dynen og nesten allerede fra 6 mdr.<br/><br/>Derudover tror jeg ærlig talt aldrig, at jeg har oplevet så varm, personlig og samtidig professionel kundeservice før. Imponerende hurtig levering og behagelig og kompetent sparring.<br/><br/>Endelig skal det jo nævnes, at Lalatoto har stor fokus på social bæredygtighed hvilket kommer til udtryk i kvaliteten af produktet og produktionsforholdene - så udover at støtte en dansk iværksættervirksomhed, så kan du ovenikøbet have en god følelse med produktionen. Jeg kan med andre ord ikke anbefale lalatoto nok!</p>",
+            "product": ""
+          }
+        },
+        "custom_niN4z9": {
+          "type": "custom",
+          "settings": {
+            "name": "Mette H.",
+            "date": "3. nov. 2024",
+            "des": "<p><strong>God og meget hurtig kundeservice.</strong><br/>Jeg oplevede en god og meget hurtig service. Jeg bestilte dynen mandag aften og modtog pakken onsdag formiddag. Dynen er virkelig lækker og det virker som om, at den er ved at blive accepteret af modtageren.</p>",
+            "product": ""
+          }
+        },
+        "custom_YHe9ri": {
+          "type": "custom",
+          "settings": {
+            "name": "Tine Damgaard",
+            "date": "19. dec. 2024",
+            "des": "<p><strong>Lækre produkter og god service</strong><br/>Lækre produkter (dog venter vi lidt på effekt af tyngdedyne :D), flot webshop, men det vigtigste af alt: rigtig god service og hurtig forsendelse. Jeg søgte råd angående noget teknisk med inden jeg bestilte og jeg fik en meget grundigt svar, også med reference til danske myndigheders anbefalinger indenfor området. Da jeg så modtog ordren lå der en fin lille personlig hilsen med, med ønsket om god søvn. Helt klart anbefalelsesværdigt! Produkterne er ikke de billigste, MEN helt klart pengene værd, da andre producenter ikke har samme kvalitet (hold øje med alle de gode rabatkoder der løbende er;) )</p>",
+            "product": ""
+          }
+        },
+        "custom_XYQ3Gp": {
+          "type": "custom",
+          "settings": {
+            "name": "Stine Bølling",
+            "date": "19. nov. 2024",
+            "des": "<p><strong>Sengeslangen var min redning som gravid</strong><br/>Som gravid som jeg utrolig dårlig! Blev anbefalet en “graviditetspølse”.<br/>En besked til Sara, som besvarede mine spørgsmål på den mest imødekommende og varme måde. Jeg købte sengeslangen. Som fra dag ét reddede min søvn, smerter og lign om natten. Det er lidt tyngde i den, så den altså er lidt tung og derfor bliver liggende. Man får ikke bare lige skubbet den ud af sengen, og den har en tykkelse som gør at den ikke “bare” klasker sammen mellem ens ben. Den var seriøst guld værd! Og jeg vil anbefale den til alle gravide😍<br/>Nu har vores datter overtaget den, da den gør hendes seng mindre og tryg. Tak for jer!</p>",
+            "product": ""
+          }
+        },
+        "custom_GcPjF9": {
+          "type": "custom",
+          "settings": {
+            "name": "Simone Rønhøj Villumsen",
+            "date": "3. nov. 2024",
+            "des": "<p><strong>Sara & Nicolaj fra Lalatoto kender du sikkert fra Hush little One som var i løvens hule.<br/></strong>Samme fantastiske produkter blot under et nyt navn! Tyngdedynen har gjort en kæmpe forskel for vores dreng siden han var 6 måneder i forhold til motorisk uro og så snart deres sengerand kom på lager måtte jeg også eje den. Den skuffer på ingen måde. Jeg elsker at den har stof som kan komme under madrassen, så sovemiljøet er helt trygt og sikkert. Det er ikke sidste gang jeg handler hos Lalatoto!</p>",
+            "product": ""
+          }
+        },
+        "custom_ciJPFq": {
+          "type": "custom",
+          "settings": {
+            "name": "Christine T",
+            "date": "4. nov. 2024",
+            "des": "<p><strong>Fntastisk produkt til babys søvn<br/></strong>Vores søn på 4 måneder har indtil nu kun ville falde i søvn<br/>i bevægelse i enten slyngvugge eller barnevogn. Vi har prøvet alt, men valgte<br/>at give jeres tyngdedyne et forsøg og han er nu for første gang faldet nemt og<br/>hurtigt i søvn i sin SENG. Tusind tak for et godt produkt 🧡</p>",
+            "product": ""
+          }
+        },
+        "custom_PeXfhf": {
+          "type": "custom",
+          "settings": {
+            "name": "Johanne Ellne Fllg",
+            "date": "4. nov. 2024",
+            "des": "<p><strong>Bedste service, bedste produkter.<br/></strong>Tyngdedynen har vi været så glade for, multinesten har<br/>simpelthen redet vores søn’s søvn fra han var helt lille. Vi tager den stadig<br/>med overalt ved overnatning, den ville vi ikke kunne leve uden. TAK</p>",
+            "product": ""
+          }
+        },
+        "custom_RFeabL": {
+          "type": "custom",
+          "settings": {
+            "name": "Stinne Pedersen",
+            "date": "13. nov. 2024",
+            "des": "<p><strong>Fantastisk produkter og ikke mindst fantastisk service!</strong>Havde et par spørgsmål inden mit køb at multinesten og de<br/>stod klar med det samme for at hjælpe. En virkelig nærværende lille perle.</p>",
+            "product": ""
+          }
+        }
+      },
+      "block_order": [
+        "custom_GaEYWF",
+        "custom_4tCVK4",
+        "custom_6GrqbB",
+        "custom_z3BQF4",
+        "custom_niN4z9",
+        "custom_YHe9ri",
+        "custom_XYQ3Gp",
+        "custom_GcPjF9",
+        "custom_ciJPFq",
+        "custom_PeXfhf",
+        "custom_RFeabL"
+      ],
+      "settings": {
+        "rating_text": "Læs vores kundeanmeldelser",
+        "header_text_da": "Vores kunder siger det bedre, end vi selv kan",
+        "header_text_en": "Loved by those who knows best – our customers!",
+        "heading_level": "h3"
+      }
+    },
+    "image_with_text_diQ3jQ": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_9hinG8": {
+          "type": "heading",
+          "settings": {
+            "text": "”Idéen til..",
+            "heading_tag": "h2"
+          }
+        },
+        "richtext_XMzipM": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p><em>..vores </em><a href=\"/collections/sengerand\" title=\"Sengerand\"><em>sengerand</em></a><em> udsprang af et ønske om at tilbyde<br/>forældre et alternativ til alle de polyesterfyldte sengerande, som dominerer markedet. Vi er efterhånden mange, som foretrækker naturens materialer, hvilket giver fantastisk mening i et produkt som en sengerand, hvor barnet opholder sig en stor del af sit liv i de første spæde år. <br/><br/>Jeg er hamrende stolt, af dét produkt, og jeg synes, at vi har formået at gøre sengeranden både praktisk, sund og smuk”.</em></p>"
+          }
+        },
+        "subheading_yYQjDx": {
+          "type": "subheading",
+          "settings": {
+            "text": "Sara, stifter af LALATOTO, men allermest mor til Xander ogOskar."
+          }
+        }
+      },
+      "block_order": [
+        "heading_9hinG8",
+        "richtext_XMzipM",
+        "subheading_yYQjDx"
+      ],
+      "settings": {
+        "color_scheme": "scheme-3",
+        "separate_section_with_border": false,
+        "image": "shopify://shop_images/34.png",
+        "mobile_image": "shopify://shop_images/35.png",
+        "reveal_on_scroll": true,
+        "image_position": "end",
+        "content_width": "sm",
+        "remove_vertical_spacing": true
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": false,
+        "hide_product_information": false,
+        "stack_products": false,
+        "recommendations_count": 10,
+        "products_per_row_mobile": "2",
+        "products_per_row_desktop": 4,
+        "horizontal_spacing_factor": 1,
+        "vertical_spacing_factor": 1,
+        "subheading": "",
+        "title": "Du har sidst kigget på",
+        "content": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "ss_trust_badges_pro_FcMDCY",
+    "scrolling_content_4FkL3g",
+    "rich_text_qVFQMG",
+    "image_with_text_GRXmYA",
+    "anmeldelser_YQWifA",
+    "image_with_text_diQ3jQ",
+    "related-products"
+  ]
+}

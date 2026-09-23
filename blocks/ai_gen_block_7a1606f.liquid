@@ -1,0 +1,1418 @@
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-mix-match-bundle-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    padding: 40px 20px;
+    background-color: {{ block.settings.background_color }};
+  }
+
+  .ai-mix-match-container-{{ ai_gen_id }} {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .ai-mix-match-heading-{{ ai_gen_id }} {
+    font-size: 32px;
+    margin: 0 0 32px;
+    text-align: center;
+    color: {{ block.settings.text_color }};
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .ai-mix-match-layout-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 40px;
+    align-items: start;
+  }
+
+  .ai-mix-match-products-section-{{ ai_gen_id }} {
+    min-width: 0;
+  }
+
+  .ai-mix-match-tabs-{{ ai_gen_id }} {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid {{ block.settings.border_color }};
+    flex-wrap: wrap;
+  }
+
+  .ai-mix-match-tab-{{ ai_gen_id }} {
+    padding: 12px 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: {{ block.settings.text_color }};
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s ease;
+    font-family: inherit;
+  }
+
+  .ai-mix-match-tab-{{ ai_gen_id }}:hover {
+    border-bottom-color: {{ block.settings.accent_color }};
+  }
+
+  .ai-mix-match-tab-{{ ai_gen_id }}.active {
+    border-bottom-color: {{ block.settings.accent_color }};
+    font-weight: 600;
+  }
+
+  .ai-mix-match-category-title-{{ ai_gen_id }} {
+    font-size: 24px;
+    margin: 0 0 20px;
+    color: {{ block.settings.text_color }};
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .ai-mix-match-product-grid-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+  }
+
+  .ai-mix-match-product-card-{{ ai_gen_id }} {
+    background: {{ block.settings.card_background }};
+    border-radius: {{ block.settings.card_border_radius }}px;
+    padding: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .ai-mix-match-product-card-{{ ai_gen_id }}:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  }
+
+  .ai-mix-match-product-image-wrapper-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%;
+    margin-bottom: 12px;
+    overflow: hidden;
+    border-radius: {{ block.settings.image_border_radius }}px;
+    background: #f4f4f4;
+  }
+
+  .ai-mix-match-product-image-{{ ai_gen_id }} {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-mix-match-product-image-placeholder-{{ ai_gen_id }} {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-mix-match-product-image-placeholder-{{ ai_gen_id }} svg {
+    width: 60%;
+    height: 60%;
+    opacity: 0.3;
+  }
+
+  .ai-mix-match-product-title-{{ ai_gen_id }} {
+    font-size: 14px;
+    margin: 0 0 8px;
+    color: {{ block.settings.text_color }};
+    font-weight: 600;
+    line-height: 1.3;
+    min-height: 36px;
+  }
+
+  .ai-mix-match-product-price-{{ ai_gen_id }} {
+    font-size: 16px;
+    margin: 0 0 12px;
+    color: {{ block.settings.text_color }};
+    font-weight: 600;
+  }
+
+  .ai-mix-match-variant-select-{{ ai_gen_id }} {
+    width: 100%;
+    padding: 8px 12px;
+    margin-bottom: 12px;
+    border: 1px solid {{ block.settings.border_color }};
+    border-radius: {{ block.settings.input_border_radius }}px;
+    font-size: 13px;
+    background: #fff;
+    font-family: inherit;
+  }
+
+  .ai-mix-match-add-button-{{ ai_gen_id }} {
+    width: 100%;
+    padding: 10px 16px;
+    background: {{ block.settings.button_background }};
+    color: {{ block.settings.button_text_color }};
+    border: none;
+    border-radius: {{ block.settings.button_border_radius }}px;
+    cursor: pointer;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.2s ease;
+    font-family: inherit;
+    font-weight: 600;
+  }
+
+  .ai-mix-match-add-button-{{ ai_gen_id }}:hover:not(:disabled) {
+    background: {{ block.settings.button_hover_background }};
+    transform: translateY(-1px);
+  }
+
+  .ai-mix-match-add-button-{{ ai_gen_id }}:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .ai-mix-match-bundle-panel-{{ ai_gen_id }} {
+    position: sticky;
+    top: 20px;
+    background: {{ block.settings.panel_background }};
+    border-radius: {{ block.settings.card_border_radius }}px;
+    padding: 24px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  }
+
+  .ai-mix-match-bundle-header-{{ ai_gen_id }} {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .ai-mix-match-bundle-title-{{ ai_gen_id }} {
+    font-size: 20px;
+    margin: 0;
+    color: {{ block.settings.text_color }};
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .ai-mix-match-bundle-counter-{{ ai_gen_id }} {
+    background: {{ block.settings.accent_color }};
+    color: #fff;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .ai-mix-match-bundle-slots-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+    min-height: 200px;
+  }
+
+  .ai-mix-match-bundle-slot-{{ ai_gen_id }} {
+    border: 2px dashed {{ block.settings.border_color }};
+    border-radius: {{ block.settings.card_border_radius }}px;
+    padding: 16px;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.2s ease;
+  }
+
+  .ai-mix-match-bundle-slot-{{ ai_gen_id }}.filled {
+    border-style: solid;
+    border-color: {{ block.settings.accent_color }};
+    background: rgba(231, 211, 177, 0.1);
+  }
+
+  .ai-mix-match-slot-placeholder-{{ ai_gen_id }} {
+    color: {{ block.settings.text_color }};
+    opacity: 0.5;
+    font-size: 14px;
+    font-style: italic;
+  }
+
+  .ai-mix-match-slot-image-{{ ai_gen_id }} {
+    width: 60px;
+    height: 60px;
+    border-radius: {{ block.settings.image_border_radius }}px;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  .ai-mix-match-slot-info-{{ ai_gen_id }} {
+    flex-grow: 1;
+    min-width: 0;
+  }
+
+  .ai-mix-match-slot-title-{{ ai_gen_id }} {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0 0 4px;
+    color: {{ block.settings.text_color }};
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .ai-mix-match-slot-variant-{{ ai_gen_id }} {
+    font-size: 12px;
+    color: {{ block.settings.text_color }};
+    opacity: 0.7;
+    margin: 0 0 4px;
+  }
+
+  .ai-mix-match-slot-price-{{ ai_gen_id }} {
+    font-size: 13px;
+    font-weight: 600;
+    color: {{ block.settings.text_color }};
+    margin: 0;
+  }
+
+  .ai-mix-match-slot-remove-{{ ai_gen_id }} {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    color: {{ block.settings.text_color }};
+    opacity: 0.6;
+    transition: opacity 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  .ai-mix-match-slot-remove-{{ ai_gen_id }}:hover {
+    opacity: 1;
+  }
+
+  .ai-mix-match-bundle-total-{{ ai_gen_id }} {
+    border-top: 2px solid {{ block.settings.border_color }};
+    padding-top: 16px;
+    margin-bottom: 16px;
+  }
+
+  .ai-mix-match-total-row-{{ ai_gen_id }},
+  .ai-mix-match-discount-row-{{ ai_gen_id }},
+  .ai-mix-match-final-row-{{ ai_gen_id }} {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  .ai-mix-match-total-row-{{ ai_gen_id }},
+  .ai-mix-match-discount-row-{{ ai_gen_id }} {
+    margin-bottom: 8px;
+  }
+
+  .ai-mix-match-total-label-{{ ai_gen_id }} {
+    font-size: 14px;
+    color: {{ block.settings.text_color }};
+    opacity: 0.8;
+  }
+
+  .ai-mix-match-total-value-{{ ai_gen_id }} {
+    font-size: 16px;
+    font-weight: 600;
+    color: {{ block.settings.text_color }};
+  }
+
+  .ai-mix-match-discount-label-{{ ai_gen_id }},
+  .ai-mix-match-discount-value-{{ ai_gen_id }} {
+    font-size: 16px;
+    font-weight: 600;
+    color: {{ block.settings.accent_color }};
+  }
+
+  .ai-mix-match-discount-label-{{ ai_gen_id }} {
+    font-size: 14px;
+  }
+
+  .ai-mix-match-final-row-{{ ai_gen_id }} {
+    padding-top: 12px;
+    border-top: 1px solid {{ block.settings.border_color }};
+  }
+
+  .ai-mix-match-final-label-{{ ai_gen_id }} {
+    font-size: 16px;
+    font-weight: 600;
+    color: {{ block.settings.text_color }};
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .ai-mix-match-final-price-{{ ai_gen_id }} {
+    font-size: 24px;
+    font-weight: 700;
+    color: {{ block.settings.accent_color }};
+  }
+
+  .ai-mix-match-cart-button-{{ ai_gen_id }} {
+    width: 100%;
+    padding: 16px;
+    background: {{ block.settings.button_background }};
+    color: {{ block.settings.button_text_color }};
+    border: none;
+    border-radius: {{ block.settings.button_border_radius }}px;
+    cursor: pointer;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.2s ease;
+    font-family: inherit;
+    font-weight: 600;
+  }
+
+  .ai-mix-match-cart-button-{{ ai_gen_id }}:hover:not(:disabled) {
+    background: {{ block.settings.button_hover_background }};
+    transform: translateY(-2px);
+  }
+
+  .ai-mix-match-cart-button-{{ ai_gen_id }}:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .ai-mix-match-cart-button-{{ ai_gen_id }}.loading {
+    position: relative;
+    color: transparent;
+  }
+
+  .ai-mix-match-cart-button-{{ ai_gen_id }}.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid {{ block.settings.button_text_color }};
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: ai-mix-match-spin-{{ ai_gen_id }} 0.6s linear infinite;
+  }
+
+  @keyframes ai-mix-match-spin-{{ ai_gen_id }} {
+    to { transform: rotate(360deg); }
+  }
+
+  .ai-mix-match-error-{{ ai_gen_id }} {
+    background: #ffe5e5;
+    color: #d00;
+    padding: 12px;
+    border-radius: {{ block.settings.card_border_radius }}px;
+    font-size: 13px;
+    margin-top: 12px;
+    text-align: center;
+  }
+
+  .ai-mix-match-success-{{ ai_gen_id }} {
+    background: #e5ffe5;
+    color: #070;
+    padding: 12px;
+    border-radius: {{ block.settings.card_border_radius }}px;
+    font-size: 13px;
+    margin-top: 12px;
+    text-align: center;
+  }
+
+  .ai-mix-match-category-content-{{ ai_gen_id }} {
+    display: none;
+  }
+
+  .ai-mix-match-category-content-{{ ai_gen_id }}.active {
+    display: block;
+  }
+
+  @media screen and (max-width: 999px) {
+    .ai-mix-match-layout-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+    }
+
+    .ai-mix-match-bundle-panel-{{ ai_gen_id }} {
+      position: relative;
+      top: 0;
+      order: -1;
+    }
+
+    .ai-mix-match-product-grid-{{ ai_gen_id }} {
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    }
+  }
+
+  @media screen and (max-width: 599px) {
+    .ai-mix-match-bundle-{{ ai_gen_id }} {
+      padding: 20px 16px;
+    }
+
+    .ai-mix-match-heading-{{ ai_gen_id }} {
+      font-size: 24px;
+      margin-bottom: 24px;
+    }
+
+    .ai-mix-match-product-grid-{{ ai_gen_id }} {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .ai-mix-match-product-card-{{ ai_gen_id }} {
+      padding: 12px;
+    }
+
+    .ai-mix-match-tab-{{ ai_gen_id }} {
+      padding: 10px 16px;
+      font-size: 12px;
+    }
+  }
+{% endstyle %}
+
+<mix-match-bundle-{{ ai_gen_id }}
+  class="ai-mix-match-bundle-{{ ai_gen_id }}"
+  data-bundle-size="{{ block.settings.bundle_size }}"
+  data-bundle-id="{{ ai_gen_id }}"
+  data-discount-percent="{{ block.settings.discount_percent }}"
+  data-discount-code="{{ block.settings.discount_code }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="ai-mix-match-container-{{ ai_gen_id }}">
+    {% if block.settings.heading != blank %}
+      <h2 class="ai-mix-match-heading-{{ ai_gen_id }}">{{ block.settings.heading }}</h2>
+    {% endif %}
+
+    <div class="ai-mix-match-layout-{{ ai_gen_id }}">
+      <div class="ai-mix-match-products-section-{{ ai_gen_id }}">
+        <div class="ai-mix-match-tabs-{{ ai_gen_id }}">
+          <button class="ai-mix-match-tab-{{ ai_gen_id }} active" data-category="all" type="button">
+            {{ block.settings.all_products_label }}
+          </button>
+
+          {% if block.settings.category_1_name != blank %}
+            <button class="ai-mix-match-tab-{{ ai_gen_id }}" data-category="category_1" type="button">
+              {{ block.settings.category_1_name }}
+            </button>
+          {% endif %}
+
+          {% if block.settings.category_2_name != blank %}
+            <button class="ai-mix-match-tab-{{ ai_gen_id }}" data-category="category_2" type="button">
+              {{ block.settings.category_2_name }}
+            </button>
+          {% endif %}
+
+          {% if block.settings.category_3_name != blank %}
+            <button class="ai-mix-match-tab-{{ ai_gen_id }}" data-category="category_3" type="button">
+              {{ block.settings.category_3_name }}
+            </button>
+          {% endif %}
+        </div>
+
+        <div class="ai-mix-match-category-content-{{ ai_gen_id }} active" data-category="all">
+          <h3 class="ai-mix-match-category-title-{{ ai_gen_id }}">{{ block.settings.all_products_label }}</h3>
+          <div class="ai-mix-match-product-grid-{{ ai_gen_id }}" data-grid="all"></div>
+        </div>
+
+        {% if block.settings.category_1_name != blank %}
+          <div class="ai-mix-match-category-content-{{ ai_gen_id }}" data-category="category_1">
+            <h3 class="ai-mix-match-category-title-{{ ai_gen_id }}">{{ block.settings.category_1_name }}</h3>
+            <div class="ai-mix-match-product-grid-{{ ai_gen_id }}" data-grid="category_1"></div>
+          </div>
+        {% endif %}
+
+        {% if block.settings.category_2_name != blank %}
+          <div class="ai-mix-match-category-content-{{ ai_gen_id }}" data-category="category_2">
+            <h3 class="ai-mix-match-category-title-{{ ai_gen_id }}">{{ block.settings.category_2_name }}</h3>
+            <div class="ai-mix-match-product-grid-{{ ai_gen_id }}" data-grid="category_2"></div>
+          </div>
+        {% endif %}
+
+        {% if block.settings.category_3_name != blank %}
+          <div class="ai-mix-match-category-content-{{ ai_gen_id }}" data-category="category_3">
+            <h3 class="ai-mix-match-category-title-{{ ai_gen_id }}">{{ block.settings.category_3_name }}</h3>
+            <div class="ai-mix-match-product-grid-{{ ai_gen_id }}" data-grid="category_3"></div>
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="ai-mix-match-bundle-panel-{{ ai_gen_id }}">
+        <div class="ai-mix-match-bundle-header-{{ ai_gen_id }}">
+          <h3 class="ai-mix-match-bundle-title-{{ ai_gen_id }}">{{ block.settings.bundle_title }}</h3>
+          <div class="ai-mix-match-bundle-counter-{{ ai_gen_id }}">
+            <span data-counter>0</span>/<span>{{ block.settings.bundle_size }}</span>
+          </div>
+        </div>
+
+        <div class="ai-mix-match-bundle-slots-{{ ai_gen_id }}" data-slots>
+          {% for i in (1..block.settings.bundle_size) %}
+            <div class="ai-mix-match-bundle-slot-{{ ai_gen_id }}" data-slot="{{ forloop.index0 }}">
+              <div class="ai-mix-match-slot-placeholder-{{ ai_gen_id }}">
+                {% if block.settings.slot_placeholder != blank %}
+                  {% assign slot_text = block.settings.slot_placeholder | replace: 'NUMBER', forloop.index %}
+                  {{ slot_text }}
+                {% else %}
+                  Vælg produkt {{ forloop.index }}
+                {% endif %}
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+
+        <div class="ai-mix-match-bundle-total-{{ ai_gen_id }}">
+          <div class="ai-mix-match-total-row-{{ ai_gen_id }}">
+            <div class="ai-mix-match-total-label-{{ ai_gen_id }}">{{ block.settings.subtotal_label }}</div>
+            <div class="ai-mix-match-total-value-{{ ai_gen_id }}" data-subtotal>0 kr</div>
+          </div>
+
+          {% if block.settings.discount_percent > 0 %}
+            <div class="ai-mix-match-discount-row-{{ ai_gen_id }}">
+              <div class="ai-mix-match-discount-label-{{ ai_gen_id }}">{{ block.settings.discount_label }} ({{ block.settings.discount_percent }}%)</div>
+              <div class="ai-mix-match-discount-value-{{ ai_gen_id }}" data-discount>-0 kr</div>
+            </div>
+          {% endif %}
+
+          <div class="ai-mix-match-final-row-{{ ai_gen_id }}">
+            <div class="ai-mix-match-final-label-{{ ai_gen_id }}">{{ block.settings.total_label }}</div>
+            <div class="ai-mix-match-final-price-{{ ai_gen_id }}" data-total>0 kr</div>
+          </div>
+        </div>
+
+        <button class="ai-mix-match-cart-button-{{ ai_gen_id }}" data-add-to-cart type="button" disabled>
+          {{ block.settings.add_to_cart_label }}
+        </button>
+
+        <div data-message></div>
+      </div>
+    </div>
+  </div>
+
+  <script type="application/json" data-products>
+    [
+      {% assign has_previous_product = false %}
+
+      {% for product in block.settings.products %}
+        {% if product != blank %}
+          {% if has_previous_product %},{% endif %}
+          {
+            "id": {{ product.id | json }},
+            "title": {{ product.title | json }},
+            "price": {{ product.price | json }},
+            "compare_at_price": {{ product.compare_at_price | json }},
+            "url": {{ product.url | json }},
+            "featured_image": {% if product.featured_image %}{{ product.featured_image | image_url: width: 400 | json }}{% else %}null{% endif %},
+            "category": "all",
+            "variants": [
+              {% for variant in product.variants %}
+                {
+                  "id": {{ variant.id | json }},
+                  "title": {{ variant.title | json }},
+                  "price": {{ variant.price | json }},
+                  "compare_at_price": {{ variant.compare_at_price | json }},
+                  "available": {{ variant.available | json }},
+                  "featured_image": {% if variant.featured_image %}{{ variant.featured_image | image_url: width: 400 | json }}{% else %}null{% endif %}
+                }{% unless forloop.last %},{% endunless %}
+              {% endfor %}
+            ]
+          }
+          {% assign has_previous_product = true %}
+        {% endif %}
+      {% endfor %}
+
+      {% for product in block.settings.category_1_products %}
+        {% if product != blank %}
+          {% if has_previous_product %},{% endif %}
+          {
+            "id": {{ product.id | json }},
+            "title": {{ product.title | json }},
+            "price": {{ product.price | json }},
+            "compare_at_price": {{ product.compare_at_price | json }},
+            "url": {{ product.url | json }},
+            "featured_image": {% if product.featured_image %}{{ product.featured_image | image_url: width: 400 | json }}{% else %}null{% endif %},
+            "category": "category_1",
+            "variants": [
+              {% for variant in product.variants %}
+                {
+                  "id": {{ variant.id | json }},
+                  "title": {{ variant.title | json }},
+                  "price": {{ variant.price | json }},
+                  "compare_at_price": {{ variant.compare_at_price | json }},
+                  "available": {{ variant.available | json }},
+                  "featured_image": {% if variant.featured_image %}{{ variant.featured_image | image_url: width: 400 | json }}{% else %}null{% endif %}
+                }{% unless forloop.last %},{% endunless %}
+              {% endfor %}
+            ]
+          }
+          {% assign has_previous_product = true %}
+        {% endif %}
+      {% endfor %}
+
+      {% for product in block.settings.category_2_products %}
+        {% if product != blank %}
+          {% if has_previous_product %},{% endif %}
+          {
+            "id": {{ product.id | json }},
+            "title": {{ product.title | json }},
+            "price": {{ product.price | json }},
+            "compare_at_price": {{ product.compare_at_price | json }},
+            "url": {{ product.url | json }},
+            "featured_image": {% if product.featured_image %}{{ product.featured_image | image_url: width: 400 | json }}{% else %}null{% endif %},
+            "category": "category_2",
+            "variants": [
+              {% for variant in product.variants %}
+                {
+                  "id": {{ variant.id | json }},
+                  "title": {{ variant.title | json }},
+                  "price": {{ variant.price | json }},
+                  "compare_at_price": {{ variant.compare_at_price | json }},
+                  "available": {{ variant.available | json }},
+                  "featured_image": {% if variant.featured_image %}{{ variant.featured_image | image_url: width: 400 | json }}{% else %}null{% endif %}
+                }{% unless forloop.last %},{% endunless %}
+              {% endfor %}
+            ]
+          }
+          {% assign has_previous_product = true %}
+        {% endif %}
+      {% endfor %}
+
+      {% for product in block.settings.category_3_products %}
+        {% if product != blank %}
+          {% if has_previous_product %},{% endif %}
+          {
+            "id": {{ product.id | json }},
+            "title": {{ product.title | json }},
+            "price": {{ product.price | json }},
+            "compare_at_price": {{ product.compare_at_price | json }},
+            "url": {{ product.url | json }},
+            "featured_image": {% if product.featured_image %}{{ product.featured_image | image_url: width: 400 | json }}{% else %}null{% endif %},
+            "category": "category_3",
+            "variants": [
+              {% for variant in product.variants %}
+                {
+                  "id": {{ variant.id | json }},
+                  "title": {{ variant.title | json }},
+                  "price": {{ variant.price | json }},
+                  "compare_at_price": {{ variant.compare_at_price | json }},
+                  "available": {{ variant.available | json }},
+                  "featured_image": {% if variant.featured_image %}{{ variant.featured_image | image_url: width: 400 | json }}{% else %}null{% endif %}
+                }{% unless forloop.last %},{% endunless %}
+              {% endfor %}
+            ]
+          }
+          {% assign has_previous_product = true %}
+        {% endif %}
+      {% endfor %}
+    ]
+  </script>
+</mix-match-bundle-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class MixMatchBundle{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.bundleSize = parseInt(this.dataset.bundleSize, 10);
+        this.bundleId = this.dataset.bundleId;
+        this.discountPercent = parseFloat(this.dataset.discountPercent) || 0;
+        this.discountCode = this.dataset.discountCode || '';
+        this.selectedProducts = [];
+        this.products = [];
+      }
+
+      connectedCallback() {
+        this.loadProducts();
+        this.setupTabs();
+        this.setupAddToCart();
+        this.renderProducts();
+      }
+
+      loadProducts() {
+        const productsScript = this.querySelector('[data-products]');
+        if (!productsScript) return;
+
+        try {
+          this.products = JSON.parse(productsScript.textContent);
+        } catch (error) {
+          console.error('Failed to parse products:', error);
+          this.products = [];
+        }
+      }
+
+      isVariantOnSale(variant) {
+        return !!(
+          variant &&
+          variant.compare_at_price &&
+          Number(variant.compare_at_price) > Number(variant.price)
+        );
+      }
+
+      setupTabs() {
+        const tabs = this.querySelectorAll('.ai-mix-match-tab-{{ ai_gen_id }}');
+        const contents = this.querySelectorAll('.ai-mix-match-category-content-{{ ai_gen_id }}');
+
+        tabs.forEach((tab) => {
+          tab.addEventListener('click', () => {
+            const category = tab.dataset.category;
+
+            tabs.forEach((t) => t.classList.remove('active'));
+            contents.forEach((content) => content.classList.remove('active'));
+
+            tab.classList.add('active');
+
+            const targetContent = this.querySelector(`.ai-mix-match-category-content-{{ ai_gen_id }}[data-category="${category}"]`);
+            if (targetContent) {
+              targetContent.classList.add('active');
+            }
+          });
+        });
+      }
+
+      renderProducts() {
+        const allGrid = this.querySelector('[data-grid="all"]');
+        const cat1Grid = this.querySelector('[data-grid="category_1"]');
+        const cat2Grid = this.querySelector('[data-grid="category_2"]');
+        const cat3Grid = this.querySelector('[data-grid="category_3"]');
+
+        this.products.forEach((product) => {
+          if (allGrid) {
+            allGrid.appendChild(this.createProductCard(product));
+          }
+
+          if (product.category === 'category_1' && cat1Grid) {
+            cat1Grid.appendChild(this.createProductCard(product));
+          } else if (product.category === 'category_2' && cat2Grid) {
+            cat2Grid.appendChild(this.createProductCard(product));
+          } else if (product.category === 'category_3' && cat3Grid) {
+            cat3Grid.appendChild(this.createProductCard(product));
+          }
+        });
+
+        this.setupProductButtons();
+      }
+
+      createProductCard(product) {
+        const card = document.createElement('div');
+        card.className = 'ai-mix-match-product-card-{{ ai_gen_id }}';
+        card.dataset.productId = product.id;
+
+        const defaultVariant = product.variants && product.variants.length > 0
+          ? product.variants.find((variant) => variant.available) || product.variants[0]
+          : null;
+
+        const activeImage = (defaultVariant && defaultVariant.featured_image) || product.featured_image;
+
+        const imageHtml = activeImage
+          ? `<img src="${activeImage}" alt="${product.title}" class="ai-mix-match-product-image-{{ ai_gen_id }}" data-product-image loading="lazy">`
+          : `<div class="ai-mix-match-product-image-placeholder-{{ ai_gen_id }}">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 525.5 525.5">
+                <path d="M324.5 212.7H203c-1.6 0-2.8 1.3-2.8 2.8V308c0 1.6 1.3 2.8 2.8 2.8h121.6c1.6 0 2.8-1.3 2.8-2.8v-92.5c0-1.6-1.3-2.8-2.9-2.8zm1.1 95.3c0 .6-.5 1.1-1.1 1.1H203c-.6 0-1.1-.5-1.1-1.1v-92.5c0-.6.5-1.1 1.1-1.1h121.6c.6 0 1.1.5 1.1 1.1V308z"/>
+                <path d="M210.4 299.5H240v.1s.1 0 .2-.1h75.2v-76.2h-105v76.2zm1.8-7.2l20-24.9 12.3 15.3 26.1-32.5 32.9 41.9v.1h-91.3v.1zm-1.8-67.3h101.4v10.1c-24.3 20.6-42.3 37.2-54.5 49.8l-19.4-24.1-27.5 34.4v-70.2z"/>
+                <circle cx="233.8" cy="244.4" r="11.6"/>
+              </svg>
+            </div>`;
+
+        let variantSelectHtml = '';
+        if (product.variants && product.variants.length > 1) {
+          variantSelectHtml = `
+            <select class="ai-mix-match-variant-select-{{ ai_gen_id }}" data-variant-select>
+              ${product.variants.map((variant) => `
+                <option
+                  value="${variant.id}"
+                  ${!variant.available ? 'disabled' : ''}
+                  ${defaultVariant && variant.id === defaultVariant.id ? 'selected' : ''}
+                >
+                  ${variant.title}${!variant.available ? ' - Udsolgt' : ''}
+                </option>
+              `).join('')}
+            </select>
+          `;
+        }
+
+        const price = defaultVariant ? defaultVariant.price : product.price;
+
+        card.innerHTML = `
+          <div class="ai-mix-match-product-image-wrapper-{{ ai_gen_id }}">
+            ${imageHtml}
+          </div>
+          <h4 class="ai-mix-match-product-title-{{ ai_gen_id }}">${product.title}</h4>
+          <div class="ai-mix-match-product-price-{{ ai_gen_id }}" data-price="${price}">${this.formatMoney(price)}</div>
+          ${variantSelectHtml}
+          <button
+            class="ai-mix-match-add-button-{{ ai_gen_id }}"
+            data-add-product
+            data-product-id="${product.id}"
+            data-variant-id="${defaultVariant ? defaultVariant.id : ''}"
+            data-category="${product.category}"
+            type="button"
+            ${!defaultVariant || !defaultVariant.available ? 'disabled' : ''}
+          >
+            Tilføj til bundle
+          </button>
+        `;
+
+        return card;
+      }
+
+      setupProductButtons() {
+        const buttons = this.querySelectorAll('[data-add-product]');
+
+        buttons.forEach((button) => {
+          const card = button.closest('.ai-mix-match-product-card-{{ ai_gen_id }}');
+          if (!card) return;
+
+          const variantSelect = card.querySelector('[data-variant-select]');
+
+          if (variantSelect) {
+            variantSelect.addEventListener('change', (event) => {
+              const variantId = parseInt(event.target.value, 10);
+              const productId = parseInt(button.dataset.productId, 10);
+              const product = this.products.find((item) => item.id === productId);
+              if (!product) return;
+
+              const variant = product.variants.find((item) => item.id === variantId);
+              if (!variant) return;
+
+              button.dataset.variantId = variant.id;
+              button.disabled = !variant.available || this.selectedProducts.some((item) => item.variantId === variant.id);
+
+              const priceEl = card.querySelector('.ai-mix-match-product-price-{{ ai_gen_id }}');
+              if (priceEl) {
+                priceEl.dataset.price = variant.price;
+                priceEl.textContent = this.formatMoney(variant.price);
+              }
+
+              const imageEl = card.querySelector('[data-product-image]');
+              const nextImage = variant.featured_image || product.featured_image;
+
+              if (imageEl && nextImage) {
+                imageEl.src = nextImage;
+                imageEl.alt = `${product.title} - ${variant.title}`;
+              } else if (!imageEl && nextImage) {
+                const wrapper = card.querySelector('.ai-mix-match-product-image-wrapper-{{ ai_gen_id }}');
+                if (wrapper) {
+                  wrapper.innerHTML = `<img src="${nextImage}" alt="${product.title} - ${variant.title}" class="ai-mix-match-product-image-{{ ai_gen_id }}" data-product-image loading="lazy">`;
+                }
+              }
+
+              this.updateProductButtons();
+            });
+          }
+
+          button.addEventListener('click', () => {
+            if (this.selectedProducts.length >= this.bundleSize) {
+              this.showMessage('Du har allerede valgt maksimalt antal produkter', 'error');
+              return;
+            }
+
+            const productId = parseInt(button.dataset.productId, 10);
+            const variantId = parseInt(button.dataset.variantId, 10);
+            const category = button.dataset.category;
+
+            if (!variantId) {
+              this.showMessage('Vælg en variant først', 'error');
+              return;
+            }
+
+            if (this.selectedProducts.some((item) => item.variantId === variantId)) {
+              this.showMessage('Denne variant er allerede valgt', 'error');
+              return;
+            }
+
+            const product = this.products.find((item) => item.id === productId);
+            if (!product) return;
+
+            const variant = product.variants.find((item) => item.id === variantId);
+            if (!variant || !variant.available) {
+              this.showMessage('Den valgte variant er ikke tilgængelig', 'error');
+              return;
+            }
+
+            this.selectedProducts.push({
+              productId,
+              variantId,
+              category,
+              title: product.title,
+              variantTitle: variant.title !== 'Default Title' ? variant.title : '',
+              price: variant.price,
+              compareAtPrice: variant.compare_at_price || null,
+              isOnSale: this.isVariantOnSale(variant),
+              image: variant.featured_image || product.featured_image
+            });
+
+            this.updateBundle();
+          });
+        });
+      }
+
+      updateBundle() {
+        const slots = this.querySelectorAll('.ai-mix-match-bundle-slot-{{ ai_gen_id }}');
+        const counter = this.querySelector('[data-counter]');
+        const subtotalEl = this.querySelector('[data-subtotal]');
+        const discountEl = this.querySelector('[data-discount]');
+        const totalEl = this.querySelector('[data-total]');
+        const addToCartBtn = this.querySelector('[data-add-to-cart]');
+
+        slots.forEach((slot, index) => {
+          const product = this.selectedProducts[index];
+
+          if (product) {
+            slot.classList.add('filled');
+            slot.innerHTML = `
+              ${product.image ? `<img src="${product.image}" class="ai-mix-match-slot-image-{{ ai_gen_id }}" alt="${product.title}" loading="lazy">` : ''}
+              <div class="ai-mix-match-slot-info-{{ ai_gen_id }}">
+                <div class="ai-mix-match-slot-title-{{ ai_gen_id }}">${product.title}</div>
+                ${product.variantTitle ? `<div class="ai-mix-match-slot-variant-{{ ai_gen_id }}">${product.variantTitle}</div>` : ''}
+                ${product.isOnSale ? `<div class="ai-mix-match-slot-variant-{{ ai_gen_id }}">Allerede nedsat – ingen ekstra rabat</div>` : ''}
+                <div class="ai-mix-match-slot-price-{{ ai_gen_id }}">${this.formatMoney(product.price)}</div>
+              </div>
+              <button class="ai-mix-match-slot-remove-{{ ai_gen_id }}" data-remove="${index}" type="button" aria-label="Fjern produkt">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M15 5L5 15M5 5l10 10"/>
+                </svg>
+              </button>
+            `;
+
+            const removeButton = slot.querySelector('[data-remove]');
+            if (removeButton) {
+              removeButton.addEventListener('click', () => {
+                this.removeProduct(index);
+              });
+            }
+          } else {
+            slot.classList.remove('filled');
+            slot.innerHTML = `
+              <div class="ai-mix-match-slot-placeholder-{{ ai_gen_id }}">
+                Vælg produkt ${index + 1}
+              </div>
+            `;
+          }
+        });
+
+        if (counter) {
+          counter.textContent = this.selectedProducts.length;
+        }
+
+        const subtotal = this.selectedProducts.reduce((sum, item) => sum + item.price, 0);
+
+        const discountEligibleSubtotal = this.selectedProducts.reduce((sum, item) => {
+          if (item.isOnSale) return sum;
+          return sum + item.price;
+        }, 0);
+
+        const discountAmount = Math.round(discountEligibleSubtotal * (this.discountPercent / 100));
+        const total = subtotal - discountAmount;
+
+        if (subtotalEl) {
+          subtotalEl.textContent = this.formatMoney(subtotal);
+        }
+
+        if (discountEl) {
+          discountEl.textContent = '-' + this.formatMoney(discountAmount);
+        }
+
+        if (totalEl) {
+          totalEl.textContent = this.formatMoney(total);
+        }
+
+        if (addToCartBtn) {
+          addToCartBtn.disabled = this.selectedProducts.length !== this.bundleSize;
+        }
+
+        this.updateProductButtons();
+      }
+
+      updateProductButtons() {
+        const buttons = this.querySelectorAll('[data-add-product]');
+
+        buttons.forEach((button) => {
+          const card = button.closest('.ai-mix-match-product-card-{{ ai_gen_id }}');
+          const variantSelect = card ? card.querySelector('[data-variant-select]') : null;
+          const variantId = parseInt(button.dataset.variantId, 10);
+
+          let isAvailable = true;
+
+          if (variantSelect) {
+            const productId = parseInt(button.dataset.productId, 10);
+            const product = this.products.find((item) => item.id === productId);
+            const variant = product ? product.variants.find((item) => item.id === variantId) : null;
+            isAvailable = !!(variant && variant.available);
+          }
+
+          const isSelected = this.selectedProducts.some((item) => item.variantId === variantId);
+          button.disabled = !variantId || !isAvailable || isSelected;
+        });
+      }
+
+      removeProduct(index) {
+        this.selectedProducts.splice(index, 1);
+        this.updateBundle();
+      }
+
+      setupAddToCart() {
+        const button = this.querySelector('[data-add-to-cart]');
+        if (!button) return;
+
+        button.addEventListener('click', async () => {
+          if (this.selectedProducts.length !== this.bundleSize) {
+            this.showMessage('Vælg venligst alle produkter før du tilføjer til kurven', 'error');
+            return;
+          }
+
+          button.classList.add('loading');
+          button.disabled = true;
+
+          const bundleTimestamp = Date.now();
+
+          const items = this.selectedProducts.map((product) => ({
+            id: product.variantId,
+            quantity: 1,
+            properties: {
+              '_bundle_id': `mix-match-${bundleTimestamp}`,
+              '_bundle_name': 'Mix & Match Bundle',
+              '_bundle_discount': `${this.discountPercent}%`,
+              '_bundle_discount_code': this.discountCode || '',
+              '_bundle_discount_excluded': product.isOnSale ? 'true' : 'false'
+            }
+          }));
+
+          try {
+            const addResponse = await fetch(`${window.Shopify.routes.root}cart/add.js`, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+              },
+              body: JSON.stringify({ items })
+            });
+
+            if (!addResponse.ok) {
+              throw new Error('Failed to add to cart');
+            }
+
+            if (this.discountCode && this.discountCode.trim() !== '') {
+              const discountResponse = await fetch(`${window.Shopify.routes.root}cart/update.js`, {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                  discount: this.discountCode.trim()
+                })
+              });
+
+              if (!discountResponse.ok) {
+                console.error('Discount code could not be applied');
+              }
+            }
+
+            this.showMessage(`Bundle tilføjet til kurven${this.discountCode ? ' + rabatkode anvendt' : ''}`, 'success');
+
+            setTimeout(() => {
+              document.dispatchEvent(new CustomEvent('cart:refresh', { bubbles: true }));
+              document.dispatchEvent(new CustomEvent('cart:open', { bubbles: true }));
+
+              const prestigeTrigger = document.querySelector('[data-action="open-drawer"][data-drawer-id="cart-drawer"]');
+              const genericDrawerTrigger = document.querySelector('[aria-controls="CartDrawer"], [data-cart-drawer-open], .js-drawer-open-cart');
+
+              if (prestigeTrigger) {
+                prestigeTrigger.click();
+              } else if (genericDrawerTrigger) {
+                genericDrawerTrigger.click();
+              } else {
+                window.location.href = `${window.Shopify.routes.root}cart`;
+              }
+            }, 500);
+          } catch (error) {
+            console.error('Error adding to cart:', error);
+            this.showMessage('Der opstod en fejl. Prøv venligst igen.', 'error');
+            button.classList.remove('loading');
+            button.disabled = false;
+            return;
+          }
+
+          button.classList.remove('loading');
+          button.disabled = false;
+        });
+      }
+
+      showMessage(text, type) {
+        const messageContainer = this.querySelector('[data-message]');
+        if (!messageContainer) return;
+
+        messageContainer.className = type === 'error'
+          ? 'ai-mix-match-error-{{ ai_gen_id }}'
+          : 'ai-mix-match-success-{{ ai_gen_id }}';
+
+        messageContainer.textContent = text;
+
+        setTimeout(() => {
+          messageContainer.textContent = '';
+          messageContainer.className = '';
+        }, 5000);
+      }
+
+      formatMoney(cents) {
+        return (cents / 100).toFixed(2).replace('.', ',') + ' kr';
+      }
+    }
+
+    if (!customElements.get('mix-match-bundle-{{ ai_gen_id }}')) {
+      customElements.define('mix-match-bundle-{{ ai_gen_id }}', MixMatchBundle{{ ai_gen_id }});
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Mix & Match Bundle",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Generelt"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Overskrift",
+      "default": "Byg din bundle"
+    },
+    {
+      "type": "range",
+      "id": "bundle_size",
+      "label": "Antal produkter i bundle",
+      "min": 2,
+      "max": 6,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "text",
+      "id": "bundle_title",
+      "label": "Bundle panel titel",
+      "default": "Min bundle"
+    },
+    {
+      "type": "text",
+      "id": "slot_placeholder",
+      "label": "Slot placeholder tekst",
+      "default": "Vælg produkt NUMBER",
+      "info": "Brug NUMBER for produktnummer"
+    },
+    {
+      "type": "header",
+      "content": "Rabat"
+    },
+    {
+      "type": "range",
+      "id": "discount_percent",
+      "label": "Rabat procent",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "%",
+      "default": 20,
+      "info": "Vises i bundle-UI. Nedsatte varer får ikke ekstra bundle-rabat."
+    },
+    {
+      "type": "text",
+      "id": "discount_code",
+      "label": "Rabatkode",
+      "default": "Bundle20",
+      "info": "Backend-oprettet Shopify rabatkode, som forsøges anvendt efter add to cart"
+    },
+    {
+      "type": "text",
+      "id": "subtotal_label",
+      "label": "Subtotal label",
+      "default": "Subtotal"
+    },
+    {
+      "type": "text",
+      "id": "discount_label",
+      "label": "Rabat label",
+      "default": "Bundle rabat"
+    },
+    {
+      "type": "text",
+      "id": "total_label",
+      "label": "Total pris label",
+      "default": "Total pris"
+    },
+    {
+      "type": "text",
+      "id": "add_to_cart_label",
+      "label": "Tilføj til kurv knap tekst",
+      "default": "Tilføj til kurv"
+    },
+    {
+      "type": "header",
+      "content": "Kategorier"
+    },
+    {
+      "type": "text",
+      "id": "all_products_label",
+      "label": "Alle produkter label",
+      "default": "Alle produkter"
+    },
+    {
+      "type": "text",
+      "id": "category_1_name",
+      "label": "Kategori 1 navn"
+    },
+    {
+      "type": "text",
+      "id": "category_2_name",
+      "label": "Kategori 2 navn"
+    },
+    {
+      "type": "text",
+      "id": "category_3_name",
+      "label": "Kategori 3 navn"
+    },
+    {
+      "type": "header",
+      "content": "Produkter"
+    },
+    {
+      "type": "product_list",
+      "id": "products",
+      "label": "Alle produkter",
+      "limit": 20
+    },
+    {
+      "type": "product_list",
+      "id": "category_1_products",
+      "label": "Kategori 1 produkter",
+      "limit": 20
+    },
+    {
+      "type": "product_list",
+      "id": "category_2_products",
+      "label": "Kategori 2 produkter",
+      "limit": 20
+    },
+    {
+      "type": "product_list",
+      "id": "category_3_products",
+      "label": "Kategori 3 produkter",
+      "limit": 20
+    },
+    {
+      "type": "header",
+      "content": "Farver"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Baggrund",
+      "default": "#f4f4f4"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Tekst",
+      "default": "#1c1c1c"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent farve",
+      "default": "#e7d3b1"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Kort baggrund",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "panel_background",
+      "label": "Bundle panel baggrund",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Kant farve",
+      "default": "#e0e0e0"
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Knap baggrund",
+      "default": "#e7d3b1"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Knap tekst",
+      "default": "#1c1c1c"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_background",
+      "label": "Knap hover baggrund",
+      "default": "#c1ab92"
+    },
+    {
+      "type": "header",
+      "content": "Styling"
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "label": "Kort border radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "label": "Billede border radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "label": "Knap border radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "input_border_radius",
+      "label": "Input border radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 4
+    }
+  ],
+  "presets": [
+    {
+      "name": "Mix & Match Bundle"
+    }
+  ]
+}
+{% endschema %}

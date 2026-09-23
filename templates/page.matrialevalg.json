@@ -1,0 +1,341 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "color_scheme": "",
+        "show_title": true,
+        "page_width": "xs"
+      }
+    },
+    "rich_text_CLehqM": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_DPEe7J": {
+          "type": "heading",
+          "settings": {
+            "text": "Materialevalg",
+            "heading_tag": "h1"
+          }
+        },
+        "richtext_UaiFEe": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p><strong>Naturligt. Nænsomt. Nøje udvalgt.</strong></p><p>Hos LALATOTO går vi ikke på kompromis med de materialer, der er tættest på dit barn. Vores produkter er skabt med omtanke for både krop og klode – og med ambitionen om, at de også gerne må være smukke at se på. Hver eneste detalje er valgt med hjertet først og vores egne børn for øje – for vi ved, at kun det bedste er godt nok, når det kommer til dem, vi elsker mest.</p><p>Med vores søvnunivers ønsker vi at skabe et sted, hvor du ikke behøver nærstudere indhold og specifikationer – fordi du kan føle dig tryg ved, at hele vores sortiment er det naturlige alternativ.</p><p>Herunder kan du blive klogere på de materialer, vi er stolte af at bruge – og måske endnu vigtigere: dem, vi er stolte af <strong>ikke</strong> at bruge.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_DPEe7J",
+        "richtext_UaiFEe"
+      ],
+      "name": "t:sections.rich_text.presets.rich_text.name",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": true,
+        "content_width": "sm",
+        "text_position": "center",
+        "remove_vertical_spacing": false
+      }
+    },
+    "rich_text_qxNFmQ": {
+      "type": "rich-text",
+      "blocks": {
+        "image_MAftGU": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/1_5.png",
+            "width_mode": "custom",
+            "max_width": 600,
+            "mobile_max_width": 400
+          }
+        },
+        "heading_RL74XB": {
+          "type": "heading",
+          "settings": {
+            "text": "Kapok – en kærlighedshistorie",
+            "heading_tag": "h3"
+          }
+        },
+        "richtext_7PFNpf": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Kapok er ikke bare en plantefiber. Det er et lille mirakel i en puppe – silkeblødt, let som en sky og spækket med egenskaber, der gør det ideelt som en del af et sundt sovemiljø.</p><p>Kapokfiberen vokser vildt på kapoktræer og høstes nænsomt af de lokale helt uden brug af kemikalier eller pesticider. Kapok er naturligt temperaturregulerende og hjælper kroppen med at holde en behagelig temperatur hele natten. Dette er særligt vigtigt for små børn, som endnu ikke selv kan regulere deres kropstemperatur.</p><p>Kapok er også naturligt antibakterielt, vandskyende og modstandsdygtigt over for støvmider. Den luftige struktur gør, at fugt ikke ophober sig, og derfor trives hverken bakterier eller husstøvmider i materialet. Det gør kapok til et oplagt valg for både babyer, børn og voksne med allergi – eller som forebyggelse.</p><p>På trods af kapoks fantastiske egenskaber er det stadig ikke et særligt udbredt materiale. Vi stiftede selv bekendtskab med det i forsøget på at hjælpe vores ældste søn, som i vinterhalvåret er hårdt ramt af astmatisk bronkitis, og det var kærlighed ved første nat!</p><p>Vi sov ikke bare bedre. Vi oplevede mindre nathoste, færre snotnæser og kløe, og generel bedre og tungere søvn, fordi kropstemperaturen holdes på et behageligt niveau hele natten.</p><p>Hos LALATOTO bruger vi kapok i vores <a href=\"https://lalatoto.myshopify.com/collections/tyngdedyner\" target=\"_blank\" title=\"Tyngdedyner\">tyngdedyner</a>, <a href=\"https://lalatoto.myshopify.com/products/luksus-sengeslange\" target=\"_blank\" title=\"Luksus sengeslange\">sengeslanger</a>, <a href=\"https://lalatoto.myshopify.com/products/sengerand\" target=\"_blank\" title=\"Sengerand\">sengerande</a>  og andre bløde produkter, hvor man ellers typisk ville finde polyester.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "image_MAftGU",
+        "heading_RL74XB",
+        "richtext_7PFNpf"
+      ],
+      "disabled": true,
+      "name": "t:sections.rich_text.presets.rich_text.name",
+      "settings": {
+        "color_scheme": "scheme-3",
+        "separate_section_with_border": false,
+        "content_width": "sm",
+        "text_position": "center",
+        "remove_vertical_spacing": false
+      }
+    },
+    "image_with_text_tKQLFq": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_braK4C": {
+          "type": "heading",
+          "settings": {
+            "text": "Kapok – en kærlighedshistorie",
+            "heading_tag": "h3"
+          }
+        },
+        "richtext_pKLDq8": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Kapok er ikke bare en plantefiber. Det er et lille mirakel i en puppe – silkeblødt, let som en sky og spækket med egenskaber, der gør det ideelt som en del af et sundt sovemiljø.</p><p>Kapokfiberen vokser vildt på kapoktræer og høstes nænsomt af de lokale helt uden brug af kemikalier eller pesticider. Kapok er naturligt temperaturregulerende og hjælper kroppen med at holde en behagelig temperatur hele natten. Dette er særligt vigtigt for små børn, som endnu ikke selv kan regulere deres kropstemperatur.</p><p>Kapok er også naturligt antibakterielt, vandskyende og modstandsdygtigt over for støvmider. Den luftige struktur gør, at fugt ikke ophober sig, og derfor trives hverken bakterier eller husstøvmider i materialet. Det gør kapok til et oplagt valg for både babyer, børn og voksne med allergi – eller som forebyggelse.</p><p>På trods af kapoks fantastiske egenskaber er det stadig ikke et særligt udbredt materiale. Vi stiftede selv bekendtskab med det i forsøget på at hjælpe vores ældste søn, som i vinterhalvåret er hårdt ramt af astmatisk bronkitis, og det var kærlighed ved første nat!</p><p>Vi sov ikke bare bedre. Vi oplevede mindre nathoste, færre snotnæser og kløe, og generel bedre og tungere søvn, fordi kropstemperaturen holdes på et behageligt niveau hele natten.</p><p>Hos LALATOTO bruger vi kapok i vores <a href=\"https://lalatoto.myshopify.com/collections/tyngdedyner\" target=\"_blank\" title=\"Tyngdedyner\">tyngdedyner</a>, <a href=\"https://lalatoto.myshopify.com/products/luksus-sengeslange\" target=\"_blank\" title=\"Luksus sengeslange\">sengeslanger</a>, <a href=\"https://lalatoto.myshopify.com/products/sengerand\" target=\"_blank\" title=\"Sengerand\">sengerande</a>  og andre bløde produkter, hvor man ellers typisk ville finde polyester.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_braK4C",
+        "richtext_pKLDq8"
+      ],
+      "name": "t:sections.image_with_text.presets.image_with_text.name",
+      "settings": {
+        "color_scheme": "scheme-3",
+        "separate_section_with_border": false,
+        "image": "shopify://shop_images/1_5.png",
+        "mobile_image": "shopify://shop_images/1_5.png",
+        "reveal_on_scroll": true,
+        "image_position": "start",
+        "content_width": "sm",
+        "remove_vertical_spacing": false
+      }
+    },
+    "image_with_text_LK6rhY": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_pGeDVa": {
+          "type": "heading",
+          "settings": {
+            "text": "100 % bomuld – altid Oeko-Tex® certificeret",
+            "heading_tag": "h3"
+          }
+        },
+        "richtext_8VdtA4": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Vi bruger ikke blandingsprodukter, men kun ren bomuld – og altid som minimum certificeret med Oeko-Tex® Standard 100. Det betyder, at du kan være sikker på, at stoffet er fri for skadelig kemi – og derfor trygt at sove med nat efter nat.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_pGeDVa",
+        "richtext_8VdtA4"
+      ],
+      "name": "t:sections.image_with_text.presets.image_with_text.name",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "separate_section_with_border": false,
+        "image": "shopify://shop_images/3_7.png",
+        "mobile_image": "shopify://shop_images/3_7.png",
+        "reveal_on_scroll": true,
+        "image_position": "end",
+        "content_width": "sm",
+        "remove_vertical_spacing": false
+      }
+    },
+    "image_with_text_iE7eHr": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_txmixP": {
+          "type": "heading",
+          "settings": {
+            "text": "Natursten – luksus med jordforbindelse",
+            "heading_tag": "h3"
+          }
+        },
+        "richtext_MrDD9U": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>I vores søgen efter materialer, der kræver så lidt forarbejdning som muligt, faldt vi over natursten. Derfor har vi i vores <a href=\"/products/luksus-sengeslange\" target=\"_blank\" title=\"Luksus sengeslange\">Luksus Sengeslange</a> valgt små, afrundede natursten som tyngde. Mere jordnært bliver det næsten ikke.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_txmixP",
+        "richtext_MrDD9U"
+      ],
+      "name": "t:sections.image_with_text.presets.image_with_text.name",
+      "settings": {
+        "color_scheme": "scheme-3",
+        "separate_section_with_border": false,
+        "image": "shopify://shop_images/4_3.png",
+        "mobile_image": "shopify://shop_images/4_3.png",
+        "reveal_on_scroll": true,
+        "image_position": "start",
+        "content_width": "sm",
+        "remove_vertical_spacing": false
+      }
+    },
+    "image_with_text_T6j93W": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_Rq9Qrr": {
+          "type": "heading",
+          "settings": {
+            "text": "Glasperler - lydløs tyngde i vores tyngdedyner og -veste",
+            "heading_tag": "h3"
+          }
+        },
+        "richtext_47qeBa": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Vi bruger fine, små glasperler som vægt i vores <a href=\"/collections/alle-produkter\" target=\"_blank\" title=\"Alle produkter\">tyngdeprodukter</a>. Glasperlerne er støjsvage, allergivenlige og næsten ikke til at få øje på. De giver en behagelig, jævn tyngde, der understøtter kroppens behov for tryk og omkransning.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_Rq9Qrr",
+        "richtext_47qeBa"
+      ],
+      "name": "t:sections.image_with_text.presets.image_with_text.name",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": false,
+        "image": "shopify://shop_images/2_8.png",
+        "mobile_image": "shopify://shop_images/2_8.png",
+        "reveal_on_scroll": true,
+        "image_position": "end",
+        "content_width": "sm",
+        "remove_vertical_spacing": false
+      }
+    },
+    "multiple_media_with_text_XfmcXe": {
+      "type": "multiple-media-with-text",
+      "blocks": {
+        "image_qWDztx": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/5_2.png",
+            "rotation": 0
+          }
+        },
+        "image_3MpGhb": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/1_5.png",
+            "rotation": 0
+          }
+        }
+      },
+      "block_order": [
+        "image_qWDztx",
+        "image_3MpGhb"
+      ],
+      "name": "t:sections.multiple_media_with_text.presets.multiple_media_with_text.name",
+      "settings": {
+        "color_scheme": "scheme-3",
+        "reveal_on_scroll": true,
+        "separate_section_with_border": false,
+        "media_position_desktop": "before_text",
+        "media_position_mobile": "before_text",
+        "media_layout": "overlap",
+        "media_alignment": "center",
+        "media_alignment_offset": 0,
+        "media_mobile_alignment_offset": 0,
+        "text_alignment": "center",
+        "subheading": "Vi bruger aldrig polyester – hverken som fyld eller i tekstiler.",
+        "title": "Polyester? Nej tak!",
+        "content": "<p>Polyester er et syntetisk materiale, der ofte bruges i baby- og børneprodukter, fordi det er billigt og nemt at producere. Men polyester er plastik og kan afgive mikroplast både under brug, til indåndingsluften og ved vask. Det er hverken godt for huden, for indeklimaet eller for miljøet.</p><p>Derudover er polyester tæt på umuligt at genanvende. Når man vælger at genanvende plastik til at lave polyester – frem for fx emballage – afbrydes plastens livscyklus. Det mener vi er et kæmpe problem.</p><p>Hos LALATOTO ønsker vi at skabe trygge, naturlige produkter med respekt for både krop og klode. Derfor har vi valgt polyester helt fra, også selvom det gør vores løsninger dyrere og mere krævende at producere.</p><p>Naturlige materialer koster mere både at fremskaffe og at arbejde med, men vi mener, det er en investering værd.</p><p>Vi tror nemlig på, at det naturlige valg også er det rigtige valg. Især når det handler om det mest værdifulde, vi har.</p>",
+        "button_1_text": "",
+        "button_1_link": "",
+        "button_1_style": "solid",
+        "button_2_text": "",
+        "button_2_link": "",
+        "button_2_style": "solid"
+      }
+    },
+    "rich_text_9ndynX": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_xE4VNr": {
+          "type": "heading",
+          "settings": {
+            "text": "Polyester? Nej tak!",
+            "heading_tag": "h3"
+          }
+        },
+        "richtext_pEJ4k7": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Vi bruger aldrig polyester – hverken som fyld eller i tekstiler.</p><p>Polyester er et syntetisk materiale, der ofte bruges i baby- og børneprodukter, fordi det er billigt og nemt at producere. Men polyester er plastik og kan afgive mikroplast både under brug, til indåndingsluften og ved vask. Det er hverken godt for huden, for indeklimaet eller for miljøet.</p><p>Derudover er polyester tæt på umuligt at genanvende. Når man vælger at genanvende plastik til at lave polyester – frem for fx emballage – afbrydes plastens livscyklus. Det mener vi er et kæmpe problem.</p><p>Hos LALATOTO ønsker vi at skabe trygge, naturlige produkter med respekt for både krop og klode. Derfor har vi valgt polyester helt fra, også selvom det gør vores løsninger dyrere og mere krævende at producere.</p><p>Naturlige materialer koster mere både at fremskaffe og at arbejde med, men vi mener, det er en investering værd.</p><p>Vi tror nemlig på, at det naturlige valg også er det rigtige valg. Især når det handler om det mest værdifulde, vi har.</p>"
+          }
+        },
+        "image_iCALDH": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/5_2.png",
+            "width_mode": "custom",
+            "max_width": 600,
+            "mobile_max_width": 400
+          }
+        }
+      },
+      "block_order": [
+        "heading_xE4VNr",
+        "richtext_pEJ4k7",
+        "image_iCALDH"
+      ],
+      "disabled": true,
+      "name": "t:sections.rich_text.presets.rich_text.name",
+      "settings": {
+        "color_scheme": "scheme-3",
+        "separate_section_with_border": true,
+        "content_width": "sm",
+        "text_position": "center",
+        "remove_vertical_spacing": false
+      }
+    },
+    "recently_viewed_products_LxijEb": {
+      "type": "recently-viewed-products",
+      "name": "t:sections.recently_viewed_products.presets.recently_viewed_products.name",
+      "settings": {
+        "separate_section_with_border": false,
+        "color_scheme": "",
+        "hide_product_information": false,
+        "stack_products": false,
+        "products_count": 9,
+        "products_per_row_mobile": "2",
+        "products_per_row_desktop": 4,
+        "horizontal_spacing_factor": 1,
+        "vertical_spacing_factor": 1,
+        "subheading": "",
+        "title": "Du har sidst set",
+        "content": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "rich_text_CLehqM",
+    "rich_text_qxNFmQ",
+    "image_with_text_tKQLFq",
+    "image_with_text_LK6rhY",
+    "image_with_text_iE7eHr",
+    "image_with_text_T6j93W",
+    "multiple_media_with_text_XfmcXe",
+    "rich_text_9ndynX",
+    "recently_viewed_products_LxijEb"
+  ]
+}

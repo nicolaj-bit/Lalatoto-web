@@ -1,0 +1,530 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "color_scheme": "",
+        "show_title": true,
+        "page_width": "xs"
+      }
+    },
+    "rich_text_cxG4nr": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_3FxPVQ": {
+          "type": "heading",
+          "settings": {
+            "text": "Tidslinje",
+            "heading_tag": "h1"
+          }
+        },
+        "richtext_rLFTWV": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Vores rejse begyndte med en hjemmesyet tyngdedyne, skabt ud af desperation for at hjælpe vores søn Xander med at sove bedre.</p><p>Denne simple idé har udviklet sig til et søvnunivers, der i dag har hjulpet over 10.000 småbørn til bedre søvn. <br/>Dyk ned i vores tidslinje og oplev, hvordan en forældres kærlighed og opfindsomhed blev til LALATOTO's historie.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_3FxPVQ",
+        "richtext_rLFTWV"
+      ],
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": false,
+        "content_width": "sm",
+        "text_position": "center",
+        "remove_vertical_spacing": false
+      }
+    },
+    "storyline_4tgdCk": {
+      "type": "Storyline",
+      "blocks": {
+        "image_MpRgHV": {
+          "type": "Image",
+          "settings": {
+            "date": "Juli 2017",
+            "image": "shopify://shop_images/Billede_1.jpg",
+            "heading": "Velkommen til verden",
+            "para": "Vi bliver forældre til Xander, som får en lidt hård start pålivet. Det resulterer i fire måneder med gråd (som hurtigt stemples som kolik) og minimal søvn.",
+            "side": "Right"
+          }
+        },
+        "image_RWkxKQ": {
+          "type": "Image",
+          "settings": {
+            "date": "Januar 2018",
+            "image": "shopify://shop_images/Billede_2.jpg",
+            "heading": "”Jeg kan ikke mere”",
+            "para": "Efter 6 måneder i zombieland får Sara idéen til en tyngdedyne. Ud af desperation fødes den babyvenlige tyngdedyne, som hun syer af ris og et gammelt dynebetræk en træt søndag eftermiddag. Da Xander bliver puttet med dynen samme aften, falder der en ro over ham, som vi ikke har oplevet før.",
+            "side": "Left"
+          }
+        },
+        "image_eRGViy": {
+          "type": "Image",
+          "settings": {
+            "date": "April 2018",
+            "image": "shopify://shop_images/Billede_3.jpg",
+            "heading": "Vi skal da hjælpe andre!",
+            "para": "Den hjemmesyede tyngdedyne bliver stadig flittigt brugt. Godt nok begynder der at lugte af risengrød i soveværelset, men Xander sover bedre end han nogensinde har gjort. Efter 3 måneder slår det os, at der må være andre familier i samme båd, som kunne have glæde af en sådan dyne.",
+            "side": "Left"
+          }
+        },
+        "image_aLKdcB": {
+          "type": "Image",
+          "settings": {
+            "date": "Juni 2018",
+            "image": "shopify://shop_images/Billede_4.jpg",
+            "heading": "DET VIRKER!",
+            "para": "Vi tester tyngdedynen på trætte familier med udfordringer i søvnen, og tilbagemeldingerne er helt fantastiske og rørende. Vi har et produkt, som virker!",
+            "side": "Left"
+          }
+        },
+        "image_bPr3yJ": {
+          "type": "Image",
+          "settings": {
+            "date": "Februar 2020",
+            "image": "shopify://shop_images/Billede_5.png",
+            "heading": "Vi er online!",
+            "para": "Efter to års udvikling er de første tyngdedyner på lager hjemme i kælderen, og vi kan endelig åbne webshoppen under navnet Babydynen.",
+            "side": "Left"
+          }
+        },
+        "image_tNQfcR": {
+          "type": "Image",
+          "settings": {
+            "date": "Marts 2020",
+            "heading": "Corona Lockdown",
+            "para": "11 tyngdedyner når vi at sælge, inden store dele af landet lukkes ned. Salget stopper fuldstændig, og vi ser os nødsaget til at slukke for annoncerne, så vi kan gemme, det minimale markedsføringsbudget vi har til bedre tider.",
+            "side": "Left"
+          }
+        },
+        "image_9gtPLM": {
+          "type": "Image",
+          "settings": {
+            "date": "Juli 2020",
+            "image": "shopify://shop_images/Billede_7.jpg",
+            "heading": "NU skal det være!",
+            "para": "Landet åbner så småt op igen og vi kickstarter vores salg med et 2. sorteringstilbud. Vi har nemlig brændt nallerne hos en systue som ikke leverede den aftalte kvalitet. Av av.",
+            "side": "Left"
+          }
+        },
+        "image_7TEwA6": {
+          "type": "Image",
+          "settings": {
+            "date": "Oktober 2020",
+            "image": "shopify://shop_images/Billede_8.jpg",
+            "heading": "Tekstil i verdensklasse",
+            "para": "Vi har søgt markedet tyndt for at finde den allerbedste metervare, og nu kan vi endelig lancere tyngdedynen i det fantastiske bomuldsstof, som vi er kendt for dén dag i dag. Det er en kæmpe milepæl!.",
+            "side": "Left"
+          }
+        },
+        "image_NDtEHh": {
+          "type": "Image",
+          "settings": {
+            "date": "Foråret 2021",
+            "image": "shopify://shop_images/Billede_9.jpg",
+            "heading": "”Jeg gider ikke sidde ned mere, mor”",
+            "para": "Ambitionen om at være danskproduceret betyder at vi jonglerer produktionen mellem flere små danske systuer. Det betyder også, at vi bruger mange timer på vejene med at levere materiale og hente varer.",
+            "side": "Left"
+          }
+        },
+        "image_ywfFDD": {
+          "type": "Image",
+          "settings": {
+            "date": "Juni 2021",
+            "heading": "Vi kommer i kontakt med en danskejet systue",
+            "para": "Vi må erkende, at det ikke længere er holdbart med vores danske set-up. Efterspørgslen på vores tyngdedyner er simpelthen for stor. Vi kommer derfor I kontakt med en systue i Polen, og kompromiset bliver at flytte produktionen til en danskejet systue i Polen. Det er en KÆMPE arbejdsbyrde som nu lettes.",
+            "side": "Left"
+          }
+        }
+      },
+      "block_order": [
+        "image_MpRgHV",
+        "image_RWkxKQ",
+        "image_eRGViy",
+        "image_aLKdcB",
+        "image_bPr3yJ",
+        "image_tNQfcR",
+        "image_9gtPLM",
+        "image_7TEwA6",
+        "image_NDtEHh",
+        "image_ywfFDD"
+      ],
+      "settings": {}
+    },
+    "top_collection_list_p63mLK": {
+      "type": "top-collection-list",
+      "blocks": {
+        "collection_T6JUip": {
+          "type": "collection",
+          "settings": {
+            "image": "shopify://shop_images/42.png",
+            "heading": "Sengerand",
+            "badge": "Nyhed",
+            "url": "shopify://products/sengerand"
+          }
+        },
+        "collection_hgQhD4": {
+          "type": "collection",
+          "settings": {
+            "image": "shopify://shop_images/93.png",
+            "heading": "Sengeslange",
+            "badge": "Fri for plast",
+            "url": "shopify://products/luksus-sengeslange"
+          }
+        },
+        "collection_pUdL3j": {
+          "type": "collection",
+          "settings": {
+            "image": "shopify://shop_images/82.png",
+            "heading": "Månepude",
+            "badge": "Nyhed",
+            "url": "shopify://products/moon-pillow"
+          }
+        },
+        "collection_B6YNA7": {
+          "type": "collection",
+          "settings": {
+            "image": "shopify://shop_images/25_1.png",
+            "heading": "Tyngdedyner",
+            "badge": "Fyld af kapok",
+            "url": "shopify://collections/tyngdedyner"
+          }
+        },
+        "collection_ca6f8m": {
+          "type": "collection",
+          "settings": {
+            "image": "shopify://shop_images/IMG_9676.jpg",
+            "heading": "Sengetøj",
+            "badge": "",
+            "url": "shopify://collections/sengetoj"
+          }
+        }
+      },
+      "block_order": [
+        "collection_T6JUip",
+        "collection_hgQhD4",
+        "collection_pUdL3j",
+        "collection_B6YNA7",
+        "collection_ca6f8m"
+      ],
+      "name": "Top collection list",
+      "settings": {
+        "background_color": "#f4f4f4",
+        "text_color": "#000000",
+        "badge_color": "#c1ab92",
+        "heading": "",
+        "columns_per_row": 3
+      }
+    },
+    "storyline_mkP6ze": {
+      "type": "Storyline",
+      "blocks": {
+        "image_yeGtkC": {
+          "type": "Image",
+          "settings": {
+            "date": "November 2021",
+            "image": "shopify://shop_images/Billede_11.jpg",
+            "heading": "Nu gør vi det sgu!",
+            "para": "Nu gør vi det sgu! Vi satser hele butikken og går begge fuldtid i virksomheden. Det er med lige dele nervøsitet og begejstring, at vi dropper funktionærvejen for at følge vores drøm.",
+            "side": "Left"
+          }
+        },
+        "image_wHNNVL": {
+          "type": "Image",
+          "settings": {
+            "date": "December 2021",
+            "heading": "Vi skifter navn",
+            "para": "Vores tyngdedyne begynder så småt at vinde indpas i de danske hjem og vores ambitioner bliver større. Babydynen kan efterhånden ikke følge med vores drømme længere, og vi skifter navn til Hush Little One – et navn vi KNUS ELSKER og stadig niver os i armen over dén dag i dag.",
+            "side": "Left"
+          }
+        },
+        "image_xMPbeA": {
+          "type": "Image",
+          "settings": {
+            "date": "Januar 2022",
+            "image": "shopify://shop_images/Billede_13.jpg",
+            "heading": "Vi kan også andet end tyngdedyner",
+            "para": "Vi lancerer vores dynebetræk og Mulitnest, og ønsket om at skabe et univers af produkter til den trygge søvn brænder mere end nogensinde!",
+            "side": "Left"
+          }
+        },
+        "image_HrMNrw": {
+          "type": "Image",
+          "settings": {
+            "date": "Juni 2022",
+            "heading": "”Hvad gør vi?”",
+            "para": "Første halvår i 2022 går ikke som forventet. Krigen i Ukraine og inflation gør at e-handelsbutikker lider - og det gør vi også. Voldsomt. Det er med nød og næppe, at vi kan betale vores regninger, og takket være verdens bedste leverandører, kommer vi igennem.",
+            "side": "Left"
+          }
+        },
+        "image_BRyyMF": {
+          "type": "Image",
+          "settings": {
+            "date": "August 2022",
+            "image": "shopify://shop_images/Billede_15.jpg",
+            "heading": "”Er vi købt eller solgt”?",
+            "para": "I august pitcher vi i Løvens Hule og får et ”ja” fra Anne Stampe. De efterfølgende fire måneder går med en lang due diligence proces, hvor vi ikke aner, om vi er købt eller solgt. Det er nogle virkelig svære måneder med uvished og hemmelighedskræmmeri.",
+            "side": "Left"
+          }
+        },
+        "image_X4qmMy": {
+          "type": "Image",
+          "settings": {
+            "date": "November 2022",
+            "image": "shopify://shop_images/Billede_16.jpg",
+            "heading": "”Det er bare ikke os”.",
+            "para": "Virksomheden har så meget vokseværk, at det er tid til at flytte lageret ud af kælderen og lade andre om at afsende pakker. Nicolaj er ikke helt tryg ved at afgive dét ansvar, og det er da heller ikke uden udfordringer. Efter et par måneder beslutter vi at opgive logistikcentret. Det bliver for upersonligt for os. Nu får systuen lov at varetage opgaven.",
+            "side": "Left"
+          }
+        },
+        "image_y3xqeh": {
+          "type": "Image",
+          "settings": {
+            "date": "December 2022",
+            "image": "shopify://shop_images/2_1.png",
+            "heading": "YEEEEESS!!!",
+            "para": "Det lykkedes! I december kan vi ENDELIG fejre at Anne Stampe har investeret i Hush Little One og vi har endda fået endnu en kompetent investor med på holdet, nemlig Louise Skarby. Vi er ikke til at skyde igennem! Nu får vi travlt!",
+            "side": "Left"
+          }
+        },
+        "image_M39yJB": {
+          "type": "Image",
+          "settings": {
+            "date": "Januar 2023",
+            "image": "shopify://shop_images/Billede_18.jpg",
+            "heading": "”Tænk at vi er arbejdsgivere”",
+            "para": "Vi starter året med at byde Natalija velkommen til Hush Familien. Natalija skal supportere på kundeservicedelen så Sara kan få frigivet noget tid til blandt andet produktudvikling.",
+            "side": "Left"
+          }
+        },
+        "image_Ap3Fna": {
+          "type": "Image",
+          "settings": {
+            "date": "Marts 2023",
+            "image": "shopify://shop_images/Billede_19.jpg",
+            "heading": "LØVENS HULE BABY!",
+            "para": "Ventetiden har været ubærlig og det er en kæmpe forløsning,da vi endelig ruller over skærmen som sæsonens sidste deltagere i Løvens Hule. Den opbakning vi modtager fra danskerne efter programmet, er fuldstændig overvældende, og den efterfølgende måned har vi SÅ travlt, at det hele stadig står lidt tåget.",
+            "side": "Left"
+          }
+        },
+        "image_JmNmwa": {
+          "type": "Image",
+          "settings": {
+            "date": "Juni 2023",
+            "image": "shopify://shop_images/HushLittleOne_Maj23_0570.jpg",
+            "heading": "Krammegåsen Gertrud",
+            "para": "Efter 10 måneders produktudvikling kan vi endelig lancere Krammegåsen Gertrud, som hurtigt vinder vores kunders hjerter.",
+            "side": "Left"
+          }
+        },
+        "image_diYGdC": {
+          "type": "Image",
+          "settings": {
+            "date": "Augst 2023",
+            "image": "shopify://shop_images/Design_uden_navn_13.png",
+            "heading": "SVAMPELAMPEN",
+            "para": "Vi har længe haft en vision om en ammevenlig natlampe og i løbet af sommeren dykker Sara ned i alt, hvad der er at vide om lys, lamper og plaststøbning i samarbejde med en lokal virksomhed. Ud af dette vokser idéen om Svampelampen; en lampe, som ved et enkelt puf lyser rødt, og dermed forstyrrer søvnhormonerne mindst muligt, når der er behov for lys om natten. Svampelampen får enorm interesse fra kunderne.",
+            "side": "Left"
+          }
+        },
+        "image_9h9R4W": {
+          "type": "Image",
+          "settings": {
+            "date": "August 2023",
+            "image": "shopify://shop_images/svampelampe_a01.jpg",
+            "heading": "KICKSTARTER",
+            "para": "At producere en lampe fra bunden er en omkostelig affære, og derfor bliver vi præsenteret for ideen om at lave en Crowdfundingskampagne, altså en kampagne hvor kunderne køber lampen på forhånd, så vi kan få dækket opstartsudgifterne til produktionen.\n Det synes vi er ret så genialt og i August går vores kampagne live på Kickstarter.",
+            "side": "Left"
+          }
+        },
+        "image_KpAKcR": {
+          "type": "Image",
+          "settings": {
+            "date": "September 2023",
+            "image": "shopify://shop_images/IMG_5417_95d69629-2248-492f-b063-0105bdec2f89.jpg",
+            "heading": "FARVEL TIL SVAMPELAMPEN",
+            "para": "Vi funder 160.000 kr. på den måned vi har, til at hive pengene i land, men det er desværre ikke nok. Det er naturligvis en meget stor skuffelse at begrave Svampelampen, men allersværest er det, at afsluttet samarbejdet med de mennesker som skulle have produceret lampen, og som har hjulpet os så ufattelig meget igennem processen.",
+            "side": "Left"
+          }
+        }
+      },
+      "block_order": [
+        "image_yeGtkC",
+        "image_wHNNVL",
+        "image_xMPbeA",
+        "image_HrMNrw",
+        "image_BRyyMF",
+        "image_X4qmMy",
+        "image_y3xqeh",
+        "image_M39yJB",
+        "image_Ap3Fna",
+        "image_JmNmwa",
+        "image_diYGdC",
+        "image_9h9R4W",
+        "image_KpAKcR"
+      ],
+      "name": "CD Story Line",
+      "settings": {}
+    },
+    "multiple_media_with_text_RgqxUg": {
+      "type": "multiple-media-with-text",
+      "blocks": {
+        "image_f8zgj7": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/91.png",
+            "rotation": 0
+          }
+        },
+        "image_DaXw8H": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/10_c75170d1-eba4-492a-a3b2-6f1e5066e6e8.png",
+            "rotation": 0
+          }
+        }
+      },
+      "block_order": [
+        "image_f8zgj7",
+        "image_DaXw8H"
+      ],
+      "disabled": true,
+      "name": "t:sections.multiple_media_with_text.presets.multiple_media_with_text.name",
+      "settings": {
+        "color_scheme": "",
+        "reveal_on_scroll": true,
+        "separate_section_with_border": false,
+        "media_position_desktop": "before_text",
+        "media_position_mobile": "before_text",
+        "media_layout": "separated",
+        "media_alignment": "end",
+        "media_alignment_offset": 0,
+        "media_mobile_alignment_offset": 0,
+        "text_alignment": "center",
+        "subheading": "",
+        "title": "Produkter uden polyester",
+        "content": "",
+        "button_1_text": "",
+        "button_1_link": "",
+        "button_1_style": "solid",
+        "button_2_text": "",
+        "button_2_link": "",
+        "button_2_style": "solid"
+      }
+    },
+    "storyline_FJgzYk": {
+      "type": "Storyline",
+      "blocks": {
+        "image_E7dGQb": {
+          "type": "Image",
+          "settings": {
+            "date": "April 2024",
+            "heading": "NUL OMSÆTNING",
+            "para": "Det nye år starter med en konflikt med systuen i Polen, vores eneste producent. Dette resulterer i, at de nægter os vores varer, medmindre vi går med på nogle urimelige betalingsbetingelser. Vi går derfor i tre måneder uden omsætning.",
+            "side": "Left"
+          }
+        },
+        "image_63qrMF": {
+          "type": "Image",
+          "settings": {
+            "date": "Oktober 2024",
+            "image": "shopify://shop_images/1_1_c1de9f3d-eb22-4ebc-9cd9-b5911e5ebb98.png",
+            "heading": "HUSH LITTLE ONE GÅR KONKURS",
+            "para": "Ud af desperation ser vi os nødsaget til at gå med på deres betingelser og ikke overraskende bliver virksomheden kort tid efter erklæret inhabil.\n Det er med blødende hjerte, at vi må sige farvel til vores hjertebarn efter 7 års arbejde.",
+            "side": "Left"
+          }
+        },
+        "image_8KDPMb": {
+          "type": "Image",
+          "settings": {
+            "date": "Oktober 2024",
+            "heading": "VI ER IKKE FÆRDIGE",
+            "para": "Da det værste chok har lagt sig, og hovedet begynder at tænke klart igen, mærker vi noget nyt spire i kroppen; vi er nemlig slet ikke færdige! Om det er stædighed, passion eller dét dér iværksætter-DNA som ikke helt kan forklares, ved jeg ikke, men vi nægter at lægge os ned, og efter mange lange nætter, tårer, grin og begejstring ser LALATOTO of Denmark dagens lys.",
+            "side": "Left"
+          }
+        },
+        "image_KG3FKn": {
+          "type": "Image",
+          "settings": {
+            "date": "Oktober 2024",
+            "image": "shopify://shop_images/LALATOTO_LOGOFILER_2.png",
+            "heading": "LALATOTO",
+            "para": "LALATOTO betyder ’sov mit barn’ og bliver navnet på vores nye søvnunivers til de mindste.\nVores passion for at skabe smukke, ærlige og tryghedsskabende soveprodukter i den bedste kvalitet brænder mere end nogensinde før, men det skal heller ikke være nogen hemmelighed, at dét at starte totalt forfra bestemt ikke er nemt.",
+            "side": "Left"
+          }
+        },
+        "image_GTfXx9": {
+          "type": "Image",
+          "settings": {
+            "date": "Januar 2025",
+            "image": "shopify://shop_images/1_5.png",
+            "heading": "NEJ TAK TIL POLYESTER",
+            "para": "Nye samarbejdspartnere og ny systue betyder også nye muligheder. Vi mærker en stor personlig passion for ærlige og naturlige materialer, og det afføder en klar mission, nemlig at få polyester ud af børneværelset.\n Vi bruger nu udelukkende naturens materialer, og selvom det gør processen både dyrere og mere kompliceret, så føles det bare helt rigtigt.",
+            "side": "Left"
+          }
+        }
+      },
+      "block_order": [
+        "image_E7dGQb",
+        "image_63qrMF",
+        "image_8KDPMb",
+        "image_KG3FKn",
+        "image_GTfXx9"
+      ],
+      "name": "CD Story Line",
+      "settings": {}
+    },
+    "featured_collections_Df6CkX": {
+      "type": "featured-collections",
+      "blocks": {
+        "collection_UcAQMH": {
+          "type": "collection",
+          "settings": {
+            "collection": "alle-produkter",
+            "products_count": 8,
+            "title": "Udforsk vores søvnunivers",
+            "link_url": "",
+            "link_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "collection_UcAQMH"
+      ],
+      "name": "t:sections.featured_collections.presets.featured_collections.name",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": false,
+        "hide_product_information": false,
+        "stack_products": false,
+        "products_per_row_mobile": "2",
+        "products_per_row_desktop": 4,
+        "horizontal_spacing_factor": 1,
+        "vertical_spacing_factor": 1,
+        "subheading": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "rich_text_cxG4nr",
+    "storyline_4tgdCk",
+    "top_collection_list_p63mLK",
+    "storyline_mkP6ze",
+    "multiple_media_with_text_RgqxUg",
+    "storyline_FJgzYk",
+    "featured_collections_Df6CkX"
+  ]
+}

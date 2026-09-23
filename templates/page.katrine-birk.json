@@ -1,0 +1,139 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "color_scheme": "",
+        "show_title": true,
+        "page_width": "xs"
+      }
+    },
+    "rich_text_4Jt7Ry": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_L4ma6b": {
+          "type": "heading",
+          "settings": {
+            "text": "Hjælp til selvhjælp",
+            "heading_tag": "h1"
+          }
+        },
+        "richtext_kXRGNz": {
+          "type": "richtext",
+          "settings": {
+            "content": "<h5>Kære mor og far</h5><p>Hos LALATOTO tror vi på, at du som forælder allerede rummer alt det, som dit barn har brug for. Nogle gange kræver det bare lidt inspiration og en kærlig hånd at holde i. Særligt når søvnkontoen står i minus.</p><p>Så tag min hånd, og lad mig vise dig nogle enkle, men virkningsfulde redskaber til at skabe ro i dit barns krop.</p><p>I samarbejde med småbørnseksperter – og med afsæt i mange års nørderi i børnesøvn – deler jeg her alt det, der har hjulpet mig og mange andre forældre til roligere nætter.</p><p>På siden her finder du videoguides til hjemmebehandling, inspiration og vejledning til et sundt og søvndyssende sovemiljø og søvnritualer, samt eksperternes svar på almene udfordringer omkring søvn i ”Ugens spørgsmål”.<br/><br/>Alt dette <strong>helt gratis</strong>.<br/>Fra mit sovehjerte til dit. </p><p>Kærligst,<br/>Sara</p>"
+          }
+        },
+        "image_CTjtCf": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/HushLittleOne_Sept21_0062.jpg",
+            "width_mode": "full_width",
+            "max_width": 600,
+            "mobile_max_width": 400
+          }
+        }
+      },
+      "block_order": [
+        "heading_L4ma6b",
+        "richtext_kXRGNz",
+        "image_CTjtCf"
+      ],
+      "name": "t:sections.rich_text.presets.rich_text.name",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": false,
+        "content_width": "sm",
+        "text_position": "center",
+        "remove_vertical_spacing": false
+      }
+    },
+    "blog_posts_8mGtbQ": {
+      "type": "blog-posts",
+      "name": "t:sections.blog_posts.presets.blog_posts.name",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": false,
+        "blog": "news",
+        "posts_count": 3,
+        "stack_on_mobile": false,
+        "show_category": true,
+        "show_date": false,
+        "show_excerpt": true,
+        "show_read_more": true,
+        "subheading": "",
+        "title": "Ugens spørgsmål",
+        "content": "",
+        "button_link": "",
+        "button_text": ""
+      }
+    },
+    "blog_posts_ycaUfz": {
+      "type": "blog-posts",
+      "name": "t:sections.blog_posts.presets.blog_posts.name",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": false,
+        "blog": "selvhjaelp-videoer",
+        "posts_count": 3,
+        "stack_on_mobile": true,
+        "show_category": false,
+        "show_date": false,
+        "show_excerpt": true,
+        "show_read_more": true,
+        "subheading": "",
+        "title": "",
+        "content": "<h2><strong>LALATOTO<br/>X<br/>Katrine Birk</strong></h2><p>Kathrine Birk er Danmarks førende formidler inde for <strong>zoneterapi </strong>og akupressur.<br/>Hendes baby- og småbørnsunivers <a href=\"https://www.katrinebirk.dk/book/tryk-glad-babysovn-copy-4/\" target=\"_blank\" title=\"https://www.katrinebirk.dk/book/tryk-glad-babysovn-copy-4/\"><em><strong>Tryk og glad </strong></em></a>har mine varmest anbefalinger, og hendes bog af samme navn, har – og er stadig – et fast opslagsværk herhjemme til lindring af uro, forstoppelse, tandpine, forkølelse og meget mere. Jeg er stolt af, at få lov til at dele nogle af <strong>Kathrines videoer </strong>med Jer, i håb om at endnu flere familier kan finde ro ved hjælp af simple zoneterapeutiske øvelser.<br/><br/></p>",
+        "button_link": "shopify://blogs/selvhjaelp-videoer",
+        "button_text": "Se mere her"
+      }
+    },
+    "featured_collections_E7N3RJ": {
+      "type": "featured-collections",
+      "blocks": {
+        "collection_XWweTU": {
+          "type": "collection",
+          "settings": {
+            "collection": "alle-produkter",
+            "products_count": 8,
+            "title": "",
+            "link_url": "",
+            "link_text": "View all"
+          }
+        }
+      },
+      "block_order": [
+        "collection_XWweTU"
+      ],
+      "name": "t:sections.featured_collections.presets.featured_collections.name",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": true,
+        "hide_product_information": false,
+        "stack_products": false,
+        "products_per_row_mobile": "2",
+        "products_per_row_desktop": 4,
+        "horizontal_spacing_factor": 1,
+        "vertical_spacing_factor": 1,
+        "subheading": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "rich_text_4Jt7Ry",
+    "blog_posts_8mGtbQ",
+    "blog_posts_ycaUfz",
+    "featured_collections_E7N3RJ"
+  ]
+}

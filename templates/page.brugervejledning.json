@@ -1,0 +1,283 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "color_scheme": "",
+        "show_title": true,
+        "page_width": "xs"
+      }
+    },
+    "flipbook_bdUpdz": {
+      "type": "Flipbook",
+      "blocks": {
+        "flipbook_HW4wYp": {
+          "type": "flipbook",
+          "settings": {
+            "thumb": "shopify://shop_images/3_6.png",
+            "title": "Vaskevejledning til tyngdedyne",
+            "content": "<p>Du kan downloade den <a href=\"https://acrobat.adobe.com/id/urn:aaid:sc:EU:2897faef-8f4d-4ac4-a811-92002da00931\" target=\"_blank\" title=\"https://acrobat.adobe.com/id/urn:aaid:sc:EU:2897faef-8f4d-4ac4-a811-92002da00931\">her</a></p>",
+            "text": "",
+            "pdf_url": "https://cdn.shopify.com/s/files/1/0662/2865/0121/files/Vaskevejledning_Tyngdedyner_d698daf9-61f5-4d68-af11-59793d1292e6.pdf?v=1761396200",
+            "button_label": "Åbn som bog"
+          }
+        },
+        "flipbook_pMt497": {
+          "type": "flipbook",
+          "settings": {
+            "thumb": "shopify://shop_images/8_99cf9f13-931b-4a3a-b847-18372e20a7c1.png",
+            "title": "Vaskevejledning til sengerand",
+            "content": "<p>Du kan downloade den <a href=\"https://acrobat.adobe.com/id/urn:aaid:sc:EU:83c4cd9e-c5cb-493f-a254-c1dcf72f0b03\" target=\"_blank\" title=\"https://acrobat.adobe.com/id/urn:aaid:sc:EU:83c4cd9e-c5cb-493f-a254-c1dcf72f0b03\">her</a>.</p>",
+            "text": "Læs mere om denne vejledning.",
+            "pdf_url": "https://cdn.shopify.com/s/files/1/0662/2865/0121/files/Vaskevejledning_Sengerand.pdf?v=1761848195",
+            "button_label": "Åbn som bog"
+          }
+        },
+        "flipbook_LBGXQX": {
+          "type": "flipbook",
+          "name": "Sengeslange",
+          "settings": {
+            "thumb": "shopify://shop_images/6_c7b90dc8-2bd1-4020-9a95-24e9283ccb41.png",
+            "title": "Vaskevejledning til sengeslange",
+            "content": "<p>Du kan downloade den <a href=\"https://acrobat.adobe.com/id/urn:aaid:sc:EU:c1841a0a-1397-43ea-b105-b3406a9a61f4\" target=\"_blank\" title=\"https://acrobat.adobe.com/id/urn:aaid:sc:EU:c1841a0a-1397-43ea-b105-b3406a9a61f4\">her</a>.</p>",
+            "text": "Læs mere om denne vejledning.",
+            "pdf_url": "https://cdn.shopify.com/s/files/1/0662/2865/0121/files/Vaskevejledninger_og_tryksag.pdf?v=1789409290",
+            "button_label": "Åbn som bog"
+          }
+        },
+        "flipbook_be3w8X": {
+          "type": "flipbook",
+          "name": "Månepude",
+          "settings": {
+            "thumb": "shopify://shop_images/Du_har_koebt_et_produkt_med_et_af_naturens_fineste_materialer_Kapok..png",
+            "title": "Vaskevejledning til månepuden",
+            "content": "<p>Du kan downloade den <a href=\"https://acrobat.adobe.com/id/urn:aaid:sc:EU:443714ab-00fe-403c-b661-afb1926ead0f\" target=\"_blank\" title=\"https://acrobat.adobe.com/id/urn:aaid:sc:EU:443714ab-00fe-403c-b661-afb1926ead0f\">her</a>.</p>",
+            "text": "",
+            "pdf_url": "https://cdn.shopify.com/s/files/1/0662/2865/0121/files/Vaskevejledning_Maanepude.pdf?v=1761848332",
+            "button_label": "Åbn som bog"
+          }
+        },
+        "flipbook_JDLkXc": {
+          "type": "flipbook",
+          "settings": {
+            "thumb": "shopify://shop_images/Vaskevejledninger_og_tryksag.png",
+            "title": "Vaskevejledning til Sengelomme",
+            "content": "<p>Du kan downloade den her.</p>",
+            "text": "Læs mere om denne vejledning.",
+            "pdf_url": "https://cdn.shopify.com/s/files/1/0662/2865/0121/files/Vaskevejledninger_og_tryksag.png?v=1763577959",
+            "button_label": "Åbn som bog"
+          }
+        }
+      },
+      "block_order": [
+        "flipbook_HW4wYp",
+        "flipbook_pMt497",
+        "flipbook_LBGXQX",
+        "flipbook_be3w8X",
+        "flipbook_JDLkXc"
+      ],
+      "name": "Flipbook grid (4)",
+      "settings": {
+        "color_scheme": "scheme-2",
+        "use_prestige_container": true,
+        "separate_section_with_border": false,
+        "subheading": "",
+        "title": "Vaskevejledninger",
+        "content": "<p>Vi har gjort det nemt for dig, at passe på dit produkt fra LALATOTO, så du kan få glæde af det langt ud i fremtiden. Herunder finder du nemlig en overskuelig vaskeguide til vores produkter med Kapok.</p><p>Og husk, at skulle du alligevel være i tvivl, så sidder vi klar til at vejlede dig.</p>",
+        "content_alignment": "center",
+        "heading": "Vaskevejledninger"
+      }
+    },
+    "multi_column_KtMNgB": {
+      "type": "multi-column",
+      "blocks": {
+        "image_with_text_FWccWk": {
+          "type": "image_with_text",
+          "settings": {
+            "image": "shopify://shop_images/8_1.png",
+            "title": "",
+            "heading_tag": "h3",
+            "content": "<p><a href=\"https://acrobat.adobe.com/id/urn:aaid:sc:EU:83c4cd9e-c5cb-493f-a254-c1dcf72f0b03\" target=\"_blank\" title=\"https://acrobat.adobe.com/id/urn:aaid:sc:EU:83c4cd9e-c5cb-493f-a254-c1dcf72f0b03\">Vaskevejledning sengerand</a></p>",
+            "link_url": "",
+            "link_text": ""
+          }
+        },
+        "image_with_text_DkhXNa": {
+          "type": "image_with_text",
+          "settings": {
+            "image": "shopify://shop_images/3_6.png",
+            "title": "",
+            "heading_tag": "h3",
+            "content": "<p><a href=\"https://acrobat.adobe.com/id/urn:aaid:sc:EU:2897faef-8f4d-4ac4-a811-92002da00931\" target=\"_blank\">Vaskevejledning tyngdedyner</a></p>",
+            "link_url": "",
+            "link_text": ""
+          }
+        },
+        "image_with_text_9mxWJx": {
+          "type": "image_with_text",
+          "settings": {
+            "image": "shopify://shop_images/6_2.png",
+            "title": "",
+            "heading_tag": "h3",
+            "content": "<p><a href=\"https://acrobat.adobe.com/id/urn:aaid:sc:EU:c1841a0a-1397-43ea-b105-b3406a9a61f4\" target=\"_blank\" title=\"https://acrobat.adobe.com/id/urn:aaid:sc:EU:c1841a0a-1397-43ea-b105-b3406a9a61f4\">Vaskevejledning sengeslange</a></p>",
+            "link_url": "",
+            "link_text": ""
+          }
+        },
+        "image_with_text_Jwc39n": {
+          "type": "image_with_text",
+          "settings": {
+            "image": "shopify://shop_images/Du_har_koebt_et_produkt_med_et_af_naturens_fineste_materialer_Kapok..png",
+            "title": "",
+            "heading_tag": "h3",
+            "content": "<p><a href=\"https://acrobat.adobe.com/id/urn:aaid:sc:EU:443714ab-00fe-403c-b661-afb1926ead0f\" target=\"_blank\" title=\"https://acrobat.adobe.com/id/urn:aaid:sc:EU:443714ab-00fe-403c-b661-afb1926ead0f\">Vaskevejledning månepude</a></p>",
+            "link_url": "",
+            "link_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_with_text_FWccWk",
+        "image_with_text_DkhXNa",
+        "image_with_text_9mxWJx",
+        "image_with_text_Jwc39n"
+      ],
+      "disabled": true,
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": false,
+        "columns_per_row": 5,
+        "stack_on_mobile": false,
+        "overlap_image": false,
+        "content_alignment": "center",
+        "text_alignment": "center",
+        "spacing": "md",
+        "subheading": "",
+        "title": "Vaskevejledninger",
+        "content": "<p>Vi har gjort det nemt for dig, at passe på dit produkt fra LALATOTO, så du kan få glæde af det langt ud i fremtiden. Herunder finder du nemlig en overskuelig vaskeguide til vores produkter med Kapok.<br/>Og husk, at skulle du alligevel være i tvivl, så sidder vi klar til at vejlede dig.<br/><br/></p>"
+      }
+    },
+    "contact_7aFKhA": {
+      "type": "contact",
+      "settings": {
+        "color_scheme": "scheme-3",
+        "separate_section_with_border": false,
+        "subheading": "Har du brug for hjælp",
+        "title": "Kontakt os",
+        "content": "<p>Ring til os: +45 72 15 66 86.<br/><br/>Vi sidder klar mandag-torsdag kl. 9-15 og fredag kl. 9-14 (helligdage undtaget)<br/><br/>Skriv til os: kundeservice@lalatoto.dk<br/>- Alle henvendelser besvares indenfor 24 timer på hverdage.</p><p>- eller benyt formularen.</p>"
+      }
+    },
+    "featured_collections_hJjihp": {
+      "type": "featured-collections",
+      "blocks": {
+        "collection_GKK6JF": {
+          "type": "collection",
+          "settings": {
+            "collection": "alle-produkter",
+            "products_count": 8,
+            "title": "Se vores produkter",
+            "link_url": "",
+            "link_text": "Se dem her"
+          }
+        }
+      },
+      "block_order": [
+        "collection_GKK6JF"
+      ],
+      "settings": {
+        "color_scheme": "scheme-4",
+        "separate_section_with_border": false,
+        "hide_product_information": false,
+        "stack_products": false,
+        "products_per_row_mobile": "2",
+        "products_per_row_desktop": 4,
+        "horizontal_spacing_factor": 1,
+        "vertical_spacing_factor": 1,
+        "subheading": ""
+      }
+    },
+    "1779022420d598c231": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_3c3aeb4_cWgiXj": {
+          "type": "ai_gen_block_3c3aeb4",
+          "settings": {
+            "desktop_width_percent": 100,
+            "columns_desktop": 5,
+            "mobile_item_width": 85,
+            "grid_gap": 20,
+            "content_padding": 20,
+            "item_background_color": "#ffffff",
+            "text_color": "#1c1c1c",
+            "button_background": "#e7d3b1",
+            "button_hover_background": "#d4c09e",
+            "button_text_color": "#1c1c1c",
+            "modal_background_color": "#ffffff",
+            "heading_font": "instrument_sans_n4",
+            "text_font": "instrument_sans_n4",
+            "header_size": 14,
+            "text_size": 14,
+            "button_text_size": 13,
+            "title_letter_spacing": 18,
+            "button_letter_spacing": 18,
+            "item_border_radius": 8,
+            "button_border_radius": 8,
+            "pdf_1": "https://cdn.shopify.com/s/files/1/0662/2865/0121/files/Vaskevejledning_Tyngdedyner_d698daf9-61f5-4d68-af11-59793d1292e6.pdf?v=1761396200",
+            "header_1": "Flipbook 1",
+            "text_1": "",
+            "button_text_1": "Læs mere",
+            "pdf_2": "",
+            "header_2": "Flipbook 2",
+            "text_2": "",
+            "button_text_2": "Læs mere",
+            "pdf_3": "",
+            "header_3": "Flipbook 3",
+            "text_3": "",
+            "button_text_3": "Læs mere",
+            "pdf_4": "",
+            "header_4": "Flipbook 4",
+            "text_4": "",
+            "button_text_4": "Læs mere",
+            "pdf_5": "",
+            "header_5": "Flipbook 5",
+            "text_5": "",
+            "button_text_5": "Læs mere",
+            "pdf_6": "",
+            "header_6": "Flipbook 6",
+            "text_6": "",
+            "button_text_6": "Læs mere"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_3c3aeb4_cWgiXj"
+      ],
+      "disabled": true,
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": true,
+        "remove_vertical_spacing": false,
+        "remove_horizontal_spacing": false
+      }
+    }
+  },
+  "order": [
+    "main",
+    "flipbook_bdUpdz",
+    "multi_column_KtMNgB",
+    "contact_7aFKhA",
+    "featured_collections_hJjihp",
+    "1779022420d598c231"
+  ]
+}

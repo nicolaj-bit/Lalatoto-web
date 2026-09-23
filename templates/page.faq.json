@@ -1,0 +1,236 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "faq": {
+      "type": "faq",
+      "blocks": {
+        "category": {
+          "type": "category",
+          "settings": {
+            "title": "Ofte stillede spørgsmål",
+            "icon": "none",
+            "icon_width": 16
+          }
+        },
+        "question-1": {
+          "type": "question",
+          "settings": {
+            "question": "Hvad er fordelene ved en tyngdedyne?",
+            "answer": "<p>En tyngdedyne giver barnet et blidt tryk på hele kroppen. Dynen omslutter barnets krop tæt, så også arme og ben finder ro – som et svøb, blot uden at fastholde.</p><p>En tyngdedyne er effektiv i alle sovestillinger. Hvad end barnet foretrækker at<br/>sove på ryg, side eller mave, så stimulerer tyngden og granulatet lige godt.<br/>Især tumlinger har det med at vende og dreje sig i søvne, men tyngden og<br/>omsluttetheden fra dynen kan hjælpe til, at barnet ikke vækker sig selv.<br/><br/>En tyngdedyne er ydermere nem at bruge. Den lægges blot over barnet, præcis som<br/>med en almindelig dundyne. Samtidig er den nem at temperaturstyre uden at<br/>forstyrre søvnen. Skulle barnet få det for varmt, kan man blidt give luft til<br/>ben og fødder. Føles barnet kold, tilføjes blot et tæppe eller en almindelig<br/>dundyne oven på tyngdedynen.</p><p>En tyngdedyne har ingen alder, og derfor skal du ikke gå og frygte, når baby/barnet vokser ud af den eller begynder at rejse sig i sengen. For nogle er uro i søvnen et overstået kapitel inden for de første 2 år af barnets liv, men<br/>for andre fortsætter behovet for regulering noget længere, og her kan en tyngdedyne være en stor hjælp.</p>"
+          }
+        },
+        "question-2": {
+          "type": "question",
+          "settings": {
+            "question": "Hvor meget må barnet sove med tyngdedynen?",
+            "answer": "<p>Du kan trygt lade dit barn sove med tyngdedynen både til lur og nat. Såfremt der kun er uro i søvnen om natten, så lad endelig være med at ændre på rutinerne ved dagslurene – og omvendt. </p>"
+          }
+        },
+        "question-3": {
+          "type": "question",
+          "settings": {
+            "question": "Kan tyngdedynen bruges hele året?",
+            "answer": "<p>Ja! Vores tyngdedyne er meget lidt varmegivende, og det gør den særligt god til varme børn og varme dage/nætter. På køligere dage kan temperaturen justeres med nattøj og/eller en almindelig varmegivende<br/>dyne oven på tyngdedynen. Bemærk: jo tættere tyngedynen er på barnets hud,<br/>jo større er sansestimuleringen og dermed effekten. </p>"
+          }
+        },
+        "question_WypayV": {
+          "type": "question",
+          "settings": {
+            "question": "Er der forskel på tyngdedynerne andet end farven?",
+            "answer": "<p>Nej. Det er kun farvekombinationerne som varierer. Du får den samme småbørnsvenlige tyngdedyne uanset hvilket design du vælger. Du kan altså roligt bestille lige akkurat dét design, som tiltaler dig mest.</p>"
+          }
+        },
+        "question_AdT7Fb": {
+          "type": "question",
+          "settings": {
+            "question": "Hvad er tyngdedynen lavet af?",
+            "answer": "<p>Alle vores tyngdedyner er produceret i Oeko-tex-certificeret bomuld, der sikrer, at tekstilet er fri for sundhedsskadelige stoffer.</p><p>Dynens fyld består af Natursten, Fyldet er særligt udvalgt for dets evne til at fordele sig på hele kroppen og skabe en svøbende effekt<br/>omkring barnet. Vi har vægtet højt, at fyldet skal være lydsvagt, så også det sensitive barn kan putte sig med dynen. </p><p>Du kan derfor med god ro i maven anvende vores tyngdedyne til familiens mindste. </p>"
+          }
+        },
+        "question_7gGRqL": {
+          "type": "question",
+          "settings": {
+            "question": "Hvordan passer jeg bedst på min nye tyngedyne?",
+            "answer": "<p>Tyngdedynen vaskes ved 30 grader og kan selvfølgelig også vaskes ved 60 grader hvis nødvendigt. Dynen tørres liggende på et håndklæde, for at undgå at tyngden trækker i materialet. Vi anbefaler, at dynen kun vaskes ved absolut nødvendighed for at undgå unødigt slid. Tyngdedynen kan bruges som den er, men vi anbefaler brug af dynebetræk, for at skåne dynen bedst muligt.</p><p>Se vores skønne udvalg af dynebetræk <a href=\"/collections/sengetoj\" title=\"Sengetøj\">her</a>.</p><p>Tjek altid at din tyngdedyne er intakt inden brug.</p>"
+          }
+        },
+        "question_T8Hzrw": {
+          "type": "question",
+          "settings": {
+            "question": "Hvilken størrelse skal jeg vælge?",
+            "answer": "<p><strong>Baby fra 6 måneder.</strong></p><p>Babystørrelsen har en passende størrelse til brug i barnevogn og favnen oag er nem at håndtere, når baby skal flyttes fra ét sted til et andet De fleste kunder har god effekt af babystørrelsen helt frem til 2-årsalderen.</p><p> <strong>Junior 1-5 år.</strong></p><p>Er din tumling fyldt 1 år, vil juniorstørrelsen på 3,5 kg. som udgangspunkt være et godt valg. Mange tumlinger har det med at vende og dreje sig i søvne. Med juniorstørrelsen er der god plads til at din tumling kan vende sig i søvne og stadig få den fulde effekt af dynen.</p><p>Juniorstørrelsen bør IKKE anvendes til børn under 12 måneder.</p>"
+          }
+        },
+        "question_hMxjTN": {
+          "type": "question",
+          "settings": {
+            "question": "Kan jeg bruge Jeres tyngdedyne før min baby fylder 6 måneder?",
+            "answer": "<p>Vi anbefaler først brug af tyngde fra 6 måneder. Det gør vi fordi babyer under 6 måneder er bløde i kroppen, og vi vurderer derfor, at unødig tyngde kan vanskeliggøre vejrtrækningen.<br/><br/>Vi opfordrer samtidig til, at forældre undersøger om der skulle være andre og<br/>mere alvorlige årsager til uroen. Det kan være låsninger, skævheder, mavekneb,<br/>allergier osv.</p><p>Er du i tvivl, opfordrer vi altid til, at du rådfører dig med en fagperson som står dig og din baby nær.</p>"
+          }
+        },
+        "question_weXEW9": {
+          "type": "question",
+          "settings": {
+            "question": "Min baby er varm! Kan vi stadig bruge Jeres tyngdedyne?",
+            "answer": "<p>Ja! Rigtig mange babyer og tumlinger er i sig selv varme, og derfor har vi fravalgt at fore dynen. Det betyder, at vores tyngdedyne er meget lidt varmegivende, og derfor egner sig særligt godt til varme børn, varme sommernætter og varme middagslure i barnevognen, hvor barnet kan have svært ved at finde ro uden trygheden fra en dyne.</p><p>Det betyder også, at det i de kolde måneder ofte vil være nødvendigt at iklæde baby ekstra nattøj eller endda lægge en almindelig dundyne ovenpå tyngdedynen. Bemærk, at det er vigtigt, at tyngdedynen ligger tættest på barnets krop, for at opnå den fulde effekt.</p><p>Vores tyngdedyne føles umiddelbart kold på huden, når den tages i brug, så derfor anbefaler vi, at du sikrer dig, at dynen er dejlig lun, når den tages i brug. Lun den fx på en radiator, i en solstråle eller over din egen krop inden brug.</p><p>Dit barn vil takke dig.</p>"
+          }
+        },
+        "question_rC4gFq": {
+          "type": "question",
+          "settings": {
+            "question": "Min baby vil ikke svøbes. Er Jeres tyngdedyne stadig en mulighed?",
+            "answer": "<p>Ja! Vi har faktisk rigtig gode erfaringer med brug af vores tyngdedyne, til babyer som bliver paniske, når de svøbes. Tyngdedynen fra LALATOTO giver nemlig samme fornemmelse af at blive krammet tæt, men uden at fastlåse. Med vores tyngdedyne kan baby klø sig på næsen, skifte sovestilling<br/>og samle sutten op, samtidig med at få den beroligende effekt som svøb giver.</p>"
+          }
+        },
+        "question_iBBDmW": {
+          "type": "question",
+          "settings": {
+            "question": "Mit barn nægter at sove med dyne. Er det anderledes med en tyngdedyne?",
+            "answer": "<p>Først og fremmest er det vigtigt at understrege, at barnet SKAL være i stand til at sparke dynen af, af sikkerhedsmæssige årsager. På den måde kan barnet temperaturregulere eller trække dynen ned, hvis den kommer for tæt på ansigtet.</p><p>Når det er sagt, er det ikke unormalt, at vi hører fra vores kunder, at babyer og børn, som før sparkede dynen af, faktisk sover med<br/>tyngdedynen på hele natten. Tyngden stimulerer nemlig det parasympatiske<br/>nervesystem, som hjælper rastløse babyer til at finde ro.</p><p>Har din baby for vane at sparke dynen af, så snart den kommer på, så kan det være en fordel, at lade fødderne være fri at tyngdedynen, når du putter. På dén måde kan baby nå at mærke effekten fra dynen, inden den sparkes af. Når baby sover tungt, lægges dynen over hele babys krop.</p>"
+          }
+        },
+        "question_n6JfRq": {
+          "type": "question",
+          "settings": {
+            "question": "Larmer dynen?",
+            "answer": "<p>Vores tyngdedyne hverken rasler, knitrer eller larmer. Det var vigtigt for os, at udvikle en næsten lydløs dyne, da især sensitive babyer<br/>samt tumlinger i 1-3 årsalderen nemt  bliver forstyrrede og utrygge af fremmede lyde.</p><p>Tyngdedynen fra LALATOTO larmer ikke mere end en almindelig dundyne, og forstyrrer altså hverken dig eller dit sovende barn.</p>"
+          }
+        },
+        "question_ngtD4W": {
+          "type": "question",
+          "settings": {
+            "question": "Hvorfor skal jeg vælge tyngdedynen fra LALATOTO frem for de andre produkter på markedet?",
+            "answer": "<p>Vi synes, at vi har kombineret det bedste fra markedet i én dyne!</p><p>Vores tyngdedyne er ikke bare en voksendyne i babystørrelse.<br/>Den er udviklet specifikt til babyer og småbørn med deres unikke behov for øje.</p><p>Desuden er den nem at bruge, og lægges blot over barnet, som du ville gøre med enhver anden dyne.</p><p>Vores tyngdedyne er meget lidt varmegivende og egner sig derfor særligt godt til varme børn, og ellers tilføres nattøj og/eller almindelig dundyne efter behov.</p><p>Noget helt særligt for vores tyngdedyne er, at dynen IKKE er vatteret, og det betyder at granulatet ligger meget direkte på huden. Det giver en helt særlig stimulering af kinæstesisansen, også kaldet muskel-ledsansen, som hjælper barnet til at afgrænse kroppen. En sådan følelse af afgrænsning kan<br/>være afgørende for tryghedsfølelsen og dermed evnen til at give sig hen til<br/>søvnen.</p><p>At dynen ikke er vatteret betyder også, at naturstene bevæger sig frit i ”lommerne” og hele tiden stimulerer muskel-ledsansen på en<br/>ny måde, når barnet bevæger sig. Det gør at barnet på en blid måde hjælpes til at finde ro natten igennem.</p>"
+          }
+        },
+        "question_UWJBKT": {
+          "type": "question",
+          "settings": {
+            "question": "Hvordan starter jeg bedst op med at anvende Jeres tyngdedyne?",
+            "answer": "<p>Langt de fleste babyer tager godt imod tyngdedynen fra første brug.</p><p>Er din baby særligt sensitiv, eller skal du bruge dynen til et ældre barn, anbefaler vi, at du først introducerer dynen i de vågne timer.<br/>Det er vigtigt at barnet har overskud, så dynen bliver forbundet med noget rart. Afhængig af dit barns alder, kan du introducere dynen i forbindelse med<br/>amning eller en hyggestund med historielæsning. </p><p>Når barnet er tryg ved sin nye dyne i vågen tilstand, kan man starte med at introducere den i forbindelse med søvn.</p><p>Vores bedste råd til en god start er;</p><p>Tålmodighed er en svær størrelse, når man er i massivt søvnunderskud, men du kan holde øje med de små tegn på, at der er bedring i<br/>vente. </p><p>For babyer viser de første tegn sig oftest ved lettere putning eller bedre dagslure. </p><p>For tumlinger er det altid et godt tegn, når barnet accepterer at sidde med dynen i vågen tilstand, og på den måde får sig en pause med fx dynen over benene. </p><p>Nætterne er oftest det sværeste at ændre på, og dermed også dér hvor effekten oftest viser sig sidst.</p>"
+          }
+        },
+        "question_h4r4Gm": {
+          "type": "question",
+          "settings": {
+            "question": "Hvornår vil det være en god ide, at prøve tyngdedynen fra LALATOTO?",
+            "answer": "<p>Hvis du oplever udfordringer med én eller flere af nedenstående situationer, så er der god chance for, at vores tyngdedyne kan<br/>være en kærkommen hjælp;</p><p>Mange forældre kender frustrationen at baby sov så fint i favnen, men vågner så snart de bliver lagt i egen seng og lignende. Oftest er<br/>det en aktiv moro-refleks, som gør at baby spjætter og vækker sig selv. <br/><br/>Ved at anvende tyngdedynen allerede ved indsovningen sikrer du, at baby stadig<br/>føler sig ”krammet” og tryg – selv når hun/han bliver overført til egen seng.</p><p>De fleste babyer oplever uro i kroppen. Om det er resultatet af en hård fødsel, overstimulering, et udviklingsspring eller noget helt fjerde, der gør det svært for din baby at finde ro, så kan det føles hårdt og<br/>magtesløst som forælder. Tyngdedynen fra LALATOTO har vist sig særlig effektiv til at hjælpe baby med at finde ro i egen krop. Babydynen stimulerer nemlig det parasympatiske nervesystem, som netop har med hvile og ro at gøre, og det betyder, at en rastsløs baby vil føle sig mere afslappet ved brug af dynen.</p><p>Tyngdedynens effekt på nervesystemet, sammenholdt med dynens svøbende egenskaber, har vist sig gunstig hos babyer med urolige arme. Det betyder færre opvågninger og længere søvnstræk hos sutteglade babyer.</p><p>Alle babyer har opvågninger i løbet af natten. Særligt for nogle er det svært at sove videre og komme ned i den dybe søvn, og for nogle<br/>børn fortsætter opvågningerne langt efter babystadiet. Vores tyngdedyne hjælper<br/>blidt dit barn videre i søvnen, fordi tyngden i sig selv har en beroligende og afslappende effekt. Men noget helt særligt ved tyngdedynen fra LALATOTO er den næsten direkte berøring granulatet har med huden. Det giver nemlig en helt særlig stimulering af muskel-ledsansen, som hjælper barnet til at afgrænse kroppen og skabe ro og tryghed. Når barnet bevæger sig i søvne, og måske fordi barnet er på vej ud af søvnen, stimulerer granulatet huden på en ny måde og barnet hjælpes til at bevare følelsen af tryghed natten igennem.</p><p>Nogle babyer sover særligt dårligt i perioder hvor deres udvikling går stærkt. Det er der ikke noget at sige til; verdenen opleves<br/>større, kroppen lærer pludseligt flere færdigheder og sindet forstår nye<br/>sammenhænge. Det kan være svært at lukke ned ved sovetid. Babydynen har vist<br/>sig effektiv fordi den medvirker til en øget tryghedsfølelse i form af dynens<br/>tyngde og dens svøbende egenskaber. Samtidig beroliges nervesystemet og kroppen hjælpes til at slappe af og finde ro.</p>"
+          }
+        },
+        "question_jwpw6d": {
+          "type": "question",
+          "disabled": true,
+          "settings": {
+            "question": "Hvornår hjælper tyngdedynen IKKE?",
+            "answer": "<p>Vores tyngdedyne har allerede hjulpet mange familier til bedre søvn. Men den er IKKE en sovepille.</p><p>Vores tyngdedyne hjælper som udgangspunkt ikke ved:</p><p>Brug altid din sunde fornuft og mavefornemmelse.</p>"
+          }
+        },
+        "question_CVETWw": {
+          "type": "question",
+          "settings": {
+            "question": "Tilbyder i søvngaranti",
+            "answer": "<p>Nej, vi tilbyder ikke søvngaranti.</p><p>Intet er forudsigeligt når det kommer til babyer og småbørn, og der er simpelthen så mange faktorer, som spiller ind på søvnen. Derfor synes vi ikke, at vi kan sætte en ramme og et mål for hvornår, tyngdedynen har indfriet forventningerne. At sætte en frist på for eksempel 30 dage modsiger også vores ønske om at skabe realistiske forventninger hos vores kunder. For nogle virker dynen helt fantastisk fra første nat, og for andre kræver det en længere tilvænning.</p><p>Vi ønsker at barnets tempo og signaler respekteres, og derfor ønsker vi ikke at stresse processen ved at opsætte en bagkant Med alle tyngdedyner medfølger en brugervejledning med vores bedste råd til en god opstart. Vi gør vores allerbedste for, at du får en god oplevelse med dynen.</p>"
+          }
+        },
+        "question_83Hpyc": {
+          "type": "question",
+          "settings": {
+            "question": "Julegave",
+            "answer": "<p>Står der mere søvn på ønskesedlen, så er en julegave fra os det oplagte valg!<br/><br/>Når du køber dine julegaver hos os fra d. 15. november 2024, kan varen byttes helt frem til d. 15. januar 2025. Når du gør brug at den forlængede returret, skal varen returneres i ubrugt stand og i original emballage. Returlabels kan som altid købes via vores returportal.</p><p>Rigtig glædelig jul fra os.</p>"
+          }
+        },
+        "category_x8Qyjq": {
+          "type": "category",
+          "settings": {
+            "title": "Efter køb",
+            "icon": "none",
+            "icon_width": 16
+          }
+        },
+        "question_BUGmAq": {
+          "type": "question",
+          "settings": {
+            "question": "Hvordan returnerer jeg?",
+            "answer": "<p>Du er velkommen til at købe en returlabel med GLS via vores returportal her. Du er også velkommen til at returnere pakken med et fragtfirma efter eget valg, såfremt pakken leveres på adressen. </p><p>Alle returforsendelser skal sendes til adressen:</p><p>HLO ApS<br/>Kulbyvej 16<br/>4270 Høng. </p>"
+          }
+        },
+        "question_Pr4cb4": {
+          "type": "question",
+          "settings": {
+            "question": "Hvornår kan jeg forvente min ordre?",
+            "answer": "<p>Vi ved, at vores produkter er svære at vente på, og derfor gør vi os umage for at tilbyde hurtig levering. Vi leverer derfor inden for 1-3 hverdage og endda til pakkeshop om lørdagen. </p>"
+          }
+        },
+        "question_7hy9fB": {
+          "type": "question",
+          "settings": {
+            "question": "Hvordan reklamerer jeg?",
+            "answer": "<p>Skulle du mod forventning opleve, at et produkt ikke lever op til vores høje standarder, så har du naturligvis altid 2 år reklamationsret.</p><p>Såfremt du finder en fejl på produktet, beder vi dig sende en e-mail til<br/><strong>kundeservice@lalatoto.dk</strong><br/>med billede af fejlen.<br/><br/>Oplys gerne ordrenummer og beskriv fejlen. </p><p>Er reklamationen berettiget, tilbyder vi at sende dig en returlabel, som du selv kan printe ud og påsætte pakken. Du er også velkommen til at benytte et fragtfirma efter eget valg. Vær blot opmærksom på, at pakken skal leveres direkte til adressen. Vi refunderer naturligvis dine (rimelige)<br/>fragtomkostninger. Husk blot at få en kvittering for afsendelse, så vi kan<br/>tilbagebetale dine fragtomkostninger</p><p>Reklamationer sendes efter aftale til adressen:</p><p>HLO ApS<br/>Kulbyvej 16<br/>4270 Høng. </p>"
+          }
+        }
+      },
+      "block_order": [
+        "category",
+        "question-1",
+        "question-2",
+        "question-3",
+        "question_WypayV",
+        "question_AdT7Fb",
+        "question_7gGRqL",
+        "question_T8Hzrw",
+        "question_hMxjTN",
+        "question_weXEW9",
+        "question_rC4gFq",
+        "question_iBBDmW",
+        "question_n6JfRq",
+        "question_ngtD4W",
+        "question_UWJBKT",
+        "question_h4r4Gm",
+        "question_jwpw6d",
+        "question_CVETWw",
+        "question_83Hpyc",
+        "category_x8Qyjq",
+        "question_BUGmAq",
+        "question_Pr4cb4",
+        "question_7hy9fB"
+      ],
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": true,
+        "show_categories": false,
+        "subheading": "",
+        "title": "FAQ - Spørgsmål og svar",
+        "content": ""
+      }
+    },
+    "recently_viewed_products_7PepzG": {
+      "type": "recently-viewed-products",
+      "settings": {
+        "separate_section_with_border": false,
+        "color_scheme": "",
+        "hide_product_information": false,
+        "stack_products": false,
+        "products_count": 9,
+        "products_per_row_mobile": "2",
+        "products_per_row_desktop": 4,
+        "horizontal_spacing_factor": 1,
+        "vertical_spacing_factor": 1,
+        "subheading": "",
+        "title": "Du har sidst kigget på",
+        "content": ""
+      }
+    }
+  },
+  "order": [
+    "faq",
+    "recently_viewed_products_7PepzG"
+  ]
+}

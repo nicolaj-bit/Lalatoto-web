@@ -1,0 +1,258 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {
+            "heading_tag": "h3"
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "show_taxes_notice": false
+          }
+        },
+        "text_4dVmjW": {
+          "type": "text",
+          "settings": {
+            "text": "<p>E-bog</p>"
+          }
+        },
+        "separator_gPnmRd": {
+          "type": "separator",
+          "settings": {}
+        },
+        "description_Db3eaC": {
+          "type": "description",
+          "settings": {
+            "collapse_content": false,
+            "show_below_gallery": false
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_payment_button": false,
+            "show_gift_card_recipient": false,
+            "atc_button_background": "#643c20",
+            "atc_button_text_color": "",
+            "payment_button_background": "",
+            "payment_button_text_color": ""
+          }
+        },
+        "oenskeskyen_wishlist_button_cMAJUn": {
+          "type": "shopify://apps/oenskeskyen/blocks/wishlist-button/be6e5a80-54ea-40af-aa80-5746282173b8",
+          "settings": {
+            "text": "Tilføj til ønskeskyen",
+            "rounded": "medium",
+            "size": "medium",
+            "position": "center",
+            "width": "fit-content",
+            "icon": "gowish",
+            "font": "inherit",
+            "color": "#1c1c1c",
+            "background": "rgba(0,0,0,0)",
+            "border": "",
+            "icon_color": "#0099bb",
+            "data-region": "denmark"
+          }
+        },
+        "complementary_products": {
+          "type": "complementary_products",
+          "disabled": true,
+          "settings": {
+            "title": "Pairs well with",
+            "products_count": 2,
+            "show_below_gallery": true,
+            "stack_products": false,
+            "show_quick_buy": true
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "price",
+        "text_4dVmjW",
+        "separator_gPnmRd",
+        "description_Db3eaC",
+        "buy_buttons",
+        "oenskeskyen_wishlist_button_cMAJUn",
+        "complementary_products"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "container_size": "lg",
+        "product_info_size": 35,
+        "show_sticky_add_to_cart": true,
+        "center_basic_info": true,
+        "desktop_media_layout": "carousel_thumbnails_bottom",
+        "desktop_media_grid_gap": 30,
+        "mobile_controls": "thumbnails",
+        "enable_media_autoplay": false,
+        "enable_video_looping": true,
+        "enable_image_zoom": false,
+        "max_image_zoom_level": 3
+      }
+    },
+    "multi_column_qKAikk": {
+      "type": "multi-column",
+      "blocks": {
+        "image_with_text_FrGicg": {
+          "type": "image_with_text",
+          "settings": {
+            "image": "shopify://shop_images/5_930e4e01-8eea-4480-bb85-6e1383c894e1.png",
+            "title": "",
+            "heading_tag": "h3",
+            "content": "",
+            "link_url": "",
+            "link_text": ""
+          }
+        },
+        "image_with_text_3hbmiW": {
+          "type": "image_with_text",
+          "settings": {
+            "image": "shopify://shop_images/13_766137ee-bbfc-4b37-bdad-d450b274557f.png",
+            "title": "",
+            "heading_tag": "h3",
+            "content": "",
+            "link_url": "",
+            "link_text": ""
+          }
+        },
+        "image_with_text_mXYfyj": {
+          "type": "image_with_text",
+          "settings": {
+            "image": "shopify://shop_images/4_2e4cdd74-5868-4649-89d6-24194227a66e.png",
+            "title": "",
+            "heading_tag": "h3",
+            "content": "",
+            "link_url": "",
+            "link_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_with_text_FrGicg",
+        "image_with_text_3hbmiW",
+        "image_with_text_mXYfyj"
+      ],
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": false,
+        "columns_per_row": 3,
+        "stack_on_mobile": false,
+        "overlap_image": false,
+        "content_alignment": "start",
+        "text_alignment": "start",
+        "spacing": "md",
+        "subheading": "",
+        "title": "",
+        "content": ""
+      }
+    },
+    "rich_text_aQ8aJy": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_hXTtKa": {
+          "type": "heading",
+          "settings": {
+            "text": "Lalatoto - Sara og nicolaj´s søvn univers",
+            "heading_tag": "h3"
+          }
+        },
+        "richtext_TxhqGU": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Vores produkter har allerede hjulpet mere end +10.000 familier med at finde ro i søvnen.</p><p>Vi er både glade for og stolte af at have designet og udviklet en af de mest <a href=\"https://www.lalatoto.dk/collections/tyngdyner\" target=\"_blank\" title=\"https://www.lalatoto.dk/collections/tyngdyner\">populære tyngdedyner</a> til børn på markedet. Siden LALATOTO gik i luften, har vi sendt mange tyngdedyner afsted til danske familier, og responsen fra vores kunder har været både overvældende og rørende.</p><p>Vi tror og håber også, at tyngdedynen vil blive en succes hjemme hos Jer.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_hXTtKa",
+        "richtext_TxhqGU"
+      ],
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": false,
+        "content_width": "sm",
+        "text_position": "center",
+        "remove_vertical_spacing": false
+      }
+    },
+    "image_with_text_4mzCWA": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_TNazKW": {
+          "type": "heading",
+          "settings": {
+            "text": "<em>\"Idéen til..</em>",
+            "heading_tag": "h3"
+          }
+        },
+        "richtext_kxccge": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p><em>..vores babyvenlige tyngdedyne fik jeg en vinternat i 2018, da jeg sad med vores lille søn i armene og kunne se frem til endnu en lang nat med mange opvågninger. Tyngdedynen blev vores redning, og nu trøster jeg mig med at vores hårdeste år, også blev året hvor vi skabte noget, som har hjulpet tudsinvis af børnefamilier i samme ulykkelig situation, som vi var i. Mit allerstørste ønske er, at tyngdedynen også kan blive en hjælp for dig\".</em></p>"
+          }
+        },
+        "subheading_pJeTTw": {
+          "type": "subheading",
+          "settings": {
+            "text": "Sara, stifter af LALATOTO, men allermest mor til Xander og Oskar"
+          }
+        }
+      },
+      "block_order": [
+        "heading_TNazKW",
+        "richtext_kxccge",
+        "subheading_pJeTTw"
+      ],
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": false,
+        "image": "shopify://shop_images/16_50b64f6d-dede-44d9-8862-b15745c13c0f.png",
+        "mobile_image": "shopify://shop_images/16_8f846300-f851-49d4-bdec-2de110718d6c.png",
+        "reveal_on_scroll": true,
+        "image_position": "end",
+        "content_width": "sm",
+        "remove_vertical_spacing": true
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": false,
+        "hide_product_information": false,
+        "stack_products": false,
+        "recommendations_count": 10,
+        "products_per_row_mobile": "2",
+        "products_per_row_desktop": 4,
+        "horizontal_spacing_factor": 1,
+        "vertical_spacing_factor": 1,
+        "subheading": "",
+        "title": "Du har sidst kigget på",
+        "content": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "multi_column_qKAikk",
+    "rich_text_aQ8aJy",
+    "image_with_text_4mzCWA",
+    "related-products"
+  ]
+}
