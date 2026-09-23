@@ -9,115 +9,35 @@
  */
 {
   "current": {
-    "icon_stroke_width": 1.7,
-    "section_vertical_spacing": "sm",
-    "button_border_radius": 8,
-    "input_border_radius": 8,
-    "default_color_scheme": "scheme-4",
-    "modal_color_scheme": "scheme-2",
-    "product_rating_color": "#16ff00",
+    "section_vertical_spacing": "md",
+    "product_rating_color": "#1c1c1c",
     "product_on_sale_accent": "#e32c2b",
-    "product_sold_out_badge_background": "#1c1c1c",
-    "product_custom_badge_background": "#643c20",
-    "success_color": "#45b03b",
-    "warning_color": "#45b03b",
-    "error_color": "#ff0100",
-    "heading_font": "univers_next_n4",
+    "product_sold_out_badge_background": "#efefef",
+    "product_custom_badge_background": "#1c1c1c",
+    "success_color": "#307a07",
+    "warning_color": "#ed8a00",
+    "error_color": "#cb2b2b",
+    "heading_font": "instrument_sans_n4",
     "heading_letter_spacing": 18,
-    "text_font": "univers_next_n4",
+    "text_font": "nunito_n4",
     "text_font_size_desktop": 14,
     "button_letter_spacing": 18,
-    "currency_code_enabled": false,
-    "round_color_swatches": true,
-    "product_image_aspect_ratio": "natural",
-    "product_card_text_font": "heading",
-    "show_quick_buy": true,
-    "show_sold_out_badge": false,
-    "show_discount": true,
-    "discount_mode": "percentage",
-    "cart_type": "drawer",
-    "cart_icon": "tote_bag",
-    "cart_show_free_shipping_bar": true,
-    "cart_free_shipping_threshold": "599",
-    "social_facebook": "https://www.facebook.com/Lalatoto.dk/",
-    "social_instagram": "https://www.instagram.com/lalatoto_of_denmark/",
-    "favicon": "shopify://shop_images/Design_uden_navn_46.png",
-    "product_price_color": "#121212",
-    "content_for_index": [],
-    "blocks": {
-      "1732888969108105213": {
-        "type": "shopify://apps/oenskeskyen/blocks/serverside-tracking/be6e5a80-54ea-40af-aa80-5746282173b8",
-        "disabled": false,
-        "settings": {}
-      },
-      "13768625480086291342": {
-        "type": "shopify://apps/forms/blocks/forms/8744a304-fcb1-4347-b211-bb6b4759a76a",
-        "disabled": false,
-        "settings": {}
-      },
-      "7079518687644006178": {
-        "type": "shopify://apps/checkout-blocks/blocks/app-embed/b0024ca5-9de8-4bf0-a92f-cd0783877ae2",
-        "disabled": false,
-        "settings": {
-          "utm_id": true,
-          "utm_source": true,
-          "utm_medium": true,
-          "utm_campaign": true,
-          "utm_term": true,
-          "ref": true
-        }
-      },
-      "15393088698543645836": {
-        "type": "shopify://apps/essential-preorder/blocks/app-embed/bb7e7a06-2a82-4e7d-8984-c3918deb1c2a",
-        "disabled": false,
-        "settings": {}
-      },
-      "144831480468751239": {
-        "type": "shopify://apps/essential-upsell/blocks/app-embed/50627fd9-24fd-4250-8614-accc12826d80",
-        "disabled": false,
-        "settings": {}
-      },
-      "15683396631634586217": {
-        "type": "shopify://apps/inbox/blocks/chat/841fc607-4181-4ad1-842d-e24d7f8bad6b",
-        "disabled": false,
-        "settings": {
-          "greeting_message": "Har du spørgsmål? Så skriv til Sara og Nicolaj her.",
-          "show_featured_products": true,
-          "featured_products": [],
-          "background_color": "#E7D3B1",
-          "font_color": "#000000",
-          "agent_invert_activator_colors": false,
-          "button_color": "#c1ab92",
-          "button_icon": "hand_wave",
-          "button_text": "contact",
-          "button_horizontal_position": "bottom_right",
-          "button_vertical_position": "lowest",
-          "agent_inherit_fonts": true,
-          "agent_font": "system_ui_n4",
-          "agent_font_size": 14,
-          "agent_activator_font_size": 13,
-          "agent_border_radius": 16
-        }
-      }
-    },
     "color_schemes": {
       "scheme-1": {
         "settings": {
-          "background": "#f4f4f4",
-          "background_gradient": "",
+          "background": "#efefef",
           "text_color": "#1c1c1c",
-          "primary_button_background": "#643c20",
+          "primary_button_background": "#1c1c1c",
           "primary_button_text_color": "#ffffff",
-          "circle_button_background": "#efefef",
+          "circle_button_background": "#ffffff",
           "circle_button_icon": "#1c1c1c"
         }
       },
       "scheme-2": {
         "settings": {
-          "background": "#f8f3ed",
-          "background_gradient": "",
+          "background": "#ffffff",
           "text_color": "#1c1c1c",
-          "primary_button_background": "#e7d3b1",
+          "primary_button_background": "#1c1c1c",
           "primary_button_text_color": "#ffffff",
           "circle_button_background": "#ffffff",
           "circle_button_icon": "#1c1c1c"
@@ -125,10 +45,9 @@
       },
       "scheme-3": {
         "settings": {
-          "background": "#c1ab92",
-          "background_gradient": "",
+          "background": "#1c1c1c",
           "text_color": "#ffffff",
-          "primary_button_background": "#e7d3b1",
+          "primary_button_background": "#ffffff",
           "primary_button_text_color": "#1c1c1c",
           "circle_button_background": "#ffffff",
           "circle_button_icon": "#1c1c1c"
@@ -136,56 +55,11 @@
       },
       "scheme-4": {
         "settings": {
-          "background": "#f4f4f4",
-          "background_gradient": "",
-          "text_color": "#1c1c1c",
-          "primary_button_background": "#e7d3b1",
-          "primary_button_text_color": "#1c1c1c",
-          "circle_button_background": "#e7d3b1",
-          "circle_button_icon": "#1c1c1c"
-        }
-      },
-      "scheme-5ca7c590-e514-4067-8e0f-855ea6e0d2c7": {
-        "settings": {
-          "background": "#e7d3b1",
-          "background_gradient": "",
-          "text_color": "#1c1c1c",
-          "primary_button_background": "#e7d3b1",
-          "primary_button_text_color": "#ffffff",
-          "circle_button_background": "rgba(0,0,0,0)",
-          "circle_button_icon": "#1c1c1c"
-        }
-      },
-      "scheme-fa7c43fb-9f4a-4bda-a2dd-b7a4441c7df2": {
-        "settings": {
           "background": "rgba(0,0,0,0)",
-          "background_gradient": "",
-          "text_color": "#1c1c1c",
-          "primary_button_background": "#e7d3b1",
-          "primary_button_text_color": "#ffffff",
-          "circle_button_background": "rgba(0,0,0,0)",
-          "circle_button_icon": "#1c1c1c"
-        }
-      },
-      "scheme-6dade007-d577-4f16-9482-63121a1262bb": {
-        "settings": {
-          "background": "#f8f3ed",
-          "background_gradient": "",
           "text_color": "#ffffff",
-          "primary_button_background": "#643c20",
-          "primary_button_text_color": "#ffffff",
-          "circle_button_background": "#f8f3ed",
-          "circle_button_icon": "#ffffff"
-        }
-      },
-      "scheme-8ecf2cb5-32b0-48e2-b0ef-0ab8b48b4a33": {
-        "settings": {
-          "background": "#c1ab92",
-          "background_gradient": "",
-          "text_color": "#1c1c1c",
-          "primary_button_background": "#e7d3b1",
+          "primary_button_background": "#ffffff",
           "primary_button_text_color": "#1c1c1c",
-          "circle_button_background": "#efefef",
+          "circle_button_background": "#ffffff",
           "circle_button_icon": "#1c1c1c"
         }
       }
@@ -231,6 +105,16 @@
           }
         },
         "scheme-4": {
+          "settings": {
+            "background": "rgba(0,0,0,0)",
+            "text_color": "#ffffff",
+            "primary_button_background": "#ffffff",
+            "primary_button_text_color": "#1c1c1c",
+            "circle_button_background": "#ffffff",
+            "circle_button_icon": "#1c1c1c"
+          }
+        },
+        "scheme-5": {
           "settings": {
             "background": "rgba(0,0,0,0)",
             "text_color": "#ffffff",
@@ -296,6 +180,16 @@
             "circle_button_background": "#ffffff",
             "circle_button_icon": "#1c1c1c"
           }
+        },
+        "scheme-5": {
+          "settings": {
+            "background": "rgba(0,0,0,0)",
+            "text_color": "#ffffff",
+            "primary_button_background": "#ffffff",
+            "primary_button_text_color": "#1c1c1c",
+            "circle_button_background": "#ffffff",
+            "circle_button_icon": "#1c1c1c"
+          }
         }
       },
       "success_color": "#307a07",
@@ -353,6 +247,16 @@
             "circle_button_background": "#ffffff",
             "circle_button_icon": "#1c1c1c"
           }
+        },
+        "scheme-5": {
+          "settings": {
+            "background": "rgba(0,0,0,0)",
+            "text_color": "#ffffff",
+            "primary_button_background": "#ffffff",
+            "primary_button_text_color": "#1c1c1c",
+            "circle_button_background": "#ffffff",
+            "circle_button_icon": "#1c1c1c"
+          }
         }
       },
       "success_color": "#307a07",
@@ -362,6 +266,161 @@
       "product_on_sale_accent": "#e32c2b",
       "product_sold_out_badge_background": "#efefef",
       "product_custom_badge_background": "#1c1c1c"
+    },
+    "Strass": {
+      "icon_stroke_width": 1,
+      "section_vertical_spacing": "xl",
+      "product_rating_color": "#1c1c1c",
+      "product_on_sale_accent": "#e32c2b",
+      "product_sold_out_badge_background": "#efefef",
+      "product_custom_badge_background": "#1c1c1c",
+      "success_color": "#307a07",
+      "warning_color": "#ed8a00",
+      "error_color": "#cb2b2b",
+      "heading_font": "red_rose_n4",
+      "heading_font_size_factor": 0.9,
+      "heading_letter_spacing": 5,
+      "text_font": "geist_n4",
+      "text_font_size_mobile": 13,
+      "text_font_size_desktop": 13,
+      "button_text_font": "heading",
+      "button_letter_spacing": 2,
+      "product_image_aspect_ratio": "portrait",
+      "color_schemes": {
+        "scheme-1": {
+          "settings": {
+            "background": "#fdfdfc",
+            "background_gradient": "",
+            "text_color": "#394943",
+            "primary_button_background": "#394943",
+            "primary_button_text_color": "#fdfdfc",
+            "circle_button_background": "#fdfdfc",
+            "circle_button_icon": "#394943"
+          }
+        },
+        "scheme-2": {
+          "settings": {
+            "background": "#ffffff",
+            "background_gradient": "",
+            "text_color": "#1c1c1c",
+            "primary_button_background": "#1c1c1c",
+            "primary_button_text_color": "#ffffff",
+            "circle_button_background": "#ffffff",
+            "circle_button_icon": "#1c1c1c"
+          }
+        },
+        "scheme-3": {
+          "settings": {
+            "background": "#304038",
+            "background_gradient": "",
+            "text_color": "#fdfdfc",
+            "primary_button_background": "#fdfdfc",
+            "primary_button_text_color": "#394943",
+            "circle_button_background": "#fdfdfc",
+            "circle_button_icon": "#394943"
+          }
+        },
+        "scheme-4": {
+          "settings": {
+            "background": "rgba(0,0,0,0)",
+            "background_gradient": "",
+            "text_color": "#fdfdfc",
+            "primary_button_background": "#ffffff",
+            "primary_button_text_color": "#1c1c1c",
+            "circle_button_background": "#ffffff",
+            "circle_button_icon": "#1c1c1c"
+          }
+        },
+        "scheme-5": {
+          "settings": {
+            "background": "rgba(0,0,0,0)",
+            "background_gradient": "",
+            "text_color": "#fdfdfc",
+            "primary_button_background": "#ffffff",
+            "primary_button_text_color": "#1c1c1c",
+            "circle_button_background": "#ffffff",
+            "circle_button_icon": "#1c1c1c"
+          }
+        }
+      }
+    },
+    "Signature": {
+      "icon_stroke_width": 1,
+      "section_vertical_spacing": "xl",
+      "modal_color_scheme": "scheme-1",
+      "product_rating_color": "#1c1c1c",
+      "product_on_sale_accent": "#e32c2b",
+      "product_sold_out_badge_background": "#efefef",
+      "product_custom_badge_background": "#1c1c1c",
+      "success_color": "#307a07",
+      "warning_color": "#ed8a00",
+      "error_color": "#cb2b2b",
+      "heading_font": "geist_n6",
+      "heading_font_size_factor": 0.9,
+      "heading_letter_spacing": 0,
+      "text_font": "geist_n4",
+      "text_font_size_mobile": 13,
+      "text_font_size_desktop": 13,
+      "text_font_letter_spacing": 0,
+      "button_text_font": "heading",
+      "button_letter_spacing": 0,
+      "cart_show_free_shipping_bar": false,
+      "color_schemes": {
+        "scheme-1": {
+          "settings": {
+            "background": "#ffffff",
+            "background_gradient": "",
+            "text_color": "#000000",
+            "primary_button_background": "#000000",
+            "primary_button_text_color": "#ffffff",
+            "circle_button_background": "#ffffff",
+            "circle_button_icon": "#000000"
+          }
+        },
+        "scheme-2": {
+          "settings": {
+            "background": "#000000",
+            "background_gradient": "",
+            "text_color": "#ffffff",
+            "primary_button_background": "#ffffff",
+            "primary_button_text_color": "#000000",
+            "circle_button_background": "#ffffff",
+            "circle_button_icon": "#000000"
+          }
+        },
+        "scheme-3": {
+          "settings": {
+            "background": "#f8f7f5",
+            "background_gradient": "",
+            "text_color": "#000000",
+            "primary_button_background": "#000000",
+            "primary_button_text_color": "#ffffff",
+            "circle_button_background": "#ffffff",
+            "circle_button_icon": "#000000"
+          }
+        },
+        "scheme-4": {
+          "settings": {
+            "background": "rgba(0,0,0,0)",
+            "background_gradient": "",
+            "text_color": "#ffffff",
+            "primary_button_background": "#ffffff",
+            "primary_button_text_color": "#1c1c1c",
+            "circle_button_background": "#ffffff",
+            "circle_button_icon": "#1c1c1c"
+          }
+        },
+        "scheme-5": {
+          "settings": {
+            "background": "rgba(0,0,0,0)",
+            "text_color": "#ffffff",
+            "primary_button_background": "#ffffff",
+            "primary_button_text_color": "#1c1c1c",
+            "circle_button_background": "#ffffff",
+            "circle_button_icon": "#1c1c1c"
+          }
+        }
+      }
     }
   }
 }

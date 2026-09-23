@@ -11,31 +11,11 @@
   "sections": {
     "main": {
       "type": "main-article",
-      "settings": {
-        "color_scheme": "",
-        "show_image": true,
-        "enable_parallax": true,
-        "image_size": "medium",
-        "content_width": "xs",
-        "show_date": true,
-        "show_category": true,
-        "show_author": false,
-        "show_share_buttons": false,
-        "show_sticky_bar": false,
-        "toolbar_color_scheme": ""
-      }
+      "settings": {}
     },
     "prev-next-blog-posts": {
       "type": "prev-next-blog-posts",
-      "settings": {
-        "color_scheme": "",
-        "separate_section_with_border": false,
-        "subheading": "",
-        "title": "Læs flere",
-        "show_category": true,
-        "show_excerpt": true,
-        "show_read_more": true
-      }
+      "settings": {}
     }
   },
   "order": [

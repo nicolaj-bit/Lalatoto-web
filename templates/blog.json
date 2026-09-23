@@ -9,108 +9,12 @@
  */
 {
   "sections": {
-    "top_collection_list_KBAAEk": {
-      "type": "top-collection-list",
-      "blocks": {
-        "collection_qHV6eA": {
-          "type": "collection",
-          "settings": {
-            "image": "shopify://shop_images/LALATOTO_Fritlagte_Produktbilleder_7.png",
-            "heading": "Månepude",
-            "badge": "Nyhed",
-            "url": "shopify://products/moon-pillow"
-          }
-        },
-        "collection_UN4aXP": {
-          "type": "collection",
-          "settings": {
-            "image": "shopify://shop_images/LALATOTO_Fritlagte_Produktbilleder.png",
-            "heading": "Sengerand",
-            "badge": "",
-            "url": "shopify://products/sengerand"
-          }
-        },
-        "collection_h3YCLi": {
-          "type": "collection",
-          "settings": {
-            "image": "shopify://shop_images/26.png",
-            "heading": "Tyngdedyner",
-            "badge": "Bestseller",
-            "url": "shopify://collections/tyngdedyner"
-          }
-        },
-        "collection_LdCWhW": {
-          "type": "collection",
-          "settings": {
-            "image": "shopify://shop_images/18.png",
-            "heading": "Sengeslange",
-            "badge": "",
-            "url": "shopify://products/luksus-sengeslange"
-          }
-        },
-        "collection_NYpxFR": {
-          "type": "collection",
-          "settings": {
-            "image": "shopify://shop_images/2_fc3f1976-537e-42d4-88a0-07237fee2017.png",
-            "heading": "Sengetøj",
-            "badge": "",
-            "url": "shopify://collections/sengetoj"
-          }
-        }
-      },
-      "block_order": [
-        "collection_qHV6eA",
-        "collection_UN4aXP",
-        "collection_h3YCLi",
-        "collection_LdCWhW",
-        "collection_NYpxFR"
-      ],
-      "name": "Top collection list",
-      "settings": {
-        "background_color": "#f4f4f4",
-        "text_color": "#000000",
-        "badge_color": "#8E5F40",
-        "heading": "Vores populære kollektioner",
-        "columns_per_row": 5
-      }
-    },
     "main": {
       "type": "main-blog",
-      "settings": {
-        "color_scheme": "scheme-4",
-        "show_blog_title": true,
-        "show_rss_feed": false,
-        "show_tags": true,
-        "posts_per_page": 7,
-        "feature_first_blog_post": true,
-        "featured_blog_post_color_scheme": "scheme-3",
-        "show_category": true,
-        "show_date": false,
-        "show_excerpt": true,
-        "show_read_more": true
-      }
-    },
-    "recently_viewed_products_7NWHyB": {
-      "type": "recently-viewed-products",
-      "settings": {
-        "separate_section_with_border": false,
-        "color_scheme": "scheme-4",
-        "hide_product_information": false,
-        "stack_products": false,
-        "products_count": 9,
-        "products_per_row_mobile": "2",
-        "products_per_row_desktop": 4,
-        "horizontal_spacing_factor": 1,
-        "vertical_spacing_factor": 1,
-        "subheading": "",
-        "title": "Du har sidst kigget på",
-        "content": ""
-      }
+      "settings": {}
     }
   },
   "order": [
-    "top_collection_list_KBAAEk",
-    "main",
-    "recently_viewed_products_7NWHyB"
+    "main"
   ]
 }

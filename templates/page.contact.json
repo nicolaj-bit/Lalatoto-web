@@ -12,91 +12,15 @@
     "main": {
       "type": "main-page",
       "disabled": true,
-      "settings": {
-        "color_scheme": "",
-        "show_title": true,
-        "page_width": "xs"
-      }
-    },
-    "rich_text_f94qHR": {
-      "type": "rich-text",
-      "blocks": {
-        "richtext_UF8XmJ": {
-          "type": "richtext",
-          "settings": {
-            "content": "<h1>Det er bare os,<br/>du får i røret</h1>"
-          }
-        }
-      },
-      "block_order": [
-        "richtext_UF8XmJ"
-      ],
-      "disabled": true,
-      "settings": {
-        "color_scheme": "",
-        "separate_section_with_border": false,
-        "content_width": "sm",
-        "text_position": "center",
-        "remove_vertical_spacing": false
-      }
-    },
-    "teamet_NMxqHj": {
-      "type": "Teamet",
-      "blocks": {
-        "images_FRiYbp": {
-          "type": "images",
-          "settings": {
-            "image": "shopify://shop_images/Portraet_Sara_cirkel.png",
-            "image_caption": "",
-            "image_a": "shopify://shop_images/Portraet_Sara_cirkel.png",
-            "image_a_caption": "",
-            "name": "Sara",
-            "position": "",
-            "content": "",
-            "content_alignment": "left"
-          }
-        },
-        "images_H938hx": {
-          "type": "images",
-          "settings": {
-            "image": "shopify://shop_images/IMG_8614_1_-modified.png",
-            "image_caption": "",
-            "image_a": "shopify://shop_images/IMG_8614_1_-modified.png",
-            "image_a_caption": "",
-            "name": "Nicolaj",
-            "position": "",
-            "content": "",
-            "content_alignment": "center"
-          }
-        }
-      },
-      "block_order": [
-        "images_FRiYbp",
-        "images_H938hx"
-      ],
-      "settings": {
-        "teamheading": "Det er bare os, du får i røret",
-        "heading_font": "univers_next",
-        "heading_font_size": 30,
-        "heading_color": "#1c1c1c",
-        "heading_bold": false
-      }
+      "settings": {}
     },
     "contact-form": {
       "type": "contact",
-      "settings": {
-        "color_scheme": "scheme-4",
-        "separate_section_with_border": false,
-        "subheading": "",
-        "title": "Kontakt os",
-        "content": "<p>Ring til os: +45 72 15 66 86.<br/><br/>Vi sidder klar mandag-torsdag kl. 9-15 og fredag kl. 9-14 (helligdage undtaget)<br/><br/>Skriv til os: kundeservice@lalatoto.dk<br/>- Alle henvendelser besvares indenfor 24 timer på hverdage.</p><p>- eller benyt formularen</p>"
-      }
+      "settings": {}
     }
   },
   "order": [
     "main",
-    "rich_text_f94qHR",
-    "teamet_NMxqHj",
     "contact-form"
   ]
 }

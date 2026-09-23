@@ -11,159 +11,49 @@
   "type": "header",
   "name": "Header group",
   "sections": {
-    "announcement-bar": {
-      "type": "announcement-bar",
-      "blocks": {
-        "message_Kg8QJJ": {
-          "type": "message",
-          "disabled": true,
-          "settings": {
-            "text": "<a href=\"/collections/alle-produkter\" title=\"Alle produkter\">KÆMPE NYHED - NYE PRODUKTER</a>"
-          }
-        },
-        "message-1": {
-          "type": "message",
-          "settings": {
-            "text": "7 år som familie virksomhed, drevet med hjertet"
-          }
-        },
-        "message_7WQgwL": {
-          "type": "message",
-          "settings": {
-            "text": "Altid fri fragt ved køb over 599,-"
-          }
-        },
-        "message_yHWBMF": {
-          "type": "message",
-          "disabled": true,
-          "settings": {
-            "text": ""
-          }
-        }
-      },
-      "block_order": [
-        "message_Kg8QJJ",
-        "message-1",
-        "message_7WQgwL",
-        "message_yHWBMF"
-      ],
+    "countdown-timer": {
+      "type": "countdown-condensed",
       "settings": {
-        "color_scheme": "scheme-5ca7c590-e514-4067-8e0f-855ea6e0d2c7",
-        "enable_sticky": true,
-        "autoplay": true,
-        "cycle_speed": 5,
-        "desktop_font_size": 11,
-        "mobile_font_size": 10
+        "color_scheme": "schema-3",
+        "content": "super Sale Up to 40% off",
+        "link_text": "shop now",
+        "link_url": "shopify://collections/all",
+        "expiration_date": "2025-11-25",
+        "expiration_behavior": "leave",
+        "desktop_justification": "space-between"
       }
     },
     "header": {
       "type": "header",
-      "blocks": {
-        "mega_menu_EaCaaF": {
-          "type": "mega_menu",
-          "settings": {
-            "menu_item": "Shop",
-            "images_position": "right",
-            "image_1_heading": "",
-            "image_1_text": "",
-            "image_1_link": "",
-            "image_2_heading": "",
-            "image_2_text": "",
-            "image_2_link": ""
-          }
-        },
-        "mega_menu_rWmztt": {
-          "type": "mega_menu",
-          "settings": {
-            "menu_item": "LÆR OS AT KENDE",
-            "images_position": "right",
-            "image_1_heading": "",
-            "image_1_text": "",
-            "image_1_link": "",
-            "image_2_heading": "",
-            "image_2_text": "",
-            "image_2_link": ""
-          }
-        },
-        "mega_menu_NL3rDb": {
-          "type": "mega_menu",
-          "settings": {
-            "menu_item": "KUNDESERVICE",
-            "images_position": "right",
-            "image_1_heading": "",
-            "image_1_text": "",
-            "image_1_link": "",
-            "image_2_heading": "",
-            "image_2_text": "",
-            "image_2_link": ""
-          }
-        },
-        "mega_menu_BJLPVn": {
-          "type": "mega_menu",
-          "settings": {
-            "menu_item": "SØVNHJÆLP",
-            "images_position": "right",
-            "image_1_heading": "",
-            "image_1_text": "",
-            "image_1_link": "",
-            "image_2_heading": "",
-            "image_2_text": "",
-            "image_2_link": ""
-          }
-        }
-      },
-      "block_order": [
-        "mega_menu_EaCaaF",
-        "mega_menu_rWmztt",
-        "mega_menu_NL3rDb",
-        "mega_menu_BJLPVn"
-      ],
       "settings": {
-        "color_scheme": "scheme-2",
+        "color_scheme": "schema-2",
         "enable_sticky": true,
-        "hide_on_scroll": true,
-        "show_separation_border": false,
+        "hide_on_scroll": false,
+        "show_separation_border": true,
         "reduce_padding": false,
-        "logo": "shopify://shop_images/LALATOTO_LOGOFILER_3.png",
-        "logo_max_width": 160,
-        "logo_mobile_max_width": 135,
+        "logo": "{{shop.brand.logo}}",
+        "logo_max_width": 130,
+        "logo_mobile_max_width": 80,
         "menu": "main-menu",
-        "sidebar_menu": "main-menu",
         "menu_open_trigger": "hover",
         "menu_text_font": "heading",
         "enable_search": true,
-        "sidebar_color_scheme": "scheme-2",
+        "sidebar_color_scheme": "schema-2",
         "sidebar_text_font": "heading",
-        "sidebar_show_dividers": true,
+        "sidebar_show_dividers": false,
         "sidebar_open_second_level_menus": false,
-        "layout": "logo_center_navigation_below",
+        "layout": "logo_center_navigation_inline",
         "show_icons": true,
         "show_country_selector": true,
         "show_country_name": false,
         "show_country_flag": true,
-        "show_locale_selector": true,
-        "transparent_header_text_color": "rgba(0,0,0,0)",
-        "transparent_logo": "shopify://shop_images/LALATOTO_LOGOFILER_3.png"
-      }
-    },
-    "countdown_condensed_Hc9fzm": {
-      "type": "countdown-condensed",
-      "disabled": true,
-      "name": "t:sections.countdown_timer.presets.countdown_timer.name",
-      "settings": {
-        "color_scheme": "",
-        "content": "Weekendstilbud - spar 20% hele weekenden",
-        "link_text": "",
-        "link_url": "",
-        "expiration_date": "2025-06-29 23:59",
-        "expiration_behavior": "hide",
-        "desktop_justification": "space-between"
+        "show_locale_selector": false,
+        "transparent_header_text_color": "#ffffff"
       }
     }
   },
   "order": [
-    "announcement-bar",
-    "header",
-    "countdown_condensed_Hc9fzm"
+    "countdown-timer",
+    "header"
   ]
 }

@@ -68,8 +68,6 @@
           <input type="hidden" name="contact[tags]" value="newsletter">
 
           <div class="form-row">
-            {%- assign name_label = 'general.newsletter.name' | t -%}
-            {%- render 'input', name: 'contact[name]', label: name_label, label_hidden: true, type: 'text', required: true, autocomplete: 'name', placeholder: 'Enter your name' -%}
             {%- assign input_label = 'general.newsletter.email' | t -%}
 
             {%- render 'input', name: 'contact[email]', label: input_label, label_hidden: true, type: 'email', required: true, autocomplete: 'email', enterkeyhint: 'send' -%}

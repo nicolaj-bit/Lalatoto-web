@@ -11,67 +11,31 @@
   "type": "footer",
   "name": "Footer group",
   "sections": {
-    "newsletter_f9U6Di": {
-      "type": "newsletter",
-      "settings": {
-        "color_scheme": "scheme-3",
-        "separate_section_with_border": false,
-        "image_size": "lg",
-        "image": "shopify://shop_images/Billede_nyhedsbrev_computer.png",
-        "mobile_image": "shopify://shop_images/Billede_nyhedsbrev_mobil.png",
-        "subheading": "Få 15% rabat på din første ordre.",
-        "title": "TILMELD DIG VORES NYHEDSBREV OG BLIV EN DEL AF FAMILIEN!",
-        "content": "",
-        "button_text": "Skriv mig op",
-        "overlay_color": "#1c1c1c",
-        "overlay_opacity": 30
-      }
-    },
     "text-with-icons": {
       "type": "text-with-icons",
       "blocks": {
         "icon-1": {
           "type": "item",
           "settings": {
-            "icon": "picto-award-gift",
-            "custom_icon": "shopify://shop_images/HLO_Ikon_Dansk_flag.png",
-            "icon_width": 40,
-            "mobile_icon_width": 40,
-            "title": "DANSK VIRKSOMHED",
-            "content": "<p>Alle vores produkter er designet og udviklet af os.</p>"
+            "title": "Free delivery worldwide"
           }
         },
         "icon-2": {
           "type": "item",
           "settings": {
-            "icon": "picto-award-gift",
-            "custom_icon": "shopify://shop_images/HLO_Ikon_Symaskine.png",
-            "icon_width": 40,
-            "mobile_icon_width": 40,
-            "title": "OMSORGSFULD PRODUKTION",
-            "content": "<p>Alle vores produkter er syet af glade syersker på danskejede systuer.</p>"
+            "title": "Satisfied or refunded"
           }
         },
         "icon-3": {
           "type": "item",
           "settings": {
-            "icon": "picto-award-gift",
-            "custom_icon": "shopify://shop_images/Hjerte.png",
-            "icon_width": 40,
-            "mobile_icon_width": 40,
-            "title": "ELSKET AF DANSKE FORÆLDRE",
-            "content": "<p>5 ★★★★★</p>"
+            "title": "Top-notch support"
           }
         },
         "icon-4": {
           "type": "item",
           "settings": {
-            "icon": "picto-award-gift",
-            "custom_icon": "shopify://shop_images/HLO_Ikon_Pokal.png",
-            "icon_width": 40,
-            "mobile_icon_width": 40,
-            "title": "VI ER EKSPERTER",
-            "content": "<p>7 års erfaring med tyngdedyner til småbørn, kommer dig til gode.</p>"
+            "title": "Secure payments"
           }
         }
       },
@@ -81,74 +45,39 @@
         "icon-3",
         "icon-4"
       ],
-      "settings": {
-        "color_scheme": "scheme-4",
-        "separate_section_with_border": false,
-        "stack_on_mobile": false,
-        "icon_color": "rgba(0,0,0,0)",
-        "text_color": "#1c1c1c",
-        "text_alignment": "center"
-      }
+      "settings": {}
     },
     "footer": {
       "type": "footer",
       "blocks": {
-        "text": {
-          "type": "text",
-          "settings": {
-            "title": "LALATOTO of Denmark ApS",
-            "content": "<p>CVR: 45149218<br/><a href=\"tel:+4572156686\" title=\"tel:+4572156686\">+45 72 15 66 86<br/></a>Mandag-torsdag: 9-15 og fredag: 9-14.<br/>Kundeservice@lalatoto.dk</p>",
-            "enable_follow_on_shop": false
-          }
-        },
-        "links_JqieJe": {
-          "type": "links",
-          "settings": {
-            "menu": "om-os",
-            "show_menu_title": false,
-            "menu_title": ""
-          }
+        "newsletter": {
+          "type": "newsletter",
+          "settings": {}
         },
         "links": {
           "type": "links",
           "settings": {
             "menu": "footer",
-            "show_menu_title": false,
-            "menu_title": ""
+            "show_menu_title": true
           }
         },
-        "newsletter_Wh7mht": {
-          "type": "newsletter",
-          "disabled": true,
+        "text": {
+          "type": "text",
           "settings": {
-            "title": "Newsletter",
-            "content": "<p>Sign up to our newsletter to receive exclusive offers.</p>",
-            "button_background": "",
-            "button_text_color": ""
+            "title": "About",
+            "content": "<p>Use this text area to tell your customers about your brand and vision. You can change it in the theme editor.</p>"
           }
         }
       },
       "block_order": [
-        "text",
-        "links_JqieJe",
+        "newsletter",
         "links",
-        "newsletter_Wh7mht"
+        "text"
       ],
-      "settings": {
-        "color_scheme": "",
-        "separate_section_with_border": false,
-        "show_social_media": true,
-        "show_payment_icons": false,
-        "show_powered_by_shopify": true,
-        "show_country_selector": true,
-        "show_country_name": false,
-        "show_country_flag": true,
-        "show_locale_selector": false
-      }
+      "settings": {}
     }
   },
   "order": [
-    "newsletter_f9U6Di",
     "text-with-icons",
     "footer"
   ]

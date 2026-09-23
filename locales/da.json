@@ -53,8 +53,7 @@
       "email": "E-mail",
       "subscribe": "Abonnér",
       "notify_me": "Underret mig",
-      "subscribed_successfully": "Du er tilmeldt vores nyhedsbrev.",
-      "name": "Dit Navn"
+      "subscribed_successfully": "Du er tilmeldt vores nyhedsbrev."
     },
     "localization": {
       "country": "Land",
@@ -93,7 +92,7 @@
   "product": {
     "general": {
       "description": "Beskrivelse",
-      "add_to_cart_button": "Føj til kurv",
+      "add_to_cart_button": "Føj til indkøbskurv",
       "pre_order_button": "Forudbestil",
       "sold_out_button": "Udsolgt",
       "unavailable_button": "Ikke tilgængelig",
@@ -103,14 +102,14 @@
       "added_to_cart": "Føjet til din indkøbskurv!",
       "added_to_cart_with_title": "{{ product_title }} er blevet tilføjet til kurven.",
       "sold_out_badge": "Udsolgt",
-      "on_sale_badge": "Tilbud",
+      "on_sale_badge": "På tilbud",
       "discount_badge_html": "Spar {{ savings }}",
       "sku": "SKU:",
       "variant": "Variant",
       "view_in_space": "Se den i dit område",
       "taxes_included": "Inkl. moms.",
       "taxes_excluded": "Ekskl. moms.",
-      "shipping_policy_html": "Moms og <a href=\"{{ link }}\" class=\"link\">levering beregnes</a> ved kassen",
+      "shipping_policy_html": "Moms og <a href=\"{{ link }}\" class=\"link\">levering beregnes<\/a> ved kassen",
       "size_chart": "Størrelsesoversigt",
       "available_colors_count": {
         "one": "{{ count }} farve tilgængelig",
@@ -149,18 +148,18 @@
       "other": "{{ count }} anmeldelser"
     },
     "inventory": {
-      "in_stock": "Levering 1-2 hverdage.",
+      "in_stock": "På lager",
       "low_stock": "Kun få enheder tilbage",
       "in_stock_with_quantity_count": {
-        "one": "Levering 1-2 hverdage.",
-        "other": "Levering 1-2 hverdage."
+        "one": "{{ count }} på lager",
+        "other": "{{ count }} på lager"
       },
-      "out_of_stock": "🔴 Udsolgt",
-      "oversell_stock": "🟢 Denne variant kan forudbestilles med forlænget leveringstid.",
-      "incoming_stock": "Kommer på lager igen { next_incoming_date }",
+      "out_of_stock": "Udsolgt",
+      "oversell_stock": "Kommer snart på lager igen",
+      "incoming_stock": "Kommer på lager igen {{ next_incoming_date }}",
       "low_stock_with_quantity_count": {
-        "one": "Levering 1-2 hverdage.",
-        "other": "Levering 1-2 hverdage."
+        "one": "Kun {{count}} enhed tilbage",
+        "other": "Kun {{count}} enheder tilbage"
       }
     },
     "store_availability": {
@@ -372,9 +371,9 @@
       "view_cart": "Vis indkøbskurv",
       "checkout": "Gå til kasse",
       "we_accept": "Vi accepterer",
-      "taxes_and_shipping_policy_at_checkout_html": "Moms og <a href=\"{{ link }}\" class=\"link\">levering</a> beregnes ved kassen",
+      "taxes_and_shipping_policy_at_checkout_html": "Moms og <a href=\"{{ link }}\" class=\"link\">levering<\/a> beregnes ved kassen",
       "taxes_included_but_shipping_at_checkout": "Inkl. moms og levering beregnes ved kassen",
-      "taxes_included_and_shipping_policy_html": "Moms inkluderet. <a href=\"{{ link }}\" class=\"link\">Levering</a> beregnes ved kassen.",
+      "taxes_included_and_shipping_policy_html": "Moms inkluderet. <a href=\"{{ link }}\" class=\"link\">Levering<\/a> beregnes ved kassen.",
       "taxes_and_shipping_at_checkout": "Moms og levering beregnes ved kassen"
     },
     "order": {
@@ -386,7 +385,7 @@
     },
     "free_shipping_bar": {
       "limit_unreached_html": "Brug {{ remaining_amount }} mere og få gratis levering!",
-      "limit_reached_html": "Tillykke 🎉 Du har opnået fri fragt!"
+      "limit_reached_html": "Du er berettiget til gratis levering."
     },
     "shipping_estimator": {
       "estimate_shipping": "Anslået levering",
@@ -519,31 +518,6 @@
         "other": "{{ count }} varer"
       },
       "product_subtotal": "Produkt subtotal"
-    }
-  },
-  "shopify": {
-    "checkout": {
-      "payment": {
-        "card_security_notice": "Ved betaling med VISA, MasterCard, Visa Elektron og Mobilepay reserveres købsbeløbet på din konto, indtil betaling sker",
-        "card_information_notice": "Ved betaling med VISA, MasterCard, Visa Elektron og Mobilepay reserveres købsbeløbet på din konto, indtil betaling sker",
-        "card_security_vault_notice": "Ved betaling med VISA, MasterCard, Visa Elektron og Mobilepay reserveres købsbeløbet på din konto, indtil betaling sker"
-      },
-      "marketing": {
-        "accept_marketing_checkbox_label": "Vil du være en del af familien og være den første til at få nyheder og tilbud, så behold krydset i feltet. ",
-        "accept_sms_checkbox_label": "JA tak, for at være på VIP liste med nyheder og tilbud på SMS."
-      }
-    }
-  },
-  "customer_accounts": {
-    "payment_methods": {
-      "card_fields": {
-        "tooltip": {
-          "card_security_notice": "Ved betaling med VISA, MasterCard, Visa Elektron og Mobilepay reserveres købsbeløbet på din konto, indtil betaling sker"
-        }
-      }
-    },
-    "order_details": {
-      "marketing_checkbox_label": "Vil du være en del af familien og være den første til at få nyheder og tilbud, så behold krydset i feltet. "
     }
   }
 }

@@ -53,8 +53,7 @@
       "email": "E-mail",
       "subscribe": "Subscribe",
       "notify_me": "Notify me",
-      "subscribed_successfully": "You have been subscribed to our newsletter.",
-      "name": "Your Name"
+      "subscribed_successfully": "You have been subscribed to our newsletter."
     },
     "localization": {
       "country": "Country",
@@ -110,7 +109,7 @@
       "view_in_space": "View in your space",
       "taxes_included": "Tax included.",
       "taxes_excluded": "Tax excluded.",
-      "shipping_policy_html": "<a href=\"{{ link }}\" class=\"link\">Shipping calculated</a> at checkout",
+      "shipping_policy_html": "<a href=\"{{ link }}\" class=\"link\">Shipping calculated<\/a> at checkout",
       "size_chart": "Size chart",
       "available_colors_count": {
         "one": "{{ count }} color available",
@@ -184,8 +183,7 @@
     },
     "products_count": {
       "one": "{{ count }} product",
-      "other": "{{ count }} products",
-      "zero": "0 products"
+      "other": "{{ count }} products"
     },
     "faceting": {
       "filters": "Filters",
@@ -227,8 +225,7 @@
       "comment_published": "Your comment has been published.",
       "count": {
         "one": "{{ count }} comment",
-        "other": "{{ count }} comments",
-        "zero": "{{ count }} comments"
+        "other": "{{ count }} comments"
       }
     }
   },
@@ -427,13 +424,11 @@
     },
     "results_count": {
       "one": "{{ count }} result",
-      "other": "{{ count }} results",
-      "zero": "0 results"
+      "other": "{{ count }} results"
     },
     "results_count_for_terms": {
       "one": "{{ count }} result for \"{{ terms }}\"",
-      "other": "{{ count }} results for \"{{ terms }}\"",
-      "zero": "0 results for \" {{ terms }} \""
+      "other": "{{ count }} results for \"{{ terms }}\""
     }
   },
   "gift_card": {
