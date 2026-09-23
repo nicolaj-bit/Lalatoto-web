@@ -1,0 +1,341 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "collection-banner": {
+      "type": "collection-banner",
+      "settings": {
+        "color_scheme": "",
+        "image_size": "auto",
+        "allow_transparent_header": true,
+        "show_image": false,
+        "reveal": true,
+        "enable_parallax": true,
+        "show_collection_title": true,
+        "show_collection_description": true,
+        "show_breadcrumb": true,
+        "content_width": "xs",
+        "overlay_color": "#000000",
+        "overlay_opacity": 30
+      }
+    },
+    "main": {
+      "type": "main-collection",
+      "settings": {
+        "color_scheme": "",
+        "hide_product_information": false,
+        "products_per_page": 12,
+        "products_per_row_mobile": "2",
+        "products_size_desktop": "medium",
+        "show_grid_mode_selector": false,
+        "horizontal_spacing_factor": 1,
+        "vertical_spacing_factor": 1,
+        "filter_layout": "sidebar",
+        "quick_links_menu": "kategorier",
+        "show_sort_by": false,
+        "show_filters": true,
+        "show_results_count": false,
+        "show_filter_group_name": false,
+        "show_filter_values_count": true,
+        "open_filters_by_default": false
+      }
+    },
+    "anmeldelser_RaPdrW": {
+      "type": "Anmeldelser",
+      "blocks": {
+        "custom_GaEYWF": {
+          "type": "custom",
+          "settings": {
+            "name": "Sheila Fuglsang",
+            "date": "4. nov. 2024",
+            "des": "<p><strong>Nicolaj og Sara som vi kender.</strong><br/>Lalatoto er hush little one's nye navn. Med samme fantastiske produkter og de samme søde mennesker. Køb køb 🤩</p>",
+            "product": ""
+          }
+        },
+        "custom_4tCVK4": {
+          "type": "custom",
+          "settings": {
+            "name": "Mille Hallgreen",
+            "date": "3. nov. 2024",
+            "des": "<p><strong>Verdens bedste redning til forældre og deres børn.</strong><br/>Vi har igennem flere år brugt produkter fra LALATOTO. Både deres babydyne, juniordyne og deres natdragter til vores drenge, med stor succes.<br/>Sara og Nicolaj er altid hurtige til at svare og vejlede i den bedste oplevelse af deres produkter.<br/>Jeg vil altid anbefale det skønne firma og deres geniale produkter!</p>",
+            "product": ""
+          }
+        },
+        "custom_6GrqbB": {
+          "type": "custom",
+          "settings": {
+            "name": "Henriette",
+            "date": "4. nov. 2024",
+            "des": "<p><strong>Et valg du ikke fortryder!!</strong><br/>Et valg du ikke fortryder!!<br/>(Tidligere Hush Little One), fantastisk brand med fantastiske produkter. Pengene værd. God service, høj kvalitet</p>",
+            "product": ""
+          }
+        },
+        "custom_z3BQF4": {
+          "type": "custom",
+          "settings": {
+            "name": "Anne Sofie Evert",
+            "date": "4. nov. 2024",
+            "des": "<p><strong>Overgik alle mine forventninger.</strong><br/>Oplevelsen med at handle ved lalatoto (tidl. Hush little one) overgår virkelig alle mine forventninger. Jeg tør næsten ikke sige det højt, men min datter er gået fra meget urolig søvn med mange opvågninger til at sove lange stræk på op til syv timer med dynen og nesten allerede fra 6 mdr.<br/><br/>Derudover tror jeg ærlig talt aldrig, at jeg har oplevet så varm, personlig og samtidig professionel kundeservice før. Imponerende hurtig levering og behagelig og kompetent sparring.<br/><br/>Endelig skal det jo nævnes, at Lalatoto har stor fokus på social bæredygtighed hvilket kommer til udtryk i kvaliteten af produktet og produktionsforholdene - så udover at støtte en dansk iværksættervirksomhed, så kan du ovenikøbet have en god følelse med produktionen. Jeg kan med andre ord ikke anbefale lalatoto nok!</p>",
+            "product": ""
+          }
+        },
+        "custom_niN4z9": {
+          "type": "custom",
+          "settings": {
+            "name": "Mette H.",
+            "date": "3. nov. 2024",
+            "des": "<p><strong>God og meget hurtig kundeservice.</strong><br/>Jeg oplevede en god og meget hurtig service. Jeg bestilte dynen mandag aften og modtog pakken onsdag formiddag. Dynen er virkelig lækker og det virker som om, at den er ved at blive accepteret af modtageren.</p>",
+            "product": ""
+          }
+        },
+        "custom_YHe9ri": {
+          "type": "custom",
+          "settings": {
+            "name": "Tine Damgaard",
+            "date": "19. dec. 2024",
+            "des": "<p><strong>Lækre produkter og god service</strong><br/>Lækre produkter (dog venter vi lidt på effekt af tyngdedyne :D), flot webshop, men det vigtigste af alt: rigtig god service og hurtig forsendelse. Jeg søgte råd angående noget teknisk med inden jeg bestilte og jeg fik en meget grundigt svar, også med reference til danske myndigheders anbefalinger indenfor området. Da jeg så modtog ordren lå der en fin lille personlig hilsen med, med ønsket om god søvn. Helt klart anbefalelsesværdigt! Produkterne er ikke de billigste, MEN helt klart pengene værd, da andre producenter ikke har samme kvalitet (hold øje med alle de gode rabatkoder der løbende er;) )</p>",
+            "product": ""
+          }
+        },
+        "custom_XYQ3Gp": {
+          "type": "custom",
+          "settings": {
+            "name": "Stine Bølling",
+            "date": "19. nov. 2024",
+            "des": "<p><strong>Sengeslangen var min redning som gravid</strong><br/>Som gravid som jeg utrolig dårlig! Blev anbefalet en “graviditetspølse”.<br/>En besked til Sara, som besvarede mine spørgsmål på den mest imødekommende og varme måde. Jeg købte sengeslangen. Som fra dag ét reddede min søvn, smerter og lign om natten. Det er lidt tyngde i den, så den altså er lidt tung og derfor bliver liggende. Man får ikke bare lige skubbet den ud af sengen, og den har en tykkelse som gør at den ikke “bare” klasker sammen mellem ens ben. Den var seriøst guld værd! Og jeg vil anbefale den til alle gravide😍<br/>Nu har vores datter overtaget den, da den gør hendes seng mindre og tryg. Tak for jer!</p>",
+            "product": ""
+          }
+        },
+        "custom_GcPjF9": {
+          "type": "custom",
+          "settings": {
+            "name": "Simone Rønhøj Villumsen",
+            "date": "3. nov. 2024",
+            "des": "<p><strong>Sara & Nicolaj fra Lalatoto kender du sikkert fra Hush little One som var i løvens hule.<br/></strong>Samme fantastiske produkter blot under et nyt navn! Tyngdedynen har gjort en kæmpe forskel for vores dreng siden han var 6 måneder i forhold til motorisk uro og så snart deres sengerand kom på lager måtte jeg også eje den. Den skuffer på ingen måde. Jeg elsker at den har stof som kan komme under madrassen, så sovemiljøet er helt trygt og sikkert. Det er ikke sidste gang jeg handler hos Lalatoto!</p>",
+            "product": ""
+          }
+        },
+        "custom_ciJPFq": {
+          "type": "custom",
+          "settings": {
+            "name": "Christine T",
+            "date": "4. nov. 2024",
+            "des": "<p><strong>Fntastisk produkt til babys søvn<br/></strong>Vores søn på 4 måneder har indtil nu kun ville falde i søvn<br/>i bevægelse i enten slyngvugge eller barnevogn. Vi har prøvet alt, men valgte<br/>at give jeres tyngdedyne et forsøg og han er nu for første gang faldet nemt og<br/>hurtigt i søvn i sin SENG. Tusind tak for et godt produkt 🧡</p>",
+            "product": ""
+          }
+        },
+        "custom_PeXfhf": {
+          "type": "custom",
+          "settings": {
+            "name": "Johanne Ellne Fllg",
+            "date": "4. nov. 2024",
+            "des": "<p><strong>Bedste service, bedste produkter.<br/></strong>Tyngdedynen har vi været så glade for, multinesten har<br/>simpelthen redet vores søn’s søvn fra han var helt lille. Vi tager den stadig<br/>med overalt ved overnatning, den ville vi ikke kunne leve uden. TAK</p>",
+            "product": ""
+          }
+        },
+        "custom_RFeabL": {
+          "type": "custom",
+          "settings": {
+            "name": "Stinne Pedersen",
+            "date": "13. nov. 2024",
+            "des": "<p><strong>Fantastisk produkter og ikke mindst fantastisk service!</strong>Havde et par spørgsmål inden mit køb at multinesten og de<br/>stod klar med det samme for at hjælpe. En virkelig nærværende lille perle.</p>",
+            "product": ""
+          }
+        },
+        "custom_8mVKyM": {
+          "type": "custom",
+          "settings": {
+            "name": "Tina Nolsø",
+            "date": "8 jan. 2025",
+            "des": "<p><strong>Super hurtig service og varen var perfekt.</strong><br/>Super hurtig service og varen var perfekt 😊</p>",
+            "product": ""
+          }
+        },
+        "custom_tEYPAi": {
+          "type": "custom",
+          "settings": {
+            "name": "Julie Zeuthen",
+            "date": "13. nov. 2024",
+            "des": "<p><strong>Skøn </strong><a href=\"/collections/tyngdedyner\" title=\"Tyngdedyner\"><strong>tyngdedyne</strong></a><strong> og </strong><a href=\"/products/luksus-sengeslange\" title=\"Luksus sengeslange\"><strong>multinest</strong></a><strong>.</strong><br/>God kundeservice, lækre produkter (har købt multinest og tyngdedyne) og hurtig levering - meget tilfreds 😊</p>",
+            "product": ""
+          }
+        },
+        "custom_BkbYkN": {
+          "type": "custom",
+          "settings": {
+            "name": "Didde F",
+            "date": "4. nov. 2024",
+            "des": "<p><strong>Kæmpe anbefaling!</strong><br/>Vi er så glade for deres <a href=\"/collections/tyngdedyner\" title=\"Tyngdedyner\">tyngdedyne</a> og multinest, det har gjort at vores datter sover meget bedre. Virkelig lækre produkter!</p>",
+            "product": ""
+          }
+        },
+        "custom_QzLgyD": {
+          "type": "custom",
+          "settings": {
+            "name": "Dani",
+            "date": "4. nov. 2024",
+            "des": "<p><strong>Vi fik ENDELIG sammenhængende søvn igen.</strong><br/>Vi fik ENDELIG sammenhængende søvn igen, efter vi fik <a href=\"/collections/tyngdedyner\" title=\"Tyngdedyner\">tyngdedynen</a> og mulitinesten fra Lalatoto. Jeg kan ikke anbefale deres produkter nok! 🙌🏼❤️</p>",
+            "product": ""
+          }
+        },
+        "custom_m7TnbX": {
+          "type": "custom",
+          "settings": {
+            "name": "Sara schandorph",
+            "date": "4. nov. 2024",
+            "des": "<p><strong>Kæmpe anbefaling og high5 herfra. </strong><br/>Har handlet hos dem (da de hed ‘hush little one’) og deres produkter er så lækre og uundværlige. Afventer nu at deres nye sengerand forhåbentligt kommer på lager i den farve jeg vil have 😍</p>",
+            "product": ""
+          }
+        },
+        "custom_Vr8jCJ": {
+          "type": "custom",
+          "settings": {
+            "name": "Fie Lillerøj",
+            "date": "3. nov. 2024",
+            "des": "<p><strong>10000 stjerner, hvis muligt 🤩</strong><br/>Søvnen hos min søn blev redet af JER og jeres <a href=\"/collections/tyngdedyner\" title=\"Tyngdedyner\">tyngdedyne</a>. Vi gik fra lange putninger til 2-3 minutters putninger og bedst af alt - lange søvnstræk.</p>",
+            "product": ""
+          }
+        }
+      },
+      "block_order": [
+        "custom_GaEYWF",
+        "custom_4tCVK4",
+        "custom_6GrqbB",
+        "custom_z3BQF4",
+        "custom_niN4z9",
+        "custom_YHe9ri",
+        "custom_XYQ3Gp",
+        "custom_GcPjF9",
+        "custom_ciJPFq",
+        "custom_PeXfhf",
+        "custom_RFeabL",
+        "custom_8mVKyM",
+        "custom_tEYPAi",
+        "custom_BkbYkN",
+        "custom_QzLgyD",
+        "custom_m7TnbX",
+        "custom_Vr8jCJ"
+      ],
+      "settings": {
+        "rating_text": "Læs vores kundeanmeldelser",
+        "header_text_da": "Vores kunder siger det bedre, end vi selv kan",
+        "header_text_en": "Loved by those who knows best – our customers!",
+        "heading_level": "h3"
+      }
+    },
+    "rich_text_biVWBV": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_mXEwpL": {
+          "type": "heading",
+          "settings": {
+            "text": "<strong>Sengerand til tremmeseng fra LALATOTO</strong>",
+            "heading_tag": "h2"
+          }
+        },
+        "richtext_KNhX3K": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Hos LALATOTO er vi dedikerede til og passionerede omkring at designe og udvikle produkter, der er med til at sikre en bedre nattesøvn for de kære små. Et af de produkter, der kan have en positiv indvirkning på babys søvn er en sengerand, og vi har nu æren af at præsentere vores nye <a href=\"https://www.lalatoto.dk/collections/sengerand\" target=\"_blank\" title=\"Sengerand\">sengerand</a>, der har mange fordele og features.</p><p>Med en sengerand kan du skabe en hyggelig stemning i tremmesengen og samtidig beskytte din elskede dreng eller pige mod hårde kanter og tremmer. Sengeranden er let og hurtig at montere i tremmesengen. Den holdes på plads med snorene, der let bindes fast om tremmerne.</p>"
+          }
+        },
+        "subheading_zwCUiC": {
+          "type": "subheading",
+          "settings": {
+            "text": "<strong>En helt særlig feature for ekstra sikkerhed</strong>"
+          }
+        },
+        "richtext_kxEFpG": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Vores sengerand har desuden en særlig feature, der gør, at den skiller sig ud fra traditionelle sengerande. <a href=\"https://www.lalatoto.dk/collections/sengerand\" title=\"Sengerand\">Sengeranden</a> fra Lalatoto har et lag stof under bunden, så den kan foldes rundt om madrassen.<br/>Fordelen ved denne feature er, at det gør det umuligt for barnet at presse sine små hænder eller fødder ud mellem tremmerne.<br/><br/></p>"
+          }
+        },
+        "subheading_WDeM3X": {
+          "type": "subheading",
+          "settings": {
+            "text": "<strong>Plastikfri sengerand med fyld af </strong><a href=\"https://www.lalatoto.dk/blogs/bloggen/kapok-alt-du-skal-vide-om-fiberens-egenskaber-og-fordele\" title=\"Kapok - Alt du skal vide om fiberens egenskaber og fordele\"><strong>kapok</strong></a>"
+          }
+        },
+        "richtext_jdqeaY": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Du får med vores sengerand en plastikfri sengerand, der er fremstillet af gode og holdbare materialer.<br/>Produktet er ikke kun forsynet med de bedste materialer udvendigt, men også indvendigt.<br/><br/>Sengerandens fyld er nemlig <a href=\"https://www.lalatoto.dk/blogs/bloggen/kapok-alt-du-skal-vide-om-fiberens-egenskaber-og-fordele\" title=\"Kapok - Alt du skal vide om fiberens egenskaber og fordele\">kapok</a>, som byder på en lang række gode egenskaber. Kapok er en naturfiber, der er kendt for at være både isolerende, svedtransporterende og allergivenlig. Dit barn er derfor sikret et tørt og komfortabelt sovemiljø, hvis du køber en sengerand med fyld af kapok til ham eller hende.</p>"
+          }
+        },
+        "subheading_yJjFtC": {
+          "type": "subheading",
+          "settings": {
+            "text": "<strong>Sengeranden er allergivenlig</strong>"
+          }
+        },
+        "richtext_gDwkLX": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Kapok, som vi har brugt i vores sengerand, er et fantastisk materiale til bl.a. allergikere.<br/><br/>Fibrene indeholder nemlig et bitterstof, der gør, at husstøvmider ikke kan leve i materialet. Vores sengerand er ikke kun et godt valg til den eksisterende allergiker, men også til dig, der vil undgå, at dit barn udvikler allergi.</p>"
+          }
+        },
+        "subheading_JRNXbE": {
+          "type": "subheading",
+          "settings": {
+            "text": "<strong>Køb sengeranden i flere forskellige farver</strong>"
+          }
+        },
+        "richtext_DzaWCN": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Vores veludviklede <a href=\"https://www.lalatoto.dk/collections/sengerand\" title=\"Sengerand\">sengerand</a> kommer i et flot design og fås i flere skønne farver. Sengeranden fås naturligvis til både piger og drenge, og du kan ved bestilling nemt vælge den farve, som du bedst kan lide.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_mXEwpL",
+        "richtext_KNhX3K",
+        "subheading_zwCUiC",
+        "richtext_kxEFpG",
+        "subheading_WDeM3X",
+        "richtext_jdqeaY",
+        "subheading_yJjFtC",
+        "richtext_gDwkLX",
+        "subheading_JRNXbE",
+        "richtext_DzaWCN"
+      ],
+      "name": "t:sections.rich_text.presets.rich_text.name",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": true,
+        "content_width": "sm",
+        "text_position": "center",
+        "remove_vertical_spacing": false
+      }
+    },
+    "seo_rich_text_Eh7Ppk": {
+      "type": "Seo-rich-text",
+      "disabled": true,
+      "settings": {
+        "heading": "Sengerand til tremmeseng fra LALATOTO",
+        "rich_text": "<p>Hos LALATOTO er vi dedikerede til og passionerede omkring at designe og udvikle produkter, der er med til at sikre en bedre nattesøvn for de kære små. Et af de produkter, der kan have en positiv indvirkning på babys søvn er en sengerand, og vi har nu æren af at præsentere vores nye <a href=\"https://www.lalatoto.dk/collections/sengerand\" target=\"_blank\" title=\"Sengerand\">sengerand</a>, der har mange fordele og features.</p><p>Med en sengerand kan du skabe en hyggelig stemning i tremmesengen og samtidig beskytte din elskede dreng eller pige mod hårde kanter og tremmer. Sengeranden er let og hurtig at montere i tremmesengen. Den holdes på plads med snorene, der let bindes fast om tremmerne.</p><p> </p><h2>En helt særlig feature for ekstra sikkerhed</h2><p>Vores sengerand har desuden en særlig feature, der gør, at den skiller sig ud fra traditionelle sengerande. <a href=\"https://www.lalatoto.dk/collections/sengerand\" title=\"Sengerand\">Sengeranden</a> fra Lalatoto har et lag stof under bunden, så den kan foldes rundt om madrassen.<br/>Fordelen ved denne feature er, at det gør det umuligt for barnet at presse sine små hænder eller fødder ud mellem tremmerne.</p><p> </p><h2>Plastikfri sengerand med fyld af <a href=\"https://www.lalatoto.dk/blogs/bloggen/kapok-alt-du-skal-vide-om-fiberens-egenskaber-og-fordele\" title=\"Kapok - Alt du skal vide om fiberens egenskaber og fordele\">kapok</a></h2><p>Du får med vores sengerand en plastikfri sengerand, der er fremstillet af gode og holdbare materialer.</p><p>Produktet er ikke kun forsynet med de bedste materialer udvendigt, men også indvendigt.<br/><br/>Sengerandens fyld er nemlig <a href=\"https://www.lalatoto.dk/blogs/bloggen/kapok-alt-du-skal-vide-om-fiberens-egenskaber-og-fordele\" title=\"Kapok - Alt du skal vide om fiberens egenskaber og fordele\">kapok</a>, som byder på en lang række gode egenskaber. Kapok er en naturfiber, der er kendt for at være både isolerende, svedtransporterende og allergivenlig.<br/>Dit barn er derfor sikret et tørt og komfortabelt sovemiljø, hvis du køber en sengerand med fyld af kapok til ham eller hende.</p><p> </p><h2>Sengeranden er allergivenlig</h2><p>Kapok, som vi har brugt i vores sengerand, er et fantastisk materiale til bl.a. allergikere.<br/><br/>Fibrene indeholder nemlig et bitterstof, der gør, at husstøvmider ikke kan leve i materialet. Vores sengerand er ikke kun et godt valg til den eksisterende allergiker, men også til dig, der vil undgå, at dit barn udvikler allergi.</p><p> </p><h2>Køb sengeranden i flere forskellige farver</h2><p>Vores veludviklede <a href=\"https://www.lalatoto.dk/collections/sengerand\" title=\"Sengerand\">sengerand</a> kommer i et flot design og fås i flere skønne farver. Sengeranden fås naturligvis til både piger og drenge, og du kan ved bestilling nemt vælge den farve, som du bedst kan lide.</p><p> </p><h2>Få leveret en <a href=\"https://www.lalatoto.dk/products/sengerand\" title=\"Sengerand\"><strong>sengerand</strong></a> af høj kvalitet på 1-3 hverdage</h2><p>Ønsker du også at skabe et hyggeligt og rart sovemiljø for din baby? Så kan du gøre ligesom mange andre forældre – køb en sengerand og skab en lille blød rede, der beskytter barnet, afskærmer mod lys og lyd, og skaber en beroligende atmosfære.</p><p>Når du bestiller en sengerand fra LALATOTO, bestræber vi os på at levere inden for 1-3 hverdage.</p>",
+        "button_text": "Læs mere",
+        "button_text_less": "Læs mindre",
+        "heading_font": "'Univers Next', sans-serif",
+        "heading_font_weight": "normal",
+        "text_font": "'Univers Next', sans-serif",
+        "richtext_heading_font_weight": "normal"
+      }
+    }
+  },
+  "order": [
+    "collection-banner",
+    "main",
+    "anmeldelser_RaPdrW",
+    "rich_text_biVWBV",
+    "seo_rich_text_Eh7Ppk"
+  ]
+}

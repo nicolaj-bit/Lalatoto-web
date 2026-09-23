@@ -1,0 +1,596 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {
+            "heading_tag": "h1"
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "show_taxes_notice": false
+          }
+        },
+        "badges_imc3bX": {
+          "type": "badges",
+          "disabled": true,
+          "settings": {}
+        },
+        "variant_picker_yq7BTW": {
+          "type": "variant_picker",
+          "settings": {
+            "hide_sold_out_variants": false,
+            "selector_style": "block",
+            "swatch_selector_style": "swatch",
+            "variant_image_options": "",
+            "size_chart_page": ""
+          }
+        },
+        "inventory_N9cqAH": {
+          "type": "inventory",
+          "settings": {
+            "show_in_stock_quantity": true,
+            "low_inventory_threshold": 0,
+            "show_progress_bar": false,
+            "progress_bar_max_value": 50
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_payment_button": false,
+            "show_gift_card_recipient": false,
+            "atc_button_background": "#643c20",
+            "atc_button_text_color": "",
+            "payment_button_background": "",
+            "payment_button_text_color": ""
+          }
+        },
+        "liquid_yfGrfa": {
+          "type": "liquid",
+          "settings": {
+            "liquid": "<div id='ss-trust-badge'></div>"
+          }
+        },
+        "oenskeskyen_wishlist_button_bMhRwf": {
+          "type": "shopify://apps/oenskeskyen/blocks/wishlist-button/be6e5a80-54ea-40af-aa80-5746282173b8",
+          "settings": {
+            "text": "Tilføj til ønskeskyen",
+            "rounded": "none",
+            "size": "medium",
+            "position": "center",
+            "width": "fit-content",
+            "icon": "gowish",
+            "font": "inherit",
+            "color": "#1c1c1c",
+            "background": "rgba(0,0,0,0)",
+            "border": "",
+            "icon_color": "#0099bb",
+            "data-region": "denmark"
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {
+            "collapse_content": false,
+            "show_below_gallery": false
+          }
+        },
+        "accordion_BEMeBJ": {
+          "type": "accordion",
+          "settings": {
+            "show_below_gallery": false,
+            "icon": "none",
+            "title": "SPECIFIKATIONER",
+            "content": "<ul><li><strong>Mål</strong>: 80 cm. Høj</li><li><strong>Materiale</strong>: 100% tætvævet bomuld.</li><li><strong>Vaskevejledning</strong>: <a href=\"/pages/vaksevejledning\" title=\"Vaksevejledning\">Klik her</a></li></ul>",
+            "liquid": "",
+            "page": ""
+          }
+        },
+        "accordion_64DQhB": {
+          "type": "accordion",
+          "settings": {
+            "show_below_gallery": false,
+            "icon": "none",
+            "title": "Produktpleje",
+            "content": "<p><strong>Vaskeanvisning</strong></p><p>Månepuden kommer med en inderpude af kapok samt et betræk med lynlås.<br/>Betrækket kan vaskes ved helt op til 60 grader og tåler tørretumbler. Inderpuden kan pletfjernes med vand og mild sæbe.</p><p>Vi opfordrer til, at du ikke vasker betrækket mere end højst nødvendigt, og har du god tid, så lad det tørre på tørresnoren frem for i tørretumbleren. På den måde skåner du ikke kun betrækket men også miljøet.</p><p>Læs udførlig guide <a href=\"/pages/vaksevejledning\" title=\"Vaksevejledning\">her</a></p>",
+            "liquid": "",
+            "page": ""
+          }
+        },
+        "accordion_VnT6ti": {
+          "type": "accordion",
+          "settings": {
+            "show_below_gallery": false,
+            "icon": "none",
+            "title": "Produceret med omtanke",
+            "content": "<p>Vores produkter er syet med størst mulig omsorg for familiens mindste, men også for den syerske, som har tryllet metervarer om til dette smukke produkt.</p><p>Vi har nemlig sagt \"nej tak\" til samlebåndsarbejde i vores produktion, og \"ja tak\" til arbejdsglæde og faglig stolthed. Derfor syes alle vores tekstilprodukter af dygtige kvinder på en danskejet systue i Hanoi, hvor fair løn og arbejdsforhold er en selvfølge, og hvor den gode dialog og det<br/>tætte samarbejde i alle led vægtes højt.</p><p>Vi er nemlig slet ikke i tvivl om, at den gode energi kan både ses og mærkes i det færdige produkt. Vi kalder det; god arbejdslyst og god karma.</p>",
+            "liquid": "",
+            "page": ""
+          }
+        },
+        "complementary_products": {
+          "type": "complementary_products",
+          "disabled": true,
+          "settings": {
+            "title": "Tilføj sengetøj og spar 20%",
+            "products_count": 1,
+            "show_below_gallery": false,
+            "stack_products": true,
+            "show_quick_buy": true
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "price",
+        "badges_imc3bX",
+        "variant_picker_yq7BTW",
+        "inventory_N9cqAH",
+        "buy_buttons",
+        "liquid_yfGrfa",
+        "oenskeskyen_wishlist_button_bMhRwf",
+        "description",
+        "accordion_BEMeBJ",
+        "accordion_64DQhB",
+        "accordion_VnT6ti",
+        "complementary_products"
+      ],
+      "settings": {
+        "color_scheme": "",
+        "container_size": "lg",
+        "product_info_size": 35,
+        "show_sticky_add_to_cart": true,
+        "center_basic_info": true,
+        "desktop_media_layout": "carousel_thumbnails_bottom",
+        "desktop_media_grid_gap": 30,
+        "mobile_controls": "thumbnails",
+        "enable_media_autoplay": false,
+        "enable_video_looping": true,
+        "enable_image_zoom": false,
+        "max_image_zoom_level": 3
+      }
+    },
+    "scrolling_content_NQXNjY": {
+      "type": "scrolling-content",
+      "blocks": {
+        "image_tAr7Pn": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/IMG_9653.jpg"
+          }
+        },
+        "image_pAnBLq": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/81.png"
+          }
+        },
+        "image_C49ime": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/82.png"
+          }
+        },
+        "image_pRk7Dc": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/83.png"
+          }
+        },
+        "image_iQkQaa": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/85.png"
+          }
+        }
+      },
+      "block_order": [
+        "image_tAr7Pn",
+        "image_pAnBLq",
+        "image_C49ime",
+        "image_pRk7Dc",
+        "image_iQkQaa"
+      ],
+      "disabled": true,
+      "name": "t:sections.scrolling_content.presets.scrolling_content.name",
+      "settings": {
+        "separate_section_with_border": false,
+        "scrolling_speed": 0.1,
+        "scroll_direction": "left",
+        "pause_on_hover": false,
+        "text_font": "heading",
+        "text_font_size_mobile": 60,
+        "text_font_size_desktop": 110,
+        "section_vertical_spacing_mobile": 10,
+        "section_vertical_spacing_desktop": 10,
+        "item_horizontal_spacing_mobile": 10,
+        "item_horizontal_spacing_desktop": 10,
+        "background": "",
+        "text_color": ""
+      }
+    },
+    "multiple_media_with_text_qUUw8r": {
+      "type": "multiple-media-with-text",
+      "blocks": {
+        "video_ET9YPz": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/fca00c8b5bb14220821975fe9e05cf3d (2).mov",
+            "rotation": 0
+          }
+        }
+      },
+      "block_order": [
+        "video_ET9YPz"
+      ],
+      "name": "t:sections.multiple_media_with_text.presets.multiple_media_with_text.name",
+      "settings": {
+        "color_scheme": "scheme-3",
+        "reveal_on_scroll": true,
+        "separate_section_with_border": false,
+        "media_position_desktop": "before_text",
+        "media_position_mobile": "before_text",
+        "media_layout": "overlap",
+        "media_alignment": "center",
+        "media_alignment_offset": 0,
+        "media_mobile_alignment_offset": 0,
+        "text_alignment": "center",
+        "subheading": "",
+        "title": "Månepuden",
+        "content": "<p>Lille måne; så blød og rar,<br/>til hvile og leg står altid klar.<br/>En pude, en ven, et hoved at bære,<br/>hvor drømme og fantasi får lov til at være.<br/><br/></p>",
+        "button_1_text": "",
+        "button_1_link": "",
+        "button_1_style": "solid",
+        "button_2_text": "",
+        "button_2_link": "",
+        "button_2_style": "solid"
+      }
+    },
+    "rich_text_qVFQMG": {
+      "type": "rich-text",
+      "blocks": {
+        "richtext_RNr89R": {
+          "type": "richtext",
+          "settings": {
+            "content": "<h3>\"Nej tak\" til polyester</h3>"
+          }
+        },
+        "richtext_RDqcx3": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Hos LALATOTO har vi taget et bevidst valg om at sige nej til polyester og i stedet udelukkende anvende naturlige materialer såsom kapok. <br/><br/>Dette gør mange processer i både udviklings- og produktionsfasen mere komplicerede og besværlige, for ikke at tale om, at det naturlige valg desværre også oftest er dyrere. Men for os er det alligevel en no-brainer – det handler nemlig om at passe på både din familie og på vores miljø.</p><p>Polyester er et syntetisk materiale fremstillet af plastik via en kemisk proces. Polyester er ikke åndbart og kan samtidig afgive mikroplast til omgivelserne. Derimod er kapok et 100 % naturligt og bæredygtigt materiale, dyrket uden brug af kemi, og så er det både allergivenligt, åndbart og temperaturregulerende. Det giver et sundere sovemiljø uden risikoen for unødvendige kemikalier og mikroplast.<br/></p><p>Ved at vælge naturens egne materialer sikrer vi, at vores produkter er skånsomme for både mennesker og miljø – uden at gå på kompromis<br/>med kvalitet og funktionalitet. I sin enkelthed handler det sådan set bare om at sætte produkter i verden, som vi er stolte af, og som du trygt kan anvende til dig selv eller til familiens mindste.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "richtext_RNr89R",
+        "richtext_RDqcx3"
+      ],
+      "settings": {
+        "color_scheme": "scheme-4",
+        "separate_section_with_border": false,
+        "content_width": "sm",
+        "text_position": "center",
+        "remove_vertical_spacing": false
+      }
+    },
+    "anmeldelser_rTYGz6": {
+      "type": "Anmeldelser",
+      "blocks": {
+        "custom_GaEYWF": {
+          "type": "custom",
+          "settings": {
+            "name": "Sheila Fuglsang",
+            "date": "4. nov. 2024",
+            "des": "<p><strong>Nicolaj og Sara som vi kender.</strong><br/>Lalatoto er hush little one's nye navn. Med samme fantastiske produkter og de samme søde mennesker. Køb køb 🤩</p>",
+            "product": ""
+          }
+        },
+        "custom_4tCVK4": {
+          "type": "custom",
+          "settings": {
+            "name": "Mille Hallgreen",
+            "date": "3. nov. 2024",
+            "des": "<p><strong>Verdens bedste redning til forældre og deres børn.</strong><br/>Vi har igennem flere år brugt produkter fra LALATOTO. Både deres babydyne, juniordyne og deres natdragter til vores drenge, med stor succes.<br/>Sara og Nicolaj er altid hurtige til at svare og vejlede i den bedste oplevelse af deres produkter.<br/>Jeg vil altid anbefale det skønne firma og deres geniale produkter!</p>",
+            "product": ""
+          }
+        },
+        "custom_6GrqbB": {
+          "type": "custom",
+          "settings": {
+            "name": "Henriette",
+            "date": "4. nov. 2024",
+            "des": "<p><strong>Et valg du ikke fortryder!!</strong><br/>Et valg du ikke fortryder!!<br/>(Tidligere Hush Little One), fantastisk brand med fantastiske produkter. Pengene værd. God service, høj kvalitet</p>",
+            "product": ""
+          }
+        },
+        "custom_z3BQF4": {
+          "type": "custom",
+          "settings": {
+            "name": "Anne Sofie Evert",
+            "date": "4. nov. 2024",
+            "des": "<p><strong>Overgik alle mine forventninger.</strong><br/>Oplevelsen med at handle ved lalatoto (tidl. Hush little one) overgår virkelig alle mine forventninger. Jeg tør næsten ikke sige det højt, men min datter er gået fra meget urolig søvn med mange opvågninger til at sove lange stræk på op til syv timer med dynen og nesten allerede fra 6 mdr.<br/><br/>Derudover tror jeg ærlig talt aldrig, at jeg har oplevet så varm, personlig og samtidig professionel kundeservice før. Imponerende hurtig levering og behagelig og kompetent sparring.<br/><br/>Endelig skal det jo nævnes, at Lalatoto har stor fokus på social bæredygtighed hvilket kommer til udtryk i kvaliteten af produktet og produktionsforholdene - så udover at støtte en dansk iværksættervirksomhed, så kan du ovenikøbet have en god følelse med produktionen. Jeg kan med andre ord ikke anbefale lalatoto nok!</p>",
+            "product": ""
+          }
+        },
+        "custom_niN4z9": {
+          "type": "custom",
+          "settings": {
+            "name": "Mette H.",
+            "date": "3. nov. 2024",
+            "des": "<p><strong>God og meget hurtig kundeservice.</strong><br/>Jeg oplevede en god og meget hurtig service. Jeg bestilte dynen mandag aften og modtog pakken onsdag formiddag. Dynen er virkelig lækker og det virker som om, at den er ved at blive accepteret af modtageren.</p>",
+            "product": ""
+          }
+        },
+        "custom_YHe9ri": {
+          "type": "custom",
+          "settings": {
+            "name": "Tine Damgaard",
+            "date": "19. dec. 2024",
+            "des": "<p><strong>Lækre produkter og god service</strong><br/>Lækre produkter (dog venter vi lidt på effekt af tyngdedyne :D), flot webshop, men det vigtigste af alt: rigtig god service og hurtig forsendelse. Jeg søgte råd angående noget teknisk med inden jeg bestilte og jeg fik en meget grundigt svar, også med reference til danske myndigheders anbefalinger indenfor området. Da jeg så modtog ordren lå der en fin lille personlig hilsen med, med ønsket om god søvn. Helt klart anbefalelsesværdigt! Produkterne er ikke de billigste, MEN helt klart pengene værd, da andre producenter ikke har samme kvalitet (hold øje med alle de gode rabatkoder der løbende er;) )</p>",
+            "product": ""
+          }
+        },
+        "custom_XYQ3Gp": {
+          "type": "custom",
+          "settings": {
+            "name": "Stine Bølling",
+            "date": "19. nov. 2024",
+            "des": "<p><strong>Sengeslangen var min redning som gravid</strong><br/>Som gravid som jeg utrolig dårlig! Blev anbefalet en “graviditetspølse”.<br/>En besked til Sara, som besvarede mine spørgsmål på den mest imødekommende og varme måde. Jeg købte sengeslangen. Som fra dag ét reddede min søvn, smerter og lign om natten. Det er lidt tyngde i den, så den altså er lidt tung og derfor bliver liggende. Man får ikke bare lige skubbet den ud af sengen, og den har en tykkelse som gør at den ikke “bare” klasker sammen mellem ens ben. Den var seriøst guld værd! Og jeg vil anbefale den til alle gravide😍<br/>Nu har vores datter overtaget den, da den gør hendes seng mindre og tryg. Tak for jer!</p>",
+            "product": ""
+          }
+        },
+        "custom_GcPjF9": {
+          "type": "custom",
+          "settings": {
+            "name": "Simone Rønhøj Villumsen",
+            "date": "3. nov. 2024",
+            "des": "<p><strong>Sara & Nicolaj fra Lalatoto kender du sikkert fra Hush little One som var i løvens hule.<br/></strong>Samme fantastiske produkter blot under et nyt navn! Tyngdedynen har gjort en kæmpe forskel for vores dreng siden han var 6 måneder i forhold til motorisk uro og så snart deres sengerand kom på lager måtte jeg også eje den. Den skuffer på ingen måde. Jeg elsker at den har stof som kan komme under madrassen, så sovemiljøet er helt trygt og sikkert. Det er ikke sidste gang jeg handler hos Lalatoto!</p>",
+            "product": ""
+          }
+        },
+        "custom_ciJPFq": {
+          "type": "custom",
+          "settings": {
+            "name": "Christine T",
+            "date": "4. nov. 2024",
+            "des": "<p><strong>Fntastisk produkt til babys søvn<br/></strong>Vores søn på 4 måneder har indtil nu kun ville falde i søvn<br/>i bevægelse i enten slyngvugge eller barnevogn. Vi har prøvet alt, men valgte<br/>at give jeres tyngdedyne et forsøg og han er nu for første gang faldet nemt og<br/>hurtigt i søvn i sin SENG. Tusind tak for et godt produkt 🧡</p>",
+            "product": ""
+          }
+        },
+        "custom_PeXfhf": {
+          "type": "custom",
+          "settings": {
+            "name": "Johanne Ellne Fllg",
+            "date": "4. nov. 2024",
+            "des": "<p><strong>Bedste service, bedste produkter.<br/></strong>Tyngdedynen har vi været så glade for, multinesten har<br/>simpelthen redet vores søn’s søvn fra han var helt lille. Vi tager den stadig<br/>med overalt ved overnatning, den ville vi ikke kunne leve uden. TAK</p>",
+            "product": ""
+          }
+        },
+        "custom_RFeabL": {
+          "type": "custom",
+          "settings": {
+            "name": "Stinne Pedersen",
+            "date": "13. nov. 2024",
+            "des": "<p><strong>Fantastisk produkter og ikke mindst fantastisk service!</strong>Havde et par spørgsmål inden mit køb at multinesten og de<br/>stod klar med det samme for at hjælpe. En virkelig nærværende lille perle.</p>",
+            "product": ""
+          }
+        },
+        "custom_8mVKyM": {
+          "type": "custom",
+          "settings": {
+            "name": "Tina Nolsø",
+            "date": "8 jan. 2025",
+            "des": "<p><strong>Super hurtig service og varen var perfekt.</strong><br/>Super hurtig service og varen var perfekt 😊</p>",
+            "product": ""
+          }
+        },
+        "custom_tEYPAi": {
+          "type": "custom",
+          "settings": {
+            "name": "Julie Zeuthen",
+            "date": "13. nov. 2024",
+            "des": "<p><strong>Skøn </strong><a href=\"/collections/tyngdedyner\" title=\"Tyngdedyner\"><strong>tyngdedyne</strong></a><strong> og </strong><a href=\"/products/luksus-sengeslange\" title=\"Luksus sengeslange\"><strong>multinest</strong></a><strong>.</strong><br/>God kundeservice, lækre produkter (har købt multinest og tyngdedyne) og hurtig levering - meget tilfreds 😊</p>",
+            "product": ""
+          }
+        },
+        "custom_BkbYkN": {
+          "type": "custom",
+          "settings": {
+            "name": "Didde F",
+            "date": "4. nov. 2024",
+            "des": "<p><strong>Kæmpe anbefaling!</strong><br/>Vi er så glade for deres <a href=\"/collections/tyngdedyner\" title=\"Tyngdedyner\">tyngdedyne</a> og multinest, det har gjort at vores datter sover meget bedre. Virkelig lækre produkter!</p>",
+            "product": ""
+          }
+        },
+        "custom_QzLgyD": {
+          "type": "custom",
+          "settings": {
+            "name": "Dani",
+            "date": "4. nov. 2024",
+            "des": "<p><strong>Vi fik ENDELIG sammenhængende søvn igen.</strong><br/>Vi fik ENDELIG sammenhængende søvn igen, efter vi fik <a href=\"/collections/tyngdedyner\" title=\"Tyngdedyner\">tyngdedynen</a> og mulitinesten fra Lalatoto. Jeg kan ikke anbefale deres produkter nok! 🙌🏼❤️</p>",
+            "product": ""
+          }
+        },
+        "custom_m7TnbX": {
+          "type": "custom",
+          "settings": {
+            "name": "Sara schandorph",
+            "date": "4. nov. 2024",
+            "des": "<p><strong>Kæmpe anbefaling og high5 herfra. </strong><br/>Har handlet hos dem (da de hed ‘hush little one’) og deres produkter er så lækre og uundværlige. Afventer nu at deres nye sengerand forhåbentligt kommer på lager i den farve jeg vil have 😍</p>",
+            "product": ""
+          }
+        },
+        "custom_Vr8jCJ": {
+          "type": "custom",
+          "settings": {
+            "name": "Fie Lillerøj",
+            "date": "3. nov. 2024",
+            "des": "<p><strong>10000 stjerner, hvis muligt 🤩</strong><br/>Søvnen hos min søn blev redet af JER og jeres <a href=\"/collections/tyngdedyner\" title=\"Tyngdedyner\">tyngdedyne</a>. Vi gik fra lange putninger til 2-3 minutters putninger og bedst af alt - lange søvnstræk.</p>",
+            "product": ""
+          }
+        }
+      },
+      "block_order": [
+        "custom_GaEYWF",
+        "custom_4tCVK4",
+        "custom_6GrqbB",
+        "custom_z3BQF4",
+        "custom_niN4z9",
+        "custom_YHe9ri",
+        "custom_XYQ3Gp",
+        "custom_GcPjF9",
+        "custom_ciJPFq",
+        "custom_PeXfhf",
+        "custom_RFeabL",
+        "custom_8mVKyM",
+        "custom_tEYPAi",
+        "custom_BkbYkN",
+        "custom_QzLgyD",
+        "custom_m7TnbX",
+        "custom_Vr8jCJ"
+      ],
+      "settings": {
+        "rating_text": "Læs vores kundeanmeldelser",
+        "header_text_da": "Vores kunder siger det bedre, end vi selv kan",
+        "header_text_en": "Loved by those who knows best – our customers!",
+        "heading_level": "h3"
+      }
+    },
+    "image_with_text_diQ3jQ": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_9yhRBn": {
+          "type": "heading",
+          "settings": {
+            "text": "<em>\"Idéen til..</em>",
+            "heading_tag": "h3"
+          }
+        },
+        "richtext_XMzipM": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p><em>..vores babyvenlige tyngdedyne fik jeg en vinternat i 2018, da jeg sad med vores lille søn i armene og kunne se frem til endnu en lang nat med mange opvågninger. Tyngdedynen blev vores redning, og nu trøster jeg mig med at vores hårdeste år, også blev året hvor vi skabte noget, som har hjulpet tudsinvis af børnefamilier i samme ulykkelig situation, som vi var i. Mit allerstørste ønske er, at tyngdedynen også kan blive en hjælp for dig\".</em></p>"
+          }
+        },
+        "subheading_Kk6QiC": {
+          "type": "subheading",
+          "settings": {
+            "text": "Sara, stifter af LALATOTO, men allermest mor til Xander og Oskar"
+          }
+        }
+      },
+      "block_order": [
+        "heading_9yhRBn",
+        "richtext_XMzipM",
+        "subheading_Kk6QiC"
+      ],
+      "disabled": true,
+      "settings": {
+        "color_scheme": "scheme-3",
+        "separate_section_with_border": false,
+        "image": "shopify://shop_images/16_50b64f6d-dede-44d9-8862-b15745c13c0f.png",
+        "mobile_image": "shopify://shop_images/16_8f846300-f851-49d4-bdec-2de110718d6c.png",
+        "reveal_on_scroll": true,
+        "image_position": "end",
+        "content_width": "sm",
+        "remove_vertical_spacing": true
+      }
+    },
+    "multi_column_kRBBbN": {
+      "type": "multi-column",
+      "blocks": {
+        "image_with_text_KJ67MR": {
+          "type": "image_with_text",
+          "settings": {
+            "title": "Temperatur er alt afgørende",
+            "heading_tag": "h3",
+            "content": "<p>Langt de fleste småbørn bliver varme i søvnen. De kan vågne og være helt våde i nakken eller endda nægte at sove med dyne. At have det for varmt er en undervurderet faktor i forbindelse med uro i søvnen. Derfor er vi særligt glade for Kapok, som er utroligt effektivt til at temperaturregulere. </p>",
+            "link_url": "",
+            "link_text": ""
+          }
+        },
+        "image_with_text_3QmhGf": {
+          "type": "image_with_text",
+          "settings": {
+            "title": "Hvorfor søvn?",
+            "heading_tag": "h3",
+            "content": "<p>Vi ved hvor meget søvn – og mangel på samme – fylder de første år med småbørn. Vi har nemlig selv været der. Dér hvor barslen handler allermest om overlevelse. Derfor kommer det helt inde fra hjertekulen, når vi siger, at vi har et brændende ønske om at hjælpe småbørnsfamilier til bedre søvn. Vores største håb er, at vores søvnunivers også kan gøre en forskel for dig og dit barn.</p>",
+            "link_url": "",
+            "link_text": ""
+          }
+        },
+        "image_with_text_TKMNYA": {
+          "type": "image_with_text",
+          "settings": {
+            "title": "Alternativ til en kugledyne",
+            "heading_tag": "h3",
+            "content": "<p>LALATOTO´s tyngdedyne er et godt alternativ til den klassiske kugledyne. Mens den traditionelle kugledyne, som navnet antyder, indeholder små bolde / kugler på størrelse med golfbolde, er vores tyngdedyne fyldt med <a href=\"https://www.lalatoto.dk/blogs/bloggen/kapok-alt-du-skal-vide-om-fiberens-egenskaber-og-fordele\" title=\"Kapok - Alt du skal vide om fiberens egenskaber og fordele\">kapok</a> og glasperler. Kugledyner kan opleves som støjende. Vores tyngdedyne er derimod næsten lydløs, så selv det sensitive barn kan sove trygt og forældrene ligeså. </p>",
+            "link_url": "",
+            "link_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_with_text_KJ67MR",
+        "image_with_text_3QmhGf",
+        "image_with_text_TKMNYA"
+      ],
+      "disabled": true,
+      "settings": {
+        "color_scheme": "scheme-4",
+        "separate_section_with_border": false,
+        "columns_per_row": 3,
+        "stack_on_mobile": false,
+        "overlap_image": false,
+        "content_alignment": "center",
+        "text_alignment": "center",
+        "spacing": "sm",
+        "subheading": "",
+        "title": "",
+        "content": ""
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "color_scheme": "scheme-4",
+        "separate_section_with_border": false,
+        "hide_product_information": false,
+        "stack_products": false,
+        "recommendations_count": 10,
+        "products_per_row_mobile": "2",
+        "products_per_row_desktop": 4,
+        "horizontal_spacing_factor": 1,
+        "vertical_spacing_factor": 1,
+        "subheading": "",
+        "title": "Du har sidst kigget på",
+        "content": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "scrolling_content_NQXNjY",
+    "multiple_media_with_text_qUUw8r",
+    "rich_text_qVFQMG",
+    "anmeldelser_rTYGz6",
+    "image_with_text_diQ3jQ",
+    "multi_column_kRBBbN",
+    "related-products"
+  ]
+}

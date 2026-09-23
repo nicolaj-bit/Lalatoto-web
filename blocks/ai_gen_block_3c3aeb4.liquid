@@ -1,0 +1,1121 @@
+{% doc %}
+  @prompt
+    Du skal lave en flipbook grid, som skal ligne vores design i webshoppen og det er vigtigt at denne her PDF åbner i et modal og her skal den ligne en flipbook, så man kan læse den som en bog, Vil du kunne gøre det, så den ligner den flipbook grid der er der i forvejen, du skal blot perfektioner den kode, synes ikke du har perfektionet den, vil du sørge for at designet ligner vores webshop og at denne her flipbook funktion virker, så den åbner og man læse det som en bog, ved vær flipbook, så skal der være en header, tekst og en knap, knappen skal åbne selve den her modal, kan jeg få det sådan, at det ser pænt ud ved at vi har 5 af de her flipbook ved siden af hinanden på desktop og at det er scroll ved mobil, så de ligger ved siden af hinanden, men at man kan scrolle , kan vi få selve den her flipbook funktion i modalet, så det ligner at man skifter side, så det bliver mere levende, Det virker ikke, det er som om at den aldrig kommer frem, vil du sørge for at det virker pefekt, kan det lade sig gøre at denne her PDF fylder hele modal, så man kan læse det ordentligt
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-flipbook-grid-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .ai-flipbook-grid__container-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat({{ block.settings.columns_desktop }}, 1fr);
+    gap: {{ block.settings.grid_gap }}px;
+    width: {{ block.settings.desktop_width_percent }}%;
+    margin: 0 auto;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-flipbook-grid__container-{{ ai_gen_id }} {
+      display: flex;
+      gap: {{ block.settings.grid_gap }}px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      width: 100%;
+      padding: 0 20px;
+    }
+
+    .ai-flipbook-grid__container-{{ ai_gen_id }}::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .ai-flipbook-item-{{ ai_gen_id }} {
+    position: relative;
+    border-radius: {{ block.settings.item_border_radius }}px;
+    overflow: hidden;
+    background-color: {{ block.settings.item_background_color }};
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-flipbook-item-{{ ai_gen_id }} {
+      flex: 0 0 {{ block.settings.mobile_item_width }}%;
+      scroll-snap-align: start;
+    }
+  }
+
+  .ai-flipbook-item-{{ ai_gen_id }}:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  }
+
+  .ai-flipbook-item__image-wrapper-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    background-color: #f4f4f4;
+  }
+
+  .ai-flipbook-item__image-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .ai-flipbook-item-{{ ai_gen_id }}:hover .ai-flipbook-item__image-{{ ai_gen_id }} {
+    transform: scale(1.05);
+  }
+
+  .ai-flipbook-item__placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-flipbook-item__placeholder-{{ ai_gen_id }} svg {
+    width: 50%;
+    height: 50%;
+    opacity: 0.15;
+  }
+
+  .ai-flipbook-item__content-{{ ai_gen_id }} {
+    padding: {{ block.settings.content_padding }}px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 1;
+  }
+
+  .ai-flipbook-item__header-{{ ai_gen_id }} {
+    font-family: {{ block.settings.heading_font.family }}, {{ block.settings.heading_font.fallback_families }};
+    font-weight: {{ block.settings.heading_font.weight }};
+    font-size: {{ block.settings.header_size }}px;
+    color: {{ block.settings.text_color }};
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: {{ block.settings.title_letter_spacing }}%;
+    line-height: 1.3;
+  }
+
+  .ai-flipbook-item__text-{{ ai_gen_id }} {
+    font-family: {{ block.settings.text_font.family }}, {{ block.settings.text_font.fallback_families }};
+    font-weight: {{ block.settings.text_font.weight }};
+    font-size: {{ block.settings.text_size }}px;
+    color: {{ block.settings.text_color }};
+    margin: 0;
+    opacity: 0.65;
+    line-height: 1.6;
+    flex: 1;
+  }
+
+  .ai-flipbook-item__button-{{ ai_gen_id }} {
+    background-color: {{ block.settings.button_background }};
+    color: {{ block.settings.button_text_color }};
+    border: none;
+    border-radius: {{ block.settings.button_border_radius }}px;
+    padding: 12px 24px;
+    font-family: {{ block.settings.text_font.family }}, {{ block.settings.text_font.fallback_families }};
+    font-weight: {{ block.settings.text_font.weight }};
+    font-size: {{ block.settings.button_text_size }}px;
+    text-transform: uppercase;
+    letter-spacing: {{ block.settings.button_letter_spacing }}%;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 100%;
+    text-align: center;
+  }
+
+  .ai-flipbook-item__button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_background }};
+    transform: translateY(-1px);
+  }
+
+  .ai-flipbook-modal-{{ ai_gen_id }} {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .ai-flipbook-modal-{{ ai_gen_id }}.active {
+    display: flex;
+    opacity: 1;
+  }
+
+  .ai-flipbook-modal__content-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: {{ block.settings.modal_background_color }};
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transform: scale(0.95);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .ai-flipbook-modal-{{ ai_gen_id }}.active .ai-flipbook-modal__content-{{ ai_gen_id }} {
+    transform: scale(1);
+  }
+
+  .ai-flipbook-modal__header-{{ ai_gen_id }} {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 24px;
+    border-bottom: 1px solid rgba(28, 28, 28, 0.06);
+    background-color: {{ block.settings.modal_background_color }};
+    flex-shrink: 0;
+    position: relative;
+    z-index: 10;
+  }
+
+  .ai-flipbook-modal__title-{{ ai_gen_id }} {
+    font-family: {{ block.settings.heading_font.family }}, {{ block.settings.heading_font.fallback_families }};
+    font-weight: {{ block.settings.heading_font.weight }};
+    font-size: 14px;
+    color: {{ block.settings.text_color }};
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: {{ block.settings.title_letter_spacing }}%;
+  }
+
+  .ai-flipbook-modal__close-{{ ai_gen_id }} {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    color: {{ block.settings.text_color }};
+    opacity: 0.5;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-flipbook-modal__close-{{ ai_gen_id }}:hover {
+    opacity: 1;
+    transform: rotate(90deg);
+  }
+
+  .ai-flipbook-modal__viewer-{{ ai_gen_id }} {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    background-color: #2c2c2c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-flipbook-modal__book-container-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    perspective: 2000px;
+  }
+
+  .ai-flipbook-modal__pages-wrapper-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-flipbook-modal__page-{{ ai_gen_id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: opacity 0.6s ease;
+    backface-visibility: hidden;
+  }
+
+  .ai-flipbook-modal__page-{{ ai_gen_id }}.current {
+    z-index: 2;
+    opacity: 1;
+  }
+
+  .ai-flipbook-modal__page-{{ ai_gen_id }}.hidden {
+    z-index: 1;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .ai-flipbook-modal__page-{{ ai_gen_id }}.flipping-out {
+    z-index: 3;
+    animation: ai-flip-out-{{ ai_gen_id }} 0.6s cubic-bezier(0.645, 0.045, 0.355, 1) forwards;
+  }
+
+  .ai-flipbook-modal__page-{{ ai_gen_id }}.flipping-in {
+    z-index: 2;
+    animation: ai-flip-in-{{ ai_gen_id }} 0.6s cubic-bezier(0.645, 0.045, 0.355, 1) forwards;
+  }
+
+  @keyframes ai-flip-out-{{ ai_gen_id }} {
+    0% {
+      transform: rotateY(0deg);
+      opacity: 1;
+    }
+    100% {
+      transform: rotateY(-180deg);
+      opacity: 0;
+    }
+  }
+
+  @keyframes ai-flip-in-{{ ai_gen_id }} {
+    0% {
+      transform: rotateY(180deg);
+      opacity: 0;
+    }
+    100% {
+      transform: rotateY(0deg);
+      opacity: 1;
+    }
+  }
+
+  .ai-flipbook-modal__controls-{{ ai_gen_id }} {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 12px 24px;
+    border-radius: 50px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+  }
+
+  .ai-flipbook-modal__nav-button-{{ ai_gen_id }} {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    color: #1c1c1c;
+    opacity: 0.6;
+    transition: opacity 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-flipbook-modal__nav-button-{{ ai_gen_id }}:hover:not(:disabled) {
+    opacity: 1;
+  }
+
+  .ai-flipbook-modal__nav-button-{{ ai_gen_id }}:disabled {
+    opacity: 0.2;
+    cursor: not-allowed;
+  }
+
+  .ai-flipbook-modal__page-info-{{ ai_gen_id }} {
+    font-family: {{ block.settings.text_font.family }}, {{ block.settings.text_font.fallback_families }};
+    font-size: 14px;
+    color: #1c1c1c;
+    font-weight: 500;
+    min-width: 80px;
+    text-align: center;
+  }
+
+  .ai-flipbook-modal__loading-{{ ai_gen_id }} {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #ffffff;
+    font-family: {{ block.settings.text_font.family }}, {{ block.settings.text_font.fallback_families }};
+    font-size: 16px;
+    z-index: 5;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-flipbook-modal__header-{{ ai_gen_id }} {
+      padding: 12px 16px;
+    }
+
+    .ai-flipbook-modal__title-{{ ai_gen_id }} {
+      font-size: 12px;
+    }
+
+    .ai-flipbook-item__content-{{ ai_gen_id }} {
+      padding: {{ block.settings.content_padding | times: 0.75 }}px;
+    }
+
+    .ai-flipbook-modal__controls-{{ ai_gen_id }} {
+      bottom: 16px;
+      padding: 10px 18px;
+      gap: 14px;
+    }
+
+    .ai-flipbook-modal__page-info-{{ ai_gen_id }} {
+      font-size: 12px;
+      min-width: 60px;
+    }
+  }
+{% endstyle %}
+
+<flipbook-grid-{{ ai_gen_id }}
+  class="ai-flipbook-grid-{{ ai_gen_id }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="ai-flipbook-grid__container-{{ ai_gen_id }}">
+    {% for i in (1..6) %}
+      {% liquid
+        assign pdf_key = 'pdf_' | append: i
+        assign header_key = 'header_' | append: i
+        assign text_key = 'text_' | append: i
+        assign button_key = 'button_text_' | append: i
+        assign image_key = 'cover_image_' | append: i
+
+        assign pdf_file = block.settings[pdf_key]
+        assign header = block.settings[header_key]
+        assign text = block.settings[text_key]
+        assign button_text = block.settings[button_key]
+        assign cover_image = block.settings[image_key]
+      %}
+
+      {% if pdf_file != blank %}
+        <div class="ai-flipbook-item-{{ ai_gen_id }}">
+          <div class="ai-flipbook-item__image-wrapper-{{ ai_gen_id }}">
+            {% if cover_image %}
+              <img
+                src="{{ cover_image | image_url: width: 800 }}"
+                alt="{{ header | escape }}"
+                class="ai-flipbook-item__image-{{ ai_gen_id }}"
+                loading="lazy"
+                width="{{ cover_image.width }}"
+                height="{{ cover_image.height }}"
+              >
+            {% else %}
+              <div class="ai-flipbook-item__placeholder-{{ ai_gen_id }}">
+                {{ 'image' | placeholder_svg_tag }}
+              </div>
+            {% endif %}
+          </div>
+          <div class="ai-flipbook-item__content-{{ ai_gen_id }}">
+            {% if header != blank %}
+              <h3 class="ai-flipbook-item__header-{{ ai_gen_id }}">{{ header }}</h3>
+            {% endif %}
+            {% if text != blank %}
+              <p class="ai-flipbook-item__text-{{ ai_gen_id }}">{{ text }}</p>
+            {% endif %}
+            <button
+              class="ai-flipbook-item__button-{{ ai_gen_id }}"
+              data-pdf-url="{{ pdf_file }}"
+              data-title="{{ header | escape }}"
+            >
+              {{ button_text }}
+            </button>
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  <div class="ai-flipbook-modal-{{ ai_gen_id }}">
+    <div class="ai-flipbook-modal__content-{{ ai_gen_id }}">
+      <div class="ai-flipbook-modal__header-{{ ai_gen_id }}">
+        <h2 class="ai-flipbook-modal__title-{{ ai_gen_id }}"></h2>
+        <button
+          class="ai-flipbook-modal__close-{{ ai_gen_id }}"
+          aria-label="Luk"
+        >
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.7"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="ai-flipbook-modal__viewer-{{ ai_gen_id }}">
+        <div class="ai-flipbook-modal__loading-{{ ai_gen_id }}">Indlæser...</div>
+        <div class="ai-flipbook-modal__book-container-{{ ai_gen_id }}">
+          <div class="ai-flipbook-modal__pages-wrapper-{{ ai_gen_id }}"></div>
+        </div>
+        <div class="ai-flipbook-modal__controls-{{ ai_gen_id }}">
+          <button
+            class="ai-flipbook-modal__nav-button-{{ ai_gen_id }} ai-flipbook-modal__prev-{{ ai_gen_id }}"
+            aria-label="Forrige side"
+          >
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+          <div class="ai-flipbook-modal__page-info-{{ ai_gen_id }}">
+            <span class="ai-flipbook-modal__current-page-{{ ai_gen_id }}">1</span>
+            /
+            <span class="ai-flipbook-modal__total-pages-{{ ai_gen_id }}">1</span>
+          </div>
+          <button
+            class="ai-flipbook-modal__nav-button-{{ ai_gen_id }} ai-flipbook-modal__next-{{ ai_gen_id }}"
+            aria-label="Næste side"
+          >
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</flipbook-grid-{{ ai_gen_id }}>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script>
+  (function() {
+    if (typeof pdfjsLib !== 'undefined') {
+      pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    }
+
+    class FlipbookGrid{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.modal = this.querySelector('.ai-flipbook-modal-{{ ai_gen_id }}');
+        this.modalTitle = this.querySelector('.ai-flipbook-modal__title-{{ ai_gen_id }}');
+        this.pagesWrapper = this.querySelector('.ai-flipbook-modal__pages-wrapper-{{ ai_gen_id }}');
+        this.closeButton = this.querySelector('.ai-flipbook-modal__close-{{ ai_gen_id }}');
+        this.prevButton = this.querySelector('.ai-flipbook-modal__prev-{{ ai_gen_id }}');
+        this.nextButton = this.querySelector('.ai-flipbook-modal__next-{{ ai_gen_id }}');
+        this.currentPageSpan = this.querySelector('.ai-flipbook-modal__current-page-{{ ai_gen_id }}');
+        this.totalPagesSpan = this.querySelector('.ai-flipbook-modal__total-pages-{{ ai_gen_id }}');
+        this.loadingIndicator = this.querySelector('.ai-flipbook-modal__loading-{{ ai_gen_id }}');
+        this.buttons = this.querySelectorAll('.ai-flipbook-item__button-{{ ai_gen_id }}');
+        
+        this.pdfDoc = null;
+        this.currentPage = 1;
+        this.totalPages = 0;
+        this.scale = 3;
+        this.canvases = [];
+        this.isFlipping = false;
+      }
+
+      connectedCallback() {
+        this.setupEventListeners();
+      }
+
+      setupEventListeners() {
+        this.buttons.forEach((button) => {
+          button.addEventListener('click', (e) => {
+            e.preventDefault();
+            const pdfUrl = button.getAttribute('data-pdf-url');
+            const title = button.getAttribute('data-title');
+            if (pdfUrl) {
+              this.openModal(pdfUrl, title);
+            }
+          });
+        });
+
+        this.closeButton.addEventListener('click', () => {
+          this.closeModal();
+        });
+
+        this.prevButton.addEventListener('click', () => {
+          if (this.currentPage > 1 && !this.isFlipping) {
+            this.flipToPreviousPage();
+          }
+        });
+
+        this.nextButton.addEventListener('click', () => {
+          if (this.currentPage < this.totalPages && !this.isFlipping) {
+            this.flipToNextPage();
+          }
+        });
+
+        this.modal.addEventListener('click', (e) => {
+          if (e.target === this.modal) {
+            this.closeModal();
+          }
+        });
+
+        document.addEventListener('keydown', (e) => {
+          if (!this.modal.classList.contains('active')) return;
+          
+          if (e.key === 'Escape') {
+            this.closeModal();
+          } else if (e.key === 'ArrowLeft') {
+            this.prevButton.click();
+          } else if (e.key === 'ArrowRight') {
+            this.nextButton.click();
+          }
+        });
+      }
+
+      async openModal(pdfUrl, title) {
+        if (typeof pdfjsLib === 'undefined') {
+          this.loadingIndicator.textContent = 'PDF bibliotek ikke indlæst';
+          return;
+        }
+
+        this.modalTitle.textContent = title || 'Flipbook';
+        this.modal.classList.add('active');
+        this.loadingIndicator.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+
+        try {
+          const loadingTask = pdfjsLib.getDocument(pdfUrl);
+          this.pdfDoc = await loadingTask.promise;
+          this.totalPages = this.pdfDoc.numPages;
+          this.currentPage = 1;
+          this.totalPagesSpan.textContent = this.totalPages;
+          this.currentPageSpan.textContent = this.currentPage;
+          
+          await this.preloadAllPages();
+          
+          this.loadingIndicator.style.display = 'none';
+          this.updateNavButtons();
+        } catch (error) {
+          console.error('Fejl ved indlæsning af PDF:', error);
+          this.loadingIndicator.textContent = 'Kunne ikke indlæse PDF. Tjek URL.';
+        }
+      }
+
+      async preloadAllPages() {
+        this.pagesWrapper.innerHTML = '';
+        this.canvases = [];
+
+        for (let pageNum = 1; pageNum <= this.totalPages; pageNum++) {
+          const canvas = document.createElement('canvas');
+          canvas.className = 'ai-flipbook-modal__page-{{ ai_gen_id }}';
+          
+          if (pageNum === 1) {
+            canvas.classList.add('current');
+          } else {
+            canvas.classList.add('hidden');
+          }
+          
+          this.pagesWrapper.appendChild(canvas);
+          this.canvases.push(canvas);
+          
+          await this.renderPageToCanvas(pageNum, canvas);
+        }
+      }
+
+      async renderPageToCanvas(pageNum, canvas) {
+        try {
+          const page = await this.pdfDoc.getPage(pageNum);
+          const viewport = page.getViewport({ scale: this.scale });
+          
+          const context = canvas.getContext('2d');
+          canvas.height = viewport.height;
+          canvas.width = viewport.width;
+
+          const renderContext = {
+            canvasContext: context,
+            viewport: viewport
+          };
+
+          await page.render(renderContext).promise;
+        } catch (error) {
+          console.error('Fejl ved rendering af side ' + pageNum + ':', error);
+        }
+      }
+
+      updateNavButtons() {
+        this.prevButton.disabled = this.currentPage === 1;
+        this.nextButton.disabled = this.currentPage === this.totalPages;
+        this.currentPageSpan.textContent = this.currentPage;
+      }
+
+      flipToNextPage() {
+        if (this.isFlipping || this.currentPage >= this.totalPages) return;
+        
+        this.isFlipping = true;
+        const currentCanvas = this.canvases[this.currentPage - 1];
+        const nextCanvas = this.canvases[this.currentPage];
+        
+        currentCanvas.classList.remove('current');
+        currentCanvas.classList.add('flipping-out');
+        
+        nextCanvas.classList.remove('hidden');
+        nextCanvas.classList.add('flipping-in');
+        
+        setTimeout(() => {
+          currentCanvas.classList.remove('flipping-out');
+          currentCanvas.classList.add('hidden');
+          
+          nextCanvas.classList.remove('flipping-in');
+          nextCanvas.classList.add('current');
+          
+          this.currentPage++;
+          this.updateNavButtons();
+          this.isFlipping = false;
+        }, 600);
+      }
+
+      flipToPreviousPage() {
+        if (this.isFlipping || this.currentPage <= 1) return;
+        
+        this.isFlipping = true;
+        const currentCanvas = this.canvases[this.currentPage - 1];
+        const prevCanvas = this.canvases[this.currentPage - 2];
+        
+        currentCanvas.classList.remove('current');
+        currentCanvas.classList.add('hidden');
+        
+        prevCanvas.classList.remove('hidden');
+        prevCanvas.classList.add('current');
+        
+        this.currentPage--;
+        this.updateNavButtons();
+        
+        setTimeout(() => {
+          this.isFlipping = false;
+        }, 600);
+      }
+
+      closeModal() {
+        this.modal.classList.remove('active');
+        this.pdfDoc = null;
+        this.currentPage = 1;
+        this.totalPages = 0;
+        this.canvases = [];
+        this.pagesWrapper.innerHTML = '';
+        this.loadingIndicator.style.display = 'block';
+        this.loadingIndicator.textContent = 'Indlæser...';
+        document.body.style.overflow = '';
+      }
+    }
+
+    customElements.define('flipbook-grid-{{ ai_gen_id }}', FlipbookGrid{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Flipbook grid",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop bredde",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "label": "Kolonner på desktop",
+      "min": 2,
+      "max": 6,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "range",
+      "id": "mobile_item_width",
+      "label": "Mobil element bredde",
+      "min": 70,
+      "max": 95,
+      "step": 5,
+      "unit": "%",
+      "default": 85
+    },
+    {
+      "type": "range",
+      "id": "grid_gap",
+      "label": "Afstand mellem elementer",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "content_padding",
+      "label": "Indre afstand i kort",
+      "min": 10,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Farver"
+    },
+    {
+      "type": "color",
+      "id": "item_background_color",
+      "label": "Baggrund for kort",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Tekstfarve",
+      "default": "#1c1c1c"
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Knap baggrund",
+      "default": "#e7d3b1"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_background",
+      "label": "Knap hover baggrund",
+      "default": "#d4c09e"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Knap tekstfarve",
+      "default": "#1c1c1c"
+    },
+    {
+      "type": "color",
+      "id": "modal_background_color",
+      "label": "Modal baggrund",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Typografi"
+    },
+    {
+      "type": "font_picker",
+      "id": "heading_font",
+      "label": "Overskrift font",
+      "default": "univers_next_n4"
+    },
+    {
+      "type": "font_picker",
+      "id": "text_font",
+      "label": "Brødtekst font",
+      "default": "univers_next_n4"
+    },
+    {
+      "type": "range",
+      "id": "header_size",
+      "label": "Header størrelse",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "label": "Tekst størrelse",
+      "min": 10,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "button_text_size",
+      "label": "Knap tekst størrelse",
+      "min": 10,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "title_letter_spacing",
+      "label": "Titel bogstavafstand",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "%",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "button_letter_spacing",
+      "label": "Knap bogstavafstand",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "%",
+      "default": 18
+    },
+    {
+      "type": "header",
+      "content": "Stil"
+    },
+    {
+      "type": "range",
+      "id": "item_border_radius",
+      "label": "Kort hjørneradius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "label": "Knap hjørneradius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Flipbook 1"
+    },
+    {
+      "type": "url",
+      "id": "pdf_1",
+      "label": "PDF fil URL"
+    },
+    {
+      "type": "image_picker",
+      "id": "cover_image_1",
+      "label": "Coverbillede"
+    },
+    {
+      "type": "text",
+      "id": "header_1",
+      "label": "Header",
+      "default": "Flipbook 1"
+    },
+    {
+      "type": "textarea",
+      "id": "text_1",
+      "label": "Tekst"
+    },
+    {
+      "type": "text",
+      "id": "button_text_1",
+      "label": "Knap tekst",
+      "default": "Læs mere"
+    },
+    {
+      "type": "header",
+      "content": "Flipbook 2"
+    },
+    {
+      "type": "url",
+      "id": "pdf_2",
+      "label": "PDF fil URL"
+    },
+    {
+      "type": "image_picker",
+      "id": "cover_image_2",
+      "label": "Coverbillede"
+    },
+    {
+      "type": "text",
+      "id": "header_2",
+      "label": "Header",
+      "default": "Flipbook 2"
+    },
+    {
+      "type": "textarea",
+      "id": "text_2",
+      "label": "Tekst"
+    },
+    {
+      "type": "text",
+      "id": "button_text_2",
+      "label": "Knap tekst",
+      "default": "Læs mere"
+    },
+    {
+      "type": "header",
+      "content": "Flipbook 3"
+    },
+    {
+      "type": "url",
+      "id": "pdf_3",
+      "label": "PDF fil URL"
+    },
+    {
+      "type": "image_picker",
+      "id": "cover_image_3",
+      "label": "Coverbillede"
+    },
+    {
+      "type": "text",
+      "id": "header_3",
+      "label": "Header",
+      "default": "Flipbook 3"
+    },
+    {
+      "type": "textarea",
+      "id": "text_3",
+      "label": "Tekst"
+    },
+    {
+      "type": "text",
+      "id": "button_text_3",
+      "label": "Knap tekst",
+      "default": "Læs mere"
+    },
+    {
+      "type": "header",
+      "content": "Flipbook 4"
+    },
+    {
+      "type": "url",
+      "id": "pdf_4",
+      "label": "PDF fil URL"
+    },
+    {
+      "type": "image_picker",
+      "id": "cover_image_4",
+      "label": "Coverbillede"
+    },
+    {
+      "type": "text",
+      "id": "header_4",
+      "label": "Header",
+      "default": "Flipbook 4"
+    },
+    {
+      "type": "textarea",
+      "id": "text_4",
+      "label": "Tekst"
+    },
+    {
+      "type": "text",
+      "id": "button_text_4",
+      "label": "Knap tekst",
+      "default": "Læs mere"
+    },
+    {
+      "type": "header",
+      "content": "Flipbook 5"
+    },
+    {
+      "type": "url",
+      "id": "pdf_5",
+      "label": "PDF fil URL"
+    },
+    {
+      "type": "image_picker",
+      "id": "cover_image_5",
+      "label": "Coverbillede"
+    },
+    {
+      "type": "text",
+      "id": "header_5",
+      "label": "Header",
+      "default": "Flipbook 5"
+    },
+    {
+      "type": "textarea",
+      "id": "text_5",
+      "label": "Tekst"
+    },
+    {
+      "type": "text",
+      "id": "button_text_5",
+      "label": "Knap tekst",
+      "default": "Læs mere"
+    },
+    {
+      "type": "header",
+      "content": "Flipbook 6"
+    },
+    {
+      "type": "url",
+      "id": "pdf_6",
+      "label": "PDF fil URL"
+    },
+    {
+      "type": "image_picker",
+      "id": "cover_image_6",
+      "label": "Coverbillede"
+    },
+    {
+      "type": "text",
+      "id": "header_6",
+      "label": "Header",
+      "default": "Flipbook 6"
+    },
+    {
+      "type": "textarea",
+      "id": "text_6",
+      "label": "Tekst"
+    },
+    {
+      "type": "text",
+      "id": "button_text_6",
+      "label": "Knap tekst",
+      "default": "Læs mere"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Flipbook grid"
+    }
+  ]
+}
+{% endschema %}

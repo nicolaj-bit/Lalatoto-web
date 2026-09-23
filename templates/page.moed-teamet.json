@@ -1,0 +1,176 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "color_scheme": "",
+        "show_title": true,
+        "page_width": "xs"
+      }
+    },
+    "rich_text_Q4iqjy": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_aG8mEp": {
+          "type": "heading",
+          "settings": {
+            "text": "Mød familien",
+            "heading_tag": "h1"
+          }
+        },
+        "richtext_76Wpyn": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Vores rejse med LALATOTO begyndte i 2018 med en ulykkelig baby, to meget trætte forældre og en hjemmesyet tyngdedyne. Dengang havde vi ingen idé om, at vores tyngdedyne ville blive danskernes foretrukne valg til babyer og småbørn. Men pludselig tog det fart, og vi besluttede os for at gå all in på vores mission om at forbedre trivslen hos småbørnsfamilier gennem bedre og tryggere søvn. <br/></p><p>I dag er LALATOTO et betroet brand for familier, der søger bedre løsninger til søvn. En tillid vi ikke tager for givet. Vores sortiment er vokset til at omfatte en række produkter, der skaber et trygt og hyggeligt sovemiljø, alle designet med kærlighed, omsorg og udelukkende fremstillet af naturlige materialer.</p><p>Og nårh ja, et lille drys af vores berømte tryllestøv. Fra vores beskedne begyndelse med en hjemmesyet tyngdedyne er vi vokset til at blive en fællesskabsdrevet virksomhed, der arbejder for at hjælpe familier med øget trivsel gennem tryg søvn. For når natten er god, er alting godt.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_aG8mEp",
+        "richtext_76Wpyn"
+      ],
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": true,
+        "content_width": "sm",
+        "text_position": "center",
+        "remove_vertical_spacing": false
+      }
+    },
+    "teamet_fARxYV": {
+      "type": "Teamet",
+      "blocks": {
+        "images_FRiYbp": {
+          "type": "images",
+          "settings": {
+            "image": "shopify://shop_images/29_a8af474e-5e4f-4f7c-8e91-009540e9befd.png",
+            "image_a": "shopify://shop_images/33_db795990-8440-4bb1-a097-b3bd20ea73f5.png",
+            "name": "Sara",
+            "name_alignment": "center",
+            "position": "<p>CEO & Co-Founder</p>",
+            "position_alignment": "center",
+            "content": "<p>5 fun facts om mig</p><ul><li>Jeg drømmer meget men husker sjældent hvad.</li><li>Jeg falder altid i søvn i det øjeblik mit hoved rammer puden.</li><li>Vi samsover med vores to drenge i en store familieseng, og jeg ved intet bedre, end at falde i søvn til lyden af deres åndedræt.</li><li>Jeg foretrækker et koldt soveværelse, altså sådan rigtig koldt!</li><li>Jeg er den der oftest får lov til at sove længe i weekenden (tak Nico).</li></ul>",
+            "content_alignment": "left"
+          }
+        },
+        "images_H938hx": {
+          "type": "images",
+          "settings": {
+            "image": "shopify://shop_images/28.png",
+            "image_a": "shopify://shop_images/29.png",
+            "name": "Nicolaj",
+            "name_alignment": "center",
+            "position": "<p>COO & Co-Founder</p>",
+            "position_alignment": "center",
+            "content": "<p>5 Fun facts om mig</p><ul><li>Jeg vågner de fleste morgener, ved at vores ældste nusser mig på kinden.</li><li>Det er kun mig som hører vækkeuret om morgenen.</li><li>Jeg nyder at læse en god bog i sengen, inden jeg lukker øjnene.</li><li>Hver morgen lover jeg mig selv at gå tidligere i seng, men det bliver sjældent overholdt. Ups!</li><li>Jeg sover udelukkende med Kapok, da det hjælper gevaldigt på min allergi.</li></ul>",
+            "content_alignment": "left"
+          }
+        }
+      },
+      "block_order": [
+        "images_FRiYbp",
+        "images_H938hx"
+      ],
+      "settings": {
+        "teamheading": "",
+        "heading_size_mobile": 30,
+        "heading_size_desktop": 60,
+        "heading_color": "#1c1c1c",
+        "heading_bold": false,
+        "card_gap_mobile": 10,
+        "card_gap_desktop": 20,
+        "background": "scheme-4"
+      }
+    },
+    "rich_text_7CEg7G": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_6r8nj4": {
+          "type": "heading",
+          "settings": {
+            "text": "Mød vores samarbejdspartnere",
+            "heading_tag": "h1"
+          }
+        },
+        "richtext_xPFzzn": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Vi er stolte over de dygtige mennesker vi  samarbejder med. Derfor har de en en særlig plads her på siden, så du også kan lære dem at kende. </p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_6r8nj4",
+        "richtext_xPFzzn"
+      ],
+      "name": "t:sections.rich_text.presets.rich_text.name",
+      "settings": {
+        "color_scheme": "scheme-8ecf2cb5-32b0-48e2-b0ef-0ab8b48b4a33",
+        "separate_section_with_border": false,
+        "content_width": "sm",
+        "text_position": "center",
+        "remove_vertical_spacing": false
+      }
+    },
+    "teamet_8YVbgx": {
+      "type": "Teamet",
+      "blocks": {
+        "images_e96Kqj": {
+          "type": "images",
+          "settings": {
+            "image": "shopify://shop_images/EDE9E568-1AB0-4D60-8BFA-1438D2B950D0.jpg",
+            "image_a": "shopify://shop_images/33DE6D8A-764E-4494-A30F-81769A822D6D.jpg",
+            "name": "Julie Line Christiansen",
+            "name_alignment": "center",
+            "position": "<p>Fotograf - <a href=\"https://desmaojeblikke.dk/\" target=\"_blank\" title=\"https://desmaojeblikke.dk/\">De små øjeblikke</a> - <a href=\"https://www.instagram.com/de.sma.ojeblikke/\" target=\"_blank\" title=\"https://www.instagram.com/de.sma.ojeblikke/\">@de.sma.ojeblikke</a></p>",
+            "position_alignment": "center",
+            "content": "<p>Lidt om mig</p><ul><li>Jeg har altid elsket at tage billeder.</li><li>jeg købte mit første spejlrefleks kamera for mine konfirmationspenge.</li><li>Jeg er uddannet pædagog, med speciale i skole- og fritidspædagogik<br/></li></ul>",
+            "content_alignment": "left"
+          }
+        }
+      },
+      "block_order": [
+        "images_e96Kqj"
+      ],
+      "name": "Team Photos",
+      "settings": {
+        "teamheading": "",
+        "heading_size_mobile": 30,
+        "heading_size_desktop": 60,
+        "heading_color": "#8c481a",
+        "heading_bold": true,
+        "card_gap_mobile": 10,
+        "card_gap_desktop": 20,
+        "background": "scheme-3"
+      }
+    },
+    "contact_gd8Xga": {
+      "type": "contact",
+      "settings": {
+        "color_scheme": "scheme-4",
+        "separate_section_with_border": false,
+        "subheading": "",
+        "title": "Kontakt os",
+        "content": "<p>Ring til os: +45 72 15 66 86.<br/><br/>Vi sidder klar mandag-torsdag kl. 9-15 og fredag kl. 9-14 (helligdage undtaget)<br/><br/>Skriv til os: kundeservice@lalatoto.dk<br/>- Alle henvendelser besvares indenfor 24 timer på hverdage.</p><p>- eller benyt formularen.</p>"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "rich_text_Q4iqjy",
+    "teamet_fARxYV",
+    "rich_text_7CEg7G",
+    "teamet_8YVbgx",
+    "contact_gd8Xga"
+  ]
+}
