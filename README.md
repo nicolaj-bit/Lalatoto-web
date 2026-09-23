@@ -1,6 +1,17 @@
 # Lalatoto-web
 
-Shopify-temaet til webshoppen **lalatoto.dk**, drevet af LALATOTO of Denmark ApS.
+Shopify-temaet til webshoppen **lalatoto.dk** (`lalatoto.myshopify.com`),
+drevet af LALATOTO of Denmark ApS.
+
+## Udgangspunkt
+
+Filerne på `main` er hentet med `shopify theme pull --live` den 23. september
+2026, uden ændringer:
+
+- **Tema i Shopify:** «Opdateret kopi af Update Prestige Live ny»
+  (tema-id 151024959625), som var live på det tidspunkt.
+- **Grundtema:** Prestige af Maestrooo, version **10.11.1**
+  (fra `config/settings_schema.json`).
 
 ## Sådan hænger det sammen
 
@@ -20,7 +31,7 @@ Kræver Node.js og [Shopify CLI](https://shopify.dev/docs/api/shopify-cli):
 ```sh
 npm install -g @shopify/cli
 git checkout dev
-shopify theme dev --store <butik>.myshopify.com
+shopify theme dev --store lalatoto.myshopify.com
 ```
 
 CLI'en beder dig logge ind i browseren første gang. Den giver en lokal
