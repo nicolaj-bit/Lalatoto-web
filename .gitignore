@@ -1,0 +1,21 @@
+# Afhængigheder
+node_modules/
+
+# Hemmeligheder — adgangskoder, tokens og Theme Access-nøgler må aldrig i repoet
+.env
+.env.*
+*.pem
+*.key
+
+# Shopify CLI's lokale tilstand
+.shopify/
+
+# Lokale filer fra styresystem og editor
+.DS_Store
+Thumbs.db
+*.log
+*.swp
+*~
+.vscode/
+.idea/
+*.local
