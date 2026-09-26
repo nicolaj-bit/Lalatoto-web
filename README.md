@@ -24,6 +24,13 @@ er ikke med.
 Butikkens egne sektioner, skabeloner, indstillinger og tekster fra live temaet
 er **ikke** flyttet med. De ligger stadig på `main` som reference.
 
+## Facit for design
+
+`docs/mockup.html` er det godkendte mockup og facit for design og
+opbygning. Åbn den i en browser: den har faner for forside, shop,
+produktside, Materialer, Filosofi, Om os, kurv og mobil. Mappen `docs/`
+er ikke en del af temaet, og Shopify synkroniserer den ikke.
+
 ## Lalatotos tilpasninger oven på Prestige
 
 For at gøre fremtidige Prestige-opdateringer lette er ændringerne samlet få steder:
