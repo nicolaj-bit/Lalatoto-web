@@ -109,7 +109,7 @@
       "view_in_space": "View in your space",
       "taxes_included": "Tax included.",
       "taxes_excluded": "Tax excluded.",
-      "shipping_policy_html": "<a href=\"{{ link }}\" class=\"link\">Shipping calculated<\/a> at checkout",
+      "shipping_policy_html": "<a href=\"{{ link }}\" class=\"link\">Shipping calculated</a> at checkout",
       "size_chart": "Size chart",
       "available_colors_count": {
         "one": "{{ count }} color available",
@@ -514,6 +514,20 @@
         "other": "{{ count }} items"
       },
       "product_subtotal": "Product subtotal"
+    }
+  },
+  "lalatoto": {
+    "product": {
+      "tell_more": "Tell me more",
+      "contents": "Contents",
+      "delivery_default": "Delivery in 1-2 business days",
+      "sections": {
+        "materialer": "Materials",
+        "maal": "Dimensions",
+        "vask_og_pleje": "Washing and care",
+        "sikkerhed": "Safety",
+        "levering_og_retur": "Delivery and returns"
+      }
     }
   }
 }

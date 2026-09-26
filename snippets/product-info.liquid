@@ -576,6 +576,30 @@
                 {%- render 'icon' with 'chevron-right' -%}
               </a>
             {%- endif -%}
+
+          {%- comment -%}Lalatoto: egne blokke til produktsiden{%- endcomment -%}
+          {%- when 'lalatoto_short_description' -%}
+            {%- if product != blank -%}
+              {%- assign lalatoto_short = product.metafields.lalatoto.kort_beskrivelse.value | escape | newline_to_br -%}
+              {%- if lalatoto_short == blank -%}
+                {%- assign lalatoto_short = product.description | strip_html | truncatewords: 40 -%}
+              {%- endif -%}
+              {%- if lalatoto_short != blank -%}
+                <p class="lalatoto-short-description">{{ lalatoto_short }}</p>
+              {%- endif -%}
+            {%- endif -%}
+
+          {%- when 'lalatoto_delivery' -%}
+            {%- assign lalatoto_delivery = product.metafields.lalatoto.leveringstid.value | default: block.settings.text -%}
+            {%- if lalatoto_delivery == blank -%}
+              {%- assign lalatoto_delivery = 'lalatoto.product.delivery_default' | t -%}
+            {%- endif -%}
+            <p class="lalatoto-delivery">{{ lalatoto_delivery | escape }}</p>
+
+          {%- when 'lalatoto_more_info' -%}
+            {%- if product != blank -%}
+              {%- render 'lalatoto-product-info-modal', product: product, block: block, mode: 'button', modal_id: 'lalatoto-info-modal' -%}
+            {%- endif -%}
         {%- endcase -%}
       {%- endcapture -%}
 

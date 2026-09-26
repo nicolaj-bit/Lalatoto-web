@@ -151,6 +151,16 @@
   </div>
 </div>
 
+{%- comment -%}
+  Lalatoto: modalen «Fortæl mere» ligger uden for product-rerender, så den ikke
+  bliver genskabt (og lukket), når kunden skifter variant.
+{%- endcomment -%}
+{%- assign lalatoto_more_info_block = section.blocks | where: 'type', 'lalatoto_more_info' | first -%}
+{%- if lalatoto_more_info_block != blank and product != blank -%}
+  {%- render 'lalatoto-product-info-modal', product: product, block: lalatoto_more_info_block, mode: 'modal', modal_id: 'lalatoto-info-modal' -%}
+  <script src="{{ 'lalatoto-info-modal.js' | asset_url }}" defer></script>
+{%- endif -%}
+
 {%- if section.settings.show_sticky_add_to_cart and product.available -%}
   <product-rerender id="{{ product_form_id }}-sticky-bar" observe-form="{{ product_form_id }}">
     <product-sticky-bar form="{{ product_form_id }}" class="product-sticky-bar">
@@ -396,6 +406,47 @@
     }
   ],
   "blocks": [
+    {
+      "type": "lalatoto_short_description",
+      "name": "Lalatoto: kort beskrivelse",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Viser metafeltet «Kort beskrivelse» på to linjer. Er feltet tomt, bruges starten af produktbeskrivelsen."
+        }
+      ]
+    },
+    {
+      "type": "lalatoto_delivery",
+      "name": "Lalatoto: leveringstid",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Standardtekst",
+          "info": "Bruges, når produktet ikke har metafeltet «Leveringstid». Tomt felt: temaets oversatte standardtekst."
+        }
+      ]
+    },
+    {
+      "type": "lalatoto_more_info",
+      "name": "Lalatoto: Fortæl mere",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Afsnittene hentes fra produktets metafelter: Materialer, Mål, Vask og pleje, Sikkerhed og Levering og retur. Tomme afsnit vises ikke."
+        },
+        {
+          "type": "page",
+          "id": "shipping_returns_page",
+          "label": "Fælles side om levering og retur",
+          "info": "Bruges, når produktet ikke har sin egen tekst i metafeltet «Levering og retur»."
+        }
+      ]
+    },
     {
       "type": "@app"
     },

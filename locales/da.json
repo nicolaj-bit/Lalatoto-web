@@ -92,7 +92,7 @@
   "product": {
     "general": {
       "description": "Beskrivelse",
-      "add_to_cart_button": "Føj til indkøbskurv",
+      "add_to_cart_button": "Læg i kurv",
       "pre_order_button": "Forudbestil",
       "sold_out_button": "Udsolgt",
       "unavailable_button": "Ikke tilgængelig",
@@ -109,7 +109,7 @@
       "view_in_space": "Se den i dit område",
       "taxes_included": "Inkl. moms.",
       "taxes_excluded": "Ekskl. moms.",
-      "shipping_policy_html": "Moms og <a href=\"{{ link }}\" class=\"link\">levering beregnes<\/a> ved kassen",
+      "shipping_policy_html": "Moms og <a href=\"{{ link }}\" class=\"link\">levering beregnes</a> ved kassen",
       "size_chart": "Størrelsesoversigt",
       "available_colors_count": {
         "one": "{{ count }} farve tilgængelig",
@@ -371,9 +371,9 @@
       "view_cart": "Vis indkøbskurv",
       "checkout": "Gå til kasse",
       "we_accept": "Vi accepterer",
-      "taxes_and_shipping_policy_at_checkout_html": "Moms og <a href=\"{{ link }}\" class=\"link\">levering<\/a> beregnes ved kassen",
+      "taxes_and_shipping_policy_at_checkout_html": "Moms og <a href=\"{{ link }}\" class=\"link\">levering</a> beregnes ved kassen",
       "taxes_included_but_shipping_at_checkout": "Inkl. moms og levering beregnes ved kassen",
-      "taxes_included_and_shipping_policy_html": "Moms inkluderet. <a href=\"{{ link }}\" class=\"link\">Levering<\/a> beregnes ved kassen.",
+      "taxes_included_and_shipping_policy_html": "Moms inkluderet. <a href=\"{{ link }}\" class=\"link\">Levering</a> beregnes ved kassen.",
       "taxes_and_shipping_at_checkout": "Moms og levering beregnes ved kassen"
     },
     "order": {
@@ -518,6 +518,20 @@
         "other": "{{ count }} varer"
       },
       "product_subtotal": "Produkt subtotal"
+    }
+  },
+  "lalatoto": {
+    "product": {
+      "tell_more": "Fortæl mere",
+      "contents": "Indhold",
+      "delivery_default": "Levering 1-2 hverdage",
+      "sections": {
+        "materialer": "Materialer",
+        "maal": "Mål",
+        "vask_og_pleje": "Vask og pleje",
+        "sikkerhed": "Sikkerhed",
+        "levering_og_retur": "Levering og retur"
+      }
     }
   }
 }

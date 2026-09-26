@@ -192,3 +192,282 @@ svg.lalatoto-full-image__image {
 [id$="__shop"] .product-card__info .smallcaps {
   display: none !important;
 }
+
+/* ===============================================================
+ * PRODUKTSIDEN
+ * =============================================================== */
+
+/* Billeder står under hinanden i samme bredde: ingen miniaturer, prikker eller pile */
+.shopify-section--main-product .product-gallery__thumbnail-list,
+.shopify-section--main-product .page-dots,
+.shopify-section--main-product .product-gallery__zoom-button {
+  display: none !important;
+}
+
+.shopify-section--main-product .product-title {
+  font-family: var(--heading-font-family);
+  font-weight: 400;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+/* Kort beskrivelse: højst to linjer */
+.lalatoto-short-description {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+  margin: 0;
+}
+
+/* Leveringstid: lille og dæmpet */
+.lalatoto-delivery {
+  margin: 0;
+  font-size: var(--lalatoto-label-size);
+  color: #6e675e;
+}
+
+/* «Fortæl mere →» */
+.lalatoto-more-info-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: rgb(var(--text-color));
+  font-family: var(--text-font-family);
+  font-size: var(--lalatoto-label-size);
+  text-transform: uppercase;
+  letter-spacing: var(--lalatoto-label-spacing);
+  cursor: pointer;
+}
+
+.lalatoto-more-info-link__arrow {
+  transition: transform 0.2s ease-in-out;
+}
+
+.lalatoto-more-info-link:hover .lalatoto-more-info-link__arrow {
+  transform: translateX(3px);
+}
+
+/* Den faste Læg i kurv-bjælke bruges kun på telefon */
+@media screen and (min-width: 1000px) {
+  .product-sticky-bar {
+    display: none !important;
+  }
+}
+
+/* ===============================================================
+ * MODALEN «FORTÆL MERE»
+ * =============================================================== */
+
+html.lalatoto-scroll-lock,
+html.lalatoto-scroll-lock body {
+  overflow: hidden;
+}
+
+/* Selve <dialog> dækker hele skærmen og er gennemsigtig, så et tryk uden for
+   panelet rammer dialog-elementet og kan lukke den. */
+.lalatoto-info-modal {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: rgb(var(--text-color));
+  overflow: hidden;
+}
+
+.lalatoto-info-modal::backdrop {
+  background: rgb(42 39 36 / 0.35);
+}
+
+.lalatoto-info-modal__panel {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background: rgb(var(--background-without-opacity, 239 235 228));
+  animation: lalatoto-slide-up 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.lalatoto-info-modal.is-closing .lalatoto-info-modal__panel {
+  animation: lalatoto-slide-down 0.25s ease-in both;
+}
+
+.lalatoto-info-modal[open]::backdrop {
+  animation: lalatoto-fade-in 0.3s ease both;
+}
+
+.lalatoto-info-modal.is-closing::backdrop {
+  animation: lalatoto-fade-out 0.25s ease both;
+}
+
+.lalatoto-info-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem var(--container-gutter);
+  border-block-end: 1px solid #d7d0c4;
+}
+
+.lalatoto-info-modal__title {
+  margin: 0;
+}
+
+.lalatoto-info-modal__close {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 2.75rem; /* 44px trykflade */
+  height: 2.75rem;
+  margin-inline-end: -0.75rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: rgb(var(--text-color));
+  cursor: pointer;
+}
+
+.lalatoto-info-modal__scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  padding: 1.5rem var(--container-gutter) 4rem;
+  scroll-padding-block-start: 1.5rem;
+}
+
+/* Indholdsfortegnelse i stil med clubnosleep.com's handelsbetingelser */
+.lalatoto-info-modal__toc {
+  margin-block-end: 2.5rem;
+}
+
+.lalatoto-info-modal__toc-title {
+  margin: 0 0 0.875rem;
+  color: #6e675e;
+}
+
+.lalatoto-info-modal__toc ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-inline-start: 1px solid #d7d0c4;
+}
+
+.lalatoto-info-modal__toc li {
+  margin: 0;
+}
+
+.lalatoto-info-modal__toc a {
+  display: block;
+  padding: 0.4375rem 0 0.4375rem 0.875rem;
+  margin-inline-start: -1px;
+  border-inline-start: 1px solid transparent;
+  color: #6e675e;
+  font-size: 0.875rem;
+  text-decoration: none;
+}
+
+.lalatoto-info-modal__toc a:hover,
+.lalatoto-info-modal__toc a[aria-current='true'] {
+  color: rgb(var(--text-color));
+}
+
+.lalatoto-info-modal__toc a[aria-current='true'] {
+  border-inline-start-color: rgb(var(--text-color));
+}
+
+.lalatoto-info-modal__toc a:focus-visible,
+.lalatoto-info-modal__close:focus-visible,
+.lalatoto-more-info-link:focus-visible {
+  outline: 2px solid rgb(var(--text-color));
+  outline-offset: 2px;
+}
+
+.lalatoto-info-modal__section + .lalatoto-info-modal__section {
+  margin-block-start: 2.5rem;
+  padding-block-start: 2.5rem;
+  border-block-start: 1px solid #d7d0c4;
+}
+
+.lalatoto-info-modal__section h2 {
+  margin: 0 0 1rem;
+}
+
+/* Computer: et panel i midten med luft omkring, så man kan trykke udenfor */
+@media screen and (min-width: 700px) {
+  .lalatoto-info-modal {
+    display: none;
+  }
+
+  .lalatoto-info-modal[open] {
+    display: grid;
+    place-items: center;
+    padding: 2.5rem;
+  }
+
+  .lalatoto-info-modal__panel {
+    width: min(100%, 45rem);
+    height: auto;
+    max-height: min(calc(100dvh - 5rem), 50rem);
+    animation-name: lalatoto-rise;
+  }
+
+  .lalatoto-info-modal.is-closing .lalatoto-info-modal__panel {
+    animation-name: lalatoto-sink;
+  }
+
+  .lalatoto-info-modal__header,
+  .lalatoto-info-modal__scroll {
+    padding-inline: 2.5rem;
+  }
+}
+
+@keyframes lalatoto-slide-up {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+@keyframes lalatoto-slide-down {
+  from { transform: translateY(0); }
+  to { transform: translateY(100%); }
+}
+
+@keyframes lalatoto-rise {
+  from { opacity: 0; transform: translateY(1.5rem); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes lalatoto-sink {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(1.5rem); }
+}
+
+@keyframes lalatoto-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes lalatoto-fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lalatoto-info-modal__panel,
+  .lalatoto-info-modal.is-closing .lalatoto-info-modal__panel,
+  .lalatoto-info-modal[open]::backdrop,
+  .lalatoto-info-modal.is-closing::backdrop {
+    animation: none;
+  }
+}

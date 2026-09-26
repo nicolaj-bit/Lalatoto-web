@@ -30,19 +30,28 @@ For at gøre fremtidige Prestige-opdateringer lette er ændringerne samlet få s
 
 - **Egne filer:** `assets/lalatoto.css` (bredde, luft, farver på dæmpet tekst og
   streger, skrifter i menu og etiketter, forsidens produktrække),
-  `sections/lalatoto-hero.liquid` og `sections/lalatoto-full-image.liquid`.
+  `sections/lalatoto-hero.liquid`, `sections/lalatoto-full-image.liquid`,
+  `snippets/lalatoto-product-info-modal.liquid` og
+  `assets/lalatoto-info-modal.js` (modalen «Fortæl mere»).
 - **Rettet i Prestiges egne filer:**
   - `layout/theme.liquid`: Google Tag Manager, Meta Pixel og indlæsning af
     `lalatoto.css`.
   - `sections/header.liquid`: konto- og login-ikonet er fjernet.
   - `snippets/header-sidebar.liquid`: login er fjernet fra mobilskuffen og
     erstattet af et søgelink.
+  - `sections/main-product.liquid` og `snippets/product-info.liquid`: tre
+    ekstra blokke (kort beskrivelse, leveringstid, Fortæl mere) og modalen
+    uden for Prestiges genindlæsning ved variantskift.
+  - `locales/da.json`, `en.default.json`, `de.json`: tekster under
+    `lalatoto.product` og «Læg i kurv» på dansk.
 - **Indstillinger:** farver, skrifter, header og forside ligger i
   `config/settings_data.json`, `sections/header-group.json` og
   `templates/index.json`.
 - **I butikken (ikke i repoet):** menuen «Hovedmenu (dev)» (`hovedmenu-dev`),
   de skjulte sider Materialer, Filosofi og Om os samt tysk som sprog (ikke
-  udgivet endnu).
+  udgivet endnu). Metafelterne på produkter i navnerummet `lalatoto`: Kort
+  beskrivelse, Leveringstid, Materialer, Mål, Vask og pleje, Sikkerhed og
+  Levering og retur.
 
 ## Sådan hænger det sammen
 
