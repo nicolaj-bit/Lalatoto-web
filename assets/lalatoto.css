@@ -261,7 +261,7 @@ svg.lalatoto-full-image__image {
 
 /* ===============================================================
  * MODALEN «FORTÆL MERE»
- * Telefon: hele skærmen, glider op nedefra.
+ * Telefon: den nederste halvdel af skærmen, glider op nedefra.
  * Computer: skuffe på ca. 520 px, glider ind fra højre, resten mørknet.
  * Ingen afrundede hjørner og ingen skygger.
  * =============================================================== */
@@ -290,8 +290,11 @@ html.lalatoto-scroll-lock body {
   overflow: hidden;
 }
 
+/* Telefon: panelet ligger i bunden, så den mørknede øverste halvdel kan
+   trykkes på for at lukke. Computer: skuffe i højre side (se længere nede). */
 .lalatoto-info-modal[open] {
   display: flex;
+  flex-direction: column;
   justify-content: flex-end;
 }
 
@@ -303,8 +306,10 @@ html.lalatoto-scroll-lock body {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100%;
+  height: 50%;
+  height: 50dvh;
   background: #efebe4;
+  border-block-start: 1px solid #d7d0c4;
   border-radius: 0;
   box-shadow: none;
   animation: lalatoto-slide-up 0.35s cubic-bezier(0.2, 0.8, 0.2, 1) both;
@@ -436,8 +441,14 @@ html.lalatoto-scroll-lock body {
 
 /* Computer: skuffe fra højre */
 @media screen and (min-width: 700px) {
+  .lalatoto-info-modal[open] {
+    flex-direction: row;
+  }
+
   .lalatoto-info-modal__panel {
     width: min(100%, 32.5rem); /* 520 px */
+    height: 100%;
+    border-block-start: 0;
     border-inline-start: 1px solid #d7d0c4;
     animation-name: lalatoto-slide-in;
   }
