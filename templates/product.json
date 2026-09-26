@@ -51,9 +51,7 @@
         },
         "more_info": {
           "type": "lalatoto_more_info",
-          "settings": {
-            "shipping_returns_page": "levering-og-returnering"
-          }
+          "settings": {}
         }
       },
       "block_order": [

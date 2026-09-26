@@ -1,30 +1,36 @@
 {%- doc -%}
   Lalatoto: «Fortæl mere» på produktsiden. Linket står under Læg i kurv, og
-  modalen samler al produktinformation med en indholdsfortegnelse øverst.
+  modalen samler produktets information med en indholdsfortegnelse øverst.
 
-  Afsnittenes indhold hentes fra produktets metafelter i navnerummet «lalatoto».
-  «Levering og retur» falder tilbage på en fælles side, hvis produktet ikke har
-  sin egen tekst. Afsnit uden indhold vises ikke.
+  Afsnittenes indhold hentes fra produktets metafelter i navnerummet «lalatoto»
+  (flerlinjet tekst). Et afsnit med tomt metafelt vises ikke og står heller ikke
+  i indholdsfortegnelsen. En tom linje i feltet giver et nyt tekstafsnit.
+
+  Snippet'et bruges to steder: som linket inde i produktinfoen (mode 'button')
+  og som selve modalen uden for Prestiges genindlæsning ved variantskift
+  (mode 'modal'). Kræver assets/lalatoto-info-modal.js.
 
   @param {object} product - produktet
-  @param {object} block - blokken «lalatoto_more_info»
   @param {string} mode - 'button' for linket eller 'modal' for selve modalen
   @param {string} modal_id - id på modalen
 {%- enddoc -%}
 
 {%- liquid
-  assign keys = 'materialer,maal,vask_og_pleje,sikkerhed,levering_og_retur' | split: ','
+  assign keys = 'materials,dimensions,care,safety,shipping' | split: ','
   assign has_content = false
 
   for key in keys
-    assign value = product.metafields.lalatoto[key]
-    if value != blank
+    if product.metafields.lalatoto[key].value != blank
       assign has_content = true
-    elsif key == 'levering_og_retur' and block.settings.shipping_returns_page.content != blank
-      assign has_content = true
+      break
     endif
   endfor
 -%}
+
+{%- comment -%}Et rigtigt linjeskift. Liquid oversætter ikke '\n' i en tekststreng.{%- endcomment -%}
+{% capture newline %}
+{% endcapture %}
+{%- assign blank_line = newline | append: newline -%}
 
 {%- if has_content -%}
   {%- if mode == 'button' -%}
@@ -37,7 +43,7 @@
       <dialog id="{{ modal_id }}" class="lalatoto-info-modal color-scheme color-scheme--scheme-1" aria-labelledby="{{ modal_id }}-title">
         <div class="lalatoto-info-modal__panel">
           <div class="lalatoto-info-modal__header">
-            <p id="{{ modal_id }}-title" class="lalatoto-info-modal__title h4">{{ product.title }}</p>
+            <h2 id="{{ modal_id }}-title" class="lalatoto-info-modal__title">{{ product.title }}</h2>
 
             <button type="button" class="lalatoto-info-modal__close" data-lalatoto-close>
               <span class="sr-only">{{ 'general.accessibility.close' | t }}</span>
@@ -47,17 +53,9 @@
 
           <div class="lalatoto-info-modal__scroll" data-lalatoto-scroll>
             <nav class="lalatoto-info-modal__toc" aria-label="{{ 'lalatoto.product.contents' | t | escape }}">
-              <p class="lalatoto-info-modal__toc-title smallcaps">{{ 'lalatoto.product.contents' | t }}</p>
-
               <ol data-lalatoto-toc>
                 {%- for key in keys -%}
-                  {%- liquid
-                    assign value = product.metafields.lalatoto[key]
-                    if value == blank and key == 'levering_og_retur'
-                      assign value = block.settings.shipping_returns_page.content
-                    endif
-                  -%}
-                  {%- if value != blank -%}
+                  {%- if product.metafields.lalatoto[key].value != blank -%}
                     {%- assign title_key = 'lalatoto.product.sections.' | append: key -%}
                     <li><a href="#{{ modal_id }}-{{ key }}">{{ title_key | t }}</a></li>
                   {%- endif -%}
@@ -67,20 +65,20 @@
 
             <div class="lalatoto-info-modal__body">
               {%- for key in keys -%}
-                {%- liquid
-                  assign metafield = product.metafields.lalatoto[key]
-                  assign content = ''
-                  if metafield != blank
-                    assign content = metafield | metafield_tag
-                  elsif key == 'levering_og_retur'
-                    assign content = block.settings.shipping_returns_page.content
-                  endif
-                -%}
-                {%- if content != blank -%}
+                {%- assign value = product.metafields.lalatoto[key].value -%}
+                {%- if value != blank -%}
                   {%- assign title_key = 'lalatoto.product.sections.' | append: key -%}
-                  <section id="{{ modal_id }}-{{ key }}" class="lalatoto-info-modal__section" data-lalatoto-section>
-                    <h2 class="h4">{{ title_key | t }}</h2>
-                    <div class="prose">{{ content }}</div>
+                  {%- assign paragraphs = value | strip | split: blank_line -%}
+                  <section id="{{ modal_id }}-{{ key }}" class="lalatoto-info-modal__section">
+                    <h3 class="lalatoto-info-modal__section-title">{{ title_key | t }}</h3>
+                    <div class="lalatoto-info-modal__text">
+                      {%- for paragraph in paragraphs -%}
+                        {%- assign paragraph = paragraph | strip -%}
+                        {%- if paragraph != blank -%}
+                          <p>{{ paragraph | escape | newline_to_br }}</p>
+                        {%- endif -%}
+                      {%- endfor -%}
+                    </div>
                   </section>
                 {%- endif -%}
               {%- endfor -%}

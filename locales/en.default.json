@@ -522,11 +522,11 @@
       "contents": "Contents",
       "delivery_default": "Delivery in 1-2 business days",
       "sections": {
-        "materialer": "Materials",
-        "maal": "Dimensions",
-        "vask_og_pleje": "Washing and care",
-        "sikkerhed": "Safety",
-        "levering_og_retur": "Delivery and returns"
+        "materials": "Materials",
+        "dimensions": "Dimensions",
+        "care": "Washing and care",
+        "safety": "Safety",
+        "shipping": "Delivery and returns"
       }
     }
   }

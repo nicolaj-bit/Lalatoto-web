@@ -522,11 +522,11 @@
       "contents": "Inhalt",
       "delivery_default": "Lieferung in 1-2 Werktagen",
       "sections": {
-        "materialer": "Materialien",
-        "maal": "Maße",
-        "vask_og_pleje": "Waschen und Pflege",
-        "sikkerhed": "Sicherheit",
-        "levering_og_retur": "Lieferung und Rückgabe"
+        "materials": "Materialien",
+        "dimensions": "Maße",
+        "care": "Waschen und Pflege",
+        "safety": "Sicherheit",
+        "shipping": "Lieferung und Rückgabe"
       }
     }
   }

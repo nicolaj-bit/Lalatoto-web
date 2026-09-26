@@ -526,11 +526,11 @@
       "contents": "Indhold",
       "delivery_default": "Levering 1-2 hverdage",
       "sections": {
-        "materialer": "Materialer",
-        "maal": "Mål",
-        "vask_og_pleje": "Vask og pleje",
-        "sikkerhed": "Sikkerhed",
-        "levering_og_retur": "Levering og retur"
+        "materials": "Materialer",
+        "dimensions": "Mål",
+        "care": "Vask og pleje",
+        "safety": "Sikkerhed",
+        "shipping": "Levering og retur"
       }
     }
   }

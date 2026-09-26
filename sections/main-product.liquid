@@ -157,7 +157,7 @@
 {%- endcomment -%}
 {%- assign lalatoto_more_info_block = section.blocks | where: 'type', 'lalatoto_more_info' | first -%}
 {%- if lalatoto_more_info_block != blank and product != blank -%}
-  {%- render 'lalatoto-product-info-modal', product: product, block: lalatoto_more_info_block, mode: 'modal', modal_id: 'lalatoto-info-modal' -%}
+  {%- render 'lalatoto-product-info-modal', product: product, mode: 'modal', modal_id: 'lalatoto-info-modal' -%}
   <script src="{{ 'lalatoto-info-modal.js' | asset_url }}" defer></script>
 {%- endif -%}
 
@@ -437,13 +437,7 @@
       "settings": [
         {
           "type": "paragraph",
-          "content": "Afsnittene hentes fra produktets metafelter: Materialer, Mål, Vask og pleje, Sikkerhed og Levering og retur. Tomme afsnit vises ikke."
-        },
-        {
-          "type": "page",
-          "id": "shipping_returns_page",
-          "label": "Fælles side om levering og retur",
-          "info": "Bruges, når produktet ikke har sin egen tekst i metafeltet «Levering og retur»."
+          "content": "Afsnittene hentes fra produktets metafelter i navnerummet lalatoto: Materialer (materials), Mål (dimensions), Vask og pleje (care), Sikkerhed (safety) og Levering og retur (shipping). Tomme felter vises ikke. Har produktet ingen af dem, vises linket ikke."
         }
       ]
     },

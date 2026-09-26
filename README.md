@@ -49,9 +49,10 @@ For at gøre fremtidige Prestige-opdateringer lette er ændringerne samlet få s
   `templates/index.json`.
 - **I butikken (ikke i repoet):** menuen «Hovedmenu (dev)» (`hovedmenu-dev`),
   de skjulte sider Materialer, Filosofi og Om os samt tysk som sprog (ikke
-  udgivet endnu). Metafelterne på produkter i navnerummet `lalatoto`: Kort
-  beskrivelse, Leveringstid, Materialer, Mål, Vask og pleje, Sikkerhed og
-  Levering og retur.
+  udgivet endnu). Metafelterne på produkter i navnerummet `lalatoto`:
+  `kort_beskrivelse`, `leveringstid` og til «Fortæl mere» `materials`,
+  `dimensions`, `care`, `safety` og `shipping` (flerlinjet tekst). Et tomt
+  felt skjuler afsnittet. «Tyngdedyne baby» har eksempeltekst i dem.
 
 ## Sådan hænger det sammen
 

@@ -142,7 +142,8 @@
       }
 
       /* Nederst i modalen er det sidste afsnit det aktive, også selv om det er kort. */
-      if (this.scroller.scrollTop + this.scroller.clientHeight >= this.scroller.scrollHeight - 2) {
+      var scrollable = this.scroller.scrollHeight > this.scroller.clientHeight + 2;
+      if (scrollable && this.scroller.scrollTop + this.scroller.clientHeight >= this.scroller.scrollHeight - 2) {
         active = this.links[this.links.length - 1];
       }
 
