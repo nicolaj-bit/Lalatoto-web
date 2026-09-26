@@ -24,6 +24,26 @@ er ikke med.
 Butikkens egne sektioner, skabeloner, indstillinger og tekster fra live temaet
 er **ikke** flyttet med. De ligger stadig på `main` som reference.
 
+## Lalatotos tilpasninger oven på Prestige
+
+For at gøre fremtidige Prestige-opdateringer lette er ændringerne samlet få steder:
+
+- **Egne filer:** `assets/lalatoto.css` (bredde, luft, farver på dæmpet tekst og
+  streger, skrifter i menu og etiketter, forsidens produktrække),
+  `sections/lalatoto-hero.liquid` og `sections/lalatoto-full-image.liquid`.
+- **Rettet i Prestiges egne filer:**
+  - `layout/theme.liquid`: Google Tag Manager, Meta Pixel og indlæsning af
+    `lalatoto.css`.
+  - `sections/header.liquid`: konto- og login-ikonet er fjernet.
+  - `snippets/header-sidebar.liquid`: login er fjernet fra mobilskuffen og
+    erstattet af et søgelink.
+- **Indstillinger:** farver, skrifter, header og forside ligger i
+  `config/settings_data.json`, `sections/header-group.json` og
+  `templates/index.json`.
+- **I butikken (ikke i repoet):** menuen «Hovedmenu (dev)» (`hovedmenu-dev`),
+  de skjulte sider Materialer, Filosofi og Om os samt tysk som sprog (ikke
+  udgivet endnu).
+
 ## Sådan hænger det sammen
 
 - **Live temaet er ikke koblet til GitHub.** Det, kunderne ser, ændres ikke af

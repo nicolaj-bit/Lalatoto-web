@@ -75,17 +75,14 @@
       endif
     -%}
 
-    {%- if shop.customer_accounts_enabled or show_country_selector or show_locale_selector -%}
+    {%- if section.settings.enable_search or show_country_selector or show_locale_selector -%}
       <div class="header-sidebar__footer">
-        {%- if shop.customer_accounts_enabled -%}
-          <shopify-account menu="{{ section.settings.customer_account_menu }}">
-            <div slot="signed-out-avatar">
-              <div class="text-with-icon smallcaps sm:hidden">
-                {%- render 'icon' with 'account', width: 20 -%}
-                {{- 'header.general.login' | t -}}
-              </div>
-            </div>
-          </shopify-account>
+        {%- comment -%}Lalatoto: login er fjernet fra skuffen og erstattet af søgning{%- endcomment -%}
+        {%- if section.settings.enable_search -%}
+          <a href="{{ routes.search_url }}" aria-controls="header-search-{{ section.id }}" class="text-with-icon smallcaps">
+            {%- render 'icon' with 'search', width: 20 -%}
+            {{- 'header.general.search' | t -}}
+          </a>
         {%- endif -%}
 
         {%- if show_country_selector or show_locale_selector -%}

@@ -1,0 +1,194 @@
+/*
+ * Lalatoto: fundament oven på Prestige.
+ * Alt, som temaindstillingerne ikke kan styre, ligger her, så Prestiges egne
+ * filer holdes så urørte som muligt og er lettere at opdatere.
+ */
+
+/* ---------------------------------------------------------------
+ * Bredde og luft: indhold højst 1400 px, 64 px mellem sektioner på
+ * telefon og 120 px på computer.
+ * --------------------------------------------------------------- */
+:root {
+  --lalatoto-max-width: 87.5rem; /* 1400px */
+  --container-max-width: var(--lalatoto-max-width);
+  --section-vertical-spacing: 4rem; /* 64px */
+  --section-vertical-spacing-tight: 4rem;
+
+  /* Knapper, menu og små etiketter: Inter, store bogstaver, 1,5 px, lille størrelse */
+  --lalatoto-label-size: 0.75rem; /* 12px */
+  --lalatoto-label-spacing: 1.5px;
+  --button-letter-spacing: var(--lalatoto-label-spacing);
+}
+
+@media screen and (min-width: 1000px) {
+  :root {
+    --section-vertical-spacing: 7.5rem; /* 120px */
+    --section-vertical-spacing-tight: 7.5rem;
+  }
+}
+
+/* ---------------------------------------------------------------
+ * Farver: dæmpet tekst og streger har deres egne farver i stedet for
+ * Prestiges udregnede nuancer.
+ * --------------------------------------------------------------- */
+.color-scheme--scheme-1,
+.color-scheme--scheme-2,
+.color-scheme--scheme-3,
+.color-scheme--dialog {
+  --border-color: 215 208 196; /* #D7D0C4 */
+}
+
+.text-subdued {
+  color: #6e675e;
+}
+
+/* ---------------------------------------------------------------
+ * Skrifter
+ * --------------------------------------------------------------- */
+h1, h2, h3, h4, h5, h6,
+.h0, .h1, .h2, .h3, .h4, .h5, .h6 {
+  font-weight: 400;
+  letter-spacing: normal;
+}
+
+.smallcaps,
+.header__primary-nav-item > a,
+.header__primary-nav-item summary,
+.header__dropdown-menu a,
+.header-sidebar__linklist-button,
+.localization-selectors,
+.localization-selector {
+  font-family: var(--text-font-family);
+  font-weight: var(--text-font-weight);
+  font-size: var(--lalatoto-label-size);
+  text-transform: uppercase;
+  letter-spacing: var(--lalatoto-label-spacing);
+}
+
+.button {
+  font-size: var(--lalatoto-label-size);
+}
+
+/* ---------------------------------------------------------------
+ * Header: samme maksimale bredde som indholdet
+ * --------------------------------------------------------------- */
+.header {
+  padding-inline-start: max(var(--container-gutter), (100% - var(--lalatoto-max-width)) / 2);
+  padding-inline-end: max(var(--container-gutter), (100% - var(--lalatoto-max-width)) / 2);
+}
+
+.header-sidebar__footer .text-with-icon {
+  margin-block-end: 1rem;
+}
+
+/* ---------------------------------------------------------------
+ * Knap med tynd ramme og gennemsigtig baggrund
+ * --------------------------------------------------------------- */
+.lalatoto-button-outline {
+  display: inline-block;
+  padding: 0.9375rem 2.25rem;
+  border: 1px solid rgb(var(--text-color));
+  background: transparent;
+  color: rgb(var(--text-color));
+  font-family: var(--text-font-family);
+  font-weight: var(--text-font-weight);
+  font-size: var(--lalatoto-label-size);
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: var(--lalatoto-label-spacing);
+  text-decoration: none;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.lalatoto-button-outline:hover {
+  background-color: rgb(var(--text-color) / 0.06);
+}
+
+/* ---------------------------------------------------------------
+ * Hero: billede øverst på telefon, tekst til venstre og billede til
+ * højre på computer.
+ * --------------------------------------------------------------- */
+.lalatoto-hero {
+  background: rgb(var(--background));
+  color: rgb(var(--text-color));
+  padding-block-end: var(--section-vertical-spacing);
+}
+
+/* Når headeren ligger gennemsigtigt oven på hero, skubbes indholdet ned under den */
+.shopify-section:first-child .lalatoto-hero[allow-transparent-header] {
+  padding-block-start: var(--header-height, 0px);
+}
+
+.lalatoto-hero__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.lalatoto-hero__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+
+.lalatoto-hero__content {
+  display: grid;
+  justify-items: start;
+  gap: 1.5rem;
+  padding: 2.5rem var(--container-gutter) 0;
+}
+
+.lalatoto-hero__heading {
+  margin: 0;
+}
+
+.lalatoto-hero__line {
+  display: block;
+}
+
+.lalatoto-hero__text {
+  max-width: 28rem;
+  color: #6e675e;
+}
+
+@media screen and (min-width: 700px) {
+  .lalatoto-hero__inner {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: center;
+    column-gap: clamp(2rem, 6vw, 6rem);
+    max-width: var(--lalatoto-max-width);
+    margin-inline: auto;
+    padding-inline: var(--container-gutter);
+  }
+
+  .lalatoto-hero__content {
+    order: -1;
+    padding: 0;
+  }
+}
+
+/* ---------------------------------------------------------------
+ * Billede i fuld bredde
+ * --------------------------------------------------------------- */
+.lalatoto-full-image__image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+svg.lalatoto-full-image__image {
+  aspect-ratio: 16 / 7;
+}
+
+/* ---------------------------------------------------------------
+ * Produktrækken på forsiden: kun billede og produktnavn
+ * --------------------------------------------------------------- */
+[id$="__shop"] price-list,
+[id$="__shop"] badge-list,
+[id$="__shop"] .product-card__quick-add-button,
+[id$="__shop"] .quick-buy-modal,
+[id$="__shop"] .product-card__info fieldset,
+[id$="__shop"] .product-card__info .smallcaps {
+  display: none !important;
+}
