@@ -578,7 +578,7 @@
             {%- endif -%}
 
           {%- comment -%}Lalatoto: egne blokke til produktsiden{%- endcomment -%}
-          {%- when 'lalatoto_short_description' -%}
+          {%- when 'lalatoto_short_desc' -%}
             {%- if product != blank -%}
               {%- assign lalatoto_short = product.metafields.lalatoto.kort_beskrivelse.value | escape | newline_to_br -%}
               {%- if lalatoto_short == blank -%}
