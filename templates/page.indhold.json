@@ -10,10 +10,9 @@
 {
   "sections": {
     "main": {
-      "type": "lalatoto-collection",
+      "type": "lalatoto-content-page",
       "settings": {
-        "color_scheme": "scheme-1",
-        "products_per_page": 24
+        "color_scheme": "scheme-1"
       }
     }
   },

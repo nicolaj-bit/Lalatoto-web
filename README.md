@@ -40,6 +40,9 @@ For at gøre fremtidige Prestige-opdateringer lette er ændringerne samlet få s
   `sections/lalatoto-hero.liquid`, `sections/lalatoto-full-image.liquid`,
   `snippets/lalatoto-product-info-modal.liquid` og
   `assets/lalatoto-info-modal.js` (modalen «Fortæl mere»).
+  `sections/lalatoto-collection.liquid` (kollektionssiden) og
+  `sections/lalatoto-content-page.liquid` (indholdssiderne, skabelonen
+  `page.indhold`).
 - **Rettet i Prestiges egne filer:**
   - `layout/theme.liquid`: Google Tag Manager, Meta Pixel og indlæsning af
     `lalatoto.css`.
@@ -49,8 +52,10 @@ For at gøre fremtidige Prestige-opdateringer lette er ændringerne samlet få s
   - `sections/main-product.liquid` og `snippets/product-info.liquid`: tre
     ekstra blokke (kort beskrivelse, leveringstid, Fortæl mere) og modalen
     uden for Prestiges genindlæsning ved variantskift.
+  - `sections/cart-drawer.liquid`: overskriften «Kurv», sum-linje, tekst om
+    fragt og knapteksten «Gå til betaling».
   - `locales/da.json`, `en.default.json`, `de.json`: tekster under
-    `lalatoto.product` og «Læg i kurv» på dansk.
+    `lalatoto` og «Læg i kurv» på dansk.
 - **Indstillinger:** farver, skrifter, header og forside ligger i
   `config/settings_data.json`, `sections/header-group.json` og
   `templates/index.json`.
@@ -60,6 +65,20 @@ For at gøre fremtidige Prestige-opdateringer lette er ændringerne samlet få s
   `kort_beskrivelse`, `leveringstid` og til «Fortæl mere» `materials`,
   `dimensions`, `care`, `safety` og `shipping` (flerlinjet tekst). Et tomt
   felt skjuler afsnittet. «Tyngdedyne baby» har eksempeltekst i dem.
+
+## Indholdssiderne
+
+Materialer, Filosofi og Om os bruger skabelonen `page.indhold`. Alt indhold
+kommer fra siden i Shopify:
+
+- **Etiket:** sidens titel.
+- **Tekst:** sidens indhold som HTML. En `<h2>` er overskriften (`<br>` giver
+  linjeskift), og teksten før den første `<h3>` er indledningen. Hver `<h3>`
+  starter et nyt afsnit i de to spalter.
+- **Billede:** sidens metafelt «Billede i fuld bredde» (`lalatoto.image`).
+
+Kollektionssiden henter overskriften fra kollektionens metafelt «Overskrift»
+(`lalatoto.heading`) og den korte linje fra «Kort linje» (`lalatoto.intro`).
 
 ## Sådan hænger det sammen
 

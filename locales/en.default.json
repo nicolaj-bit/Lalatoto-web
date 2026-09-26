@@ -528,6 +528,16 @@
         "safety": "Safety",
         "shipping": "Delivery and returns"
       }
+    },
+    "collection": {
+      "kicker": "Collection",
+      "empty": "There are no products here yet."
+    },
+    "cart": {
+      "title": "Cart",
+      "total": "Total",
+      "shipping_note": "Shipping is calculated at checkout.",
+      "checkout": "Go to checkout"
     }
   }
 }

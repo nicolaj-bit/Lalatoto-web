@@ -532,6 +532,16 @@
         "safety": "Sikkerhed",
         "shipping": "Levering og retur"
       }
+    },
+    "collection": {
+      "kicker": "Kollektion",
+      "empty": "Der er ingen produkter her endnu."
+    },
+    "cart": {
+      "title": "Kurv",
+      "total": "I alt",
+      "shipping_note": "Fragt beregnes ved betaling.",
+      "checkout": "Gå til betaling"
     }
   }
 }

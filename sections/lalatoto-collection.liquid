@@ -1,0 +1,88 @@
+{%- comment -%}
+  Lalatoto: kollektionsside. Centreret overskrift med en kort linje under og
+  derefter produkterne med kun billede og navn. Ingen priser, filtre eller
+  sortering. Fire kolonner på computer og to på telefon.
+
+  Overskriften hentes fra kollektionens metafelt lalatoto.heading og ellers fra
+  kollektionens navn. Den korte linje hentes fra lalatoto.intro og ellers fra
+  starten af kollektionens beskrivelse.
+{%- endcomment -%}
+
+{%- liquid
+  assign heading = collection.metafields.lalatoto.heading.value | default: collection.title
+  assign intro = collection.metafields.lalatoto.intro.value
+  if intro == blank and collection.description != blank
+    assign intro = collection.description | strip_html | truncatewords: 24
+  endif
+-%}
+
+{%- paginate collection.products by section.settings.products_per_page -%}
+  <div class="lalatoto-collection color-scheme color-scheme--{{ section.settings.color_scheme.id }}">
+    <header class="lalatoto-collection__head">
+      <p class="lalatoto-kicker">{{ 'lalatoto.collection.kicker' | t }}</p>
+      <h1 class="lalatoto-collection__title">{{ heading | escape }}</h1>
+
+      {%- if intro != blank -%}
+        <p class="lalatoto-lead">{{ intro | escape }}</p>
+      {%- endif -%}
+    </header>
+
+    {%- if collection.products.size > 0 -%}
+      <ul class="lalatoto-tiles unstyled-list" role="list">
+        {%- for product in collection.products -%}
+          <li class="lalatoto-tile">
+            <a href="{{ product.url }}" class="lalatoto-tile__link">
+              <div class="lalatoto-tile__media">
+                {%- if product.featured_media != blank -%}
+                  {%- assign lazy = 'lazy' -%}
+                  {%- if forloop.index <= 4 -%}{%- assign lazy = 'eager' -%}{%- endif -%}
+                  {{-
+                    product.featured_media
+                    | image_url: width: 1200
+                    | image_tag:
+                      loading: lazy,
+                      sizes: '(max-width: 699px) 50vw, (max-width: 1400px) 25vw, 350px',
+                      widths: '300,400,500,600,800,1000,1200',
+                      alt: product.featured_media.alt
+                  -}}
+                {%- else -%}
+                  {{- 'product-1' | placeholder_svg_tag -}}
+                {%- endif -%}
+              </div>
+              <span class="lalatoto-tile__name">{{ product.title }}</span>
+            </a>
+          </li>
+        {%- endfor -%}
+      </ul>
+
+      {%- render 'pagination', paginate: paginate -%}
+    {%- else -%}
+      <p class="lalatoto-collection__empty">{{ 'lalatoto.collection.empty' | t }}</p>
+    {%- endif -%}
+  </div>
+{%- endpaginate -%}
+
+{% schema %}
+{
+  "name": "Lalatoto kollektion",
+  "class": "shopify-section--lalatoto-collection",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Farveskema",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "label": "Produkter pr. side",
+      "min": 8,
+      "max": 48,
+      "step": 4,
+      "default": 24
+    }
+  ]
+}
+{% endschema %}

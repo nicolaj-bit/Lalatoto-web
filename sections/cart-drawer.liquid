@@ -5,7 +5,8 @@
   initial-focus="false"
   handle-editor-events
 >
-  <p class="h4" slot="header">{{ 'cart.general.title' | t }}</p>
+  {%- comment -%}Lalatoto: overskriften «Kurv» som lille etiket{%- endcomment -%}
+  <p class="lalatoto-kicker lalatoto-cart__title" slot="header">{{ 'lalatoto.cart.title' | t }}</p>
 
   {%- if cart.empty? -%}
     <p class="h5 text-center">{{ 'cart.general.empty' | t }}</p>
@@ -131,6 +132,13 @@
           </div>
         {%- endif -%}
 
+        {%- comment -%}Lalatoto: sum-linje og en lille tekst om fragt{%- endcomment -%}
+        <div class="lalatoto-cart__sum">
+          <span>{{ 'lalatoto.cart.total' | t }}</span>
+          <span>{{ cart.total_price | money }}</span>
+        </div>
+        <p class="lalatoto-cart__note">{{ 'lalatoto.cart.shipping_note' | t }}</p>
+
         <div class="button-group">
           {%- if section.settings.show_view_cart_button or section.settings.show_checkout_button == false -%}
             {%- assign view_cart = 'cart.general.view_cart' | t -%}
@@ -139,7 +147,7 @@
 
           {%- if section.settings.show_checkout_button -%}
             {%- capture checkout_button -%}
-              {{- 'cart.general.checkout' | t -}}
+              {{- 'lalatoto.cart.checkout' | t -}}
 
               {%- if section.settings.show_price_in_checkout_button -%}
                 <span class="cart-drawer__button-price">{{- cart.total_price | money -}}</span>

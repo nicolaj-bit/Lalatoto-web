@@ -1,0 +1,116 @@
+{%- comment -%}
+  Lalatoto: indholdsside (Materialer, Filosofi, Om os).
+
+  Tre dele: en indledning med lille etiket, overskrift og kort tekst, ét billede
+  i fuld bredde og afsnit i to spalter (én spalte på telefon).
+
+  Alt indhold kommer fra siden i Shopify, intet er hårdkodet:
+  - Etiketten er sidens titel.
+  - Sidens indhold skrives som HTML:
+      <h2>Overskrift</h2>          (valgfri; <br> giver linjeskift)
+      <p>Kort indledende tekst</p>
+      <h3>Afsnittets overskrift</h3>
+      <p>Afsnittets tekst</p>
+      <h3>Næste afsnit</h3> ...
+    Alt før den første <h3> er indledningen. Hver <h3> starter et nyt afsnit.
+    <h4> behandles som <h3>.
+  - Billedet er sidens metafelt lalatoto.image. Tomt felt: sektionens eget
+    billede, og ellers en pladsholder.
+{%- endcomment -%}
+
+{%- liquid
+  comment
+    Alt før den første <h3> er indledningen. Starter teksten med en <h3>, er
+    det første stykke tomt, og der er ingen indledning.
+  endcomment
+  assign html = page.content | strip | replace: '<h4', '<h3' | replace: '</h4>', '</h3>'
+  assign chunks = html | split: '<h3'
+  assign intro = chunks.first | default: ''
+
+  assign heading = ''
+  assign lead = intro
+  if intro contains '</h2>'
+    assign h2_block = intro | split: '</h2>' | first | append: '</h2>'
+    assign h2_part = h2_block | remove_first: '</h2>' | split: '<h2' | last
+    assign h2_attributes = h2_part | split: '>' | first
+    assign heading = h2_part | remove_first: h2_attributes | remove_first: '>'
+    assign lead = intro | remove_first: h2_block | strip
+  endif
+
+  assign kicker = page.title
+  if heading == blank
+    assign heading = page.title
+    assign kicker = ''
+  endif
+
+  assign image = page.metafields.lalatoto.image.value | default: section.settings.image
+-%}
+
+<div class="lalatoto-content color-scheme color-scheme--{{ section.settings.color_scheme.id }}">
+  <header class="lalatoto-content__intro">
+    {%- if kicker != blank -%}
+      <p class="lalatoto-kicker">{{ kicker | escape }}</p>
+    {%- endif -%}
+
+    <h1 class="lalatoto-content__title">{{ heading }}</h1>
+
+    {%- if lead != blank -%}
+      <div class="lalatoto-lead lalatoto-content__lead">{{ lead }}</div>
+    {%- endif -%}
+  </header>
+
+  <div class="lalatoto-content__media">
+    {%- if image != blank -%}
+      {{-
+        image
+        | image_url: width: 2800
+        | image_tag:
+          loading: 'eager',
+          sizes: '(max-width: 1400px) 100vw, 1400px',
+          widths: '600,800,1000,1200,1400,1800,2200,2800',
+          alt: image.alt
+      -}}
+    {%- else -%}
+      {{- 'lifestyle-2' | placeholder_svg_tag: 'placeholder' -}}
+    {%- endif -%}
+  </div>
+
+  {%- if chunks.size > 1 -%}
+    <div class="lalatoto-content__body">
+      {%- for chunk in chunks offset: 1 -%}
+        <div class="lalatoto-content__block">{{ '<h3' | append: chunk }}</div>
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Lalatoto indholdsside",
+  "class": "shopify-section--lalatoto-content",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Indholdet kommer fra siden i Shopify: sidens titel er etiketten, og sidens tekst (HTML) giver overskrift, indledning og afsnit. Hver h3 starter et nyt afsnit. Billedet hentes fra sidens metafelt «Billede i fuld bredde»."
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Farveskema",
+      "default": "scheme-1"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Reservebillede",
+      "info": "Bruges kun, når siden ikke har sit eget billede."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Lalatoto indholdsside"
+    }
+  ]
+}
+{% endschema %}

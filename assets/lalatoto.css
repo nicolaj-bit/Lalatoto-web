@@ -510,3 +510,307 @@ html.lalatoto-scroll-lock body {
     transition: none;
   }
 }
+
+/* ===============================================================
+ * FÆLLES: lille etiket og kort indledende tekst
+ * =============================================================== */
+.lalatoto-kicker {
+  margin: 0;
+  font-family: var(--text-font-family);
+  font-weight: var(--text-font-weight);
+  font-size: 0.6875rem; /* 11px */
+  line-height: 1.4;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #6e675e;
+}
+
+.lalatoto-lead {
+  margin: 0;
+  color: #6e675e;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+.lalatoto-lead p {
+  margin: 0;
+}
+
+.lalatoto-lead p + p {
+  margin-block-start: 0.75rem;
+}
+
+/* ===============================================================
+ * KOLLEKTIONSSIDEN (Shop)
+ * =============================================================== */
+.lalatoto-collection {
+  max-width: var(--lalatoto-max-width);
+  margin-inline: auto;
+  padding: var(--section-vertical-spacing) var(--container-gutter);
+}
+
+.lalatoto-collection__head {
+  display: grid;
+  justify-items: center;
+  gap: 0.75rem;
+  margin-block-end: 3rem;
+  text-align: center;
+}
+
+.lalatoto-collection__title {
+  margin: 0;
+  font-family: var(--heading-font-family);
+  font-weight: 400;
+  font-size: clamp(1.75rem, 1.4rem + 1.5vw, 2.5rem);
+  line-height: 1.15;
+  letter-spacing: normal;
+}
+
+.lalatoto-collection__head .lalatoto-lead {
+  max-width: 46ch;
+}
+
+.lalatoto-collection__empty {
+  text-align: center;
+  color: #6e675e;
+}
+
+.lalatoto-tiles {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem 0.875rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media screen and (min-width: 1000px) {
+  .lalatoto-tiles {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 3rem 1.5rem;
+  }
+}
+
+.lalatoto-tile__link {
+  display: grid;
+  gap: 0.875rem;
+  color: #2a2724;
+  text-decoration: none;
+}
+
+.lalatoto-tile__media {
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: #e7e1d8;
+}
+
+.lalatoto-tile__media img,
+.lalatoto-tile__media svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.lalatoto-tile__name {
+  font-family: var(--text-font-family);
+  font-size: 0.6875rem;
+  line-height: 1.4;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.lalatoto-collection .pagination {
+  margin-block-start: 3.5rem;
+}
+
+/* ===============================================================
+ * INDHOLDSSIDER (Materialer, Filosofi, Om os)
+ * =============================================================== */
+.lalatoto-content {
+  display: grid;
+  gap: 3rem;
+  max-width: var(--lalatoto-max-width);
+  margin-inline: auto;
+  padding: var(--section-vertical-spacing) var(--container-gutter);
+}
+
+.lalatoto-content__intro {
+  display: grid;
+  gap: 1rem;
+  max-width: 44ch;
+}
+
+.lalatoto-content__title {
+  margin: 0;
+  font-family: var(--heading-font-family);
+  font-weight: 400;
+  font-size: clamp(1.75rem, 1.3rem + 1.9vw, 2.625rem);
+  line-height: 1.14;
+  letter-spacing: normal;
+}
+
+.lalatoto-content__lead {
+  max-width: 38ch;
+}
+
+.lalatoto-content__media {
+  aspect-ratio: 21 / 9;
+  overflow: hidden;
+  background: #e7e1d8;
+}
+
+.lalatoto-content__media img,
+.lalatoto-content__media svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.lalatoto-content__body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2rem;
+  max-width: 60rem; /* 960px */
+}
+
+@media screen and (min-width: 700px) {
+  .lalatoto-content__body {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2.5rem 3rem;
+  }
+}
+
+@media screen and (max-width: 699px) {
+  .lalatoto-content__media {
+    aspect-ratio: 4 / 3;
+  }
+}
+
+.lalatoto-content__block {
+  display: grid;
+  gap: 0.5rem;
+  align-content: start;
+}
+
+.lalatoto-content__block h3 {
+  margin: 0;
+  font-family: var(--text-font-family);
+  font-weight: var(--text-font-weight);
+  font-size: var(--lalatoto-label-size);
+  line-height: 1.4;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #6e675e;
+}
+
+.lalatoto-content__block p {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.65;
+}
+
+.lalatoto-content__block p + p {
+  margin-block-start: 0.5rem;
+}
+
+.lalatoto-content__block a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ===============================================================
+ * KURVEN: skuffe fra højre i samme stil som «Fortæl mere»
+ * Prestige klarer kryds, Escape, klik udenfor og låsning af siden bagved.
+ * =============================================================== */
+.cart-drawer {
+  --drawer-max-width: min(100vw, 32.5rem); /* 520 px */
+  --drawer-header-padding-inline: var(--container-gutter);
+  --drawer-body-padding-inline: var(--container-gutter);
+  --drawer-footer-padding-inline: var(--container-gutter);
+}
+
+@media screen and (min-width: 700px) {
+  .cart-drawer {
+    --drawer-header-padding-block: 1.75rem;
+    --drawer-header-padding-inline: 2.5rem;
+    --drawer-body-padding-inline: 2.5rem;
+    --drawer-footer-padding-inline: 2.5rem;
+    --drawer-footer-padding-block: 1.75rem;
+  }
+}
+
+.cart-drawer::part(content) {
+  border-inline-start: 1px solid #d7d0c4;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.cart-drawer::part(overlay) {
+  background: rgb(42 39 36 / 0.45);
+}
+
+.cart-drawer::part(header),
+.cart-drawer::part(footer) {
+  border: 0;
+}
+
+.cart-drawer__items {
+  gap: 0;
+  padding-block-start: 0;
+}
+
+.cart-drawer .line-item {
+  --line-item-media-width: 4rem; /* 64 px */
+  align-items: start;
+  column-gap: 0.875rem;
+  padding-block: 0.875rem;
+  border-block-start: 1px solid #d7d0c4;
+}
+
+.cart-drawer .line-item__media {
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  background: #e7e1d8;
+}
+
+.cart-drawer .line-item-info {
+  font-size: 0.8125rem;
+}
+
+.cart-drawer .line-item-info .smallcaps {
+  font-size: 0.75rem;
+  letter-spacing: normal;
+  text-transform: none;
+  color: #6e675e;
+}
+
+.cart-drawer .quantity-selector,
+.cart-drawer .quantity-selector__input,
+.cart-drawer .quantity-selector__button {
+  border-radius: 0;
+}
+
+.lalatoto-cart__sum {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  padding-block-start: 0.875rem;
+  border-block-start: 1px solid #d7d0c4;
+  font-size: 0.875rem;
+}
+
+.lalatoto-cart__note {
+  margin: 0;
+  font-size: 0.75rem;
+  color: #6e675e;
+}
+
+.cart-drawer .button-group,
+.cart-drawer .button-group .button {
+  width: 100%;
+}

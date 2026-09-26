@@ -528,6 +528,16 @@
         "safety": "Sicherheit",
         "shipping": "Lieferung und Rückgabe"
       }
+    },
+    "collection": {
+      "kicker": "Kollektion",
+      "empty": "Hier gibt es noch keine Produkte."
+    },
+    "cart": {
+      "title": "Warenkorb",
+      "total": "Gesamt",
+      "shipping_note": "Versandkosten werden an der Kasse berechnet.",
+      "checkout": "Zur Kasse"
     }
   }
 }

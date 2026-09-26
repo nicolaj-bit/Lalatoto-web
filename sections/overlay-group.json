@@ -13,7 +13,15 @@
   "sections": {
     "cart-drawer": {
       "type": "cart-drawer",
-      "settings": {}
+      "settings": {
+        "color_scheme": "scheme-1",
+        "show_cart_note": false,
+        "allow_discount_application": false,
+        "show_shipping_text": false,
+        "show_view_cart_button": false,
+        "show_checkout_button": true,
+        "show_price_in_checkout_button": false
+      }
     },
     "newsletter-popup": {
       "type": "newsletter-popup",
