@@ -571,7 +571,7 @@
       "done_text_html": "Vi sender én besked, når {{ item }} kan købes."
     },
     "header": {
-      "cart": "Cart"
+      "cart": "Kurv"
     }
   }
 }
