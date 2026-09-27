@@ -565,6 +565,9 @@
       "fine_print": "Wir schreiben dir nur zu diesem Artikel, außer du wählst auch den Newsletter. Du kannst dich jederzeit abmelden.",
       "done_title_html": "Danke. <em>Du stehst auf der Liste.</em>",
       "done_text_html": "Wir schicken dir eine Nachricht, sobald {{ item }} erhältlich ist."
+    },
+    "header": {
+      "cart": "Warenkorb"
     }
   }
 }

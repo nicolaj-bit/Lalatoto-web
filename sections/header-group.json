@@ -25,7 +25,7 @@
         "menu": "hovedmenu-dev",
         "menu_open_trigger": "hover",
         "menu_text_font": "body",
-        "enable_search": true,
+        "enable_search": false,
         "sidebar_color_scheme": "scheme-1",
         "sidebar_text_font": "body",
         "sidebar_show_dividers": false,

@@ -569,6 +569,9 @@
       "fine_print": "Vi skriver kun om denne vare, medmindre du også vælger nyhedsbrevet. Du kan altid framelde dig.",
       "done_title_html": "Tak. <em>Du er på listen.</em>",
       "done_text_html": "Vi sender én besked, når {{ item }} kan købes."
+    },
+    "header": {
+      "cart": "Cart"
     }
   }
 }

@@ -565,6 +565,9 @@
       "fine_print": "We only write about this item unless you also choose the newsletter. You can unsubscribe at any time.",
       "done_title_html": "Thank you. <em>You're on the list.</em>",
       "done_text_html": "We will send you one message when {{ item }} is available."
+    },
+    "header": {
+      "cart": "Cart"
     }
   }
 }

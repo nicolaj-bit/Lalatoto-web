@@ -55,6 +55,7 @@ h1, h2, h3, h4, h5, h6,
 .header__primary-nav-item > a,
 .header__primary-nav-item summary,
 .header__dropdown-menu a,
+.lalatoto-cart-link,
 .header-sidebar__linklist-button,
 .localization-selectors,
 .localization-selector {
@@ -67,6 +68,11 @@ h1, h2, h3, h4, h5, h6,
 
 .button {
   font-size: var(--lalatoto-label-size);
+}
+
+/* Kurven står som tekst i headeren og må ikke brydes over to linjer */
+.lalatoto-cart-link {
+  white-space: nowrap;
 }
 
 /* ---------------------------------------------------------------
