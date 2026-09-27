@@ -217,6 +217,22 @@ svg.lalatoto-full-image__image {
   color: rgb(var(--text-color));
 }
 
+/* Prisen i brødtekstens skrift, lidt større og med lige høje tal, så den
+   er let at læse. Førprisen følger med i samme skrift. */
+.price-list--product sale-price,
+.price-list--product compare-at-price {
+  font-family: var(--text-font-family);
+  font-weight: 500;
+  font-size: 1.25rem;
+  letter-spacing: normal;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.price-list--product compare-at-price {
+  font-weight: 400;
+  font-size: 1rem;
+}
+
 /* Kort beskrivelse: hele teksten vises, linjeskift bevares */
 .lalatoto-short-description {
   margin: 0;
