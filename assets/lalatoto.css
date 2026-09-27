@@ -1084,9 +1084,11 @@ html.lalatoto-scroll-lock body {
  * produktnavnet i Playfair kursiv og en fuld knap samme sted som Læg i kurv.
  * =============================================================== */
 
-/* Når ventelisten vises, skjules den deaktiverede Læg i kurv-knap */
-.product-info:has(.lalatoto-waitlist) .product-info__block-item[data-block-type='buy-buttons'] {
-  display: none;
+/* Når ventelisten vises, skjules den deaktiverede Læg i kurv-knap, også den
+   faste bjælke nederst på telefon */
+.product-info:has(.lalatoto-waitlist) .product-info__block-item[data-block-type='buy-buttons'],
+body:has(.lalatoto-waitlist) .product-sticky-bar {
+  display: none !important;
 }
 
 .lalatoto-waitlist {
