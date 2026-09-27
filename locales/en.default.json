@@ -538,6 +538,16 @@
       "total": "Total",
       "shipping_note": "Shipping is calculated at checkout.",
       "checkout": "Go to checkout"
+    },
+    "app": {
+      "kicker": "Club No Sleep",
+      "heading_line_1": "The app for the nights",
+      "heading_line_2": "when nobody sleeps",
+      "text": "We also make an app for expecting and new mothers. Sleep log, milestones and a community that is awake when you are.",
+      "app_store": "App Store",
+      "google_play": "Google Play",
+      "image_1_alt": "Club No Sleep: the map A light in the dark",
+      "image_2_alt": "Club No Sleep: affirmation of the day"
     }
   }
 }

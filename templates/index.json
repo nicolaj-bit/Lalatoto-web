@@ -57,11 +57,18 @@
         "subheading": "",
         "hide_collection_title": false
       }
+    },
+    "app": {
+      "type": "lalatoto-app",
+      "settings": {
+        "color_scheme": "scheme-2"
+      }
     }
   },
   "order": [
     "hero",
     "billede",
-    "shop"
+    "shop",
+    "app"
   ]
 }

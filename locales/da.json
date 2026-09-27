@@ -542,6 +542,16 @@
       "total": "I alt",
       "shipping_note": "Fragt beregnes ved betaling.",
       "checkout": "Gå til betaling"
+    },
+    "app": {
+      "kicker": "Club No Sleep",
+      "heading_line_1": "Appen til de nætter,",
+      "heading_line_2": "hvor ingen sover",
+      "text": "Vi laver også en app til gravide og nybagte mødre. Søvnlog, milepæle og et fællesskab, der er vågent, når du er.",
+      "app_store": "App Store",
+      "google_play": "Google Play",
+      "image_1_alt": "Club No Sleep: kortet Et lys i mørket",
+      "image_2_alt": "Club No Sleep: dagens affirmation"
     }
   }
 }

@@ -1,0 +1,179 @@
+{%- comment -%}
+  Lalatoto: Club No Sleep-appen. Dæmpet baggrund i fuld bredde med tekst til
+  venstre og to telefoner til højre. På telefon står teksten øverst og
+  billederne under.
+
+  Alle tekster kan rettes i temaeditoren. Står et felt tomt, bruges temaets
+  oversatte standardtekst fra sprogfilerne (lalatoto.app).
+
+  Knapperne: på iPhone og iPad vises kun App Store, på Android kun Google Play,
+  og på computer begge. Det afgøres af et lille script, der sætter
+  data-platform på sektionen. Uden JavaScript vises begge.
+{%- endcomment -%}
+
+{%- liquid
+  assign kicker = section.settings.kicker
+  if kicker == blank
+    assign kicker = 'lalatoto.app.kicker' | t
+  endif
+
+  assign heading_line_1 = section.settings.heading_line_1
+  assign heading_line_2 = section.settings.heading_line_2
+  if heading_line_1 == blank and heading_line_2 == blank
+    assign heading_line_1 = 'lalatoto.app.heading_line_1' | t
+    assign heading_line_2 = 'lalatoto.app.heading_line_2' | t
+  endif
+
+  assign text = section.settings.text
+  if text == blank
+    assign text = 'lalatoto.app.text' | t
+  endif
+
+  assign app_store_url = section.settings.app_store_url | default: 'https://apps.apple.com/dk/app/id6764388095'
+  assign google_play_url = section.settings.google_play_url | default: 'https://play.google.com/store/apps/details?id=com.base699f47a86e7e0a874d1159ed.app'
+-%}
+
+<div
+  id="lalatoto-app-{{ section.id }}"
+  class="lalatoto-app color-scheme color-scheme--{{ section.settings.color_scheme.id }}"
+>
+  <div class="lalatoto-app__inner">
+    <div class="lalatoto-app__copy">
+      <p class="lalatoto-kicker">{{ kicker | escape }}</p>
+
+      <h2 class="lalatoto-app__heading">
+        {%- if heading_line_1 != blank -%}<span class="lalatoto-app__line">{{ heading_line_1 | escape }}</span>{%- endif -%}
+        {%- if heading_line_2 != blank -%}<span class="lalatoto-app__line">{{ heading_line_2 | escape }}</span>{%- endif -%}
+      </h2>
+
+      {%- if text != blank -%}
+        <p class="lalatoto-app__text">{{ text | escape }}</p>
+      {%- endif -%}
+
+      <div class="lalatoto-app__buttons">
+        <a href="{{ app_store_url }}" class="lalatoto-button-outline lalatoto-app__button lalatoto-app__button--ios" target="_blank" rel="noopener">
+          {{- 'lalatoto.app.app_store' | t -}}
+        </a>
+        <a href="{{ google_play_url }}" class="lalatoto-button-outline lalatoto-app__button lalatoto-app__button--android" target="_blank" rel="noopener">
+          {{- 'lalatoto.app.google_play' | t -}}
+        </a>
+      </div>
+    </div>
+
+    <div class="lalatoto-app__phones">
+      {%- for i in (1..2) -%}
+        {%- liquid
+          if i == 1
+            assign image = section.settings.image_1
+            assign fallback = 'lalatoto-app-phone-1.jpg'
+            assign alt = 'lalatoto.app.image_1_alt' | t
+          else
+            assign image = section.settings.image_2
+            assign fallback = 'lalatoto-app-phone-2.jpg'
+            assign alt = 'lalatoto.app.image_2_alt' | t
+          endif
+        -%}
+        <div class="lalatoto-app__phone">
+          {%- if image != blank -%}
+            {%- assign image_alt = image.alt | default: alt -%}
+            {{-
+              image
+              | image_url: width: 600
+              | image_tag:
+                loading: 'lazy',
+                sizes: '(max-width: 699px) 148px, 178px',
+                widths: '300,360,450,600',
+                alt: image_alt
+            -}}
+          {%- else -%}
+            <img src="{{ fallback | asset_url }}" alt="{{ alt | escape }}" width="420" height="910" loading="lazy">
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var root = document.getElementById('lalatoto-app-{{ section.id }}');
+    if (!root) return;
+
+    var ua = navigator.userAgent || '';
+    /* iPadOS udgiver sig for at være en Mac, men har berøringsskærm. */
+    var isIos = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+    var isAndroid = /Android/i.test(ua);
+
+    if (isIos) root.setAttribute('data-platform', 'ios');
+    else if (isAndroid) root.setAttribute('data-platform', 'android');
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Lalatoto app",
+  "class": "shopify-section--lalatoto-app",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Tomme tekstfelter viser temaets standardtekst, som oversættes via sprogfilerne. Skriver du en tekst her, oversættes den i Shopifys oversættelsesværktøj."
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Farveskema",
+      "default": "scheme-2"
+    },
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Etiket"
+    },
+    {
+      "type": "text",
+      "id": "heading_line_1",
+      "label": "Overskrift, linje 1"
+    },
+    {
+      "type": "text",
+      "id": "heading_line_2",
+      "label": "Overskrift, linje 2"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Tekst"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Telefon 1",
+      "info": "Stående skærmbillede, ca. 9:19,5."
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Telefon 2",
+      "info": "Stående skærmbillede, ca. 9:19,5."
+    },
+    {
+      "type": "url",
+      "id": "app_store_url",
+      "label": "Link til App Store",
+      "info": "Tomt felt: appens side i App Store."
+    },
+    {
+      "type": "url",
+      "id": "google_play_url",
+      "label": "Link til Google Play",
+      "info": "Tomt felt: appens side i Google Play."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Lalatoto app"
+    }
+  ]
+}
+{% endschema %}

@@ -538,6 +538,16 @@
       "total": "Gesamt",
       "shipping_note": "Versandkosten werden an der Kasse berechnet.",
       "checkout": "Zur Kasse"
+    },
+    "app": {
+      "kicker": "Club No Sleep",
+      "heading_line_1": "Die App für die Nächte,",
+      "heading_line_2": "in denen niemand schläft",
+      "text": "Wir machen auch eine App für Schwangere und frischgebackene Mütter. Schlafprotokoll, Meilensteine und eine Gemeinschaft, die wach ist, wenn du es bist.",
+      "app_store": "App Store",
+      "google_play": "Google Play",
+      "image_1_alt": "Club No Sleep: die Karte Ein Licht im Dunkeln",
+      "image_2_alt": "Club No Sleep: Affirmation des Tages"
     }
   }
 }

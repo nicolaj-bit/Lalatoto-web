@@ -43,6 +43,8 @@ For at gøre fremtidige Prestige-opdateringer lette er ændringerne samlet få s
   `sections/lalatoto-collection.liquid` (kollektionssiden) og
   `sections/lalatoto-content-page.liquid` (indholdssiderne, skabelonen
   `page.indhold`).
+  `sections/lalatoto-app.liquid` (Club No Sleep nederst på forsiden) med
+  standardbillederne `assets/lalatoto-app-phone-1.jpg` og `-2.jpg`.
 - **Rettet i Prestiges egne filer:**
   - `layout/theme.liquid`: Google Tag Manager, Meta Pixel og indlæsning af
     `lalatoto.css`.
