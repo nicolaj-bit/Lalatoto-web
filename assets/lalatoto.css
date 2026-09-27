@@ -211,13 +211,8 @@ svg.lalatoto-full-image__image {
   text-transform: none;
 }
 
-/* Kort beskrivelse: højst to linjer */
+/* Kort beskrivelse: hele teksten vises, linjeskift bevares */
 .lalatoto-short-description {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  line-clamp: 2;
-  overflow: hidden;
   margin: 0;
 }
 
