@@ -1,0 +1,287 @@
+{%- comment -%}
+  Lalatoto: footer.
+
+  Øverst tilmelding til nyhedsbrevet med fornavn og e-mail og 10 % på første
+  ordre. Derunder to menuer og virksomhedens oplysninger: navn, adresse, CVR,
+  e-mail, telefon og åbningstider. Nederst copyright, sociale medier og
+  betalingsikoner.
+
+  Tilmeldingen bruger Shopifys kundeformular. Kunden oprettes med mærkerne
+  «nyhedsbrev», «nyhedsbrev-samtykke» og «velkomstrabat». Teksten under
+  knappen siger tydeligt, at man tilmelder sig nyhedsbrevet, så selve
+  tilmeldingen er samtykket. Rabatkoden sendes af en automatisering i Shopify,
+  der reagerer på mærket «velkomstrabat».
+{%- endcomment -%}
+
+{%- liquid
+  assign form_id = 'lalatoto-newsletter-' | append: section.id
+  assign privacy_url = section.settings.privacy_page.url | default: shop.privacy_policy.url
+  assign phone_link = section.settings.phone | remove: ' ' | remove: '-'
+  assign year = 'now' | date: '%Y'
+-%}
+
+<footer class="lalatoto-footer color-scheme color-scheme--{{ section.settings.color_scheme.id }}">
+  <div class="lalatoto-footer__inner">
+    {%- comment -%} Nyhedsbrev {%- endcomment -%}
+    <div class="lalatoto-footer__signup">
+      <div class="lalatoto-footer__pitch">
+        <p class="lalatoto-kicker">{{ 'lalatoto.footer.kicker' | t }}</p>
+        <h2 class="lalatoto-footer__title">{{ 'lalatoto.footer.title_html' | t }}</h2>
+        <p class="lalatoto-footer__lead">{{ 'lalatoto.footer.text' | t }}</p>
+      </div>
+
+      {%- form 'customer', id: form_id, class: 'lalatoto-footer__form' -%}
+        {%- liquid
+          assign done = false
+          if form.posted_successfully?
+            assign done = true
+          endif
+        -%}
+        <div class="lalatoto-footer__form-inner{% if done %} is-done{% endif %}" data-lalatoto-posted="{{ done }}" data-form-id="{{ form_id }}">
+          <div class="lalatoto-footer__fields">
+            <input type="hidden" name="contact[tags]" value="nyhedsbrev,nyhedsbrev-samtykke,velkomstrabat">
+
+            <div class="lalatoto-footer__row">
+              <div class="lalatoto-waitlist__field">
+                <input
+                  type="text"
+                  id="{{ form_id }}-name"
+                  name="contact[first_name]"
+                  autocomplete="given-name"
+                  placeholder=" "
+                  required
+                >
+                <label for="{{ form_id }}-name">{{ 'lalatoto.footer.name_label' | t }}</label>
+              </div>
+
+              <div class="lalatoto-waitlist__field{% if form.errors %} has-error{% endif %}">
+                <input
+                  type="email"
+                  id="{{ form_id }}-email"
+                  name="contact[email]"
+                  autocomplete="email"
+                  inputmode="email"
+                  spellcheck="false"
+                  placeholder=" "
+                  required
+                  {% if form.errors %}
+                    aria-invalid="true" aria-describedby="{{ form_id }}-error"
+                  {% endif %}
+                >
+                <label for="{{ form_id }}-email">{{ 'lalatoto.footer.email_label' | t }}</label>
+              </div>
+            </div>
+
+            {%- if form.errors -%}
+              <p class="lalatoto-waitlist__error" id="{{ form_id }}-error">{{ 'lalatoto.footer.error' | t }}</p>
+            {%- endif -%}
+
+            <button type="submit" class="lalatoto-waitlist__submit lalatoto-footer__submit">
+              <span>{{ 'lalatoto.footer.submit' | t }}</span>
+              <span class="lalatoto-waitlist__arrow" aria-hidden="true">→</span>
+            </button>
+
+            <p class="lalatoto-footer__fine">
+              {{ 'lalatoto.footer.consent' | t }}
+              {%- if privacy_url != blank %}
+                <a href="{{ privacy_url }}">{{ 'lalatoto.footer.privacy_link' | t }}</a>.
+              {%- endif -%}
+            </p>
+          </div>
+
+          <div class="lalatoto-footer__done" role="status">
+            <svg class="lalatoto-waitlist__check" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+              <circle cx="24" cy="24" r="23" />
+              <path d="M15 24.5l6 6 12-13" />
+            </svg>
+            <p class="lalatoto-footer__done-title">{{ 'lalatoto.footer.done_title' | t }}</p>
+            <p class="lalatoto-footer__lead">{{ 'lalatoto.footer.done_text' | t }}</p>
+          </div>
+        </div>
+      {%- endform -%}
+    </div>
+
+    {%- comment -%} Menuer og virksomhedens oplysninger {%- endcomment -%}
+    <div class="lalatoto-footer__columns">
+      <div class="lalatoto-footer__col lalatoto-footer__col--brand">
+        <p class="lalatoto-footer__brand">{{ shop.name }}</p>
+        {%- if section.settings.about != blank -%}
+          <p class="lalatoto-footer__muted">{{ section.settings.about }}</p>
+        {%- endif -%}
+      </div>
+
+      {%- for menu_key in (1..2) -%}
+        {%- liquid
+          if menu_key == 1
+            assign menu = section.settings.menu_1
+          else
+            assign menu = section.settings.menu_2
+          endif
+        -%}
+        {%- if menu != blank and menu.links.size > 0 -%}
+          <nav class="lalatoto-footer__col" aria-label="{{ menu.title | escape }}">
+            <p class="lalatoto-footer__heading">{{ menu.title }}</p>
+            <ul class="lalatoto-footer__list unstyled-list" role="list">
+              {%- for link in menu.links -%}
+                <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+              {%- endfor -%}
+            </ul>
+          </nav>
+        {%- endif -%}
+      {%- endfor -%}
+
+      <div class="lalatoto-footer__col">
+        <p class="lalatoto-footer__heading">{{ 'lalatoto.footer.contact_heading' | t }}</p>
+        <address class="lalatoto-footer__address">
+          {%- if section.settings.company != blank -%}
+            <span>{{ section.settings.company }}</span>
+          {%- endif -%}
+          {%- if section.settings.address != blank -%}
+            <span class="lalatoto-footer__muted">{{ section.settings.address | newline_to_br }}</span>
+          {%- endif -%}
+          {%- if section.settings.cvr != blank -%}
+            <span class="lalatoto-footer__muted">{{ 'lalatoto.footer.cvr' | t }} {{ section.settings.cvr }}</span>
+          {%- endif -%}
+          {%- if section.settings.email != blank -%}
+            <a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a>
+          {%- endif -%}
+          {%- if section.settings.phone != blank -%}
+            <a href="tel:{{ phone_link }}">{{ section.settings.phone }}</a>
+          {%- endif -%}
+        </address>
+
+        {%- if section.settings.hours != blank -%}
+          <p class="lalatoto-footer__heading lalatoto-footer__heading--sub">{{ 'lalatoto.footer.hours_heading' | t }}</p>
+          <p class="lalatoto-footer__muted">{{ section.settings.hours | newline_to_br }}</p>
+        {%- endif -%}
+      </div>
+    </div>
+
+    {%- comment -%} Bundlinje {%- endcomment -%}
+    <div class="lalatoto-footer__bottom">
+      <p class="lalatoto-footer__copy">© {{ year }} {{ section.settings.company | default: shop.name }}</p>
+
+      {%- if section.settings.show_social_media -%}
+        {%- render 'social-media', layout: 'list' -%}
+      {%- endif -%}
+
+      {%- if section.settings.show_payment_icons and shop.enabled_payment_types.size > 0 -%}
+        <ul class="payment-methods unstyled-list" role="list">
+          {%- for type in shop.enabled_payment_types -%}
+            <li>{{- type | payment_type_svg_tag -}}</li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+    </div>
+  </div>
+</footer>
+
+<script>
+  /*
+   * Shopify markerer alle kundeformularer på siden som sendt, når én af dem er
+   * sendt, fx ventelisten. Efter afsendelse ender adressen på formularens id,
+   * så takken vises kun i den formular, der faktisk blev sendt.
+   */
+  (function () {
+    document.querySelectorAll('[data-lalatoto-posted="true"]').forEach(function (element) {
+      if (window.location.hash !== '#' + element.getAttribute('data-form-id')) {
+        element.classList.remove('is-done');
+      }
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Lalatoto footer",
+  "class": "shopify-section--lalatoto-footer",
+  "tag": "section",
+  "enabled_on": {
+    "groups": ["footer"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Farveskema",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Menuer"
+    },
+    {
+      "type": "text",
+      "id": "about",
+      "label": "Kort tekst under navnet"
+    },
+    {
+      "type": "link_list",
+      "id": "menu_1",
+      "label": "Første menu"
+    },
+    {
+      "type": "link_list",
+      "id": "menu_2",
+      "label": "Anden menu"
+    },
+    {
+      "type": "page",
+      "id": "privacy_page",
+      "label": "Side med persondatapolitik",
+      "info": "Linkes fra teksten under tilmeldingen. Tom: Shopifys egen politik."
+    },
+    {
+      "type": "header",
+      "content": "Virksomhedens oplysninger"
+    },
+    {
+      "type": "text",
+      "id": "company",
+      "label": "Firmanavn"
+    },
+    {
+      "type": "textarea",
+      "id": "address",
+      "label": "Adresse"
+    },
+    {
+      "type": "text",
+      "id": "cvr",
+      "label": "CVR-nummer"
+    },
+    {
+      "type": "text",
+      "id": "email",
+      "label": "E-mail"
+    },
+    {
+      "type": "text",
+      "id": "phone",
+      "label": "Telefon"
+    },
+    {
+      "type": "textarea",
+      "id": "hours",
+      "label": "Åbningstider",
+      "info": "Én linje pr. dag eller periode."
+    },
+    {
+      "type": "header",
+      "content": "Bundlinje"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_social_media",
+      "label": "Vis sociale medier",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_payment_icons",
+      "label": "Vis betalingsikoner",
+      "default": true
+    }
+  ]
+}
+{% endschema %}

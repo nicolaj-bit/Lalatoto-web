@@ -24,7 +24,17 @@
     {%- form 'customer', id: form_id, class: 'lalatoto-waitlist__form' -%}
       {%- capture item_html -%}<em>{{ product.title | escape }}</em>{%- endcapture -%}
 
-      {%- if form.posted_successfully? -%}
+      {%- liquid
+        assign done = false
+        if form.posted_successfully?
+          assign done = true
+        endif
+      -%}
+      {%- comment -%}
+        Både formular og tak står i koden. Takken vises kun, hvis det var netop
+        denne formular, der blev sendt (se scriptet i lalatoto-footer).
+      {%- endcomment -%}
+      <div class="lalatoto-waitlist__state{% if done %} is-done{% endif %}" data-lalatoto-posted="{{ done }}" data-form-id="{{ form_id }}">
         <div class="lalatoto-waitlist__done" role="status">
           <svg class="lalatoto-waitlist__check" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
             <circle cx="24" cy="24" r="23" />
@@ -33,51 +43,53 @@
           <p class="lalatoto-waitlist__title">{{ 'lalatoto.waitlist.done_title_html' | t }}</p>
           <p class="lalatoto-waitlist__text">{{ 'lalatoto.waitlist.done_text_html' | t: item: item_html }}</p>
         </div>
-      {%- else -%}
-        <div class="lalatoto-waitlist__status">
-          <span class="lalatoto-waitlist__dot" aria-hidden="true"></span>
-          <span class="lalatoto-kicker">{{ 'lalatoto.waitlist.kicker' | t }}</span>
+
+        <div class="lalatoto-waitlist__fields">
+          <div class="lalatoto-waitlist__status">
+            <span class="lalatoto-waitlist__dot" aria-hidden="true"></span>
+            <span class="lalatoto-kicker">{{ 'lalatoto.waitlist.kicker' | t }}</span>
+          </div>
+
+          <p class="lalatoto-waitlist__title">{{ 'lalatoto.waitlist.title_html' | t: item: item_html }}</p>
+          <p class="lalatoto-waitlist__text">{{ 'lalatoto.waitlist.text' | t }}</p>
+
+          <input type="hidden" name="contact[tags]" value="{{ tags | escape }}" data-base-tags="{{ tags | escape }}">
+
+          <div class="lalatoto-waitlist__field{% if form.errors %} has-error{% endif %}">
+            <input
+              type="email"
+              id="{{ form_id }}-email"
+              name="contact[email]"
+              required
+              autocomplete="email"
+              inputmode="email"
+              spellcheck="false"
+              placeholder=" "
+              {% if form.errors %}
+                aria-invalid="true" aria-describedby="{{ form_id }}-error"
+              {% endif %}
+            >
+            <label for="{{ form_id }}-email">{{ 'lalatoto.waitlist.email_label' | t }}</label>
+          </div>
+
+          {%- if form.errors -%}
+            <p class="lalatoto-waitlist__error" id="{{ form_id }}-error">{{ 'lalatoto.waitlist.error' | t }}</p>
+          {%- endif -%}
+
+          <button type="submit" class="lalatoto-waitlist__submit">
+            <span>{{ 'lalatoto.waitlist.submit' | t }}</span>
+            <span class="lalatoto-waitlist__arrow" aria-hidden="true">→</span>
+          </button>
+
+          <label class="lalatoto-waitlist__consent">
+            <input type="checkbox" data-lalatoto-newsletter>
+            <span class="lalatoto-waitlist__box" aria-hidden="true"></span>
+            <span>{{ 'lalatoto.waitlist.newsletter' | t }}</span>
+          </label>
+
+          <p class="lalatoto-waitlist__fine">{{ 'lalatoto.waitlist.fine_print' | t }}</p>
         </div>
-
-        <p class="lalatoto-waitlist__title">{{ 'lalatoto.waitlist.title_html' | t: item: item_html }}</p>
-        <p class="lalatoto-waitlist__text">{{ 'lalatoto.waitlist.text' | t }}</p>
-
-        <input type="hidden" name="contact[tags]" value="{{ tags | escape }}" data-base-tags="{{ tags | escape }}">
-
-        <div class="lalatoto-waitlist__field{% if form.errors %} has-error{% endif %}">
-          <input
-            type="email"
-            id="{{ form_id }}-email"
-            name="contact[email]"
-            required
-            autocomplete="email"
-            inputmode="email"
-            spellcheck="false"
-            placeholder=" "
-            {% if form.errors %}
-              aria-invalid="true" aria-describedby="{{ form_id }}-error"
-            {% endif %}
-          >
-          <label for="{{ form_id }}-email">{{ 'lalatoto.waitlist.email_label' | t }}</label>
-        </div>
-
-        {%- if form.errors -%}
-          <p class="lalatoto-waitlist__error" id="{{ form_id }}-error">{{ 'lalatoto.waitlist.error' | t }}</p>
-        {%- endif -%}
-
-        <button type="submit" class="lalatoto-waitlist__submit">
-          <span>{{ 'lalatoto.waitlist.submit' | t }}</span>
-          <span class="lalatoto-waitlist__arrow" aria-hidden="true">→</span>
-        </button>
-
-        <label class="lalatoto-waitlist__consent">
-          <input type="checkbox" data-lalatoto-newsletter>
-          <span class="lalatoto-waitlist__box" aria-hidden="true"></span>
-          <span>{{ 'lalatoto.waitlist.newsletter' | t }}</span>
-        </label>
-
-        <p class="lalatoto-waitlist__fine">{{ 'lalatoto.waitlist.fine_print' | t }}</p>
-      {%- endif -%}
+      </div>
     {%- endform -%}
   </div>
 

@@ -11,74 +11,26 @@
   "type": "footer",
   "name": "Footer group",
   "sections": {
-    "text-with-icons": {
-      "type": "text-with-icons",
-      "blocks": {
-        "icon-1": {
-          "type": "item",
-          "settings": {
-            "title": "Free delivery worldwide"
-          }
-        },
-        "icon-2": {
-          "type": "item",
-          "settings": {
-            "title": "Satisfied or refunded"
-          }
-        },
-        "icon-3": {
-          "type": "item",
-          "settings": {
-            "title": "Top-notch support"
-          }
-        },
-        "icon-4": {
-          "type": "item",
-          "settings": {
-            "title": "Secure payments"
-          }
-        }
-      },
-      "block_order": [
-        "icon-1",
-        "icon-2",
-        "icon-3",
-        "icon-4"
-      ],
-      "settings": {}
-    },
-    "footer": {
-      "type": "footer",
-      "blocks": {
-        "newsletter": {
-          "type": "newsletter",
-          "settings": {}
-        },
-        "links": {
-          "type": "links",
-          "settings": {
-            "menu": "footer",
-            "show_menu_title": true
-          }
-        },
-        "text": {
-          "type": "text",
-          "settings": {
-            "title": "About",
-            "content": "<p>Use this text area to tell your customers about your brand and vision. You can change it in the theme editor.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "newsletter",
-        "links",
-        "text"
-      ],
-      "settings": {}
+    "lalatoto_footer": {
+      "type": "lalatoto-footer",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "about": "Rolige nætter i naturlige materialer.",
+        "menu_1": "kategorier",
+        "menu_2": "redesign-kundeservice",
+        "privacy_page": "privatlivspolitik",
+        "company": "Lalatoto of Denmark ApS",
+        "address": "Kulbyvej 16\n4270 Høng",
+        "cvr": "45149218",
+        "email": "kundeservice@lalatoto.dk",
+        "phone": "+45 72 15 66 86",
+        "hours": "",
+        "show_social_media": true,
+        "show_payment_icons": true
+      }
     }
   },
   "order": [
-    "text-with-icons",
-    "footer"
+    "lalatoto_footer"
   ]
 }

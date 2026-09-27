@@ -568,6 +568,22 @@
     },
     "header": {
       "cart": "Cart"
+    },
+    "footer": {
+      "kicker": "Newsletter",
+      "title_html": "10% off your <em>first order</em>",
+      "text": "Sign up and get a 10% welcome code in your inbox. After that, you will hear from us when there is news about sleep, materials and new products.",
+      "name_label": "First name",
+      "email_label": "Email",
+      "submit": "Sign me up",
+      "consent": "By signing up you agree to receive our newsletter by email. You can unsubscribe at any time via the link at the bottom of every email. Read more in our",
+      "privacy_link": "privacy policy",
+      "error": "Check your email address and try again.",
+      "done_title": "Welcome",
+      "done_text": "Your 10% discount code is on its way to your inbox.",
+      "contact_heading": "Contact",
+      "hours_heading": "Opening hours",
+      "cvr": "CVR no."
     }
   }
 }

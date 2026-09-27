@@ -1110,9 +1110,20 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 }
 
 .lalatoto-waitlist__form {
+  margin: 0;
+}
+
+.lalatoto-waitlist__fields {
   display: grid;
   gap: 1.25rem;
-  margin: 0;
+}
+
+/* Formular og tak står begge i koden; klassen is-done vælger, hvad der vises */
+.is-done > .lalatoto-waitlist__fields,
+.is-done > .lalatoto-footer__fields,
+:not(.is-done) > .lalatoto-waitlist__done,
+:not(.is-done) > .lalatoto-footer__done {
+  display: none;
 }
 
 /* Statuslinje: en lille, langsomt pulserende prik og etiketten */
@@ -1381,5 +1392,208 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   .lalatoto-waitlist__arrow {
     animation: none;
     transition: none;
+  }
+}
+
+/* ===============================================================
+ * FOOTER
+ * Øverst en rolig tilmelding til nyhedsbrevet i to spalter: overskrift
+ * til venstre, felter til højre. Derunder menuer og kontaktoplysninger i
+ * fire kolonner og til sidst en lav bundlinje. Tynde streger adskiller.
+ * =============================================================== */
+.lalatoto-footer {
+  border-block-start: 1px solid #d7d0c4;
+  color: #2a2724;
+}
+
+.lalatoto-footer__inner {
+  max-width: var(--lalatoto-max-width);
+  margin-inline: auto;
+  padding-inline: var(--container-gutter);
+}
+
+.lalatoto-footer__signup {
+  display: grid;
+  gap: 2.5rem;
+  padding-block: 4rem;
+  border-block-end: 1px solid #d7d0c4;
+}
+
+.lalatoto-footer__pitch {
+  display: grid;
+  align-content: start;
+  gap: 1rem;
+}
+
+.lalatoto-footer__title {
+  margin: 0;
+  max-width: 14em;
+  font-family: var(--heading-font-family);
+  font-weight: 400;
+  font-size: clamp(2rem, 1.5rem + 2vw, 3rem);
+  line-height: 1.1;
+  letter-spacing: normal;
+  text-transform: none;
+  text-wrap: balance;
+}
+
+.lalatoto-footer__title em {
+  font-style: italic;
+}
+
+.lalatoto-footer__lead {
+  margin: 0;
+  max-width: 42ch;
+  color: #6e675e;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+.lalatoto-footer__form {
+  margin: 0;
+  align-self: end;
+}
+
+.lalatoto-footer__fields {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.lalatoto-footer__row {
+  display: grid;
+  gap: 0.5rem 1.5rem;
+}
+
+.lalatoto-footer__fine {
+  margin: 0;
+  color: #6e675e;
+  font-size: 0.75rem;
+  line-height: 1.6;
+}
+
+.lalatoto-footer__fine a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.lalatoto-footer__done {
+  display: grid;
+  justify-items: start;
+  gap: 1rem;
+}
+
+.lalatoto-footer__done-title {
+  margin: 0;
+  font-family: var(--heading-font-family);
+  font-size: 1.75rem;
+  line-height: 1.2;
+}
+
+.lalatoto-footer__columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2.5rem 1.5rem;
+  padding-block: 3.5rem;
+}
+
+.lalatoto-footer__col--brand {
+  grid-column: 1 / -1;
+}
+
+.lalatoto-footer__brand {
+  margin: 0 0 0.5rem;
+  font-family: var(--heading-font-family);
+  font-size: 1.375rem;
+}
+
+.lalatoto-footer__heading {
+  margin: 0 0 1rem;
+  font-size: var(--lalatoto-label-size);
+  letter-spacing: var(--lalatoto-label-spacing);
+  text-transform: uppercase;
+}
+
+.lalatoto-footer__heading--sub {
+  margin-block-start: 1.75rem;
+}
+
+.lalatoto-footer__list {
+  display: grid;
+  gap: 0.625rem;
+}
+
+.lalatoto-footer__list a,
+.lalatoto-footer__address a {
+  color: #2a2724;
+  text-decoration: none;
+  background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+  transition: background-size 0.25s ease-in-out;
+}
+
+.lalatoto-footer__list a:hover,
+.lalatoto-footer__address a:hover {
+  background-size: 100% 1px;
+}
+
+.lalatoto-footer__address {
+  display: grid;
+  gap: 0.375rem;
+  font-style: normal;
+  font-size: 0.9375rem;
+}
+
+.lalatoto-footer__muted {
+  margin: 0;
+  color: #6e675e;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+.lalatoto-footer__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+  padding-block: 1.5rem 2rem;
+  border-block-start: 1px solid #d7d0c4;
+}
+
+.lalatoto-footer__copy {
+  margin: 0;
+  color: #6e675e;
+  font-size: var(--lalatoto-label-size);
+  letter-spacing: var(--lalatoto-label-spacing);
+  text-transform: uppercase;
+}
+
+.lalatoto-footer .payment-methods {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+@media screen and (min-width: 700px) {
+  .lalatoto-footer__row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .lalatoto-footer__signup {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 4rem;
+    padding-block: 6rem;
+  }
+
+  .lalatoto-footer__columns {
+    grid-template-columns: 1.5fr repeat(3, minmax(0, 1fr));
+    gap: 3rem;
+    padding-block: 4.5rem;
+  }
+
+  .lalatoto-footer__col--brand {
+    grid-column: auto;
   }
 }
