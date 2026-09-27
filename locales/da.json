@@ -559,17 +559,16 @@
       "image_2_alt": "Club No Sleep: dagens affirmation"
     },
     "waitlist": {
-      "kicker": "Ikke på lager",
-      "title": "Få besked, når den er her",
-      "text": "Skriv din e-mail, så sender vi én besked, når {{ item }} kan købes.",
-      "email_label": "E-mail",
-      "email_placeholder": "Din e-mail",
+      "kicker": "Venteliste",
+      "title_html": "Vær den første, når {{ item }} er her",
+      "text": "Skriv din e-mail, så sender vi én besked, så snart den kan købes.",
+      "email_label": "Din e-mail",
       "submit": "Skriv mig op",
       "error": "Tjek, at e-mailadressen er skrevet rigtigt.",
       "newsletter": "Send mig også nyhedsbrevet",
       "fine_print": "Vi skriver kun om denne vare, medmindre du også vælger nyhedsbrevet. Du kan altid framelde dig.",
-      "done_title": "Du er skrevet op",
-      "done_text": "Vi sender én besked, når {{ item }} kan købes."
+      "done_title_html": "Tak. <em>Du er på listen.</em>",
+      "done_text_html": "Vi sender én besked, når {{ item }} kan købes."
     }
   }
 }

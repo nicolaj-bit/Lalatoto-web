@@ -555,17 +555,16 @@
       "image_2_alt": "Club No Sleep: affirmation of the day"
     },
     "waitlist": {
-      "kicker": "Out of stock",
-      "title": "Get notified when it's here",
-      "text": "Leave your email and we will send you one message when {{ item }} is available.",
-      "email_label": "Email",
-      "email_placeholder": "Your email",
+      "kicker": "Waiting list",
+      "title_html": "Be the first to know when {{ item }} arrives",
+      "text": "Leave your email and we will send you one message as soon as it is available.",
+      "email_label": "Your email",
       "submit": "Notify me",
       "error": "Please check that the email address is correct.",
       "newsletter": "Also send me the newsletter",
       "fine_print": "We only write about this item unless you also choose the newsletter. You can unsubscribe at any time.",
-      "done_title": "You're on the list",
-      "done_text": "We will send you one message when {{ item }} is available."
+      "done_title_html": "Thank you. <em>You're on the list.</em>",
+      "done_text_html": "We will send you one message when {{ item }} is available."
     }
   }
 }

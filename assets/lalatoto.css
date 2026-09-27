@@ -1080,8 +1080,8 @@ html.lalatoto-scroll-lock body {
 
 /* ===============================================================
  * VENTELISTE
- * Et roligt panel i den dæmpede baggrund. Feltet er en enkelt linje med
- * knappen i samme linje, så formularen læses som én sætning.
+ * Redaktionelt udtryk frem for en kasse: tynde streger, rigelig luft,
+ * produktnavnet i Playfair kursiv og en fuld knap samme sted som Læg i kurv.
  * =============================================================== */
 
 /* Når ventelisten vises, skjules den deaktiverede Læg i kurv-knap */
@@ -1090,58 +1090,83 @@ html.lalatoto-scroll-lock body {
 }
 
 .lalatoto-waitlist {
-  padding: 1.75rem 1.5rem 1.5rem;
-  background: #e7e1d8;
-  border: 1px solid #d7d0c4;
+  padding-block: 1.75rem 1.5rem;
+  border-block: 1px solid #d7d0c4;
   color: #2a2724;
 }
 
 .lalatoto-waitlist__form {
   display: grid;
-  gap: 0.75rem;
+  gap: 1.25rem;
   margin: 0;
+}
+
+/* Statuslinje: en lille, langsomt pulserende prik og etiketten */
+.lalatoto-waitlist__status {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.lalatoto-waitlist__dot {
+  position: relative;
+  width: 0.4375rem;
+  height: 0.4375rem;
+  border-radius: 50%;
+  background: #2a2724;
+}
+
+.lalatoto-waitlist__dot::after {
+  content: '';
+  position: absolute;
+  inset: -0.25rem;
+  border: 1px solid #2a2724;
+  border-radius: 50%;
+  opacity: 0;
+  animation: lalatoto-pulse 2.4s ease-out infinite;
 }
 
 .lalatoto-waitlist__title {
   margin: 0;
+  max-width: 16em;
   font-family: var(--heading-font-family);
   font-weight: 400;
-  font-size: 1.375rem;
-  line-height: 1.25;
+  font-size: clamp(1.5rem, 1.25rem + 0.8vw, 1.875rem);
+  line-height: 1.2;
   letter-spacing: normal;
+  text-wrap: balance;
+}
+
+.lalatoto-waitlist__title em {
+  font-style: italic;
 }
 
 .lalatoto-waitlist__text {
-  margin: 0 0 0.5rem;
-  max-width: 38ch;
+  margin: -0.5rem 0 0;
+  max-width: 36ch;
   color: #6e675e;
   font-size: 0.9375rem;
   line-height: 1.6;
 }
 
+.lalatoto-waitlist__text em {
+  font-family: var(--heading-font-family);
+  font-style: italic;
+  color: #2a2724;
+}
+
+/* E-mailfelt med svævende label på én linje */
 .lalatoto-waitlist__field {
-  display: flex;
-  align-items: stretch;
-  gap: 1rem;
-  border-block-end: 1px solid #2a2724;
-  transition: border-color 0.2s ease-in-out;
-}
-
-.lalatoto-waitlist__field:focus-within {
-  border-block-end-color: #2a2724;
-  box-shadow: 0 1px 0 0 #2a2724;
-}
-
-.lalatoto-waitlist__field.has-error {
-  border-block-end-color: #8a3a2e;
-  box-shadow: 0 1px 0 0 #8a3a2e;
+  position: relative;
+  margin-block-start: 0.5rem;
 }
 
 .lalatoto-waitlist__field input {
-  flex: 1;
-  min-width: 0;
-  padding: 0.875rem 0;
+  display: block;
+  width: 100%;
+  padding: 1.375rem 0 0.625rem;
   border: 0;
+  border-block-end: 1px solid #d7d0c4;
   border-radius: 0;
   background: transparent;
   color: #2a2724;
@@ -1150,47 +1175,76 @@ html.lalatoto-scroll-lock body {
   box-shadow: none;
   outline: none;
   appearance: none;
+  transition: border-color 0.2s ease-in-out;
 }
 
-.lalatoto-waitlist__field input::placeholder {
+.lalatoto-waitlist__field input:focus {
+  border-block-end-color: #2a2724;
+}
+
+.lalatoto-waitlist__field label {
+  position: absolute;
+  left: 0;
+  top: 1.375rem;
   color: #6e675e;
-  opacity: 1;
+  font-size: 1rem;
+  pointer-events: none;
+  transform-origin: left top;
+  transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
+.lalatoto-waitlist__field input:focus + label,
+.lalatoto-waitlist__field input:not(:placeholder-shown) + label {
+  transform: translateY(-1.125rem) scale(0.72);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.lalatoto-waitlist__field.has-error input {
+  border-block-end-color: #8a3a2e;
+}
+
+.lalatoto-waitlist__error {
+  margin: -0.75rem 0 0;
+  color: #8a3a2e;
+  font-size: 0.8125rem;
+}
+
+/* Fuld knap i knapfladens farve, samme sted og vægt som Læg i kurv */
 .lalatoto-waitlist__submit {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 0.5rem;
-  flex-shrink: 0;
-  padding: 0;
-  border: 0;
-  background: none;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1.0625rem 1.25rem;
+  border: 1px solid #ddd6cb;
+  border-radius: 0;
+  background: #ddd6cb;
   color: #2a2724;
   font-family: var(--text-font-family);
   font-size: var(--lalatoto-label-size);
   letter-spacing: var(--lalatoto-label-spacing);
   text-transform: uppercase;
   cursor: pointer;
+  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
 }
 
-.lalatoto-waitlist__arrow {
-  transition: transform 0.2s ease-in-out;
-}
-
-.lalatoto-waitlist__submit:hover .lalatoto-waitlist__arrow,
-.lalatoto-waitlist__submit:focus-visible .lalatoto-waitlist__arrow {
-  transform: translateX(4px);
+.lalatoto-waitlist__submit:hover {
+  border-color: #2a2724;
 }
 
 .lalatoto-waitlist__submit:focus-visible {
   outline: 1px solid #2a2724;
-  outline-offset: 4px;
+  outline-offset: 3px;
 }
 
-.lalatoto-waitlist__error {
-  margin: 0;
-  color: #8a3a2e;
-  font-size: 0.8125rem;
+.lalatoto-waitlist__arrow {
+  transition: transform 0.25s ease-in-out;
+}
+
+.lalatoto-waitlist__submit:hover .lalatoto-waitlist__arrow,
+.lalatoto-waitlist__submit:focus-visible .lalatoto-waitlist__arrow {
+  transform: translateX(5px);
 }
 
 /* Frivilligt nyhedsbrev: egen, firkantet afkrydsning */
@@ -1198,7 +1252,7 @@ html.lalatoto-scroll-lock body {
   display: inline-flex;
   align-items: center;
   gap: 0.625rem;
-  margin-block-start: 0.375rem;
+  justify-self: start;
   font-size: 0.875rem;
   cursor: pointer;
 }
@@ -1216,7 +1270,6 @@ html.lalatoto-scroll-lock body {
   width: 0.875rem;
   height: 0.875rem;
   border: 1px solid #2a2724;
-  background: transparent;
   transition: background-color 0.15s ease-in-out;
 }
 
@@ -1242,42 +1295,75 @@ html.lalatoto-scroll-lock body {
 }
 
 .lalatoto-waitlist__fine {
-  margin: 0;
+  margin: -0.5rem 0 0;
+  max-width: 44ch;
   color: #6e675e;
   font-size: 0.75rem;
-  line-height: 1.5;
+  line-height: 1.55;
 }
 
-/* Tak-besked */
+/* Tak: fluebenet tegnes, og teksten toner ind */
 .lalatoto-waitlist__done {
   display: grid;
   justify-items: start;
-  gap: 0.75rem;
-  animation: lalatoto-fade-in 0.4s ease both;
+  gap: 1rem;
 }
 
 .lalatoto-waitlist__check {
-  position: relative;
-  width: 2.25rem;
-  height: 2.25rem;
-  border: 1px solid #2a2724;
-  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  fill: none;
+  stroke: #2a2724;
+  stroke-width: 1;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
-.lalatoto-waitlist__check::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  top: 45%;
-  width: 0.4375rem;
-  height: 0.8125rem;
-  border: solid #2a2724;
-  border-width: 0 1px 1px 0;
-  transform: translate(-50%, -50%) rotate(45deg);
+.lalatoto-waitlist__check circle {
+  stroke: #d7d0c4;
+  stroke-dasharray: 145;
+  stroke-dashoffset: 145;
+  animation: lalatoto-draw 0.7s ease-out forwards;
+}
+
+.lalatoto-waitlist__check path {
+  stroke-dasharray: 30;
+  stroke-dashoffset: 30;
+  animation: lalatoto-draw 0.4s ease-out 0.55s forwards;
+}
+
+.lalatoto-waitlist__done .lalatoto-waitlist__title,
+.lalatoto-waitlist__done .lalatoto-waitlist__text {
+  animation: lalatoto-fade-in 0.5s ease 0.5s both;
+}
+
+.lalatoto-waitlist__done .lalatoto-waitlist__text {
+  margin-top: -0.25rem;
+}
+
+@keyframes lalatoto-draw {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes lalatoto-pulse {
+  0% { opacity: 0.6; transform: scale(0.6); }
+  70% { opacity: 0; transform: scale(1.6); }
+  100% { opacity: 0; transform: scale(1.6); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .lalatoto-waitlist__done,
+  .lalatoto-waitlist__dot::after {
+    animation: none;
+  }
+
+  .lalatoto-waitlist__check circle,
+  .lalatoto-waitlist__check path {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+
+  .lalatoto-waitlist__done .lalatoto-waitlist__title,
+  .lalatoto-waitlist__done .lalatoto-waitlist__text,
   .lalatoto-waitlist__arrow {
     animation: none;
     transition: none;
