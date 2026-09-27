@@ -81,20 +81,4 @@
     {%- endform -%}
   </div>
 
-  <script>
-    /* Nyhedsbrevet er et frivilligt, separat samtykke. Uden flueben tilmeldes
-       kunden kun ventelisten for denne vare. Lytteren sidder på hele siden,
-       fordi Prestige genindlæser produktinfoen, når man skifter variant. */
-    if (!window.lalatotoWaitlistReady) {
-      window.lalatotoWaitlistReady = true;
-      document.addEventListener('change', function (event) {
-        var box = event.target.closest && event.target.closest('[data-lalatoto-newsletter]');
-        if (!box) return;
-        var tags = box.form && box.form.querySelector('input[name="contact[tags]"]');
-        if (!tags) return;
-        var base = tags.getAttribute('data-base-tags');
-        tags.value = box.checked ? base + ',nyhedsbrev-samtykke' : base;
-      });
-    }
-  </script>
 {%- endif -%}

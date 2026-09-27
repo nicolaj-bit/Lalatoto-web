@@ -155,6 +155,9 @@
   Lalatoto: modalen «Fortæl mere» ligger uden for product-rerender, så den ikke
   bliver genskabt (og lukket), når kunden skifter variant.
 {%- endcomment -%}
+{%- comment -%}Lalatoto: genindlæser vores egne blokke ved variantskift (se filen){%- endcomment -%}
+<script src="{{ 'lalatoto-product.js' | asset_url }}" defer></script>
+
 {%- assign lalatoto_more_info_block = section.blocks | where: 'type', 'lalatoto_more_info' | first -%}
 {%- if lalatoto_more_info_block != blank and product != blank -%}
   {%- render 'lalatoto-product-info-modal', product: product, mode: 'modal', modal_id: 'lalatoto-info-modal', sections: lalatoto_more_info_block.settings.sections -%}
