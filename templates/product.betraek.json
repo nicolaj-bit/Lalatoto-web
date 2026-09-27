@@ -58,6 +58,10 @@
         "fits": {
           "type": "lalatoto_fits",
           "settings": {}
+        },
+        "waitlist": {
+          "type": "lalatoto_waitlist",
+          "settings": {}
         }
       },
       "block_order": [
@@ -67,6 +71,7 @@
         "fits",
         "variant_picker",
         "buy_buttons",
+        "waitlist",
         "delivery",
         "more_info"
       ],

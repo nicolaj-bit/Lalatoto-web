@@ -1,0 +1,96 @@
+{%- doc -%}
+  Lalatoto: venteliste. Vises i stedet for Læg i kurv, når den valgte variant
+  findes, men ikke er på lager.
+
+  Tilmeldingen bruger Shopifys kundeformular og opretter kunden med mærkerne
+  «venteliste», «venteliste-<produkt>» og «venteliste-<produkt>-<variant>», så
+  listen kan findes under Kunder. Sætter kunden flueben ved nyhedsbrevet,
+  tilføjes også mærket «nyhedsbrev-samtykke» som dokumentation for samtykket.
+
+  @param {object} product - produktet
+  @param {object} variant - den valgte variant
+  @param {string} id_suffix - gør id'erne unikke på siden
+{%- enddoc -%}
+
+{%- if variant != blank and variant.available == false -%}
+  {%- liquid
+    assign form_id = 'lalatoto-waitlist-' | append: id_suffix
+    assign variant_label = ''
+    unless product.has_only_default_variant
+      assign variant_label = ' (' | append: variant.title | append: ')'
+    endunless
+    assign item_name = product.title | append: variant_label
+
+    assign tag_product = 'venteliste-' | append: product.handle
+    assign tag_variant = tag_product | append: '-' | append: variant.title | handleize
+    assign tags = 'venteliste,' | append: tag_product | append: ',' | append: tag_variant
+  -%}
+
+  <div class="lalatoto-waitlist" id="{{ form_id }}-wrap">
+    {%- form 'customer', id: form_id, class: 'lalatoto-waitlist__form' -%}
+      {%- if form.posted_successfully? -%}
+        <div class="lalatoto-waitlist__done" role="status">
+          <span class="lalatoto-waitlist__check" aria-hidden="true"></span>
+          <p class="lalatoto-waitlist__title">{{ 'lalatoto.waitlist.done_title' | t }}</p>
+          <p class="lalatoto-waitlist__text">{{ 'lalatoto.waitlist.done_text' | t: item: item_name }}</p>
+        </div>
+      {%- else -%}
+        <p class="lalatoto-kicker">{{ 'lalatoto.waitlist.kicker' | t }}</p>
+        <p class="lalatoto-waitlist__title">{{ 'lalatoto.waitlist.title' | t }}</p>
+        <p class="lalatoto-waitlist__text">{{ 'lalatoto.waitlist.text' | t: item: item_name }}</p>
+
+        <input type="hidden" name="contact[tags]" value="{{ tags | escape }}" data-base-tags="{{ tags | escape }}">
+
+        <div class="lalatoto-waitlist__field{% if form.errors %} has-error{% endif %}">
+          <label class="sr-only" for="{{ form_id }}-email">{{ 'lalatoto.waitlist.email_label' | t }}</label>
+          <input
+            type="email"
+            id="{{ form_id }}-email"
+            name="contact[email]"
+            required
+            autocomplete="email"
+            inputmode="email"
+            spellcheck="false"
+            placeholder="{{ 'lalatoto.waitlist.email_placeholder' | t | escape }}"
+            {% if form.errors %}
+              aria-invalid="true" aria-describedby="{{ form_id }}-error"
+            {% endif %}
+          >
+          <button type="submit" class="lalatoto-waitlist__submit">
+            <span>{{ 'lalatoto.waitlist.submit' | t }}</span>
+            <span class="lalatoto-waitlist__arrow" aria-hidden="true">→</span>
+          </button>
+        </div>
+
+        {%- if form.errors -%}
+          <p class="lalatoto-waitlist__error" id="{{ form_id }}-error">{{ 'lalatoto.waitlist.error' | t }}</p>
+        {%- endif -%}
+
+        <label class="lalatoto-waitlist__consent">
+          <input type="checkbox" data-lalatoto-newsletter>
+          <span class="lalatoto-waitlist__box" aria-hidden="true"></span>
+          <span>{{ 'lalatoto.waitlist.newsletter' | t }}</span>
+        </label>
+
+        <p class="lalatoto-waitlist__fine">{{ 'lalatoto.waitlist.fine_print' | t }}</p>
+      {%- endif -%}
+    {%- endform -%}
+  </div>
+
+  <script>
+    /* Nyhedsbrevet er et frivilligt, separat samtykke. Uden flueben tilmeldes
+       kunden kun ventelisten for denne vare. Lytteren sidder på hele siden,
+       fordi Prestige genindlæser produktinfoen, når man skifter variant. */
+    if (!window.lalatotoWaitlistReady) {
+      window.lalatotoWaitlistReady = true;
+      document.addEventListener('change', function (event) {
+        var box = event.target.closest && event.target.closest('[data-lalatoto-newsletter]');
+        if (!box) return;
+        var tags = box.form && box.form.querySelector('input[name="contact[tags]"]');
+        if (!tags) return;
+        var base = tags.getAttribute('data-base-tags');
+        tags.value = box.checked ? base + ',nyhedsbrev-samtykke' : base;
+      });
+    }
+  </script>
+{%- endif -%}

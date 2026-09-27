@@ -590,11 +590,19 @@
             {%- endif -%}
 
           {%- when 'lalatoto_delivery' -%}
-            {%- assign lalatoto_delivery = product.metafields.lalatoto.leveringstid.value | default: block.settings.text -%}
-            {%- if lalatoto_delivery == blank -%}
-              {%- assign lalatoto_delivery = 'lalatoto.product.delivery_default' | t -%}
+            {%- comment -%}Leveringstiden vises kun, når varen kan købes. Ellers står ventelisten der.{%- endcomment -%}
+            {%- if product.selected_or_first_available_variant.available -%}
+              {%- assign lalatoto_delivery = product.metafields.lalatoto.leveringstid.value | default: block.settings.text -%}
+              {%- if lalatoto_delivery == blank -%}
+                {%- assign lalatoto_delivery = 'lalatoto.product.delivery_default' | t -%}
+              {%- endif -%}
+              <p class="lalatoto-delivery">{{ lalatoto_delivery | escape }}</p>
             {%- endif -%}
-            <p class="lalatoto-delivery">{{ lalatoto_delivery | escape }}</p>
+
+          {%- when 'lalatoto_waitlist' -%}
+            {%- if product != blank -%}
+              {%- render 'lalatoto-waitlist', product: product, variant: product.selected_or_first_available_variant, id_suffix: block.id -%}
+            {%- endif -%}
 
           {%- when 'lalatoto_fits' -%}
             {%- assign lalatoto_fits = product.metafields.lalatoto.fits.value -%}

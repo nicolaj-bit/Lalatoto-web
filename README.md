@@ -111,6 +111,12 @@ Colour, Farbe). Størrelser vises som tekstknapper og farver som prikker.
 | `weight_guide` | Valg af rigtig vægt | flerlinjet tekst | tyngdedyne |
 | `fits` | Passer til | produktreference | betraek |
 
+**Venteliste:** er den valgte variant ikke på lager, erstattes Læg i kurv af en
+venteliste. Tilmeldinger oprettes som kunder med mærkerne `venteliste`,
+`venteliste-<produkt>` og `venteliste-<produkt>-<variant>`. Sætter kunden
+flueben ved nyhedsbrevet, får kunden også mærket `nyhedsbrev-samtykke`. Kun
+de kunder må få nyhedsbrevet.
+
 **Kollektionssiden** viser ét kort per farve i den første tilgængelige
 størrelse. Kortets billede er variantens billede. Har varianten intet, bruges
 det første billede, hvis alt-tekst indeholder `#Farve_<farve>` (fx

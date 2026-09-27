@@ -553,6 +553,19 @@
       "google_play": "Google Play",
       "image_1_alt": "Club No Sleep: die Karte Ein Licht im Dunkeln",
       "image_2_alt": "Club No Sleep: Affirmation des Tages"
+    },
+    "waitlist": {
+      "kicker": "Nicht vorrätig",
+      "title": "Benachrichtigung, sobald es da ist",
+      "text": "Hinterlasse deine E-Mail, und wir schicken dir eine Nachricht, sobald {{ item }} erhältlich ist.",
+      "email_label": "E-Mail",
+      "email_placeholder": "Deine E-Mail",
+      "submit": "Benachrichtigen",
+      "error": "Bitte prüfe, ob die E-Mail-Adresse richtig ist.",
+      "newsletter": "Schickt mir auch den Newsletter",
+      "fine_print": "Wir schreiben dir nur zu diesem Artikel, außer du wählst auch den Newsletter. Du kannst dich jederzeit abmelden.",
+      "done_title": "Du stehst auf der Liste",
+      "done_text": "Wir schicken dir eine Nachricht, sobald {{ item }} erhältlich ist."
     }
   }
 }
