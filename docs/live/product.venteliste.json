@@ -1,0 +1,354 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {
+            "heading_tag": "h1"
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "show_taxes_notice": false
+          }
+        },
+        "badges_imc3bX": {
+          "type": "badges",
+          "disabled": true,
+          "settings": {}
+        },
+        "variant_picker_yq7BTW": {
+          "type": "variant_picker",
+          "settings": {
+            "hide_sold_out_variants": false,
+            "selector_style": "block",
+            "swatch_selector_style": "swatch",
+            "variant_image_options": "",
+            "size_chart_page": ""
+          }
+        },
+        "inventory_nw8Miy": {
+          "type": "inventory",
+          "settings": {
+            "show_in_stock_quantity": true,
+            "low_inventory_threshold": 0,
+            "show_progress_bar": false,
+            "progress_bar_max_value": 50
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_payment_button": false,
+            "show_gift_card_recipient": false,
+            "atc_button_background": "#643c20",
+            "atc_button_text_color": "",
+            "payment_button_background": "",
+            "payment_button_text_color": ""
+          }
+        },
+        "lalatoto_venteliste": {
+          "type": "liquid",
+          "settings": {
+            "liquid": "{%- comment -%}\n  Lalatoto: venteliste til LALA Hvalen (skabelonen product.venteliste).\n  Vises i stedet for Læg i kurv, når den valgte størrelse ikke er på lager.\n  Tilmeldinger oprettes som kunder med mærkerne venteliste,\n  venteliste-<produkt> og venteliste-<produkt>-<variant>. Flueben ved\n  nyhedsbrevet tilføjer mærket nyhedsbrev-samtykke.\n{%- endcomment -%}\n{%- assign lw_variant = product.selected_or_first_available_variant -%}\n<style>\n  .product-info:has(.lalatoto-waitlist) .product-info__block-item[data-block-type='buy-buttons'],\n  body:has(.lalatoto-waitlist) .product-sticky-bar { display: none !important; }\n  .lalatoto-waitlist { padding-block: 1.75rem 1.5rem; border-block: 1px solid rgb(var(--text-color) / .15); color: rgb(var(--text-color)); }\n  .lalatoto-waitlist form { display: grid; gap: 1.25rem; margin: 0; }\n  .lalatoto-waitlist__status { display: flex; align-items: center; gap: .625rem; font-size: .6875rem; letter-spacing: .18em; text-transform: uppercase; color: rgb(var(--text-color) / .65); }\n  .lalatoto-waitlist__dot { position: relative; width: .4375rem; height: .4375rem; border-radius: 50%; background: rgb(var(--text-color)); }\n  .lalatoto-waitlist__dot::after { content: ''; position: absolute; inset: -.25rem; border: 1px solid rgb(var(--text-color)); border-radius: 50%; opacity: 0; animation: lalatoto-pulse 2.4s ease-out infinite; }\n  .lalatoto-waitlist__title { margin: 0; max-width: 16em; font-family: var(--heading-font-family); font-weight: var(--heading-font-weight); font-size: clamp(1.375rem, 1.2rem + .7vw, 1.75rem); line-height: 1.2; letter-spacing: normal; text-transform: none; text-wrap: balance; }\n  .lalatoto-waitlist__title em, .lalatoto-waitlist__text em { font-style: italic; }\n  .lalatoto-waitlist__text { margin: -.5rem 0 0; max-width: 36ch; color: rgb(var(--text-color) / .65); line-height: 1.6; }\n  .lalatoto-waitlist__field { position: relative; margin-block-start: .5rem; }\n  .lalatoto-waitlist__field input { display: block; width: 100%; padding: 1.375rem 0 .625rem; border: 0; border-block-end: 1px solid rgb(var(--text-color) / .25); border-radius: 0; background: transparent; color: rgb(var(--text-color)); font-size: 1rem; box-shadow: none; outline: none; appearance: none; transition: border-color .2s; }\n  .lalatoto-waitlist__field input:focus { border-block-end-color: rgb(var(--text-color)); }\n  .lalatoto-waitlist__field label { position: absolute; left: 0; top: 1.375rem; color: rgb(var(--text-color) / .65); font-size: 1rem; pointer-events: none; transform-origin: left top; transition: transform .2s; }\n  .lalatoto-waitlist__field input:focus + label, .lalatoto-waitlist__field input:not(:placeholder-shown) + label { transform: translateY(-1.125rem) scale(.72); letter-spacing: .14em; text-transform: uppercase; }\n  .lalatoto-waitlist__error { margin: -.75rem 0 0; color: rgb(var(--error-text, 203 43 43)); font-size: .8125rem; }\n  .lalatoto-waitlist .button { width: 100%; display: flex; justify-content: space-between; align-items: center; }\n  .lalatoto-waitlist__arrow { transition: transform .25s; }\n  .lalatoto-waitlist .button:hover .lalatoto-waitlist__arrow { transform: translateX(5px); }\n  .lalatoto-waitlist__consent { display: inline-flex; align-items: center; gap: .625rem; justify-self: start; font-size: .875rem; cursor: pointer; }\n  .lalatoto-waitlist__consent input { position: absolute; opacity: 0; width: 1px; height: 1px; }\n  .lalatoto-waitlist__box { position: relative; flex-shrink: 0; width: .875rem; height: .875rem; border: 1px solid rgb(var(--text-color)); }\n  .lalatoto-waitlist__consent input:checked + .lalatoto-waitlist__box { background: rgb(var(--text-color)); }\n  .lalatoto-waitlist__consent input:checked + .lalatoto-waitlist__box::after { content: ''; position: absolute; left: 4px; top: 1px; width: 4px; height: 7px; border: solid rgb(var(--background)); border-width: 0 1px 1px 0; transform: rotate(45deg); }\n  .lalatoto-waitlist__consent input:focus-visible + .lalatoto-waitlist__box { outline: 1px solid rgb(var(--text-color)); outline-offset: 3px; }\n  .lalatoto-waitlist__fine { margin: -.5rem 0 0; max-width: 44ch; color: rgb(var(--text-color) / .65); font-size: .75rem; line-height: 1.55; }\n  .lalatoto-waitlist__done { display: grid; justify-items: start; gap: 1rem; }\n  .lalatoto-waitlist__check { width: 3rem; height: 3rem; fill: none; stroke: rgb(var(--text-color)); stroke-width: 1; stroke-linecap: round; stroke-linejoin: round; }\n  .lalatoto-waitlist__check circle { stroke: rgb(var(--text-color) / .25); stroke-dasharray: 145; stroke-dashoffset: 145; animation: lalatoto-draw .7s ease-out forwards; }\n  .lalatoto-waitlist__check path { stroke-dasharray: 30; stroke-dashoffset: 30; animation: lalatoto-draw .4s ease-out .55s forwards; }\n  @keyframes lalatoto-draw { to { stroke-dashoffset: 0; } }\n  @keyframes lalatoto-pulse { 0% { opacity: .6; transform: scale(.6); } 70%, 100% { opacity: 0; transform: scale(1.6); } }\n  @media (prefers-reduced-motion: reduce) { .lalatoto-waitlist__dot::after { animation: none; } .lalatoto-waitlist__check circle, .lalatoto-waitlist__check path { animation: none; stroke-dashoffset: 0; } }\n</style>\n{%- if lw_variant != blank and lw_variant.available == false -%}\n  {%- liquid\n    assign lw_tag_product = 'venteliste-' | append: product.handle\n    assign lw_tag_variant = lw_tag_product | append: '-' | append: lw_variant.title | handleize\n    assign lw_tags = 'venteliste,' | append: lw_tag_product | append: ',' | append: lw_tag_variant\n  -%}\n  <div class=\"lalatoto-waitlist\">\n    {%- form 'customer', id: 'lalatoto-waitlist-live' -%}\n      {%- if form.posted_successfully? -%}\n        <div class=\"lalatoto-waitlist__done\" role=\"status\">\n          <svg class=\"lalatoto-waitlist__check\" viewBox=\"0 0 48 48\" aria-hidden=\"true\" focusable=\"false\"><circle cx=\"24\" cy=\"24\" r=\"23\" /><path d=\"M15 24.5l6 6 12-13\" /></svg>\n          <p class=\"lalatoto-waitlist__title\">Tak. <em>Du er på listen.</em></p>\n          <p class=\"lalatoto-waitlist__text\">Vi sender én besked, når <em>{{ product.title | escape }}</em> kan købes.</p>\n        </div>\n      {%- else -%}\n        <div class=\"lalatoto-waitlist__status\"><span class=\"lalatoto-waitlist__dot\" aria-hidden=\"true\"></span><span>Venteliste</span></div>\n        <p class=\"lalatoto-waitlist__title\">Vær den første, når <em>{{ product.title | escape }}</em> er her</p>\n        <p class=\"lalatoto-waitlist__text\">Skriv din e-mail, så sender vi én besked, så snart den kan købes.</p>\n        <input type=\"hidden\" name=\"contact[tags]\" value=\"{{ lw_tags | escape }}\" data-base-tags=\"{{ lw_tags | escape }}\">\n        <div class=\"lalatoto-waitlist__field\">\n          <input type=\"email\" id=\"lalatoto-waitlist-live-email\" name=\"contact[email]\" required autocomplete=\"email\" inputmode=\"email\" spellcheck=\"false\" placeholder=\" \" {% if form.errors %}aria-invalid=\"true\" aria-describedby=\"lalatoto-waitlist-live-error\"{% endif %}>\n          <label for=\"lalatoto-waitlist-live-email\">Din e-mail</label>\n        </div>\n        {%- if form.errors -%}\n          <p class=\"lalatoto-waitlist__error\" id=\"lalatoto-waitlist-live-error\">Tjek, at e-mailadressen er skrevet rigtigt.</p>\n        {%- endif -%}\n        <button type=\"submit\" class=\"button\"><span>Skriv mig op</span><span class=\"lalatoto-waitlist__arrow\" aria-hidden=\"true\">→</span></button>\n        <label class=\"lalatoto-waitlist__consent\"><input type=\"checkbox\" data-lalatoto-newsletter><span class=\"lalatoto-waitlist__box\" aria-hidden=\"true\"></span><span>Send mig også nyhedsbrevet</span></label>\n        <p class=\"lalatoto-waitlist__fine\">Vi skriver kun om denne vare, medmindre du også vælger nyhedsbrevet. Du kan altid framelde dig.</p>\n      {%- endif -%}\n    {%- endform -%}\n  </div>\n{%- endif -%}\n<script>\n  if (!window.lalatotoWaitlistReady) {\n    window.lalatotoWaitlistReady = true;\n    document.addEventListener('change', function (event) {\n      var box = event.target.closest && event.target.closest('[data-lalatoto-newsletter]');\n      if (!box) return;\n      var tags = box.form && box.form.querySelector('input[name=\"contact[tags]\"]');\n      if (!tags) return;\n      var base = tags.getAttribute('data-base-tags');\n      tags.value = box.checked ? base + ',nyhedsbrev-samtykke' : base;\n    });\n  }\n</script>"
+          }
+        },
+        "oenskeskyen_wishlist_button_bMhRwf": {
+          "type": "shopify://apps/oenskeskyen/blocks/wishlist-button/be6e5a80-54ea-40af-aa80-5746282173b8",
+          "settings": {
+            "text": "Tilføj til ønskeskyen",
+            "rounded": "none",
+            "size": "medium",
+            "position": "center",
+            "width": "fit-content",
+            "icon": "gowish",
+            "font": "inherit",
+            "color": "#1c1c1c",
+            "background": "rgba(0,0,0,0)",
+            "border": "",
+            "icon_color": "#0099bb",
+            "data-region": "denmark"
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {
+            "collapse_content": false,
+            "show_below_gallery": false
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "price",
+        "badges_imc3bX",
+        "variant_picker_yq7BTW",
+        "inventory_nw8Miy",
+        "buy_buttons",
+        "lalatoto_venteliste",
+        "oenskeskyen_wishlist_button_bMhRwf",
+        "description"
+      ],
+      "settings": {
+        "color_scheme": "",
+        "container_size": "lg",
+        "product_info_size": 35,
+        "show_sticky_add_to_cart": true,
+        "center_basic_info": true,
+        "desktop_media_layout": "carousel_thumbnails_bottom",
+        "desktop_media_grid_gap": 30,
+        "mobile_controls": "thumbnails",
+        "enable_media_autoplay": false,
+        "enable_video_looping": true,
+        "enable_image_zoom": false,
+        "max_image_zoom_level": 3
+      }
+    },
+    "rich_text_qVFQMG": {
+      "type": "rich-text",
+      "blocks": {
+        "richtext_RNr89R": {
+          "type": "richtext",
+          "settings": {
+            "content": "<h3>\"Nej tak\" til polyester</h3>"
+          }
+        },
+        "richtext_RDqcx3": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Hos LALATOTO har vi taget et bevidst valg om at sige nej til polyester og i stedet udelukkende anvende naturlige materialer såsom kapok og uld. <br/><br/>Dette gør mange processer i både udviklings- og produktionsfasen mere komplicerede og besværlige, for ikke at tale om, at det naturlige valg desværre også oftest er dyrere. Men for os er det alligevel en no-brainer – det handler nemlig om at passe på både din familie og på vores miljø.</p><p>Polyester er et syntetisk materiale fremstillet af plastik via en kemisk proces. Polyester er ikke åndbart og kan samtidig afgive mikroplast til omgivelserne. Derimod er kapok og uld et 100 % naturligt og bæredygtigt materiale, dyrket uden brug af kemi, og så er det både allergivenligt, åndbart og temperaturregulerende. Det giver et sundere sovemiljø uden risikoen for unødvendige kemikalier og mikroplast.<br/></p><p>Ved at vælge naturens egne materialer sikrer vi, at vores produkter er skånsomme for både mennesker og miljø – uden at gå på kompromis<br/>med kvalitet og funktionalitet. I sin enkelthed handler det sådan set bare om at sætte produkter i verden, som vi er stolte af, og som du trygt kan anvende til dig selv eller til familiens mindste.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "richtext_RNr89R",
+        "richtext_RDqcx3"
+      ],
+      "settings": {
+        "color_scheme": "scheme-4",
+        "separate_section_with_border": false,
+        "content_width": "sm",
+        "text_position": "center",
+        "remove_vertical_spacing": false
+      }
+    },
+    "anmeldelser_rTYGz6": {
+      "type": "Anmeldelser",
+      "blocks": {
+        "custom_GaEYWF": {
+          "type": "custom",
+          "settings": {
+            "name": "Sheila Fuglsang",
+            "date": "4. nov. 2024",
+            "des": "<p><strong>Nicolaj og Sara som vi kender.</strong><br/>Lalatoto er hush little one's nye navn. Med samme fantastiske produkter og de samme søde mennesker. Køb køb 🤩</p>",
+            "product": ""
+          }
+        },
+        "custom_4tCVK4": {
+          "type": "custom",
+          "settings": {
+            "name": "Mille Hallgreen",
+            "date": "3. nov. 2024",
+            "des": "<p><strong>Verdens bedste redning til forældre og deres børn.</strong><br/>Vi har igennem flere år brugt produkter fra LALATOTO. Både deres babydyne, juniordyne og deres natdragter til vores drenge, med stor succes.<br/>Sara og Nicolaj er altid hurtige til at svare og vejlede i den bedste oplevelse af deres produkter.<br/>Jeg vil altid anbefale det skønne firma og deres geniale produkter!</p>",
+            "product": ""
+          }
+        },
+        "custom_6GrqbB": {
+          "type": "custom",
+          "settings": {
+            "name": "Henriette",
+            "date": "4. nov. 2024",
+            "des": "<p><strong>Et valg du ikke fortryder!!</strong><br/>Et valg du ikke fortryder!!<br/>(Tidligere Hush Little One), fantastisk brand med fantastiske produkter. Pengene værd. God service, høj kvalitet</p>",
+            "product": ""
+          }
+        },
+        "custom_z3BQF4": {
+          "type": "custom",
+          "settings": {
+            "name": "Anne Sofie Evert",
+            "date": "4. nov. 2024",
+            "des": "<p><strong>Overgik alle mine forventninger.</strong><br/>Oplevelsen med at handle ved lalatoto (tidl. Hush little one) overgår virkelig alle mine forventninger. Jeg tør næsten ikke sige det højt, men min datter er gået fra meget urolig søvn med mange opvågninger til at sove lange stræk på op til syv timer med dynen og nesten allerede fra 6 mdr.<br/><br/>Derudover tror jeg ærlig talt aldrig, at jeg har oplevet så varm, personlig og samtidig professionel kundeservice før. Imponerende hurtig levering og behagelig og kompetent sparring.<br/><br/>Endelig skal det jo nævnes, at Lalatoto har stor fokus på social bæredygtighed hvilket kommer til udtryk i kvaliteten af produktet og produktionsforholdene - så udover at støtte en dansk iværksættervirksomhed, så kan du ovenikøbet have en god følelse med produktionen. Jeg kan med andre ord ikke anbefale lalatoto nok!</p>",
+            "product": ""
+          }
+        },
+        "custom_niN4z9": {
+          "type": "custom",
+          "settings": {
+            "name": "Mette H.",
+            "date": "3. nov. 2024",
+            "des": "<p><strong>God og meget hurtig kundeservice.</strong><br/>Jeg oplevede en god og meget hurtig service. Jeg bestilte dynen mandag aften og modtog pakken onsdag formiddag. Dynen er virkelig lækker og det virker som om, at den er ved at blive accepteret af modtageren.</p>",
+            "product": ""
+          }
+        },
+        "custom_YHe9ri": {
+          "type": "custom",
+          "settings": {
+            "name": "Tine Damgaard",
+            "date": "19. dec. 2024",
+            "des": "<p><strong>Lækre produkter og god service</strong><br/>Lækre produkter (dog venter vi lidt på effekt af tyngdedyne :D), flot webshop, men det vigtigste af alt: rigtig god service og hurtig forsendelse. Jeg søgte råd angående noget teknisk med inden jeg bestilte og jeg fik en meget grundigt svar, også med reference til danske myndigheders anbefalinger indenfor området. Da jeg så modtog ordren lå der en fin lille personlig hilsen med, med ønsket om god søvn. Helt klart anbefalelsesværdigt! Produkterne er ikke de billigste, MEN helt klart pengene værd, da andre producenter ikke har samme kvalitet (hold øje med alle de gode rabatkoder der løbende er;) )</p>",
+            "product": ""
+          }
+        },
+        "custom_XYQ3Gp": {
+          "type": "custom",
+          "settings": {
+            "name": "Stine Bølling",
+            "date": "19. nov. 2024",
+            "des": "<p><strong>Sengeslangen var min redning som gravid</strong><br/>Som gravid som jeg utrolig dårlig! Blev anbefalet en “graviditetspølse”.<br/>En besked til Sara, som besvarede mine spørgsmål på den mest imødekommende og varme måde. Jeg købte sengeslangen. Som fra dag ét reddede min søvn, smerter og lign om natten. Det er lidt tyngde i den, så den altså er lidt tung og derfor bliver liggende. Man får ikke bare lige skubbet den ud af sengen, og den har en tykkelse som gør at den ikke “bare” klasker sammen mellem ens ben. Den var seriøst guld værd! Og jeg vil anbefale den til alle gravide😍<br/>Nu har vores datter overtaget den, da den gør hendes seng mindre og tryg. Tak for jer!</p>",
+            "product": ""
+          }
+        },
+        "custom_GcPjF9": {
+          "type": "custom",
+          "settings": {
+            "name": "Simone Rønhøj Villumsen",
+            "date": "3. nov. 2024",
+            "des": "<p><strong>Sara & Nicolaj fra Lalatoto kender du sikkert fra Hush little One som var i løvens hule.<br/></strong>Samme fantastiske produkter blot under et nyt navn! Tyngdedynen har gjort en kæmpe forskel for vores dreng siden han var 6 måneder i forhold til motorisk uro og så snart deres sengerand kom på lager måtte jeg også eje den. Den skuffer på ingen måde. Jeg elsker at den har stof som kan komme under madrassen, så sovemiljøet er helt trygt og sikkert. Det er ikke sidste gang jeg handler hos Lalatoto!</p>",
+            "product": ""
+          }
+        },
+        "custom_ciJPFq": {
+          "type": "custom",
+          "settings": {
+            "name": "Christine T",
+            "date": "4. nov. 2024",
+            "des": "<p><strong>Fntastisk produkt til babys søvn<br/></strong>Vores søn på 4 måneder har indtil nu kun ville falde i søvn<br/>i bevægelse i enten slyngvugge eller barnevogn. Vi har prøvet alt, men valgte<br/>at give jeres tyngdedyne et forsøg og han er nu for første gang faldet nemt og<br/>hurtigt i søvn i sin SENG. Tusind tak for et godt produkt 🧡</p>",
+            "product": ""
+          }
+        },
+        "custom_PeXfhf": {
+          "type": "custom",
+          "settings": {
+            "name": "Johanne Ellne Fllg",
+            "date": "4. nov. 2024",
+            "des": "<p><strong>Bedste service, bedste produkter.<br/></strong>Tyngdedynen har vi været så glade for, multinesten har<br/>simpelthen redet vores søn’s søvn fra han var helt lille. Vi tager den stadig<br/>med overalt ved overnatning, den ville vi ikke kunne leve uden. TAK</p>",
+            "product": ""
+          }
+        },
+        "custom_RFeabL": {
+          "type": "custom",
+          "settings": {
+            "name": "Stinne Pedersen",
+            "date": "13. nov. 2024",
+            "des": "<p><strong>Fantastisk produkter og ikke mindst fantastisk service!</strong>Havde et par spørgsmål inden mit køb at multinesten og de<br/>stod klar med det samme for at hjælpe. En virkelig nærværende lille perle.</p>",
+            "product": ""
+          }
+        },
+        "custom_8mVKyM": {
+          "type": "custom",
+          "settings": {
+            "name": "Tina Nolsø",
+            "date": "8 jan. 2025",
+            "des": "<p><strong>Super hurtig service og varen var perfekt.</strong><br/>Super hurtig service og varen var perfekt 😊</p>",
+            "product": ""
+          }
+        },
+        "custom_tEYPAi": {
+          "type": "custom",
+          "settings": {
+            "name": "Julie Zeuthen",
+            "date": "13. nov. 2024",
+            "des": "<p><strong>Skøn </strong><a href=\"/collections/tyngdedyner\" title=\"Tyngdedyner\"><strong>tyngdedyne</strong></a><strong> og </strong><a href=\"/products/luksus-sengeslange\" title=\"Luksus sengeslange\"><strong>multinest</strong></a><strong>.</strong><br/>God kundeservice, lækre produkter (har købt multinest og tyngdedyne) og hurtig levering - meget tilfreds 😊</p>",
+            "product": ""
+          }
+        },
+        "custom_BkbYkN": {
+          "type": "custom",
+          "settings": {
+            "name": "Didde F",
+            "date": "4. nov. 2024",
+            "des": "<p><strong>Kæmpe anbefaling!</strong><br/>Vi er så glade for deres <a href=\"/collections/tyngdedyner\" title=\"Tyngdedyner\">tyngdedyne</a> og multinest, det har gjort at vores datter sover meget bedre. Virkelig lækre produkter!</p>",
+            "product": ""
+          }
+        },
+        "custom_QzLgyD": {
+          "type": "custom",
+          "settings": {
+            "name": "Dani",
+            "date": "4. nov. 2024",
+            "des": "<p><strong>Vi fik ENDELIG sammenhængende søvn igen.</strong><br/>Vi fik ENDELIG sammenhængende søvn igen, efter vi fik <a href=\"/collections/tyngdedyner\" title=\"Tyngdedyner\">tyngdedynen</a> og mulitinesten fra Lalatoto. Jeg kan ikke anbefale deres produkter nok! 🙌🏼❤️</p>",
+            "product": ""
+          }
+        },
+        "custom_m7TnbX": {
+          "type": "custom",
+          "settings": {
+            "name": "Sara schandorph",
+            "date": "4. nov. 2024",
+            "des": "<p><strong>Kæmpe anbefaling og high5 herfra. </strong><br/>Har handlet hos dem (da de hed ‘hush little one’) og deres produkter er så lækre og uundværlige. Afventer nu at deres nye sengerand forhåbentligt kommer på lager i den farve jeg vil have 😍</p>",
+            "product": ""
+          }
+        },
+        "custom_Vr8jCJ": {
+          "type": "custom",
+          "settings": {
+            "name": "Fie Lillerøj",
+            "date": "3. nov. 2024",
+            "des": "<p><strong>10000 stjerner, hvis muligt 🤩</strong><br/>Søvnen hos min søn blev redet af JER og jeres <a href=\"/collections/tyngdedyner\" title=\"Tyngdedyner\">tyngdedyne</a>. Vi gik fra lange putninger til 2-3 minutters putninger og bedst af alt - lange søvnstræk.</p>",
+            "product": ""
+          }
+        }
+      },
+      "block_order": [
+        "custom_GaEYWF",
+        "custom_4tCVK4",
+        "custom_6GrqbB",
+        "custom_z3BQF4",
+        "custom_niN4z9",
+        "custom_YHe9ri",
+        "custom_XYQ3Gp",
+        "custom_GcPjF9",
+        "custom_ciJPFq",
+        "custom_PeXfhf",
+        "custom_RFeabL",
+        "custom_8mVKyM",
+        "custom_tEYPAi",
+        "custom_BkbYkN",
+        "custom_QzLgyD",
+        "custom_m7TnbX",
+        "custom_Vr8jCJ"
+      ],
+      "settings": {
+        "rating_text": "Læs vores kundeanmeldelser",
+        "header_text_da": "Vores kunder siger det bedre, end vi selv kan",
+        "header_text_en": "Loved by those who knows best – our customers!",
+        "heading_level": "h3"
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "color_scheme": "scheme-4",
+        "separate_section_with_border": false,
+        "hide_product_information": false,
+        "stack_products": false,
+        "recommendations_count": 10,
+        "products_per_row_mobile": "2",
+        "products_per_row_desktop": 4,
+        "horizontal_spacing_factor": 1,
+        "vertical_spacing_factor": 1,
+        "subheading": "",
+        "title": "Du har sidst kigget på",
+        "content": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "rich_text_qVFQMG",
+    "anmeldelser_rTYGz6",
+    "related-products"
+  ]
+}
