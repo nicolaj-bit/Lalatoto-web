@@ -1,0 +1,100 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {
+            "heading_tag": "h2"
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "show_taxes_notice": false
+          }
+        },
+        "short_description": {
+          "type": "lalatoto_short_desc",
+          "settings": {}
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "hide_sold_out_variants": false,
+            "selector_style": "block",
+            "swatch_selector_style": "swatch"
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_payment_button": false,
+            "show_gift_card_recipient": true
+          }
+        },
+        "delivery": {
+          "type": "lalatoto_delivery",
+          "settings": {
+            "text": ""
+          }
+        },
+        "more_info": {
+          "type": "lalatoto_more_info",
+          "settings": {
+            "sections": "standard"
+          }
+        },
+        "waitlist": {
+          "type": "lalatoto_waitlist",
+          "settings": {}
+        },
+        "hval_stil": {
+          "type": "liquid",
+          "settings": {
+            "liquid": "{%- comment -%}\n  Lalatoto: LALA Hvalen. Størrelserne står som ren tekst uden kant og uden\n  streg over udsolgte størrelser. Den valgte størrelse er mørk, de andre lysere.\n{%- endcomment -%}\n<style>\n  .shopify-section--main-product .block-swatch,\n  .shopify-section--main-product :checked + .block-swatch,\n  .shopify-section--main-product .block-swatch.is-selected { border-color: transparent; }\n  .shopify-section--main-product .block-swatch.is-disabled { text-decoration: none; border-style: solid; }\n  .shopify-section--main-product .block-swatch.is-disabled::before { content: none; }\n  .shopify-section--main-product :checked + .block-swatch { color: rgb(var(--text-color)); }\n</style>"
+          }
+        }
+      },
+      "block_order": [
+        "hval_stil",
+        "title",
+        "price",
+        "short_description",
+        "variant_picker",
+        "buy_buttons",
+        "waitlist",
+        "delivery",
+        "more_info"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "allow_transparent_header": false,
+        "container_size": "full",
+        "product_info_size": 34,
+        "show_sticky_add_to_cart": true,
+        "center_basic_info": false,
+        "desktop_media_layout": "grid",
+        "desktop_media_grid_gap": 16,
+        "mobile_controls": "free_scroll",
+        "enable_media_autoplay": false,
+        "enable_video_looping": true,
+        "enable_image_zoom": false,
+        "max_image_zoom_level": 3
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}
