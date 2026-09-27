@@ -211,6 +211,12 @@ svg.lalatoto-full-image__image {
   text-transform: none;
 }
 
+/* Prisen står i fuld tekstfarve; temaet dæmper den ellers til 65 %.
+   En førpris ved udsalg forbliver dæmpet og overstreget. */
+.price-list--product sale-price.text-subdued {
+  color: rgb(var(--text-color));
+}
+
 /* Kort beskrivelse: hele teksten vises, linjeskift bevares */
 .lalatoto-short-description {
   margin: 0;
