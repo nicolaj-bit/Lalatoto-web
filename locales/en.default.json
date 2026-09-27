@@ -530,7 +530,8 @@
         "weight": "Weight",
         "weight_guide": "Choosing the right weight"
       },
-      "fits": "Fits"
+      "fits": "Fits",
+      "weight_help": "Help choosing the right weight"
     },
     "collection": {
       "kicker": "Collection",

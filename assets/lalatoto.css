@@ -989,3 +989,91 @@ html.lalatoto-scroll-lock body {
 .lalatoto-fits__link:hover {
   text-decoration-color: currentColor;
 }
+
+/* ===============================================================
+ * VÆGT (tyngdedyner)
+ * Vægtene står som én samlet række med tynde skillestreger, så valget
+ * læses som en skala. Findes der kun én vægt, står den som tekst.
+ * =============================================================== */
+.variant-picker__option--weight .variant-picker__option-values {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(4.25rem, 1fr));
+  gap: 0;
+  max-width: 24rem;
+}
+
+.variant-picker__option--weight .block-swatch {
+  justify-content: center;
+  padding-block: 0.8125rem;
+  border: 1px solid #d7d0c4;
+  border-radius: 0;
+  background: transparent;
+  color: #6e675e;
+  letter-spacing: 0.06em;
+  text-transform: none;
+  font-variant-numeric: tabular-nums;
+  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+
+/* Knapperne deler streg: fra anden knap og frem overlapper kanten med 1 px.
+   (Prestige lægger et skjult input foran hver knap, derfor ~ og ikke +.) */
+.variant-picker__option--weight .block-swatch ~ .block-swatch {
+  margin-inline-start: -1px;
+}
+
+.variant-picker__option--weight .block-swatch:hover {
+  color: #2a2724;
+}
+
+.variant-picker__option--weight :checked + .block-swatch,
+.variant-picker__option--weight .block-swatch.is-selected {
+  position: relative;
+  z-index: 1;
+  background: #ddd6cb;
+  border-color: #2a2724;
+  color: #2a2724;
+}
+
+/* Kun én vægt til størrelsen: vis den som ren tekst */
+.variant-picker__option--weight.is-single .variant-picker__option-values {
+  display: block;
+}
+
+.variant-picker__option--weight.is-single .block-swatch {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #2a2724;
+  font-size: 0.9375rem;
+  letter-spacing: normal;
+  pointer-events: none;
+}
+
+.lalatoto-weight-help {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  justify-self: start;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #6e675e;
+  font-family: var(--text-font-family);
+  font-size: 0.8125rem;
+  text-decoration: underline;
+  text-decoration-color: #d7d0c4;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.lalatoto-weight-help:hover {
+  color: #2a2724;
+  text-decoration-color: currentColor;
+}
+
+.lalatoto-weight-help:focus-visible {
+  outline: 1px solid #2a2724;
+  outline-offset: 3px;
+}

@@ -65,7 +65,24 @@
         endif
       %}
 
-      <fieldset class="variant-picker__option v-stack gap-2">
+      {%- liquid
+        comment
+          Lalatoto: vægt vises som en samlet række knapper. Findes der kun én
+          vægt til den valgte størrelse (fx Baby 2 kg), vises den som tekst.
+        endcomment
+        assign lalatoto_weight_names = 'vægt,weight,gewicht' | split: ','
+        assign lalatoto_is_weight = false
+        if lalatoto_weight_names contains option_downcase
+          assign lalatoto_is_weight = true
+        endif
+        assign lalatoto_value_count = 0
+        for option_value in option.values
+          if option.position == 1 or option_value.variant != nil or option_value.selected
+            assign lalatoto_value_count = lalatoto_value_count | plus: 1
+          endif
+        endfor
+      -%}
+      <fieldset class="variant-picker__option v-stack gap-2{% if lalatoto_is_weight %} variant-picker__option--weight{% if lalatoto_value_count == 1 %} is-single{% endif %}{% endif %}">
         <div class="variant-picker__option-info h-stack justify-between gap-2">
           <div class="h-stack gap-1">
             <legend>{{ option.name }}:</legend>
@@ -110,6 +127,7 @@
                 {%- assign param_name = form_id | append: '-option' | append: option.position -%}
 
                 {%- for option_value in option.values -%}
+                  {%- if option.position > 1 and option_value.variant == nil and option_value.selected == false -%}{%- continue -%}{%- endif -%}
                   {%- capture option_markup -%}
                     <span>{{- option_value -}}</span>
 
@@ -188,6 +206,15 @@
               assign name = form_id | append: '-option' | append: option.position
 
               for option_value in option.values
+                comment
+                  Lalatoto: en værdi, der ikke findes sammen med de valgte værdier
+                  (fx 11 kg til Baby), vises slet ikke. Første valgmulighed viser
+                  altid alle værdier, så man kan skifte fx størrelse frit.
+                endcomment
+                if option.position > 1 and option_value.variant == nil and option_value.selected == false
+                  continue
+                endif
+
                 case resolved_option_selector_style
                   when 'variant_image'
                     if variant_image_underline
@@ -209,6 +236,13 @@
               endfor
             %}
           </div>
+        {%- endif -%}
+
+        {%- if lalatoto_is_weight and is_main_product and product.metafields.lalatoto.weight_guide.value != blank -%}
+          <button type="button" class="lalatoto-weight-help" aria-controls="lalatoto-info-modal" aria-haspopup="dialog" data-lalatoto-target="lalatoto-info-modal-weight_guide">
+            <span>{{ 'lalatoto.product.weight_help' | t }}</span>
+            <span aria-hidden="true">→</span>
+          </button>
         {%- endif -%}
       </fieldset>
     {%- endfor -%}

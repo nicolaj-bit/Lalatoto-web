@@ -534,7 +534,8 @@
         "weight": "Vægt",
         "weight_guide": "Valg af rigtig vægt"
       },
-      "fits": "Passer til"
+      "fits": "Passer til",
+      "weight_help": "Hjælp til at vælge den rigtige vægt"
     },
     "collection": {
       "kicker": "Kollektion",

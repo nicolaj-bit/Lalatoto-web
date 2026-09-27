@@ -530,7 +530,8 @@
         "weight": "Gewicht",
         "weight_guide": "Das richtige Gewicht wählen"
       },
-      "fits": "Passt zu"
+      "fits": "Passt zu",
+      "weight_help": "Hilfe bei der Wahl des richtigen Gewichts"
     },
     "collection": {
       "kicker": "Kollektion",

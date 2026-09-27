@@ -58,6 +58,12 @@
       this.dialog.showModal();
 
       if (this.scroller) this.scroller.scrollTop = 0;
+
+      /* Et link kan pege på et bestemt afsnit, fx «Valg af rigtig vægt». */
+      var targetId = opener && opener.getAttribute('data-lalatoto-target');
+      var target = targetId ? document.getElementById(targetId) : null;
+      if (target && this.dialog.contains(target)) target.scrollIntoView({ block: 'start' });
+
       this.markActive();
 
       var close = this.dialog.querySelector('[data-lalatoto-close]');
