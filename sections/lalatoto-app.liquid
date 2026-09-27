@@ -73,21 +73,24 @@
             assign alt = 'lalatoto.app.image_2_alt' | t
           endif
         -%}
-        <div class="lalatoto-app__phone">
-          {%- if image != blank -%}
-            {%- assign image_alt = image.alt | default: alt -%}
-            {{-
-              image
-              | image_url: width: 600
-              | image_tag:
-                loading: 'lazy',
-                sizes: '(max-width: 699px) 148px, 178px',
-                widths: '300,360,450,600',
-                alt: image_alt
-            -}}
-          {%- else -%}
-            <img src="{{ fallback | asset_url }}" alt="{{ alt | escape }}" width="420" height="910" loading="lazy">
-          {%- endif -%}
+        {%- comment -%}Samme ramme som cns-phones på clubnosleep.com: ramme > skærm > billede{%- endcomment -%}
+        <div class="lalatoto-app__phone lalatoto-app__phone--{{ i }}">
+          <div class="lalatoto-app__screen">
+            {%- if image != blank -%}
+              {%- assign image_alt = image.alt | default: alt -%}
+              {{-
+                image
+                | image_url: width: 700
+                | image_tag:
+                  loading: 'lazy',
+                  sizes: '232px',
+                  widths: '240,480,700',
+                  alt: image_alt
+              -}}
+            {%- else -%}
+              <img src="{{ fallback | asset_url }}" alt="{{ alt | escape }}" width="420" height="910" loading="lazy">
+            {%- endif -%}
+          </div>
         </div>
       {%- endfor -%}
     </div>
@@ -149,13 +152,13 @@
       "type": "image_picker",
       "id": "image_1",
       "label": "Telefon 1",
-      "info": "Stående skærmbillede, ca. 9:19,5."
+      "info": "Stående skærmbillede i iPhone-forhold, 9:19,5. Andre forhold beskæres."
     },
     {
       "type": "image_picker",
       "id": "image_2",
       "label": "Telefon 2",
-      "info": "Stående skærmbillede, ca. 9:19,5."
+      "info": "Stående skærmbillede i iPhone-forhold, 9:19,5. Andre forhold beskæres."
     },
     {
       "type": "url",

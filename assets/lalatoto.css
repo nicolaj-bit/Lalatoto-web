@@ -884,30 +884,49 @@ html.lalatoto-scroll-lock body {
   display: none;
 }
 
+/* Telefonerne er en nøjagtig kopi af cns-phones på clubnosleep.com
+   (Club-no-sleep-web: sections/cns-phones.liquid og assets/cns.css).
+   Kun farverne er lalatotos: ramme #EFEBE4, streg #D7D0C4, og skyggen er
+   tonet i lalatotos mørke farve. Form, mål og hældning er uændrede. */
 .lalatoto-app__phones {
   display: flex;
+  gap: 22px;
   justify-content: center;
-  align-items: flex-start;
-  gap: 1rem; /* 16 px */
+  align-items: flex-end;
+  margin-top: 8px;
 }
 
 .lalatoto-app__phone {
-  width: 9.25rem; /* 148 px på telefon */
-  aspect-ratio: 9 / 19.5;
-  overflow: hidden;
-  border: 1px solid #d7d0c4;
-  border-radius: 0;
-  box-shadow: none;
+  box-sizing: border-box;
+  width: min(232px, 42vw);
+  border-radius: 30px;
+  padding: 9px;
+  flex-shrink: 0;
   background: #efebe4;
+  border: 1px solid #d7d0c4;
+  box-shadow: 0 40px 80px -44px rgb(42 39 36 / 0.9);
 }
 
-@media screen and (min-width: 700px) {
-  .lalatoto-app__phone {
-    width: 11.125rem; /* 178 px på computer */
-  }
+.lalatoto-app__phone--1 {
+  transform: rotate(-3deg) translateY(-14px);
 }
 
-.lalatoto-app__phone img {
+.lalatoto-app__phone--2 {
+  transform: rotate(2.5deg);
+}
+
+.lalatoto-app__screen {
+  border-radius: 23px;
+  /* Holder skærmbilledet inde bag de afrundede hjørner */
+  overflow: hidden;
+  background: #e7e1d8;
+  /* iPhone-skærmens forhold, så de to telefoner altid er lige høje */
+  aspect-ratio: 9 / 19.5;
+  display: flex;
+  flex-direction: column;
+}
+
+.lalatoto-app__screen > img {
   display: block;
   width: 100%;
   height: 100%;
