@@ -54,12 +54,17 @@
           "settings": {
             "sections": "standard"
           }
+        },
+        "fits": {
+          "type": "lalatoto_fits",
+          "settings": {}
         }
       },
       "block_order": [
         "title",
         "price",
         "short_description",
+        "fits",
         "variant_picker",
         "buy_buttons",
         "delivery",

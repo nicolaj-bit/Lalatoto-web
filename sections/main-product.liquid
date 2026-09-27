@@ -157,7 +157,7 @@
 {%- endcomment -%}
 {%- assign lalatoto_more_info_block = section.blocks | where: 'type', 'lalatoto_more_info' | first -%}
 {%- if lalatoto_more_info_block != blank and product != blank -%}
-  {%- render 'lalatoto-product-info-modal', product: product, mode: 'modal', modal_id: 'lalatoto-info-modal' -%}
+  {%- render 'lalatoto-product-info-modal', product: product, mode: 'modal', modal_id: 'lalatoto-info-modal', sections: lalatoto_more_info_block.settings.sections -%}
   <script src="{{ 'lalatoto-info-modal.js' | asset_url }}" defer></script>
 {%- endif -%}
 
@@ -436,8 +436,26 @@
       "limit": 1,
       "settings": [
         {
+          "type": "select",
+          "id": "sections",
+          "label": "Afsnit",
+          "options": [
+            { "value": "standard", "label": "Standard" },
+            { "value": "tyngdedyne", "label": "Tyngdedyne" }
+          ],
+          "default": "standard",
+          "info": "Standard: Materialer, Mål, Vask og pleje, Sikkerhed, Levering og retur. Tyngdedyne tilføjer Vægt og Valg af rigtig vægt. Indholdet hentes fra produktets metafelter i navnerummet lalatoto, og tomme felter vises ikke."
+        }
+      ]
+    },
+    {
+      "type": "lalatoto_fits",
+      "name": "Passer til",
+      "limit": 1,
+      "settings": [
+        {
           "type": "paragraph",
-          "content": "Afsnittene hentes fra produktets metafelter i navnerummet lalatoto: Materialer (materials), Mål (dimensions), Vask og pleje (care), Sikkerhed (safety) og Levering og retur (shipping). Tomme felter vises ikke. Har produktet ingen af dem, vises linket ikke."
+          "content": "Viser et link til den vare, der er valgt i produktets metafelt «Passer til» (lalatoto.fits). Tomt felt: blokken vises ikke."
         }
       ]
     },

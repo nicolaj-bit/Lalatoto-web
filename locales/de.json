@@ -526,12 +526,16 @@
         "dimensions": "Maße",
         "care": "Waschen und Pflege",
         "safety": "Sicherheit",
-        "shipping": "Lieferung und Rückgabe"
-      }
+        "shipping": "Lieferung und Rückgabe",
+        "weight": "Gewicht",
+        "weight_guide": "Das richtige Gewicht wählen"
+      },
+      "fits": "Passt zu"
     },
     "collection": {
       "kicker": "Kollektion",
-      "empty": "Hier gibt es noch keine Produkte."
+      "empty": "Hier gibt es noch keine Produkte.",
+      "sold_out": "Ausverkauft"
     },
     "cart": {
       "title": "Warenkorb",

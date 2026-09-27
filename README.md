@@ -82,6 +82,41 @@ kommer fra siden i Shopify:
 Kollektionssiden henter overskriften fra kollektionens metafelt «Overskrift»
 (`lalatoto.heading`) og den korte linje fra «Kort linje» (`lalatoto.intro`).
 
+## Produkter og varianter
+
+Hver vare er ét produkt med varianter (fx Sengetøj med Størrelse × Farve).
+Temaet genkender farven på navnet på valgmuligheden: **Farve** (også Color,
+Colour, Farbe). Størrelser vises som tekstknapper og farver som prikker.
+
+**Skabeloner** (vælges under «Skabelon» på produktet):
+
+- `product.standard`: de fleste varer. `product.json` er den samme.
+- `product.tyngdedyne`: som standard, men «Fortæl mere» har også Vægt og
+  Valg af rigtig vægt.
+- `product.betraek`: som standard plus et link til den vare, betrækket passer
+  til.
+
+**Metafelter på produkter** (navnerum `lalatoto`, alle oprettet):
+
+| Nøgle | Navn | Type | Bruges af |
+|---|---|---|---|
+| `kort_beskrivelse` | Kort beskrivelse | flerlinjet tekst | alle |
+| `leveringstid` | Leveringstid | enkeltlinjet tekst | alle |
+| `materials` | Materialer | flerlinjet tekst | alle |
+| `dimensions` | Mål | flerlinjet tekst | alle |
+| `care` | Vask og pleje | flerlinjet tekst | alle |
+| `safety` | Sikkerhed | flerlinjet tekst | alle |
+| `shipping` | Levering og retur | flerlinjet tekst | alle |
+| `weight` | Vægt | flerlinjet tekst | tyngdedyne |
+| `weight_guide` | Valg af rigtig vægt | flerlinjet tekst | tyngdedyne |
+| `fits` | Passer til | produktreference | betraek |
+
+**Kollektionssiden** viser ét kort per farve i den første tilgængelige
+størrelse. Kortets billede er variantens billede. Har varianten intet, bruges
+det første billede, hvis alt-tekst indeholder `#Farve_<farve>` (fx
+`Sengetøj i sand #Farve_Sand`). Samme alt-tekst får produktsiden til kun at
+vise den valgte farves billeder.
+
 ## Sådan hænger det sammen
 
 - **Live temaet er ikke koblet til GitHub.** Det, kunderne ser, ændres ikke af

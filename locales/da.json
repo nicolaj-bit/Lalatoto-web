@@ -530,12 +530,16 @@
         "dimensions": "Mål",
         "care": "Vask og pleje",
         "safety": "Sikkerhed",
-        "shipping": "Levering og retur"
-      }
+        "shipping": "Levering og retur",
+        "weight": "Vægt",
+        "weight_guide": "Valg af rigtig vægt"
+      },
+      "fits": "Passer til"
     },
     "collection": {
       "kicker": "Kollektion",
-      "empty": "Der er ingen produkter her endnu."
+      "empty": "Der er ingen produkter her endnu.",
+      "sold_out": "Udsolgt"
     },
     "cart": {
       "title": "Kurv",

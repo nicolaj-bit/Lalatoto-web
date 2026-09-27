@@ -1,0 +1,43 @@
+{%- doc -%}
+  Lalatoto: ét kort i kollektionen. Viser billede og produktets navn, intet
+  andet. Linket åbner produktsiden med netop denne variant valgt.
+
+  @param {object} product - produktet
+  @param {object} variant - varianten, kortet står for (farven i første tilgængelige størrelse)
+  @param {object} [media] - billedet; tomt: variantens billede og ellers produktets
+  @param {boolean} [sold_out] - true dæmper kortet
+  @param {boolean} [eager] - true indlæser billedet med det samme (de første kort)
+{%- enddoc -%}
+
+{%- liquid
+  assign image = media | default: variant.featured_media | default: product.featured_media
+  assign url = variant.url | default: product.url
+  assign loading = 'lazy'
+  if eager
+    assign loading = 'eager'
+  endif
+-%}
+
+<li class="lalatoto-tile{% if sold_out %} is-sold-out{% endif %}">
+  <a href="{{ url }}" class="lalatoto-tile__link">
+    <div class="lalatoto-tile__media">
+      {%- if image != blank -%}
+        {{-
+          image
+          | image_url: width: 1200
+          | image_tag:
+            loading: loading,
+            sizes: '(max-width: 999px) 50vw, (max-width: 1400px) 25vw, 350px',
+            widths: '300,400,500,600,800,1000,1200',
+            alt: product.title
+        -}}
+      {%- else -%}
+        {{- 'product-1' | placeholder_svg_tag -}}
+      {%- endif -%}
+    </div>
+    <span class="lalatoto-tile__name">{{ product.title }}</span>
+    {%- if sold_out -%}
+      <span class="sr-only">{{ 'lalatoto.collection.sold_out' | t }}</span>
+    {%- endif -%}
+  </a>
+</li>

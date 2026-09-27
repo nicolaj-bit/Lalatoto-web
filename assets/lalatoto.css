@@ -932,3 +932,60 @@ html.lalatoto-scroll-lock body {
   height: 100%;
   object-fit: cover;
 }
+
+/* ===============================================================
+ * VARIANTER
+ * =============================================================== */
+
+/* Kollektionen: en udsolgt farve står der stadig, men dæmpet */
+.lalatoto-tile.is-sold-out .lalatoto-tile__media {
+  opacity: 0.45;
+}
+
+.lalatoto-tile.is-sold-out .lalatoto-tile__name {
+  color: #6e675e;
+}
+
+/* Produktsiden: udsolgte kombinationer skal ses tydeligt */
+.shopify-section--main-product .block-swatch.is-disabled {
+  color: #6e675e;
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+  border-style: dashed;
+}
+
+.shopify-section--main-product .color-swatch.is-disabled {
+  opacity: 0.45;
+}
+
+/* Størrelser som tekstknapper i temaets stil: tynd ramme, ingen afrunding */
+.shopify-section--main-product .block-swatch {
+  border-radius: 0;
+  font-size: var(--lalatoto-label-size);
+  letter-spacing: var(--lalatoto-label-spacing);
+  text-transform: uppercase;
+}
+
+/* Betræk: link til den vare, betrækket passer til */
+.lalatoto-fits {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  margin: 0;
+  font-size: 0.875rem;
+}
+
+.lalatoto-fits__label {
+  color: #6e675e;
+}
+
+.lalatoto-fits__link {
+  color: #2a2724;
+  text-decoration: underline;
+  text-decoration-color: #d7d0c4;
+  text-underline-offset: 3px;
+}
+
+.lalatoto-fits__link:hover {
+  text-decoration-color: currentColor;
+}

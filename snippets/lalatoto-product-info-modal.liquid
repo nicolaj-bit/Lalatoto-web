@@ -13,10 +13,15 @@
   @param {object} product - produktet
   @param {string} mode - 'button' for linket eller 'modal' for selve modalen
   @param {string} modal_id - id på modalen
+  @param {string} [sections] - 'standard' (standard) eller 'tyngdedyne', som tilføjer Vægt og Valg af rigtig vægt
 {%- enddoc -%}
 
 {%- liquid
-  assign keys = 'materials,dimensions,care,safety,shipping' | split: ','
+  if sections == 'tyngdedyne'
+    assign keys = 'materials,dimensions,weight,weight_guide,care,safety,shipping' | split: ','
+  else
+    assign keys = 'materials,dimensions,care,safety,shipping' | split: ','
+  endif
   assign has_content = false
 
   for key in keys

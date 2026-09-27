@@ -596,9 +596,18 @@
             {%- endif -%}
             <p class="lalatoto-delivery">{{ lalatoto_delivery | escape }}</p>
 
+          {%- when 'lalatoto_fits' -%}
+            {%- assign lalatoto_fits = product.metafields.lalatoto.fits.value -%}
+            {%- if lalatoto_fits != blank -%}
+              <p class="lalatoto-fits">
+                <span class="lalatoto-fits__label">{{ 'lalatoto.product.fits' | t }}</span>
+                <a href="{{ lalatoto_fits.url }}" class="lalatoto-fits__link">{{ lalatoto_fits.title }} <span aria-hidden="true">→</span></a>
+              </p>
+            {%- endif -%}
+
           {%- when 'lalatoto_more_info' -%}
             {%- if product != blank -%}
-              {%- render 'lalatoto-product-info-modal', product: product, mode: 'button', modal_id: 'lalatoto-info-modal' -%}
+              {%- render 'lalatoto-product-info-modal', product: product, mode: 'button', modal_id: 'lalatoto-info-modal', sections: block.settings.sections -%}
             {%- endif -%}
         {%- endcase -%}
       {%- endcapture -%}

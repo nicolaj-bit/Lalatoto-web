@@ -81,7 +81,8 @@
     "product_color_display": "hide",
     "show_product_rating": false,
     "cart_type": "drawer",
-    "cart_empty_cart_link": "/collections/alle-produkter"
+    "cart_empty_cart_link": "/collections/alle-produkter",
+    "round_color_swatches": true
   },
   "presets": {
     "Prestige": {

@@ -526,12 +526,16 @@
         "dimensions": "Dimensions",
         "care": "Washing and care",
         "safety": "Safety",
-        "shipping": "Delivery and returns"
-      }
+        "shipping": "Delivery and returns",
+        "weight": "Weight",
+        "weight_guide": "Choosing the right weight"
+      },
+      "fits": "Fits"
     },
     "collection": {
       "kicker": "Collection",
-      "empty": "There are no products here yet."
+      "empty": "There are no products here yet.",
+      "sold_out": "Sold out"
     },
     "cart": {
       "title": "Cart",
