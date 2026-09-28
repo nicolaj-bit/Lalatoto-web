@@ -16,54 +16,54 @@
           "type": "item",
           "settings": {
             "standard": "hvalen",
-            "name": "",
-            "temperature": "",
-            "text": ""
+            "name": "Hvalen LALA",
+            "temperature": "40°C skånevask",
+            "text": "<p>Vaskes ved 40 grader på skåneprogram med et mildt vaskemiddel uden blegemiddel. Undgå skyllemiddel. Formes med hænderne, mens den er fugtig, og tørres liggende på et håndklæde. Tåler ikke tørretumbler.</p>"
           }
         },
         "item_sengerand": {
           "type": "item",
           "settings": {
             "standard": "sengerand",
-            "name": "",
-            "temperature": "",
-            "text": ""
+            "name": "Sengerand",
+            "temperature": "40°C",
+            "text": "<p>Tages af og vaskes ved 40 grader. Luk lynlåsen før vask, så den ikke river i stoffet. Tørres liggende eller hænges over en stol, så randen holder sin form. Stryges på vrangen ved lav varme, hvis den trænger.</p>"
           }
         },
         "item_sengeslange": {
           "type": "item",
           "settings": {
             "standard": "sengeslange",
-            "name": "",
-            "temperature": "",
-            "text": ""
+            "name": "Sengeslange",
+            "temperature": "40°C",
+            "text": "<p>Vaskes ved 40 grader uden skyllemiddel. Er der et aftageligt betræk, vaskes det for sig. Fyldet må ikke i tørretumbler. Ryst slangen let, mens den tørrer, så fyldet fordeler sig igen.</p>"
           }
         },
         "item_sengetoej": {
           "type": "item",
           "settings": {
             "standard": "sengetoej",
-            "name": "",
-            "temperature": "",
-            "text": ""
+            "name": "Sengetøj",
+            "temperature": "60°C",
+            "text": "<p>Tåler 60 grader, men 40 grader er nok til daglig vask og skåner farverne. Vend det på vrangen og luk knapper eller lynlås. Tørretumbler ved lav varme eller ophængning. Bomulden krymper en anelse ved første vask; det har vi regnet med i målene.</p>"
           }
         },
         "item_maanepude": {
           "type": "item",
           "settings": {
             "standard": "maanepude",
-            "name": "",
-            "temperature": "",
-            "text": ""
+            "name": "Månepude",
+            "temperature": "40°C",
+            "text": "<p>Betrækket tages af og vaskes ved 40 grader. Selve puden vaskes kun, hvis det er nødvendigt, og tørres helt, før den bruges igen. Undgå skyllemiddel, som lukker fibrene og gør stoffet mindre åndbart.</p>"
           }
         },
         "item_sengelomme": {
           "type": "item",
           "settings": {
             "standard": "sengelomme",
-            "name": "",
-            "temperature": "",
-            "text": ""
+            "name": "Sengelomme",
+            "temperature": "40°C",
+            "text": "<p>Vaskes ved 40 grader sammen med resten af sengetøjet. Tørres liggende. Stryg med damp på den glatte side, hvis den skal se helt ny ud.</p>"
           }
         }
       },
@@ -77,9 +77,9 @@
       ],
       "settings": {
         "color_scheme": "scheme-1",
-        "heading": "",
-        "lead": "",
-        "contact": ""
+        "heading": "Vaskevejledning",
+        "lead": "Ting der er værd at beholde, er værd at passe på.",
+        "contact": "Er du i tvivl om en vare, så skriv til <a href=\"mailto:kundeservice@lalatoto.dk\">kundeservice@lalatoto.dk</a>. Vi svarer som regel samme dag."
       }
     }
   },

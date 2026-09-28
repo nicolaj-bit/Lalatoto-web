@@ -4,7 +4,11 @@
   Tre dele: en indledning med lille etiket, overskrift og kort tekst, ét billede
   i fuld bredde og afsnit i to spalter (én spalte på telefon).
 
-  Alt indhold kommer fra siden i Shopify, intet er hårdkodet:
+  Indholdet rettes i temaeditoren: etiket, overskrift, indledning og billede
+  er sektionens felter, og hvert afsnit er en blok med overskrift og tekst.
+
+  Er overskriften i temaeditoren tom, og er der ingen afsnit, hentes det hele
+  i stedet fra siden i Shopify (den oprindelige opsætning):
   - Etiketten er sidens titel.
   - Sidens indhold skrives som HTML:
       <h2>Overskrift</h2>          (valgfri; <br> giver linjeskift)
@@ -44,6 +48,18 @@
   endif
 
   assign image = page.metafields.lalatoto.image.value | default: section.settings.image
+
+  comment
+    Temaeditoren vinder, når der står noget i den.
+  endcomment
+  assign from_editor = false
+  if section.settings.heading != blank or section.blocks.size > 0
+    assign from_editor = true
+    assign kicker = section.settings.kicker
+    assign heading = section.settings.heading | default: page.title
+    assign lead = section.settings.lead
+    assign image = section.settings.image | default: page.metafields.lalatoto.image.value
+  endif
 -%}
 
 <div class="lalatoto-content color-scheme color-scheme--{{ section.settings.color_scheme.id }}">
@@ -75,7 +91,20 @@
     {%- endif -%}
   </div>
 
-  {%- if chunks.size > 1 -%}
+  {%- if from_editor -%}
+    {%- if section.blocks.size > 0 -%}
+      <div class="lalatoto-content__body">
+        {%- for block in section.blocks -%}
+          <div class="lalatoto-content__block" {{ block.shopify_attributes }}>
+            {%- if block.settings.heading != blank -%}
+              <h3>{{ block.settings.heading | escape }}</h3>
+            {%- endif -%}
+            {{- block.settings.text -}}
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  {%- elsif chunks.size > 1 -%}
     <div class="lalatoto-content__body">
       {%- for chunk in chunks offset: 1 -%}
         <div class="lalatoto-content__block">{{ '<h3' | append: chunk }}</div>
@@ -92,7 +121,7 @@
   "settings": [
     {
       "type": "paragraph",
-      "content": "Indholdet kommer fra siden i Shopify: sidens titel er etiketten, og sidens tekst (HTML) giver overskrift, indledning og afsnit. Hver h3 starter et nyt afsnit. Billedet hentes fra sidens metafelt «Billede i fuld bredde»."
+      "content": "Ret teksten og billedet her. Hvert afsnit under billedet er en blok, som kan tilføjes, flyttes og slettes. Er overskriften tom, og er der ingen afsnit, hentes indholdet fra siden under Onlinebutik → Sider."
     },
     {
       "type": "color_scheme",
@@ -101,10 +130,42 @@
       "default": "scheme-1"
     },
     {
+      "type": "text",
+      "id": "kicker",
+      "label": "Lille etiket over overskriften"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Overskrift"
+    },
+    {
+      "type": "richtext",
+      "id": "lead",
+      "label": "Indledning"
+    },
+    {
       "type": "image_picker",
       "id": "image",
-      "label": "Reservebillede",
-      "info": "Bruges kun, når siden ikke har sit eget billede."
+      "label": "Billede i fuld bredde"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paragraph",
+      "name": "Afsnit",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Overskrift"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Tekst"
+        }
+      ]
     }
   ],
   "presets": [

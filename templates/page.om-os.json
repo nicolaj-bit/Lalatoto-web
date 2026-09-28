@@ -1,0 +1,37 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "lalatoto-content-page",
+      "blocks": {
+        "afsnit_1": {
+          "type": "paragraph",
+          "settings": {
+            "heading": "Skriv til os",
+            "text": "<p>Du fanger os på <a href=\"mailto:kundeservice@lalatoto.dk\">kundeservice@lalatoto.dk</a>. Vi svarer som regel samme dag, og bag mailen sidder der et menneske.</p><p>LALATOTO of Denmark ApS · CVR 45 14 92 18 · Kulbyvej 16, 4270 Høng</p>"
+          }
+        }
+      },
+      "block_order": [
+        "afsnit_1"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "kicker": "Om os",
+        "heading": "Os, der står bag",
+        "lead": "<p>Vi er en lille dansk familievirksomhed, der laver sengetøj og tekstiler til de mindste. Det hele startede, fordi vi ledte efter noget, vi ikke kunne finde: enkelt, blødt og uden polyester.</p><p>I dag laver vi to ting. <strong>Lalatoto</strong> er tekstilerne. <strong>Club No Sleep</strong> er vores app til gravide og nybagte mødre, som blev til ud af de samme nætter, der gav os idéen til det første babynest.</p>"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

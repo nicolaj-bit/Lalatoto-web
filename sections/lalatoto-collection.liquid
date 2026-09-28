@@ -19,7 +19,13 @@
 {%- paginate collection.products by section.settings.products_per_page -%}
   <div class="lalatoto-collection color-scheme color-scheme--{{ section.settings.color_scheme.id }}">
     <header class="lalatoto-collection__head">
-      <p class="lalatoto-kicker">{{ 'lalatoto.collection.kicker' | t }}</p>
+      {%- liquid
+        assign kicker = section.settings.kicker
+        if kicker == blank
+          assign kicker = 'lalatoto.collection.kicker' | t
+        endif
+      -%}
+      <p class="lalatoto-kicker">{{ kicker | escape }}</p>
       <h1 class="lalatoto-collection__title">{{ heading | escape }}</h1>
 
       {%- if intro != blank -%}
@@ -133,6 +139,15 @@
       "id": "color_scheme",
       "label": "Farveskema",
       "default": "scheme-1"
+    },
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Lille etiket over overskriften"
+    },
+    {
+      "type": "paragraph",
+      "content": "Overskriften og linjen under den rettes på selve kollektionen under Produkter → Kollektioner (metafelterne Overskrift og Indledning, ellers kollektionens navn og beskrivelse)."
     },
     {
       "type": "range",

@@ -1,0 +1,61 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "lalatoto-content-page",
+      "blocks": {
+        "afsnit_1": {
+          "type": "paragraph",
+          "settings": {
+            "heading": "Ingen polyester",
+            "text": "<p>Polyester er billigere og holder formen længere, men den lukker varmen inde og bliver statisk. Vi har valgt den fra, også der hvor ingen kan se det: i fyld, i syninger og i lynlåse.</p>"
+          }
+        },
+        "afsnit_2": {
+          "type": "paragraph",
+          "settings": {
+            "heading": "Certificeret",
+            "text": "<p>Vores stoffer er <strong>(OEKO-TEX Standard 100)</strong>-certificerede og dermed testet for skadelige stoffer. Certifikatnummer og leverandør oplyser vi gerne, hvis du spørger.</p>"
+          }
+        },
+        "afsnit_3": {
+          "type": "paragraph",
+          "settings": {
+            "heading": "Vask",
+            "text": "<p>Alt kan vaskes ved 40 grader, og farverne er valgt, fordi de tåler det. Undlad skyllemiddel — det lukker fibrene og gør stoffet mindre åndbart.</p>"
+          }
+        },
+        "afsnit_4": {
+          "type": "paragraph",
+          "settings": {
+            "heading": "Hvor det bliver syet",
+            "text": "<p>Syet hos <strong>(systuens navn og land)</strong>. Vi bruger den samme systue hver gang, fordi kvalitet kommer af vaner frem for kontrakter.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "afsnit_1",
+        "afsnit_2",
+        "afsnit_3",
+        "afsnit_4"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "kicker": "Materialer",
+        "heading": "Bomuld, der må røre huden hele natten",
+        "lead": "<p>Et barn ligger op ad sit sengetøj i mange timer ad gangen. Derfor betyder materialet mere end mønsteret. Vi bruger bomuld, fordi den ånder, tåler at blive vasket igen og igen, og ikke lægger et lag plastik mellem barnet og natten.</p>"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

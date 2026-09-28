@@ -1,0 +1,61 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "lalatoto-content-page",
+      "blocks": {
+        "afsnit_1": {
+          "type": "paragraph",
+          "settings": {
+            "heading": "Et lille sortiment",
+            "text": "<p>Vi udvider kun, når vi selv mangler noget. Derfor er hylden kort, og derfor ved vi, hvad der er i hver eneste ting på den.</p>"
+          }
+        },
+        "afsnit_2": {
+          "type": "paragraph",
+          "settings": {
+            "heading": "Rolige farver",
+            "text": "<p>Et barneværelse skal kunne falde til ro. Vores farver er valgt, så de bliver i baggrunden i stedet for at råbe.</p>"
+          }
+        },
+        "afsnit_3": {
+          "type": "paragraph",
+          "settings": {
+            "heading": "Lavet for at blive brugt",
+            "text": "<p>Ikke for at blive pakket ud én gang og fotograferet. Vores ting tåler maskinvask, natlige uheld og en ekstra omgang.</p>"
+          }
+        },
+        "afsnit_4": {
+          "type": "paragraph",
+          "settings": {
+            "heading": "Dansk og familiedrevet",
+            "text": "<p>Lalatoto drives af LALATOTO of Denmark ApS. Vi svarer selv på mails, og vi pakker selv pakkerne.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "afsnit_1",
+        "afsnit_2",
+        "afsnit_3",
+        "afsnit_4"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "kicker": "Filosofi",
+        "heading": "Færre ting, valgt med omhu",
+        "lead": "<p>Lalatoto begyndte med en enkel iagttagelse: der findes uendeligt meget babyudstyr, og forsvindende lidt af det er lavet til at holde. Vi ville hellere lave få ting, som stadig er pæne, når barn nummer to skal bruge dem.</p>"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

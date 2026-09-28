@@ -18,6 +18,39 @@
   assign privacy_url = section.settings.privacy_page.url | default: shop.privacy_policy.url
   assign phone_link = section.settings.phone | remove: ' ' | remove: '-'
   assign year = 'now' | date: '%Y'
+
+  comment
+    Teksterne i tilmeldingen rettes i temaeditoren. Tomme felter bruger
+    standardteksten fra sprogfilerne.
+  endcomment
+  assign nl_kicker = section.settings.nl_kicker
+  if nl_kicker == blank
+    assign nl_kicker = 'lalatoto.footer.kicker' | t
+  endif
+  assign nl_title = section.settings.nl_title
+  if nl_title == blank
+    assign nl_title = 'lalatoto.footer.title_html' | t
+  endif
+  assign nl_text = section.settings.nl_text
+  if nl_text == blank
+    assign nl_text = 'lalatoto.footer.text' | t
+  endif
+  assign nl_button = section.settings.nl_button
+  if nl_button == blank
+    assign nl_button = 'lalatoto.footer.submit' | t
+  endif
+  assign nl_consent = section.settings.nl_consent
+  if nl_consent == blank
+    assign nl_consent = 'lalatoto.footer.consent' | t
+  endif
+  assign nl_done_title = section.settings.nl_done_title
+  if nl_done_title == blank
+    assign nl_done_title = 'lalatoto.footer.done_title' | t
+  endif
+  assign nl_done_text = section.settings.nl_done_text
+  if nl_done_text == blank
+    assign nl_done_text = 'lalatoto.footer.done_text' | t
+  endif
 -%}
 
 <footer class="lalatoto-footer color-scheme color-scheme--{{ section.settings.color_scheme.id }}">
@@ -25,9 +58,9 @@
     {%- comment -%} Nyhedsbrev {%- endcomment -%}
     <div class="lalatoto-footer__signup">
       <div class="lalatoto-footer__pitch">
-        <p class="lalatoto-kicker">{{ 'lalatoto.footer.kicker' | t }}</p>
-        <h2 class="lalatoto-footer__title">{{ 'lalatoto.footer.title_html' | t }}</h2>
-        <p class="lalatoto-footer__lead">{{ 'lalatoto.footer.text' | t }}</p>
+        <p class="lalatoto-kicker">{{ nl_kicker | escape }}</p>
+        <h2 class="lalatoto-footer__title">{{ nl_title }}</h2>
+        <p class="lalatoto-footer__lead">{{ nl_text | escape }}</p>
       </div>
 
       {%- form 'customer', id: form_id, class: 'lalatoto-footer__form' -%}
@@ -77,12 +110,12 @@
             {%- endif -%}
 
             <button type="submit" class="lalatoto-waitlist__submit lalatoto-footer__submit">
-              <span>{{ 'lalatoto.footer.submit' | t }}</span>
+              <span>{{ nl_button | escape }}</span>
               <span class="lalatoto-waitlist__arrow" aria-hidden="true">→</span>
             </button>
 
             <p class="lalatoto-footer__fine">
-              {{ 'lalatoto.footer.consent' | t }}
+              {{ nl_consent | escape }}
               {%- if privacy_url != blank %}
                 <a href="{{ privacy_url }}">{{ 'lalatoto.footer.privacy_link' | t }}</a>.
               {%- endif -%}
@@ -94,8 +127,8 @@
               <circle cx="24" cy="24" r="23" />
               <path d="M15 24.5l6 6 12-13" />
             </svg>
-            <p class="lalatoto-footer__done-title">{{ 'lalatoto.footer.done_title' | t }}</p>
-            <p class="lalatoto-footer__lead">{{ 'lalatoto.footer.done_text' | t }}</p>
+            <p class="lalatoto-footer__done-title">{{ nl_done_title | escape }}</p>
+            <p class="lalatoto-footer__lead">{{ nl_done_text | escape }}</p>
           </div>
         </div>
       {%- endform -%}
@@ -205,6 +238,47 @@
       "id": "color_scheme",
       "label": "Farveskema",
       "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Nyhedsbrev"
+    },
+    {
+      "type": "text",
+      "id": "nl_kicker",
+      "label": "Lille etiket"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "nl_title",
+      "label": "Overskrift",
+      "info": "Kursiv markerer den del, der står i skrå skrift."
+    },
+    {
+      "type": "textarea",
+      "id": "nl_text",
+      "label": "Tekst"
+    },
+    {
+      "type": "text",
+      "id": "nl_button",
+      "label": "Knap"
+    },
+    {
+      "type": "textarea",
+      "id": "nl_consent",
+      "label": "Tekst under knappen",
+      "info": "Skal fortælle tydeligt, at man tilmelder sig nyhedsbrevet. Linket til persondatapolitikken sættes på automatisk."
+    },
+    {
+      "type": "text",
+      "id": "nl_done_title",
+      "label": "Tak: overskrift"
+    },
+    {
+      "type": "text",
+      "id": "nl_done_text",
+      "label": "Tak: tekst"
     },
     {
       "type": "header",
