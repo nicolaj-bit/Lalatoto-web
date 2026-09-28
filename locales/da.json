@@ -588,6 +588,11 @@
       "contact_heading": "Kontakt",
       "hours_heading": "Åbningstider",
       "cvr": "CVR"
+    },
+    "legal": {
+      "updated_prefix": "Senest opdateret:",
+      "updated_label": "Senest opdateret",
+      "toc_title": "Indhold"
     }
   }
 }

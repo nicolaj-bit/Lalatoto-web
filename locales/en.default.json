@@ -584,6 +584,11 @@
       "contact_heading": "Contact",
       "hours_heading": "Opening hours",
       "cvr": "CVR no."
+    },
+    "legal": {
+      "updated_prefix": "Last updated:",
+      "updated_label": "Last updated",
+      "toc_title": "Contents"
     }
   }
 }

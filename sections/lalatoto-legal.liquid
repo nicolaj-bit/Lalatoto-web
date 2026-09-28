@@ -1,0 +1,205 @@
+{%- comment -%}
+  Lalatoto: juridisk side (handelsbetingelser, privatlivspolitik og lign.).
+  Samme opbygning som de juridiske sider på clubnosleep.com.
+
+  Teksten skrives som en almindelig side i Shopify admin og hentes ind med
+  page.content. Der står ingen juridisk tekst i temaet. Hvert afsnit skal
+  starte med en overskrift 2 (h2), så indholdsfortegnelsen kan bygges.
+
+  «Senest opdateret» hentes ud af teksten, så datoen kun står ét sted: i
+  selve dokumentet. Sidste forekomst bruges; står den både øverst og
+  nederst, er det den nederste, der gælder.
+{%- endcomment -%}
+
+{%- liquid
+  assign opdateret = ''
+  assign noegle = 'lalatoto.legal.updated_prefix' | t
+  if noegle != blank and page.content contains noegle
+    assign efter = page.content | split: noegle | last
+    assign opdateret = efter | split: '<' | first | strip_html | strip
+  endif
+-%}
+
+{% style %}
+  {%- comment -%}
+    Udskriftsreglerne står her, fordi de skal gælde header og footer, som
+    ligger uden for sektionen. Blokken findes kun på juridiske sider.
+  {%- endcomment -%}
+  @media print {
+    .shopify-section--header,
+    .shopify-section--announcement-bar,
+    .shopify-section--lalatoto-footer,
+    .lalatoto-footer {
+      display: none !important;
+    }
+
+    body {
+      background: #fff !important;
+    }
+  }
+{% endstyle %}
+
+<div id="lalatoto-legal-{{ section.id }}" class="lalatoto-legal color-scheme color-scheme--{{ section.settings.color_scheme.id }}">
+  <div class="lalatoto-legal__inner">
+    <header class="lalatoto-legal__head">
+      <h1 class="lalatoto-legal__title">{{ page.title }}</h1>
+      {%- if opdateret != blank -%}
+        <p class="lalatoto-legal__meta">{{ 'lalatoto.legal.updated_label' | t }} {{ opdateret }}</p>
+      {%- endif -%}
+    </header>
+
+    {%- if section.settings.show_toc -%}
+      <nav class="lalatoto-legal__toc" aria-label="{{ 'lalatoto.legal.toc_title' | t | escape }}" data-legal-toc-wrap hidden>
+        <p class="lalatoto-legal__toc-title">{{ 'lalatoto.legal.toc_title' | t }}</p>
+        <ol data-legal-toc></ol>
+      </nav>
+    {%- endif -%}
+
+    <div
+      class="lalatoto-legal__body"
+      data-legal-body
+      data-updated-prefix="{{ noegle | escape }}"
+      {% if section.settings.hide_first_heading %}data-hide-first-heading{% endif %}
+    >
+      {{ page.content }}
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var rod = document.getElementById('lalatoto-legal-{{ section.id }}');
+    if (!rod || rod.dataset.legalReady === '1') return;
+    rod.dataset.legalReady = '1';
+
+    var krop = rod.querySelector('[data-legal-body]');
+    if (!krop) return;
+
+    /* Teksten begynder ofte med sin egen titel og «Senest opdateret», og
+       begge dele står allerede øverst på siden. Kun de indledende
+       gentagelser skjules; datoen nederst i dokumentet bliver stående. */
+    if (krop.hasAttribute('data-hide-first-heading')) {
+      var foerste = krop.firstElementChild;
+      if (foerste && foerste.tagName === 'H2' && foerste.textContent.trim() === rod.querySelector('h1').textContent.trim()) {
+        foerste.hidden = true;
+      }
+
+      var praefiks = (krop.dataset.updatedPrefix || '').trim();
+      if (praefiks) {
+        var start = krop.children;
+        for (var n = 0; n < Math.min(3, start.length); n++) {
+          var el = start[n];
+          if (el.tagName === 'P' && el.textContent.trim().indexOf(praefiks) === 0) {
+            el.hidden = true;
+            break;
+          }
+        }
+      }
+    }
+
+    var ramme = rod.querySelector('[data-legal-toc-wrap]');
+    var liste = rod.querySelector('[data-legal-toc]');
+    if (!ramme || !liste) return;
+
+    var overskrifter = [];
+    var alle = krop.querySelectorAll('h2');
+    for (var i = 0; i < alle.length; i++) {
+      if (!alle[i].hidden) overskrifter.push(alle[i]);
+    }
+
+    /* Under to afsnit er en indholdsfortegnelse bare støj. */
+    if (overskrifter.length < 2) return;
+
+    var punkter = [];
+    for (var j = 0; j < overskrifter.length; j++) {
+      var h = overskrifter[j];
+      if (!h.id) h.id = 'afsnit-' + (j + 1);
+
+      var a = document.createElement('a');
+      a.href = '#' + h.id;
+      a.textContent = h.textContent;
+
+      var li = document.createElement('li');
+      li.appendChild(a);
+      liste.appendChild(li);
+      punkter.push({ h: h, a: a });
+    }
+    ramme.hidden = false;
+
+    var bloedt = !(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+
+    liste.addEventListener('click', function (e) {
+      var a = e.target.closest ? e.target.closest('a') : null;
+      if (!a) return;
+      var maal = document.getElementById(a.getAttribute('href').slice(1));
+      if (!maal) return;
+      e.preventDefault();
+      maal.scrollIntoView({ behavior: bloedt ? 'smooth' : 'auto', block: 'start' });
+      if (history.replaceState) history.replaceState(null, '', a.getAttribute('href'));
+    });
+
+    /* Markér det afsnit, man er nået til. */
+    var venter = false;
+    function marker() {
+      venter = false;
+      var graense = (parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--sticky-area-height')) || 64) + 40;
+      var aktiv = punkter[0];
+      for (var k = 0; k < punkter.length; k++) {
+        if (punkter[k].h.getBoundingClientRect().top <= graense) aktiv = punkter[k];
+      }
+      for (var m = 0; m < punkter.length; m++) {
+        if (punkter[m] === aktiv) punkter[m].a.setAttribute('aria-current', 'true');
+        else punkter[m].a.removeAttribute('aria-current');
+      }
+    }
+    window.addEventListener(
+      'scroll',
+      function () {
+        if (venter) return;
+        venter = true;
+        requestAnimationFrame(marker);
+      },
+      { passive: true }
+    );
+    marker();
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Lalatoto juridisk side",
+  "class": "shopify-section--lalatoto-legal",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Teksten skrives som en almindelig side under Onlinebutik → Sider. Start hvert afsnit med Overskrift 2, så indholdsfortegnelsen virker. Skriv «Senest opdateret: 1. oktober 2026» i teksten, så vises datoen øverst."
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Farveskema",
+      "default": "scheme-1"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_toc",
+      "label": "Vis indholdsfortegnelse",
+      "info": "Bygges af sidens afsnitsoverskrifter. Vises kun på skærme bredere end 1000 pixels.",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_first_heading",
+      "label": "Skjul tekstens egen titel og dato øverst",
+      "info": "Står titel og «Senest opdateret» allerede øverst i teksten, skjules gentagelsen. Datoen nederst bliver stående.",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Lalatoto juridisk side"
+    }
+  ]
+}
+{% endschema %}
