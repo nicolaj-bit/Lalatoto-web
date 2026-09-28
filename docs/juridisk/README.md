@@ -13,10 +13,14 @@ Handelsbetingelser og privatlivspolitik skrives som sider i Shopify admin
   opsætningen blev rettet. Kan lægges tilbage 1:1.
 - `*-ny.html`: teksterne, som de står i Shopify nu.
 
+## Rettet 28. september 2026
+
+- Afsnittet «Når du handler hos os, accepterer du samtidig, at vi må sende
+  dig e-mails …» er fjernet fra privatlivspolitikken. Samtykke gemt i
+  betingelserne er ikke gyldigt efter markedsføringsloven.
+
 ## Kendte fejl i indholdet (ikke rettet)
 
-- Privatlivspolitikken: samtykke til markedsføring gemt i teksten («Når du
-  handler hos os, accepterer du samtidig …») er ikke gyldigt samtykke.
 - Privatlivspolitikken mangler nyhedsbrev, venteliste, Google Tag Manager
   og Meta Pixel. (Hush Little One og hushlittleone.com er rettet til
   LALATOTO of Denmark og lalatoto.dk 28. september 2026.)
