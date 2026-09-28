@@ -35,7 +35,6 @@
 
   {%- if section.blocks.size > 0 -%}
     <div class="lalatoto-wash__list">
-      {%- assign shown = 0 -%}
       {%- for block in section.blocks -%}
         {%- liquid
           assign key = block.settings.standard
@@ -61,43 +60,11 @@
         -%}
 
         {%- if name != blank -%}
-          {%- liquid
-            assign shown = shown | plus: 1
-            assign index = shown | prepend: '0' | slice: -2, 2
-
-            comment
-              Temperaturen vises som et vaskesymbol med tallet i baljen, fx
-              «40°C skånevask» bliver symbolet 40 og ordet «skånevask».
-              Uden tal i starten vises teksten, som den er.
-            endcomment
-            assign temp_number = ''
-            assign temp_label = temperature
-            if temperature contains '°'
-              assign temp_candidate = temperature | split: '°' | first | strip
-              assign temp_check = temp_candidate | plus: 0
-              if temp_check > 0 and temp_candidate.size <= 3
-                assign temp_number = temp_candidate
-                assign temp_label = temperature | remove_first: temp_candidate | remove_first: '°C' | remove_first: '°' | strip
-              endif
-            endif
-          -%}
-          <details class="lalatoto-wash__item" name="lalatoto-wash-{{ section.id }}" {% if shown == 1 %}open{% endif %} {{ block.shopify_attributes }}>
+          <details class="lalatoto-wash__item" name="lalatoto-wash-{{ section.id }}" {% if forloop.first %}open{% endif %} {{ block.shopify_attributes }}>
             <summary class="lalatoto-wash__summary">
-              <span class="lalatoto-wash__index" aria-hidden="true">{{ index }}</span>
               <span class="lalatoto-wash__name">{{ name | escape }}</span>
               {%- if temperature != blank -%}
-                <span class="lalatoto-wash__temp">
-                  <span class="sr-only">{{ temperature | escape }}</span>
-                  {%- if temp_number != blank -%}
-                    <span class="lalatoto-wash__care" aria-hidden="true">
-                      <svg viewBox="0 0 36 26" focusable="false"><path d="M2.5 7.5 6.8 24h22.4l4.3-16.5"/><path d="M2.5 7.5c2.2-2.6 4.4-2.6 6.6 0s4.4 2.6 6.6 0 4.4-2.6 6.6 0 4.4 2.6 6.6 0 4.4-2.6 6.6 0"/></svg>
-                      <span class="lalatoto-wash__deg">{{ temp_number }}°</span>
-                    </span>
-                  {%- endif -%}
-                  {%- if temp_label != blank -%}
-                    <span class="lalatoto-wash__label" aria-hidden="true">{{ temp_label | escape }}</span>
-                  {%- endif -%}
-                </span>
+                <span class="lalatoto-wash__temp">{{ temperature | escape }}</span>
               {%- endif -%}
               <span class="lalatoto-wash__sign" aria-hidden="true"></span>
             </summary>
