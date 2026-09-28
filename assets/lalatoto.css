@@ -1843,3 +1843,185 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
     break-after: avoid;
   }
 }
+
+/* ===============================================================
+ * VASKEVEJLEDNING
+ * Centreret overskrift og en liste på højst 720 px. Hver række: navn i
+ * Playfair til venstre, temperatur i små store bogstaver til højre og et
+ * plus af to 1 px streger yderst. Åben række: den lodrette streg drejer
+ * væk, så der står et minus tilbage.
+ * =============================================================== */
+.lalatoto-wash {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.25rem;
+  max-width: var(--lalatoto-max-width);
+  margin-inline: auto;
+  padding: clamp(3rem, 7vw, 5.5rem) var(--container-gutter) clamp(4rem, 9vw, 7rem);
+  color: #2a2724;
+}
+
+.lalatoto-wash__head {
+  display: grid;
+  justify-items: center;
+  gap: 0.75rem;
+  text-align: center;
+}
+
+.lalatoto-wash__title {
+  margin: 0;
+  font-family: var(--heading-font-family);
+  font-weight: 400;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  line-height: 1.15;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+.lalatoto-wash__list {
+  width: 100%;
+  max-width: 720px;
+  border-block-start: 1px solid #d7d0c4;
+}
+
+.lalatoto-wash__item {
+  border-block-end: 1px solid #d7d0c4;
+}
+
+.lalatoto-wash__summary {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto 20px;
+  align-items: baseline;
+  gap: 1rem;
+  min-height: 44px;
+  padding: 1.25rem 2px;
+  list-style: none;
+  cursor: pointer;
+}
+
+.lalatoto-wash__summary::-webkit-details-marker {
+  display: none;
+}
+
+.lalatoto-wash__summary:focus-visible {
+  outline: 1px solid #2a2724;
+  outline-offset: 4px;
+}
+
+.lalatoto-wash__name {
+  font-family: var(--heading-font-family);
+  font-size: 1.3125rem;
+  line-height: 1.2;
+}
+
+.lalatoto-wash__temp {
+  color: #6e675e;
+  font-size: 0.625rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* Plus-tegnet: to 1 px streger */
+.lalatoto-wash__sign {
+  position: relative;
+  align-self: center;
+  justify-self: end;
+  width: 13px;
+  height: 13px;
+}
+
+.lalatoto-wash__sign::before,
+.lalatoto-wash__sign::after {
+  content: '';
+  position: absolute;
+  background: #2a2724;
+  transition: transform 0.28s ease, opacity 0.28s ease;
+}
+
+.lalatoto-wash__sign::before {
+  left: 0;
+  top: 6px;
+  width: 13px;
+  height: 1px;
+}
+
+.lalatoto-wash__sign::after {
+  left: 6px;
+  top: 0;
+  width: 1px;
+  height: 13px;
+}
+
+.lalatoto-wash__item[open]:not(.is-closing) .lalatoto-wash__sign::after {
+  transform: rotate(90deg);
+  opacity: 0;
+}
+
+.lalatoto-wash__body {
+  overflow: hidden;
+}
+
+.lalatoto-wash__text {
+  padding: 0 44px 1.5rem 2px;
+  color: #6e675e;
+  font-size: 0.90625rem;
+  line-height: 1.65;
+}
+
+.lalatoto-wash__text p {
+  max-width: 62ch;
+  margin: 0;
+}
+
+.lalatoto-wash__text p + p {
+  margin-block-start: 0.75rem;
+}
+
+.lalatoto-wash__foot {
+  margin: 0;
+  color: #6e675e;
+  font-size: 0.8125rem;
+  text-align: center;
+}
+
+.lalatoto-wash__foot a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Telefon: temperaturen under navnet, plus-tegnet bliver til højre */
+@media screen and (max-width: 560px) {
+  .lalatoto-wash__summary {
+    grid-template-columns: minmax(0, 1fr) 20px;
+    gap: 0.375rem 0.5rem;
+    padding-block: 1.0625rem;
+  }
+
+  .lalatoto-wash__name,
+  .lalatoto-wash__temp {
+    grid-column: 1;
+  }
+
+  .lalatoto-wash__temp {
+    font-size: 0.59375rem;
+  }
+
+  .lalatoto-wash__sign {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+  }
+
+  .lalatoto-wash__text {
+    padding-inline-end: 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lalatoto-wash__sign::before,
+  .lalatoto-wash__sign::after {
+    transition: none;
+  }
+}

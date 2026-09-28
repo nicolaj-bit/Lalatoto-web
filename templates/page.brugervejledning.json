@@ -1,0 +1,89 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "lalatoto-wash",
+      "blocks": {
+        "item_hvalen": {
+          "type": "item",
+          "settings": {
+            "standard": "hvalen",
+            "name": "",
+            "temperature": "",
+            "text": ""
+          }
+        },
+        "item_sengerand": {
+          "type": "item",
+          "settings": {
+            "standard": "sengerand",
+            "name": "",
+            "temperature": "",
+            "text": ""
+          }
+        },
+        "item_sengeslange": {
+          "type": "item",
+          "settings": {
+            "standard": "sengeslange",
+            "name": "",
+            "temperature": "",
+            "text": ""
+          }
+        },
+        "item_sengetoej": {
+          "type": "item",
+          "settings": {
+            "standard": "sengetoej",
+            "name": "",
+            "temperature": "",
+            "text": ""
+          }
+        },
+        "item_maanepude": {
+          "type": "item",
+          "settings": {
+            "standard": "maanepude",
+            "name": "",
+            "temperature": "",
+            "text": ""
+          }
+        },
+        "item_sengelomme": {
+          "type": "item",
+          "settings": {
+            "standard": "sengelomme",
+            "name": "",
+            "temperature": "",
+            "text": ""
+          }
+        }
+      },
+      "block_order": [
+        "item_hvalen",
+        "item_sengerand",
+        "item_sengeslange",
+        "item_sengetoej",
+        "item_maanepude",
+        "item_sengelomme"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "heading": "",
+        "lead": "",
+        "contact": ""
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

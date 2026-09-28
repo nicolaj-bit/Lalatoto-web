@@ -589,6 +589,43 @@
       "updated_prefix": "Zuletzt aktualisiert:",
       "updated_label": "Zuletzt aktualisiert",
       "toc_title": "Inhalt"
+    },
+    "wash": {
+      "heading": "Pflegehinweise",
+      "lead": "Was es wert ist, behalten zu werden, ist es wert, gepflegt zu werden.",
+      "contact_html": "Unsicher bei einem Produkt? Schreib an <a href=\"mailto:kundeservice@lalatoto.dk\">kundeservice@lalatoto.dk</a>. Wir antworten meist noch am selben Tag.",
+      "items": {
+        "hvalen": {
+          "name": "Wal LALA",
+          "temperature": "40°C Schonwaschgang",
+          "text": "Bei 40 Grad im Schonwaschgang mit mildem Waschmittel ohne Bleiche waschen. Keinen Weichspüler verwenden. Im feuchten Zustand mit den Händen in Form bringen und liegend auf einem Handtuch trocknen. Nicht für den Trockner geeignet."
+        },
+        "sengerand": {
+          "name": "Bettumrandung",
+          "temperature": "40°C",
+          "text": "Abnehmen und bei 40 Grad waschen. Den Reißverschluss vor dem Waschen schließen, damit er den Stoff nicht beschädigt. Liegend trocknen oder über einen Stuhl hängen, damit die Umrandung ihre Form behält. Bei Bedarf auf links bei niedriger Temperatur bügeln."
+        },
+        "sengeslange": {
+          "name": "Bettschlange",
+          "temperature": "40°C",
+          "text": "Bei 40 Grad ohne Weichspüler waschen. Einen abnehmbaren Bezug separat waschen. Die Füllung darf nicht in den Trockner. Die Schlange beim Trocknen leicht schütteln, damit sich die Füllung wieder verteilt."
+        },
+        "sengetoej": {
+          "name": "Bettwäsche",
+          "temperature": "60°C",
+          "text": "Verträgt 60 Grad, aber 40 Grad reichen für die tägliche Wäsche und schonen die Farben. Auf links drehen und Knöpfe oder Reißverschluss schließen. Im Trockner bei niedriger Temperatur oder auf der Leine trocknen. Die Baumwolle läuft bei der ersten Wäsche etwas ein; das haben wir bei den Maßen berücksichtigt."
+        },
+        "maanepude": {
+          "name": "Mondkissen",
+          "temperature": "40°C",
+          "text": "Den Bezug abnehmen und bei 40 Grad waschen. Das Kissen selbst nur bei Bedarf waschen und vor der erneuten Benutzung vollständig trocknen lassen. Keinen Weichspüler verwenden, er verschließt die Fasern und macht den Stoff weniger atmungsaktiv."
+        },
+        "sengelomme": {
+          "name": "Betttasche",
+          "temperature": "40°C",
+          "text": "Bei 40 Grad zusammen mit der übrigen Bettwäsche waschen. Liegend trocknen. Mit Dampf auf der glatten Seite bügeln, wenn sie wie neu aussehen soll."
+        }
+      }
     }
   }
 }

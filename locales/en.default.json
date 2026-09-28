@@ -589,6 +589,43 @@
       "updated_prefix": "Last updated:",
       "updated_label": "Last updated",
       "toc_title": "Contents"
+    },
+    "wash": {
+      "heading": "Care guide",
+      "lead": "Things worth keeping are worth looking after.",
+      "contact_html": "Unsure about a product? Write to <a href=\"mailto:kundeservice@lalatoto.dk\">kundeservice@lalatoto.dk</a>. We usually reply the same day.",
+      "items": {
+        "hvalen": {
+          "name": "LALA the Whale",
+          "temperature": "40°C gentle wash",
+          "text": "Wash at 40 degrees on a gentle cycle with a mild detergent without bleach. Avoid fabric softener. Shape by hand while damp and dry flat on a towel. Not suitable for tumble drying."
+        },
+        "sengerand": {
+          "name": "Cot bumper",
+          "temperature": "40°C",
+          "text": "Remove and wash at 40 degrees. Close the zip before washing so it does not snag the fabric. Dry flat or hang over a chair so the bumper keeps its shape. Iron inside out on low heat if needed."
+        },
+        "sengeslange": {
+          "name": "Bed snake",
+          "temperature": "40°C",
+          "text": "Wash at 40 degrees without fabric softener. If there is a removable cover, wash it separately. The filling must not go in the tumble dryer. Shake the snake gently while it dries so the filling spreads out again."
+        },
+        "sengetoej": {
+          "name": "Bedding",
+          "temperature": "60°C",
+          "text": "Tolerates 60 degrees, but 40 degrees is enough for everyday washing and is kinder to the colours. Turn inside out and close buttons or zips. Tumble dry on low heat or hang to dry. The cotton shrinks slightly in the first wash; we have allowed for this in the measurements."
+        },
+        "maanepude": {
+          "name": "Moon pillow",
+          "temperature": "40°C",
+          "text": "Remove the cover and wash it at 40 degrees. Only wash the pillow itself when necessary, and let it dry completely before using it again. Avoid fabric softener, which closes the fibres and makes the fabric less breathable."
+        },
+        "sengelomme": {
+          "name": "Bed pocket",
+          "temperature": "40°C",
+          "text": "Wash at 40 degrees with the rest of the bedding. Dry flat. Steam iron on the smooth side if you want it to look brand new."
+        }
+      }
     }
   }
 }

@@ -593,6 +593,43 @@
       "updated_prefix": "Senest opdateret:",
       "updated_label": "Senest opdateret",
       "toc_title": "Indhold"
+    },
+    "wash": {
+      "heading": "Vaskevejledning",
+      "lead": "Ting der er værd at beholde, er værd at passe på.",
+      "contact_html": "Er du i tvivl om en vare, så skriv til <a href=\"mailto:kundeservice@lalatoto.dk\">kundeservice@lalatoto.dk</a>. Vi svarer som regel samme dag.",
+      "items": {
+        "hvalen": {
+          "name": "Hvalen LALA",
+          "temperature": "40°C skånevask",
+          "text": "Vaskes ved 40 grader på skåneprogram med et mildt vaskemiddel uden blegemiddel. Undgå skyllemiddel. Formes med hænderne, mens den er fugtig, og tørres liggende på et håndklæde. Tåler ikke tørretumbler."
+        },
+        "sengerand": {
+          "name": "Sengerand",
+          "temperature": "40°C",
+          "text": "Tages af og vaskes ved 40 grader. Luk lynlåsen før vask, så den ikke river i stoffet. Tørres liggende eller hænges over en stol, så randen holder sin form. Stryges på vrangen ved lav varme, hvis den trænger."
+        },
+        "sengeslange": {
+          "name": "Sengeslange",
+          "temperature": "40°C",
+          "text": "Vaskes ved 40 grader uden skyllemiddel. Er der et aftageligt betræk, vaskes det for sig. Fyldet må ikke i tørretumbler. Ryst slangen let, mens den tørrer, så fyldet fordeler sig igen."
+        },
+        "sengetoej": {
+          "name": "Sengetøj",
+          "temperature": "60°C",
+          "text": "Tåler 60 grader, men 40 grader er nok til daglig vask og skåner farverne. Vend det på vrangen og luk knapper eller lynlås. Tørretumbler ved lav varme eller ophængning. Bomulden krymper en anelse ved første vask; det har vi regnet med i målene."
+        },
+        "maanepude": {
+          "name": "Månepude",
+          "temperature": "40°C",
+          "text": "Betrækket tages af og vaskes ved 40 grader. Selve puden vaskes kun, hvis det er nødvendigt, og tørres helt, før den bruges igen. Undgå skyllemiddel, som lukker fibrene og gør stoffet mindre åndbart."
+        },
+        "sengelomme": {
+          "name": "Sengelomme",
+          "temperature": "40°C",
+          "text": "Vaskes ved 40 grader sammen med resten af sengetøjet. Tørres liggende. Stryg med damp på den glatte side, hvis den skal se helt ny ud."
+        }
+      }
     }
   }
 }

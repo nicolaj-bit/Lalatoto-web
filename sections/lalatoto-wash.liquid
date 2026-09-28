@@ -1,0 +1,234 @@
+{%- comment -%}
+  Lalatoto: vaskevejledning. Centreret overskrift og kort linje, derunder en
+  liste med ét punkt pr. produkt (navn, vasketemperatur og tekst), der
+  folder sig ud, når man trykker. Nederst en linje med kontaktinfo.
+
+  Hvert punkt er en blok. Blokkens felter kan udfyldes i temaeditoren. Er et
+  felt tomt, bruges standardteksten fra sprogfilerne for det valgte produkt,
+  så standardpunkterne findes på dansk, engelsk og tysk.
+
+  Listen bygger på <details>, så den kan åbnes og lukkes med tastaturet
+  (Tab og Enter/mellemrum). Scriptet nederst lægger kun den bløde
+  fold-animation ovenpå.
+{%- endcomment -%}
+
+{%- liquid
+  assign heading = section.settings.heading
+  if heading == blank
+    assign heading = 'lalatoto.wash.heading' | t
+  endif
+  assign lead = section.settings.lead
+  if lead == blank
+    assign lead = 'lalatoto.wash.lead' | t
+  endif
+  assign contact = section.settings.contact
+  if contact == blank
+    assign contact = 'lalatoto.wash.contact_html' | t
+  endif
+-%}
+
+<div class="lalatoto-wash color-scheme color-scheme--{{ section.settings.color_scheme.id }}" id="lalatoto-wash-{{ section.id }}">
+  <header class="lalatoto-wash__head">
+    <h1 class="lalatoto-wash__title">{{ heading | escape }}</h1>
+    <p class="lalatoto-lead">{{ lead | escape }}</p>
+  </header>
+
+  {%- if section.blocks.size > 0 -%}
+    <div class="lalatoto-wash__list">
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign key = block.settings.standard
+          assign name = block.settings.name
+          assign temperature = block.settings.temperature
+          assign text = block.settings.text
+
+          if key != 'none'
+            if name == blank
+              assign name_key = 'lalatoto.wash.items.' | append: key | append: '.name'
+              assign name = name_key | t
+            endif
+            if temperature == blank
+              assign temperature_key = 'lalatoto.wash.items.' | append: key | append: '.temperature'
+              assign temperature = temperature_key | t
+            endif
+            if text == blank
+              assign text_key = 'lalatoto.wash.items.' | append: key | append: '.text'
+              assign text = text_key | t
+              assign text = '<p>' | append: text | append: '</p>'
+            endif
+          endif
+        -%}
+
+        {%- if name != blank -%}
+          <details class="lalatoto-wash__item" {% if forloop.first %}open{% endif %} {{ block.shopify_attributes }}>
+            <summary class="lalatoto-wash__summary">
+              <span class="lalatoto-wash__name">{{ name | escape }}</span>
+              {%- if temperature != blank -%}
+                <span class="lalatoto-wash__temp">{{ temperature | escape }}</span>
+              {%- endif -%}
+              <span class="lalatoto-wash__sign" aria-hidden="true"></span>
+            </summary>
+            <div class="lalatoto-wash__body">
+              <div class="lalatoto-wash__text">{{ text }}</div>
+            </div>
+          </details>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+
+  <p class="lalatoto-wash__foot">{{ contact }}</p>
+</div>
+
+<script>
+  /*
+   * Blød fold-animation på vaskevejledningen (ca. 0,28 sek.). Uden script og
+   * for dem, der har slået bevægelse fra, åbner og lukker punkterne stadig,
+   * bare uden animation. Flere punkter må være åbne på én gang.
+   */
+  (function () {
+    var root = document.getElementById('lalatoto-wash-{{ section.id }}');
+    if (!root || root.dataset.washReady === '1') return;
+    root.dataset.washReady = '1';
+
+    var DURATION = 280;
+    var reduce = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
+
+    root.querySelectorAll('.lalatoto-wash__item').forEach(function (item) {
+      var summary = item.querySelector('summary');
+      var body = item.querySelector('.lalatoto-wash__body');
+      if (!summary || !body || !body.animate) return;
+
+      summary.addEventListener('click', function (event) {
+        if (reduce && reduce.matches) return;
+        event.preventDefault();
+
+        /* Tilstanden aflæses, før en igangværende animation stoppes: et klik
+           midt i en lukning åbner igen, et klik midt i en åbning lukker. */
+        var shouldClose = item.open && !item.classList.contains('is-closing');
+        var from = item.animation ? body.getBoundingClientRect().height : null;
+        if (item.animation) item.animation.cancel();
+
+        if (shouldClose) {
+          /* Luk: fold teksten sammen, og luk først, når den er væk */
+          item.classList.remove('is-opening');
+          item.classList.add('is-closing');
+          item.animation = body.animate(
+            [{ height: (from === null ? body.offsetHeight : from) + 'px', opacity: 1 }, { height: '0px', opacity: 0 }],
+            { duration: DURATION, easing: 'ease' }
+          );
+          item.animation.onfinish = function () {
+            item.open = false;
+            item.classList.remove('is-closing');
+            item.animation = null;
+          };
+          item.animation.oncancel = function () {
+            item.classList.remove('is-closing');
+          };
+        } else {
+          /* Åbn: vis punktet og fold teksten ud til sin egen højde */
+          item.classList.remove('is-closing', 'is-opening');
+          item.classList.add('is-opening');
+          item.open = true;
+          var height = body.offsetHeight;
+          item.animation = body.animate(
+            [{ height: (from === null ? 0 : from) + 'px', opacity: 0 }, { height: height + 'px', opacity: 1 }],
+            { duration: DURATION, easing: 'ease' }
+          );
+          item.animation.onfinish = item.animation.oncancel = function () {
+            item.classList.remove('is-opening');
+            item.animation = null;
+          };
+        }
+      });
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Lalatoto vaskevejledning",
+  "class": "shopify-section--lalatoto-wash",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Farveskema",
+      "default": "scheme-1"
+    },
+    {
+      "type": "paragraph",
+      "content": "Tomme felter bruger temaets standardtekst, som findes på dansk, engelsk og tysk. Skriver du noget her, vises det i stedet."
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Overskrift"
+    },
+    {
+      "type": "text",
+      "id": "lead",
+      "label": "Linje under overskriften"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "contact",
+      "label": "Kontaktlinje nederst"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Punkt",
+      "settings": [
+        {
+          "type": "select",
+          "id": "standard",
+          "label": "Standardtekst",
+          "info": "Tomme felter herunder udfyldes med standardteksten for det valgte produkt på alle sprog. Vælg «Ingen» for et nyt produkt, og udfyld felterne selv.",
+          "options": [
+            { "value": "none", "label": "Ingen" },
+            { "value": "hvalen", "label": "Hvalen LALA" },
+            { "value": "sengerand", "label": "Sengerand" },
+            { "value": "sengeslange", "label": "Sengeslange" },
+            { "value": "sengetoej", "label": "Sengetøj" },
+            { "value": "maanepude", "label": "Månepude" },
+            { "value": "sengelomme", "label": "Sengelomme" }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Navn"
+        },
+        {
+          "type": "text",
+          "id": "temperature",
+          "label": "Temperatur",
+          "info": "Fx «40°C» eller «40°C skånevask»."
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Tekst"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Lalatoto vaskevejledning",
+      "blocks": [
+        { "type": "item", "settings": { "standard": "hvalen" } },
+        { "type": "item", "settings": { "standard": "sengerand" } },
+        { "type": "item", "settings": { "standard": "sengeslange" } },
+        { "type": "item", "settings": { "standard": "sengetoej" } },
+        { "type": "item", "settings": { "standard": "maanepude" } },
+        { "type": "item", "settings": { "standard": "sengelomme" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
