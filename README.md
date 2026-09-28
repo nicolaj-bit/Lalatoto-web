@@ -68,19 +68,38 @@ For at gøre fremtidige Prestige-opdateringer lette er ændringerne samlet få s
   `dimensions`, `care`, `safety` og `shipping` (flerlinjet tekst). Et tomt
   felt skjuler afsnittet. «Tyngdedyne baby» har eksempeltekst i dem.
 
-## Indholdssiderne
+## Hvor rettes hvad
 
-Materialer, Filosofi og Om os bruger skabelonen `page.indhold`. Alt indhold
-kommer fra siden i Shopify:
+**Temaeditoren** (Onlinebutik → Temaer → Tilpas):
 
-- **Etiket:** sidens titel.
-- **Tekst:** sidens indhold som HTML. En `<h2>` er overskriften (`<br>` giver
-  linjeskift), og teksten før den første `<h3>` er indledningen. Hver `<h3>`
-  starter et nyt afsnit i de to spalter.
-- **Billede:** sidens metafelt «Billede i fuld bredde» (`lalatoto.image`).
+- Forsiden: hero, billede i fuld bredde, Shop-rækken og Club No Sleep.
+- Materialer, Filosofi og Om os: hver side har sin egen skabelon
+  (`page.materialer`, `page.filosofi`, `page.om-os`) med etiket,
+  overskrift, indledning, billede og et afsnit pr. blok.
+- Vaskevejledningen (`page.brugervejledning`): ét punkt pr. blok.
+- Footeren: nyhedsbrevets tekster, menuer, kontaktoplysninger og
+  åbningstider.
+- Kollektionssiden: etiketten over overskriften.
 
-Kollektionssiden henter overskriften fra kollektionens metafelt «Overskrift»
-(`lalatoto.heading`) og den korte linje fra «Kort linje» (`lalatoto.intro`).
+**Andre steder i Shopify admin:**
+
+- Handelsbetingelser og privatlivspolitik: Onlinebutik → Sider (skabelonen
+  `page.legal`, se `docs/juridisk/README.md`).
+- Produkttekster (kort beskrivelse, «Fortæl mere», leveringstid): metafelter
+  på produktet.
+- Kollektionens overskrift og linje: metafelterne «Overskrift»
+  (`lalatoto.heading`) og «Kort linje» (`lalatoto.intro`) på kollektionen.
+- Faste småtekster (knapper, ventelisten osv.): sprogfilerne, rettes under
+  Temaer → ⋯ → Rediger standardtemaindhold.
+
+**Oversættelser:** tekst skrevet i temaeditoren oversættes i Shopify-appen
+Translate & Adapt. Den 28. september 2026 blev alle udfyldte felter oversat
+til engelsk og tysk. Retter man den danske tekst, markerer Shopify
+oversættelsen som forældet, og den skal opdateres i Translate & Adapt.
+
+Er overskriften på en indholdsside tom, og er der ingen afsnit, hentes
+indholdet i stedet fra siden i Shopify (den oprindelige opsætning med `<h2>`
+som overskrift og `<h3>` for hvert afsnit).
 
 ## Produkter og varianter
 
