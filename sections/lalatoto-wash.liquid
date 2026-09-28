@@ -35,6 +35,7 @@
 
   {%- if section.blocks.size > 0 -%}
     <div class="lalatoto-wash__list">
+      {%- assign shown = 0 -%}
       {%- for block in section.blocks -%}
         {%- liquid
           assign key = block.settings.standard
@@ -60,11 +61,43 @@
         -%}
 
         {%- if name != blank -%}
-          <details class="lalatoto-wash__item" {% if forloop.first %}open{% endif %} {{ block.shopify_attributes }}>
+          {%- liquid
+            assign shown = shown | plus: 1
+            assign index = shown | prepend: '0' | slice: -2, 2
+
+            comment
+              Temperaturen vises som et vaskesymbol med tallet i baljen, fx
+              «40°C skånevask» bliver symbolet 40 og ordet «skånevask».
+              Uden tal i starten vises teksten, som den er.
+            endcomment
+            assign temp_number = ''
+            assign temp_label = temperature
+            if temperature contains '°'
+              assign temp_candidate = temperature | split: '°' | first | strip
+              assign temp_check = temp_candidate | plus: 0
+              if temp_check > 0 and temp_candidate.size <= 3
+                assign temp_number = temp_candidate
+                assign temp_label = temperature | remove_first: temp_candidate | remove_first: '°C' | remove_first: '°' | strip
+              endif
+            endif
+          -%}
+          <details class="lalatoto-wash__item" name="lalatoto-wash-{{ section.id }}" {% if shown == 1 %}open{% endif %} {{ block.shopify_attributes }}>
             <summary class="lalatoto-wash__summary">
+              <span class="lalatoto-wash__index" aria-hidden="true">{{ index }}</span>
               <span class="lalatoto-wash__name">{{ name | escape }}</span>
               {%- if temperature != blank -%}
-                <span class="lalatoto-wash__temp">{{ temperature | escape }}</span>
+                <span class="lalatoto-wash__temp">
+                  <span class="sr-only">{{ temperature | escape }}</span>
+                  {%- if temp_number != blank -%}
+                    <span class="lalatoto-wash__care" aria-hidden="true">
+                      <svg viewBox="0 0 36 26" focusable="false"><path d="M2.5 7.5 6.8 24h22.4l4.3-16.5"/><path d="M2.5 7.5c2.2-2.6 4.4-2.6 6.6 0s4.4 2.6 6.6 0 4.4-2.6 6.6 0 4.4 2.6 6.6 0 4.4-2.6 6.6 0"/></svg>
+                      <span class="lalatoto-wash__deg">{{ temp_number }}°</span>
+                    </span>
+                  {%- endif -%}
+                  {%- if temp_label != blank -%}
+                    <span class="lalatoto-wash__label" aria-hidden="true">{{ temp_label | escape }}</span>
+                  {%- endif -%}
+                </span>
               {%- endif -%}
               <span class="lalatoto-wash__sign" aria-hidden="true"></span>
             </summary>
@@ -82,9 +115,9 @@
 
 <script>
   /*
-   * Blød fold-animation på vaskevejledningen (ca. 0,28 sek.). Uden script og
-   * for dem, der har slået bevægelse fra, åbner og lukker punkterne stadig,
-   * bare uden animation. Flere punkter må være åbne på én gang.
+   * Vaskevejledningen: kun ét punkt er åbent ad gangen. Åbner man et nyt,
+   * lukker det åbne. Teksten folder blødt ud og ind (ca. 0,28 sek.). For dem,
+   * der har slået bevægelse fra, sker det samme uden animation.
    */
   (function () {
     var root = document.getElementById('lalatoto-wash-{{ section.id }}');
@@ -93,53 +126,79 @@
 
     var DURATION = 280;
     var reduce = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
+    var items = Array.prototype.slice.call(root.querySelectorAll('.lalatoto-wash__item'));
 
-    root.querySelectorAll('.lalatoto-wash__item').forEach(function (item) {
-      var summary = item.querySelector('summary');
-      var body = item.querySelector('.lalatoto-wash__body');
-      if (!summary || !body || !body.animate) return;
+    function body(item) {
+      return item.querySelector('.lalatoto-wash__body');
+    }
 
-      summary.addEventListener('click', function (event) {
-        if (reduce && reduce.matches) return;
+    function currentHeight(item) {
+      return item.animation ? body(item).getBoundingClientRect().height : null;
+    }
+
+    function close(item) {
+      if (!item.open || item.classList.contains('is-closing')) return;
+      var from = currentHeight(item);
+      if (item.animation) item.animation.cancel();
+
+      if ((reduce && reduce.matches) || !body(item).animate) {
+        item.open = false;
+        return;
+      }
+
+      item.classList.remove('is-opening');
+      item.classList.add('is-closing');
+      item.animation = body(item).animate(
+        [{ height: (from === null ? body(item).offsetHeight : from) + 'px', opacity: 1 }, { height: '0px', opacity: 0 }],
+        { duration: DURATION, easing: 'ease' }
+      );
+      item.animation.onfinish = function () {
+        item.classList.remove('is-closing');
+        item.animation = null;
+        item.open = false;
+      };
+      item.animation.oncancel = function () {
+        item.classList.remove('is-closing');
+      };
+    }
+
+    function open(item) {
+      items.forEach(function (other) {
+        if (other !== item) close(other);
+      });
+
+      var from = currentHeight(item);
+      if (item.animation) item.animation.cancel();
+      item.classList.remove('is-closing');
+
+      /* Uden name-attributten lukker browseren ikke selv de andre, når vi
+         åbner her; det har close() ovenfor allerede klaret. */
+      item.open = true;
+
+      if ((reduce && reduce.matches) || !body(item).animate) return;
+
+      item.classList.add('is-opening');
+      var height = body(item).offsetHeight;
+      item.animation = body(item).animate(
+        [{ height: (from === null ? 0 : from) + 'px', opacity: 0 }, { height: height + 'px', opacity: 1 }],
+        { duration: DURATION, easing: 'ease' }
+      );
+      item.animation.onfinish = item.animation.oncancel = function () {
+        item.classList.remove('is-opening');
+        item.animation = null;
+      };
+    }
+
+    items.forEach(function (item) {
+      /* name-attributten ville lukke de andre med det samme og uden animation,
+         så den fjernes; scriptet står selv for, at kun ét punkt er åbent. */
+      item.removeAttribute('name');
+
+      item.querySelector('summary').addEventListener('click', function (event) {
         event.preventDefault();
-
-        /* Tilstanden aflæses, før en igangværende animation stoppes: et klik
-           midt i en lukning åbner igen, et klik midt i en åbning lukker. */
         var shouldClose = item.open && !item.classList.contains('is-closing');
-        var from = item.animation ? body.getBoundingClientRect().height : null;
-        if (item.animation) item.animation.cancel();
-
-        if (shouldClose) {
-          /* Luk: fold teksten sammen, og luk først, når den er væk */
-          item.classList.remove('is-opening');
-          item.classList.add('is-closing');
-          item.animation = body.animate(
-            [{ height: (from === null ? body.offsetHeight : from) + 'px', opacity: 1 }, { height: '0px', opacity: 0 }],
-            { duration: DURATION, easing: 'ease' }
-          );
-          item.animation.onfinish = function () {
-            item.open = false;
-            item.classList.remove('is-closing');
-            item.animation = null;
-          };
-          item.animation.oncancel = function () {
-            item.classList.remove('is-closing');
-          };
-        } else {
-          /* Åbn: vis punktet og fold teksten ud til sin egen højde */
-          item.classList.remove('is-closing', 'is-opening');
-          item.classList.add('is-opening');
-          item.open = true;
-          var height = body.offsetHeight;
-          item.animation = body.animate(
-            [{ height: (from === null ? 0 : from) + 'px', opacity: 0 }, { height: height + 'px', opacity: 1 }],
-            { duration: DURATION, easing: 'ease' }
-          );
-          item.animation.onfinish = item.animation.oncancel = function () {
-            item.classList.remove('is-opening');
-            item.animation = null;
-          };
-        }
+        if (shouldClose) close(item);
+        else open(item);
       });
     });
   })();
