@@ -101,6 +101,26 @@ Er overskriften på en indholdsside tom, og er der ingen afsnit, hentes
 indholdet i stedet fra siden i Shopify (den oprindelige opsætning med `<h2>`
 som overskrift og `<h3>` for hvert afsnit).
 
+## Billedstørrelser
+
+Anbefalingerne står også ved hvert billedfelt i temaeditoren. Upload i den
+anbefalede størrelse, ikke større: Shopify laver selv mindre udgaver og WebP,
+men et for stort originalbillede gør siden langsommere (PageSpeed).
+
+| Hvor | Anbefalet størrelse | Forhold | Højst ca. |
+|---|---|---|---|
+| Forside, hero | 1600 × 2000 px | 4:5 stående | 400 KB |
+| Forside, hero på telefon (valgfrit) | 1200 × 1500 px | 4:5 | 250 KB |
+| Billede i fuld bredde | 2400 × 1050 px | 16:7 liggende | 500 KB |
+| Billede i fuld bredde på telefon (valgfrit) | 1200 × 1500 px | 4:5 | 250 KB |
+| Om os, Filosofi, Materialer | 2800 × 1200 px (beskæres til 4:3 på telefon) | 21:9 | 500 KB |
+| Club No Sleep-telefonerne | 720 × 1560 px | 9:19,5 | 200 KB |
+| Produktbilleder (på produktet) | 1600 × 2000 px | 4:5 stående | 300 KB |
+
+Brug JPG i sRGB, ikke PNG. Fritlagte produktbilleder bør gemmes som JPG med
+baggrund i sidens farve. Videoer i produktgalleriet: stående 4:5 eller
+kvadratiske.
+
 ## Produkter og varianter
 
 Hver vare er ét produkt med varianter (fx Sengetøj med Størrelse × Farve).
