@@ -203,6 +203,16 @@ svg.lalatoto-full-image__image {
  * PRODUKTSIDEN
  * =============================================================== */
 
+/* Hastighed: på telefon er galleriet en karrusel, hvis højde temaets script
+   sætter efter det viste billede. Indtil scriptet er klar, ville det højeste
+   medie (fx en stående video) bestemme højden, og siden hoppe op bagefter.
+   Derfor vises kun det første medie, til karrusellen er klar. */
+@media screen and (max-width: 999px) {
+  .product-gallery__carousel:not(:defined) > :not(:first-child) {
+    display: none;
+  }
+}
+
 /* Billeder står under hinanden i samme bredde: ingen miniaturer, prikker eller pile */
 .shopify-section--main-product .product-gallery__thumbnail-list,
 .shopify-section--main-product .page-dots,

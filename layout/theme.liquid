@@ -90,7 +90,8 @@ src="https://www.facebook.com/tr?id=1109357397358472&ev=PageView&noscript=1"
     {{ content_for_header }}
 
     {{- 'theme.css' | asset_url | stylesheet_tag: preload: true -}}
-    {{- 'lalatoto.css' | asset_url | stylesheet_tag -}}
+    {%- comment -%}Lalatoto: preload, så filen hentes lige så tidligt som theme.css{%- endcomment -%}
+    {{- 'lalatoto.css' | asset_url | stylesheet_tag: preload: true -}}
   </head>
 
   {% liquid
