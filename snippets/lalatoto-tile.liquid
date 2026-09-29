@@ -7,6 +7,7 @@
   @param {object} [media] - billedet; tomt: variantens billede og ellers produktets
   @param {boolean} [sold_out] - true dæmper kortet
   @param {boolean} [eager] - true indlæser billedet med det samme (de første kort)
+  @param {boolean} [priority] - true beder browseren hente billedet først (første kort)
 {%- enddoc -%}
 
 {%- liquid
@@ -15,6 +16,10 @@
   assign loading = 'lazy'
   if eager
     assign loading = 'eager'
+  endif
+  assign fetchpriority = 'auto'
+  if priority
+    assign fetchpriority = 'high'
   endif
 -%}
 
@@ -27,6 +32,7 @@
           | image_url: width: 1200
           | image_tag:
             loading: loading,
+            fetchpriority: fetchpriority,
             sizes: '(max-width: 999px) 50vw, (max-width: 1400px) 25vw, 350px',
             widths: '300,400,500,600,800,1000,1200',
             alt: product.title

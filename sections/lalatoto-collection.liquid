@@ -65,12 +65,16 @@
               if card_index <= 4
                 assign eager = true
               endif
+              assign priority = false
+              if card_index == 1
+                assign priority = true
+              endif
               assign sold_out = true
               if product.available
                 assign sold_out = false
               endif
             -%}
-            {%- render 'lalatoto-tile', product: product, variant: product.selected_or_first_available_variant, sold_out: sold_out, eager: eager -%}
+            {%- render 'lalatoto-tile', product: product, variant: product.selected_or_first_available_variant, sold_out: sold_out, eager: eager, priority: priority -%}
           {%- else -%}
             {%- assign seen = '|' -%}
             {%- for variant in product.variants -%}
@@ -113,8 +117,12 @@
                   if card_index <= 4
                     assign eager = true
                   endif
+                  assign priority = false
+                  if card_index == 1
+                    assign priority = true
+                  endif
                 -%}
-                {%- render 'lalatoto-tile', product: product, variant: chosen, media: media, sold_out: sold_out, eager: eager -%}
+                {%- render 'lalatoto-tile', product: product, variant: chosen, media: media, sold_out: sold_out, eager: eager, priority: priority -%}
               {%- endunless -%}
             {%- endfor -%}
           {%- endif -%}
