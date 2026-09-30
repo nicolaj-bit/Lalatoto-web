@@ -2,6 +2,13 @@
   Lalatoto: et billede i fuld bredde uden tekst.
 {%- endcomment -%}
 
+{%- liquid
+  comment
+    Alt-tekst til Google og skærmlæsere: feltet i sektionen, ellers billedets egen.
+  endcomment
+  assign image_alt = section.settings.image_alt | default: section.settings.image.alt
+-%}
+
 <div class="lalatoto-full-image color-scheme color-scheme--{{ section.settings.color_scheme.id }}">
   {%- if section.settings.image != blank -%}
     <picture>
@@ -21,7 +28,8 @@
           loading: 'lazy',
           sizes: '100vw',
           widths: '600,800,1000,1200,1400,1600,1800,2000,2400,2800,3200',
-          class: 'lalatoto-full-image__image'
+          class: 'lalatoto-full-image__image',
+          alt: image_alt
       -}}
     </picture>
   {%- else -%}
@@ -46,6 +54,12 @@
       "id": "image",
       "label": "Billede",
       "info": "Anbefalet: 2400 × 1050 px (16:7, liggende). Vises i fuld skærmbredde og med billedets egne proportioner. Brug JPG (ikke PNG), sRGB, under ca. 500 KB. Shopify laver selv mindre udgaver og WebP; større end anbefalet gør kun siden langsommere."
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Billedtekst til Google (alt-tekst)",
+      "info": "Beskriv kort, hvad billedet viser, fx «Baby sover under tyngdedyne i tremmeseng». Hjælper Google Billeder og skærmlæsere."
     },
     {
       "type": "image_picker",

@@ -4,6 +4,17 @@
   når den ligger øverst på siden.
 {%- endcomment -%}
 
+{%- liquid
+  comment
+    Alt-tekst til Google og skærmlæsere: feltet i sektionen, ellers billedets
+    egen alt-tekst, ellers overskriften.
+  endcomment
+  assign image_alt = section.settings.image_alt | default: section.settings.image.alt
+  if image_alt == blank
+    assign image_alt = section.settings.heading_line_1 | append: ' ' | append: section.settings.heading_line_2 | strip_html | strip
+  endif
+-%}
+
 <div
   class="lalatoto-hero color-scheme color-scheme--{{ section.settings.color_scheme.id }}"
   {% if section.settings.allow_transparent_header %}
@@ -31,7 +42,8 @@
               fetchpriority: 'high',
               sizes: '(max-width: 699px) 100vw, 50vw',
               widths: '400,600,800,1000,1200,1400,1600,1800,2000',
-              class: 'lalatoto-hero__image'
+              class: 'lalatoto-hero__image',
+          alt: image_alt
           -}}
         </picture>
       {%- else -%}
@@ -88,6 +100,12 @@
       "id": "image",
       "label": "Billede",
       "info": "Anbefalet: 1600 × 2000 px (4:5, stående). Vises i halv bredde på computer og fuld bredde på telefon. Er det sidens første billede, tæller det mest for PageSpeed. Brug JPG (ikke PNG), sRGB, under ca. 400 KB. Shopify laver selv mindre udgaver og WebP; større end anbefalet gør kun siden langsommere."
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Billedtekst til Google (alt-tekst)",
+      "info": "Beskriv kort, hvad billedet viser, fx «Baby sover under tyngdedyne i tremmeseng». Hjælper Google Billeder og skærmlæsere."
     },
     {
       "type": "image_picker",
