@@ -20,10 +20,9 @@ Lighthouse SEO på dev: forside 100 (efter alt-tekst), produkt 100, journal 92 (
 
 | Søgeord | Side |
 |---|---|
-| tyngdedyne baby | /products/tyngdedyne-baby |
-| tyngdedyne børn | /products/tyngdedyne-junior |
-| tyngdedyne voksen | /products/tyngdedyne-voksen |
-| tyngdedyne (bredt) | /collections/tyngdedyner |
+| uld dyne baby | kommende uld dyne baby (tyngdedyner udgår) |
+| uld dyne junior | kommende uld dyne junior |
+| uld dyne voksen | kommende uld dyne voksen |
 | sengeslange | /products/luksus-sengeslange |
 | sengerand | /products/sengerand |
 | økologisk babysengetøj | /products/sengetoj-baby |
@@ -132,69 +131,30 @@ varm. [Læs mere om kapok](/blogs/bloggen/kapok-alt-du-skal-vide-om-fiberens-ege
 
 Fås i støvet blå, kakao, sart rosa, karry og fløjl.
 
-### Tyngdedyne baby
+### Tyngdedyner udgår
 
-**Tyngdedyne til baby – støjsvag, uden polyester**
+Tyngdedynerne tages ud af sortimentet og afløses af almindelige uld dyner til
+baby, junior og voksne. Derfor er der ingen udkast til tyngdedynerne.
 
-Vores tyngdedyne til baby er resultatet af mere end 7 års arbejde med
-tyngdeprodukter og babysøvn. Mange forældre oplever, at et let, jævnt tryk
-hjælper den lille krop til at falde til ro ved puttetid.
+**Når uld dynerne er oprettet:**
+1. Lav 301-omdirigeringer (Onlinebutik → Navigation → URL-omdirigeringer), så
+   Google og gamle links føres videre i stedet for at ramme en 404-side:
 
-Dynen er fyldt med kapok og små glasperler. Kapokken gør den blød og
-temperaturregulerende, så dynen giver tyngde uden at give varme. Glasperlerne
-er syet ind i kvadrater, så vægten fordeler sig jævnt, og dynen er
-forbavsende støjsvag. Det betyder noget for det sensitive barn.
+   | Gammel adresse | Ny adresse |
+   |---|---|
+   | /products/tyngdedyne-baby | uld dyne baby |
+   | /products/tyngdedyne-junior | uld dyne junior |
+   | /products/tyngdedyne-voksen | uld dyne voksen |
+   | /products/tyngdedyne-voksen-ekstra-laengde | uld dyne voksen |
+   | /collections/tyngdedyner | kollektionen med uld dyner |
 
-**Fra hvilken alder?**
-Anbefalet fra 6 måneder og op til ca. 2 år. **[TJEK]** Til større børn findes
-[Tyngdedyne Junior](/products/tyngdedyne-junior).
-
-**Hvor tung er den?**
-70 × 100 cm og ca. 1,5 kg. **[TJEK: vægt]** Brug altid dynen under opsyn, og
-læg den aldrig over barnets ansigt.
-
-**Hvordan kommer vi i gang?**
-Start roligt. Lad barnet ligge med dynen over benene i sofaen eller ved
-puttetid i 20–30 minutter, og øg derefter. Mange bruger dynen som overgang fra
-svøb: lidt mindre svøb og lidt mere dyne over nogle dage.
-
-**Kan den bruges i barnevognen?**
-Ja. Fordi den ikke varmer, er den god til lurene ude, også om sommeren.
-Er der brug for mere varme, lægges en almindelig dyne ovenpå.
-
-**Hvad er forskellen på tyngdedyne, kugledyne og kædedyne?**
-Se vores [guide til de forskellige tyngdedyner](/blogs/bloggen/hvad-er-forskellen-pa-kugledyner-tyngdedyner-granulatdyner-og-kaededyner),
-eller læs [søvnjordemoderens tanker om tyngdedyner](/blogs/bloggen/sovnjordemoderens-tanker-om-tyngdedyner-til-smaborn).
-
-**Vask:** **[TJEK: vaskeanvisning]**
-
-### Tyngdedyne Junior
-
-**Tyngdedyne til børn fra 1 år – kapok og glasperler**
-
-Tyngdedyne Junior er lavet til de aktive år, hvor kroppen har svært ved at
-slappe af efter en lang dag. Mange forældre oplever, at tyngden hjælper barnet
-til at ligge stille, og så kommer søvnen lettere.
-
-Dynen er fyldt med kapok og små glasperler, der er syet ind i kvadrater. Den er
-blød, støjsvag og temperaturregulerende, så barnet får tyngden uden at blive
-for varmt. Den er 100 % fri for polyester.
-
-**Fra hvilken alder?**
-Fra ca. 12 måneder og op til 5 år. **[TJEK]** Til de helt små findes
-[Tyngdedyne baby](/products/tyngdedyne-baby), og til større børn og voksne
-[Tyngdedyne voksen](/products/tyngdedyne-voksen).
-
-**Størrelse og vægt**
-100 × 140 cm, ca. **[TJEK: vægt]** kg. Passer til en juniorseng og kan
-kombineres med [juniorsengetøj](/products/sengetoj-junior).
-
-**Hvornår gør den en forskel?**
-Fx ved overtræthed, i perioder med udviklingsspring eller når barnet skal
-vænne sig til at sove i eget værelse. Læs [7 situationer, hvor tyngdedynen
-kan gøre en forskel](/blogs/bloggen/7-situationer-hvor-tyngdedynen-kan-gore-en-forskel).
-
-**Vask:** **[TJEK: vaskeanvisning]**
+2. Nye søgeord at skrive produkttekster til: «uld dyne baby», «babydyne uld»,
+   «junior dyne uld», «uld dyne», «uldyne voksen».
+3. Meta-teksterne på Gavekort, Produkter til Baby, Produkter til Junior,
+   Journal og Om os nævner tyngdedyner. De skiftes til «uld dyner» samme dag,
+   som tyngdedynerne tages af.
+4. Journalens artikler om tyngdedyner opdateres, så de linker til uld dynerne
+   eller til sengeslangen.
 
 ## Udkast: links fra populære artikler til produkter
 
@@ -202,12 +162,12 @@ Hver artikel får én naturlig sætning med et link til det produkt, der passer.
 
 | Artikel (søgeord med mange visninger) | Link til |
 |---|---|
-| Guide til night terror (night terror børn, 2.154) | Tyngdedyne Junior |
-| Overtræt baby (overtræt nyfødt, baby overtræt) | Tyngdedyne baby |
-| Hvornår lærer jeg mit barn at sove på eget værelse | Tyngdedyne Junior og Sengeslange |
+| Guide til night terror (night terror børn, 2.154) | Uld dyne junior (når den findes) |
+| Overtræt baby (overtræt nyfødt, baby overtræt) | Uld dyne baby (når den findes) |
+| Hvornår lærer jeg mit barn at sove på eget værelse | Sengeslange |
 | Må baby sove på siden? | Sengerand |
-| Kapok – alt du skal vide (hvad er kapok, 612) | Tyngdedyne baby og Sengerand |
-| Pakkeliste til sommerferie (pakkeliste baby ferie) | Sengeslange og Tyngdedyne baby |
+| Kapok – alt du skal vide (hvad er kapok, 612) | Sengerand |
+| Pakkeliste til sommerferie (pakkeliste baby ferie) | Sengeslange |
 
 ## Det, temaet ikke kan klare
 
