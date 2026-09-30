@@ -26,7 +26,8 @@
       "type": "lalatoto-full-image",
       "settings": {
         "color_scheme": "scheme-1",
-        "image": "shopify://shop_images/106_8d9168c0-1147-4951-8d78-a41e14ee42f1.png"
+        "image": "shopify://shop_images/106_8d9168c0-1147-4951-8d78-a41e14ee42f1.png",
+        "image_alt": "Luksus sengeslange og babysengetøj i ternet gul bomuld i en tremmeseng"
       }
     },
     "shop": {
