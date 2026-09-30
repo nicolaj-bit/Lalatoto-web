@@ -93,9 +93,9 @@ straffer det også.
 
 ### Sengerand
 
-> **Bemærk:** produktet har mærket «Sidste chance». Skal sengeranden udgå, er
-> det spildt arbejde at skubbe den op. Så bør «sengerand»-trafikken i stedet
-> sendes videre til sengeslangen.
+> **På pause:** sengeranden fortsætter, men den nuværende farve udgår og er
+> udsolgt. Teksten lægges ind, når det nye design er klar. Mærket «Sidste
+> chance» fjernes samtidig.
 
 **Sengerand til tremmeseng med fyld af kapok**
 
