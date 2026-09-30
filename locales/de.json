@@ -542,7 +542,21 @@
       "title": "Warenkorb",
       "total": "Gesamt",
       "shipping_note": "Versandkosten werden an der Kasse berechnet.",
-      "checkout": "Zur Kasse"
+      "checkout": "Zur Kasse",
+      "subtotal": "Zwischensumme",
+      "discount": "Rabatt",
+      "discount_label": "Rabattcode",
+      "discount_apply": "Einlösen",
+      "discount_error": "Dieser Code kann für diesen Warenkorb nicht verwendet werden.",
+      "terms_html": "Ich akzeptiere die {{ link }}",
+      "terms_link": "AGB",
+      "terms_error": "Bitte akzeptiere die AGB, um fortzufahren.",
+      "upsell_title": "Passt gut zu",
+      "upsell_add": "Hinzufügen",
+      "upsell_add_named": "{{ title }} in den Warenkorb legen",
+      "upsell_choose": "Wählen",
+      "upsell_choose_named": "Größe oder Farbe für {{ title }} wählen",
+      "upsell_from": "Ab {{ price }}"
     },
     "app": {
       "kicker": "Club No Sleep",

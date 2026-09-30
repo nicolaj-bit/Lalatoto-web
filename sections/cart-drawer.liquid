@@ -21,60 +21,31 @@
       {%- endfor -%}
     </div>
 
-    {%- liquid
-      assign cross_sell_products_count = 0
-
-      for product in section.settings.cross_sell_products
-        assign items_for_product = cart | line_items_for: product
-
-        if items_for_product.size == 0 and product.available
-          assign cross_sell_products_count = cross_sell_products_count | plus: 1
+    {%- comment -%}
+      Lalatoto: forslag, der passer til kurven. Scriptet (assets/lalatoto-cart.js)
+      vælger i denne rækkefølge: produkter valgt i temaeditoren, Shopifys
+      «passer godt til» og «lignende» for produkterne i kurven, og til sidst
+      produkter, kunden for nylig har kigget på. Intet i kurven gentages.
+    {%- endcomment -%}
+    {%- if section.settings.lalatoto_upsell -%}
+      {%- liquid
+        assign upsell_title = section.settings.lalatoto_upsell_title
+        if upsell_title == blank
+          assign upsell_title = 'lalatoto.cart.upsell_title' | t
         endif
-      endfor
-    -%}
-
-    {%- if cross_sell_products_count > 0 -%}
-      <div class="cart-drawer__complementary-products complementary-products">
-        {%- assign carousel_id = 'complementary-products-carousel-' | append: section.id -%}
-
-        {%- if section.settings.cross_sell_title != blank or section.settings.cross_sell_stack_products == false and cross_sell_products_count > 1 -%}
-          <div class="complementary-products__header complementary-products__header--align-start">
-            <p class="h6">{{ section.settings.cross_sell_title }}</p>
-
-            {%- if section.settings.cross_sell_stack_products == false and cross_sell_products_count > 1 -%}
-              <carousel-navigation aria-controls="{{ carousel_id }}" class="page-dots page-dots--narrow">
-                {%- for i in (1..cross_sell_products_count) -%}
-                  <button class="relative" aria-current="{% if forloop.first %}true{% else %}false{% endif %}">
-                    <span class="sr-only">{{ 'general.accessibility.go_to_item' | t: index: forloop.index }}</span>
-                  </button>
-                {%- endfor -%}
-              </carousel-navigation>
-            {%- endif -%}
-          </div>
-        {%- endif -%}
-
-        {%- liquid
-          capture complementary_products
-            for product in section.settings.cross_sell_products
-              assign products_in_cart = cart.items | where: 'product_id', product.id
-
-              if products_in_cart.size == 0 and product.available
-                render 'product-card-horizontal', product: product, show_quick_buy: true
-              endif
-            endfor
-          endcapture
-        -%}
-
-        {%- if section.settings.cross_sell_stack_products -%}
-          <div class="complementary-products__product-list">
-            {{- complementary_products -}}
-          </div>
-        {%- else -%}
-          <scroll-carousel id="{{ carousel_id }}" class="complementary-products__product-list complementary-products__product-list--carousel scroll-area bleed snap-x">
-            {{- complementary_products -}}
-          </scroll-carousel>
-        {%- endif -%}
-      </div>
+        assign cart_ids = cart.items | map: 'product_id' | uniq | join: ','
+        assign manual_ids = section.settings.cross_sell_products | map: 'id' | join: ','
+      -%}
+      <lalatoto-cart-upsell
+        class="lalatoto-upsell"
+        data-cart-ids="{{ cart_ids }}"
+        data-manual-ids="{{ manual_ids }}"
+        data-limit="{{ section.settings.lalatoto_upsell_count }}"
+        hidden
+      >
+        <p class="lalatoto-kicker lalatoto-upsell__title">{{ upsell_title | escape }}</p>
+        <div class="lalatoto-upsell__list" role="list" aria-live="polite"></div>
+      </lalatoto-cart-upsell>
     {%- endif -%}
 
     <div slot="footer">
@@ -110,7 +81,7 @@
         {%- endif -%}
 
         {%- if section.settings.allow_discount_application -%}
-          {%- render 'cart-discount' -%}
+          {%- render 'lalatoto-cart-discount', section: section -%}
         {%- endif -%}
 
         {%- if cart.cart_level_discount_applications.size > 0 -%}
@@ -132,12 +103,35 @@
           </div>
         {%- endif -%}
 
-        {%- comment -%}Lalatoto: sum-linje og en lille tekst om fragt{%- endcomment -%}
-        <div class="lalatoto-cart__sum">
-          <span>{{ 'lalatoto.cart.total' | t }}</span>
-          <span>{{ cart.total_price | money }}</span>
+        {%- comment -%}
+          Lalatoto: sum-linjer. Med rabat vises subtotal og rabat over «I alt»,
+          så kunden kan se, hvad koden har givet.
+        {%- endcomment -%}
+        <div class="lalatoto-cart__totals">
+          {%- if cart.total_discount > 0 -%}
+            <div class="lalatoto-cart__line">
+              <span>{{ 'lalatoto.cart.subtotal' | t }}</span>
+              <span>{{ cart.original_total_price | money }}</span>
+            </div>
+            <div class="lalatoto-cart__line lalatoto-cart__line--discount">
+              <span>{{ 'lalatoto.cart.discount' | t }}</span>
+              <span>−{{ cart.total_discount | money }}</span>
+            </div>
+          {%- endif -%}
+          <div class="lalatoto-cart__sum">
+            <span>{{ 'lalatoto.cart.total' | t }}</span>
+            <span>{{ cart.total_price | money }}</span>
+          </div>
         </div>
         <p class="lalatoto-cart__note">{{ 'lalatoto.cart.shipping_note' | t }}</p>
+
+        {%- comment -%}
+          Lalatoto: kunden skal acceptere handelsbetingelserne, før betalingen.
+          Valget huskes, mens kurven genindlæses (assets/lalatoto-cart.js).
+        {%- endcomment -%}
+        {%- if section.settings.lalatoto_terms -%}
+          {%- render 'lalatoto-cart-terms', terms_page: section.settings.lalatoto_terms_page, id_prefix: section.id -%}
+        {%- endif -%}
 
         <div class="button-group">
           {%- if section.settings.show_view_cart_button or section.settings.show_checkout_button == false -%}
@@ -221,6 +215,47 @@
     {
       "type": "header",
       "content": "t:sections.cart_drawer.cross_sell_category"
+    },
+    {
+      "type": "header",
+      "content": "Lalatoto: forslag i kurven"
+    },
+    {
+      "type": "checkbox",
+      "id": "lalatoto_upsell",
+      "label": "Vis forslag",
+      "info": "Vælger selv produkter, der passer til kurven: først dem, du vælger herunder, derefter Shopifys «passer godt til» og «lignende», og til sidst produkter, kunden har kigget på.",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "lalatoto_upsell_title",
+      "label": "Overskrift over forslagene",
+      "info": "Tom: «Passer godt til»."
+    },
+    {
+      "type": "range",
+      "id": "lalatoto_upsell_count",
+      "label": "Antal forslag",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "header",
+      "content": "Lalatoto: handelsbetingelser"
+    },
+    {
+      "type": "checkbox",
+      "id": "lalatoto_terms",
+      "label": "Kræv accept af handelsbetingelser før betaling",
+      "default": true
+    },
+    {
+      "type": "page",
+      "id": "lalatoto_terms_page",
+      "label": "Side med handelsbetingelser"
     },
     {
       "type": "product_list",

@@ -1,0 +1,38 @@
+{%- doc -%}
+  Lalatoto: rabatkode i kurven. Bygger på Prestiges cart-discount-field, som
+  lægger koden på kurven med /cart/update.js og derefter genindlæser kurven,
+  så priserne regnes om. Koden anvendes, når man trykker «Anvend», trykker
+  Enter eller forlader feltet. Er koden ugyldig, vises en fejl under feltet.
+{%- enddoc -%}
+
+{%- liquid
+  assign field_id = section.id | append: '-lalatoto-discount'
+  assign applied_codes = cart.discount_applications | where: 'type', 'discount_code' | map: 'title' | join: ','
+-%}
+
+<div class="lalatoto-discount">
+  <cart-discount-field class="lalatoto-discount__field">
+    <input type="hidden" name="discount" value="{{ applied_codes | escape }}">
+
+    <div class="lalatoto-waitlist__field lalatoto-discount__input">
+      <input
+        type="text"
+        id="{{ field_id }}"
+        autocomplete="off"
+        autocapitalize="characters"
+        spellcheck="false"
+        placeholder=" "
+        data-lalatoto-discount-input
+      >
+      <label for="{{ field_id }}">{{ 'lalatoto.cart.discount_label' | t }}</label>
+    </div>
+
+    <button type="button" class="lalatoto-discount__apply" data-lalatoto-discount-apply>
+      {{- 'lalatoto.cart.discount_apply' | t -}}
+    </button>
+  </cart-discount-field>
+
+  <cart-discount-banner hidden>
+    <p class="lalatoto-discount__error" role="alert">{{ 'lalatoto.cart.discount_error' | t }}</p>
+  </cart-discount-banner>
+</div>

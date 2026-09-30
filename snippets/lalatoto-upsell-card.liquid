@@ -1,0 +1,67 @@
+{%- doc -%}
+  Lalatoto: ét forslag i kurvens upsell. Billede, navn, pris og en
+  tilføj-knap. Produkter med kun én variant lægges direkte i kurven; har
+  produktet flere valg (størrelse, farve), åbner Prestiges hurtigkøb, så
+  kunden kan vælge først.
+
+  @param {object} product - produktet
+{%- enddoc -%}
+
+{%- liquid
+  assign variant = product.selected_or_first_available_variant
+  assign modal_id = 'lalatoto-upsell-modal-' | append: product.id
+  assign min_price = product.price_min | money
+-%}
+
+<article class="lalatoto-upsell__card" data-lalatoto-upsell-item data-product-id="{{ product.id }}">
+  <a href="{{ product.url }}" class="lalatoto-upsell__media" tabindex="-1" aria-hidden="true">
+    {%- if product.featured_media -%}
+      {{-
+        product.featured_media
+        | image_url: width: 400
+        | image_tag: loading: 'lazy', sizes: '140px', widths: '140,280,400', alt: product.featured_media.alt
+      -}}
+    {%- else -%}
+      {{- 'product-1' | placeholder_svg_tag -}}
+    {%- endif -%}
+  </a>
+
+  <div class="lalatoto-upsell__info">
+    <a href="{{ product.url }}" class="lalatoto-upsell__name">{{ product.title }}</a>
+    <p class="lalatoto-upsell__price">
+      {%- if product.price_varies -%}
+        {{- 'lalatoto.cart.upsell_from' | t: price: min_price -}}
+      {%- else -%}
+        {%- if variant.compare_at_price > variant.price -%}
+          <s>{{ variant.compare_at_price | money }}</s>
+        {%- endif -%}
+        {{ variant.price | money }}
+      {%- endif -%}
+    </p>
+  </div>
+
+  {%- if product.variants.size == 1 -%}
+    <product-form class="lalatoto-upsell__form">
+      {%- form 'product', product -%}
+        <input type="hidden" name="id" value="{{ variant.id }}">
+        <input type="hidden" name="quantity" value="1">
+        <input type="hidden" name="on_success" value="force_open_drawer">
+        <button type="submit" class="lalatoto-upsell__add" aria-label="{{ 'lalatoto.cart.upsell_add_named' | t: title: product.title | escape }}">
+          <span class="lalatoto-upsell__plus" aria-hidden="true"></span>
+          <span>{{ 'lalatoto.cart.upsell_add' | t }}</span>
+        </button>
+      {%- endform -%}
+    </product-form>
+  {%- else -%}
+    <quick-buy-modal
+      id="{{ modal_id }}"
+      handle="{{ product.handle }}?variant={{ variant.id }}"
+      class="quick-buy-modal modal modal--lg color-scheme color-scheme--dialog"
+      aria-label="{{ 'product.general.choose_options_with_title' | t: title: product.title | escape }}"
+    ></quick-buy-modal>
+    <button type="button" class="lalatoto-upsell__add" aria-controls="{{ modal_id }}" aria-label="{{ 'lalatoto.cart.upsell_choose_named' | t: title: product.title | escape }}">
+      <span class="lalatoto-upsell__plus" aria-hidden="true"></span>
+      <span>{{ 'lalatoto.cart.upsell_choose' | t }}</span>
+    </button>
+  {%- endif -%}
+</article>

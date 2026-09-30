@@ -837,6 +837,316 @@ html.lalatoto-scroll-lock body {
   width: 100%;
 }
 
+/* ---------------------------------------------------------------
+ * Kurv: sum-linjer med rabat
+ * --------------------------------------------------------------- */
+.lalatoto-cart__totals {
+  display: grid;
+  gap: 0.375rem;
+  width: 100%;
+}
+
+.lalatoto-cart__line {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  color: #6e675e;
+  font-size: 0.8125rem;
+}
+
+.lalatoto-cart__line--discount {
+  color: #2a2724;
+}
+
+.lalatoto-cart__totals .lalatoto-cart__sum {
+  margin-block-start: 0.25rem;
+}
+
+/* Prestiges små rabat-mærker med kryds: rolige, uden farve */
+.cart-drawer .discount-badge {
+  gap: 0.5rem;
+  padding: 0.25rem 0.625rem;
+  border: 1px solid #d7d0c4;
+  border-radius: 0;
+  background: transparent;
+  color: #2a2724;
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ---------------------------------------------------------------
+ * Kurv: rabatkode. Feltet ligner resten af sidens felter (tynd streg
+ * under og svævende label), knappen er en lille tekstknap til højre.
+ * --------------------------------------------------------------- */
+.lalatoto-discount {
+  width: 100%;
+}
+
+.lalatoto-discount__field {
+  display: flex;
+  align-items: flex-end;
+  gap: 1rem;
+}
+
+.lalatoto-discount__input {
+  flex: 1;
+  margin: 0;
+}
+
+.lalatoto-discount__input input {
+  padding-block: 1.125rem 0.5rem;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.lalatoto-discount__input label {
+  top: 1.125rem;
+  font-size: 0.875rem;
+}
+
+.lalatoto-discount__field[aria-busy='true'] .lalatoto-discount__apply {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.lalatoto-discount__apply {
+  padding: 0.5rem 0 0.5rem 0.5rem;
+  border: 0;
+  border-block-end: 1px solid #2a2724;
+  background: none;
+  color: #2a2724;
+  font-family: var(--text-font-family);
+  font-size: var(--lalatoto-label-size);
+  letter-spacing: var(--lalatoto-label-spacing);
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.lalatoto-discount__apply:focus-visible {
+  outline: 1px solid #2a2724;
+  outline-offset: 3px;
+}
+
+.lalatoto-discount__error {
+  margin: 0.5rem 0 0;
+  color: #8a3a2e;
+  font-size: 0.8125rem;
+}
+
+/* ---------------------------------------------------------------
+ * Kurv: handelsbetingelser
+ * --------------------------------------------------------------- */
+.lalatoto-terms {
+  display: grid;
+  gap: 0.375rem;
+  width: 100%;
+}
+
+.lalatoto-terms__label {
+  align-items: flex-start;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+}
+
+.lalatoto-terms__label .lalatoto-waitlist__box {
+  margin-block-start: 0.15rem;
+}
+
+.lalatoto-terms__label a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.lalatoto-terms.has-error .lalatoto-waitlist__box {
+  border-color: #8a3a2e;
+  box-shadow: 0 0 0 1px #8a3a2e;
+}
+
+.lalatoto-terms__error {
+  margin: 0;
+  padding-inline-start: 1.5rem;
+  color: #8a3a2e;
+  font-size: 0.75rem;
+}
+
+/* ---------------------------------------------------------------
+ * Kurv: forslag. En vandret række kort, der kan skubbes sideværts:
+ * billede i 4:5, navn, pris og en tynd «+ Tilføj»-knap.
+ * --------------------------------------------------------------- */
+.lalatoto-upsell {
+  display: grid;
+  gap: 1rem;
+  margin-block-start: 1.5rem;
+  padding-block: 1.5rem 0.5rem;
+  border-block-start: 1px solid #d7d0c4;
+}
+
+.lalatoto-upsell[hidden] {
+  display: none;
+}
+
+.lalatoto-upsell__list {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(8.75rem, calc((100% - 2rem) / 3));
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  margin-inline: calc(-1 * var(--drawer-body-padding-inline, 0px));
+  padding-inline: var(--drawer-body-padding-inline, 0px);
+}
+
+.lalatoto-upsell__list::-webkit-scrollbar {
+  display: none;
+}
+
+.lalatoto-upsell__card {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 0.625rem;
+  scroll-snap-align: start;
+  animation: lalatoto-upsell-in 0.4s ease both;
+}
+
+.lalatoto-upsell__card:nth-child(2) {
+  animation-delay: 0.06s;
+}
+
+.lalatoto-upsell__card:nth-child(3) {
+  animation-delay: 0.12s;
+}
+
+@keyframes lalatoto-upsell-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+.lalatoto-upsell__media {
+  display: block;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: #e7e1d8;
+}
+
+.lalatoto-upsell__media img,
+.lalatoto-upsell__media svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.lalatoto-upsell__card:hover .lalatoto-upsell__media img {
+  transform: scale(1.03);
+}
+
+.lalatoto-upsell__info {
+  display: grid;
+  align-content: start;
+  gap: 0.25rem;
+}
+
+.lalatoto-upsell__name {
+  color: #2a2724;
+  font-family: var(--heading-font-family);
+  font-size: 0.9375rem;
+  line-height: 1.25;
+  text-decoration: none;
+}
+
+.lalatoto-upsell__price {
+  margin: 0;
+  color: #6e675e;
+  font-size: 0.75rem;
+}
+
+.lalatoto-upsell__price s {
+  margin-inline-end: 0.25rem;
+}
+
+.lalatoto-upsell__form,
+.lalatoto-upsell__form form {
+  margin: 0;
+}
+
+.lalatoto-upsell__add {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.625rem 0.5rem;
+  border: 1px solid #2a2724;
+  background: transparent;
+  color: #2a2724;
+  font-family: var(--text-font-family);
+  font-size: 0.625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.lalatoto-upsell__add:hover,
+.lalatoto-upsell__add:focus-visible {
+  background: #2a2724;
+  color: #efebe4;
+}
+
+.lalatoto-upsell__add:focus-visible {
+  outline: 1px solid #2a2724;
+  outline-offset: 2px;
+}
+
+.lalatoto-upsell__add[aria-busy='true'] {
+  opacity: 0.5;
+}
+
+/* Plus af to 1 px streger */
+.lalatoto-upsell__plus {
+  position: relative;
+  width: 9px;
+  height: 9px;
+}
+
+.lalatoto-upsell__plus::before,
+.lalatoto-upsell__plus::after {
+  content: '';
+  position: absolute;
+  background: currentColor;
+}
+
+.lalatoto-upsell__plus::before {
+  left: 0;
+  top: 4px;
+  width: 9px;
+  height: 1px;
+}
+
+.lalatoto-upsell__plus::after {
+  left: 4px;
+  top: 0;
+  width: 1px;
+  height: 9px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lalatoto-upsell__card {
+    animation: none;
+  }
+
+  .lalatoto-upsell__media img {
+    transition: none;
+  }
+}
+
 /* ===============================================================
  * CLUB NO SLEEP-APPEN (nederst på forsiden)
  * Dæmpet baggrund i fuld bredde, tekst til venstre og to telefoner til højre.

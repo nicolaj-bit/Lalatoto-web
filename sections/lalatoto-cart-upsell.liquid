@@ -1,0 +1,39 @@
+{%- comment -%}
+  Lalatoto: forslag til kurven. Sektionen vises ikke selv på en side; den
+  hentes af kurvens script (assets/lalatoto-cart.js) på to måder:
+
+  - /recommendations/products?product_id=…&intent=…&section_id=lalatoto-cart-upsell
+    giver Shopifys anbefalinger til et produkt i kurven (først «passer godt
+    til», derefter «lignende»).
+  - /search?q=id:…&section_id=lalatoto-cart-upsell giver bestemte produkter,
+    fx dem kunden senest har kigget på, eller dem der er valgt i temaeditoren.
+
+  Produkter, der allerede ligger i kurven, eller som er udsolgt, springes over.
+{%- endcomment -%}
+
+{%- liquid
+  if recommendations.performed
+    assign items = recommendations.products
+  elsif search.performed
+    assign items = search.results
+  endif
+-%}
+
+<div class="lalatoto-upsell__source">
+  {%- for product in items -%}
+    {%- if product.object_type == 'product' or recommendations.performed -%}
+      {%- assign in_cart = cart | line_items_for: product -%}
+      {%- if product.available and in_cart.size == 0 -%}
+        {%- render 'lalatoto-upsell-card', product: product -%}
+      {%- endif -%}
+    {%- endif -%}
+  {%- endfor -%}
+</div>
+
+{% schema %}
+{
+  "name": "Lalatoto kurv-forslag",
+  "class": "shopify-section--lalatoto-cart-upsell",
+  "settings": []
+}
+{% endschema %}

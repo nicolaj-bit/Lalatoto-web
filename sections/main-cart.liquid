@@ -157,6 +157,10 @@
                   {%- endif -%}
                 {%- endif -%}
 
+                {%- comment -%}Lalatoto: samme krav om handelsbetingelser som i kurven{%- endcomment -%}
+                {%- assign lalatoto_terms_page = pages['handelsbetingelser'] -%}
+                {%- render 'lalatoto-cart-terms', terms_page: lalatoto_terms_page, id_prefix: section.id -%}
+
                 {%- if section.settings.show_accelerated_buttons and additional_checkout_buttons -%}
                   <div class="additional-checkout-buttons additional-checkout-buttons--vertical">
                     {{- content_for_additional_checkout_buttons -}}

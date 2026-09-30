@@ -542,7 +542,21 @@
       "title": "Cart",
       "total": "Total",
       "shipping_note": "Shipping is calculated at checkout.",
-      "checkout": "Go to checkout"
+      "checkout": "Go to checkout",
+      "subtotal": "Subtotal",
+      "discount": "Discount",
+      "discount_label": "Discount code",
+      "discount_apply": "Apply",
+      "discount_error": "This code cannot be used on this cart.",
+      "terms_html": "I accept the {{ link }}",
+      "terms_link": "terms and conditions",
+      "terms_error": "Please accept the terms and conditions to continue.",
+      "upsell_title": "Goes well with",
+      "upsell_add": "Add",
+      "upsell_add_named": "Add {{ title }} to cart",
+      "upsell_choose": "Choose",
+      "upsell_choose_named": "Choose size or colour for {{ title }}",
+      "upsell_from": "From {{ price }}"
     },
     "app": {
       "kicker": "Club No Sleep",

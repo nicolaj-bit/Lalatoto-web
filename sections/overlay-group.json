@@ -16,11 +16,16 @@
       "settings": {
         "color_scheme": "scheme-1",
         "show_cart_note": false,
-        "allow_discount_application": false,
+        "allow_discount_application": true,
         "show_shipping_text": false,
         "show_view_cart_button": false,
         "show_checkout_button": true,
-        "show_price_in_checkout_button": false
+        "show_price_in_checkout_button": false,
+        "lalatoto_upsell": true,
+        "lalatoto_upsell_title": "",
+        "lalatoto_upsell_count": 3,
+        "lalatoto_terms": true,
+        "lalatoto_terms_page": "handelsbetingelser"
       }
     },
     "newsletter-popup": {

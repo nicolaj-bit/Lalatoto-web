@@ -546,7 +546,21 @@
       "title": "Kurv",
       "total": "I alt",
       "shipping_note": "Fragt beregnes ved betaling.",
-      "checkout": "Gå til betaling"
+      "checkout": "Gå til betaling",
+      "subtotal": "Subtotal",
+      "discount": "Rabat",
+      "discount_label": "Rabatkode",
+      "discount_apply": "Anvend",
+      "discount_error": "Koden kan ikke bruges på denne kurv.",
+      "terms_html": "Jeg accepterer {{ link }}",
+      "terms_link": "handelsbetingelserne",
+      "terms_error": "Sæt flueben ved handelsbetingelserne for at gå videre.",
+      "upsell_title": "Passer godt til",
+      "upsell_add": "Tilføj",
+      "upsell_add_named": "Læg {{ title }} i kurven",
+      "upsell_choose": "Vælg",
+      "upsell_choose_named": "Vælg størrelse eller farve for {{ title }}",
+      "upsell_from": "Fra {{ price }}"
     },
     "app": {
       "kicker": "Club No Sleep",

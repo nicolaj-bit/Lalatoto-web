@@ -1,0 +1,24 @@
+{%- doc -%}
+  Lalatoto: flueben for handelsbetingelserne i kurven og på kurvsiden.
+  Betalingen går ikke videre, før feltet er sat (assets/lalatoto-cart.js).
+  Valget huskes, mens kurven genindlæses.
+
+  @param {object} [terms_page] - siden med handelsbetingelser; tom: butikkens egne vilkår
+  @param {string} id_prefix - gør id'et unikt på siden
+{%- enddoc -%}
+
+{%- liquid
+  assign terms_url = terms_page.url | default: shop.terms_of_service.url | default: '/pages/handelsbetingelser'
+  assign terms_text = 'lalatoto.cart.terms_link' | t
+  assign terms_link = '<a href="' | append: terms_url | append: '" target="_blank" rel="noopener">' | append: terms_text | append: '</a>'
+  assign error_id = id_prefix | append: '-terms-error'
+-%}
+
+<lalatoto-terms class="lalatoto-terms">
+  <label class="lalatoto-waitlist__consent lalatoto-terms__label">
+    <input type="checkbox" data-lalatoto-terms aria-describedby="{{ error_id }}">
+    <span class="lalatoto-waitlist__box" aria-hidden="true"></span>
+    <span>{{ 'lalatoto.cart.terms_html' | t: link: terms_link }}</span>
+  </label>
+  <p class="lalatoto-terms__error" id="{{ error_id }}" role="alert" hidden>{{ 'lalatoto.cart.terms_error' | t }}</p>
+</lalatoto-terms>
