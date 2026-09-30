@@ -39,6 +39,13 @@ src="https://www.facebook.com/tr?id=1109357397358472&ev=PageView&noscript=1"
       {%- else -%}
         {{- page_title -}}
         {%- if current_page != 1 %} &ndash; {{ 'general.page' | t: page: current_page }}{% endif -%}
+        {%- comment -%}
+          Lalatoto: titler uden butikkens navn får « – Lalatoto» bagpå, så
+          Google og fanen viser, hvem siden er fra. Titler, der allerede
+          nævner Lalatoto (fx de skrevne SEO-titler), røres ikke.
+        {%- endcomment -%}
+        {%- assign title_down = page_title | downcase -%}
+        {%- unless title_down contains 'lalatoto' %} &ndash; Lalatoto{% endunless -%}
       {%- endif %}
     </title>
 

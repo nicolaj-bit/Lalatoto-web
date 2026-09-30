@@ -26,6 +26,16 @@
   endif
 
   assign media_type = media.media_type | default: 'image'
+
+  comment
+    Lalatoto: billeder uden alt-tekst får produktets navn, så Google og
+    skærmlæsere ved, hvad billedet viser. Tekst efter # bruges af temaet til
+    varianter og er ikke en beskrivelse, så den skæres fra.
+  endcomment
+  assign media_alt = media.alt | split: '#' | first | strip
+  if media_alt == blank and product != blank
+    assign media_alt = product.title
+  endif
 -%}
 
 {%- case media_type -%}
@@ -33,7 +43,7 @@
     {{-
       media
       | image_url: width: media.preview_image.width
-      | image_tag: loading: loading, fetchpriority: fetchpriority, sizes: sizes, widths: '200,400,600,800,1000,1200,1400,1600,1800,2000,2200,2400,2600,2800,3000,3200', class: class
+      | image_tag: loading: loading, fetchpriority: fetchpriority, sizes: sizes, widths: '200,400,600,800,1000,1200,1400,1600,1800,2000,2200,2400,2600,2800,3000,3200', class: class, alt: media_alt
     -}}
 
   {%- when 'video', 'external_video' -%}
