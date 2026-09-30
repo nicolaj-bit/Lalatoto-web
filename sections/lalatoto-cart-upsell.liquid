@@ -12,7 +12,7 @@
 {%- endcomment -%}
 
 {%- liquid
-  if recommendations.performed
+  if recommendations.performed?
     assign items = recommendations.products
   elsif search.performed
     assign items = search.results
@@ -21,7 +21,7 @@
 
 <div class="lalatoto-upsell__source">
   {%- for product in items -%}
-    {%- if product.object_type == 'product' or recommendations.performed -%}
+    {%- if product.object_type == 'product' or recommendations.performed? -%}
       {%- assign in_cart = cart | line_items_for: product -%}
       {%- if product.available and in_cart.size == 0 -%}
         {%- render 'lalatoto-upsell-card', product: product -%}
