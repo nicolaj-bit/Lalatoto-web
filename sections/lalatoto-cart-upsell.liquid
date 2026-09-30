@@ -19,10 +19,13 @@
   endif
 -%}
 
+<!-- diag perf:{{ recommendations.performed? }} count:{{ recommendations.products_count }} search:{{ search.performed }} items:{{ items.size }} -->
 <div class="lalatoto-upsell__source">
   {%- for product in items -%}
+    <!-- p {{ product.id }} type:{{ product.object_type }} avail:{{ product.available }} -->
     {%- if product.object_type == 'product' or recommendations.performed? -%}
       {%- assign in_cart = cart | line_items_for: product -%}
+      <!-- incart {{ in_cart.size }} -->
       {%- if product.available and in_cart.size == 0 -%}
         {%- render 'lalatoto-upsell-card', product: product -%}
       {%- endif -%}
