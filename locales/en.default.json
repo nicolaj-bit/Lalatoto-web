@@ -640,6 +640,22 @@
           "text": "Wash at 40 degrees with the rest of the bedding. Dry flat. Steam iron on the smooth side if you want it to look brand new."
         }
       }
+    },
+    "journal": {
+      "kicker": "Journal",
+      "reading_time": "{{ minutes }} min read",
+      "read_more": "Read the article",
+      "topics": "Topics",
+      "all": "All",
+      "empty": "There are no articles here yet.",
+      "pages": "Pages",
+      "newer": "Newer",
+      "older": "Older",
+      "page_of": "Page {{ current }} of {{ total }}",
+      "back": "Back to {{ blog }}",
+      "related": "Read next",
+      "teaser_heading": "From the journal",
+      "all_articles": "All articles"
     }
   }
 }

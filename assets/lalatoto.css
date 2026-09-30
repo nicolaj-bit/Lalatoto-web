@@ -2346,3 +2346,502 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
     transition: none;
   }
 }
+
+/* ===============================================================
+ * JOURNAL (bloggen)
+ * Journalens forside: centreret overskrift, emner som små links, den
+ * nyeste artikel stort og resten i et gitter. Artiklen: smal læsebredde,
+ * billede i fuld bredde og «Læs også» nederst. Skrifttyper og størrelser
+ * fra Word i artiklerne fjernes, så alle artikler ser ens ud.
+ * =============================================================== */
+.lalatoto-journal,
+.lalatoto-journal-teaser,
+.lalatoto-article-related {
+  max-width: var(--lalatoto-max-width);
+  margin-inline: auto;
+  padding-inline: var(--container-gutter);
+  color: #2a2724;
+}
+
+.lalatoto-journal {
+  padding-block: clamp(3rem, 7vw, 5.5rem) clamp(4rem, 9vw, 7rem);
+}
+
+.lalatoto-journal__head {
+  display: grid;
+  justify-items: center;
+  gap: 0.875rem;
+  max-width: 36rem;
+  margin: 0 auto clamp(2rem, 4vw, 3rem);
+  text-align: center;
+}
+
+.lalatoto-journal__title {
+  margin: 0;
+  font-family: var(--heading-font-family);
+  font-weight: 400;
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  line-height: 1.05;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+.lalatoto-journal__tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 1.5rem;
+  margin-block-end: clamp(2.5rem, 5vw, 4rem);
+  padding-block: 1rem;
+  border-block: 1px solid #d7d0c4;
+}
+
+.lalatoto-journal__tags a {
+  color: #6e675e;
+  font-size: var(--lalatoto-label-size);
+  letter-spacing: var(--lalatoto-label-spacing);
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.lalatoto-journal__tags a:hover,
+.lalatoto-journal__tags a[aria-current='page'] {
+  color: #2a2724;
+}
+
+.lalatoto-journal__tags a[aria-current='page'] {
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+
+.lalatoto-journal__grid,
+.lalatoto-journal-teaser__grid,
+.lalatoto-article-related__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(2.5rem, 4vw, 3.5rem) clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.lalatoto-journal__featured {
+  grid-column: 1 / -1;
+}
+
+.lalatoto-journal__empty {
+  text-align: center;
+  color: #6e675e;
+}
+
+/* Kortet */
+.lalatoto-journal-card {
+  display: grid;
+  align-content: start;
+  gap: 1.125rem;
+}
+
+.lalatoto-journal-card__media {
+  display: block;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  background: #e7e1d8;
+}
+
+.lalatoto-journal-card__media img,
+.lalatoto-journal-card__media svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s ease;
+}
+
+.lalatoto-journal-card:hover .lalatoto-journal-card__media img {
+  transform: scale(1.025);
+}
+
+.lalatoto-journal-card__body {
+  display: grid;
+  align-content: start;
+  gap: 0.625rem;
+}
+
+.lalatoto-journal-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  color: #6e675e;
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.lalatoto-journal-card__title {
+  margin: 0;
+  font-family: var(--heading-font-family);
+  font-weight: 400;
+  font-size: 1.375rem;
+  line-height: 1.2;
+  letter-spacing: normal;
+  text-transform: none;
+  text-wrap: balance;
+}
+
+.lalatoto-journal-card__title a {
+  color: inherit;
+  text-decoration: none;
+  background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+  transition: background-size 0.3s ease;
+}
+
+.lalatoto-journal-card:hover .lalatoto-journal-card__title a {
+  background-size: 100% 1px;
+}
+
+.lalatoto-journal-card__excerpt {
+  margin: 0;
+  max-width: 52ch;
+  color: #6e675e;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+.lalatoto-journal-card__more {
+  justify-self: start;
+  margin-block-start: 0.5rem;
+  padding-block-end: 0.25rem;
+  border-block-end: 1px solid #2a2724;
+  color: #2a2724;
+  font-size: var(--lalatoto-label-size);
+  letter-spacing: var(--lalatoto-label-spacing);
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.lalatoto-journal-card--large .lalatoto-journal-card__title {
+  font-size: clamp(1.75rem, 3.5vw, 2.625rem);
+  line-height: 1.12;
+}
+
+/* Sider */
+.lalatoto-journal__pages {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  margin-block-start: clamp(3rem, 6vw, 5rem);
+  padding-block-start: 1.25rem;
+  border-block-start: 1px solid #d7d0c4;
+  font-size: var(--lalatoto-label-size);
+  letter-spacing: var(--lalatoto-label-spacing);
+  text-transform: uppercase;
+}
+
+.lalatoto-journal__page-link {
+  color: #2a2724;
+  text-decoration: none;
+}
+
+.lalatoto-journal__page-link:last-child {
+  justify-self: end;
+}
+
+.lalatoto-journal__page-count {
+  color: #6e675e;
+}
+
+/* Forsiden: «Fra journalen» */
+.lalatoto-journal-teaser {
+  padding-block: var(--section-vertical-spacing, 4.5rem);
+}
+
+.lalatoto-journal-teaser__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+  margin-block-end: clamp(1.75rem, 3vw, 2.5rem);
+}
+
+.lalatoto-journal-teaser__head > div {
+  display: grid;
+  gap: 0.625rem;
+}
+
+.lalatoto-journal-teaser__title {
+  margin: 0;
+  font-family: var(--heading-font-family);
+  font-weight: 400;
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  line-height: 1.1;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+.lalatoto-journal-teaser__all {
+  padding-block-end: 0.25rem;
+  border-block-end: 1px solid #2a2724;
+  color: #2a2724;
+  font-size: var(--lalatoto-label-size);
+  letter-spacing: var(--lalatoto-label-spacing);
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+/* Artiklen */
+.lalatoto-article {
+  padding-block: clamp(3rem, 7vw, 5.5rem) clamp(2.5rem, 5vw, 4rem);
+  color: #2a2724;
+}
+
+.lalatoto-article__head {
+  display: grid;
+  justify-items: center;
+  gap: 1rem;
+  max-width: 46rem;
+  margin: 0 auto clamp(2rem, 4vw, 3.5rem);
+  padding-inline: var(--container-gutter);
+  text-align: center;
+}
+
+.lalatoto-article__kicker {
+  text-decoration: none;
+}
+
+.lalatoto-article__title {
+  margin: 0;
+  font-family: var(--heading-font-family);
+  font-weight: 400;
+  font-size: clamp(2rem, 4.8vw, 3.25rem);
+  line-height: 1.1;
+  letter-spacing: normal;
+  text-transform: none;
+  text-wrap: balance;
+}
+
+.lalatoto-article__meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 0;
+  color: #6e675e;
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.lalatoto-article__media {
+  max-width: var(--lalatoto-max-width);
+  margin: 0 auto clamp(2.5rem, 5vw, 4rem);
+  padding-inline: var(--container-gutter);
+}
+
+.lalatoto-article__media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 78vh;
+  object-fit: cover;
+}
+
+.lalatoto-article__body {
+  max-width: 42rem;
+  margin-inline: auto;
+  padding-inline: var(--container-gutter);
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  letter-spacing: normal;
+}
+
+/* Formatering indsat fra Word overskrives, så alle artikler ser ens ud */
+.lalatoto-article__body [style] {
+  font-family: inherit !important;
+  font-size: inherit !important;
+  line-height: inherit !important;
+  color: inherit !important;
+  background: none !important;
+}
+
+.lalatoto-article__body > * {
+  margin-block: 0 1.25rem;
+}
+
+.lalatoto-article__body h2,
+.lalatoto-article__body h3,
+.lalatoto-article__body h4 {
+  margin-block: 2.75rem 0.875rem;
+  font-family: var(--heading-font-family);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+.lalatoto-article__body h2 {
+  font-size: 1.875rem;
+}
+
+.lalatoto-article__body h3 {
+  font-size: 1.5rem;
+}
+
+.lalatoto-article__body h4 {
+  font-size: 1.25rem;
+}
+
+.lalatoto-article__body h2 [style],
+.lalatoto-article__body h3 [style],
+.lalatoto-article__body h4 [style] {
+  font-family: var(--heading-font-family) !important;
+}
+
+.lalatoto-article__body a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: #b9b0a3;
+  text-underline-offset: 3px;
+}
+
+.lalatoto-article__body a:hover {
+  text-decoration-color: currentColor;
+}
+
+.lalatoto-article__body strong,
+.lalatoto-article__body b {
+  font-weight: 600;
+}
+
+.lalatoto-article__body ul,
+.lalatoto-article__body ol {
+  padding-inline-start: 1.5rem;
+}
+
+.lalatoto-article__body ul {
+  list-style: disc;
+}
+
+.lalatoto-article__body ol {
+  list-style: decimal;
+}
+
+.lalatoto-article__body li {
+  margin-block-end: 0.5rem;
+}
+
+.lalatoto-article__body li::marker {
+  color: #6e675e;
+}
+
+.lalatoto-article__body img,
+.lalatoto-article__body iframe,
+.lalatoto-article__body video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-block: 2rem;
+}
+
+.lalatoto-article__body iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+
+.lalatoto-article__body blockquote {
+  margin: 2.5rem 0;
+  padding-inline-start: 1.5rem;
+  border-inline-start: 1px solid #2a2724;
+  font-family: var(--heading-font-family);
+  font-size: 1.375rem;
+  font-style: italic;
+  line-height: 1.45;
+}
+
+.lalatoto-article__body hr {
+  height: 1px;
+  margin: 3rem 0;
+  border: 0;
+  background: #d7d0c4;
+}
+
+.lalatoto-article__foot {
+  display: grid;
+  gap: 1.5rem;
+  max-width: 42rem;
+  margin: clamp(2.5rem, 5vw, 3.5rem) auto 0;
+  padding: 1.5rem var(--container-gutter) 0;
+  border-block-start: 1px solid #d7d0c4;
+}
+
+.lalatoto-article__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.lalatoto-article__tags a {
+  display: inline-block;
+  padding: 0.375rem 0.75rem;
+  border: 1px solid #d7d0c4;
+  color: #2a2724;
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.lalatoto-article__tags a:hover {
+  border-color: #2a2724;
+}
+
+.lalatoto-article__back {
+  justify-self: start;
+  color: #2a2724;
+  font-size: var(--lalatoto-label-size);
+  letter-spacing: var(--lalatoto-label-spacing);
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.lalatoto-article-related {
+  padding-block: clamp(3rem, 6vw, 5rem) clamp(4rem, 8vw, 6rem);
+}
+
+.lalatoto-article-related__title {
+  margin: 0 0 1.75rem;
+  padding-block-start: 1.5rem;
+  border-block-start: 1px solid #d7d0c4;
+}
+
+@media screen and (min-width: 700px) {
+  .lalatoto-journal__grid,
+  .lalatoto-journal-teaser__grid,
+  .lalatoto-article-related__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .lalatoto-journal__grid,
+  .lalatoto-journal-teaser__grid,
+  .lalatoto-article-related__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  /* Den nyeste artikel: billede til venstre, tekst til højre */
+  .lalatoto-journal-card--large {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    align-items: center;
+    gap: clamp(2rem, 4vw, 4rem);
+  }
+
+  .lalatoto-journal-card--large .lalatoto-journal-card__body {
+    gap: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lalatoto-journal-card__media img,
+  .lalatoto-journal-card__title a {
+    transition: none;
+  }
+}

@@ -1,0 +1,146 @@
+{%- comment -%}
+  Lalatoto: én artikel i journalen.
+
+  Øverst en lille etiket (første emne, ellers journalens navn), titel i
+  Playfair og en linje med dato, forfatter og læsetid. Derefter artiklens
+  billede i fuld bredde og selve teksten i en rolig læsebredde. Nederst
+  emner, et link tilbage og tre artikler under «Læs også»: helst med samme
+  emne, ellers de nyeste.
+
+  Tekst indsat fra Word har ofte sine egne skrifttyper og størrelser.
+  De fjernes i CSS, så alle artikler ser ens ud.
+{%- endcomment -%}
+
+{%- liquid
+  assign words = article.content | strip_html | split: ' ' | size
+  assign minutes = words | divided_by: 200 | at_least: 1
+  assign kicker = article.tags.first | default: blog.title
+  assign kicker_url = blog.url
+  if article.tags.first != blank
+    assign tag_handle = article.tags.first | handleize
+    assign kicker_url = blog.url | append: '/tagged/' | append: tag_handle
+  endif
+-%}
+
+<article class="lalatoto-article color-scheme color-scheme--{{ section.settings.color_scheme.id }}">
+  <header class="lalatoto-article__head">
+    <a href="{{ kicker_url }}" class="lalatoto-kicker lalatoto-article__kicker">{{ kicker | escape }}</a>
+    <h1 class="lalatoto-article__title">{{ article.title | escape }}</h1>
+    <p class="lalatoto-article__meta">
+      {{- article.published_at | time_tag: format: 'date' -}}
+      {%- if section.settings.show_author and article.author != blank -%}
+        <span aria-hidden="true">·</span>{{ article.author }}
+      {%- endif -%}
+      <span aria-hidden="true">·</span>
+      {{- 'lalatoto.journal.reading_time' | t: minutes: minutes -}}
+    </p>
+  </header>
+
+  {%- if article.image -%}
+    <div class="lalatoto-article__media">
+      {{-
+        article.image
+        | image_url: width: 2400
+        | image_tag:
+          loading: 'eager',
+          fetchpriority: 'high',
+          sizes: '(max-width: 1400px) 100vw, 1400px',
+          widths: '600,800,1000,1200,1600,2000,2400',
+          alt: article.image.alt
+      -}}
+    </div>
+  {%- endif -%}
+
+  <div class="lalatoto-article__body">
+    {{ article.content }}
+  </div>
+
+  <footer class="lalatoto-article__foot">
+    {%- if article.tags.size > 0 -%}
+      <ul class="lalatoto-article__tags unstyled-list" role="list">
+        {%- for tag in article.tags -%}
+          <li><a href="{{ blog.url }}/tagged/{{ tag | handleize }}">{{ tag }}</a></li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+    <a href="{{ blog.url }}" class="lalatoto-article__back">
+      <span aria-hidden="true">←</span> {{ 'lalatoto.journal.back' | t: blog: blog.title }}
+    </a>
+  </footer>
+</article>
+
+{%- if section.settings.show_related -%}
+  {%- liquid
+    comment
+      «Læs også»: først artikler med samme emne, derefter de nyeste. Den
+      aktuelle artikel springes over.
+    endcomment
+    assign related_handles = ''
+    assign related_count = 0
+    assign first_tag = article.tags.first
+  -%}
+  {%- capture related_cards -%}
+    {%- if first_tag != blank -%}
+      {%- for other in blog.articles -%}
+        {%- if related_count >= 3 -%}{%- break -%}{%- endif -%}
+        {%- if other.id != article.id and other.tags contains first_tag -%}
+          {%- render 'lalatoto-article-card', article: other, show_excerpt: false -%}
+          {%- assign related_handles = related_handles | append: '|' | append: other.handle | append: '|' -%}
+          {%- assign related_count = related_count | plus: 1 -%}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endif -%}
+    {%- for other in blog.articles -%}
+      {%- if related_count >= 3 -%}{%- break -%}{%- endif -%}
+      {%- assign key = '|' | append: other.handle | append: '|' -%}
+      {%- if other.id != article.id -%}
+        {%- unless related_handles contains key -%}
+          {%- render 'lalatoto-article-card', article: other, show_excerpt: false -%}
+          {%- assign related_handles = related_handles | append: key -%}
+          {%- assign related_count = related_count | plus: 1 -%}
+        {%- endunless -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endcapture -%}
+
+  {%- if related_count > 0 -%}
+    <aside class="lalatoto-article-related color-scheme color-scheme--{{ section.settings.color_scheme.id }}" aria-labelledby="lalatoto-related-{{ section.id }}">
+      <h2 class="lalatoto-kicker lalatoto-article-related__title" id="lalatoto-related-{{ section.id }}">{{ 'lalatoto.journal.related' | t }}</h2>
+      <div class="lalatoto-article-related__grid">
+        {{ related_cards }}
+      </div>
+    </aside>
+  {%- endif -%}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Lalatoto artikel",
+  "class": "shopify-section--lalatoto-article",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Farveskema",
+      "default": "scheme-1"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_author",
+      "label": "Vis forfatter",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_related",
+      "label": "Vis «Læs også» nederst",
+      "default": true
+    },
+    {
+      "type": "paragraph",
+      "content": "Artiklens tekst og billede rettes på selve artiklen under Onlinebutik → Blogindlæg. Billede: 2400 × 1600 px (3:2, liggende), JPG, under ca. 400 KB."
+    }
+  ]
+}
+{% endschema %}

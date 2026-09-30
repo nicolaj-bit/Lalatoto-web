@@ -10,8 +10,15 @@
 {
   "sections": {
     "main": {
-      "type": "main-blog",
-      "settings": {}
+      "type": "lalatoto-blog",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "kicker": "",
+        "heading": "Journal",
+        "lead": "Søvn, hverdag og små råd fra os, der selv har stået op om natten.",
+        "show_tags": true,
+        "per_page": 12
+      }
     }
   },
   "order": [

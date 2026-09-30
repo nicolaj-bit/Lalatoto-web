@@ -1,0 +1,142 @@
+{%- comment -%}
+  Lalatoto: journalens forside (/blogs/…).
+
+  Centreret overskrift med en lille etiket og en kort tekst. Derunder emner
+  (bloggens tags) som små links. Den nyeste artikel står stort, og resten
+  står i et gitter med tre kolonner på computer, to på tablet og én på
+  telefon. Nederst sider.
+{%- endcomment -%}
+
+{%- liquid
+  assign heading = section.settings.heading | default: blog.title
+  assign lead = section.settings.lead
+  assign kicker = section.settings.kicker
+  if kicker == blank
+    assign kicker = 'lalatoto.journal.kicker' | t
+  endif
+-%}
+
+{%- paginate blog.articles by section.settings.per_page -%}
+  <div class="lalatoto-journal color-scheme color-scheme--{{ section.settings.color_scheme.id }}">
+    <header class="lalatoto-journal__head">
+      <p class="lalatoto-kicker">{{ kicker | escape }}</p>
+      <h1 class="lalatoto-journal__title">{{ heading | escape }}</h1>
+      {%- if lead != blank -%}
+        <p class="lalatoto-lead lalatoto-journal__lead">{{ lead | escape }}</p>
+      {%- endif -%}
+    </header>
+
+    {%- if section.settings.show_tags and blog.all_tags.size > 0 -%}
+      <nav class="lalatoto-journal__tags" aria-label="{{ 'lalatoto.journal.topics' | t | escape }}">
+        <a href="{{ blog.url }}" {% if current_tags == blank %}aria-current="page"{% endif %}>{{ 'lalatoto.journal.all' | t }}</a>
+        {%- for tag in blog.all_tags -%}
+          <a href="{{ blog.url }}/tagged/{{ tag | handleize }}" {% if current_tags contains tag %}aria-current="page"{% endif %}>{{ tag }}</a>
+        {%- endfor -%}
+      </nav>
+    {%- endif -%}
+
+    {%- if blog.articles_count == 0 -%}
+      <p class="lalatoto-journal__empty">{{ 'lalatoto.journal.empty' | t }}</p>
+    {%- else -%}
+      {%- assign first_page = false -%}
+      {%- if paginate.current_page == 1 and current_tags == blank -%}
+        {%- assign first_page = true -%}
+      {%- endif -%}
+
+      <div class="lalatoto-journal__grid">
+        {%- for article in blog.articles -%}
+          {%- if forloop.first and first_page -%}
+            <div class="lalatoto-journal__featured">
+              {%- render 'lalatoto-article-card', article: article, size: 'large', eager: true -%}
+            </div>
+          {%- else -%}
+            {%- liquid
+              assign eager = false
+              if forloop.index <= 4
+                assign eager = true
+              endif
+            -%}
+            {%- render 'lalatoto-article-card', article: article, eager: eager -%}
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+
+      {%- if paginate.pages > 1 -%}
+        <nav class="lalatoto-journal__pages" aria-label="{{ 'lalatoto.journal.pages' | t | escape }}">
+          {%- if paginate.previous -%}
+            <a href="{{ paginate.previous.url }}" class="lalatoto-journal__page-link">
+              <span aria-hidden="true">←</span> {{ 'lalatoto.journal.newer' | t }}
+            </a>
+          {%- else -%}
+            <span></span>
+          {%- endif -%}
+
+          <span class="lalatoto-journal__page-count">
+            {{- 'lalatoto.journal.page_of' | t: current: paginate.current_page, total: paginate.pages -}}
+          </span>
+
+          {%- if paginate.next -%}
+            <a href="{{ paginate.next.url }}" class="lalatoto-journal__page-link">
+              {{ 'lalatoto.journal.older' | t }} <span aria-hidden="true">→</span>
+            </a>
+          {%- else -%}
+            <span></span>
+          {%- endif -%}
+        </nav>
+      {%- endif -%}
+    {%- endif -%}
+  </div>
+{%- endpaginate -%}
+
+{% schema %}
+{
+  "name": "Lalatoto journal",
+  "class": "shopify-section--lalatoto-journal",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Farveskema",
+      "default": "scheme-1"
+    },
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Lille etiket over overskriften",
+      "info": "Tom: «Journal»."
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Overskrift",
+      "info": "Tom: bloggens navn."
+    },
+    {
+      "type": "textarea",
+      "id": "lead",
+      "label": "Kort tekst under overskriften"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_tags",
+      "label": "Vis emner",
+      "info": "Emnerne er artiklernes tags. Giv artiklerne tags som «Søvn», «Børn» og «Familieliv», så kan læserne filtrere.",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "per_page",
+      "label": "Artikler pr. side",
+      "min": 6,
+      "max": 24,
+      "step": 3,
+      "default": 12
+    },
+    {
+      "type": "paragraph",
+      "content": "Billeder til artikler lægges ind på selve artiklen. Anbefalet: 2400 × 1600 px (3:2, liggende), JPG, under ca. 400 KB."
+    }
+  ]
+}
+{% endschema %}

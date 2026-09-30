@@ -640,6 +640,22 @@
           "text": "Bei 40 Grad zusammen mit der übrigen Bettwäsche waschen. Liegend trocknen. Mit Dampf auf der glatten Seite bügeln, wenn sie wie neu aussehen soll."
         }
       }
+    },
+    "journal": {
+      "kicker": "Journal",
+      "reading_time": "{{ minutes }} Min. Lesezeit",
+      "read_more": "Artikel lesen",
+      "topics": "Themen",
+      "all": "Alle",
+      "empty": "Hier gibt es noch keine Artikel.",
+      "pages": "Seiten",
+      "newer": "Neuer",
+      "older": "Älter",
+      "page_of": "Seite {{ current }} von {{ total }}",
+      "back": "Zurück zu {{ blog }}",
+      "related": "Weiterlesen",
+      "teaser_heading": "Aus dem Journal",
+      "all_articles": "Alle Artikel"
     }
   }
 }

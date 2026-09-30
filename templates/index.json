@@ -72,12 +72,23 @@
         "app_store_url": "https://apps.apple.com/dk/app/id6764388095",
         "google_play_url": "https://play.google.com/store/apps/details?id=com.base699f47a86e7e0a874d1159ed.app"
       }
+    },
+    "journal": {
+      "type": "lalatoto-journal-teaser",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "blog": "bloggen",
+        "heading": "",
+        "count": 3,
+        "show_excerpt": false
+      }
     }
   },
   "order": [
     "hero",
     "billede",
     "shop",
+    "journal",
     "app"
   ]
 }

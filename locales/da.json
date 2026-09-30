@@ -644,6 +644,22 @@
           "text": "Vaskes ved 40 grader sammen med resten af sengetøjet. Tørres liggende. Stryg med damp på den glatte side, hvis den skal se helt ny ud."
         }
       }
+    },
+    "journal": {
+      "kicker": "Journal",
+      "reading_time": "{{ minutes }} min. læsning",
+      "read_more": "Læs artiklen",
+      "topics": "Emner",
+      "all": "Alle",
+      "empty": "Der er ingen artikler her endnu.",
+      "pages": "Sider",
+      "newer": "Nyere",
+      "older": "Ældre",
+      "page_of": "Side {{ current }} af {{ total }}",
+      "back": "Tilbage til {{ blog }}",
+      "related": "Læs også",
+      "teaser_heading": "Fra journalen",
+      "all_articles": "Alle artikler"
     }
   }
 }
