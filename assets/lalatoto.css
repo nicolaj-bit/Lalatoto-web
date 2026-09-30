@@ -973,14 +973,14 @@ html.lalatoto-scroll-lock body {
 }
 
 /* ---------------------------------------------------------------
- * Kurv: forslag. Kompakte rækker (lille billede, navn, pris og et rundt
- * plus), side om side i én stribe, der kan skubbes. Næste forslag
- * titter frem i kanten. Hele blokken fylder ca. som én vare i kurven,
- * så man kan tilføje uden at scrolle.
+ * Kurv: forslag. Op til tre kompakte rækker under hinanden (lille
+ * billede, navn, pris og et rundt plus), adskilt af tynde streger.
+ * Hele blokken fylder omtrent som to varer i kurven, så man kan
+ * tilføje uden at scrolle.
  * --------------------------------------------------------------- */
 .lalatoto-upsell {
   display: grid;
-  gap: 0.75rem;
+  gap: 0.5rem;
   margin-block-start: 1rem;
   padding-block: 1rem 0.25rem;
   border-block-start: 1px solid #d7d0c4;
@@ -992,38 +992,19 @@ html.lalatoto-scroll-lock body {
 
 .lalatoto-upsell__list {
   display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: 86%;
-  gap: 0.625rem;
-  overflow-x: auto;
-  overscroll-behavior-x: contain;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
-}
-
-.lalatoto-upsell__list::-webkit-scrollbar {
-  display: none;
-}
-
-/* Kun ét forslag: fuld bredde */
-.lalatoto-upsell__list:has(> :only-child) {
-  grid-auto-columns: 100%;
 }
 
 .lalatoto-upsell__card {
   display: grid;
-  grid-template-columns: 3.25rem minmax(0, 1fr) auto;
+  grid-template-columns: 2.75rem minmax(0, 1fr) auto;
   align-items: center;
   gap: 0.875rem;
-  padding: 0.5rem 0.625rem 0.5rem 0.5rem;
-  border: 1px solid #d7d0c4;
-  scroll-snap-align: start;
+  padding-block: 0.4375rem;
   animation: lalatoto-upsell-in 0.4s ease both;
-  transition: border-color 0.2s ease;
 }
 
-.lalatoto-upsell__card:hover {
-  border-color: #b9b0a3;
+.lalatoto-upsell__card + .lalatoto-upsell__card {
+  border-block-start: 1px solid #e3ddd3;
 }
 
 .lalatoto-upsell__card:nth-child(2) {
@@ -1037,7 +1018,7 @@ html.lalatoto-scroll-lock body {
 @keyframes lalatoto-upsell-in {
   from {
     opacity: 0;
-    transform: translateX(8px);
+    transform: translateY(4px);
   }
 }
 
