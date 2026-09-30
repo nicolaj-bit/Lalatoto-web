@@ -18,8 +18,8 @@
     {%- if product.featured_media -%}
       {{-
         product.featured_media
-        | image_url: width: 400
-        | image_tag: loading: 'lazy', sizes: '140px', widths: '140,280,400', alt: product.featured_media.alt
+        | image_url: width: 192
+        | image_tag: loading: 'lazy', sizes: '64px', widths: '64,128,192', alt: product.featured_media.alt
       -}}
     {%- else -%}
       {{- 'product-1' | placeholder_svg_tag -}}
@@ -48,7 +48,7 @@
         <input type="hidden" name="on_success" value="force_open_drawer">
         <button type="submit" class="lalatoto-upsell__add" aria-label="{{ 'lalatoto.cart.upsell_add_named' | t: title: product.title | escape }}">
           <span class="lalatoto-upsell__plus" aria-hidden="true"></span>
-          <span>{{ 'lalatoto.cart.upsell_add' | t }}</span>
+          <span class="sr-only">{{ 'lalatoto.cart.upsell_add' | t }}</span>
         </button>
       {%- endform -%}
     </product-form>
@@ -61,7 +61,7 @@
     ></quick-buy-modal>
     <button type="button" class="lalatoto-upsell__add" aria-controls="{{ modal_id }}" aria-label="{{ 'lalatoto.cart.upsell_choose_named' | t: title: product.title | escape }}">
       <span class="lalatoto-upsell__plus" aria-hidden="true"></span>
-      <span>{{ 'lalatoto.cart.upsell_choose' | t }}</span>
+      <span class="sr-only">{{ 'lalatoto.cart.upsell_choose' | t }}</span>
     </button>
   {%- endif -%}
 </article>
