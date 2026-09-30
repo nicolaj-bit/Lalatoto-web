@@ -17,17 +17,24 @@
   elsif search.performed
     assign items = search.results
   endif
+
+  comment
+    Id'erne på produkterne i kurven. (cart | line_items_for giver ikke noget
+    tilbage, når sektionen hentes alene, så det tjekkes her i stedet.)
+  endcomment
+  assign cart_ids = cart.items | map: 'product_id' | join: ','
+  assign cart_ids = ',' | append: cart_ids | append: ','
 -%}
 
-<div class="lalatoto-upsell__source" data-diag="perf:{{ recommendations.performed? }} count:{{ recommendations.products_count }} search:{{ search.performed }} items:{{ items.size }} intent:{{ recommendations.intent }}">
+<div class="lalatoto-upsell__source">
   {%- for product in items -%}
-    <i data-p="{{ product.id }} {{ product.object_type }} {{ product.available }}"></i>
     {%- if product.object_type == 'product' or recommendations.performed? -%}
-      {%- assign in_cart = cart | line_items_for: product -%}
-      <i data-incart="{{ in_cart.size }}"></i>
-      {%- if product.available and in_cart.size == 0 -%}
-        {%- render 'lalatoto-upsell-card', product: product -%}
-      {%- endif -%}
+      {%- assign id_key = ',' | append: product.id | append: ',' -%}
+      {%- unless cart_ids contains id_key -%}
+        {%- if product.available -%}
+          {%- render 'lalatoto-upsell-card', product: product -%}
+        {%- endif -%}
+      {%- endunless -%}
     {%- endif -%}
   {%- endfor -%}
 </div>
