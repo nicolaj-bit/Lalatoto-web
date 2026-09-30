@@ -33,9 +33,11 @@ Lighthouse SEO på dev: forside 100 (efter alt-tekst), produkt 100, journal 92 (
 | kapok | journal: «Kapok – alt du skal vide» |
 | baby vil ikke sove | journal: «Hvordan får man baby til at sove?» |
 
-## Forslag til meta-tekster (ikke lagt ind endnu)
+## Meta-tekster (lagt ind 30.9.2026)
 
-Titel højst ca. 60 tegn, beskrivelse 120–155 tegn.
+Titel højst ca. 60 tegn, beskrivelse 120–155 tegn. Teksterne gælder også den nuværende live side.
+
+**Faldgrube:** `productUpdate` og `collectionUpdate` med `seo` overskriver både titel og beskrivelse. Send altid begge felter, ellers bliver det udeladte felt tømt.
 
 ### Produkter
 
