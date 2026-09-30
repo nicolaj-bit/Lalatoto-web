@@ -996,8 +996,6 @@ html.lalatoto-scroll-lock body {
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
-  margin-inline: calc(-1 * var(--drawer-body-padding-inline, 0px));
-  padding-inline: var(--drawer-body-padding-inline, 0px);
 }
 
 .lalatoto-upsell__list::-webkit-scrollbar {
