@@ -14,6 +14,7 @@
       "settings": {
         "color_scheme": "scheme-1",
         "allow_transparent_header": true,
+        "image": "shopify://shop_images/125.png",
         "heading_line_1": "Ingen polyester.",
         "heading_line_2": "Ingen kompromis.",
         "text": "<p>Hvis naturen er dit sprog, taler vi det samme.</p>",
@@ -24,7 +25,8 @@
     "billede": {
       "type": "lalatoto-full-image",
       "settings": {
-        "color_scheme": "scheme-1"
+        "color_scheme": "scheme-1",
+        "image": "shopify://shop_images/106_8d9168c0-1147-4951-8d78-a41e14ee42f1.png"
       }
     },
     "shop": {
@@ -36,6 +38,7 @@
             "collection": "alle-produkter",
             "products_count": 4,
             "title": "Shop",
+            "link_url": "",
             "link_text": ""
           }
         }
