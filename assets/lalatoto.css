@@ -1821,13 +1821,14 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   border-block-end-color: rgb(var(--on-sale-text));
 }
 
+/* Samme farver som temaets øvrige knapper (farveskemaets primære knap) */
 .lalatoto-footer__nl-button {
   justify-self: start;
   min-height: 44px;
   padding: 0 1.5rem;
-  border: 1px solid #2a2724;
-  background: #2a2724;
-  color: #efebe4;
+  border: 1px solid rgb(var(--button-background));
+  background: rgb(var(--button-background));
+  color: rgb(var(--button-text-color));
   font-family: var(--text-font-family);
   font-size: var(--lalatoto-label-size);
   letter-spacing: var(--lalatoto-label-spacing);
@@ -1837,8 +1838,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 }
 
 .lalatoto-footer__nl-button:hover {
-  background: transparent;
-  color: #2a2724;
+  border-color: rgb(var(--button-text-color));
 }
 
 .lalatoto-footer__nl-button:focus-visible {
