@@ -4,15 +4,30 @@
   sortering. Fire kolonner på computer og to på telefon.
 
   Overskriften hentes fra kollektionens metafelt lalatoto.heading og ellers fra
-  kollektionens navn. Den korte linje hentes fra lalatoto.intro og ellers fra
-  starten af kollektionens beskrivelse.
+  kollektionens navn. Teksten under hentes fra lalatoto.intro og ellers fra
+  hele kollektionens beskrivelse. Beskrivelsen ryddes for formatering fra Word
+  og andre programmer, så kun afsnittene står tilbage.
 {%- endcomment -%}
 
 {%- liquid
   assign heading = collection.metafields.lalatoto.heading.value | default: collection.title
   assign intro = collection.metafields.lalatoto.intro.value
   if intro == blank and collection.description != blank
-    assign intro = collection.description | strip_html | truncatewords: 24
+    comment
+      Afsnit og linjeskift bliver til et skilletegn, alt andet HTML fjernes,
+      og hvert stykke tekst bliver sit eget afsnit.
+    endcomment
+    assign marker = '¶'
+    assign cleaned = collection.description
+      | replace: '</p>', marker
+      | replace: '</div>', marker
+      | replace: '<br>', marker
+      | replace: '<br/>', marker
+      | replace: '<br />', marker
+      | replace: '<br aria-hidden="true">', marker
+      | strip_html
+      | replace: '&nbsp;', ' '
+    assign intro_parts = cleaned | split: marker
   endif
 -%}
 
@@ -29,7 +44,16 @@
       <h1 class="lalatoto-collection__title">{{ heading | escape }}</h1>
 
       {%- if intro != blank -%}
-        <p class="lalatoto-lead">{{ intro | escape }}</p>
+        <div class="lalatoto-lead"><p>{{ intro | escape }}</p></div>
+      {%- elsif intro_parts.size > 0 -%}
+        <div class="lalatoto-lead">
+          {%- for part in intro_parts -%}
+            {%- assign part = part | strip -%}
+            {%- if part != blank -%}
+              <p>{{ part }}</p>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
       {%- endif -%}
     </header>
 
