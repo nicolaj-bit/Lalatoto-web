@@ -31,16 +31,13 @@
       }
     },
     "shop": {
-      "type": "featured-collections",
+      "type": "lalatoto-featured-collection",
       "blocks": {
         "collection": {
           "type": "collection",
           "settings": {
             "collection": "alle-produkter",
-            "products_count": 4,
-            "title": "Shop",
-            "link_url": "",
-            "link_text": ""
+            "title": ""
           }
         }
       },
@@ -49,17 +46,11 @@
       ],
       "settings": {
         "color_scheme": "scheme-1",
-        "separate_section_with_border": false,
-        "hide_product_information": false,
-        "stack_products": true,
-        "products_per_row_mobile": "2",
-        "products_per_row_desktop": 4,
-        "horizontal_spacing_factor": 1,
-        "vertical_spacing_factor": 1,
-        "header_alignment": "center",
-        "heading_style": "h2",
-        "subheading": "",
-        "hide_collection_title": false
+        "kicker": "",
+        "heading": "Udvalgt til søvnen",
+        "products_count": 4,
+        "hover_image": true,
+        "show_price": false
       }
     },
     "journal": {
