@@ -18,15 +18,9 @@
       og hvert stykke tekst bliver sit eget afsnit.
     endcomment
     assign marker = '¶'
-    assign cleaned = collection.description
-      | replace: '</p>', marker
-      | replace: '</div>', marker
-      | replace: '<br>', marker
-      | replace: '<br/>', marker
-      | replace: '<br />', marker
-      | replace: '<br aria-hidden="true">', marker
-      | strip_html
-      | replace: '&nbsp;', ' '
+    assign cleaned = collection.description | replace: '</p>', marker | replace: '</div>', marker
+    assign cleaned = cleaned | replace: '<br>', marker | replace: '<br/>', marker | replace: '<br />', marker
+    assign cleaned = cleaned | replace: '<br aria-hidden="true">', marker | strip_html | replace: '&nbsp;', ' '
     assign intro_parts = cleaned | split: marker
   endif
 -%}
