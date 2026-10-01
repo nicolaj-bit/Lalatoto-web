@@ -243,6 +243,14 @@ svg.lalatoto-full-image__image {
   margin: 0;
 }
 
+.lalatoto-short-description p {
+  margin: 0;
+}
+
+.lalatoto-short-description p + p {
+  margin-block-start: 0.75rem;
+}
+
 /* Leveringstid: lille og dæmpet */
 .lalatoto-delivery {
   margin: 0;
