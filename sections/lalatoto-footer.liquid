@@ -1,10 +1,10 @@
 {%- comment -%}
   Lalatoto: footer.
 
-  Øverst tilmelding til nyhedsbrevet med fornavn og e-mail og 10 % på første
-  ordre. Derunder to menuer og virksomhedens oplysninger: navn, adresse, CVR,
-  e-mail, telefon og åbningstider. Nederst copyright, sociale medier og
-  betalingsikoner.
+  Fire kolonner: en kompakt tilmelding til nyhedsbrevet (overskrift, en
+  linje og to felter med etiketten foran en tynd streg), to menuer og
+  virksomhedens oplysninger: navn, adresse, CVR, e-mail, telefon og
+  åbningstider. Nederst copyright, sociale medier og betalingsikoner.
 
   Tilmeldingen bruger Shopifys kundeformular. Kunden oprettes med mærkerne
   «nyhedsbrev», «nyhedsbrev-samtykke» og «velkomstrabat». Teksten under
@@ -23,10 +23,6 @@
     Teksterne i tilmeldingen rettes i temaeditoren. Tomme felter bruger
     standardteksten fra sprogfilerne.
   endcomment
-  assign nl_kicker = section.settings.nl_kicker
-  if nl_kicker == blank
-    assign nl_kicker = 'lalatoto.footer.kicker' | t
-  endif
   assign nl_title = section.settings.nl_title
   if nl_title == blank
     assign nl_title = 'lalatoto.footer.title_html' | t
@@ -55,39 +51,37 @@
 
 <footer class="lalatoto-footer color-scheme color-scheme--{{ section.settings.color_scheme.id }}">
   <div class="lalatoto-footer__inner">
-    {%- comment -%} Nyhedsbrev {%- endcomment -%}
-    <div class="lalatoto-footer__signup">
-      <div class="lalatoto-footer__pitch">
-        <p class="lalatoto-kicker">{{ nl_kicker | escape }}</p>
-        <h2 class="lalatoto-footer__title">{{ nl_title }}</h2>
-        <p class="lalatoto-footer__lead">{{ nl_text | escape }}</p>
-      </div>
+    {%- comment -%} Menuer og virksomhedens oplysninger {%- endcomment -%}
+    <div class="lalatoto-footer__columns">
+      {%- comment -%} Nyhedsbrev {%- endcomment -%}
+      <div class="lalatoto-footer__col lalatoto-footer__col--newsletter">
+        <h2 class="lalatoto-footer__nl-title">{{ nl_title }}</h2>
+        <p class="lalatoto-footer__muted">{{ nl_text | escape }}</p>
 
-      {%- form 'customer', id: form_id, class: 'lalatoto-footer__form' -%}
-        {%- liquid
-          assign done = false
-          if form.posted_successfully?
-            assign done = true
-          endif
-        -%}
-        <div class="lalatoto-footer__form-inner{% if done %} is-done{% endif %}" data-lalatoto-posted="{{ done }}" data-form-id="{{ form_id }}">
-          <div class="lalatoto-footer__fields">
-            <input type="hidden" name="contact[tags]" value="nyhedsbrev,nyhedsbrev-samtykke,velkomstrabat">
+        {%- form 'customer', id: form_id, class: 'lalatoto-footer__form' -%}
+          {%- liquid
+            assign done = false
+            if form.posted_successfully?
+              assign done = true
+            endif
+          -%}
+          <div class="lalatoto-footer__form-inner{% if done %} is-done{% endif %}" data-lalatoto-posted="{{ done }}" data-form-id="{{ form_id }}">
+            <div class="lalatoto-footer__fields">
+              <input type="hidden" name="contact[tags]" value="nyhedsbrev,nyhedsbrev-samtykke,velkomstrabat">
 
-            <div class="lalatoto-footer__row">
-              <div class="lalatoto-waitlist__field">
+              <div class="lalatoto-footer__line">
+                <label for="{{ form_id }}-name">{{ 'lalatoto.footer.name_label' | t }}</label>
                 <input
                   type="text"
                   id="{{ form_id }}-name"
                   name="contact[first_name]"
                   autocomplete="given-name"
-                  placeholder=" "
                   required
                 >
-                <label for="{{ form_id }}-name">{{ 'lalatoto.footer.name_label' | t }}</label>
               </div>
 
-              <div class="lalatoto-waitlist__field{% if form.errors %} has-error{% endif %}">
+              <div class="lalatoto-footer__line{% if form.errors %} has-error{% endif %}">
+                <label for="{{ form_id }}-email">{{ 'lalatoto.footer.email_label' | t }}</label>
                 <input
                   type="email"
                   id="{{ form_id }}-email"
@@ -95,52 +89,33 @@
                   autocomplete="email"
                   inputmode="email"
                   spellcheck="false"
-                  placeholder=" "
                   required
                   {% if form.errors %}
                     aria-invalid="true" aria-describedby="{{ form_id }}-error"
                   {% endif %}
                 >
-                <label for="{{ form_id }}-email">{{ 'lalatoto.footer.email_label' | t }}</label>
               </div>
+
+              {%- if form.errors -%}
+                <p class="lalatoto-waitlist__error" id="{{ form_id }}-error">{{ 'lalatoto.footer.error' | t }}</p>
+              {%- endif -%}
+
+              <button type="submit" class="lalatoto-footer__nl-button">{{ nl_button | escape }}</button>
+
+              <p class="lalatoto-footer__fine">
+                {{ nl_consent | escape }}
+                {%- if privacy_url != blank %}
+                  <a href="{{ privacy_url }}">{{ 'lalatoto.footer.privacy_link' | t }}</a>.
+                {%- endif -%}
+              </p>
             </div>
 
-            {%- if form.errors -%}
-              <p class="lalatoto-waitlist__error" id="{{ form_id }}-error">{{ 'lalatoto.footer.error' | t }}</p>
-            {%- endif -%}
-
-            <button type="submit" class="lalatoto-waitlist__submit lalatoto-footer__submit">
-              <span>{{ nl_button | escape }}</span>
-              <span class="lalatoto-waitlist__arrow" aria-hidden="true">→</span>
-            </button>
-
-            <p class="lalatoto-footer__fine">
-              {{ nl_consent | escape }}
-              {%- if privacy_url != blank %}
-                <a href="{{ privacy_url }}">{{ 'lalatoto.footer.privacy_link' | t }}</a>.
-              {%- endif -%}
-            </p>
+            <div class="lalatoto-footer__done" role="status">
+              <p class="lalatoto-footer__done-title">{{ nl_done_title | escape }}</p>
+              <p class="lalatoto-footer__muted">{{ nl_done_text | escape }}</p>
+            </div>
           </div>
-
-          <div class="lalatoto-footer__done" role="status">
-            <svg class="lalatoto-waitlist__check" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
-              <circle cx="24" cy="24" r="23" />
-              <path d="M15 24.5l6 6 12-13" />
-            </svg>
-            <p class="lalatoto-footer__done-title">{{ nl_done_title | escape }}</p>
-            <p class="lalatoto-footer__lead">{{ nl_done_text | escape }}</p>
-          </div>
-        </div>
-      {%- endform -%}
-    </div>
-
-    {%- comment -%} Menuer og virksomhedens oplysninger {%- endcomment -%}
-    <div class="lalatoto-footer__columns">
-      <div class="lalatoto-footer__col lalatoto-footer__col--brand">
-        <p class="lalatoto-footer__brand">{{ shop.name }}</p>
-        {%- if section.settings.about != blank -%}
-          <p class="lalatoto-footer__muted">{{ section.settings.about }}</p>
-        {%- endif -%}
+        {%- endform -%}
       </div>
 
       {%- for menu_key in (1..2) -%}
@@ -244,11 +219,6 @@
       "content": "Nyhedsbrev"
     },
     {
-      "type": "text",
-      "id": "nl_kicker",
-      "label": "Lille etiket"
-    },
-    {
       "type": "inline_richtext",
       "id": "nl_title",
       "label": "Overskrift",
@@ -283,11 +253,6 @@
     {
       "type": "header",
       "content": "Menuer"
-    },
-    {
-      "type": "text",
-      "id": "about",
-      "label": "Kort tekst under navnet"
     },
     {
       "type": "link_list",
