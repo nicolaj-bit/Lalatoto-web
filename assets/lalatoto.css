@@ -58,7 +58,8 @@ h1, h2, h3, h4, h5, h6,
 .lalatoto-cart-link,
 .header-sidebar__linklist-button,
 .localization-selectors,
-.localization-selector {
+.localization-selector,
+.header .localization-toggle {
   font-family: var(--text-font-family);
   font-weight: var(--text-font-weight);
   font-size: var(--lalatoto-label-size);
@@ -68,6 +69,17 @@ h1, h2, h3, h4, h5, h6,
 
 .button {
   font-size: var(--lalatoto-label-size);
+}
+
+/* Sprogvælgeren: kun koden (DA) i menuens farve og en lille pil */
+.header .localization-toggle {
+  column-gap: 0.375rem;
+  color: rgb(var(--text-color));
+  opacity: 1;
+}
+
+.header .localization-toggle > svg {
+  width: 0.5rem;
 }
 
 /* Kurven står som tekst i headeren og må ikke brydes over to linjer */

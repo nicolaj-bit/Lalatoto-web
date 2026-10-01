@@ -5,7 +5,7 @@
 
   #shopify-section-{{ section.id }} {
     --header-grid: "primary-nav logo secondary-nav" / minmax(0, 1fr) auto minmax(0, 1fr);
-    --header-padding-block: 1rem;
+    --header-padding-block: 0.625rem;
     --header-transparent-header-text-color: {{ section.settings.transparent_header_text_color.rgb }};
     --header-separation-border-color: {% if section.settings.show_separation_border %}{{ section.settings.color_scheme.settings.text_color.rgb }} / 0.15{% else %}0 0 0 / 0{% endif %};
 
@@ -15,7 +15,8 @@
 
   @media screen and (min-width: 700px) {
     #shopify-section-{{ section.id }} {
-      --header-padding-block: {% if section.settings.reduce_padding %}1.2rem{% else %}1.6rem{% endif %};
+      {%- comment -%}Lalatoto: smal header (før 1.2/1.6rem){%- endcomment -%}
+      --header-padding-block: {% if section.settings.reduce_padding %}0.625rem{% else %}0.875rem{% endif %};
     }
   }
 

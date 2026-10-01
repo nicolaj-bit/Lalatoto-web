@@ -19,9 +19,9 @@
         "hide_on_scroll": false,
         "show_separation_border": false,
         "reduce_padding": false,
-        "logo": "shopify://shop_images/LALATOTO_LOGOFILER_3_23ca1a07-be52-4941-b3ea-f785b2ccd8b1.png",
-        "logo_max_width": 130,
-        "logo_mobile_max_width": 125,
+        "logo": "shopify://shop_images/lalatoto-logo-2026.png",
+        "logo_max_width": 140,
+        "logo_mobile_max_width": 120,
         "menu": "hovedmenu-dev",
         "sidebar_menu": "",
         "customer_account_menu": "customer-account-main-menu",
@@ -39,7 +39,7 @@
         "show_country_flag": true,
         "show_locale_selector": true,
         "transparent_header_text_color": "#2a2724",
-        "transparent_logo": "shopify://shop_images/LALATOTO_LOGOFILER_3_23ca1a07-be52-4941-b3ea-f785b2ccd8b1.png"
+        "transparent_logo": "shopify://shop_images/lalatoto-logo-2026.png"
       }
     }
   },

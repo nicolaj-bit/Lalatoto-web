@@ -102,7 +102,8 @@
         aria-label="{{ 'general.localization.change_language_accessibility_text' | t | escape }}"
         aria-expanded="false"
       >
-        {{- localization.language.endonym_name | capitalize -}}
+        {%- comment -%}Lalatoto: kun sprogkoden (DA, EN, DE) i menuens skrift{%- endcomment -%}
+        <span class="lalatoto-locale-code">{{- localization.language.iso_code | split: '-' | first | upcase -}}</span>
         {%- render 'icon' with 'chevron-down' -%}
       </button>
 
