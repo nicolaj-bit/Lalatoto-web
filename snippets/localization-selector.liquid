@@ -102,8 +102,10 @@
         aria-label="{{ 'general.localization.change_language_accessibility_text' | t | escape }}"
         aria-expanded="false"
       >
-        {%- comment -%}Lalatoto: kun sprogkoden (DA, EN, DE) i menuens skrift{%- endcomment -%}
-        <span class="lalatoto-locale-code">{{- localization.language.iso_code | split: '-' | first | upcase -}}</span>
+        {%- comment -%}Lalatoto: kun en kort kode (DK, EN, DE) i menuens skrift. Dansk står som DK.{%- endcomment -%}
+        {%- assign locale_code = localization.language.iso_code | split: '-' | first | upcase -%}
+        {%- if locale_code == 'DA' -%}{%- assign locale_code = 'DK' -%}{%- endif -%}
+        <span class="lalatoto-locale-code">{{- locale_code -}}</span>
         {%- render 'icon' with 'chevron-down' -%}
       </button>
 
