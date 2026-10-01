@@ -83,10 +83,14 @@
     >
       <ul class="lalatoto-tiles lalatoto-featured__row unstyled-list" role="list">
         {%- if featured != blank and featured.products_count > 0 -%}
-          {%- for product in featured.products limit: section.settings.products_count -%}
+          {%- assign shown = 0 -%}
+          {%- for product in featured.products limit: 50 -%}
+            {%- if shown >= section.settings.products_count -%}{%- break -%}{%- endif -%}
+            {%- if section.settings.hide_sold_out and product.available == false -%}{%- continue -%}{%- endif -%}
             {%- liquid
+              assign shown = shown | plus: 1
               assign eager = false
-              if forloop.parentloop.first and forloop.index <= 2
+              if forloop.parentloop.first and shown <= 2
                 assign eager = true
               endif
               assign hover = nil
@@ -198,6 +202,12 @@
       "type": "checkbox",
       "id": "hover_image",
       "label": "Vis produktets andet billede, når musen holdes over",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_sold_out",
+      "label": "Skjul udsolgte produkter",
       "default": true
     },
     {
