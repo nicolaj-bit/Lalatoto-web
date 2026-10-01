@@ -53,13 +53,19 @@
 
     {%- if collection.products.size > 0 -%}
       {%- comment -%}
-        Ét kort per farve. Farven er den valgmulighed, der hedder Farve, Color,
-        Colour eller Farbe. Rækkefølgen følger produkterne i kollektionen og
-        derefter varianterne. Hvert kort bruger den første tilgængelige
-        variant i farven; er hele farven udsolgt, dæmpes kortet og bruger den
-        første variant. Produkter uden farve får ét kort.
+        Ét kort per farve eller mønster. Farven er den valgmulighed, der hedder
+        Farve, Color, Colour eller Farbe. Findes ingen af dem, bruges den første
+        valgmulighed, der ikke er en størrelse, et beløb eller en vægt (fx
+        «Dit valg» på sengeslangen). Størrelser og beløb deles aldrig op:
+        gavekortet og hvalen står som ét kort med «Fra»-pris.
+
+        Rækkefølgen følger produkterne i kollektionen og derefter varianterne.
+        Hvert kort bruger den første tilgængelige variant i farven; er hele
+        farven udsolgt, dæmpes kortet og bruger den første variant.
       {%- endcomment -%}
       {%- assign color_names = 'farve,color,colour,farbe' | split: ',' -%}
+      {%- assign never_split = 'størrelse,size,größe,grösse,vælg beløb,beløb,amount,omkreds bryst,vægt,weight' | split: ',' -%}
+      {%- assign digits = '0,1,2,3,4,5,6,7,8,9' | split: ',' -%}
       {%- assign card_index = 0 -%}
 
       <ul class="lalatoto-tiles unstyled-list" role="list">
@@ -74,6 +80,18 @@
                 break
               endif
             endfor
+            if color_index < 0
+              for option in product.options_with_values
+                assign option_name = option.name | downcase | strip
+                assign first_char = option.values.first | strip | slice: 0
+                if never_split contains option_name or digits contains first_char or option.values.size < 2
+                  continue
+                endif
+                assign color_index = option.position | minus: 1
+                assign color_option_name = option.name
+                break
+              endfor
+            endif
           -%}
 
           {%- if color_index < 0 or product.has_only_default_variant -%}
@@ -92,7 +110,7 @@
                 assign sold_out = false
               endif
             -%}
-            {%- render 'lalatoto-tile', product: product, variant: product.selected_or_first_available_variant, sold_out: sold_out, eager: eager, priority: priority -%}
+            {%- render 'lalatoto-tile', product: product, variant: product.selected_or_first_available_variant, sold_out: sold_out, eager: eager, priority: priority, show_price: section.settings.show_price -%}
           {%- else -%}
             {%- assign seen = '|' -%}
             {%- for variant in product.variants -%}
@@ -140,7 +158,16 @@
                     assign priority = true
                   endif
                 -%}
-                {%- render 'lalatoto-tile', product: product, variant: chosen, media: media, sold_out: sold_out, eager: eager, priority: priority -%}
+                {%- render 'lalatoto-tile',
+                  product: product,
+                  variant: chosen,
+                  media: media,
+                  variant_label: color,
+                  sold_out: sold_out,
+                  eager: eager,
+                  priority: priority,
+                  show_price: section.settings.show_price
+                -%}
               {%- endunless -%}
             {%- endfor -%}
           {%- endif -%}
@@ -187,6 +214,13 @@
       "max": 48,
       "step": 4,
       "default": 24
+    },
+    {
+      "type": "checkbox",
+      "id": "show_price",
+      "label": "Vis pris",
+      "info": "Produkter med flere farver vises som ét kort pr. farve med farvens pris. Produkter med størrelser eller beløb vises som ét kort med «Fra»-pris.",
+      "default": true
     }
   ]
 }
