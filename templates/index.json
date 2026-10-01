@@ -15,6 +15,7 @@
         "color_scheme": "scheme-1",
         "allow_transparent_header": true,
         "image": "shopify://shop_images/125.png",
+        "image_alt": "",
         "heading_line_1": "Ingen polyester.",
         "heading_line_2": "Ingen kompromis.",
         "text": "<p>Hvis naturen er dit sprog, taler vi det samme.</p>",
@@ -26,7 +27,6 @@
       "type": "lalatoto-full-image",
       "settings": {
         "color_scheme": "scheme-1",
-        "image": "shopify://shop_images/106_8d9168c0-1147-4951-8d78-a41e14ee42f1.png",
         "image_alt": "Luksus sengeslange og babysengetøj i ternet gul bomuld i en tremmeseng"
       }
     },
@@ -62,6 +62,16 @@
         "hide_collection_title": false
       }
     },
+    "journal": {
+      "type": "lalatoto-journal-teaser",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "blog": "bloggen",
+        "heading": "",
+        "count": 3,
+        "show_excerpt": false
+      }
+    },
     "app": {
       "type": "lalatoto-app",
       "settings": {
@@ -72,16 +82,6 @@
         "text": "Vi laver også en app til gravide og nybagte mødre. Søvnlog, milepæle og et fællesskab, der er vågent, når du er.",
         "app_store_url": "https://apps.apple.com/dk/app/id6764388095",
         "google_play_url": "https://play.google.com/store/apps/details?id=com.base699f47a86e7e0a874d1159ed.app"
-      }
-    },
-    "journal": {
-      "type": "lalatoto-journal-teaser",
-      "settings": {
-        "color_scheme": "scheme-1",
-        "blog": "bloggen",
-        "heading": "",
-        "count": 3,
-        "show_excerpt": false
       }
     }
   },
