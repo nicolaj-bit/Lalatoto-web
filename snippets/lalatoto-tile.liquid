@@ -86,8 +86,10 @@
           {%- else -%}
             {%- if card_variant.compare_at_price > card_variant.price -%}
               <s class="lalatoto-tile__compare">{{ card_variant.compare_at_price | money }}</s>
+              <span class="lalatoto-tile__sale">{{ card_variant.price | money }}</span>
+            {%- else -%}
+              {{ card_variant.price | money }}
             {%- endif -%}
-            {{ card_variant.price | money }}
           {%- endif -%}
         </span>
       {%- endif -%}

@@ -2987,6 +2987,11 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   color: #6e675e;
 }
 
+/* Tilbudsprisen i temaets tilbudsfarve (Temaindstillinger → Farver) */
+.lalatoto-tile__sale {
+  color: rgb(var(--on-sale-text));
+}
+
 .lalatoto-tile.is-sold-out .lalatoto-tile__price,
 .lalatoto-tile.is-sold-out .lalatoto-tile__variant {
   color: #6e675e;
