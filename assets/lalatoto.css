@@ -1950,6 +1950,108 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   gap: 0.5rem;
 }
 
+/* Menuer og kontakt som sammenfoldelige rækker (åbne på computer) */
+.lalatoto-footer__group > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  list-style: none;
+  cursor: pointer;
+}
+
+.lalatoto-footer__group > summary::-webkit-details-marker {
+  display: none;
+}
+
+.lalatoto-footer__plus {
+  position: relative;
+  width: 11px;
+  height: 11px;
+}
+
+.lalatoto-footer__plus::before,
+.lalatoto-footer__plus::after {
+  content: '';
+  position: absolute;
+  inset: 5px 0 auto;
+  height: 1px;
+  background: currentColor;
+  transition: transform 0.25s ease;
+}
+
+.lalatoto-footer__plus::after {
+  transform: rotate(90deg);
+}
+
+.lalatoto-footer__group[open] .lalatoto-footer__plus::after {
+  transform: rotate(0deg);
+}
+
+@media screen and (max-width: 999px) {
+  .lalatoto-footer__columns {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+    padding-block: 3rem 1rem;
+  }
+
+  .lalatoto-footer__col--newsletter {
+    max-width: none;
+    padding-block-end: 2.5rem;
+  }
+
+  .lalatoto-footer__nl-button {
+    justify-self: stretch;
+  }
+
+  .lalatoto-footer__group {
+    border-block-start: 1px solid #d7d0c4;
+  }
+
+  .lalatoto-footer__group:last-child {
+    border-block-end: 1px solid #d7d0c4;
+  }
+
+  .lalatoto-footer__group > summary {
+    min-height: 3.5rem;
+    margin: 0;
+  }
+
+  .lalatoto-footer__group > nav,
+  .lalatoto-footer__group > .lalatoto-footer__group-body {
+    padding-block-end: 1.5rem;
+  }
+
+  .lalatoto-footer__bottom {
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.25rem;
+    padding-block: 2rem 2.5rem;
+    border-block-start: 0;
+    text-align: center;
+  }
+
+  .lalatoto-footer .payment-methods {
+    justify-content: center;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .lalatoto-footer__group > summary {
+    cursor: default;
+  }
+
+  .lalatoto-footer__plus {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lalatoto-footer__plus::before,
+  .lalatoto-footer__plus::after {
+    transition: none;
+  }
+}
+
 @media screen and (min-width: 1000px) {
   .lalatoto-footer__columns {
     grid-template-columns: 1.5fr repeat(3, minmax(0, 1fr));

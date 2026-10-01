@@ -126,42 +126,52 @@
           endif
         -%}
         {%- if menu != blank and menu.links.size > 0 -%}
-          <nav class="lalatoto-footer__col" aria-label="{{ menu.title | escape }}">
-            <p class="lalatoto-footer__heading">{{ menu.title }}</p>
-            <ul class="lalatoto-footer__list unstyled-list" role="list">
-              {%- for link in menu.links -%}
-                <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-              {%- endfor -%}
-            </ul>
-          </nav>
+          <details class="lalatoto-footer__col lalatoto-footer__group" data-lalatoto-footer-group open>
+            <summary class="lalatoto-footer__heading">
+              {{- menu.title -}}
+              <span class="lalatoto-footer__plus" aria-hidden="true"></span>
+            </summary>
+            <nav aria-label="{{ menu.title | escape }}">
+              <ul class="lalatoto-footer__list unstyled-list" role="list">
+                {%- for link in menu.links -%}
+                  <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                {%- endfor -%}
+              </ul>
+            </nav>
+          </details>
         {%- endif -%}
       {%- endfor -%}
 
-      <div class="lalatoto-footer__col">
-        <p class="lalatoto-footer__heading">{{ 'lalatoto.footer.contact_heading' | t }}</p>
-        <address class="lalatoto-footer__address">
-          {%- if section.settings.company != blank -%}
-            <span>{{ section.settings.company }}</span>
-          {%- endif -%}
-          {%- if section.settings.address != blank -%}
-            <span class="lalatoto-footer__muted">{{ section.settings.address | newline_to_br }}</span>
-          {%- endif -%}
-          {%- if section.settings.cvr != blank -%}
-            <span class="lalatoto-footer__muted">{{ 'lalatoto.footer.cvr' | t }} {{ section.settings.cvr }}</span>
-          {%- endif -%}
-          {%- if section.settings.email != blank -%}
-            <a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a>
-          {%- endif -%}
-          {%- if section.settings.phone != blank -%}
-            <a href="tel:{{ phone_link }}">{{ section.settings.phone }}</a>
-          {%- endif -%}
-        </address>
+      <details class="lalatoto-footer__col lalatoto-footer__group" data-lalatoto-footer-group open>
+        <summary class="lalatoto-footer__heading">
+          {{- 'lalatoto.footer.contact_heading' | t -}}
+          <span class="lalatoto-footer__plus" aria-hidden="true"></span>
+        </summary>
+        <div class="lalatoto-footer__group-body">
+          <address class="lalatoto-footer__address">
+            {%- if section.settings.company != blank -%}
+              <span>{{ section.settings.company }}</span>
+            {%- endif -%}
+            {%- if section.settings.address != blank -%}
+              <span class="lalatoto-footer__muted">{{ section.settings.address | newline_to_br }}</span>
+            {%- endif -%}
+            {%- if section.settings.cvr != blank -%}
+              <span class="lalatoto-footer__muted">{{ 'lalatoto.footer.cvr' | t }} {{ section.settings.cvr }}</span>
+            {%- endif -%}
+            {%- if section.settings.email != blank -%}
+              <a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a>
+            {%- endif -%}
+            {%- if section.settings.phone != blank -%}
+              <a href="tel:{{ phone_link }}">{{ section.settings.phone }}</a>
+            {%- endif -%}
+          </address>
 
-        {%- if section.settings.hours != blank -%}
-          <p class="lalatoto-footer__heading lalatoto-footer__heading--sub">{{ 'lalatoto.footer.hours_heading' | t }}</p>
-          <p class="lalatoto-footer__muted">{{ section.settings.hours | newline_to_br }}</p>
-        {%- endif -%}
-      </div>
+          {%- if section.settings.hours != blank -%}
+            <p class="lalatoto-footer__heading lalatoto-footer__heading--sub">{{ 'lalatoto.footer.hours_heading' | t }}</p>
+            <p class="lalatoto-footer__muted">{{ section.settings.hours | newline_to_br }}</p>
+          {%- endif -%}
+        </div>
+      </details>
     </div>
 
     {%- comment -%} Bundlinje {%- endcomment -%}
@@ -185,11 +195,27 @@
 
 <script>
   /*
-   * Shopify markerer alle kundeformularer på siden som sendt, når én af dem er
+   * Desuden: Shopify markerer alle kundeformularer på siden som sendt, når én af dem er
    * sendt, fx ventelisten. Efter afsendelse ender adressen på formularens id,
    * så takken vises kun i den formular, der faktisk blev sendt.
    */
   (function () {
+    /* Menuer og kontakt: foldet sammen på telefon, altid åbne på computer */
+    var wide = window.matchMedia('(min-width: 1000px)');
+    var groups = document.querySelectorAll('[data-lalatoto-footer-group]');
+    function sync() {
+      groups.forEach(function (group) {
+        group.open = wide.matches;
+      });
+    }
+    sync();
+    wide.addEventListener('change', sync);
+    groups.forEach(function (group) {
+      group.querySelector('summary').addEventListener('click', function (event) {
+        if (wide.matches) event.preventDefault();
+      });
+    });
+
     document.querySelectorAll('[data-lalatoto-posted="true"]').forEach(function (element) {
       if (window.location.hash !== '#' + element.getAttribute('data-form-id')) {
         element.classList.remove('is-done');
