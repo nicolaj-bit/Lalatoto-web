@@ -50,6 +50,7 @@
         "heading": "Udvalgt til søvnen",
         "products_count": 4,
         "hover_image": true,
+        "hide_sold_out": true,
         "show_price": false
       }
     },
