@@ -2998,6 +2998,28 @@ if (!window.customElements.get("buy-buttons")) {
 
 // js/common/product/product-gallery.js
 import { PhotoSwipeLightbox } from "vendor";
+/**
+ * Lalatoto: læg et billede først i produktgalleriet på computer (gitter uden
+ * karrusel). De øvrige billeder står i deres oprindelige rækkefølge, så det
+ * forrige variantbillede vender tilbage til sin plads.
+ */
+function lalatotoPromoteMedia(gallery, mediaId) {
+  const carousel = gallery.carousel, media = carousel?.querySelector(`[data-media-id="${mediaId}"]`);
+  if (!media) {
+    return;
+  }
+  const cells = Array.from(carousel.querySelectorAll(":scope > .product-gallery__media"));
+  cells.forEach((cell, index) => {
+    if (!cell.hasAttribute("data-lalatoto-order")) {
+      cell.setAttribute("data-lalatoto-order", index);
+    }
+  });
+  if (cells[0] === media) {
+    return;
+  }
+  cells.sort((a, b) => a.getAttribute("data-lalatoto-order") - b.getAttribute("data-lalatoto-order")).filter((cell) => cell !== media).forEach((cell) => carousel.insertBefore(cell, null));
+  carousel.insertBefore(media, carousel.querySelector(":scope > .product-gallery__media"));
+}
 var _abortController9, _photoSwipeInstance, _onGestureChangedListener, _settledMedia, _ProductGallery_instances, registerLightboxUi_fn, onSectionRerender_fn, onVariantChange_fn, onMediaChange_fn, onMediaSettle_fn, onCarouselClick_fn, onGestureStart_fn, onGestureChanged_fn;
 var ProductGallery = class extends HTMLElement {
   /* Keep track of the currently settled media */
@@ -3025,6 +3047,11 @@ var ProductGallery = class extends HTMLElement {
       this.carousel.addEventListener("gesturestart", __privateMethod(this, _ProductGallery_instances, onGestureStart_fn).bind(this), { capture: false, signal: __privateGet(this, _abortController9).signal });
     }
     __privateMethod(this, _ProductGallery_instances, onMediaChange_fn).call(this);
+    /* Lalatoto: kommer man ind på en bestemt farve, står dens billede først */
+    const initialMedia = this.querySelector(".product-gallery__media.is-initial");
+    if (initialMedia && !this.carousel.isScrollable) {
+      lalatotoPromoteMedia(this, initialMedia.getAttribute("data-media-id"));
+    }
   }
   disconnectedCallback() {
     __privateGet(this, _abortController9).abort();
@@ -3168,7 +3195,9 @@ onVariantChange_fn = function(event) {
     if (this.carousel.isScrollable) {
       this.carousel.select(position - filteredIndexBelowPosition.length, { instant: true });
     } else {
-      this.querySelector(`[data-media-id="${event.detail.variant["featured_media"]["id"]}"]`)?.scrollIntoView({ block: "start", behavior: "smooth" });
+      /* Lalatoto: på computer flyttes variantens billede op som det første i
+         stedet for at rulle ned til det, så siden bliver stående */
+      lalatotoPromoteMedia(this, event.detail.variant["featured_media"]["id"]);
     }
   }
 };
