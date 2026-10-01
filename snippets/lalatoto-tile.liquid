@@ -78,7 +78,9 @@
           endif
         -%}
         <span class="lalatoto-tile__price">
-          {%- if show_from -%}
+          {%- if sold_out -%}
+            {{- 'lalatoto.collection.sold_out' | t -}}
+          {%- elsif show_from -%}
             {%- assign price_min = product.price_min | money -%}
             {{- 'product.price.from_price_html' | t: price_min: price_min -}}
           {%- else -%}
@@ -90,7 +92,7 @@
         </span>
       {%- endif -%}
     </span>
-    {%- if sold_out -%}
+    {%- if sold_out and show_price != true -%}
       <span class="sr-only">{{ 'lalatoto.collection.sold_out' | t }}</span>
     {%- endif -%}
   </a>

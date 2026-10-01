@@ -61,14 +61,20 @@
 
         Rækkefølgen følger produkterne i kollektionen og derefter varianterne.
         Hvert kort bruger den første tilgængelige variant i farven; er hele
-        farven udsolgt, dæmpes kortet og bruger den første variant.
+        farven udsolgt, dæmpes kortet, viser «Udsolgt» og står sidst.
       {%- endcomment -%}
       {%- assign color_names = 'farve,color,colour,farbe' | split: ',' -%}
       {%- assign never_split = 'størrelse,size,größe,grösse,vælg beløb,beløb,amount,omkreds bryst,vægt,weight' | split: ',' -%}
       {%- assign digits = '0,1,2,3,4,5,6,7,8,9' | split: ',' -%}
       {%- assign card_index = 0 -%}
 
-      <ul class="lalatoto-tiles unstyled-list" role="list">
+      {%- comment -%}
+        Kortene samles først og skrives derefter ud med de udsolgte sidst, så
+        siden ikke starter med noget, man ikke kan købe. Det gælder inden for
+        den enkelte side.
+      {%- endcomment -%}
+      {%- assign available_cards = '' -%}
+      {%- assign sold_out_cards = '' -%}
         {%- for product in collection.products -%}
           {%- liquid
             assign color_index = -1
@@ -110,7 +116,14 @@
                 assign sold_out = false
               endif
             -%}
-            {%- render 'lalatoto-tile', product: product, variant: product.selected_or_first_available_variant, sold_out: sold_out, eager: eager, priority: priority, show_price: section.settings.show_price -%}
+            {%- capture card -%}
+              {%- render 'lalatoto-tile', product: product, variant: product.selected_or_first_available_variant, sold_out: sold_out, eager: eager, priority: priority, show_price: section.settings.show_price -%}
+            {%- endcapture -%}
+            {%- if sold_out -%}
+              {%- assign sold_out_cards = sold_out_cards | append: card -%}
+            {%- else -%}
+              {%- assign available_cards = available_cards | append: card -%}
+            {%- endif -%}
           {%- else -%}
             {%- assign seen = '|' -%}
             {%- for variant in product.variants -%}
@@ -158,20 +171,31 @@
                     assign priority = true
                   endif
                 -%}
-                {%- render 'lalatoto-tile',
-                  product: product,
-                  variant: chosen,
-                  media: media,
-                  variant_label: color,
-                  sold_out: sold_out,
-                  eager: eager,
-                  priority: priority,
-                  show_price: section.settings.show_price
-                -%}
+                {%- capture card -%}
+                  {%- render 'lalatoto-tile',
+                    product: product,
+                    variant: chosen,
+                    media: media,
+                    variant_label: color,
+                    sold_out: sold_out,
+                    eager: eager,
+                    priority: priority,
+                    show_price: section.settings.show_price
+                  -%}
+                {%- endcapture -%}
+                {%- if sold_out -%}
+                  {%- assign sold_out_cards = sold_out_cards | append: card -%}
+                {%- else -%}
+                  {%- assign available_cards = available_cards | append: card -%}
+                {%- endif -%}
               {%- endunless -%}
             {%- endfor -%}
           {%- endif -%}
         {%- endfor -%}
+
+      <ul class="lalatoto-tiles unstyled-list" role="list">
+        {{- available_cards -}}
+        {{- sold_out_cards -}}
       </ul>
 
       {%- render 'pagination', paginate: paginate -%}
