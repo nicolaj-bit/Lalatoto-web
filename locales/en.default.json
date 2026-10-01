@@ -533,6 +533,11 @@
       "fits": "Fits",
       "weight_help": "Help choosing the right weight"
     },
+    "featured": {
+      "kicker": "Shop",
+      "view_all": "View the collection",
+      "tabs": "Collections"
+    },
     "collection": {
       "kicker": "Collection",
       "empty": "There are no products here yet.",

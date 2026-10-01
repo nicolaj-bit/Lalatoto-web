@@ -533,6 +533,11 @@
       "fits": "Passt zu",
       "weight_help": "Hilfe bei der Wahl des richtigen Gewichts"
     },
+    "featured": {
+      "kicker": "Shop",
+      "view_all": "Zur Kollektion",
+      "tabs": "Kollektionen"
+    },
     "collection": {
       "kicker": "Kollektion",
       "empty": "Hier gibt es noch keine Produkte.",

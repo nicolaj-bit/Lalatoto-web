@@ -1,0 +1,245 @@
+{%- comment -%}
+  Lalatoto: udvalgte produkter på forsiden.
+
+  Øverst en lille etiket og en overskrift i Playfair til venstre og et link
+  til hele kollektionen til højre, som «Fra journalen». Har sektionen flere
+  kollektioner, står deres navne som faner under overskriften.
+
+  Produkterne vises som på kollektionssiden: billede i 4:5 og navnet med
+  små bogstaver. På computer toner produktets andet billede frem, når musen
+  holdes over kortet. Fire kolonner på computer; på telefon ligger kortene
+  på en vandret række, man kan swipe, med et kig ind til det næste.
+{%- endcomment -%}
+
+{%- liquid
+  assign collection_blocks = section.blocks | where: 'type', 'collection'
+  assign kicker = section.settings.kicker
+  if kicker == blank
+    assign kicker = 'lalatoto.featured.kicker' | t
+  endif
+-%}
+
+<div class="lalatoto-featured color-scheme color-scheme--{{ section.settings.color_scheme.id }}">
+  <header class="lalatoto-featured__head">
+    <div>
+      <p class="lalatoto-kicker">{{ kicker | escape }}</p>
+      {%- if section.settings.heading != blank -%}
+        <h2 class="lalatoto-featured__title">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+    </div>
+
+    {%- for block in collection_blocks -%}
+      {%- assign link_collection = block.settings.collection -%}
+      {%- if link_collection != blank -%}
+        <a
+          href="{{ link_collection.url }}"
+          class="lalatoto-featured__all"
+          data-lalatoto-featured-link="{{ block.id }}"
+          {% unless forloop.first %}
+            hidden
+          {% endunless %}
+        >
+          {{- 'lalatoto.featured.view_all' | t }} <span aria-hidden="true">→</span>
+        </a>
+      {%- endif -%}
+    {%- endfor -%}
+  </header>
+
+  {%- if collection_blocks.size > 1 -%}
+    <div class="lalatoto-featured__tabs" role="tablist" aria-label="{{ 'lalatoto.featured.tabs' | t | escape }}">
+      {%- for block in collection_blocks -%}
+        {%- assign tab_collection = block.settings.collection -%}
+        <button
+          type="button"
+          role="tab"
+          id="lalatoto-tab-{{ block.id }}"
+          aria-controls="lalatoto-panel-{{ block.id }}"
+          aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+          {% unless forloop.first %}
+            tabindex="-1"
+          {% endunless %}
+          {{ block.shopify_attributes }}
+        >
+          {{- block.settings.title | default: tab_collection.title | escape -}}
+        </button>
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+
+  {%- for block in collection_blocks -%}
+    {%- assign featured = block.settings.collection -%}
+    <div
+      class="lalatoto-featured__panel"
+      id="lalatoto-panel-{{ block.id }}"
+      {% if collection_blocks.size > 1 %}
+        role="tabpanel"
+        aria-labelledby="lalatoto-tab-{{ block.id }}"
+      {% else %}
+        {{ block.shopify_attributes }}
+      {% endif %}
+      {% unless forloop.first %}
+        hidden
+      {% endunless %}
+    >
+      <ul class="lalatoto-tiles lalatoto-featured__row unstyled-list" role="list">
+        {%- if featured != blank and featured.products_count > 0 -%}
+          {%- for product in featured.products limit: section.settings.products_count -%}
+            {%- liquid
+              assign eager = false
+              if forloop.parentloop.first and forloop.index <= 2
+                assign eager = true
+              endif
+              assign hover = nil
+              if section.settings.hover_image and product.media.size > 1
+                assign hover = product.media[1]
+                if hover.media_type != 'image'
+                  assign hover = nil
+                endif
+              endif
+              assign sold_out = true
+              if product.available
+                assign sold_out = false
+              endif
+            -%}
+            {%- render 'lalatoto-tile',
+              product: product,
+              variant: product.selected_or_first_available_variant,
+              sold_out: sold_out,
+              eager: eager,
+              hover_media: hover,
+              show_price: section.settings.show_price
+            -%}
+          {%- endfor -%}
+        {%- else -%}
+          {%- for i in (1..4) -%}
+            <li class="lalatoto-tile">
+              <div class="lalatoto-tile__link">
+                <div class="lalatoto-tile__media">{{ 'product-1' | placeholder_svg_tag }}</div>
+                <span class="lalatoto-tile__name">{{ 'lalatoto.collection.empty' | t }}</span>
+              </div>
+            </li>
+          {%- endfor -%}
+        {%- endif -%}
+      </ul>
+    </div>
+  {%- endfor -%}
+</div>
+
+{%- if collection_blocks.size > 1 -%}
+  <script>
+    (function () {
+      var root = document.currentScript.previousElementSibling;
+      var tabs = Array.prototype.slice.call(root.querySelectorAll('[role="tab"]'));
+      function select(tab, focus) {
+        tabs.forEach(function (other) {
+          var on = other === tab;
+          var id = other.id.replace('lalatoto-tab-', '');
+          other.setAttribute('aria-selected', on ? 'true' : 'false');
+          other.tabIndex = on ? 0 : -1;
+          root.querySelector('#lalatoto-panel-' + id).hidden = !on;
+          var link = root.querySelector('[data-lalatoto-featured-link="' + id + '"]');
+          if (link) link.hidden = !on;
+        });
+        if (focus) tab.focus();
+      }
+      tabs.forEach(function (tab, i) {
+        tab.addEventListener('click', function () { select(tab); });
+        tab.addEventListener('keydown', function (event) {
+          var next = { ArrowRight: i + 1, ArrowLeft: i - 1, Home: 0, End: tabs.length - 1 }[event.key];
+          if (next === undefined) return;
+          event.preventDefault();
+          select(tabs[(next + tabs.length) % tabs.length], true);
+        });
+      });
+      /* Temaeditoren: vælg fanen, når blokken markeres */
+      document.addEventListener('shopify:block:select', function (event) {
+        var tab = root.querySelector('#lalatoto-tab-' + event.detail.blockId);
+        if (tab) select(tab);
+      });
+    })();
+  </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Lalatoto udvalgte",
+  "class": "shopify-section--lalatoto-featured",
+  "tag": "section",
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Farveskema",
+      "default": "scheme-1"
+    },
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Lille etiket over overskriften",
+      "info": "Tom: «Shop»."
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Overskrift",
+      "default": "Udvalgt til søvnen"
+    },
+    {
+      "type": "range",
+      "id": "products_count",
+      "label": "Antal produkter",
+      "min": 4,
+      "max": 12,
+      "step": 4,
+      "default": 4
+    },
+    {
+      "type": "checkbox",
+      "id": "hover_image",
+      "label": "Vis produktets andet billede, når musen holdes over",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_price",
+      "label": "Vis pris",
+      "info": "Kollektionssiden viser ikke pris. Slå til, hvis forsiden skal.",
+      "default": false
+    },
+    {
+      "type": "paragraph",
+      "content": "Tilføj op til fire kollektioner. Med flere end én vises navnene som faner. Produktbilleder: 1600 × 2000 px (4:5), JPG, under ca. 300 KB."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Kollektion",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Kollektion"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Navn på fanen",
+          "info": "Tom: kollektionens navn. Vises kun, når der er flere kollektioner."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Lalatoto udvalgte",
+      "blocks": [
+        {
+          "type": "collection"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

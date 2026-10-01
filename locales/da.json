@@ -537,6 +537,11 @@
       "fits": "Passer til",
       "weight_help": "Hjælp til at vælge den rigtige vægt"
     },
+    "featured": {
+      "kicker": "Shop",
+      "view_all": "Se hele kollektionen",
+      "tabs": "Kollektioner"
+    },
     "collection": {
       "kicker": "Kollektion",
       "empty": "Der er ingen produkter her endnu.",

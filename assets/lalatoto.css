@@ -2845,3 +2845,165 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
     transition: none;
   }
 }
+
+/* ===============================================================
+ * FORSIDEN: udvalgte produkter
+ * Overskrift som «Fra journalen», kollektioner som faner og kortene fra
+ * kollektionssiden. På computer toner det andet billede frem ved hover;
+ * på telefon swipes kortene vandret med et kig ind til det næste.
+ * =============================================================== */
+.lalatoto-featured {
+  max-width: var(--lalatoto-max-width);
+  margin-inline: auto;
+  padding: var(--section-vertical-spacing, 4.5rem) var(--container-gutter);
+  color: #2a2724;
+}
+
+.lalatoto-featured__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+  margin-block-end: clamp(1.75rem, 3vw, 2.5rem);
+}
+
+.lalatoto-featured__head > div {
+  display: grid;
+  gap: 0.625rem;
+}
+
+.lalatoto-featured__title {
+  margin: 0;
+  font-family: var(--heading-font-family);
+  font-weight: 400;
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  line-height: 1.1;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+.lalatoto-featured__title em {
+  font-style: italic;
+}
+
+.lalatoto-featured__all {
+  padding-block-end: 0.25rem;
+  border-block-end: 1px solid #2a2724;
+  color: #2a2724;
+  font-size: var(--lalatoto-label-size);
+  letter-spacing: var(--lalatoto-label-spacing);
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.lalatoto-featured__all[hidden] {
+  display: none;
+}
+
+.lalatoto-featured__tabs {
+  display: flex;
+  gap: 2rem;
+  margin-block-end: clamp(1.75rem, 3vw, 2.5rem);
+  border-block-end: 1px solid #d7d0c4;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.lalatoto-featured__tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.lalatoto-featured__tabs [role='tab'] {
+  flex: none;
+  min-height: 44px;
+  margin-block-end: -1px;
+  padding: 0;
+  border: 0;
+  border-block-end: 1px solid transparent;
+  background: none;
+  color: #6e675e;
+  font: inherit;
+  font-size: var(--lalatoto-label-size);
+  letter-spacing: var(--lalatoto-label-spacing);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.lalatoto-featured__tabs [role='tab']:hover,
+.lalatoto-featured__tabs [role='tab'][aria-selected='true'] {
+  color: #2a2724;
+}
+
+.lalatoto-featured__tabs [role='tab'][aria-selected='true'] {
+  border-block-end-color: #2a2724;
+}
+
+.lalatoto-featured__tabs [role='tab']:focus-visible {
+  outline: 1px solid #2a2724;
+  outline-offset: 4px;
+}
+
+/* Kortet: andet billede toner frem, og prisen står dæmpet under navnet */
+.lalatoto-tile__media {
+  position: relative;
+}
+
+.lalatoto-tile__media .lalatoto-tile__hover {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+@media (hover: hover) {
+  .lalatoto-tile__link:hover .lalatoto-tile__hover {
+    opacity: 1;
+  }
+}
+
+.lalatoto-tile__price {
+  margin-block-start: -0.375rem;
+  color: #6e675e;
+  font-size: 0.8125rem;
+  text-align: center;
+}
+
+/* Telefon og tablet: vandret række med kig ind til næste kort */
+@media screen and (max-width: 999px) {
+  .lalatoto-featured__row {
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: 68%;
+    gap: 0.875rem;
+    margin-inline: calc(-1 * var(--container-gutter));
+    padding-inline: var(--container-gutter);
+    scroll-padding-inline: var(--container-gutter);
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .lalatoto-featured__row::-webkit-scrollbar {
+    display: none;
+  }
+
+  .lalatoto-featured__row > li {
+    scroll-snap-align: start;
+  }
+}
+
+@media screen and (min-width: 700px) and (max-width: 999px) {
+  .lalatoto-featured__row {
+    grid-auto-columns: 40%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lalatoto-tile__media .lalatoto-tile__hover,
+  .lalatoto-featured__tabs [role='tab'] {
+    transition: none;
+  }
+}

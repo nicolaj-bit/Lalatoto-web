@@ -8,6 +8,8 @@
   @param {boolean} [sold_out] - true dæmper kortet
   @param {boolean} [eager] - true indlæser billedet med det samme (de første kort)
   @param {boolean} [priority] - true beder browseren hente billedet først (første kort)
+  @param {object} [hover_media] - billede, der toner frem, når musen holdes over kortet
+  @param {boolean} [show_price] - true viser prisen under navnet
 {%- enddoc -%}
 
 {%- liquid
@@ -37,11 +39,33 @@
             widths: '300,400,500,600,800,1000,1200',
             alt: product.title
         -}}
+        {%- if hover_media != blank and hover_media.id != image.id -%}
+          {{-
+            hover_media
+            | image_url: width: 1200
+            | image_tag:
+              loading: 'lazy',
+              sizes: '(max-width: 999px) 50vw, (max-width: 1400px) 25vw, 350px',
+              widths: '300,400,500,600,800,1000,1200',
+              alt: '',
+              class: 'lalatoto-tile__hover'
+          -}}
+        {%- endif -%}
       {%- else -%}
         {{- 'product-1' | placeholder_svg_tag -}}
       {%- endif -%}
     </div>
     <span class="lalatoto-tile__name">{{ product.title }}</span>
+    {%- if show_price -%}
+      <span class="lalatoto-tile__price">
+        {%- if product.price_varies -%}
+          {%- assign price_min = product.price_min | money -%}
+          {{- 'product.price.from_price_html' | t: price_min: price_min -}}
+        {%- else -%}
+          {{- variant.price | default: product.price | money -}}
+        {%- endif -%}
+      </span>
+    {%- endif -%}
     {%- if sold_out -%}
       <span class="sr-only">{{ 'lalatoto.collection.sold_out' | t }}</span>
     {%- endif -%}
