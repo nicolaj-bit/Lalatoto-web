@@ -70,6 +70,12 @@ For at gøre fremtidige Prestige-opdateringer lette er ændringerne samlet få s
 
 ## Hvor rettes hvad
 
+**FAQ under produkterne** (Indhold → Metaobjekter → FAQ (produkter)): ét
+spørgsmål pr. post. Vælg produkter, skriv produkttyper (præcis som på
+produktet, fx «Luksus sengeslange») eller slå «Vis på alle produkter» til.
+Spørgsmål om produktet står først, de generelle sidst. Engelsk og tysk
+oversættes automatisk om natten.
+
 **Temaeditoren** (Onlinebutik → Temaer → Tilpas):
 
 - Forsiden: hero, billede i fuld bredde, Shop-rækken og Club No Sleep.
