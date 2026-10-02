@@ -10,17 +10,41 @@
 {
   "sections": {
     "main": {
-      "type": "main-page",
-      "disabled": true,
-      "settings": {}
-    },
-    "contact-form": {
-      "type": "contact",
-      "settings": {}
+      "type": "lalatoto-contact",
+      "blocks": {
+        "sara": {
+          "type": "person",
+          "settings": {
+            "image": "shopify://shop_images/Portraet_Sara_cirkel.png",
+            "name": "Sara"
+          }
+        },
+        "nicolaj": {
+          "type": "person",
+          "settings": {
+            "image": "shopify://shop_images/IMG_8614_1_-modified.png",
+            "name": "Nicolaj"
+          }
+        }
+      },
+      "block_order": [
+        "sara",
+        "nicolaj"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "kicker": "Kontakt",
+        "heading": "Det er bare os, du får i røret",
+        "text": "",
+        "phone": "+45 72 15 66 86",
+        "email": "kundeservice@lalatoto.dk",
+        "hours": "Mandag–torsdag kl. 9–15\nFredag kl. 9–14\nHelligdage undtaget",
+        "reply_note": "Alle henvendelser besvares inden for 24 timer på hverdage.",
+        "form_heading": "Eller send os en besked"
+      }
     }
   },
   "order": [
-    "main",
-    "contact-form"
+    "main"
   ]
 }
