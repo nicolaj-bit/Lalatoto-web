@@ -20,7 +20,7 @@
         "heading_line_2": "Ingen kompromis.",
         "text": "<p>Hvis naturen er dit sprog, taler vi det samme.</p>",
         "button_text": "Se kollektionen",
-        "button_url": "shopify://collections/alle-produkter"
+        "button_url": "shopify://collections/produkter"
       }
     },
     "billede": {
@@ -50,7 +50,7 @@
         "heading": "Udvalgt til søvnen",
         "products_count": 4,
         "hover_image": true,
-        "hide_sold_out": true,
+        "hide_sold_out": false,
         "show_price": false
       }
     },
