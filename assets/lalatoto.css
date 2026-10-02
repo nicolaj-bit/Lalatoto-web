@@ -2501,6 +2501,87 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 }
 
 /* ===============================================================
+ * PRODUKTGALLERIET PÅ COMPUTER
+ * Tre billeder står fast; plads fire er et slideshow med prikker og pile.
+ * =============================================================== */
+@media screen and (min-width: 1000px) {
+  .product-gallery__media.lalatoto-gallery-off {
+    display: none;
+  }
+
+  .product-gallery__media.lalatoto-gallery-in {
+    animation: lalatoto-gallery-fade 0.35s ease;
+  }
+}
+
+@keyframes lalatoto-gallery-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+.lalatoto-gallery-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  margin-block-start: -0.25rem;
+}
+
+.lalatoto-gallery-nav[hidden] {
+  display: none;
+}
+
+.lalatoto-gallery-nav__dot,
+.lalatoto-gallery-nav__arrow {
+  display: grid;
+  place-items: center;
+  min-width: 28px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #2a2724;
+  cursor: pointer;
+}
+
+.lalatoto-gallery-nav__arrow {
+  min-width: 36px;
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.lalatoto-gallery-nav__dot::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #2a2724;
+  opacity: 0.25;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.lalatoto-gallery-nav__dot[aria-current='true']::before {
+  opacity: 1;
+  transform: scale(1.15);
+}
+
+.lalatoto-gallery-nav__dot:hover::before {
+  opacity: 0.6;
+}
+
+.lalatoto-gallery-nav button:focus-visible {
+  outline: 1px solid #2a2724;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .product-gallery__media.lalatoto-gallery-in {
+    animation: none;
+  }
+}
+
+/* ===============================================================
  * FAQ UNDER PRODUKTET
  * Samme liste som vaskevejledningen, men med spørgsmålet i fuld bredde
  * og plus-tegnet yderst til højre.

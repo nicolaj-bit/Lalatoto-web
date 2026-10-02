@@ -164,6 +164,9 @@
   <script src="{{ 'lalatoto-info-modal.js' | asset_url }}" defer></script>
 {%- endif -%}
 
+{%- comment -%}Lalatoto: på computer bliver billede fire og frem til et lille slideshow{%- endcomment -%}
+<script src="{{ 'lalatoto-gallery.js' | asset_url }}" defer></script>
+
 {%- if section.settings.show_sticky_add_to_cart and product.available -%}
   <product-rerender id="{{ product_form_id }}-sticky-bar" observe-form="{{ product_form_id }}">
     <product-sticky-bar form="{{ product_form_id }}" class="product-sticky-bar">
