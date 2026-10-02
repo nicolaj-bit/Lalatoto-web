@@ -117,7 +117,13 @@
               endif
             -%}
             {%- capture card -%}
-              {%- render 'lalatoto-tile', product: product, variant: product.selected_or_first_available_variant, sold_out: sold_out, eager: eager, priority: priority, show_price: section.settings.show_price -%}
+              {%- liquid
+                assign hover = nil
+                if section.settings.hover_image and product.media.size > 1 and product.media[1].media_type == 'image'
+                  assign hover = product.media[1]
+                endif
+              -%}
+              {%- render 'lalatoto-tile', product: product, variant: product.selected_or_first_available_variant, hover_media: hover, sold_out: sold_out, eager: eager, priority: priority, show_price: section.settings.show_price -%}
             {%- endcapture -%}
             {%- if sold_out -%}
               {%- assign sold_out_cards = sold_out_cards | append: card -%}
@@ -161,6 +167,36 @@
                     endfor
                   endif
 
+                  comment
+                    Billede ved hover: det næste billede efter farvens billede,
+                    så længe det ikke er en anden farves hovedbillede eller
+                    hører til en anden farve via alt-teksten.
+                  endcomment
+                  assign hover = nil
+                  if section.settings.hover_image and media != blank
+                    assign next_index = media.position
+                    assign candidate_media = product.media[next_index]
+                    if candidate_media != blank and candidate_media.media_type == 'image'
+                      assign other_featured = false
+                      for v in product.variants
+                        if v.featured_media.id == candidate_media.id and v.options[color_index] != color
+                          assign other_featured = true
+                          break
+                        endif
+                      endfor
+                      assign candidate_alt = candidate_media.alt | downcase
+                      assign own_key = '#' | append: color_option_name | append: '_' | append: color | downcase
+                      if candidate_alt contains '#'
+                        unless candidate_alt contains own_key
+                          assign other_featured = true
+                        endunless
+                      endif
+                      unless other_featured
+                        assign hover = candidate_media
+                      endunless
+                    endif
+                  endif
+
                   assign card_index = card_index | plus: 1
                   assign eager = false
                   if card_index <= 4
@@ -176,6 +212,7 @@
                     product: product,
                     variant: chosen,
                     media: media,
+                    hover_media: hover,
                     variant_label: color,
                     sold_out: sold_out,
                     eager: eager,
@@ -238,6 +275,13 @@
       "max": 48,
       "step": 4,
       "default": 24
+    },
+    {
+      "type": "checkbox",
+      "id": "hover_image",
+      "label": "Vis et andet billede, når musen holdes over",
+      "info": "Produkter med én farve viser produktets andet billede. Farvekort viser det næste billede af samme farve.",
+      "default": true
     },
     {
       "type": "checkbox",
