@@ -1,0 +1,133 @@
+{%- comment -%}
+  Lalatoto: spørgsmål og svar under produktet.
+
+  Spørgsmålene oprettes i Shopify under Indhold → Metaobjekter → «FAQ
+  (produkter)». Hvert spørgsmål vises, når mindst én af disse passer:
+    1. produktet er valgt under «Vis på disse produkter»,
+    2. produktets type står under «Vis på disse produkttyper»
+       (fx «Luksus sengeslange», uden forskel på store og små bogstaver),
+    3. «Vis på alle produkter» er slået til (levering, returnering osv.).
+  Spørgsmål, der handler om produktet, står først, de generelle sidst.
+  Finder sektionen ingen spørgsmål, vises den slet ikke.
+
+  Udseendet er det samme som vaskevejledningen: én linje pr. spørgsmål, et
+  tyndt plus til højre, og kun ét svar er åbent ad gangen.
+{%- endcomment -%}
+
+{%- liquid
+  assign product_type = product.type | downcase | strip
+  assign specific = ''
+  assign general = ''
+  assign count = 0
+
+  for entry in shop.metaobjects.lalatoto_faq.values
+    assign question = entry.sporgsmal.value
+    if question == blank
+      continue
+    endif
+
+    assign matches = false
+    for referenced in entry.produkter.value
+      if referenced.id == product.id
+        assign matches = true
+        break
+      endif
+    endfor
+
+    unless matches
+      for entry_type in entry.produkttyper.value
+        assign entry_type_down = entry_type | downcase | strip
+        if entry_type_down == product_type and product_type != blank
+          assign matches = true
+          break
+        endif
+      endfor
+    endunless
+
+    assign is_general = false
+    if matches == false and entry.alle_produkter.value == true and section.settings.show_general
+      assign is_general = true
+    endif
+
+    if matches or is_general
+      assign count = count | plus: 1
+      capture item
+        echo '<details class="lalatoto-wash__item" name="lalatoto-faq-' | append: section.id | append: '">'
+        assign question_html = question | escape
+        echo '<summary class="lalatoto-wash__summary"><span class="lalatoto-wash__name">' | append: question_html | append: '</span><span class="lalatoto-wash__sign" aria-hidden="true"></span></summary>'
+        echo '<div class="lalatoto-wash__body"><div class="lalatoto-wash__text">'
+        echo entry.svar | metafield_tag
+        echo '</div></div></details>'
+      endcapture
+      if matches
+        assign specific = specific | append: item
+      else
+        assign general = general | append: item
+      endif
+    endif
+  endfor
+
+  assign heading = section.settings.heading
+  if heading == blank
+    assign heading = 'lalatoto.faq.heading' | t
+  endif
+-%}
+
+{%- if count > 0 -%}
+  <div class="lalatoto-faq color-scheme color-scheme--{{ section.settings.color_scheme.id }}">
+    <header class="lalatoto-faq__head">
+      <p class="lalatoto-kicker">{{ 'lalatoto.faq.kicker' | t }}</p>
+      <h2 class="lalatoto-faq__title">{{ heading | escape }}</h2>
+    </header>
+
+    <div class="lalatoto-wash__list" data-lalatoto-accordion>
+      {{- specific -}}
+      {{- general -}}
+    </div>
+
+    <p class="lalatoto-wash__foot">{{ 'lalatoto.faq.contact_html' | t }}</p>
+  </div>
+
+  <script src="{{ 'lalatoto-accordion.js' | asset_url }}" defer></script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Lalatoto FAQ",
+  "class": "shopify-section--lalatoto-faq",
+  "tag": "section",
+  "enabled_on": {
+    "templates": ["product"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Farveskema",
+      "default": "scheme-1"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Overskrift",
+      "info": "Tom: «Spørgsmål og svar»."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_general",
+      "label": "Vis også generelle spørgsmål",
+      "info": "Spørgsmål med «Vis på alle produkter», fx om levering og returnering. De står efter spørgsmålene om produktet.",
+      "default": true
+    },
+    {
+      "type": "paragraph",
+      "content": "Spørgsmål og svar rettes i Shopify under Indhold → Metaobjekter → FAQ (produkter). Vælg på hvert spørgsmål, hvilke produkter eller produkttyper det gælder."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Lalatoto FAQ"
+    }
+  ]
+}
+{% endschema %}

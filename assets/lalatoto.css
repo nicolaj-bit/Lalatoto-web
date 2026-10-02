@@ -2501,6 +2501,54 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 }
 
 /* ===============================================================
+ * FAQ UNDER PRODUKTET
+ * Samme liste som vaskevejledningen, men med spørgsmålet i fuld bredde
+ * og plus-tegnet yderst til højre.
+ * =============================================================== */
+.lalatoto-faq {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  max-width: var(--lalatoto-max-width);
+  margin-inline: auto;
+  padding: clamp(3rem, 6vw, 5rem) var(--container-gutter);
+  color: #2a2724;
+}
+
+.lalatoto-faq__head {
+  display: grid;
+  justify-items: center;
+  gap: 0.625rem;
+  text-align: center;
+}
+
+.lalatoto-faq__title {
+  margin: 0;
+  font-family: var(--heading-font-family);
+  font-weight: 400;
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  line-height: 1.1;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+.lalatoto-faq .lalatoto-wash__summary {
+  grid-template-columns: minmax(0, 1fr) 20px;
+}
+
+.lalatoto-faq .lalatoto-wash__name {
+  font-size: 1.125rem;
+  line-height: 1.35;
+}
+
+.lalatoto-faq .lalatoto-wash__text a {
+  color: #2a2724;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ===============================================================
  * JOURNAL (bloggen)
  * Journalens forside: centreret overskrift, emner som små links, den
  * nyeste artikel stort og resten i et gitter. Artiklen: smal læsebredde,

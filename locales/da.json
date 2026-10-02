@@ -542,6 +542,11 @@
       "view_all": "Se hele kollektionen",
       "tabs": "Kollektioner"
     },
+    "faq": {
+      "kicker": "FAQ",
+      "heading": "Spørgsmål og svar",
+      "contact_html": "Fandt du ikke svaret? Skriv til os på <a href=\"mailto:kundeservice@lalatoto.dk\">kundeservice@lalatoto.dk</a>."
+    },
     "collection": {
       "kicker": "Kollektion",
       "empty": "Der er ingen produkter her endnu.",

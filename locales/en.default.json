@@ -538,6 +538,11 @@
       "view_all": "View the collection",
       "tabs": "Collections"
     },
+    "faq": {
+      "kicker": "FAQ",
+      "heading": "Questions and answers",
+      "contact_html": "Didn't find your answer? Write to us at <a href=\"mailto:kundeservice@lalatoto.dk\">kundeservice@lalatoto.dk</a>."
+    },
     "collection": {
       "kicker": "Collection",
       "empty": "There are no products here yet.",
