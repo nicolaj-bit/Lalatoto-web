@@ -7,9 +7,10 @@
   åbningstider. Nederst copyright, sociale medier og betalingsikoner.
 
   Tilmeldingen bruger Shopifys kundeformular. Kunden oprettes med mærkerne
-  «nyhedsbrev» og «nyhedsbrev-samtykke». Teksten under knappen siger
-  tydeligt, at man tilmelder sig nyhedsbrevet, så selve tilmeldingen er
-  samtykket. Der gives ingen velkomstrabat.
+  «newsletter», «nyhedsbrev» og «nyhedsbrev-samtykke». «newsletter» er det
+  mærke, den gamle side bruger, så tilmeldingen ender i samme flow som før.
+  Teksten under knappen siger tydeligt, at man tilmelder sig nyhedsbrevet,
+  så selve tilmeldingen er samtykket. Der gives ingen velkomstrabat.
 {%- endcomment -%}
 
 {%- liquid
@@ -66,7 +67,7 @@
           -%}
           <div class="lalatoto-footer__form-inner{% if done %} is-done{% endif %}" data-lalatoto-posted="{{ done }}" data-form-id="{{ form_id }}">
             <div class="lalatoto-footer__fields">
-              <input type="hidden" name="contact[tags]" value="nyhedsbrev,nyhedsbrev-samtykke">
+              <input type="hidden" name="contact[tags]" value="newsletter,nyhedsbrev,nyhedsbrev-samtykke">
 
               <div class="lalatoto-footer__line">
                 <label for="{{ form_id }}-name">{{ 'lalatoto.footer.name_label' | t }}</label>
