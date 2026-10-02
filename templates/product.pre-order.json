@@ -74,10 +74,19 @@
     "related-products": {
       "type": "related-products",
       "settings": {}
+    },
+    "faq": {
+      "type": "lalatoto-product-faq",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "heading": "",
+        "show_general": true
+      }
     }
   },
   "order": [
     "main",
+    "faq",
     "related-products"
   ]
 }
