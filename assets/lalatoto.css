@@ -2582,6 +2582,255 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 }
 
 /* ===============================================================
+ * KONTAKTSIDEN
+ * Til venstre overskrift, portrætter og kontaktoplysninger; til højre en
+ * formular i en tynd ramme. Felterne har etiketten over en tynd streg som
+ * i footeren, og knappen har temaets knapfarve.
+ * =============================================================== */
+.lalatoto-contact {
+  display: grid;
+  gap: 3rem;
+  max-width: var(--lalatoto-max-width);
+  margin-inline: auto;
+  padding: clamp(3rem, 7vw, 5.5rem) var(--container-gutter) clamp(4rem, 9vw, 7rem);
+  color: #2a2724;
+}
+
+.lalatoto-contact__intro {
+  display: grid;
+  align-content: start;
+  gap: 1rem;
+}
+
+.lalatoto-contact__title {
+  margin: 0;
+  max-width: 12em;
+  font-family: var(--heading-font-family);
+  font-weight: 400;
+  font-size: clamp(2.25rem, 4.5vw, 3.5rem);
+  line-height: 1.05;
+  letter-spacing: normal;
+  text-transform: none;
+  text-wrap: balance;
+}
+
+.lalatoto-contact__title em {
+  font-style: italic;
+}
+
+.lalatoto-contact__lead {
+  max-width: 44ch;
+}
+
+.lalatoto-contact__people {
+  display: flex;
+  gap: 1.75rem;
+  margin: 1rem 0 0;
+  padding: 0;
+}
+
+.lalatoto-contact__person {
+  display: grid;
+  justify-items: center;
+  gap: 0.625rem;
+}
+
+.lalatoto-contact__portrait {
+  width: 96px;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 50%;
+  background: #e7e1d8;
+}
+
+.lalatoto-contact__portrait img,
+.lalatoto-contact__portrait svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.lalatoto-contact__name {
+  font-size: var(--lalatoto-label-size);
+  letter-spacing: var(--lalatoto-label-spacing);
+  text-transform: uppercase;
+}
+
+.lalatoto-contact__details {
+  display: grid;
+  gap: 1.25rem;
+  margin: 1.5rem 0 0;
+  padding-block-start: 1.5rem;
+  border-block-start: 1px solid #d7d0c4;
+}
+
+.lalatoto-contact__details dt {
+  margin-block-end: 0.25rem;
+  color: #6e675e;
+  font-size: var(--lalatoto-label-size);
+  letter-spacing: var(--lalatoto-label-spacing);
+  text-transform: uppercase;
+}
+
+.lalatoto-contact__details dd {
+  margin: 0;
+  font-size: 1.0625rem;
+  line-height: 1.5;
+}
+
+.lalatoto-contact__details a {
+  color: #2a2724;
+  text-decoration: none;
+  background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+  transition: background-size 0.25s ease-in-out;
+}
+
+.lalatoto-contact__details a:hover {
+  background-size: 100% 1px;
+}
+
+.lalatoto-contact__muted,
+.lalatoto-contact__note {
+  margin: 0;
+  color: #6e675e;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+.lalatoto-contact__card {
+  align-self: start;
+  padding: clamp(1.75rem, 4vw, 3rem);
+  border: 1px solid #d7d0c4;
+}
+
+.lalatoto-contact__form {
+  display: grid;
+  gap: 1.75rem;
+  margin: 0;
+}
+
+.lalatoto-contact__form-title {
+  margin: 0;
+  font-family: var(--heading-font-family);
+  font-weight: 400;
+  font-size: 1.625rem;
+  line-height: 1.2;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+.lalatoto-contact__error {
+  margin: 0;
+}
+
+.lalatoto-contact__fields {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.lalatoto-contact__row {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.lalatoto-contact__field {
+  display: grid;
+  gap: 0.375rem;
+}
+
+.lalatoto-contact__field label {
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+
+.lalatoto-contact__field label span {
+  color: #6e675e;
+  font-weight: 400;
+}
+
+.lalatoto-contact__field input,
+.lalatoto-contact__field textarea {
+  width: 100%;
+  padding: 0.375rem 0;
+  border: 0;
+  border-block-end: 1px solid #6e675e;
+  border-radius: 0;
+  background: transparent;
+  color: #2a2724;
+  font: inherit;
+  font-size: 1rem;
+  box-shadow: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.lalatoto-contact__field textarea {
+  min-height: 7.5rem;
+  resize: vertical;
+}
+
+.lalatoto-contact__field input:focus,
+.lalatoto-contact__field textarea:focus {
+  outline: none;
+  border-block-end-color: #2a2724;
+  box-shadow: 0 1px 0 #2a2724;
+}
+
+.lalatoto-contact__submit {
+  justify-self: stretch;
+  min-height: 48px;
+  padding: 0 1.75rem;
+  border: 1px solid rgb(var(--button-background));
+  background: rgb(var(--button-background));
+  color: rgb(var(--button-text-color));
+  font-family: var(--text-font-family);
+  font-size: var(--lalatoto-label-size);
+  letter-spacing: var(--lalatoto-label-spacing);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.lalatoto-contact__submit:hover {
+  border-color: rgb(var(--button-text-color));
+}
+
+.lalatoto-contact__submit:focus-visible {
+  outline: 1px solid #2a2724;
+  outline-offset: 3px;
+}
+
+.lalatoto-contact__done {
+  display: grid;
+  justify-items: start;
+  gap: 0.75rem;
+}
+
+.lalatoto-contact__done-title {
+  margin: 0;
+  font-family: var(--heading-font-family);
+  font-size: 1.75rem;
+  line-height: 1.2;
+}
+
+@media screen and (min-width: 700px) {
+  .lalatoto-contact__row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .lalatoto-contact {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    gap: clamp(4rem, 8vw, 8rem);
+  }
+
+  .lalatoto-contact__submit {
+    justify-self: start;
+  }
+}
+
+/* ===============================================================
  * FAQ UNDER PRODUKTET
  * Samme liste som vaskevejledningen, men med spørgsmålet i fuld bredde
  * og plus-tegnet yderst til højre.

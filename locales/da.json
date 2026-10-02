@@ -547,6 +547,21 @@
       "heading": "Spørgsmål og svar",
       "contact_html": "Fandt du ikke svaret? Skriv til os på <a href=\"mailto:kundeservice@lalatoto.dk\">kundeservice@lalatoto.dk</a>."
     },
+    "contact": {
+      "phone_heading": "Ring til os",
+      "email_heading": "Skriv til os",
+      "hours_heading": "Åbningstider",
+      "form_heading": "Eller send os en besked",
+      "name": "Navn",
+      "email": "E-mail",
+      "phone": "Telefon",
+      "order": "Ordrenummer",
+      "optional": "valgfrit",
+      "message": "Besked",
+      "submit": "Send besked",
+      "error": "Tjek, at navn, e-mail og besked er udfyldt, og prøv igen.",
+      "done_title": "Tak for din besked"
+    },
     "collection": {
       "kicker": "Kollektion",
       "empty": "Der er ingen produkter her endnu.",

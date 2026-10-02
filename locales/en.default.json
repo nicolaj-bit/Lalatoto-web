@@ -543,6 +543,21 @@
       "heading": "Questions and answers",
       "contact_html": "Didn't find your answer? Write to us at <a href=\"mailto:kundeservice@lalatoto.dk\">kundeservice@lalatoto.dk</a>."
     },
+    "contact": {
+      "phone_heading": "Call us",
+      "email_heading": "Write to us",
+      "hours_heading": "Opening hours",
+      "form_heading": "Or send us a message",
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone",
+      "order": "Order number",
+      "optional": "optional",
+      "message": "Message",
+      "submit": "Send message",
+      "error": "Please check that name, email and message are filled in, and try again.",
+      "done_title": "Thank you for your message"
+    },
     "collection": {
       "kicker": "Collection",
       "empty": "There are no products here yet.",

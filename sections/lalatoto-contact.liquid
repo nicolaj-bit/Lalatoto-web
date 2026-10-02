@@ -1,0 +1,221 @@
+{%- comment -%}
+  Lalatoto: kontaktsiden.
+
+  To spalter på computer, én på telefon. Til venstre en lille etiket,
+  overskriften i Playfair, en kort tekst, portrætter af dem, der svarer, og
+  kontaktoplysningerne (telefon, e-mail og åbningstider). Til højre en
+  formular med navn, e-mail, telefon, ordrenummer og besked. Felterne har
+  etiketten over en tynd streg, som i footeren.
+
+  Formularen er Shopifys kontaktformular, så beskederne lander i den
+  indbakke, der er sat op under Indstillinger → Butiksoplysninger.
+{%- endcomment -%}
+
+{%- liquid
+  assign form_id = 'lalatoto-contact-' | append: section.id
+  assign phone_link = section.settings.phone | remove: ' ' | remove: '-'
+  assign form_heading = section.settings.form_heading
+  if form_heading == blank
+    assign form_heading = 'lalatoto.contact.form_heading' | t
+  endif
+-%}
+
+<div class="lalatoto-contact color-scheme color-scheme--{{ section.settings.color_scheme.id }}">
+  <div class="lalatoto-contact__intro">
+    {%- if section.settings.kicker != blank -%}
+      <p class="lalatoto-kicker">{{ section.settings.kicker | escape }}</p>
+    {%- endif -%}
+    <h1 class="lalatoto-contact__title">{{ section.settings.heading }}</h1>
+    {%- if section.settings.text != blank -%}
+      <div class="lalatoto-lead lalatoto-contact__lead">{{ section.settings.text }}</div>
+    {%- endif -%}
+
+    {%- if section.blocks.size > 0 -%}
+      <ul class="lalatoto-contact__people unstyled-list" role="list">
+        {%- for block in section.blocks -%}
+          <li class="lalatoto-contact__person" {{ block.shopify_attributes }}>
+            <div class="lalatoto-contact__portrait">
+              {%- if block.settings.image != blank -%}
+                {{- block.settings.image | image_url: width: 240 | image_tag: loading: 'lazy', sizes: '96px', widths: '96,192,240', alt: block.settings.name -}}
+              {%- else -%}
+                {{- 'image' | placeholder_svg_tag -}}
+              {%- endif -%}
+            </div>
+            <span class="lalatoto-contact__name">{{ block.settings.name | escape }}</span>
+          </li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+
+    <dl class="lalatoto-contact__details">
+      {%- if section.settings.phone != blank -%}
+        <div>
+          <dt>{{ 'lalatoto.contact.phone_heading' | t }}</dt>
+          <dd><a href="tel:{{ phone_link }}">{{ section.settings.phone }}</a></dd>
+        </div>
+      {%- endif -%}
+      {%- if section.settings.email != blank -%}
+        <div>
+          <dt>{{ 'lalatoto.contact.email_heading' | t }}</dt>
+          <dd><a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a></dd>
+        </div>
+      {%- endif -%}
+      {%- if section.settings.hours != blank -%}
+        <div>
+          <dt>{{ 'lalatoto.contact.hours_heading' | t }}</dt>
+          <dd class="lalatoto-contact__muted">{{ section.settings.hours | newline_to_br }}</dd>
+        </div>
+      {%- endif -%}
+    </dl>
+
+    {%- if section.settings.reply_note != blank -%}
+      <p class="lalatoto-contact__note">{{ section.settings.reply_note | escape }}</p>
+    {%- endif -%}
+  </div>
+
+  <div class="lalatoto-contact__card">
+    {%- form 'contact', id: form_id, class: 'lalatoto-contact__form' -%}
+      {%- if form.posted_successfully? -%}
+        <div class="lalatoto-contact__done" role="status">
+          <svg class="lalatoto-waitlist__check" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+            <circle cx="24" cy="24" r="23" />
+            <path d="M15 24.5l6 6 12-13" />
+          </svg>
+          <p class="lalatoto-contact__done-title">{{ 'lalatoto.contact.done_title' | t }}</p>
+          {%- if section.settings.reply_note != blank -%}
+            <p class="lalatoto-contact__muted">{{ section.settings.reply_note | escape }}</p>
+          {%- endif -%}
+        </div>
+      {%- else -%}
+        <h2 class="lalatoto-contact__form-title">{{ form_heading | escape }}</h2>
+
+        {%- if form.errors -%}
+          <p class="lalatoto-waitlist__error lalatoto-contact__error" role="alert">{{ 'lalatoto.contact.error' | t }}</p>
+        {%- endif -%}
+
+        <div class="lalatoto-contact__fields">
+          <div class="lalatoto-contact__field">
+            <label for="{{ form_id }}-name">{{ 'lalatoto.contact.name' | t }}</label>
+            <input type="text" id="{{ form_id }}-name" name="contact[{{ 'lalatoto.contact.name' | t }}]" autocomplete="name" required value="{{ form.name }}">
+          </div>
+
+          <div class="lalatoto-contact__field">
+            <label for="{{ form_id }}-email">{{ 'lalatoto.contact.email' | t }}</label>
+            <input type="email" id="{{ form_id }}-email" name="contact[email]" autocomplete="email" inputmode="email" spellcheck="false" required value="{{ form.email }}">
+          </div>
+
+          <div class="lalatoto-contact__row">
+            <div class="lalatoto-contact__field">
+              <label for="{{ form_id }}-phone">{{ 'lalatoto.contact.phone' | t }} <span>({{ 'lalatoto.contact.optional' | t }})</span></label>
+              <input type="tel" id="{{ form_id }}-phone" name="contact[{{ 'lalatoto.contact.phone' | t }}]" autocomplete="tel" inputmode="tel">
+            </div>
+
+            <div class="lalatoto-contact__field">
+              <label for="{{ form_id }}-order">{{ 'lalatoto.contact.order' | t }} <span>({{ 'lalatoto.contact.optional' | t }})</span></label>
+              <input type="text" id="{{ form_id }}-order" name="contact[{{ 'lalatoto.contact.order' | t }}]">
+            </div>
+          </div>
+
+          <div class="lalatoto-contact__field">
+            <label for="{{ form_id }}-body">{{ 'lalatoto.contact.message' | t }}</label>
+            <textarea id="{{ form_id }}-body" name="contact[body]" rows="5" required>{{ form.body }}</textarea>
+          </div>
+        </div>
+
+        <button type="submit" class="lalatoto-contact__submit">{{ 'lalatoto.contact.submit' | t }}</button>
+      {%- endif -%}
+    {%- endform -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Lalatoto kontakt",
+  "class": "shopify-section--lalatoto-contact",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Farveskema",
+      "default": "scheme-1"
+    },
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Lille etiket over overskriften",
+      "default": "Kontakt"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Overskrift",
+      "default": "Det er bare os, du får i røret"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Tekst under overskriften"
+    },
+    {
+      "type": "header",
+      "content": "Kontaktoplysninger"
+    },
+    {
+      "type": "text",
+      "id": "phone",
+      "label": "Telefon"
+    },
+    {
+      "type": "text",
+      "id": "email",
+      "label": "E-mail"
+    },
+    {
+      "type": "textarea",
+      "id": "hours",
+      "label": "Åbningstider",
+      "info": "Én linje pr. tidsrum."
+    },
+    {
+      "type": "text",
+      "id": "reply_note",
+      "label": "Svartid",
+      "info": "Står under kontaktoplysningerne og i takken, når formularen er sendt."
+    },
+    {
+      "type": "header",
+      "content": "Formular"
+    },
+    {
+      "type": "text",
+      "id": "form_heading",
+      "label": "Overskrift over formularen"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "person",
+      "name": "Person",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Portræt",
+          "info": "Kvadratisk, fx 480 × 480 px. Vises rundt."
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Navn"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Lalatoto kontakt"
+    }
+  ]
+}
+{% endschema %}
