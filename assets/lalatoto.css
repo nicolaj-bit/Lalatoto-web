@@ -2052,15 +2052,23 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   }
 }
 
+/* Computer: tilmeldingen til venstre, menuer og kontakt samlet ude til
+   højre med god luft imellem. Virker med både to og tre kolonner. */
 @media screen and (min-width: 1000px) {
   .lalatoto-footer__columns {
-    grid-template-columns: 1.5fr repeat(3, minmax(0, 1fr));
-    gap: 3rem;
+    display: flex;
+    align-items: flex-start;
+    gap: clamp(4rem, 7vw, 7rem);
     padding-block: 4.5rem;
   }
 
   .lalatoto-footer__col--newsletter {
-    grid-column: auto;
+    flex: 0 1 26rem;
+    margin-inline-end: auto;
+  }
+
+  .lalatoto-footer__group {
+    flex: none;
   }
 }
 
