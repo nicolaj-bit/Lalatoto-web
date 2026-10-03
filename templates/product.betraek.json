@@ -62,6 +62,23 @@
         "waitlist": {
           "type": "lalatoto_waitlist",
           "settings": {}
+        },
+        "onskeskyen": {
+          "type": "shopify://apps/oenskeskyen/blocks/wishlist-button/be6e5a80-54ea-40af-aa80-5746282173b8",
+          "settings": {
+            "text": "Tilføj til ønskeskyen",
+            "rounded": "none",
+            "size": "small",
+            "position": "left",
+            "width": "fit-content",
+            "icon": "gowish",
+            "font": "inherit",
+            "color": "#2a2724",
+            "background": "rgba(0,0,0,0)",
+            "border": "",
+            "icon_color": "#0099bb",
+            "data-region": "denmark"
+          }
         }
       },
       "block_order": [
@@ -73,6 +90,7 @@
         "buy_buttons",
         "waitlist",
         "delivery",
+        "onskeskyen",
         "more_info"
       ],
       "settings": {

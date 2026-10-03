@@ -64,6 +64,23 @@
           "settings": {
             "liquid": "{%- comment -%}\n  Lalatoto: LALA Hvalen. Størrelserne står som ren tekst uden kant og uden\n  streg over udsolgte størrelser. Den valgte størrelse er mørk, de andre lysere.\n{%- endcomment -%}\n<style>\n  .shopify-section--main-product .block-swatch,\n  .shopify-section--main-product :checked + .block-swatch,\n  .shopify-section--main-product .block-swatch.is-selected { border-color: transparent; }\n  .shopify-section--main-product .block-swatch.is-disabled { text-decoration: none; border-style: solid; }\n  .shopify-section--main-product .block-swatch.is-disabled::before { content: none; }\n  .shopify-section--main-product :checked + .block-swatch { color: rgb(var(--text-color)); }\n</style>"
           }
+        },
+        "onskeskyen": {
+          "type": "shopify://apps/oenskeskyen/blocks/wishlist-button/be6e5a80-54ea-40af-aa80-5746282173b8",
+          "settings": {
+            "text": "Tilføj til ønskeskyen",
+            "rounded": "none",
+            "size": "small",
+            "position": "left",
+            "width": "fit-content",
+            "icon": "gowish",
+            "font": "inherit",
+            "color": "#2a2724",
+            "background": "rgba(0,0,0,0)",
+            "border": "",
+            "icon_color": "#0099bb",
+            "data-region": "denmark"
+          }
         }
       },
       "block_order": [
@@ -75,6 +92,7 @@
         "buy_buttons",
         "waitlist",
         "delivery",
+        "onskeskyen",
         "more_info"
       ],
       "settings": {
