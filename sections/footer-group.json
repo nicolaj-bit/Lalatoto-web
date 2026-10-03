@@ -31,7 +31,7 @@
         "phone": "+45 72 15 66 86",
         "hours": "Mandag–fredag 9–14",
         "show_social_media": true,
-        "show_payment_icons": true
+        "show_payment_icons": false
       }
     }
   },
