@@ -118,11 +118,23 @@ h1, h2, h3, h4, h5, h6,
   opacity: 0.8;
 }
 
+/* Genvejene står et godt stykke under menuen, men ikke helt i bunden */
 .lalatoto-sidebar-links {
   display: grid;
   gap: 0.25rem;
-  margin: 3rem 0 0;
+  margin: clamp(4rem, 22vh, 11rem) 0 0;
   padding: 0;
+}
+
+/* Kurven øverst til højre i menuen, som i headeren */
+.lalatoto-sidebar-cart {
+  color: rgb(var(--text-color));
+  font-family: var(--text-font-family);
+  font-size: var(--lalatoto-label-size);
+  letter-spacing: var(--lalatoto-label-spacing);
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
 }
 
 .lalatoto-sidebar-links a,

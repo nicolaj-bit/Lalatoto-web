@@ -23,6 +23,8 @@
             {%- render 'icon' with 'close', width: 16 -%}
           </button>
         </dialog-close-button>
+        {%- comment -%}Lalatoto: kurven øverst til højre som på prada.com{%- endcomment -%}
+        <slot name="header-end"></slot>
       </header>
 
       <div part="panel-list">
@@ -38,6 +40,10 @@
 
 <header-sidebar id="sidebar-menu" class="header-sidebar drawer drawer--sm color-scheme color-scheme--{{ color_scheme.id }}" template="header-sidebar-template" open-from="left">
   {%- comment -%}We are using a Shadow DOM where each panel has a slot, so we can directly render each level individually{%- endcomment -%}
+
+  <a href="{{ routes.cart_url }}" class="lalatoto-sidebar-cart" slot="header-end" aria-controls="cart-drawer">
+    {{- 'lalatoto.header.cart' | t }} (<cart-count>{{ cart.item_count }}</cart-count>)
+  </a>
 
   {%- comment -%}Panel 1 is the first level{%- endcomment -%}
   <div class="header-sidebar__main-panel" slot="main-panel">
@@ -75,21 +81,15 @@
       -%}
 
       {%- comment -%}
-        Lalatoto: genveje nederst i menuen som på prada.com: tynde ikoner og
-        tekst i normal skrift. Kurv, Ønskeskyen, kontakt og sprog. Ingen login
-        og ingen søgning.
+        Lalatoto: genveje under menuen som på prada.com: tynde ikoner og tekst
+        i normal skrift. Ønskeskyen, kontakt og sprog. Kurven står øverst til
+        højre. Ingen login og ingen søgning.
       {%- endcomment -%}
       {%- liquid
         assign wishlist_url = section.settings.lalatoto_wishlist_url
         assign contact_url = section.settings.lalatoto_contact_page.url | default: '/pages/contact'
       -%}
       <ul class="lalatoto-sidebar-links unstyled-list" role="list">
-        <li>
-          <a href="{{ routes.cart_url }}" aria-controls="cart-drawer">
-            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5.5 8.5h13l-1 12h-11z" /><path d="M9 8.5V7a3 3 0 0 1 6 0v1.5" /></svg>
-            <span>{{ 'lalatoto.header.cart' | t }} (<cart-count>{{ cart.item_count }}</cart-count>)</span>
-          </a>
-        </li>
         {%- if wishlist_url != blank -%}
           <li>
             <a href="{{ wishlist_url }}" target="_blank" rel="noopener">
