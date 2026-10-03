@@ -10,6 +10,10 @@
 {
   "current": {
     "section_vertical_spacing": "xl",
+    "button_border_radius": 0,
+    "input_border_radius": 0,
+    "default_color_scheme": "scheme-1",
+    "modal_color_scheme": "scheme-1",
     "product_rating_color": "#2a2724",
     "product_on_sale_accent": "#e32c2b",
     "product_sold_out_badge_background": "#e7e1d8",
@@ -18,14 +22,33 @@
     "warning_color": "#ed8a00",
     "error_color": "#cb2b2b",
     "heading_font": "playfair_display_n4",
+    "heading_text_transform": "normal",
     "heading_letter_spacing": 0,
     "text_font": "inter_n4",
+    "text_font_size_mobile": 15,
     "text_font_size_desktop": 16,
+    "text_font_letter_spacing": 0,
+    "button_text_font": "body",
+    "button_text_transform": "uppercase",
     "button_letter_spacing": 12,
+    "round_color_swatches": true,
+    "product_image_aspect_ratio": "portrait_crop",
+    "show_secondary_image": false,
+    "show_vendor": false,
+    "product_card_text_font": "body",
+    "product_card_text_casing": "inherit",
+    "product_color_display": "hide",
+    "show_product_rating": false,
+    "cart_type": "drawer",
+    "cart_empty_cart_link": "/collections/alle-produkter",
+    "social_facebook": "https://www.facebook.com/Lalatoto.dk",
+    "social_instagram": "https://www.instagram.com/lalatoto_of_denmark/",
+    "content_for_index": [],
     "color_schemes": {
       "scheme-1": {
         "settings": {
           "background": "#efebe4",
+          "background_gradient": "",
           "text_color": "#2a2724",
           "primary_button_background": "#ddd6cb",
           "primary_button_text_color": "#2a2724",
@@ -36,6 +59,7 @@
       "scheme-2": {
         "settings": {
           "background": "#e7e1d8",
+          "background_gradient": "",
           "text_color": "#2a2724",
           "primary_button_background": "#ddd6cb",
           "primary_button_text_color": "#2a2724",
@@ -46,6 +70,7 @@
       "scheme-3": {
         "settings": {
           "background": "#ddd6cb",
+          "background_gradient": "",
           "text_color": "#2a2724",
           "primary_button_background": "#ddd6cb",
           "primary_button_text_color": "#2a2724",
@@ -56,6 +81,7 @@
       "scheme-4": {
         "settings": {
           "background": "rgba(0,0,0,0)",
+          "background_gradient": "",
           "text_color": "#2a2724",
           "primary_button_background": "#ddd6cb",
           "primary_button_text_color": "#2a2724",
@@ -63,26 +89,7 @@
           "circle_button_icon": "#2a2724"
         }
       }
-    },
-    "default_color_scheme": "scheme-1",
-    "modal_color_scheme": "scheme-1",
-    "heading_text_transform": "normal",
-    "text_font_letter_spacing": 0,
-    "text_font_size_mobile": 15,
-    "button_text_font": "body",
-    "button_text_transform": "uppercase",
-    "button_border_radius": 0,
-    "input_border_radius": 0,
-    "product_image_aspect_ratio": "portrait_crop",
-    "product_card_text_font": "body",
-    "product_card_text_casing": "inherit",
-    "show_secondary_image": false,
-    "show_vendor": false,
-    "product_color_display": "hide",
-    "show_product_rating": false,
-    "cart_type": "drawer",
-    "cart_empty_cart_link": "/collections/alle-produkter",
-    "round_color_swatches": true
+    }
   },
   "presets": {
     "Prestige": {
