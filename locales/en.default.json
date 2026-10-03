@@ -591,7 +591,9 @@
       "app_store": "App Store",
       "google_play": "Google Play",
       "image_1_alt": "Club No Sleep: the map A light in the dark",
-      "image_2_alt": "Club No Sleep: affirmation of the day"
+      "image_2_alt": "Club No Sleep: affirmation of the day",
+      "app_store_kicker": "Download on the",
+      "google_play_kicker": "Get it on"
     },
     "waitlist": {
       "kicker": "Waiting list",

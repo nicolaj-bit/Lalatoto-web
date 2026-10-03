@@ -591,7 +591,9 @@
       "app_store": "App Store",
       "google_play": "Google Play",
       "image_1_alt": "Club No Sleep: die Karte Ein Licht im Dunkeln",
-      "image_2_alt": "Club No Sleep: Affirmation des Tages"
+      "image_2_alt": "Club No Sleep: Affirmation des Tages",
+      "app_store_kicker": "Laden im",
+      "google_play_kicker": "Jetzt bei"
     },
     "waitlist": {
       "kicker": "Warteliste",
