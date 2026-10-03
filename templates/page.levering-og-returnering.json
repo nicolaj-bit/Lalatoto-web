@@ -1,0 +1,70 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "lalatoto-legal",
+      "blocks": {
+        "levering": {
+          "type": "text",
+          "settings": {
+            "heading": "Levering",
+            "content": "<p>Vi ved, at vores produkter er svære at vente på, og derfor gør vi os umage for at tilbyde hurtig levering.</p><p>Vi afsender altid din ordre inden for 24 timer på hverdage.</p>"
+          }
+        },
+        "fortrydelsesret": {
+          "type": "text",
+          "settings": {
+            "heading": "Fortrydelsesret",
+            "content": "<p>Som forbruger har du 14 dages fortrydelsesret, når du handler hos os.</p><p>Fortrydelsesfristen udløber 14 dage efter den dag, du har modtaget din vare. Hvis du har bestilt flere forskellige varer i én ordre, men de leveres enkeltvis, løber fristen fra den dag, hvor du modtager den sidste vare.</p><p>Fristen indebærer, at du har 14 dage fra modtagelsen til at give os besked om, at du vil fortryde dit køb. Du kan sende en mail til <a href=\"mailto:kundeservice@lalatoto.dk\">kundeservice@lalatoto.dk</a> eller benytte standardfortrydelsesformularen, som du finder nederst i <a href=\"/pages/handelsbetingelser\">handelsbetingelserne</a>.</p><p>Du kan ikke fortryde købet ved at nægte at modtage varen uden samtidig at give os besked.</p>"
+          }
+        },
+        "returnering": {
+          "type": "text",
+          "settings": {
+            "heading": "Returnering",
+            "content": "<p>Du er velkommen til at købe en returlabel med GLS via vores returportal. Du er også velkommen til at returnere pakken med et fragtfirma efter eget valg, såfremt pakken leveres på adressen.</p><p>Returadresse:<br/>LALATOTO<br/>Kulbyvej 16<br/>4270 Høng</p><p><strong>Husk</strong> at fjerne den gamle label, inden du påsætter den nye. Ellers er der risiko for, at GLS sender pakken retur til dig.</p>"
+          }
+        },
+        "returportal": {
+          "type": "button",
+          "settings": {
+            "label": "Gå til returportalen",
+            "url": "https://return.shipmondo.com/lalatoto",
+            "style": "solid"
+          }
+        },
+        "handelsbetingelser": {
+          "type": "button",
+          "settings": {
+            "label": "Læs handelsbetingelserne",
+            "url": "shopify://pages/handelsbetingelser",
+            "style": "outline"
+          }
+        }
+      },
+      "block_order": [
+        "levering",
+        "fortrydelsesret",
+        "returnering",
+        "returportal",
+        "handelsbetingelser"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "show_toc": true,
+        "hide_first_heading": true
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}
