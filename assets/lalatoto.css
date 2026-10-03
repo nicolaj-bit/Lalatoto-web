@@ -2144,6 +2144,61 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   margin-top: 0;
 }
 
+/* Afsnit fra temaeditoren (fx Levering og returnering) */
+.lalatoto-legal__body > .lalatoto-legal__block:first-child > h2:first-child {
+  margin-top: 0;
+}
+
+.lalatoto-legal__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 1.75rem 0 0.5rem;
+}
+
+.lalatoto-legal__body a.lalatoto-legal__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 1.75rem;
+  border: 1px solid rgb(var(--button-background));
+  background: rgb(var(--button-background));
+  color: rgb(var(--button-text-color));
+  font-family: var(--text-font-family);
+  font-size: var(--lalatoto-label-size);
+  line-height: 1;
+  letter-spacing: var(--lalatoto-label-spacing);
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.lalatoto-legal__body a.lalatoto-legal__button:hover {
+  border-color: rgb(var(--button-text-color));
+}
+
+.lalatoto-legal__body a.lalatoto-legal__button--outline {
+  border-color: #2a2724;
+  background: transparent;
+  color: #2a2724;
+}
+
+.lalatoto-legal__body a.lalatoto-legal__button--outline:hover {
+  background: rgb(42 39 36 / 0.06);
+}
+
+.lalatoto-legal__body a.lalatoto-legal__button:focus-visible {
+  outline: 1px solid #2a2724;
+  outline-offset: 3px;
+}
+
+@media print {
+  .lalatoto-legal__buttons {
+    display: none;
+  }
+}
+
 /* Klik i indholdsfortegnelsen må ikke lægge overskriften under headeren */
 .lalatoto-legal__body h2,
 .lalatoto-legal__body h3 {

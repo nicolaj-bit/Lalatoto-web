@@ -9,6 +9,11 @@
   «Senest opdateret» hentes ud af teksten, så datoen kun står ét sted: i
   selve dokumentet. Sidste forekomst bruges; står den både øverst og
   nederst, er det den nederste, der gælder.
+
+  Har sektionen blokke (afsnit og knapper), bruges de i stedet for sidens
+  tekst. Det bruges til «Levering og returnering», hvor teksten skal kunne
+  rettes i temaeditoren og have knapper med links. Knapper, der står lige
+  efter hinanden, samles på én række.
 {%- endcomment -%}
 
 {%- liquid
@@ -61,7 +66,44 @@
       data-updated-prefix="{{ noegle | escape }}"
       {% if section.settings.hide_first_heading %}data-hide-first-heading{% endif %}
     >
-      {{ page.content }}
+      {%- if section.blocks.size > 0 -%}
+        {%- assign buttons = '' -%}
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'button' -%}
+            {%- if block.settings.label != blank and block.settings.url != blank -%}
+              {%- capture button -%}
+                <a
+                  href="{{ block.settings.url }}"
+                  class="lalatoto-legal__button{% if block.settings.style == 'outline' %} lalatoto-legal__button--outline{% endif %}"
+                  {% if block.settings.url contains '://' %}
+                    target="_blank" rel="noopener"
+                  {% endif %}
+                  {{ block.shopify_attributes }}
+                >
+                  {{- block.settings.label | escape -}}
+                </a>
+              {%- endcapture -%}
+              {%- assign buttons = buttons | append: button -%}
+            {%- endif -%}
+          {%- else -%}
+            {%- if buttons != blank -%}
+              <div class="lalatoto-legal__buttons">{{ buttons }}</div>
+              {%- assign buttons = '' -%}
+            {%- endif -%}
+            <div class="lalatoto-legal__block" {{ block.shopify_attributes }}>
+              {%- if block.settings.heading != blank -%}
+                <h2>{{ block.settings.heading | escape }}</h2>
+              {%- endif -%}
+              {{ block.settings.content }}
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+        {%- if buttons != blank -%}
+          <div class="lalatoto-legal__buttons">{{ buttons }}</div>
+        {%- endif -%}
+      {%- else -%}
+        {{ page.content }}
+      {%- endif -%}
     </div>
   </div>
 </div>
@@ -173,7 +215,7 @@
   "settings": [
     {
       "type": "paragraph",
-      "content": "Teksten skrives som en almindelig side under Onlinebutik → Sider. Start hvert afsnit med Overskrift 2, så indholdsfortegnelsen virker. Skriv «Senest opdateret: 1. oktober 2026» i teksten, så vises datoen øverst."
+      "content": "Teksten skrives som en almindelig side under Onlinebutik → Sider. Start hvert afsnit med Overskrift 2, så indholdsfortegnelsen virker. Skriv «Senest opdateret: 1. oktober 2026» i teksten, så vises datoen øverst. Tilføjer du afsnit og knapper her i sektionen, bruges de i stedet for sidens tekst."
     },
     {
       "type": "color_scheme",
@@ -194,6 +236,51 @@
       "label": "Skjul tekstens egen titel og dato øverst",
       "info": "Står titel og «Senest opdateret» allerede øverst i teksten, skjules gentagelsen. Datoen nederst bliver stående.",
       "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Afsnit",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Overskrift",
+          "info": "Kommer med i indholdsfortegnelsen."
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Tekst"
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "name": "Knap",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Tekst på knappen"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Link"
+        },
+        {
+          "type": "select",
+          "id": "style",
+          "label": "Udseende",
+          "options": [
+            { "value": "solid", "label": "Udfyldt" },
+            { "value": "outline", "label": "Tynd ramme" }
+          ],
+          "default": "solid"
+        }
+      ]
     }
   ],
   "presets": [
