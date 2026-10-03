@@ -610,7 +610,9 @@
       "done_text_html": "Vi sender én besked, når {{ item }} kan købes."
     },
     "header": {
-      "cart": "Kurv"
+      "cart": "Kurv",
+      "wishlist": "Ønskeskyen",
+      "contact": "Kontakt os"
     },
     "footer": {
       "kicker": "Nyhedsbrev",

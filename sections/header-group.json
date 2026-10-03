@@ -39,7 +39,9 @@
         "show_country_flag": true,
         "show_locale_selector": true,
         "transparent_header_text_color": "#2a2724",
-        "transparent_logo": "shopify://shop_images/lalatoto-logo-2026.png"
+        "transparent_logo": "shopify://shop_images/lalatoto-logo-2026.png",
+        "lalatoto_wishlist_url": "https://onskeskyen.dk",
+        "lalatoto_contact_page": "contact"
       }
     }
   },

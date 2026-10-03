@@ -7,6 +7,7 @@
   @param {string} [id_prefix] - an optional prefix to help dissociate the ID in case this is included several times in the same section
   @param {string} [placement] - the placement of the popover, default is "bottom-start". It can be set to any of the popover placements available in the theme (top, top-start, top-end, bottom, bottom-start, bottom-end, left, left-start, left-end, right, right-start, right-end)
   @param {object} [section]
+  @param {boolean} [long] - Lalatoto: viser «Danmark / Dansk» i stedet for sprogkoden (bruges i mobilmenuen)
 {%- enddoc -%}
 
 {%- capture localization_form_id -%}localization-form-{{ id_prefix }}-{{ section.id }}-{{ type }}{%- endcapture -%}
@@ -105,7 +106,11 @@
         {%- comment -%}Lalatoto: kun en kort kode (DK, EN, DE) i menuens skrift. Dansk står som DK.{%- endcomment -%}
         {%- assign locale_code = localization.language.iso_code | split: '-' | first | upcase -%}
         {%- if locale_code == 'DA' -%}{%- assign locale_code = 'DK' -%}{%- endif -%}
-        <span class="lalatoto-locale-code">{{- locale_code -}}</span>
+        {%- if long -%}
+          <span class="lalatoto-locale-code">{{ localization.country.name }} / {{ localization.language.endonym_name | capitalize }}</span>
+        {%- else -%}
+          <span class="lalatoto-locale-code">{{- locale_code -}}</span>
+        {%- endif -%}
         {%- render 'icon' with 'chevron-down' -%}
       </button>
 

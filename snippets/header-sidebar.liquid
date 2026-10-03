@@ -63,51 +63,56 @@
           </li>
         {%- endfor -%}
       </ul>
+
+      {%- liquid
+        if section.settings.show_country_selector and localization.available_countries.size > 1
+          assign show_country_selector = true
+        endif
+
+        if section.settings.show_locale_selector and localization.available_languages.size > 1
+          assign show_locale_selector = true
+        endif
+      -%}
+
+      {%- comment -%}
+        Lalatoto: genveje nederst i menuen som på prada.com: tynde ikoner og
+        tekst i normal skrift. Kurv, Ønskeskyen, kontakt og sprog. Ingen login
+        og ingen søgning.
+      {%- endcomment -%}
+      {%- liquid
+        assign wishlist_url = section.settings.lalatoto_wishlist_url
+        assign contact_url = section.settings.lalatoto_contact_page.url | default: '/pages/contact'
+      -%}
+      <ul class="lalatoto-sidebar-links unstyled-list" role="list">
+        <li>
+          <a href="{{ routes.cart_url }}" aria-controls="cart-drawer">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5.5 8.5h13l-1 12h-11z" /><path d="M9 8.5V7a3 3 0 0 1 6 0v1.5" /></svg>
+            <span>{{ 'lalatoto.header.cart' | t }} (<cart-count>{{ cart.item_count }}</cart-count>)</span>
+          </a>
+        </li>
+        {%- if wishlist_url != blank -%}
+          <li>
+            <a href="{{ wishlist_url }}" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 20s-7.5-4.6-7.5-10A4.2 4.2 0 0 1 12 7.6 4.2 4.2 0 0 1 19.5 10c0 5.4-7.5 10-7.5 10z" /></svg>
+              <span>{{ 'lalatoto.header.wishlist' | t }}</span>
+            </a>
+          </li>
+        {%- endif -%}
+        <li>
+          <a href="{{ contact_url }}">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7.2 3.8h2.6l1.3 4-2 1.3a10.5 10.5 0 0 0 5.8 5.8l1.3-2 4 1.3v2.6a2 2 0 0 1-2.2 2A15.8 15.8 0 0 1 5.2 6a2 2 0 0 1 2-2.2z" /></svg>
+            <span>{{ 'lalatoto.header.contact' | t }}</span>
+          </a>
+        </li>
+        {%- if show_locale_selector -%}
+          <li class="lalatoto-sidebar-links__locale">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5" /><path d="M3.5 12h17M12 3.5c2.4 2.3 3.6 5.1 3.6 8.5s-1.2 6.2-3.6 8.5c-2.4-2.3-3.6-5.1-3.6-8.5s1.2-6.2 3.6-8.5z" /></svg>
+            {%- render 'localization-selector', type: 'locale', placement: 'top-start', id_prefix: 'header-sidebar', long: true -%}
+          </li>
+        {%- endif -%}
+      </ul>
     </div>
 
-    {%- liquid
-      if section.settings.show_country_selector and localization.available_countries.size > 1
-        assign show_country_selector = true
-      endif
-
-      if section.settings.show_locale_selector and localization.available_languages.size > 1
-        assign show_locale_selector = true
-      endif
-    -%}
-
-    {%- if section.settings.enable_search or show_country_selector or show_locale_selector -%}
-      <div class="header-sidebar__footer">
-        {%- comment -%}Lalatoto: login er fjernet fra skuffen og erstattet af søgning{%- endcomment -%}
-        {%- if section.settings.enable_search -%}
-          <a href="{{ routes.search_url }}" aria-controls="header-search-{{ section.id }}" class="text-with-icon smallcaps">
-            {%- render 'icon' with 'search', width: 20 -%}
-            {{- 'header.general.search' | t -}}
-          </a>
-        {%- endif -%}
-
-        {%- if show_country_selector or show_locale_selector -%}
-          <div class="localization-selectors">
-            {%- if show_country_selector -%}
-              {%- render 'localization-selector',
-                type: 'country',
-                placement: 'top-start',
-                show_country_name: section.settings.show_country_name,
-                show_country_flag: section.settings.show_country_flag,
-                id_prefix: 'header-sidebar'
-              -%}
-            {%- endif -%}
-
-            {%- if show_country_selector and show_locale_selector -%}
-              <span class="localization-selectors__separator" aria-hidden="true"></span>
-            {%- endif -%}
-
-            {%- if show_locale_selector -%}
-              {%- render 'localization-selector', type: 'locale', placement: 'top-start', id_prefix: 'header-sidebar' -%}
-            {%- endif -%}
-          </div>
-        {%- endif -%}
-      </div>
-    {%- endif -%}
   </div>
 
   {%- comment -%}Panel 2 holds all the second levels{%- endcomment -%}

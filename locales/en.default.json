@@ -606,7 +606,9 @@
       "done_text_html": "We will send you one message when {{ item }} is available."
     },
     "header": {
-      "cart": "Cart"
+      "cart": "Cart",
+      "wishlist": "Ønskeskyen wishlist",
+      "contact": "Contact us"
     },
     "footer": {
       "kicker": "Newsletter",
