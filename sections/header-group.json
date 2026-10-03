@@ -32,6 +32,8 @@
         "sidebar_text_font": "body",
         "sidebar_show_dividers": false,
         "sidebar_open_second_level_menus": false,
+        "lalatoto_wishlist_url": "https://onskeskyen.dk",
+        "lalatoto_contact_page": "contact",
         "layout": "logo_left_navigation_inline",
         "show_icons": true,
         "show_country_selector": false,
@@ -39,9 +41,7 @@
         "show_country_flag": true,
         "show_locale_selector": true,
         "transparent_header_text_color": "#2a2724",
-        "transparent_logo": "shopify://shop_images/lalatoto-logo-2026.png",
-        "lalatoto_wishlist_url": "https://onskeskyen.dk",
-        "lalatoto_contact_page": "contact"
+        "transparent_logo": "shopify://shop_images/lalatoto-logo-2026.png"
       }
     }
   },
