@@ -14,56 +14,62 @@
       "blocks": {
         "item_hvalen": {
           "type": "item",
+          "name": "Hvalen LALA",
           "settings": {
             "standard": "hvalen",
             "name": "Hvalen LALA",
-            "temperature": "40°C skånevask",
-            "text": "<p>Vaskes ved 40 grader på skåneprogram med et mildt vaskemiddel uden blegemiddel. Undgå skyllemiddel. Formes med hænderne, mens den er fugtig, og tørres liggende på et håndklæde. Tåler ikke tørretumbler.</p>"
+            "temperature": "VASK & VEDLIGEHOLDELSE",
+            "text": "<p><strong>VASK & VEDLIGEHOLDELSE</strong></p><p>Pletfjern, når det er muligt.</p><p>Hvis en fuld vask er nødvendig, skal uldfyldet tages ud<br/>inden vask. Bemærk, at ulden i finnerne ikke kan tages ud.</p><p>Vask ved 30°C på skåneprogram, og lad Hvalen LALA lufttørre<br/>helt.</p><p>Fyld ulden tilbage i hvalen og luk.&nbsp;</p><p><strong>ULDFYLD</strong></p><p>Uld er et naturligt materiale. Det lever, sætter sig og<br/>forandrer sig over tid.</p><p>Hvis Hvalen LALA mister lidt af sin form med tiden, kan du<br/>blot åbne det indvendige rum, forsigtigt plukke uldfibrene fra hinanden og<br/>fordele fyldet igen.</p><p>Du kan også tilføje mere uld efter behov, så Hvalen LALA kan<br/>følge jer i mange år.</p><p><strong>SÅDAN ÅBNER DU HVALEN LALA</strong></p><p>Af sikkerhedsmæssige årsager har lynlåsen ingen puller, så<br/>børn ikke kan få adgang til fyldet.</p><p>For at åbne lynlåsen kan du sætte en sikkerhedsnål,<br/>papirclips eller en lignende lille genstand gennem lynlåsskyderen og bruge den<br/>som en midlertidig puller.</p><p>Hold både fyldet og de genstande, der bruges til at åbne<br/>lynlåsen, uden for børns rækkevidde.</p>"
           }
         },
         "item_sengerand": {
           "type": "item",
+          "name": "Sengerand",
           "settings": {
             "standard": "sengerand",
             "name": "Sengerand",
-            "temperature": "40°C",
-            "text": "<p>Tages af og vaskes ved 40 grader. Luk lynlåsen før vask, så den ikke river i stoffet. Tørres liggende eller hænges over en stol, så randen holder sin form. Stryges på vrangen ved lav varme, hvis den trænger.</p>"
+            "temperature": "VASK & VEDLIGEHOLDELSE",
+            "text": "<p><strong>VASK & VEDLIGEHOLDELSE</strong></p><p>Sengeranden er med fyld af uld og bør ikke maskinvaskes.</p><p>Pletter fjernes så hurtigt som muligt med en hårdt opvredet klud og mild sæbe.</p><p>Undgå at gennemvæde materialet. Lad sengeranden lufttørre helt efter pletfjernelse.</p><p>Luft gerne sengeranden jævnligt i tørt vejr og skygge for at holde materialet friskt.</p>"
           }
         },
         "item_sengeslange": {
           "type": "item",
+          "name": "Sengeslange",
           "settings": {
             "standard": "sengeslange",
             "name": "Sengeslange",
-            "temperature": "40°C",
-            "text": "<p>Vaskes ved 40 grader uden skyllemiddel. Er der et aftageligt betræk, vaskes det for sig. Fyldet må ikke i tørretumbler. Ryst slangen let, mens den tørrer, så fyldet fordeler sig igen.</p>"
+            "temperature": "VASK & VEDLIGEHOLDELSE",
+            "text": "<p><strong>VASK & VEDLIGEHOLDELSE</strong></p><p>Sengeslangen består af en inderpude med uld og kirsebærsten samt et aftageligt betræk i bomuld.</p><p>Inderpuden bør ikke vaskes.</p><p>Luft den jævnligt i tørt vejr og skygge. Ryst og form den med jævne mellemrum, så ulden bevarer sin fylde.</p><p>Pletter fjernes så hurtigt som muligt med en hårdt opvredet klud og mild sæbe.</p><p>Betrækket kan afmonteres og vaskes i maskine.</p><p>Vask ved op til 60°C. Lufttør eller tør i tørretumbler.</p><p><strong>ULDFYLD</strong></p><p>Uld er et naturligt materiale. Det lever, sætter sig og forandrer sig over tid.</p><p>Hvis ulden med tiden bliver kompakt eller mister noget af sin fylde, kan du åbne inderpuden, tage ulden ud og forsigtigt plukke fibrene fra hinanden, inden ulden fyldes tilbage.</p><p>Du kan også tilføje mere uld efter behov, så sengeslangen kan bruges i mange år.</p><p><strong>SÅDAN ÅBNER DU INDERPUDEN</strong></p><p>Af sikkerhedsmæssige årsager har lynlåsen ingen puller, så børn ikke kan få adgang til fyldet.</p><p>For at åbne lynlåsen kan du sætte en sikkerhedsnål, papirclips eller en lignende lille genstand gennem lynlåsskyderen og bruge den som en midlertidig puller.</p><p>Hold både fyldet og de genstande, der bruges til at åbne lynlåsen, uden for børns rækkevidde.</p>"
           }
         },
         "item_sengetoej": {
           "type": "item",
+          "name": "Sengetøj",
           "settings": {
             "standard": "sengetoej",
             "name": "Sengetøj",
-            "temperature": "60°C",
-            "text": "<p>Tåler 60 grader, men 40 grader er nok til daglig vask og skåner farverne. Vend det på vrangen og luk knapper eller lynlås. Tørretumbler ved lav varme eller ophængning. Bomulden krymper en anelse ved første vask; det har vi regnet med i målene.</p>"
+            "temperature": "VASK & VEDLIGEHOLDELSE",
+            "text": "<p><strong>VASK & VEDLIGEHOLDELSE</strong></p><p>Vend sengetøjet på vrangen og luk lynlåsen inden vask.</p><p>Maskinvask ved op til 60°C.</p><p>Lufttør eller tør i tørretumbler.</p>"
           }
         },
         "item_maanepude": {
           "type": "item",
+          "name": "Månepude",
           "settings": {
             "standard": "maanepude",
             "name": "Månepude",
-            "temperature": "40°C",
-            "text": "<p>Betrækket tages af og vaskes ved 40 grader. Selve puden vaskes kun, hvis det er nødvendigt, og tørres helt, før den bruges igen. Undgå skyllemiddel, som lukker fibrene og gør stoffet mindre åndbart.</p>"
+            "temperature": "VASK & VEDLIGEHOLDELSE",
+            "text": "<p><strong>VASK & VEDLIGEHOLDELSE</strong></p><p>Månepuden består af en inderpude med uldfyld og et aftageligt betræk i bomuld.</p><p>Betrækket kan afmonteres og maskinvaskes ved op til 60°C.&nbsp;</p><p>Lufttør eller tør i tørretumbler.</p><p>Inderpuden bør ikke vaskes.</p><p>Pletter fjernes så hurtigt som muligt med en hårdt opvredet klud og mild sæbe. Lad inderpuden lufttørre helt efter pletfjernelse.</p><p><strong>ULDFYLD</strong></p><p>Uld er et naturligt materiale. Det lever, sætter sig og forandrer sig over tid.</p><p>Hvis Månepuden mister noget af sin form med tiden, kan du åbne inderpuden, tage ulden ud og forsigtigt plukke fibrene fra hinanden, inden ulden fyldes tilbage.</p><p>Du kan også tilføje mere uld efter behov, så Månepuden kan bruges i mange år.</p><p><strong>SÅDAN ÅBNER DU INDERPUDEN</strong></p><p>Af sikkerhedsmæssige årsager har lynlåsen ingen puller, så børn ikke kan få adgang til fyldet.</p><p>For at åbne lynlåsen kan du sætte en sikkerhedsnål, papirclips eller en lignende lille genstand gennem lynlåsskyderen og bruge den som en midlertidig puller.</p><p>Hold både fyldet og de genstande, der bruges til at åbne lynlåsen, uden for børns rækkevidde.</p>"
           }
         },
         "item_sengelomme": {
           "type": "item",
+          "name": "Sengelomme",
           "settings": {
             "standard": "sengelomme",
             "name": "Sengelomme",
-            "temperature": "40°C",
-            "text": "<p>Vaskes ved 40 grader sammen med resten af sengetøjet. Tørres liggende. Stryg med damp på den glatte side, hvis den skal se helt ny ud.</p>"
+            "temperature": "VASK & VEDLIGEHOLDELSE",
+            "text": "<p><strong>VASK & VEDLIGEHOLDELSE</strong></p><p>Maskinvask ved op til 60°C.</p><p>Lufttør eller tør i tørretumbler.</p>"
           }
         }
       },
