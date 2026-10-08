@@ -1,6 +1,7 @@
 {%- comment -%}
   Lalatoto: «Fra journalen» på forsiden. De nyeste artikler fra den valgte
   blog i tre kolonner (én på telefon) med et link til hele journalen.
+  Den lille etiket over overskriften vises kun, hvis den er udfyldt.
 {%- endcomment -%}
 
 {%- liquid
@@ -15,7 +16,9 @@
   <div class="lalatoto-journal-teaser color-scheme color-scheme--{{ section.settings.color_scheme.id }}">
     <header class="lalatoto-journal-teaser__head">
       <div>
-        <p class="lalatoto-kicker">{{ 'lalatoto.journal.kicker' | t }}</p>
+        {%- if section.settings.kicker != blank -%}
+          <p class="lalatoto-kicker">{{ section.settings.kicker | escape }}</p>
+        {%- endif -%}
         <h2 class="lalatoto-journal-teaser__title">{{ heading | escape }}</h2>
       </div>
       <a href="{{ journal.url }}" class="lalatoto-journal-teaser__all">
@@ -47,6 +50,12 @@
       "type": "blog",
       "id": "blog",
       "label": "Blog"
+    },
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Lille etiket over overskriften",
+      "info": "Tom: ingen etiket."
     },
     {
       "type": "text",
