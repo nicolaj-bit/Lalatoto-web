@@ -524,14 +524,20 @@
       "sections": {
         "materials": "Materialien",
         "dimensions": "Maße",
-        "care": "Waschen und Pflege",
+        "care": "Waschanleitung",
         "safety": "Sicherheit",
-        "shipping": "Lieferung und Rückgabe",
+        "shipping": "Lieferung & Rückgabe",
         "weight": "Gewicht",
-        "weight_guide": "Das richtige Gewicht wählen"
+        "weight_guide": "Das richtige Gewicht wählen",
+        "about": "Über {{ product }}",
+        "made": "Mit Sorgfalt gemacht",
+        "specs": "Spezifikationen"
       },
       "fits": "Passt zu",
-      "weight_help": "Hilfe bei der Wahl des richtigen Gewichts"
+      "weight_help": "Hilfe bei der Wahl des richtigen Gewichts",
+      "care_link": "Zur Waschanleitung",
+      "terms_link": "Unsere AGB lesen",
+      "shipping_default": "Versand innerhalb von 1–2 Werktagen.\nBei Vorbestellungen steht die voraussichtliche Lieferzeit auf der Produktseite.\n\nDu hast ein 14-tägiges Widerrufsrecht ab Erhalt deiner Bestellung."
     },
     "featured": {
       "kicker": "Shop",

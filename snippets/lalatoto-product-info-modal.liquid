@@ -3,8 +3,11 @@
   modalen samler produktets information med en indholdsfortegnelse øverst.
 
   Afsnittenes indhold hentes fra produktets metafelter i navnerummet «lalatoto»
-  (flerlinjet tekst). Et afsnit med tomt metafelt vises ikke og står heller ikke
-  i indholdsfortegnelsen. En tom linje i feltet giver et nyt tekstafsnit.
+  (flerlinjet tekst): about, made, care, specs, safety og shipping. Et afsnit
+  med tomt metafelt vises ikke og står heller ikke i indholdsfortegnelsen,
+  undtagen Levering & retur, som har en standardtekst. En tom linje i feltet
+  giver et nyt tekstafsnit, og et afsnit, der starter med en linje i
+  versaler, får den som mellemrubrik.
 
   Snippet'et bruges to steder: som linket inde i produktinfoen (mode 'button')
   og som selve modalen uden for Prestiges genindlæsning ved variantskift
@@ -17,19 +20,26 @@
 {%- enddoc -%}
 
 {%- liquid
+  comment
+    Afsnittene i den rækkefølge, Sara har skrevet dem: Om produktet, Lavet
+    med omtanke, Vaskevejledning, Specifikationer, Sikkerhed og Levering &
+    retur. Materialer og Mål er de gamle felter; de vises stadig, hvis et
+    produkt har dem udfyldt.
+  endcomment
   if sections == 'tyngdedyne'
-    assign keys = 'materials,dimensions,weight,weight_guide,care,safety,shipping' | split: ','
+    assign keys = 'about,made,materials,care,specs,dimensions,weight,weight_guide,safety,shipping' | split: ','
   else
-    assign keys = 'materials,dimensions,care,safety,shipping' | split: ','
+    assign keys = 'about,made,materials,care,specs,dimensions,safety,shipping' | split: ','
   endif
-  assign has_content = false
 
-  for key in keys
-    if product.metafields.lalatoto[key].value != blank
-      assign has_content = true
-      break
-    endif
-  endfor
+  comment
+    Levering & retur er ens for alle produkter. Står der intet i produktets
+    felt, bruges standardteksten fra sprogfilen.
+  endcomment
+  assign shipping_default = 'lalatoto.product.shipping_default' | t
+  assign wash_url = pages['vaksevejledning'].url | default: pages['vaskevejledning'].url
+  assign terms_url = pages['handelsbetingelser'].url
+  assign has_content = true
 -%}
 
 {%- comment -%}Et rigtigt linjeskift. Liquid oversætter ikke '\n' i en tekststreng.{%- endcomment -%}
@@ -41,7 +51,7 @@
   {%- if mode == 'button' -%}
     <button type="button" class="lalatoto-more-info-link" aria-controls="{{ modal_id }}" aria-haspopup="dialog">
       <span>{{- 'lalatoto.product.tell_more' | t -}}</span>
-      <span class="lalatoto-more-info-link__arrow" aria-hidden="true">→</span>
+      <span class="lalatoto-more-info-link__plus" aria-hidden="true"></span>
     </button>
   {%- else -%}
     <lalatoto-info-modal>
@@ -60,9 +70,11 @@
             <nav class="lalatoto-info-modal__toc" aria-label="{{ 'lalatoto.product.contents' | t | escape }}">
               <ol data-lalatoto-toc>
                 {%- for key in keys -%}
-                  {%- if product.metafields.lalatoto[key].value != blank -%}
+                  {%- assign value = product.metafields.lalatoto[key].value -%}
+                  {%- if key == 'shipping' and value == blank -%}{%- assign value = shipping_default -%}{%- endif -%}
+                  {%- if value != blank -%}
                     {%- assign title_key = 'lalatoto.product.sections.' | append: key -%}
-                    <li><a href="#{{ modal_id }}-{{ key }}">{{ title_key | t }}</a></li>
+                    <li><a href="#{{ modal_id }}-{{ key }}">{{ title_key | t: product: product.title }}</a></li>
                   {%- endif -%}
                 {%- endfor -%}
               </ol>
@@ -71,18 +83,44 @@
             <div class="lalatoto-info-modal__body">
               {%- for key in keys -%}
                 {%- assign value = product.metafields.lalatoto[key].value -%}
+                {%- if key == 'shipping' and value == blank -%}{%- assign value = shipping_default -%}{%- endif -%}
                 {%- if value != blank -%}
                   {%- assign title_key = 'lalatoto.product.sections.' | append: key -%}
                   {%- assign paragraphs = value | strip | split: blank_line -%}
                   <section id="{{ modal_id }}-{{ key }}" class="lalatoto-info-modal__section">
-                    <h3 class="lalatoto-info-modal__section-title">{{ title_key | t }}</h3>
+                    <h3 class="lalatoto-info-modal__section-title">{{ title_key | t: product: product.title }}</h3>
                     <div class="lalatoto-info-modal__text">
                       {%- for paragraph in paragraphs -%}
                         {%- assign paragraph = paragraph | strip -%}
                         {%- if paragraph != blank -%}
-                          <p>{{ paragraph | escape | newline_to_br }}</p>
+                          {%- liquid
+                            comment
+                              Et afsnit, der starter med en linje i VERSALER (fx «SMALL»),
+                              får den linje som lille mellemrubrik. Bruges i Specifikationer.
+                            endcomment
+                            assign lines = paragraph | split: newline
+                            assign first_line = lines.first | strip
+                            assign first_upper = first_line | upcase
+                            assign subheading = false
+                            if lines.size > 1 and first_line == first_upper and first_line.size <= 30
+                              assign subheading = true
+                            endif
+                          -%}
+                          {%- if subheading -%}
+                            {%- assign rest = paragraph | remove_first: lines.first | strip -%}
+                            <h4 class="lalatoto-info-modal__subheading">{{ first_line | escape }}</h4>
+                            <p>{{ rest | escape | newline_to_br }}</p>
+                          {%- else -%}
+                            <p>{{ paragraph | escape | newline_to_br }}</p>
+                          {%- endif -%}
                         {%- endif -%}
                       {%- endfor -%}
+
+                      {%- if key == 'care' and wash_url != blank -%}
+                        <p><a class="lalatoto-info-modal__link" href="{{ wash_url }}">{{ 'lalatoto.product.care_link' | t }} <span aria-hidden="true">→</span></a></p>
+                      {%- elsif key == 'shipping' and terms_url != blank -%}
+                        <p><a class="lalatoto-info-modal__link" href="{{ terms_url }}">{{ 'lalatoto.product.terms_link' | t }} <span aria-hidden="true">→</span></a></p>
+                      {%- endif -%}
                     </div>
                   </section>
                 {%- endif -%}

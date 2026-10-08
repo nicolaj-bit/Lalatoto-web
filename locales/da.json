@@ -522,20 +522,26 @@
   },
   "lalatoto": {
     "product": {
-      "tell_more": "Fortæl mere",
+      "tell_more": "Fortæl mig mere",
       "contents": "Indhold",
       "delivery_default": "Levering 1-2 hverdage",
       "sections": {
         "materials": "Materialer",
         "dimensions": "Mål",
-        "care": "Vask og pleje",
+        "care": "Vaskevejledning",
         "safety": "Sikkerhed",
-        "shipping": "Levering og retur",
+        "shipping": "Levering & retur",
         "weight": "Vægt",
-        "weight_guide": "Valg af rigtig vægt"
+        "weight_guide": "Valg af rigtig vægt",
+        "about": "Om {{ product }}",
+        "made": "Lavet med omtanke",
+        "specs": "Specifikationer"
       },
       "fits": "Passer til",
-      "weight_help": "Hjælp til at vælge den rigtige vægt"
+      "weight_help": "Hjælp til at vælge den rigtige vægt",
+      "care_link": "Se vaskevejledning",
+      "terms_link": "Læs vores handelsbetingelser",
+      "shipping_default": "Sendes inden for 1–2 hverdage.\nVed forudbestilling fremgår den forventede leveringstid på produktsiden.\n\nDu har 14 dages fortrydelsesret fra modtagelsen af din ordre."
     },
     "featured": {
       "kicker": "Shop",
