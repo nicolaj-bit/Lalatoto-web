@@ -61,7 +61,7 @@
         "blog": "bloggen",
         "heading": "Blog",
         "count": 3,
-        "show_excerpt": false
+        "show_excerpt": true
       }
     },
     "app": {
