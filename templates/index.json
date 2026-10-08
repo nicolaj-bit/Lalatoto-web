@@ -59,7 +59,7 @@
       "settings": {
         "color_scheme": "scheme-1",
         "blog": "bloggen",
-        "heading": "",
+        "heading": "Blog",
         "count": 3,
         "show_excerpt": false
       }
