@@ -5,9 +5,13 @@
   Afsnittenes indhold hentes fra produktets metafelter i navnerummet «lalatoto»
   (flerlinjet tekst): about, made, care, specs, safety og shipping. Et afsnit
   med tomt metafelt vises ikke og står heller ikke i indholdsfortegnelsen,
-  undtagen Levering & retur, som har en standardtekst. En tom linje i feltet
-  giver et nyt tekstafsnit, og et afsnit, der starter med en linje i
-  versaler, får den som mellemrubrik.
+  undtagen Levering & retur, som har en standardtekst, og Vaskevejledning,
+  som altid har linket til vaskevejledningen. En tom linje i feltet giver et
+  nyt tekstafsnit, og et afsnit, der starter med en kort linje uden kolon og
+  punktum (fx «SMALL» eller «Baby»), får den som mellemrubrik.
+
+  Overskriften «Om …» er produktets navn. Feltet about_title (enkelt linje)
+  overskriver den, fx «Om sengeslangen».
 
   Snippet'et bruges to steder: som linket inde i produktinfoen (mode 'button')
   og som selve modalen uden for Prestiges genindlæsning ved variantskift
@@ -72,9 +76,8 @@
                 {%- for key in keys -%}
                   {%- assign value = product.metafields.lalatoto[key].value -%}
                   {%- if key == 'shipping' and value == blank -%}{%- assign value = shipping_default -%}{%- endif -%}
-                  {%- if value != blank -%}
-                    {%- assign title_key = 'lalatoto.product.sections.' | append: key -%}
-                    <li><a href="#{{ modal_id }}-{{ key }}">{{ title_key | t: product: product.title }}</a></li>
+                  {%- if value != blank or key == 'care' and wash_url != blank -%}
+                    <li><a href="#{{ modal_id }}-{{ key }}">{% render 'lalatoto-product-info-title', key: key, product: product %}</a></li>
                   {%- endif -%}
                 {%- endfor -%}
               </ol>
@@ -84,26 +87,28 @@
               {%- for key in keys -%}
                 {%- assign value = product.metafields.lalatoto[key].value -%}
                 {%- if key == 'shipping' and value == blank -%}{%- assign value = shipping_default -%}{%- endif -%}
-                {%- if value != blank -%}
-                  {%- assign title_key = 'lalatoto.product.sections.' | append: key -%}
+                {%- if value != blank or key == 'care' and wash_url != blank -%}
                   {%- assign paragraphs = value | strip | split: blank_line -%}
                   <section id="{{ modal_id }}-{{ key }}" class="lalatoto-info-modal__section">
-                    <h3 class="lalatoto-info-modal__section-title">{{ title_key | t: product: product.title }}</h3>
+                    <h3 class="lalatoto-info-modal__section-title">{% render 'lalatoto-product-info-title', key: key, product: product %}</h3>
                     <div class="lalatoto-info-modal__text">
                       {%- for paragraph in paragraphs -%}
                         {%- assign paragraph = paragraph | strip -%}
                         {%- if paragraph != blank -%}
                           {%- liquid
                             comment
-                              Et afsnit, der starter med en linje i VERSALER (fx «SMALL»),
-                              får den linje som lille mellemrubrik. Bruges i Specifikationer.
+                              Et afsnit, der starter med en kort linje uden kolon og uden
+                              punktum til sidst (fx «SMALL» eller «Baby»), får den linje som
+                              lille mellemrubrik. Bruges i Specifikationer.
                             endcomment
                             assign lines = paragraph | split: newline
                             assign first_line = lines.first | strip
-                            assign first_upper = first_line | upcase
+                            assign last_char = first_line | slice: -1
                             assign subheading = false
-                            if lines.size > 1 and first_line == first_upper and first_line.size <= 30
-                              assign subheading = true
+                            if lines.size > 1 and first_line.size <= 30
+                              unless first_line contains ':' or last_char == '.' or last_char == '!' or last_char == '?'
+                                assign subheading = true
+                              endunless
                             endif
                           -%}
                           {%- if subheading -%}

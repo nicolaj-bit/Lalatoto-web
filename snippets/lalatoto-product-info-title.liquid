@@ -1,0 +1,14 @@
+{%- doc -%}
+  Lalatoto: overskriften på et afsnit i «Fortæl mig mere». «Om …» kan
+  overskrives pr. produkt med metafeltet lalatoto.about_title.
+
+  @param {string} key - afsnittets nøgle, fx 'about' eller 'care'
+  @param {object} product - produktet
+{%- enddoc -%}
+
+{%- if key == 'about' and product.metafields.lalatoto.about_title.value != blank -%}
+  {{- product.metafields.lalatoto.about_title.value | escape -}}
+{%- else -%}
+  {%- assign title_key = 'lalatoto.product.sections.' | append: key -%}
+  {{- title_key | t: product: product.title -}}
+{%- endif -%}
