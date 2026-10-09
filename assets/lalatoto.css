@@ -333,6 +333,22 @@ svg.lalatoto-full-image__image {
   line-height: 1.6;
 }
 
+/* Resten af produktinfoen i samme rolige størrelse som den korte tekst:
+   pris, «Dit valg:» og ventelistens tekst og felt. Titlen står uændret. */
+.product-info sale-price,
+.product-info compare-at-price {
+  font-size: 1.125rem;
+}
+
+.product-info .variant-picker__option-info {
+  font-size: 0.875rem;
+}
+
+.product-info .lalatoto-waitlist__text,
+.product-info .lalatoto-waitlist label {
+  font-size: 0.875rem;
+}
+
 .lalatoto-short-description p {
   margin: 0;
 }
