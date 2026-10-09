@@ -329,6 +329,8 @@ svg.lalatoto-full-image__image {
 /* Kort beskrivelse: hele teksten vises, linjeskift bevares */
 .lalatoto-short-description {
   margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.6;
 }
 
 .lalatoto-short-description p {
