@@ -231,8 +231,9 @@ h1, h2, h3, h4, h5, h6,
 
 .lalatoto-hero__content {
   display: grid;
-  justify-items: start;
+  justify-items: center;
   gap: 1.5rem;
+  text-align: center;
   padding: 2.5rem var(--container-gutter) 0;
 }
 
