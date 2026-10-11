@@ -5,11 +5,12 @@
  */
 
 /* ---------------------------------------------------------------
- * Bredde og luft: indhold højst 1400 px, 64 px mellem sektioner på
- * telefon og 120 px på computer.
+ * Bredde og luft: indholdet går ud til skærmens faste margen ligesom
+ * header og footer (højst 2560 px), 64 px mellem sektioner på telefon og
+ * 120 px på computer. Lange tekster har deres egen smalle bredde.
  * --------------------------------------------------------------- */
 :root {
-  --lalatoto-max-width: 87.5rem; /* 1400px */
+  --lalatoto-max-width: 160rem; /* 2560px */
   --container-max-width: var(--lalatoto-max-width);
   --section-vertical-spacing: 4rem; /* 64px */
   --section-vertical-spacing-tight: 4rem;
