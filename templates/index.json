@@ -14,12 +14,13 @@
       "settings": {
         "color_scheme": "scheme-1",
         "allow_transparent_header": true,
-        "image": "shopify://shop_images/125.png",
+        "image": "shopify://shop_images/Computer.jpg",
         "image_alt": "",
+        "mobile_image": "shopify://shop_images/Mobil.jpg",
         "heading_line_1": "Ingen polyester.",
         "heading_line_2": "Ingen kompromis.",
         "text": "<p>Hvis naturen er dit sprog, taler vi det samme.</p>",
-        "button_text": "Se kollektionen",
+        "button_text": "Little checks kollektion",
         "button_url": "shopify://collections/produkter"
       }
     },
