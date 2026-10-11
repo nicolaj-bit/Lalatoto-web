@@ -1,8 +1,8 @@
 {%- comment -%}
   Lalatoto: udvalgte produkter på forsiden.
 
-  Øverst en lille etiket og en overskrift i Playfair til venstre og et link
-  til hele kollektionen til højre, som «Fra journalen». Har sektionen flere
+  Øverst en overskrift i Playfair. Etiketten over den og linket til hele
+  kollektionen vises kun, hvis de er slået til i temaeditoren. Har sektionen flere
   kollektioner, står deres navne som faner under overskriften.
 
   Produkterne vises som på kollektionssiden: billede i 4:5 og navnet med
@@ -14,15 +14,14 @@
 {%- liquid
   assign collection_blocks = section.blocks | where: 'type', 'collection'
   assign kicker = section.settings.kicker
-  if kicker == blank
-    assign kicker = 'lalatoto.featured.kicker' | t
-  endif
 -%}
 
 <div class="lalatoto-featured color-scheme color-scheme--{{ section.settings.color_scheme.id }}">
   <header class="lalatoto-featured__head">
     <div>
-      <p class="lalatoto-kicker">{{ kicker | escape }}</p>
+      {%- if kicker != blank -%}
+        <p class="lalatoto-kicker">{{ kicker | escape }}</p>
+      {%- endif -%}
       {%- if section.settings.heading != blank -%}
         <h2 class="lalatoto-featured__title">{{ section.settings.heading }}</h2>
       {%- endif -%}
@@ -30,7 +29,7 @@
 
     {%- for block in collection_blocks -%}
       {%- assign link_collection = block.settings.collection -%}
-      {%- if link_collection != blank -%}
+      {%- if section.settings.show_view_all and link_collection != blank -%}
         <a
           href="{{ link_collection.url }}"
           class="lalatoto-featured__all"
@@ -181,13 +180,19 @@
       "type": "text",
       "id": "kicker",
       "label": "Lille etiket over overskriften",
-      "info": "Tom: «Shop»."
+      "info": "Tom: ingen etiket."
     },
     {
       "type": "inline_richtext",
       "id": "heading",
       "label": "Overskrift",
       "default": "Udvalgt til søvnen"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all",
+      "label": "Vis link til hele kollektionen",
+      "default": false
     },
     {
       "type": "range",
