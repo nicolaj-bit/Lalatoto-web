@@ -88,11 +88,13 @@ h1, h2, h3, h4, h5, h6,
 }
 
 /* ---------------------------------------------------------------
- * Header: samme maksimale bredde som indholdet
+ * Header: går helt ud i skærmens bredde med kun den faste margen, så
+ * logo og kurv står ude ved kanten, også på store skærme. Footeren
+ * følger samme kant.
  * --------------------------------------------------------------- */
 .header {
-  padding-inline-start: max(var(--container-gutter), (100% - var(--lalatoto-max-width)) / 2);
-  padding-inline-end: max(var(--container-gutter), (100% - var(--lalatoto-max-width)) / 2);
+  padding-inline-start: var(--container-gutter);
+  padding-inline-end: var(--container-gutter);
 }
 
 .header-sidebar__footer .text-with-icon {
@@ -1941,8 +1943,8 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 }
 
 .lalatoto-footer__inner {
-  /* Samme venstrekant som logoet i headeren */
-  padding-inline: max(var(--container-gutter), (100% - var(--lalatoto-max-width)) / 2);
+  /* Samme kant som headeren: helt ud til skærmens margen */
+  padding-inline: var(--container-gutter);
 }
 
 .lalatoto-footer__col--newsletter {
