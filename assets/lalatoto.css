@@ -343,6 +343,22 @@ svg.lalatoto-full-image__image {
   font-size: 1.125rem;
 }
 
+/* «Dit valg: Sage» og «Sengetøjsstørrelse:» over farver og størrelser
+   vises ikke. Skærmlæsere læser dem stadig, så valgene har et navn.
+   Rækken fylder kun, hvis der også står et link til størrelsesguide. */
+.product-info .variant-picker__option-info > .h-stack:first-child {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.product-info .variant-picker__option-info:not(:has(a, button)) {
+  margin-block-end: -0.5rem;
+}
+
 .product-info .variant-picker__option-info {
   font-size: 0.875rem;
 }
