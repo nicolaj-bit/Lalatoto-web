@@ -48,6 +48,7 @@
         "color_scheme": "scheme-1",
         "kicker": "",
         "heading": "Shop",
+        "show_view_all": false,
         "products_count": 4,
         "hover_image": true,
         "hide_sold_out": false,
