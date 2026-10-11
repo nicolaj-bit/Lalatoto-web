@@ -524,20 +524,20 @@
       "sections": {
         "materials": "Materials",
         "dimensions": "Dimensions",
-        "care": "Washing instructions",
+        "care": "Care",
         "safety": "Safety",
         "shipping": "Delivery & returns",
         "weight": "Weight",
         "weight_guide": "Choosing the right weight",
         "about": "About {{ product }}",
         "made": "Made with care",
-        "specs": "Specifications"
+        "specs": "Details"
       },
       "fits": "Fits",
       "weight_help": "Help choosing the right weight",
-      "care_link": "See washing instructions",
-      "terms_link": "Read our terms and conditions",
-      "shipping_default": "Ships within 1–2 business days.\nFor pre-orders, the expected delivery time is shown on the product page.\n\nYou have a 14-day right of withdrawal from receipt of your order."
+      "care_link": "See care instructions",
+      "terms_link": "Read our terms & conditions",
+      "shipping_default": "Ships within 1–2 business days.\nPre-order items will show their expected delivery date on the product page.\n\nReturns are accepted within 14 days of receiving your order."
     },
     "featured": {
       "kicker": "Shop",
