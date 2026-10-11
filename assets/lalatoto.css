@@ -254,6 +254,7 @@ h1, h2, h3, h4, h5, h6,
 @media screen and (min-width: 1000px) {
   .lalatoto-hero__content {
     gap: 0;
+    padding-inline-start: clamp(2rem, 6vw, 7rem);
   }
 
   .lalatoto-hero__heading {
@@ -271,6 +272,7 @@ h1, h2, h3, h4, h5, h6,
   .lalatoto-hero__content .lalatoto-button-outline {
     min-width: 21.5rem;
     margin-block-start: 4.5rem;
+    margin-inline-start: 2rem;
     padding-block: 1.25rem;
     text-align: center;
   }
