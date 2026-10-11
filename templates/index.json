@@ -47,7 +47,7 @@
       "settings": {
         "color_scheme": "scheme-1",
         "kicker": "",
-        "heading": "Udvalgt til søvnen",
+        "heading": "Shop",
         "products_count": 4,
         "hover_image": true,
         "hide_sold_out": false,
@@ -59,6 +59,7 @@
       "settings": {
         "color_scheme": "scheme-1",
         "blog": "bloggen",
+        "kicker": "",
         "heading": "Blog",
         "count": 3,
         "show_excerpt": true
