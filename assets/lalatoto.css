@@ -252,7 +252,7 @@ h1, h2, h3, h4, h5, h6,
 /* Computer: stor overskrift, en lille tekst i smal spalte og en bred knap
    med god luft over, alt venstrestillet ud for logoet (Saras skitse). */
 @media screen and (min-width: 1000px) {
-  .lalatoto-hero__content {
+  .lalatoto-hero .lalatoto-hero__content {
     gap: 0;
     padding-inline-start: clamp(2rem, 6vw, 7rem);
   }
