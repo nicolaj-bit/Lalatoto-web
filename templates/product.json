@@ -39,12 +39,6 @@
             "size_chart_page": ""
           }
         },
-        "more_info": {
-          "type": "lalatoto_more_info",
-          "settings": {
-            "sections": "standard"
-          }
-        },
         "buy_buttons": {
           "type": "buy_buttons",
           "settings": {
@@ -54,6 +48,12 @@
             "atc_button_text_color": "",
             "payment_button_background": "",
             "payment_button_text_color": ""
+          }
+        },
+        "more_info": {
+          "type": "lalatoto_more_info",
+          "settings": {
+            "sections": "standard"
           }
         },
         "waitlist": {
@@ -68,8 +68,9 @@
         },
         "onskeskyen": {
           "type": "shopify://apps/oenskeskyen/blocks/wishlist-button/be6e5a80-54ea-40af-aa80-5746282173b8",
+          "disabled": true,
           "settings": {
-            "text": "Tilføj til ønskeskyen",
+            "text": "Add to wish cloud",
             "rounded": "none",
             "size": "small",
             "position": "left",
@@ -89,8 +90,8 @@
         "price",
         "short_description",
         "variant_picker",
-        "more_info",
         "buy_buttons",
+        "more_info",
         "waitlist",
         "delivery",
         "onskeskyen"
