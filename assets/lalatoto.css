@@ -3867,12 +3867,19 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 .lalatoto-image-text__link {
   margin-block-start: 1rem;
   padding-block-end: 0.25rem;
-  border-block-end: 1px solid currentColor;
   color: rgb(var(--text-color));
   font-size: var(--lalatoto-label-size);
   letter-spacing: var(--lalatoto-label-spacing);
   text-transform: uppercase;
   text-decoration: none;
+  /* Stregen tegnes ind, når musen holdes over, som linkene i footeren */
+  background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+  transition: background-size 0.25s ease-in-out;
+}
+
+.lalatoto-image-text__link:hover,
+.lalatoto-image-text__link:focus-visible {
+  background-size: 100% 1px;
 }
 
 @media screen and (min-width: 1000px) {
