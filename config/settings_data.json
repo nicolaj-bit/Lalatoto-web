@@ -40,9 +40,11 @@
     "product_color_display": "hide",
     "show_product_rating": false,
     "cart_type": "drawer",
-    "cart_empty_cart_link": "/collections/alle-produkter",
+    "cart_empty_cart_link": "shopify://collections/produkter",
+    "cart_free_shipping_threshold": "399",
     "social_facebook": "https://www.facebook.com/Lalatoto.dk",
     "social_instagram": "https://www.instagram.com/lalatoto_of_denmark/",
+    "favicon": "shopify://shop_images/LALATOTO_LOGOFILER_3_23ca1a07-be52-4941-b3ea-f785b2ccd8b1.png",
     "content_for_index": [],
     "color_schemes": {
       "scheme-1": {
