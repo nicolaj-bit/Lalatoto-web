@@ -3815,3 +3815,74 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
     transition: none;
   }
 }
+
+/* ------------------------------------------------------------------
+   Billede med tekst (forsiden, under «Shop»)
+   ------------------------------------------------------------------ */
+.lalatoto-image-text {
+  display: grid;
+  gap: 2rem;
+  max-width: var(--lalatoto-max-width);
+  margin-inline: auto;
+  padding: var(--section-vertical-spacing, 4.5rem) var(--container-gutter);
+  color: #2a2724;
+}
+
+.lalatoto-image-text__media img,
+.lalatoto-image-text__media .placeholder {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.lalatoto-image-text__content {
+  display: grid;
+  justify-items: start;
+  gap: 1rem;
+  max-width: 28rem;
+}
+
+.lalatoto-image-text__title {
+  margin: 0;
+  font-family: var(--heading-font-family);
+  font-weight: 400;
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  line-height: 1.15;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+.lalatoto-image-text__text {
+  color: #6e675e;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.lalatoto-image-text__text p {
+  margin: 0;
+}
+
+.lalatoto-image-text__link {
+  margin-block-start: 1rem;
+  padding-block-end: 0.25rem;
+  border-block-end: 1px solid currentColor;
+  color: rgb(var(--text-color));
+  font-size: var(--lalatoto-label-size);
+  letter-spacing: var(--lalatoto-label-spacing);
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+@media screen and (min-width: 1000px) {
+  .lalatoto-image-text {
+    grid-template-columns: 55fr 45fr;
+    align-items: center;
+    gap: clamp(3rem, 6vw, 6rem);
+  }
+
+  .lalatoto-image-text--reverse .lalatoto-image-text__media {
+    order: 2;
+  }
+}

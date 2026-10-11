@@ -1,0 +1,109 @@
+{%- comment -%}
+  Lalatoto: billede med tekst ved siden af.
+
+  På computer står billedet til venstre (eller højre) og fylder godt halvdelen,
+  og teksten står lodret centreret ved siden af: overskrift i Playfair, en
+  kort tekst og et link med versaler. På telefon står teksten under billedet.
+{%- endcomment -%}
+
+{%- liquid
+  assign image_alt = section.settings.image_alt | default: section.settings.image.alt
+-%}
+
+<div class="lalatoto-image-text color-scheme color-scheme--{{ section.settings.color_scheme.id }}{% if section.settings.image_position == 'right' %} lalatoto-image-text--reverse{% endif %}">
+  <div class="lalatoto-image-text__media">
+    {%- if section.settings.image != blank -%}
+      {{-
+        section.settings.image
+        | image_url: width: 1600
+        | image_tag:
+          loading: 'lazy',
+          sizes: '(min-width: 1000px) 55vw, 100vw',
+          widths: '600,800,1000,1200,1400,1600',
+          alt: image_alt
+      -}}
+    {%- else -%}
+      {{- 'lifestyle-2' | placeholder_svg_tag: 'placeholder' -}}
+    {%- endif -%}
+  </div>
+
+  <div class="lalatoto-image-text__content">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="lalatoto-image-text__title">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+    {%- if section.settings.text != blank -%}
+      <div class="lalatoto-image-text__text">{{ section.settings.text }}</div>
+    {%- endif -%}
+    {%- if section.settings.button_text != blank -%}
+      <a href="{{ section.settings.button_url | default: '#' }}" class="lalatoto-image-text__link">
+        {{- section.settings.button_text | escape -}}
+      </a>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Lalatoto billede med tekst",
+  "class": "shopify-section--lalatoto-image-text",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Farveskema",
+      "default": "scheme-1"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Billede",
+      "info": "Anbefalet: 1600 × 1200 px (4:3, liggende). JPG, under ca. 300 KB."
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Billedtekst til Google (alt-tekst)",
+      "info": "Beskriv kort, hvad billedet viser, fx «Børnehænder i ren, uvasket uld»."
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Billedets placering",
+      "options": [
+        { "value": "left", "label": "Venstre" },
+        { "value": "right", "label": "Højre" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Overskrift",
+      "default": "Don’t mess with nature"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Tekst",
+      "default": "<p>Some things simply don’t need improving.<br>Wool is one of them.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Linktekst",
+      "default": "Explore our materials"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Lalatoto billede med tekst"
+    }
+  ]
+}
+{% endschema %}
