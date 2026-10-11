@@ -170,7 +170,7 @@
                   comment
                     Billede ved hover: det næste billede efter farvens billede,
                     så længe det ikke er en anden farves hovedbillede eller
-                    hører til en anden farve via alt-teksten.
+                    hører til en anden farve via alt-teksten. Ellers billede 2.
                   endcomment
                   assign hover = nil
                   if section.settings.hover_image and media != blank
@@ -194,6 +194,20 @@
                       unless other_featured
                         assign hover = candidate_media
                       endunless
+                    endif
+
+                    comment
+                      Har farven ikke selv et ekstra billede, vises produktets
+                      billede 2. Er det kortets eget billede, vises billede 1.
+                    endcomment
+                    if hover == blank and product.media.size > 1
+                      assign hover = product.media[1]
+                      if hover.id == media.id
+                        assign hover = product.media[0]
+                      endif
+                      if hover.media_type != 'image'
+                        assign hover = nil
+                      endif
                     endif
                   endif
 
