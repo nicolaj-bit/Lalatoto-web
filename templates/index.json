@@ -79,12 +79,25 @@
         "app_store_url": "https://apps.apple.com/dk/app/id6764388095",
         "google_play_url": "https://play.google.com/store/apps/details?id=com.base699f47a86e7e0a874d1159ed.app"
       }
+    },
+    "materialer": {
+      "type": "lalatoto-image-text",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "image_alt": "",
+        "image_position": "left",
+        "heading": "Don’t mess with nature",
+        "text": "<p>Some things simply don’t need improving.<br>Wool is one of them.</p>",
+        "button_text": "Explore our materials",
+        "button_url": "shopify://pages/materialer"
+      }
     }
   },
   "order": [
     "hero",
     "billede",
     "shop",
+    "materialer",
     "journal",
     "app"
   ]
