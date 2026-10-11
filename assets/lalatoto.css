@@ -1512,12 +1512,28 @@ html.lalatoto-scroll-lock body {
   color: #6e675e;
 }
 
-/* Produktsiden: udsolgte kombinationer skal ses tydeligt */
-.shopify-section--main-product .block-swatch.is-disabled {
+/* Produktsiden: størrelser står som ren tekst uden kant og uden streg
+   over udsolgte størrelser, som på Hvalen LALA. Den valgte er mørk, de
+   andre lysere. (Vægtene på tyngdedynerne har deres egen stil længere nede.) */
+.shopify-section--main-product .block-swatch,
+.shopify-section--main-product :checked + .block-swatch,
+.shopify-section--main-product .block-swatch.is-selected {
+  border-color: transparent;
   color: #6e675e;
-  text-decoration: line-through;
-  text-decoration-thickness: 1px;
-  border-style: dashed;
+}
+
+.shopify-section--main-product .block-swatch.is-disabled {
+  text-decoration: none;
+  border-style: solid;
+}
+
+.shopify-section--main-product .block-swatch.is-disabled::before {
+  content: none;
+}
+
+.shopify-section--main-product :checked + .block-swatch,
+.shopify-section--main-product .block-swatch.is-selected {
+  color: rgb(var(--text-color));
 }
 
 .shopify-section--main-product .color-swatch.is-disabled {
