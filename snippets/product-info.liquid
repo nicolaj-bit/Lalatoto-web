@@ -609,13 +609,11 @@
           {%- when 'lalatoto_delivery' -%}
             {%- comment -%}
               Leveringstiden vises kun, når varen kan købes. Ellers står ventelisten der.
-              Ved forudbestilling står den forventede afsendelse fra forudbestillingsappen i stedet.
+              Ved forudbestilling vises intet her: forventet afsendelse står på knappen.
             {%- endcomment -%}
             {%- capture lalatoto_preorder_date -%}{%- render 'lalatoto-preorder-field', product: product, field: 'date' -%}{%- endcapture -%}
             {%- assign lalatoto_preorder_date = lalatoto_preorder_date | strip -%}
-            {%- if lalatoto_preorder_date != blank -%}
-              <p class="lalatoto-delivery">{{ 'lalatoto.product.preorder_shipping' | t: date: lalatoto_preorder_date | escape }}</p>
-            {%- elsif product.selected_or_first_available_variant.available -%}
+            {%- if lalatoto_preorder_date == blank and product.selected_or_first_available_variant.available -%}
               {%- assign lalatoto_delivery = product.metafields.lalatoto.leveringstid.value | default: block.settings.text -%}
               {%- if lalatoto_delivery == blank -%}
                 {%- assign lalatoto_delivery = 'lalatoto.product.delivery_default' | t -%}

@@ -419,6 +419,21 @@ svg.lalatoto-full-image__image {
   display: none;
 }
 
+/* Forudbestil-knappen: forventet afsendelse som lille linje nummer to */
+.lalatoto-preorder-button {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.125rem;
+}
+
+.lalatoto-preorder-button__when {
+  font-size: 0.75em;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  opacity: 0.8;
+}
+
 /* «Fortæl mere →» */
 .lalatoto-more-info-link {
   display: inline-flex;

@@ -50,6 +50,27 @@
             assign button_content = 'product.general.add_to_cart_button' | t
           endif
         endif
+
+        comment
+          Lalatoto: forudbestilling i den nye app. Knappen siger «Forudbestil»
+          og har forventet afsendelse som linje nummer to. Datoen kommer fra
+          appens metafelt. Appblokkens «Tekst på knappen» skal stå tom, ellers
+          skriver appen knappen om.
+        endcomment
+        capture lalatoto_preorder_date
+          render 'lalatoto-preorder-field', product: product, field: 'date'
+        endcapture
+        assign lalatoto_preorder_date = lalatoto_preorder_date | strip
+        if button_disabled == false and lalatoto_preorder_date != blank
+          assign lalatoto_preorder_label = 'product.general.pre_order_button' | t
+          assign lalatoto_preorder_when = 'lalatoto.product.preorder_shipping' | t: date: lalatoto_preorder_date
+          capture button_content
+            echo '<span class="lalatoto-preorder-button">'
+            echo '<span>' | append: lalatoto_preorder_label | append: '</span>'
+            echo '<span class="lalatoto-preorder-button__when">' | append: lalatoto_preorder_when | append: '</span>'
+            echo '</span>'
+          endcapture
+        endif
       %}
 
       <div class="v-stack gap-4">
