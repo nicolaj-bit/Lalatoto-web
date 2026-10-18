@@ -62,15 +62,15 @@
             "sections": "standard"
           }
         },
-        "waitlist": {
-          "type": "lalatoto_waitlist",
-          "settings": {}
-        },
         "delivery": {
           "type": "lalatoto_delivery",
           "settings": {
             "text": ""
           }
+        },
+        "waitlist": {
+          "type": "lalatoto_waitlist",
+          "settings": {}
         }
       },
       "block_order": [
@@ -81,8 +81,8 @@
         "variant_picker",
         "buy_buttons",
         "more_info",
-        "waitlist",
-        "delivery"
+        "delivery",
+        "waitlist"
       ],
       "settings": {
         "color_scheme": "scheme-1",
