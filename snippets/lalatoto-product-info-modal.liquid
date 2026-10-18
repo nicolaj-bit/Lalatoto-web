@@ -45,8 +45,8 @@
 
   comment
     Forudbestilling: afsnittet vises kun, når produktet sælges som
-    forudbestilling i den nye app, og står lige før Levering & retur.
-    Teksten ligger i sprogfilen; datoen og depositummet kommer fra appen.
+    forudbestilling i den nye app, og står øverst. Teksten skrives på
+    produktet; datoen og depositummet kommer fra appen.
   endcomment
   capture preorder_date
     render 'lalatoto-preorder-field', product: product, field: 'date'
@@ -66,7 +66,7 @@
     endif
     assign preorder_intro = 'lalatoto.product.preorder_info_intro' | t
     assign preorder_when = 'lalatoto.product.preorder_info_date' | t: date: preorder_date
-    assign keys = keys | join: ',' | replace: ',shipping', ',preorder,shipping' | split: ','
+    assign keys = keys | join: ',' | prepend: 'preorder,' | split: ','
   endif
   assign wash_url = pages['vaksevejledning'].url | default: pages['vaskevejledning'].url
   assign terms_url = pages['handelsbetingelser'].url
@@ -78,8 +78,16 @@
 {% endcapture %}
 {%- assign blank_line = newline | append: newline -%}
 {%- if preorder_date != blank -%}
+  {%- comment -%}
+    Teksten tages i denne rækkefølge: produktets eget felt
+    (lalatoto.preorder, «Tekst om forudbestilling» under Metafelter),
+    blokkens tekst i temaredigeringen, standardteksten i sprogfilen.
+  {%- endcomment -%}
+  {%- assign preorder_text_product = product.metafields.lalatoto.preorder.value | strip -%}
+  {%- if preorder_text_product != blank -%}
+    {%- assign preorder_text_setting = preorder_text_product -%}
+  {%- endif -%}
   {%- if preorder_text_setting != blank -%}
-    {%- comment -%}Teksten fra blokken «Fortæl mere» i temaredigeringen{%- endcomment -%}
     {%- assign preorder_text = preorder_text_setting | replace: '{dato}', preorder_date | replace: '{depositum}', preorder_deposit -%}
   {%- else -%}
     {%- assign preorder_text = preorder_intro | append: blank_line | append: preorder_payment | append: blank_line | append: preorder_when -%}
