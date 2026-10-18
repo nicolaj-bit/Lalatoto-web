@@ -118,10 +118,30 @@
               <span>−{{ cart.total_discount | money }}</span>
             </div>
           {%- endif -%}
-          <div class="lalatoto-cart__sum">
-            <span>{{ 'lalatoto.cart.total' | t }}</span>
-            <span>{{ cart.total_price | money }}</span>
-          </div>
+          {%- comment -%}
+            Lalatoto: med forudbestilling i kurven er «I alt» ikke det, der
+            trækkes ved betaling. Så vises totalen som en linje, og summen er
+            det beløb, kunden betaler nu.
+          {%- endcomment -%}
+          {%- if cart.checkout_charge_amount < cart.total_price -%}
+            <div class="lalatoto-cart__line">
+              <span>{{ 'lalatoto.cart.total' | t }}</span>
+              <span>{{ cart.total_price | money }}</span>
+            </div>
+            <div class="lalatoto-cart__line">
+              <span>{{ 'lalatoto.cart.preorder_later' | t }}</span>
+              <span>{{ cart.total_price | minus: cart.checkout_charge_amount | money }}</span>
+            </div>
+            <div class="lalatoto-cart__sum">
+              <span>{{ 'lalatoto.cart.preorder_now' | t }}</span>
+              <span>{{ cart.checkout_charge_amount | money }}</span>
+            </div>
+          {%- else -%}
+            <div class="lalatoto-cart__sum">
+              <span>{{ 'lalatoto.cart.total' | t }}</span>
+              <span>{{ cart.total_price | money }}</span>
+            </div>
+          {%- endif -%}
         </div>
         <p class="lalatoto-cart__note">{{ 'lalatoto.cart.shipping_note' | t }}</p>
 
@@ -144,7 +164,7 @@
               {{- 'lalatoto.cart.checkout' | t -}}
 
               {%- if section.settings.show_price_in_checkout_button -%}
-                <span class="cart-drawer__button-price">{{- cart.total_price | money -}}</span>
+                <span class="cart-drawer__button-price">{{- cart.checkout_charge_amount | money -}}</span>
               {%- endif -%}
             {%- endcapture -%}
 

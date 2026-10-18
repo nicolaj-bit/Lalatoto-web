@@ -45,6 +45,35 @@
 
         {%- if line_item.selling_plan_allocation -%}
           <p class="text-subdued">{{ line_item.selling_plan_allocation.selling_plan.name }}</p>
+
+          {%- comment -%}
+            Lalatoto: ved forudbestilling betales kun en del (eller intet) ved
+            købet; resten trækkes, når varen sendes. Beløbene fra Shopify er
+            pr. stk. Datoen kommer fra forudbestillingsappens produktmetafelt,
+            når den findes.
+          {%- endcomment -%}
+          {%- liquid
+            assign preorder_allocation = line_item.selling_plan_allocation
+            assign preorder_rest = preorder_allocation.remaining_balance_charge_amount | times: line_item.quantity
+          -%}
+          {%- if preorder_rest > 0 -%}
+            {%- liquid
+              assign preorder_deposit = preorder_allocation.checkout_charge_amount | times: line_item.quantity
+              assign preorder_rest_text = preorder_rest | money
+              assign preorder_deposit_text = preorder_deposit | money
+              assign preorder_date = line_item.product.metafields.lalatoto_preorder.info.value.chargeDateText
+            -%}
+            <p class="lalatoto-preorder-note text-subdued text-sm">
+              {%- if preorder_deposit > 0 -%}
+                {{- 'lalatoto.cart.preorder_line_deposit' | t: deposit: preorder_deposit_text, rest: preorder_rest_text -}}
+              {%- else -%}
+                {{- 'lalatoto.cart.preorder_line_later' | t: rest: preorder_rest_text -}}
+              {%- endif -%}
+              {%- if preorder_date != blank -%}
+                <br>{{ 'lalatoto.cart.preorder_expected' | t: date: preorder_date }}
+              {%- endif -%}
+            </p>
+          {%- endif -%}
         {%- endif -%}
 
         {%- unless line_item.properties == empty -%}

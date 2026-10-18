@@ -1057,6 +1057,12 @@ html.lalatoto-scroll-lock body {
   font-size: 0.8125rem;
 }
 
+/* Forudbestilling: hvad der betales nu, og hvad der trækkes senere */
+.lalatoto-preorder-note {
+  margin: 0;
+  line-height: 1.4;
+}
+
 .lalatoto-cart__line--discount {
   color: #2a2724;
 }
