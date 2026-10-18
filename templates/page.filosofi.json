@@ -10,48 +10,15 @@
 {
   "sections": {
     "main": {
-      "type": "lalatoto-content-page",
-      "blocks": {
-        "afsnit_1": {
-          "type": "paragraph",
-          "settings": {
-            "heading": "Et lille sortiment",
-            "text": "<p>Vi udvider kun, når vi selv mangler noget. Derfor er hylden kort, og derfor ved vi, hvad der er i hver eneste ting på den.</p>"
-          }
-        },
-        "afsnit_2": {
-          "type": "paragraph",
-          "settings": {
-            "heading": "Rolige farver",
-            "text": "<p>Et barneværelse skal kunne falde til ro. Vores farver er valgt, så de bliver i baggrunden i stedet for at råbe.</p>"
-          }
-        },
-        "afsnit_3": {
-          "type": "paragraph",
-          "settings": {
-            "heading": "Lavet for at blive brugt",
-            "text": "<p>Ikke for at blive pakket ud én gang og fotograferet. Vores ting tåler maskinvask, natlige uheld og en ekstra omgang.</p>"
-          }
-        },
-        "afsnit_4": {
-          "type": "paragraph",
-          "settings": {
-            "heading": "Dansk og familiedrevet",
-            "text": "<p>Lalatoto drives af LALATOTO of Denmark ApS. Vi svarer selv på mails, og vi pakker selv pakkerne.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "afsnit_1",
-        "afsnit_2",
-        "afsnit_3",
-        "afsnit_4"
-      ],
+      "type": "lalatoto-letter",
       "settings": {
         "color_scheme": "scheme-1",
-        "kicker": "Filosofi",
-        "heading": "Færre ting, valgt med omhu",
-        "lead": "<p>Lalatoto begyndte med en enkel iagttagelse: der findes uendeligt meget babyudstyr, og forsvindende lidt af det er lavet til at holde. Vi ville hellere lave få ting, som stadig er pæne, når barn nummer to skal bruge dem.</p>"
+        "image_alt": "Sara og Nicolaj Aagaard Boudtler",
+        "caption": "Sara and Nicolaj Aagaard Boudtler.\nPartners in love and business.",
+        "heading": "Vores filosofi",
+        "text": "<p>For år tilbage lærte jeg at hækle.</p><p>Ikke noget fancy eller kompliceret. Bare karklude, små håndklæder og den slags.<br>Jeg opdagede, at det gav mig ro. At det fik min sommetider nervøse hjerne til at falde lidt til ro.</p><p>Jeg husker, da jeg engang var i den lokale garnbutik og faldt over et garnnøgle, der var helt utroligt blødt. Jeg fik med det samme lyst til at lave noget, jeg kunne have på. Måske et halstørklæde.<br>Jeg kan huske, at der stod 100 % polyester på etiketten.</p><p>Dengang troede jeg, at polyester bare var endnu en naturfiber, ligesom bomuld eller uld. Jeg anede ikke, at det var plastik. Det fandt jeg først ud af flere år senere, da jeg blev mor.<br>Jeg kan huske, at jeg slet ikke kunne forstå, at plastik – plastik! – kunne laves om til tekstil. Og så endda tekstil, der føles SÅ blødt at røre ved.</p><p>Og derfor forstår jeg godt, hvorfor polyester er blevet så populært. Det gør jeg virkelig!<br>Men jeg synes ikke, at blødt og billigt er gode nok grunde til at blive ved med at bruge så store mængder af det. Og slet ikke med den viden vi har i dag.</p><p>Et eller andet sted på vejen begyndte vi at acceptere nogle standarder, som vi måske aldrig burde have accepteret til at begynde med.<br>Syntetiske materialer er blevet normalen. Polyester har fundet vej ind i næsten alt. Også de ting, som laves til vores børn.<br>Og på et eller andet tidspunkt holdte vi op med at stille spørgsmål ved det.</p><p><strong>Men det gør vi.</strong></p><p>Og vi stiller ikke bare spørgsmål. Vi vil også tilbyde et alternativ.<br>Et sted, hvor du kan handle uden at skulle have detektivbrillerne på.<br>Hvor naturlige fibre betyder naturlige fibre. Ikke bare 80 %. Ikke kun betrækket. Ikke kun de dele, du kan se.<br>Et sted, hvor vi bruger mindre tid på at få produkter til at lyde bedre og mere tid på rent faktisk at lave bedre produkter.</p><p><strong>Dét er vores filosofi.</strong></p><p>Vil du være med til at hæve standarden igen?</p>",
+        "signature_alt": "Sara Aagaard Boudtler",
+        "signature_text": "Co-founder, LALATOTO of Denmark"
       }
     }
   },

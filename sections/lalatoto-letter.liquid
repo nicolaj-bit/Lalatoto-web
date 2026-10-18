@@ -1,0 +1,144 @@
+{%- comment -%}
+  Lalatoto: et brev med portræt, fx filosofi-siden.
+
+  På computer står portrættet til venstre (lodret centreret) med en lille
+  billedtekst under, og til højre overskrift, brødtekst og underskrift. På
+  telefon står portrættet øverst og teksten under. Alt rettes i
+  temaredigeringen; linjeskift i teksten laves med Shift+Enter.
+{%- endcomment -%}
+
+{%- liquid
+  assign image_alt = section.settings.image_alt | default: section.settings.image.alt
+  assign signature_alt = section.settings.signature_alt | default: section.settings.signature.alt
+-%}
+
+<div class="lalatoto-letter color-scheme color-scheme--{{ section.settings.color_scheme.id }}">
+  <div class="lalatoto-letter__inner">
+    <figure class="lalatoto-letter__media">
+      {%- if section.settings.image != blank -%}
+        {{-
+          section.settings.image
+          | image_url: width: 1000
+          | image_tag:
+            loading: 'lazy',
+            sizes: '(min-width: 1000px) 20vw, 70vw',
+            widths: '400,600,800,1000',
+            alt: image_alt,
+            class: 'lalatoto-letter__image'
+        -}}
+      {%- else -%}
+        {{- 'image' | placeholder_svg_tag: 'lalatoto-letter__image lalatoto-letter__image--placeholder' -}}
+      {%- endif -%}
+      {%- if section.settings.caption != blank -%}
+        <figcaption class="lalatoto-letter__caption">{{ section.settings.caption | escape | newline_to_br }}</figcaption>
+      {%- endif -%}
+    </figure>
+
+    <div class="lalatoto-letter__content">
+      {%- if section.settings.heading != blank -%}
+        <h1 class="lalatoto-letter__title">{{ section.settings.heading }}</h1>
+      {%- endif -%}
+
+      {%- if section.settings.text != blank -%}
+        <div class="lalatoto-letter__text">{{ section.settings.text }}</div>
+      {%- endif -%}
+
+      {%- if section.settings.signature != blank or section.settings.signature_text != blank -%}
+        <div class="lalatoto-letter__signature">
+          {%- if section.settings.signature != blank -%}
+            {{-
+              section.settings.signature
+              | image_url: width: 480
+              | image_tag: loading: 'lazy', widths: '240,360,480', sizes: '160px', alt: signature_alt, class: 'lalatoto-letter__signature-image'
+            -}}
+          {%- endif -%}
+          {%- if section.settings.signature_text != blank -%}
+            <p class="lalatoto-letter__signature-text">{{ section.settings.signature_text | escape }}</p>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Lalatoto brev med portræt",
+  "class": "shopify-section--lalatoto-letter",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Farveskema",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Portræt"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Billede",
+      "info": "Anbefalet: stående, fx 1000 × 1500 px (2:3). JPG, under ca. 300 KB."
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Billedtekst til Google (alt-tekst)",
+      "default": "Sara og Nicolaj Aagaard Boudtler"
+    },
+    {
+      "type": "textarea",
+      "id": "caption",
+      "label": "Tekst under billedet",
+      "default": "Sara and Nicolaj Aagaard Boudtler.\nPartners in love and business."
+    },
+    {
+      "type": "header",
+      "content": "Tekst"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Overskrift",
+      "default": "Vores filosofi"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Tekst",
+      "info": "Enter giver nyt afsnit. Shift+Enter giver ny linje i samme afsnit.",
+      "default": "<p>For år tilbage lærte jeg at hækle.</p><p>Ikke noget fancy eller kompliceret. Bare karklude, små håndklæder og den slags.<br>Jeg opdagede, at det gav mig ro. At det fik min sommetider nervøse hjerne til at falde lidt til ro.</p><p>Jeg husker, da jeg engang var i den lokale garnbutik og faldt over et garnnøgle, der var helt utroligt blødt. Jeg fik med det samme lyst til at lave noget, jeg kunne have på. Måske et halstørklæde.<br>Jeg kan huske, at der stod 100 % polyester på etiketten.</p><p>Dengang troede jeg, at polyester bare var endnu en naturfiber, ligesom bomuld eller uld. Jeg anede ikke, at det var plastik. Det fandt jeg først ud af flere år senere, da jeg blev mor.<br>Jeg kan huske, at jeg slet ikke kunne forstå, at plastik – plastik! – kunne laves om til tekstil. Og så endda tekstil, der føles SÅ blødt at røre ved.</p><p>Og derfor forstår jeg godt, hvorfor polyester er blevet så populært. Det gør jeg virkelig!<br>Men jeg synes ikke, at blødt og billigt er gode nok grunde til at blive ved med at bruge så store mængder af det. Og slet ikke med den viden vi har i dag.</p><p>Et eller andet sted på vejen begyndte vi at acceptere nogle standarder, som vi måske aldrig burde have accepteret til at begynde med.<br>Syntetiske materialer er blevet normalen. Polyester har fundet vej ind i næsten alt. Også de ting, som laves til vores børn.<br>Og på et eller andet tidspunkt holdte vi op med at stille spørgsmål ved det.</p><p><strong>Men det gør vi.</strong></p><p>Og vi stiller ikke bare spørgsmål. Vi vil også tilbyde et alternativ.<br>Et sted, hvor du kan handle uden at skulle have detektivbrillerne på.<br>Hvor naturlige fibre betyder naturlige fibre. Ikke bare 80 %. Ikke kun betrækket. Ikke kun de dele, du kan se.<br>Et sted, hvor vi bruger mindre tid på at få produkter til at lyde bedre og mere tid på rent faktisk at lave bedre produkter.</p><p><strong>Dét er vores filosofi.</strong></p><p>Vil du være med til at hæve standarden igen?</p>"
+    },
+    {
+      "type": "header",
+      "content": "Underskrift"
+    },
+    {
+      "type": "image_picker",
+      "id": "signature",
+      "label": "Underskrift (billede)",
+      "info": "Fx en scannet underskrift som PNG med gennemsigtig baggrund."
+    },
+    {
+      "type": "text",
+      "id": "signature_alt",
+      "label": "Alt-tekst til underskriften",
+      "default": "Sara Aagaard Boudtler"
+    },
+    {
+      "type": "text",
+      "id": "signature_text",
+      "label": "Tekst under underskriften",
+      "default": "Co-founder, LALATOTO of Denmark"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Lalatoto brev med portræt"
+    }
+  ]
+}
+{% endschema %}
