@@ -48,17 +48,24 @@
 
           {%- comment -%}
             Lalatoto: ved forudbestilling betales kun en del (eller intet) ved
-            købet; resten trækkes, når varen sendes. Beløbene fra Shopify er
-            pr. stk. Datoen kommer fra forudbestillingsappens produktmetafelt,
-            når den findes.
+            købet; resten trækkes, når varen sendes. Shopifys beløb på
+            planen er pr. stk. og før rabat, så depositummets andel af prisen
+            lægges på linjens pris efter rabat (final_line_price). Datoen
+            kommer fra forudbestillingsappens produktmetafelt, når den findes.
           {%- endcomment -%}
           {%- liquid
             assign preorder_allocation = line_item.selling_plan_allocation
-            assign preorder_rest = preorder_allocation.remaining_balance_charge_amount | times: line_item.quantity
+            assign preorder_deposit = 0
+            if preorder_allocation.price > 0
+              assign preorder_deposit = line_item.final_line_price | times: preorder_allocation.checkout_charge_amount | divided_by: preorder_allocation.price
+            endif
+            assign preorder_rest = line_item.final_line_price | minus: preorder_deposit
+            if preorder_allocation.remaining_balance_charge_amount == 0
+              assign preorder_rest = 0
+            endif
           -%}
           {%- if preorder_rest > 0 -%}
             {%- liquid
-              assign preorder_deposit = preorder_allocation.checkout_charge_amount | times: line_item.quantity
               assign preorder_rest_text = preorder_rest | money
               assign preorder_deposit_text = preorder_deposit | money
               assign preorder_date = line_item.product.metafields.lalatoto_preorder.info.value.chargeDateText
