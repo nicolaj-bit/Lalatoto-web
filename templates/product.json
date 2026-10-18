@@ -43,7 +43,7 @@
           "type": "shopify://apps/lalatoto-forudbestilling-live/blocks/preorder/01a14eb5-d2ab-7a46-9a9d-d7d0cafee864",
           "settings": {
             "mode": "theme",
-            "button_text": "Forudbestil",
+            "button_text": "",
             "badge_text": "Forudbestilling",
             "info_text": "Du betaler {depositum} i dag. Resten trækkes {dato}, når varen sendes.",
             "accent": "#1f1f1f",

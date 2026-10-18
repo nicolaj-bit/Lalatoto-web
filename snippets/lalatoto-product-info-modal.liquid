@@ -21,6 +21,7 @@
   @param {string} mode - 'button' for linket eller 'modal' for selve modalen
   @param {string} modal_id - id på modalen
   @param {string} [sections] - 'standard' (standard) eller 'tyngdedyne', som tilføjer Vægt og Valg af rigtig vægt
+  @param {string} [preorder_text] - blokkens tekst om forudbestilling; {dato} og {depositum} udskiftes
 {%- enddoc -%}
 
 {%- liquid
@@ -51,6 +52,7 @@
     render 'lalatoto-preorder-field', product: product, field: 'date'
   endcapture
   assign preorder_date = preorder_date | strip
+  assign preorder_text_setting = preorder_text | strip
   assign preorder_text = ''
   if preorder_date != blank
     capture preorder_deposit
@@ -76,7 +78,12 @@
 {% endcapture %}
 {%- assign blank_line = newline | append: newline -%}
 {%- if preorder_date != blank -%}
-  {%- assign preorder_text = preorder_intro | append: blank_line | append: preorder_payment | append: blank_line | append: preorder_when -%}
+  {%- if preorder_text_setting != blank -%}
+    {%- comment -%}Teksten fra blokken «Fortæl mere» i temaredigeringen{%- endcomment -%}
+    {%- assign preorder_text = preorder_text_setting | replace: '{dato}', preorder_date | replace: '{depositum}', preorder_deposit -%}
+  {%- else -%}
+    {%- assign preorder_text = preorder_intro | append: blank_line | append: preorder_payment | append: blank_line | append: preorder_when -%}
+  {%- endif -%}
 {%- endif -%}
 
 {%- if has_content -%}

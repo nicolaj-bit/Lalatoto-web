@@ -160,7 +160,7 @@
 
 {%- assign lalatoto_more_info_block = section.blocks | where: 'type', 'lalatoto_more_info' | first -%}
 {%- if lalatoto_more_info_block != blank and product != blank -%}
-  {%- render 'lalatoto-product-info-modal', product: product, mode: 'modal', modal_id: 'lalatoto-info-modal', sections: lalatoto_more_info_block.settings.sections -%}
+  {%- render 'lalatoto-product-info-modal', product: product, mode: 'modal', modal_id: 'lalatoto-info-modal', sections: lalatoto_more_info_block.settings.sections, preorder_text: lalatoto_more_info_block.settings.preorder_text -%}
   <script src="{{ 'lalatoto-info-modal.js' | asset_url }}" defer></script>
 {%- endif -%}
 
@@ -455,6 +455,13 @@
           ],
           "default": "standard",
           "info": "Afsnit: Om produktet, Lavet med omtanke, Vaskevejledning, Specifikationer, Sikkerhed og Levering & retur. Teksterne skrives på produktet under Metafelter (navnerum lalatoto), og tomme felter vises ikke. Levering & retur har en standardtekst. Tyngdedyne tilføjer Vægt og Valg af rigtig vægt."
+        },
+        {
+          "type": "textarea",
+          "id": "preorder_text",
+          "label": "Tekst om forudbestilling",
+          "default": "Som lille virksomhed kan det være svært at føre et stort lager, og derfor åbner vi med jævne mellemrum op for forudbestillinger, så du kan sikre dig lige præcis dén variant, som du drømmer om.\n\nNår du placerer en forudbestilling hos os, reserverer vi dit ønskede produkt med det samme.\n\nSå snart produktet ankommer på vores lager i Høng, pakker og sender vi det til dig, og først når ordren er afsendt, trækker vi beløbet.\n\nForventet afsendelse: {dato}. Flytter datoen sig, får du besked på mail.",
+          "info": "Vises som afsnittet Forudbestilling, kun på produkter der sælges som forudbestilling. {dato} bliver til forventet afsendelse, {depositum} til procenten ved køb. En tom linje giver et nyt afsnit. Tom = standardteksten."
         }
       ]
     },
