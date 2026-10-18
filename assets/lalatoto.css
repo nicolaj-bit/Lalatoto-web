@@ -412,6 +412,13 @@ svg.lalatoto-full-image__image {
   color: #6e675e;
 }
 
+/* Forudbestillingsappens blok er usynlig: den skal stadig ligge på siden,
+   fordi den sætter forudbestillingen på «Læg i kurv». Forklaringen står i
+   «Fortæl mig mere», og afsendelsen står under knappen. */
+.product-info__block-item:has(lalatoto-preorder) {
+  display: none;
+}
+
 /* «Fortæl mere →» */
 .lalatoto-more-info-link {
   display: inline-flex;
