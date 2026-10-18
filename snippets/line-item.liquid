@@ -63,7 +63,7 @@
               assign preorder_deposit_text = preorder_deposit | money
               assign preorder_date = line_item.product.metafields.lalatoto_preorder.info.value.chargeDateText
             -%}
-            <p class="lalatoto-preorder-note text-subdued text-sm">
+            <p class="lalatoto-preorder-note text-subdued">
               {%- if preorder_deposit > 0 -%}
                 {{- 'lalatoto.cart.preorder_line_deposit' | t: deposit: preorder_deposit_text, rest: preorder_rest_text -}}
               {%- else -%}
