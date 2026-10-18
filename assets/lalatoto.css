@@ -4073,19 +4073,26 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 }
 
 @media screen and (min-width: 1000px) {
+  /* Som Saras udkast: teksten starter lidt efter midten og fylder godt,
+     portrættet står centreret i venstre side. */
   .lalatoto-letter__inner {
-    grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
     align-items: center;
-    column-gap: 5rem;
+    column-gap: clamp(3rem, 5vw, 5rem);
+    max-width: 104rem;
     padding: 6rem var(--container-gutter, 2.5rem);
   }
 
   .lalatoto-letter__media {
-    justify-self: end;
-    width: min(100%, 15rem);
+    justify-self: center;
+    width: min(100%, 20rem);
   }
 
   .lalatoto-letter__content {
-    max-width: 27.5rem;
+    max-width: 46rem;
+  }
+
+  .lalatoto-letter__text {
+    font-size: 0.9375rem;
   }
 }
