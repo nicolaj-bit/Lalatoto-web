@@ -3985,3 +3985,107 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
     order: 2;
   }
 }
+
+/* ---------------------------------------------------------------
+ * Brev med portræt (filosofi-siden)
+ * Telefon: portræt øverst, tekst under. Computer: portræt til venstre,
+ * lodret centreret, tekst til højre i en læsevenlig bredde.
+ * --------------------------------------------------------------- */
+.lalatoto-letter {
+  background: rgb(var(--background));
+}
+
+.lalatoto-letter__inner {
+  display: grid;
+  gap: 2.5rem;
+  max-width: 68rem;
+  margin-inline: auto;
+  padding: 3rem var(--container-gutter, 1.25rem) 4rem;
+}
+
+.lalatoto-letter__media {
+  margin: 0;
+  justify-self: center;
+  width: min(75%, 18rem);
+}
+
+.lalatoto-letter__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+}
+
+.lalatoto-letter__image--placeholder {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.lalatoto-letter__caption {
+  margin-top: 0.75rem;
+  color: #8a8379;
+  font-size: 0.6875rem;
+  font-style: italic;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.lalatoto-letter__title {
+  margin: 0 0 1.75rem;
+  font-family: var(--heading-font-family);
+  font-weight: 400;
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  line-height: 1.15;
+  letter-spacing: normal;
+  text-transform: none;
+  color: #4a453f;
+}
+
+.lalatoto-letter__text {
+  color: #6e675e;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.lalatoto-letter__text p {
+  margin: 0 0 1rem;
+}
+
+.lalatoto-letter__text strong {
+  color: #4a453f;
+  font-weight: 600;
+}
+
+.lalatoto-letter__signature {
+  margin-top: 1.75rem;
+}
+
+.lalatoto-letter__signature-image {
+  display: block;
+  width: 10rem;
+  height: auto;
+}
+
+.lalatoto-letter__signature-text {
+  margin: 0.375rem 0 0;
+  color: #6e675e;
+  font-size: 0.6875rem;
+}
+
+@media screen and (min-width: 1000px) {
+  .lalatoto-letter__inner {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+    align-items: center;
+    column-gap: 5rem;
+    padding: 6rem var(--container-gutter, 2.5rem);
+  }
+
+  .lalatoto-letter__media {
+    justify-self: end;
+    width: min(100%, 15rem);
+  }
+
+  .lalatoto-letter__content {
+    max-width: 27.5rem;
+  }
+}
