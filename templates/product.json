@@ -39,6 +39,20 @@
             "size_chart_page": ""
           }
         },
+        "lalatoto_forudbestilling_live_preorder_rDUX66": {
+          "type": "shopify://apps/lalatoto-forudbestilling-live/blocks/preorder/01a14eb5-d2ab-7a46-9a9d-d7d0cafee864",
+          "settings": {
+            "mode": "theme",
+            "button_text": "Forudbestil",
+            "badge_text": "Forudbestilling",
+            "info_text": "Du betaler {depositum} i dag. Resten trækkes {dato}, når varen sendes.",
+            "accent": "#1f1f1f",
+            "accent_text": "#ffffff",
+            "background": "#f5f5f5",
+            "text": "#1f1f1f",
+            "radius": 8
+          }
+        },
         "buy_buttons": {
           "type": "buy_buttons",
           "settings": {
@@ -90,6 +104,7 @@
         "price",
         "short_description",
         "variant_picker",
+        "lalatoto_forudbestilling_live_preorder_rDUX66",
         "buy_buttons",
         "more_info",
         "waitlist",
