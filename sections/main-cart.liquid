@@ -145,6 +145,18 @@
                   <span class="text-lg">{{- cart.total_price | money_with_currency -}}</span>
                 </div>
 
+                {%- comment -%}Lalatoto: forudbestilling — det, der betales nu, og det, der trækkes senere{%- endcomment -%}
+                {%- if cart.checkout_charge_amount < cart.total_price -%}
+                  <div class="h-stack justify-start gap-2">
+                    <span class="text-subdued">{{ 'lalatoto.cart.preorder_later' | t }}:</span>
+                    <span class="text-subdued">{{- cart.total_price | minus: cart.checkout_charge_amount | money_with_currency -}}</span>
+                  </div>
+                  <div class="h-stack justify-start gap-2">
+                    <span class="text-lg">{{ 'lalatoto.cart.preorder_now' | t }}:</span>
+                    <span class="text-lg">{{- cart.checkout_charge_amount | money_with_currency -}}</span>
+                  </div>
+                {%- endif -%}
+
                 {%- if section.settings.show_shipping_text -%}
                   {%- if cart.taxes_included and shop.shipping_policy.body != blank -%}
                     <p class="text-subdued text-sm">{{ 'cart.general.taxes_included_and_shipping_policy_html' | t: link: shop.shipping_policy.url }}</p>
