@@ -41,6 +41,31 @@
     felt, bruges standardteksten fra sprogfilen.
   endcomment
   assign shipping_default = 'lalatoto.product.shipping_default' | t
+
+  comment
+    Forudbestilling: afsnittet vises kun, når produktet sælges som
+    forudbestilling i den nye app, og står lige før Levering & retur.
+    Teksten ligger i sprogfilen; datoen og depositummet kommer fra appen.
+  endcomment
+  capture preorder_date
+    render 'lalatoto-preorder-field', product: product, field: 'date'
+  endcapture
+  assign preorder_date = preorder_date | strip
+  assign preorder_text = ''
+  if preorder_date != blank
+    capture preorder_deposit
+      render 'lalatoto-preorder-field', product: product, field: 'deposit'
+    endcapture
+    assign preorder_deposit = preorder_deposit | strip | plus: 0
+    if preorder_deposit > 0
+      assign preorder_payment = 'lalatoto.product.preorder_info_payment_deposit' | t: percent: preorder_deposit
+    else
+      assign preorder_payment = 'lalatoto.product.preorder_info_payment' | t
+    endif
+    assign preorder_intro = 'lalatoto.product.preorder_info_intro' | t
+    assign preorder_when = 'lalatoto.product.preorder_info_date' | t: date: preorder_date
+    assign keys = keys | join: ',' | replace: ',shipping', ',preorder,shipping' | split: ','
+  endif
   assign wash_url = pages['vaksevejledning'].url | default: pages['vaskevejledning'].url
   assign terms_url = pages['handelsbetingelser'].url
   assign has_content = true
@@ -50,6 +75,9 @@
 {% capture newline %}
 {% endcapture %}
 {%- assign blank_line = newline | append: newline -%}
+{%- if preorder_date != blank -%}
+  {%- assign preorder_text = preorder_intro | append: blank_line | append: preorder_payment | append: blank_line | append: preorder_when -%}
+{%- endif -%}
 
 {%- if has_content -%}
   {%- if mode == 'button' -%}
@@ -76,6 +104,7 @@
                 {%- for key in keys -%}
                   {%- assign value = product.metafields.lalatoto[key].value -%}
                   {%- if key == 'shipping' and value == blank -%}{%- assign value = shipping_default -%}{%- endif -%}
+                  {%- if key == 'preorder' -%}{%- assign value = preorder_text -%}{%- endif -%}
                   {%- if value != blank or key == 'care' and wash_url != blank -%}
                     <li><a href="#{{ modal_id }}-{{ key }}">{% render 'lalatoto-product-info-title', key: key, product: product %}</a></li>
                   {%- endif -%}
@@ -87,6 +116,7 @@
               {%- for key in keys -%}
                 {%- assign value = product.metafields.lalatoto[key].value -%}
                 {%- if key == 'shipping' and value == blank -%}{%- assign value = shipping_default -%}{%- endif -%}
+                  {%- if key == 'preorder' -%}{%- assign value = preorder_text -%}{%- endif -%}
                 {%- if value != blank or key == 'care' and wash_url != blank -%}
                   {%- assign paragraphs = value | strip | split: blank_line -%}
                   <section id="{{ modal_id }}-{{ key }}" class="lalatoto-info-modal__section">

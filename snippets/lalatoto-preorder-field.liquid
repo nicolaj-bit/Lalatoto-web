@@ -1,0 +1,32 @@
+{%- doc -%}
+  Lalatoto: skriver et felt fra forudbestillingsappens produktmetafelt
+  (lalatoto_preorder.info), men kun når den valgte variant faktisk har appens
+  forudbestillingsplan. Ellers skrives intet. Bruges med capture:
+
+    {% capture preorder_date %}{% render 'lalatoto-preorder-field', product: product, field: 'date' %}{% endcapture %}
+
+  @param {object} product - produktet
+  @param {object} [variant] - varianten; standard er den valgte
+  @param {string} field - 'date' (fx «6. november 2026») eller 'deposit' (procent ved køb)
+{%- enddoc -%}
+{%- liquid
+  assign info = product.metafields.lalatoto_preorder.info.value
+  if info != blank
+    assign plan_id = info.sellingPlanId | split: '/' | last
+    assign current = variant | default: product.selected_or_first_available_variant
+    assign has_plan = false
+    for allocation in current.selling_plan_allocations
+      assign allocation_plan_id = allocation.selling_plan.id | append: ''
+      if allocation_plan_id == plan_id
+        assign has_plan = true
+      endif
+    endfor
+    if has_plan
+      if field == 'date'
+        echo info.chargeDateText
+      elsif field == 'deposit'
+        echo info.depositPercent | default: 0
+      endif
+    endif
+  endif
+-%}

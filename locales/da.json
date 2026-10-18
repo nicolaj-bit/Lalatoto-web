@@ -523,6 +523,11 @@
   "lalatoto": {
     "product": {
       "tell_more": "Fortæl mig mere",
+      "preorder_shipping": "Forventes sendt {{ date }}",
+      "preorder_info_intro": "Som lille virksomhed kan det være svært at føre et stort lager, og derfor åbner vi med jævne mellemrum op for forudbestillinger, så du kan sikre dig lige præcis dén variant, som du drømmer om.\n\nNår du placerer en forudbestilling hos os, reserverer vi dit ønskede produkt med det samme.",
+      "preorder_info_payment": "Så snart produktet ankommer på vores lager i Høng, pakker og sender vi det til dig, og først når ordren er afsendt, trækker vi beløbet.",
+      "preorder_info_payment_deposit": "Du betaler {{ percent }} % ved bestillingen. Så snart produktet ankommer på vores lager i Høng, pakker og sender vi det til dig, og først når ordren er afsendt, trækker vi resten.",
+      "preorder_info_date": "Forventet afsendelse: {{ date }}. Flytter datoen sig, får du besked på mail.",
       "contents": "Indhold",
       "delivery_default": "Levering 1-2 hverdage",
       "sections": {
@@ -530,6 +535,7 @@
         "dimensions": "Mål",
         "care": "Vaskevejledning",
         "safety": "Sikkerhed",
+        "preorder": "Forudbestilling",
         "shipping": "Levering & retur",
         "weight": "Vægt",
         "weight_guide": "Valg af rigtig vægt",

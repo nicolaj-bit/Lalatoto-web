@@ -519,6 +519,11 @@
   "lalatoto": {
     "product": {
       "tell_more": "Tell me more",
+      "preorder_shipping": "Expected to ship {{ date }}",
+      "preorder_info_intro": "As a small company we can't keep a large stock, so we regularly open for pre-orders. That way you can secure exactly the variant you want.\n\nWhen you place a pre-order, we reserve your product right away.",
+      "preorder_info_payment": "As soon as the product arrives at our warehouse in Høng, we pack and ship it to you, and we only charge you once the order has shipped.",
+      "preorder_info_payment_deposit": "You pay {{ percent }}% when you order. As soon as the product arrives at our warehouse in Høng, we pack and ship it to you, and we only charge the rest once the order has shipped.",
+      "preorder_info_date": "Expected to ship: {{ date }}. If the date changes, we'll let you know by email.",
       "contents": "Contents",
       "delivery_default": "Delivery in 1-2 business days",
       "sections": {
@@ -526,6 +531,7 @@
         "dimensions": "Dimensions",
         "care": "Care",
         "safety": "Safety",
+        "preorder": "Pre-order",
         "shipping": "Delivery & returns",
         "weight": "Weight",
         "weight_guide": "Choosing the right weight",
