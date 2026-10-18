@@ -50,6 +50,12 @@
             "payment_button_text_color": ""
           }
         },
+        "delivery": {
+          "type": "lalatoto_delivery",
+          "settings": {
+            "text": ""
+          }
+        },
         "waitlist": {
           "type": "lalatoto_waitlist",
           "settings": {}
@@ -58,12 +64,6 @@
           "type": "lalatoto_more_info",
           "settings": {
             "sections": "standard"
-          }
-        },
-        "delivery": {
-          "type": "lalatoto_delivery",
-          "settings": {
-            "text": ""
           }
         },
         "onskeskyen": {
@@ -91,9 +91,9 @@
         "short_description",
         "variant_picker",
         "buy_buttons",
+        "delivery",
         "waitlist",
         "more_info",
-        "delivery",
         "onskeskyen"
       ],
       "settings": {
