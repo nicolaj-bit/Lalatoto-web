@@ -30,6 +30,18 @@
   endif
 -%}
 
+{%- liquid
+  comment
+    Udsolgt eller kommer snart: står «Venteliste» slået til på produktet
+    (metafeltet lalatoto.waitlist under Metafelter), skrives «Kommer snart».
+  endcomment
+  if product.metafields.lalatoto.waitlist.value == true
+    assign sold_out_label = 'lalatoto.collection.coming_soon' | t
+  else
+    assign sold_out_label = 'lalatoto.collection.sold_out' | t
+  endif
+-%}
+
 <li class="lalatoto-tile{% if sold_out %} is-sold-out{% endif %}">
   <a href="{{ url }}" class="lalatoto-tile__link">
     <div class="lalatoto-tile__media">
@@ -79,7 +91,7 @@
         -%}
         <span class="lalatoto-tile__price">
           {%- if sold_out -%}
-            {{- 'lalatoto.collection.sold_out' | t -}}
+            {{- sold_out_label -}}
           {%- elsif show_from -%}
             {%- assign price_min = product.price_min | money -%}
             {{- 'product.price.from_price_html' | t: price_min: price_min -}}
@@ -95,7 +107,7 @@
       {%- endif -%}
     </span>
     {%- if sold_out and show_price != true -%}
-      <span class="sr-only">{{ 'lalatoto.collection.sold_out' | t }}</span>
+      <span class="sr-only">{{ sold_out_label }}</span>
     {%- endif -%}
   </a>
 </li>

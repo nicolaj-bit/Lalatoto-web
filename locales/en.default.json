@@ -573,6 +573,7 @@
     "collection": {
       "kicker": "Collection",
       "empty": "There are no products here yet.",
+      "coming_soon": "Coming soon",
       "sold_out": "Sold out"
     },
     "cart": {
