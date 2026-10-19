@@ -2819,10 +2819,10 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   font-size: 0.8125rem;
 }
 
-/* Temperaturlinjen ved siden af navnet: ingen ekstra luft mellem bogstaverne,
-   så den har samme afstand som teksten inde i punkterne. */
-.lalatoto-wash .lalatoto-wash__temp {
-  letter-spacing: normal;
+/* Teksten inde i punkterne får samme luft mellem bogstaverne som linjen
+   ved siden af produktnavnet. */
+.lalatoto-wash .lalatoto-wash__text {
+  letter-spacing: 0.16em;
 }
 
 /* Telefon: temperaturen under navnet, plus-tegnet bliver til højre */
