@@ -10,48 +10,73 @@
 {
   "sections": {
     "main": {
-      "type": "lalatoto-content-page",
+      "type": "lalatoto-materials",
       "blocks": {
-        "afsnit_1": {
-          "type": "paragraph",
+        "princip_1": {
+          "type": "principle",
           "settings": {
-            "heading": "Ingen polyester",
-            "text": "<p>Polyester er billigere og holder formen længere, men den lukker varmen inde og bliver statisk. Vi har valgt den fra, også der hvor ingen kan se det: i fyld, i syninger og i lynlåse.</p>"
+            "title": "No polyester",
+            "text": "<p>We use natural fibres instead of synthetic ones. Always.<br>No polyester filling hidden on the inside. No synthetic blends disguised as natural materials. And no plastic microfibres shed from synthetic textile fibres.</p>"
           }
         },
-        "afsnit_2": {
-          "type": "paragraph",
+        "princip_2": {
+          "type": "principle",
           "settings": {
-            "heading": "Certificeret",
-            "text": "<p>Vores stoffer er <strong>(OEKO-TEX Standard 100)</strong>-certificerede og dermed testet for skadelige stoffer. Certifikatnummer og leverandør oplyser vi gerne, hvis du spørger.</p>"
+            "title": "No smoke and no mirrors",
+            "text": "<p>We don’t hide behind clever wording or carefully selected percentages.<br>No misleading blends. No polyester filling behind a natural cover. No making products sound better than they actually are.<br>What you see is what you get. Including what’s on the inside.</p>"
           }
         },
-        "afsnit_3": {
-          "type": "paragraph",
+        "princip_3": {
+          "type": "principle",
           "settings": {
-            "heading": "Vask",
-            "text": "<p>Alt kan vaskes ved 40 grader, og farverne er valgt, fordi de tåler det. Undlad skyllemiddel — det lukker fibrene og gør stoffet mindre åndbart.</p>"
+            "title": "Price doesn’t call the shots",
+            "text": "<p>We believe in fewer, better things. Not more, cheaper ones.<br>We won’t compromise on materials, craftsmanship or fair working conditions to meet a certain price point. Good products should come at a fair price. For everyone involved.</p>"
           }
         },
-        "afsnit_4": {
-          "type": "paragraph",
+        "uld": {
+          "type": "material",
           "settings": {
-            "heading": "Hvor det bliver syet",
-            "text": "<p>Syet hos <strong>(systuens navn og land)</strong>. Vi bruger den samme systue hver gang, fordi kvalitet kommer af vaner frem for kontrakter.</p>"
+            "name": "Wool",
+            "what": "<p>Wool is a natural fibre that has been used by humans for thousands of years.<br>Long before synthetic fibres existed, wool was valued for its warmth, durability and ability to adapt to changing temperatures.</p>",
+            "why": "<p>Newborn babies are still developing their ability to regulate body temperature. That’s one of the reasons we’re particularly interested in the materials surrounding them.<br>Wool responds to changes in temperature and humidity. It can absorb moisture vapour and release it again, helping create a comfortable environment without trapping moisture against the skin.<br>And because wool is a natural fibre rather than a synthetic one, it doesn’t release plastic microfibres when fibres shed.</p>",
+            "where": "<p>We use wool as filling inside LALA the Whale, our Cot Bumper as well as our Bed Bumper.</p>"
+          }
+        },
+        "bomuld": {
+          "type": "material",
+          "settings": {
+            "name": "Cotton",
+            "what": "<p>Cotton is a natural plant fibre that has been used to make textiles for thousands of years.<br>The fibres grow around the seeds of the cotton plant and are spun into yarn before being woven or knitted into fabric.</p>",
+            "why": "<p>Babies spend a lot of time in direct contact with textiles. That’s why the material against their skin matters to us.<br>Cotton is naturally breathable, soft and absorbent. It allows air to move through the fabric and absorbs moisture, making it a practical choice for bedding and everyday essentials.<br>We only use cotton that is certified to at least OEKO-TEX® STANDARD 100, meaning the textiles have been tested for harmful substances.<br>It can also withstand frequent washing, which is particularly useful when little people are involved.<br>And unlike polyester, cotton doesn’t shed plastic microfibres.</p>",
+            "where": "<p>Cotton textiles are used in every LALATOTO product.</p>"
+          }
+        },
+        "kirsebaersten": {
+          "type": "material",
+          "settings": {
+            "name": "Cherry pits",
+            "what": "<p>Cherry pits are the hard, natural stones found inside cherries.<br>A byproduct of the fruit industry, they can be cleaned, dried and given a new purpose instead of being discarded.</p>",
+            "why": "<p>Some of our products need a little extra weight. But we didn’t want to use plastic pellets.<br>Cherry pits are naturally dense, durable and rounded, making them suitable for weighted inserts.<br>The cherry pits we use are carefully washed without chemicals and dried under controlled conditions.<br>And we particularly like the idea of making use of a material that already exists, rather than producing a synthetic alternative.</p>",
+            "where": "<p>Inside the removable weighted insert of Large LALA the Whale and our weighted Bed Bumper.</p>"
           }
         }
       },
       "block_order": [
-        "afsnit_1",
-        "afsnit_2",
-        "afsnit_3",
-        "afsnit_4"
+        "princip_1",
+        "princip_2",
+        "princip_3",
+        "uld",
+        "bomuld",
+        "kirsebaersten"
       ],
       "settings": {
         "color_scheme": "scheme-1",
-        "kicker": "Materialer",
-        "heading": "Bomuld, der må røre huden hele natten",
-        "lead": "<p>Et barn ligger op ad sit sengetøj i mange timer ad gangen. Derfor betyder materialet mere end mønsteret. Vi bruger bomuld, fordi den ånder, tåler at blive vasket igen og igen, og ikke lægger et lag plastik mellem barnet og natten.</p>"
+        "heading": "Materials",
+        "subheading": "If we were to rule the world, this would be the new normal.",
+        "principles_heading": "Our non-negotiables",
+        "label_what": "What it is",
+        "label_why": "Why we use it",
+        "label_where": "Where you’ll find it"
       }
     }
   },
