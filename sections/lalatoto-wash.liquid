@@ -168,6 +168,43 @@
         else open(item);
       });
     });
+
+    /* Kommer man fra et produkt (linket ender på #produkt=<produktnavn>),
+       åbnes punktet for det produkt, og siden ruller ned til det. Punktet
+       findes ved, at dets navn står i produktets navn, fx «Sengeslange» i
+       «Luksus sengeslange». Passer flere, vælges det længste navn. Passer
+       intet, forbliver alle punkter lukkede. */
+    function openFromLink() {
+      var match = /^#produkt=(.*)$/.exec(window.location.hash);
+      if (!match) return;
+      var product;
+      try {
+        product = decodeURIComponent(match[1].replace(/\+/g, ' '));
+      } catch (error) {
+        return;
+      }
+      product = product.toLowerCase();
+
+      var best = null;
+      var bestLength = 0;
+      items.forEach(function (item) {
+        var name = item.querySelector('.lalatoto-wash__name').textContent.trim().toLowerCase();
+        if (name && product.indexOf(name) !== -1 && name.length > bestLength) {
+          best = item;
+          bestLength = name.length;
+        }
+      });
+      if (!best) return;
+
+      items.forEach(function (other) {
+        if (other !== best) other.open = false;
+      });
+      best.open = true;
+      best.scrollIntoView({ block: 'start', behavior: reduce && reduce.matches ? 'auto' : 'smooth' });
+    }
+
+    openFromLink();
+    window.addEventListener('hashchange', openFromLink);
   })();
 </script>
 
