@@ -60,7 +60,7 @@
         -%}
 
         {%- if name != blank -%}
-          <details class="lalatoto-wash__item" name="lalatoto-wash-{{ section.id }}" {% if forloop.first %}open{% endif %} {{ block.shopify_attributes }}>
+          <details class="lalatoto-wash__item" name="lalatoto-wash-{{ section.id }}" {{ block.shopify_attributes }}>
             <summary class="lalatoto-wash__summary">
               <span class="lalatoto-wash__name">{{ name | escape }}</span>
               {%- if temperature != blank -%}
