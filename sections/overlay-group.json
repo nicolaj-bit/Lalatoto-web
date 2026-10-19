@@ -22,20 +22,37 @@
         "show_checkout_button": true,
         "show_price_in_checkout_button": false,
         "lalatoto_upsell": true,
-        "lalatoto_upsell_title": "",
+        "lalatoto_upsell_title": "Ofte købt sammen med",
         "lalatoto_upsell_count": 3,
         "lalatoto_terms": true,
-        "lalatoto_terms_page": "handelsbetingelser"
+        "lalatoto_terms_page": "handelsbetingelser",
+        "cross_sell_products": [],
+        "cross_sell_title": "Complete with",
+        "cross_sell_stack_products": false
       }
     },
     "newsletter-popup": {
       "type": "newsletter-popup",
-      "settings": {}
+      "settings": {
+        "color_scheme": "",
+        "apparition_delay": 5,
+        "show_only_on_index": true,
+        "hide_for_account_holders": true,
+        "show_only_once": true,
+        "show_newsletter_form": true,
+        "title": "Signup for our newsletter",
+        "content": "Describe what your customers will receive when subscribing to your newsletter.",
+        "button_text": "Subscribe"
+      }
     },
     "privacy-banner": {
       "type": "privacy-banner",
       "disabled": true,
-      "settings": {}
+      "settings": {
+        "color_scheme": "",
+        "title": "🍪 Cookie policy",
+        "content": "<p>We use cookies and similar technologies to provide the best experience on our website. Refer to our Privacy Policy for more information.</p>"
+      }
     }
   },
   "order": [
