@@ -4189,8 +4189,11 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 }
 
 @media screen and (min-width: 1000px) {
+  /* Som Saras udkast: indholdet fylder ca. tre fjerdedele af bredden,
+     med omkring 12 % luft i hver side — også på brede skærme. */
   .lalatoto-materials__inner {
-    padding: 5rem var(--container-gutter, 2.5rem) 6rem;
+    max-width: none;
+    padding: 5rem 12vw 6rem;
   }
 
   .lalatoto-materials__header {
@@ -4206,11 +4209,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
     column-gap: 4rem;
   }
 
-  .lalatoto-materials__principle .lalatoto-materials__text {
-    max-width: 22rem;
-  }
-
   .lalatoto-materials__material .lalatoto-materials__text {
-    max-width: 52rem;
+    max-width: 85%;
   }
 }
