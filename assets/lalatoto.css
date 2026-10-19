@@ -2819,6 +2819,12 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   font-size: 0.8125rem;
 }
 
+/* Teksten inde i punkterne får samme luft mellem bogstaverne som linjen
+   ved siden af produktnavnet. */
+.lalatoto-wash .lalatoto-wash__text {
+  letter-spacing: 0.16em;
+}
+
 /* Telefon: temperaturen under navnet, plus-tegnet bliver til højre */
 @media screen and (max-width: 560px) {
   .lalatoto-wash__summary {
