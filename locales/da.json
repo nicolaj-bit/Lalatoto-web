@@ -577,6 +577,7 @@
     "collection": {
       "kicker": "Kollektion",
       "empty": "Der er ingen produkter her endnu.",
+      "coming_soon": "Kommer snart",
       "sold_out": "Udsolgt"
     },
     "cart": {
