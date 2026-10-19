@@ -2813,6 +2813,12 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   color: #2a2724;
 }
 
+/* Teksten inde i punkterne et trin mindre end før (14,5 px → 13 px).
+   Produktnavnene og FAQ'en på produktsiden er ikke berørt. */
+.lalatoto-wash .lalatoto-wash__text {
+  font-size: 0.8125rem;
+}
+
 /* Telefon: temperaturen under navnet, plus-tegnet bliver til højre */
 @media screen and (max-width: 560px) {
   .lalatoto-wash__summary {
