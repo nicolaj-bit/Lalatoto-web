@@ -1,0 +1,174 @@
+{%- comment -%}
+  Lalatoto: materiale-siden efter Saras udkast.
+
+  Øverst en centreret overskrift og undertekst. Så «Our non-negotiables» med
+  tre principper i hver sin kolonne (nummereret 01, 02, 03), og derefter et
+  afsnit pr. materiale med tre små mellemrubrikker: hvad det er, hvorfor vi
+  bruger det, og hvor du finder det. På telefon står kolonnerne under
+  hinanden. Alt rettes i temaredigeringen; Shift+Enter giver ny linje.
+{%- endcomment -%}
+
+{%- assign principles = section.blocks | where: 'type', 'principle' -%}
+{%- assign materials = section.blocks | where: 'type', 'material' -%}
+
+<div class="lalatoto-materials color-scheme color-scheme--{{ section.settings.color_scheme.id }}">
+  <div class="lalatoto-materials__inner">
+    <header class="lalatoto-materials__header">
+      {%- if section.settings.heading != blank -%}
+        <h1 class="lalatoto-materials__title">{{ section.settings.heading }}</h1>
+      {%- endif -%}
+      {%- if section.settings.subheading != blank -%}
+        <p class="lalatoto-materials__subtitle">{{ section.settings.subheading }}</p>
+      {%- endif -%}
+    </header>
+
+    {%- if principles.size > 0 -%}
+      <section class="lalatoto-materials__group">
+        {%- if section.settings.principles_heading != blank -%}
+          <h2 class="lalatoto-materials__heading">{{ section.settings.principles_heading }}</h2>
+        {%- endif -%}
+        <div class="lalatoto-materials__principles">
+          {%- for block in principles -%}
+            <div class="lalatoto-materials__principle" {{ block.shopify_attributes }}>
+              <p class="lalatoto-materials__number">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</p>
+              {%- if block.settings.title != blank -%}
+                <h3 class="lalatoto-materials__label">{{ block.settings.title }}</h3>
+              {%- endif -%}
+              <div class="lalatoto-materials__text">{{ block.settings.text }}</div>
+            </div>
+          {%- endfor -%}
+        </div>
+      </section>
+    {%- endif -%}
+
+    {%- for block in materials -%}
+      <section class="lalatoto-materials__group lalatoto-materials__material" {{ block.shopify_attributes }}>
+        {%- if block.settings.name != blank -%}
+          <h2 class="lalatoto-materials__heading">{{ block.settings.name }}</h2>
+        {%- endif -%}
+        {%- if block.settings.what != blank -%}
+          <h3 class="lalatoto-materials__label">{{ section.settings.label_what }}</h3>
+          <div class="lalatoto-materials__text">{{ block.settings.what }}</div>
+        {%- endif -%}
+        {%- if block.settings.why != blank -%}
+          <h3 class="lalatoto-materials__label">{{ section.settings.label_why }}</h3>
+          <div class="lalatoto-materials__text">{{ block.settings.why }}</div>
+        {%- endif -%}
+        {%- if block.settings.where != blank -%}
+          <h3 class="lalatoto-materials__label">{{ section.settings.label_where }}</h3>
+          <div class="lalatoto-materials__text">{{ block.settings.where }}</div>
+        {%- endif -%}
+      </section>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Lalatoto materialer",
+  "class": "shopify-section--lalatoto-materials",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Farveskema",
+      "default": "scheme-1"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Overskrift",
+      "default": "Materials"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Undertekst",
+      "default": "If we were to rule the world, this would be the new normal."
+    },
+    {
+      "type": "inline_richtext",
+      "id": "principles_heading",
+      "label": "Overskrift over principperne",
+      "default": "Our non-negotiables"
+    },
+    {
+      "type": "header",
+      "content": "Mellemrubrikker ved hvert materiale"
+    },
+    {
+      "type": "text",
+      "id": "label_what",
+      "label": "Hvad det er",
+      "default": "What it is"
+    },
+    {
+      "type": "text",
+      "id": "label_why",
+      "label": "Hvorfor vi bruger det",
+      "default": "Why we use it"
+    },
+    {
+      "type": "text",
+      "id": "label_where",
+      "label": "Hvor du finder det",
+      "default": "Where you'll find it"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "principle",
+      "name": "Princip",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Titel",
+          "default": "No polyester"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Tekst",
+          "info": "Shift+Enter giver ny linje i samme afsnit."
+        }
+      ]
+    },
+    {
+      "type": "material",
+      "name": "Materiale",
+      "settings": [
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Materiale",
+          "default": "Wool"
+        },
+        {
+          "type": "richtext",
+          "id": "what",
+          "label": "Hvad det er"
+        },
+        {
+          "type": "richtext",
+          "id": "why",
+          "label": "Hvorfor vi bruger det",
+          "info": "Shift+Enter giver ny linje i samme afsnit."
+        },
+        {
+          "type": "richtext",
+          "id": "where",
+          "label": "Hvor du finder det"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Lalatoto materialer"
+    }
+  ]
+}
+{% endschema %}
