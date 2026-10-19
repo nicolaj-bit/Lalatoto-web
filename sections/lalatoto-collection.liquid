@@ -61,7 +61,7 @@
 
         Rækkefølgen følger produkterne i kollektionen og derefter varianterne.
         Hvert kort bruger den første tilgængelige variant i farven; er hele
-        farven udsolgt, dæmpes kortet, viser «Udsolgt» og står sidst.
+        farven udsolgt, viser kortet «Udsolgt» (eller «Kommer snart») og står sidst.
       {%- endcomment -%}
       {%- assign color_names = 'farve,color,colour,farbe' | split: ',' -%}
       {%- assign never_split = 'størrelse,size,größe,grösse,vælg beløb,beløb,amount,omkreds bryst,vægt,weight' | split: ',' -%}
@@ -69,11 +69,13 @@
       {%- assign card_index = 0 -%}
 
       {%- comment -%}
-        Kortene samles først og skrives derefter ud med de udsolgte sidst, så
-        siden ikke starter med noget, man ikke kan købe. Det gælder inden for
-        den enkelte side.
+        Kortene samles først og skrives ud i tre grupper: på lager, så
+        «Kommer snart» (udsolgt, men «Venteliste» slået til på produktet) og
+        til sidst udsolgt. Så starter siden ikke med noget, man ikke kan købe.
+        Det gælder inden for den enkelte side.
       {%- endcomment -%}
       {%- assign available_cards = '' -%}
+      {%- assign coming_soon_cards = '' -%}
       {%- assign sold_out_cards = '' -%}
         {%- for product in collection.products -%}
           {%- liquid
@@ -125,7 +127,9 @@
               -%}
               {%- render 'lalatoto-tile', product: product, variant: product.selected_or_first_available_variant, hover_media: hover, sold_out: sold_out, eager: eager, priority: priority, show_price: section.settings.show_price -%}
             {%- endcapture -%}
-            {%- if sold_out -%}
+            {%- if sold_out and product.metafields.lalatoto.waitlist.value == true -%}
+              {%- assign coming_soon_cards = coming_soon_cards | append: card -%}
+            {%- elsif sold_out -%}
               {%- assign sold_out_cards = sold_out_cards | append: card -%}
             {%- else -%}
               {%- assign available_cards = available_cards | append: card -%}
@@ -234,7 +238,9 @@
                     show_price: section.settings.show_price
                   -%}
                 {%- endcapture -%}
-                {%- if sold_out -%}
+                {%- if sold_out and product.metafields.lalatoto.waitlist.value == true -%}
+                  {%- assign coming_soon_cards = coming_soon_cards | append: card -%}
+                {%- elsif sold_out -%}
                   {%- assign sold_out_cards = sold_out_cards | append: card -%}
                 {%- else -%}
                   {%- assign available_cards = available_cards | append: card -%}
@@ -246,6 +252,7 @@
 
       <ul class="lalatoto-tiles unstyled-list" role="list">
         {{- available_cards -}}
+        {{- coming_soon_cards -}}
         {{- sold_out_cards -}}
       </ul>
 
