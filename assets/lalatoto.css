@@ -2801,6 +2801,16 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   text-underline-offset: 3px;
 }
 
+/* Vaskevejledningen: al tekst i samme sorte farve som overskriften.
+   Afgrænset til .lalatoto-wash, så FAQ'en, der låner punkternes klasser,
+   beholder sine farver. */
+.lalatoto-wash .lalatoto-lead,
+.lalatoto-wash .lalatoto-wash__temp,
+.lalatoto-wash .lalatoto-wash__text,
+.lalatoto-wash .lalatoto-wash__foot {
+  color: #2a2724;
+}
+
 /* Telefon: temperaturen under navnet, plus-tegnet bliver til højre */
 @media screen and (max-width: 560px) {
   .lalatoto-wash__summary {
