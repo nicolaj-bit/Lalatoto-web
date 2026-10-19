@@ -2819,6 +2819,12 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   font-size: 0.8125rem;
 }
 
+/* Temperaturlinjen ved siden af navnet: ingen ekstra luft mellem bogstaverne,
+   så den har samme afstand som teksten inde i punkterne. */
+.lalatoto-wash .lalatoto-wash__temp {
+  letter-spacing: normal;
+}
+
 /* Telefon: temperaturen under navnet, plus-tegnet bliver til højre */
 @media screen and (max-width: 560px) {
   .lalatoto-wash__summary {
