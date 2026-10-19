@@ -2696,6 +2696,8 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 
 .lalatoto-wash__item {
   border-block-end: 1px solid #d7d0c4;
+  /* Plads til den faste topmenu, når siden ruller ned til et punkt */
+  scroll-margin-top: calc(var(--sticky-area-height, 0px) + 1.5rem);
 }
 
 .lalatoto-wash__summary {

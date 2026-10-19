@@ -167,7 +167,7 @@
                       {%- endfor -%}
 
                       {%- if key == 'care' and wash_url != blank -%}
-                        <p><a class="lalatoto-info-modal__link" href="{{ wash_url }}">{{ 'lalatoto.product.care_link' | t }} <span aria-hidden="true">→</span></a></p>
+                        <p><a class="lalatoto-info-modal__link" href="{{ wash_url }}#produkt={{ product.title | url_encode }}">{{ 'lalatoto.product.care_link' | t }} <span aria-hidden="true">→</span></a></p>
                       {%- elsif key == 'shipping' and terms_url != blank -%}
                         <p><a class="lalatoto-info-modal__link" href="{{ terms_url }}">{{ 'lalatoto.product.terms_link' | t }} <span aria-hidden="true">→</span></a></p>
                       {%- endif -%}
