@@ -48,7 +48,23 @@
             endif
           -%}
 
-          {%- if product.compare_at_price > product.price -%}
+          {%- liquid
+            comment
+              Lalatoto: «Tilbud i procent» (lalatoto.tilbud, 1–90) giver altid
+              mærket med procenten, også uden før-pris.
+            endcomment
+            assign lalatoto_tilbud = product.metafields.lalatoto.tilbud.value | default: 0 | plus: 0
+            if lalatoto_tilbud < 1 or lalatoto_tilbud > 90
+              assign lalatoto_tilbud = 0
+            endif
+          -%}
+
+          {%- if lalatoto_tilbud > 0 -%}
+            {%- assign lalatoto_savings = lalatoto_tilbud | append: '%' -%}
+            <on-sale-badge class="badge badge--on-sale">
+              {{- 'product.general.discount_badge_html' | t: savings: lalatoto_savings -}}
+            </on-sale-badge>
+          {%- elsif product.compare_at_price > product.price -%}
             {%- if settings.discount_mode == 'percentage' -%}
               {%- assign savings = variant.compare_at_price | minus: variant.price | times: 100.0 | divided_by: variant.compare_at_price | round | append: '%' -%}
             {%- else -%}
