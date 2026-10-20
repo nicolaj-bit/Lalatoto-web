@@ -1,0 +1,68 @@
+{%- doc -%}
+  Lalatoto: send udenlandske besøgende til deres eget marked.
+
+  Shopifys automatiske omdirigering ud fra land kræver Shopify Plus. I stedet
+  spørger siden ved det første besøg Shopify, hvilket marked der passer til
+  besøgendes land (browsing_context_suggestions.json). Er det fx EU eller
+  Norge, sendes besøgende videre til den engelske side i den lokale valuta
+  (lalatoto.dk/en-eu, /en-no) med Shopifys egen sprog- og landeformular.
+
+  Det sker kun én gang pr. browser. Vælger kunden bagefter selv dansk eller
+  et andet land, bliver valget stående. Søgemaskiner, temaeditoren og
+  besøgende fra lande uden et marked sendes ingen steder hen.
+{%- enddoc -%}
+
+{%- if request.design_mode == false and request.page_type != 'password' and localization.country.iso_code == 'DK' -%}
+  <script>
+    (function () {
+      var KEY = 'lalatoto-geo-tjekket';
+      try {
+        if (window.localStorage.getItem(KEY)) return;
+        window.localStorage.setItem(KEY, '1');
+      } catch (error) {
+        return;
+      }
+      if (/bot|crawl|spider|slurp|lighthouse|headless/i.test(navigator.userAgent)) return;
+
+      var root = (window.Shopify && Shopify.routes && Shopify.routes.root) || '/';
+      var url =
+        root +
+        'browsing_context_suggestions.json?country[enabled]=true&country[exclude]={{ localization.country.iso_code }}' +
+        '&language[enabled]=true&language[exclude]={{ request.locale.iso_code }}';
+
+      fetch(url, { credentials: 'same-origin' })
+        .then(function (response) {
+          return response.ok ? response.json() : null;
+        })
+        .then(function (data) {
+          var suggestion = data && data.suggestions && data.suggestions[0];
+          var country = suggestion && suggestion.parts && suggestion.parts.country;
+          if (!country || !country.handle || country.handle === '{{ localization.country.iso_code }}') return;
+
+          var language = (suggestion.parts.language && suggestion.parts.language.handle) || 'en';
+          var path = window.location.pathname.replace(new RegExp('^' + root.replace(/\/$/, '')), '') || '/';
+
+          var form = document.createElement('form');
+          form.method = 'post';
+          form.action = '/localization';
+          form.style.display = 'none';
+          [
+            ['form_type', 'localization'],
+            ['utf8', '✓'],
+            ['country_code', country.handle],
+            ['language_code', language],
+            ['return_to', path + window.location.search]
+          ].forEach(function (field) {
+            var input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = field[0];
+            input.value = field[1];
+            form.appendChild(input);
+          });
+          document.body.appendChild(form);
+          form.submit();
+        })
+        .catch(function () {});
+    })();
+  </script>
+{%- endif -%}
