@@ -1,6 +1,8 @@
 {%- doc -%}
   Lalatoto: venteliste. Vises i stedet for Læg i kurv, når den valgte variant
-  findes, men ikke er på lager.
+  findes, men ikke er på lager, og produktet har «Venteliste» sat til sand
+  (metafeltet lalatoto.waitlist). Uden det vises temaets almindelige
+  «Udsolgt»-knap.
 
   Tilmeldingen bruger Shopifys kundeformular og opretter kunden med mærkerne
   «venteliste», «venteliste-<produkt>» og «venteliste-<produkt>-<variant>», så
@@ -12,7 +14,7 @@
   @param {string} id_suffix - gør id'erne unikke på siden
 {%- enddoc -%}
 
-{%- if variant != blank and variant.available == false -%}
+{%- if variant != blank and variant.available == false and product.metafields.lalatoto.waitlist.value == true -%}
   {%- liquid
     assign form_id = 'lalatoto-waitlist-' | append: id_suffix
     assign tag_product = 'venteliste-' | append: product.handle
