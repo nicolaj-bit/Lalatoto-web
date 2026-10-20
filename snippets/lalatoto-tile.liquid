@@ -85,6 +85,25 @@
           endcomment
           assign card_variant = variant | default: product.selected_or_first_available_variant
           assign show_from = false
+
+          comment
+            «Tilbud i procent» (lalatoto.tilbud, 1–90): prisen vises med
+            tilbuddet trukket fra og den almindelige pris overstreget.
+          endcomment
+          assign tilbud = product.metafields.lalatoto.tilbud.value | default: 0 | plus: 0
+          if tilbud < 1 or tilbud > 90
+            assign tilbud = 0
+          endif
+          assign tilbud_factor = 100 | minus: tilbud
+          if tilbud > 0
+            assign card_price = card_variant.price | times: tilbud_factor | divided_by: 100.0 | round
+            assign card_compare = card_variant.price
+            assign card_price_min = product.price_min | times: tilbud_factor | divided_by: 100.0 | round
+          else
+            assign card_price = card_variant.price
+            assign card_compare = card_variant.compare_at_price
+            assign card_price_min = product.price_min
+          endif
           if variant_label == blank and product.price_varies
             assign show_from = true
           endif
@@ -93,14 +112,14 @@
           {%- if sold_out -%}
             {{- sold_out_label -}}
           {%- elsif show_from -%}
-            {%- assign price_min = product.price_min | money -%}
+            {%- assign price_min = card_price_min | money -%}
             {{- 'product.price.from_price_html' | t: price_min: price_min -}}
           {%- else -%}
-            {%- if card_variant.compare_at_price > card_variant.price -%}
-              <s class="lalatoto-tile__compare">{{ card_variant.compare_at_price | money }}</s>
-              <span class="lalatoto-tile__sale">{{ card_variant.price | money }}</span>
+            {%- if card_compare > card_price -%}
+              <s class="lalatoto-tile__compare">{{ card_compare | money }}</s>
+              <span class="lalatoto-tile__sale">{{ card_price | money }}</span>
             {%- else -%}
-              {{ card_variant.price | money }}
+              {{ card_price | money }}
             {%- endif -%}
           {%- endif -%}
         </span>

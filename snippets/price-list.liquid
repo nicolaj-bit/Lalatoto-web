@@ -30,6 +30,22 @@
   endcase
 -%}
 
+{%- liquid
+  comment
+    Lalatoto: tilbud i procent. Har produktet «Tilbud i procent» (metafeltet
+    lalatoto.tilbud, 1–90), vises prisen med tilbuddet trukket fra og den
+    almindelige pris overstreget. Selve rabatten gives i kassen af
+    forudbestillingsappens tilbudsfunktion, så tallene passer. Kurvens linjer
+    viser allerede den nedsatte pris og er ikke berørt.
+  endcomment
+  assign lalatoto_tilbud_product = product | default: variant.product
+  assign lalatoto_tilbud = lalatoto_tilbud_product.metafields.lalatoto.tilbud.value | default: 0 | plus: 0
+  if lalatoto_tilbud < 1 or lalatoto_tilbud > 90 or line_item != blank
+    assign lalatoto_tilbud = 0
+  endif
+  assign lalatoto_tilbud_factor = 100 | minus: lalatoto_tilbud
+-%}
+
 <price-list class="price-list {% if context == 'product' %}price-list--product{% endif %}">
   {%- if variant != blank -%}
     {%- comment -%}
@@ -37,24 +53,33 @@
       VARIANT CASE (used on product page, quick view...)
       --------------------------------------------------------------------------------------------------------------------
     {%- endcomment -%}
-    <sale-price class="{% if variant.compare_at_price > variant.price %}{{ on_sale_price_classes }}{% else %}{{ regular_price_classes }}{% endif %}">
+    {%- liquid
+      if lalatoto_tilbud > 0
+        assign lalatoto_price = variant.price | times: lalatoto_tilbud_factor | divided_by: 100.0 | round
+        assign lalatoto_compare = variant.price
+      else
+        assign lalatoto_price = variant.price
+        assign lalatoto_compare = variant.compare_at_price
+      endif
+    -%}
+    <sale-price class="{% if lalatoto_compare > lalatoto_price %}{{ on_sale_price_classes }}{% else %}{{ regular_price_classes }}{% endif %}">
       <span class="sr-only">{{ 'product.price.sale_price' | t }}</span>
 
       {%- if settings.currency_code_enabled -%}
-        {{- variant.price | money_with_currency -}}
+        {{- lalatoto_price | money_with_currency -}}
       {%- else -%}
-        {{- variant.price | money -}}
+        {{- lalatoto_price | money -}}
       {%- endif -%}
     </sale-price>
 
-    {%- if variant.compare_at_price > variant.price -%}
+    {%- if lalatoto_compare > lalatoto_price -%}
       <compare-at-price class="{{ compare_at_price_classes }}">
         <span class="sr-only">{{ 'product.price.regular_price' | t }}</span>
 
         {%- if settings.currency_code_enabled -%}
-          {{- variant.compare_at_price | money_with_currency -}}
+          {{- lalatoto_compare | money_with_currency -}}
         {%- else -%}
-          {{- variant.compare_at_price | money -}}
+          {{- lalatoto_compare | money -}}
         {%- endif -%}
       </compare-at-price>
     {%- endif -%}
@@ -98,19 +123,27 @@
         assign variant = product.variants | sort: 'price' | first | default: product.selected_or_first_available_variant
       endif
 
-      if settings.currency_code_enabled
-        assign variant_price = variant.price | money_with_currency
-        assign variant_compare_at_price = variant.compare_at_price | money_with_currency
+      if lalatoto_tilbud > 0
+        assign lalatoto_price = variant.price | times: lalatoto_tilbud_factor | divided_by: 100.0 | round
+        assign lalatoto_compare = variant.price
       else
-        assign variant_price = variant.price | money
-        assign variant_compare_at_price = variant.compare_at_price | money
+        assign lalatoto_price = variant.price
+        assign lalatoto_compare = variant.compare_at_price
+      endif
+
+      if settings.currency_code_enabled
+        assign variant_price = lalatoto_price | money_with_currency
+        assign variant_compare_at_price = lalatoto_compare | money_with_currency
+      else
+        assign variant_price = lalatoto_price | money
+        assign variant_compare_at_price = lalatoto_compare | money
       endif
     -%}
 
     {%- if product.price_varies -%}
       {%- assign is_variant_on_sale = false -%}
 
-      {%- if variant.price < variant.compare_at_price -%}
+      {%- if lalatoto_price < lalatoto_compare -%}
         {%- assign is_variant_on_sale = true -%}
       {%- endif -%}
 
@@ -126,13 +159,13 @@
         </sale-price>
       {%- endif -%}
     {%- else -%}
-      <sale-price class="{% if variant.price < variant.compare_at_price %}{{ on_sale_price_classes }}{% else %}{{ regular_price_classes }}{% endif %}">
+      <sale-price class="{% if lalatoto_price < lalatoto_compare %}{{ on_sale_price_classes }}{% else %}{{ regular_price_classes }}{% endif %}">
         <span class="sr-only">{{ 'product.price.sale_price' | t }}</span>
         {{- variant_price -}}
       </sale-price>
     {%- endif -%}
 
-    {%- if variant.price < variant.compare_at_price -%}
+    {%- if lalatoto_price < lalatoto_compare -%}
       <compare-at-price class="{{ compare_at_price_classes }}">
         <span class="sr-only">{{ 'product.price.regular_price' | t }}</span>
         {{- variant_compare_at_price -}}

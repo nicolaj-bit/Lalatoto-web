@@ -10,7 +10,26 @@
 {%- liquid
   assign variant = product.selected_or_first_available_variant
   assign modal_id = 'lalatoto-upsell-modal-' | append: product.id
-  assign min_price = product.price_min | money
+  assign min_price = product.price_min
+
+  comment
+    «Tilbud i procent» (lalatoto.tilbud, 1–90): prisen vises med tilbuddet
+    trukket fra og den almindelige pris overstreget.
+  endcomment
+  assign tilbud = product.metafields.lalatoto.tilbud.value | default: 0 | plus: 0
+  if tilbud < 1 or tilbud > 90
+    assign tilbud = 0
+  endif
+  assign tilbud_factor = 100 | minus: tilbud
+  if tilbud > 0
+    assign upsell_price = variant.price | times: tilbud_factor | divided_by: 100.0 | round
+    assign upsell_compare = variant.price
+    assign min_price = min_price | times: tilbud_factor | divided_by: 100.0 | round
+  else
+    assign upsell_price = variant.price
+    assign upsell_compare = variant.compare_at_price
+  endif
+  assign min_price = min_price | money
 -%}
 
 <article class="lalatoto-upsell__card" data-lalatoto-upsell-item data-product-id="{{ product.id }}">
@@ -32,10 +51,10 @@
       {%- if product.price_varies -%}
         {{- 'lalatoto.cart.upsell_from' | t: price: min_price -}}
       {%- else -%}
-        {%- if variant.compare_at_price > variant.price -%}
-          <s>{{ variant.compare_at_price | money }}</s>
+        {%- if upsell_compare > upsell_price -%}
+          <s>{{ upsell_compare | money }}</s>
         {%- endif -%}
-        {{ variant.price | money }}
+        {{ upsell_price | money }}
       {%- endif -%}
     </p>
   </div>
