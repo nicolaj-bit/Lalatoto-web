@@ -530,6 +530,9 @@
       "preorder_info_date": "Forventet afsendelse: {{ date }}. Flytter datoen sig, får du besked på mail.",
       "contents": "Indhold",
       "delivery_default": "Levering 1-2 hverdage",
+      "delivery_before_cutoff": "Bestil inden kl. {{ time }}, så sender vi i dag. Forventet hos dig {{ date }}.",
+      "delivery_after_cutoff": "Sendes {{ ship }}. Forventet hos dig {{ date }}.",
+      "delivery_tomorrow": "i morgen",
       "sections": {
         "materials": "Materialer",
         "dimensions": "Mål",
@@ -540,12 +543,15 @@
         "weight": "Vægt",
         "weight_guide": "Valg af rigtig vægt",
         "about": "Om {{ product }}",
+        "review": "Det siger en kunde",
         "made": "Lavet med omtanke",
         "specs": "Specifikationer"
       },
       "fits": "Passer til",
       "weight_help": "Hjælp til at vælge den rigtige vægt",
       "care_link": "Se vaskevejledning",
+      "review_stars": "{{ count }} ud af 5 stjerner",
+      "review_source": "anmeldelse på Trustpilot",
       "terms_link": "Læs vores handelsbetingelser",
       "shipping_default": "Sendes inden for 1–2 hverdage.\nVed forudbestilling fremgår den forventede leveringstid på produktsiden.\n\nDu har 14 dages fortrydelsesret fra modtagelsen af din ordre."
     },

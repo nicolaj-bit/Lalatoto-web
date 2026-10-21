@@ -77,3 +77,84 @@
     tags.value = box.checked ? base + ',nyhedsbrev-samtykke' : base;
   });
 })();
+
+/*
+ * Lalatoto: forventet levering på produktsiden (Danmark).
+ *
+ * <lalatoto-delivery-date> skriver «Bestil inden kl. 10, så sender vi i dag.
+ * Forventet hos dig torsdag 23. oktober.» ud fra klokken i Danmark. Bestilt
+ * før kl. 10 på en hverdag sendes varen samme dag, ellers næste hverdag, og
+ * den er hos kunden hverdagen efter afsendelse. Helligdage regnes ikke med.
+ * Elementet regner selv, hver gang det sættes ind, så det også virker efter
+ * et variantskift, hvor blokken udskiftes.
+ */
+(function () {
+  if (!window.customElements || customElements.get('lalatoto-delivery-date')) return;
+
+  function danishNow() {
+    /* Dato og klokkeslæt i Danmark, uanset hvor kunden sidder */
+    var parts = new Intl.DateTimeFormat('en-GB', {
+      timeZone: 'Europe/Copenhagen',
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      hourCycle: 'h23'
+    }).formatToParts(new Date());
+    var get = function (type) {
+      return Number(parts.find(function (part) { return part.type === type; }).value);
+    };
+    return { date: new Date(Date.UTC(get('year'), get('month') - 1, get('day'))), hour: get('hour') };
+  }
+
+  function isWeekday(date) {
+    var day = date.getUTCDay();
+    return day !== 0 && day !== 6;
+  }
+
+  function nextWeekday(date) {
+    var next = new Date(date.getTime());
+    do {
+      next.setUTCDate(next.getUTCDate() + 1);
+    } while (!isWeekday(next));
+    return next;
+  }
+
+  customElements.define(
+    'lalatoto-delivery-date',
+    class extends HTMLElement {
+      connectedCallback() {
+        try {
+          var cutoff = Number(this.dataset.cutoff || 10);
+          var locale = this.dataset.locale || 'da-DK';
+          var now = danishNow();
+          var shipsToday = isWeekday(now.date) && now.hour < cutoff;
+          var ship = shipsToday ? now.date : nextWeekday(now.date);
+          var arrival = nextWeekday(ship);
+
+          var format = function (date, options) {
+            return new Intl.DateTimeFormat(locale, Object.assign({ timeZone: 'UTC' }, options)).format(date);
+          };
+          var arrivalText = format(arrival, { weekday: 'long', day: 'numeric', month: 'long' });
+          var text;
+
+          if (shipsToday) {
+            text = (this.dataset.before || '')
+              .replace('{time}', String(cutoff).padStart(2, '0') + (locale.indexOf('da') === 0 ? '' : ':00'))
+              .replace('{date}', arrivalText);
+          } else {
+            var tomorrow = new Date(now.date.getTime());
+            tomorrow.setUTCDate(tomorrow.getUTCDate() + 1);
+            var shipText =
+              ship.getTime() === tomorrow.getTime() ? this.dataset.tomorrow : format(ship, { weekday: 'long' });
+            text = (this.dataset.after || '').replace('{ship}', shipText).replace('{date}', arrivalText);
+          }
+
+          if (text) this.textContent = text;
+        } catch (error) {
+          /* Standardteksten bliver stående */
+        }
+      }
+    }
+  );
+})();
