@@ -543,15 +543,12 @@
         "weight": "Vægt",
         "weight_guide": "Valg af rigtig vægt",
         "about": "Om {{ product }}",
-        "review": "Det siger en kunde",
         "made": "Lavet med omtanke",
         "specs": "Specifikationer"
       },
       "fits": "Passer til",
       "weight_help": "Hjælp til at vælge den rigtige vægt",
       "care_link": "Se vaskevejledning",
-      "review_stars": "{{ count }} ud af 5 stjerner",
-      "review_source": "anmeldelse på Trustpilot",
       "terms_link": "Læs vores handelsbetingelser",
       "shipping_default": "Sendes inden for 1–2 hverdage.\nVed forudbestilling fremgår den forventede leveringstid på produktsiden.\n\nDu har 14 dages fortrydelsesret fra modtagelsen af din ordre."
     },
