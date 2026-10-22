@@ -578,7 +578,10 @@
     "faq": {
       "kicker": "FAQ",
       "heading": "Spørgsmål og svar",
-      "contact_html": "Fandt du ikke svaret? Skriv til os på <a href=\"mailto:kundeservice@lalatoto.dk\">kundeservice@lalatoto.dk</a>."
+      "contact_html": "Fandt du ikke svaret? Skriv til os på <a href=\"mailto:kundeservice@lalatoto.dk\">kundeservice@lalatoto.dk</a>.",
+      "lead": "Her har vi samlet det, vi oftest bliver spurgt om.",
+      "general": "Bestilling, levering og retur",
+      "topics": "Emner"
     },
     "contact": {
       "phone_heading": "Ring til os",
