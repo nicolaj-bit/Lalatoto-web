@@ -65,6 +65,19 @@
       this.message = this.querySelector('[data-message]');
       this.bundlePercent = Number(this.getAttribute('data-bundle-percent')) || 0;
 
+      // Testvisning (kun i forhåndsvisning): udsolgte varer vises som på lager,
+      // men lægges aldrig i kurven.
+      if (this.hasAttribute('data-test-stock')) {
+        this.items.forEach((item) => {
+          Object.values(item.variants || {}).forEach((variant) => {
+            if (!variant.available) {
+              variant.available = true;
+              variant.fake = true;
+            }
+          });
+        });
+      }
+
       this.addEventListener('change', (event) => {
         if (event.target.matches('input[type="radio"]')) this.setColor(event.target.value);
         if (event.target.matches('[data-item-toggle]')) this.update();
@@ -197,7 +210,7 @@
         var toggle = row.querySelector('[data-item-toggle]');
         var variant = this.variantFor(row);
         if (!toggle.checked || !variant || !variant.available) return;
-        var line = { id: variant.id, quantity: 1 };
+        var line = { id: variant.id, quantity: 1, fake: Boolean(variant.fake) };
         if (variant.plan) line.selling_plan = variant.plan;
         lines.push(line);
       });
@@ -206,8 +219,13 @@
 
     add() {
       var lines = this.selected();
+      var skipped = lines.some((line) => line.fake);
+      lines = lines.filter((line) => !line.fake).map((line) => {
+        delete line.fake;
+        return line;
+      });
       if (!lines.length) {
-        this.message.textContent = this.texts.none || '';
+        this.message.textContent = (skipped ? this.texts.testStock : this.texts.none) || '';
         return;
       }
 
@@ -226,7 +244,7 @@
           return response.json();
         })
         .then(() => {
-          this.message.textContent = this.texts.added || '';
+          this.message.textContent = (skipped ? this.texts.testStock : this.texts.added) || '';
           document.dispatchEvent(new CustomEvent('cart:refresh', { bubbles: true }));
           var drawer = document.querySelector('cart-drawer');
           if (drawer && typeof drawer.show === 'function') {

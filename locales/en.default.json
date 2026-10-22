@@ -563,6 +563,7 @@
       "add": "Add the set to cart",
       "sold_out": "Sold out in this colour",
       "sold_out_plain": "Sold out",
+      "test_stock": "Test view: only items in stock were added to the cart.",
       "missing": "Not available in this colour",
       "error": "We couldn't add the set to your cart. Please try again.",
       "added": "The set is in your cart.",

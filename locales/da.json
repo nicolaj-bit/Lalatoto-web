@@ -567,6 +567,7 @@
       "add": "Læg sættet i kurven",
       "sold_out": "Udsolgt i denne farve",
       "sold_out_plain": "Udsolgt",
+      "test_stock": "Testvisning: kun varer, der er på lager, er lagt i kurven.",
       "missing": "Findes ikke i denne farve",
       "error": "Det lykkedes ikke at lægge sættet i kurven. Prøv igen.",
       "added": "Sættet ligger i kurven.",

@@ -102,7 +102,7 @@
 {{ 'lalatoto-build-bed.css' | asset_url | stylesheet_tag }}
 
 <section class="lalatoto-bed color-scheme color-scheme--{{ section.settings.color_scheme.id }}" id="lalatoto-bed-{{ section.id }}">
-  <lalatoto-build-bed class="lalatoto-bed__inner" data-money-format="{{ shop.money_format | escape }}" data-bundle-percent="{{ bundle_percent }}" data-cart-url="{{ routes.cart_add_url }}">
+  <lalatoto-build-bed class="lalatoto-bed__inner" data-money-format="{{ shop.money_format | escape }}" data-bundle-percent="{{ bundle_percent }}"{% if section.settings.test_stock %} data-test-stock{% endif %} data-cart-url="{{ routes.cart_add_url }}">
     <div class="lalatoto-bed__media">
       {%- for block in section.blocks -%}
         <div class="lalatoto-bed__image{% if forloop.first %} is-active{% endif %}" data-color="{{ block.settings.name | strip | escape }}" {{ block.shopify_attributes }}>
@@ -218,6 +218,7 @@
     <script type="application/json" data-texts>
       {
         "soldOut": {{ 'lalatoto.bed.sold_out' | t | json }},
+        "testStock": {{ 'lalatoto.bed.test_stock' | t | json }},
         "soldOutPlain": {{ 'lalatoto.bed.sold_out_plain' | t | json }},
         "missing": {{ 'lalatoto.bed.missing' | t | json }},
         "error": {{ 'lalatoto.bed.error' | t | json }},
@@ -337,6 +338,17 @@
       "type": "product",
       "id": "extra_2",
       "label": "Ekstra vare 2"
+    },
+    {
+      "type": "header",
+      "content": "Test"
+    },
+    {
+      "type": "checkbox",
+      "id": "test_stock",
+      "label": "Testvisning: vis alle varer som på lager",
+      "info": "Kun til forhåndsvisning. Slå det fra, før temaet udgives. Udsolgte varer kan stadig ikke lægges i kurven.",
+      "default": false
     }
   ],
   "blocks": [
