@@ -19,7 +19,7 @@
         "hide_on_scroll": false,
         "show_separation_border": false,
         "reduce_padding": false,
-        "logo": "shopify://shop_images/Sara_Aagaard_Baudtler_2_5211a227-3211-4cbd-b67a-16754136267b.png",
+        "logo": "shopify://shop_images/Sara_Aagaard_Baudtler_2_79db6f36-dc01-4bdc-a910-b63b51e93b4f.png",
         "logo_max_width": 140,
         "logo_mobile_max_width": 120,
         "menu": "hovedmenu-dev",
@@ -41,7 +41,7 @@
         "show_country_flag": false,
         "show_locale_selector": true,
         "transparent_header_text_color": "#2a2724",
-        "transparent_logo": "shopify://shop_images/Sara_Aagaard_Baudtler_2_5211a227-3211-4cbd-b67a-16754136267b.png"
+        "transparent_logo": "shopify://shop_images/Sara_Aagaard_Baudtler_2_79db6f36-dc01-4bdc-a910-b63b51e93b4f.png"
       }
     }
   },
