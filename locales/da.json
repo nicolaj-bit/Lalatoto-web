@@ -560,6 +560,17 @@
       "view_all": "Se hele kollektionen",
       "tabs": "Kollektioner"
     },
+    "bed": {
+      "color": "Farve",
+      "read_more": "Læs mere",
+      "total": "I alt",
+      "add": "Læg sættet i kurven",
+      "sold_out": "Udsolgt i denne farve",
+      "missing": "Findes ikke i denne farve",
+      "error": "Det lykkedes ikke at lægge sættet i kurven. Prøv igen.",
+      "added": "Sættet ligger i kurven.",
+      "none": "Vælg mindst én vare."
+    },
     "faq": {
       "kicker": "FAQ",
       "heading": "Spørgsmål og svar",
