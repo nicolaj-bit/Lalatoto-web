@@ -852,6 +852,13 @@ html.lalatoto-scroll-lock body {
   }
 }
 
+/* Kortet er udgangspunkt for sine absolut placerede dele (fx skjult tekst til
+   skærmlæsere). Ellers slipper de ud af den vandrette række på mobil og gør
+   hele siden bredere end skærmen. */
+.lalatoto-tile {
+  position: relative;
+}
+
 .lalatoto-tile__link {
   display: grid;
   gap: 0.875rem;
