@@ -4,7 +4,7 @@
 
   Afsnittenes indhold hentes fra produktets metafelter i navnerummet «lalatoto»
   (flerlinjet tekst): about, made, care, specs, safety og shipping. Efter
-  «Om …» kommer en kundeanmeldelse fra lalatoto.anmeldelse (se nedenfor). Et afsnit
+  «Om …» kommer en kundeanmeldelse fra lalatoto.anmeldelser (se nedenfor). Et afsnit
   med tomt metafelt vises ikke og står heller ikke i indholdsfortegnelsen,
   undtagen Levering & retur, som har en standardtekst, og Vaskevejledning,
   som altid har linket til vaskevejledningen. En tom linje i feltet giver et
@@ -40,12 +40,31 @@
 
   comment
     Anmeldelse: én kundeanmeldelse af netop dette produkt, lige efter «Om …».
-    Teksten står i lalatoto.anmeldelse, navnet i lalatoto.anmeldelse_navn og
-    stjernerne (1–5) i lalatoto.anmeldelse_stjerner. Uden tekst vises intet.
+    Anmeldelserne vælges på produktet i lalatoto.anmeldelser (op til 4
+    poster af typen «Anmeldelse»: tekst, navn og stjerner 1–5). Der vises én
+    ad gangen, og den skifter hver mandag: ugenummeret (uger siden 1970,
+    regnet fra mandag) går på omgang mellem anmeldelserne. Uden anmeldelser
+    vises intet.
   endcomment
-  assign review_text = product.metafields.lalatoto.anmeldelse.value | strip
-  assign review_name = product.metafields.lalatoto.anmeldelse_navn.value | strip
-  assign review_stars = product.metafields.lalatoto.anmeldelse_stjerner.value | default: 5 | plus: 0
+  assign review_text = ''
+  assign review_name = ''
+  assign review_stars = 5
+  assign reviews = product.metafields.lalatoto.anmeldelser.value
+  assign review_count = reviews.count | default: 0
+  if review_count > 4
+    assign review_count = 4
+  endif
+  if review_count > 0
+    assign review_week = 'now' | date: '%s' | plus: 259200 | divided_by: 604800
+    assign review_index = review_week | modulo: review_count
+    for review in reviews limit: 4
+      if forloop.index0 == review_index
+        assign review_text = review.tekst.value | strip
+        assign review_name = review.navn.value | strip
+        assign review_stars = review.stjerner.value | default: 5 | plus: 0
+      endif
+    endfor
+  endif
   if review_stars < 1 or review_stars > 5
     assign review_stars = 5
   endif
