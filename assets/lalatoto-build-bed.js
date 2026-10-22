@@ -102,6 +102,15 @@
         var usable = Boolean(variant && variant.available);
 
         toggle.disabled = !usable;
+        if (!usable) toggle.checked = false;
+        else if (row.dataset.wasUnavailable === 'true') toggle.checked = true;
+        row.dataset.wasUnavailable = String(!usable);
+
+        var thumb = row.querySelector('[data-item-thumb] img');
+        if (thumb && variant && variant.image && thumb.getAttribute('src') !== variant.image) {
+          thumb.removeAttribute('srcset');
+          thumb.setAttribute('src', variant.image);
+        }
         row.classList.toggle('is-unavailable', !usable);
         row.classList.toggle('is-off', !toggle.checked);
         if (!variant) note.textContent = this.texts.missing || '';

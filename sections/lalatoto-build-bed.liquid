@@ -68,7 +68,7 @@
               {%- if allocation_plan_id == preorder_plan_id -%}{%- assign plan = allocation.selling_plan.id -%}{%- endif -%}
             {%- endfor -%}
           {%- endif -%}
-          {{ color | json }}: {"id": {{ match.id }}, "price": {{ sale_price }}, "compare": {{ regular_price }}, "available": {{ match.available | json }}, "plan": {{ plan }}}
+          {{ color | json }}: {"id": {{ match.id }}, "price": {{ sale_price }}, "compare": {{ regular_price }}, "available": {{ match.available | json }}, "plan": {{ plan }}, "image": {% if match.featured_image %}{{ match.featured_image | image_url: width: 160 | json }}{% else %}null{% endif %}}
         {%- endif -%}
       {%- endfor -%}
       }}
@@ -140,7 +140,7 @@
               <label class="lalatoto-bed__item-label">
                 <input type="checkbox" checked data-item-toggle>
                 <span class="lalatoto-bed__check" aria-hidden="true"></span>
-                <span class="lalatoto-bed__thumb">
+                <span class="lalatoto-bed__thumb" data-item-thumb>
                   {%- if item.featured_media -%}
                     {{- item.featured_media | image_url: width: 160 | image_tag: loading: 'lazy', alt: '' -}}
                   {%- endif -%}

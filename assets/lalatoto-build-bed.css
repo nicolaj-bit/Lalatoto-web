@@ -146,6 +146,11 @@
   background: #000 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 8.5l3 3 6-7' fill='none' stroke='%23fff' stroke-width='1.6'/%3E%3C/svg%3E") center / 80% no-repeat;
 }
 
+.lalatoto-bed__item-label input:disabled + .lalatoto-bed__check {
+  border-color: rgb(0 0 0 / 0.25);
+  background: transparent;
+}
+
 .lalatoto-bed__item-label input:focus-visible + .lalatoto-bed__check {
   outline: 2px solid #000;
   outline-offset: 2px;
@@ -221,6 +226,7 @@
 .lalatoto-bed__total [data-total] {
   font-size: 1rem;
   letter-spacing: 0;
+  text-transform: none;
 }
 
 .lalatoto-bed__button {
