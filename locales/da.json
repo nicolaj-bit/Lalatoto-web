@@ -562,6 +562,8 @@
     },
     "bed": {
       "color": "Farve",
+      "color_all": "Hele sættet",
+      "mixed": "Blandet",
       "read_more": "Læs mere",
       "total": "I alt",
       "add": "Læg sættet i kurven",
@@ -573,7 +575,7 @@
       "added": "Sættet ligger i kurven.",
       "none": "Vælg mindst én vare.",
       "preorder": "Forudbestilling – sendes, så snart den er på lager",
-      "bundle_hint": "Vælg {{ items }} sammen, og spar {{ percent }} %.",
+      "bundle_hint": "Vælg mindst to dele af sættet, og spar {{ percent }} % på dem alle.",
       "bundle_saving": "Sætrabat {{ percent }} %"
     },
     "faq": {

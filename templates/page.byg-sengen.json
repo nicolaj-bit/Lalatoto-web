@@ -60,10 +60,11 @@
         "product_2": "luksus-sengeslange",
         "product_2_bundle": true,
         "product_3": "sengetoj",
-        "product_3_bundle": false,
+        "product_3_bundle": true,
         "bedding_size": "Baby",
         "bundle_percent": 20,
-        "extra_1": "lala-hvalen"
+        "extra_1": "lala-hvalen",
+        "extra_1_bundle": true
       }
     }
   },

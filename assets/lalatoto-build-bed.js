@@ -79,25 +79,58 @@
       }
 
       this.addEventListener('change', (event) => {
-        if (event.target.matches('input[type="radio"]')) this.setColor(event.target.value);
+        if (event.target.matches('[data-all-color]')) this.setColor(event.target.value);
+        if (event.target.matches('[data-item-color]')) this.setItemColor(event.target);
         if (event.target.matches('[data-item-toggle]')) this.update();
         if (event.target.matches('[data-item-variant]')) this.update();
       });
       this.button.addEventListener('click', () => this.add());
 
-      var checked = this.querySelector('input[type="radio"]:checked');
+      var checked = this.querySelector('[data-all-color]:checked');
       this.setColor(checked ? checked.value : '');
     }
 
-    setColor(color) {
-      this.color = color;
+    showImage(color) {
       this.querySelectorAll('[data-color]').forEach((image) => {
         image.classList.toggle('is-active', image.getAttribute('data-color') === color);
       });
-      var name = this.querySelector('[data-color-name]');
-      if (name) name.textContent = color;
+    }
+
+    // Hele sættet i én farve: alle varer skifter til farven.
+    setColor(color) {
+      this.querySelectorAll('[data-item-color]').forEach((input) => {
+        input.checked = input.value === color;
+      });
+      this.showImage(color);
       this.message.textContent = '';
       this.update();
+    }
+
+    // Én vare skifter farve. Billedet følger den sidst valgte farve, og den
+    // fælles vælger viser «Blandet», når varerne ikke har samme farve.
+    setItemColor(input) {
+      this.showImage(input.value);
+      this.message.textContent = '';
+      this.update();
+    }
+
+    colorFor(row) {
+      var input = row.querySelector('[data-item-color]:checked');
+      return input ? input.value : '';
+    }
+
+    syncAllColor() {
+      var colors = [];
+      this.querySelectorAll('[data-handle]').forEach((row) => {
+        var item = this.itemFor(row);
+        if (item && !item.extra) colors.push(this.colorFor(row));
+      });
+      var same = colors.length && colors.every((color) => color === colors[0]);
+      this.querySelectorAll('[data-all-color]').forEach((input) => {
+        input.checked = Boolean(same) && input.value === colors[0];
+      });
+      var name = this.querySelector('[data-color-name]');
+      if (name) name.textContent = same ? colors[0] : this.texts.mixed || '';
     }
 
     itemFor(row) {
@@ -109,7 +142,7 @@
     variantFor(row) {
       var item = this.itemFor(row);
       if (!item || !item.variants) return null;
-      if (!item.extra) return item.variants[this.color] || null;
+      if (!item.extra) return item.variants[this.colorFor(row)] || null;
       var select = row.querySelector('[data-item-variant]');
       var key = select ? select.value : Object.keys(item.variants)[0];
       return item.variants[key] || null;
@@ -151,6 +184,15 @@
         else if (row.dataset.wasUnavailable === 'true' && item && !item.extra) toggle.checked = true;
         row.dataset.wasUnavailable = String(!usable);
       });
+
+      this.querySelectorAll('[data-handle]').forEach((row) => {
+        var item = this.itemFor(row);
+        if (!item || item.extra) return;
+        row.querySelectorAll('[data-item-color]').forEach((input) => {
+          input.disabled = !item.variants[input.value];
+        });
+      });
+      this.syncAllColor();
 
       var bundle = this.bundleActive();
 

@@ -215,6 +215,29 @@
   cursor: default;
 }
 
+.lalatoto-bed__item-colors {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-inline-start: calc(1.125rem + 1rem + 3.5rem + 1rem);
+}
+
+.lalatoto-bed__swatch--small .lalatoto-bed__swatch-dot {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+.lalatoto-bed__swatch input:disabled + .lalatoto-bed__swatch-dot {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.lalatoto-bed__item.is-unavailable .lalatoto-bed__item-colors,
+.lalatoto-bed__item.is-off .lalatoto-bed__item-colors {
+  opacity: 1;
+}
+
 .lalatoto-bed__variant {
   grid-column: 1 / -1;
   justify-self: start;

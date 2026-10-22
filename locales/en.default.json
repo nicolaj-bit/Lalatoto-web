@@ -558,6 +558,8 @@
     },
     "bed": {
       "color": "Colour",
+      "color_all": "Whole set",
+      "mixed": "Mixed",
       "read_more": "Read more",
       "total": "Total",
       "add": "Add the set to cart",
@@ -569,7 +571,7 @@
       "added": "The set is in your cart.",
       "none": "Choose at least one item.",
       "preorder": "Pre-order – ships as soon as it is in stock",
-      "bundle_hint": "Choose {{ items }} together and save {{ percent }}%.",
+      "bundle_hint": "Choose at least two pieces and save {{ percent }}% on all of them.",
       "bundle_saving": "Set discount {{ percent }}%"
     },
     "faq": {
