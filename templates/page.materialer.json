@@ -15,49 +15,49 @@
         "princip_1": {
           "type": "principle",
           "settings": {
-            "title": "No polyester",
-            "text": "<p>We use natural fibres instead of synthetic ones. Always. No polyester filling hidden on the inside. No synthetic blends disguised as natural materials. And no plastic microfibres shed from synthetic textile fibres.</p>"
+            "title": "Nej til polyester",
+            "text": "<p>Vi bruger naturfibre. Altid.<br/>Du finder ikke polyester gemt i fyldet.<br/>Ingen syntetiske blandinger forklædt som naturmaterialer, eller plastikfibre, der ender som mikroplast.<br/>Heller ikke dér, hvor du ikke kan se det.</p>"
           }
         },
         "princip_2": {
           "type": "principle",
           "settings": {
-            "title": "No smoke and no mirrors",
-            "text": "<p>We don't hide behind clever wording or carefully selected percentages. No misleading blends. No polyester filling behind a natural cover. No making products sound better than they actually are. What you see is what you get. Including what's on the inside.</p>"
+            "title": "Ingen salgsgas",
+            "text": "<p>Vi skjuler ikke dårlig kvalitet bag smarte formuleringer eller markedsføring.<br/>Vi romantiserer ikke polyester ved at sætte ’recycled’ foran eller kalder noget naturligt når fibersammensætningen er 80/20.<br/>Vi fortæller dig præcis hvad du får. Også dét som du ikke kan se.</p>"
           }
         },
         "princip_3": {
           "type": "principle",
           "settings": {
-            "title": "Price doesn’t call the shots",
-            "text": "<p>We believe in fewer, better things. Not more, cheaper ones. We won't compromise on materials, craftsmanship or fair working conditions to meet a certain price point. Good products should come at a fair price. For everyone involved.</p>"
+            "title": "<em>Billigt</em> er ikke et godt nok argument",
+            "text": "<p>Vi tror på færre, bedre ting.<br/>Vi går ikke på kompromis med materialer, håndværk eller ordentlige arbejdsforhold for at ramme en bestemt pris.<br/>God kvalitet koster dét den gør.<br/>Hverken mere eller mindre.<br/>For alle involverede.</p>"
           }
         },
         "uld": {
           "type": "material",
           "settings": {
-            "name": "Wool",
-            "what": "<p>Wool is a natural fibre that has been used by humans for thousands of years.<br/>Long before synthetic fibres existed, wool was valued for its warmth, durability and ability to adapt to changing temperatures.</p>",
-            "why": "<p>Newborn babies are still developing their ability to regulate body temperature. That’s one of the reasons we’re particularly interested in the materials surrounding them.<br/>Wool responds to changes in temperature and humidity. It can absorb moisture vapour and release it again, helping create a comfortable environment without trapping moisture against the skin.<br/>And because wool is a natural fibre rather than a synthetic one, it doesn’t release plastic microfibres when fibres shed.</p>",
-            "where": "<p>Bed Bumper<br/>Cot Bumper<br/>LALA the Whale</p>"
+            "name": "Uld",
+            "what": "<p>Uld er en naturlig fiber som mennesket har anvendt i tusindvis af år.<br/>Uld har været værdsat for dets varmegivende og temperaturregulerende egenskaber lang tid før der var noget som hed syntetiske fibre.</p>",
+            "why": "<p>Nyfødte babyer er stadig ved at udvikle deres evne til at regulere kropstemperaturen. Derfor går vi særligt op i, hvilke materialer vi omgiver dem med.<br/>Uld tilpasser sig ændringer i temperatur og luftfugtighed. Fibrene kan optage og afgive fugt, hvilket bidrager til et behageligt miljø uden at holde fugten indespærret mod huden.<br/>Og modsat syntetiske fibre afgiver uld ikke mikroplast til sovemiljøet.</p>",
+            "where": "<p>Luksus Sengeslange<br/>Hvalen LALA<br/>Sengerand</p>"
           }
         },
         "bomuld": {
           "type": "material",
           "settings": {
-            "name": "Cotton",
-            "what": "<p>Cotton is a natural plant fibre that has been used to make textiles for thousands of years.<br/>The fibres grow around the seeds of the cotton plant and are spun into yarn before being woven or knitted into fabric.</p>",
-            "why": "<p>Babies spend a lot of time in direct contact with textiles. That's why the material against their skin matters to us.</p><p>Cotton is naturally breathable, soft and absorbent. It allows air to move through the fabric and absorbs moisture, making it a practical choice for bedding and everyday essentials.</p><p>We only use cotton that is certified to at least OEKO-TEX® STANDARD 100, meaning the textiles have been tested for harmful substances.</p><p>It can also withstand frequent washing, which is particularly useful when little people are involved.</p><p>And unlike polyester, cotton doesn't shed plastic microfibres.</p>",
-            "where": "<p>Cotton textiles are used in every LALATOTO product.</p>"
+            "name": "Bomuld",
+            "what": "<p>Bomuld er en naturlig plantefiber, der har været brugt til at fremstille tekstiler i tusindvis af år.<br/>Fibrene vokser omkring bomuldsplantens frø og spindes til garn, som derefter væves eller strikkes til tekstil.</p>",
+            "why": "<p>Babyer tilbringer rigtig meget tid i direkte kontakt med tekstiler. Derfor går vi op i, hvilke materialer der ligger mod deres hud.<br/>Bomuld er naturligt åndbart, blødt og absorberende. Det lader luften passere og optager fugt, hvilket gør det oplagt til fx både sengetøj.<br/>Vi bruger udelukkende bomuld, der som minimum er certificeret efter OEKO-TEX® STANDARD 100 produktklasse 1. Det betyder, at tekstilerne er godkendt op mod strenge grænseværdier for skadelige stoffer.<br/>Bomuld tåler også hyppig vask. En ret praktisk egenskab, når der er små mennesker involveret.<br/>Og modsat polyester afgiver bomuld ikke mikroplast til sovemiljøet.</p>",
+            "where": "<p>Luksus Sengeslange<br/>Hvalen LALA<br/>Sengerand<br/>Sengelomme</p>"
           }
         },
         "kirsebaersten": {
           "type": "material",
           "settings": {
-            "name": "Cherry pits",
-            "what": "<p>Cherry pits are the hard, natural stones found inside cherries.<br/>A byproduct of the fruit industry, they can be cleaned, dried and given a new purpose instead of being discarded.</p>",
-            "why": "<p>Some of our products need a little extra weight. But we didn’t want to use plastic pellets.<br/>Cherry pits are naturally dense, durable and rounded, making them suitable for weighted inserts.<br/>The cherry pits we use are carefully washed without chemicals and dried under controlled conditions.<br/>And we particularly like the idea of making use of a material that already exists, rather than producing a synthetic alternative.</p>",
-            "where": "<p>LALA the Whale, Large<br/>Bed Bumper</p>"
+            "name": "Kirsebærsten",
+            "what": "<p>Kirsebærsten er de hårde sten som naturligt findes i kirsebær.<br/>De er et restprodukt fra frugtindustrien, som renses, tørres og får nyt liv i stedet for at blive smidt ud.</p>",
+            "why": "<p>Kirsebærsten er tunge, slidstærke og afrundede, hvilket gør dem velegnede som naturligt tyngdefyld.<br/>Vores kirsebærsten bliver omhyggeligt vasket uden brug af kemikalier og tørret under kontrollerede forhold.<br/>Og så kan vi ret godt lide tanken om at give et materiale, der allerede findes, nyt liv.</p>",
+            "where": "<p>Luksus Sengeslange<br/>Hvalen LALA, Large</p>"
           }
         }
       },
@@ -71,12 +71,12 @@
       ],
       "settings": {
         "color_scheme": "scheme-1",
-        "heading": "Materials",
-        "subheading": "If we were to rule the world, this would be the new normal.",
-        "principles_heading": "Our non-negotiables",
-        "label_what": "What it is",
-        "label_why": "Why we use it",
-        "label_where": "Where you’ll find it"
+        "heading": "Materialer",
+        "subheading": "Hvis det stod til os, ville det her være den nye normal.",
+        "principles_heading": "3 ting som vi står fast på",
+        "label_what": "Hvad det er",
+        "label_why": "Hvorfor vi bruger det",
+        "label_where": "Hvor du finder det"
       }
     }
   },
