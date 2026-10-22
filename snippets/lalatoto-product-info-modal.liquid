@@ -4,7 +4,7 @@
 
   Afsnittenes indhold hentes fra produktets metafelter i navnerummet «lalatoto»
   (flerlinjet tekst): about, made, care, specs, safety og shipping. Efter
-  «Om …» kommer en kundeanmeldelse fra lalatoto.anmeldelser (se nedenfor). Et afsnit
+  Øverst står en kundeanmeldelse fra lalatoto.anmeldelser (se nedenfor). Et afsnit
   med tomt metafelt vises ikke og står heller ikke i indholdsfortegnelsen,
   undtagen Levering & retur, som har en standardtekst, og Vaskevejledning,
   som altid har linket til vaskevejledningen. En tom linje i feltet giver et
@@ -33,13 +33,13 @@
     produkt har dem udfyldt.
   endcomment
   if sections == 'tyngdedyne'
-    assign keys = 'about,review,made,materials,care,specs,dimensions,weight,weight_guide,safety,shipping' | split: ','
+    assign keys = 'review,about,made,materials,care,specs,dimensions,weight,weight_guide,safety,shipping' | split: ','
   else
-    assign keys = 'about,review,made,materials,care,specs,dimensions,safety,shipping' | split: ','
+    assign keys = 'review,about,made,materials,care,specs,dimensions,safety,shipping' | split: ','
   endif
 
   comment
-    Anmeldelse: én kundeanmeldelse af netop dette produkt, lige efter «Om …».
+    Anmeldelse: én kundeanmeldelse af netop dette produkt, øverst i modalen.
     Anmeldelserne vælges på produktet i lalatoto.anmeldelser (op til 4
     poster af typen «Anmeldelse»: tekst, navn og stjerner 1–5). Der vises én
     ad gangen, og den skifter hver mandag: ugenummeret (uger siden 1970,
@@ -98,7 +98,7 @@
     endif
     assign preorder_intro = 'lalatoto.product.preorder_info_intro' | t
     assign preorder_when = 'lalatoto.product.preorder_info_date' | t: date: preorder_date
-    assign keys = keys | join: ',' | prepend: 'preorder,' | split: ','
+    assign keys = keys | join: ',' | replace_first: 'review,', 'review,preorder,' | split: ','
   endif
   assign wash_url = pages['vaksevejledning'].url | default: pages['vaskevejledning'].url
   assign terms_url = pages['handelsbetingelser'].url
