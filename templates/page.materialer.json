@@ -16,38 +16,38 @@
           "type": "principle",
           "settings": {
             "title": "No polyester",
-            "text": "<p>We use natural fibres instead of synthetic ones. Always.<br>No polyester filling hidden on the inside. No synthetic blends disguised as natural materials. And no plastic microfibres shed from synthetic textile fibres.</p>"
+            "text": "<p>We use natural fibres instead of synthetic ones. Always. No polyester filling hidden on the inside. No synthetic blends disguised as natural materials. And no plastic microfibres shed from synthetic textile fibres.</p>"
           }
         },
         "princip_2": {
           "type": "principle",
           "settings": {
             "title": "No smoke and no mirrors",
-            "text": "<p>We don’t hide behind clever wording or carefully selected percentages.<br>No misleading blends. No polyester filling behind a natural cover. No making products sound better than they actually are.<br>What you see is what you get. Including what’s on the inside.</p>"
+            "text": "<p>We don't hide behind clever wording or carefully selected percentages. No misleading blends. No polyester filling behind a natural cover. No making products sound better than they actually are. What you see is what you get. Including what's on the inside.</p>"
           }
         },
         "princip_3": {
           "type": "principle",
           "settings": {
             "title": "Price doesn’t call the shots",
-            "text": "<p>We believe in fewer, better things. Not more, cheaper ones.<br>We won’t compromise on materials, craftsmanship or fair working conditions to meet a certain price point. Good products should come at a fair price. For everyone involved.</p>"
+            "text": "<p>We believe in fewer, better things. Not more, cheaper ones. We won't compromise on materials, craftsmanship or fair working conditions to meet a certain price point. Good products should come at a fair price. For everyone involved.</p>"
           }
         },
         "uld": {
           "type": "material",
           "settings": {
             "name": "Wool",
-            "what": "<p>Wool is a natural fibre that has been used by humans for thousands of years.<br>Long before synthetic fibres existed, wool was valued for its warmth, durability and ability to adapt to changing temperatures.</p>",
-            "why": "<p>Newborn babies are still developing their ability to regulate body temperature. That’s one of the reasons we’re particularly interested in the materials surrounding them.<br>Wool responds to changes in temperature and humidity. It can absorb moisture vapour and release it again, helping create a comfortable environment without trapping moisture against the skin.<br>And because wool is a natural fibre rather than a synthetic one, it doesn’t release plastic microfibres when fibres shed.</p>",
-            "where": "<p>We use wool as filling inside LALA the Whale, our Cot Bumper as well as our Bed Bumper.</p>"
+            "what": "<p>Wool is a natural fibre that has been used by humans for thousands of years.<br/>Long before synthetic fibres existed, wool was valued for its warmth, durability and ability to adapt to changing temperatures.</p>",
+            "why": "<p>Newborn babies are still developing their ability to regulate body temperature. That’s one of the reasons we’re particularly interested in the materials surrounding them.<br/>Wool responds to changes in temperature and humidity. It can absorb moisture vapour and release it again, helping create a comfortable environment without trapping moisture against the skin.<br/>And because wool is a natural fibre rather than a synthetic one, it doesn’t release plastic microfibres when fibres shed.</p>",
+            "where": "<p>Bed Bumper<br/>Cot Bumper<br/>LALA the Whale</p>"
           }
         },
         "bomuld": {
           "type": "material",
           "settings": {
             "name": "Cotton",
-            "what": "<p>Cotton is a natural plant fibre that has been used to make textiles for thousands of years.<br>The fibres grow around the seeds of the cotton plant and are spun into yarn before being woven or knitted into fabric.</p>",
-            "why": "<p>Babies spend a lot of time in direct contact with textiles. That’s why the material against their skin matters to us.<br>Cotton is naturally breathable, soft and absorbent. It allows air to move through the fabric and absorbs moisture, making it a practical choice for bedding and everyday essentials.<br>We only use cotton that is certified to at least OEKO-TEX® STANDARD 100, meaning the textiles have been tested for harmful substances.<br>It can also withstand frequent washing, which is particularly useful when little people are involved.<br>And unlike polyester, cotton doesn’t shed plastic microfibres.</p>",
+            "what": "<p>Cotton is a natural plant fibre that has been used to make textiles for thousands of years.<br/>The fibres grow around the seeds of the cotton plant and are spun into yarn before being woven or knitted into fabric.</p>",
+            "why": "<p>Babies spend a lot of time in direct contact with textiles. That's why the material against their skin matters to us.</p><p>Cotton is naturally breathable, soft and absorbent. It allows air to move through the fabric and absorbs moisture, making it a practical choice for bedding and everyday essentials.</p><p>We only use cotton that is certified to at least OEKO-TEX® STANDARD 100, meaning the textiles have been tested for harmful substances.</p><p>It can also withstand frequent washing, which is particularly useful when little people are involved.</p><p>And unlike polyester, cotton doesn't shed plastic microfibres.</p>",
             "where": "<p>Cotton textiles are used in every LALATOTO product.</p>"
           }
         },
@@ -55,9 +55,9 @@
           "type": "material",
           "settings": {
             "name": "Cherry pits",
-            "what": "<p>Cherry pits are the hard, natural stones found inside cherries.<br>A byproduct of the fruit industry, they can be cleaned, dried and given a new purpose instead of being discarded.</p>",
-            "why": "<p>Some of our products need a little extra weight. But we didn’t want to use plastic pellets.<br>Cherry pits are naturally dense, durable and rounded, making them suitable for weighted inserts.<br>The cherry pits we use are carefully washed without chemicals and dried under controlled conditions.<br>And we particularly like the idea of making use of a material that already exists, rather than producing a synthetic alternative.</p>",
-            "where": "<p>Inside the removable weighted insert of Large LALA the Whale and our weighted Bed Bumper.</p>"
+            "what": "<p>Cherry pits are the hard, natural stones found inside cherries.<br/>A byproduct of the fruit industry, they can be cleaned, dried and given a new purpose instead of being discarded.</p>",
+            "why": "<p>Some of our products need a little extra weight. But we didn’t want to use plastic pellets.<br/>Cherry pits are naturally dense, durable and rounded, making them suitable for weighted inserts.<br/>The cherry pits we use are carefully washed without chemicals and dried under controlled conditions.<br/>And we particularly like the idea of making use of a material that already exists, rather than producing a synthetic alternative.</p>",
+            "where": "<p>LALA the Whale, Large<br/>Bed Bumper</p>"
           }
         }
       },
