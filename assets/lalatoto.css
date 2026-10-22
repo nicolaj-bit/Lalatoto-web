@@ -72,6 +72,20 @@ h1, h2, h3, h4, h5, h6,
   font-size: var(--lalatoto-label-size);
 }
 
+/* Kurv-linket på linje med sprogvælgeren: teksten er lille, men linket sad
+   på en linje sat op til brødtekstens størrelse og røg derfor lidt ned.
+   Linket centreres nu, og 1lh holder headerens højde uændret. */
+.header__cart-link {
+  display: flex;
+  align-items: center;
+  min-height: 1lh;
+}
+
+.header__cart-link > a {
+  display: inline-flex;
+  align-items: center;
+}
+
 /* Sprogvælgeren: kun koden (DA) i menuens farve og en lille pil */
 .header .localization-toggle {
   column-gap: 0.375rem;
