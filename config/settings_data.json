@@ -61,7 +61,10 @@
         "settings": {
           "greeting_message": "",
           "show_featured_products": true,
-          "featured_products": [],
+          "featured_products": [
+            "luksus-sengeslange",
+            "lala-hvalen"
+          ],
           "background_color": "#FFFFFF",
           "font_color": "#000000",
           "agent_invert_activator_colors": true,
