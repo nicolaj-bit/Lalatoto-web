@@ -562,6 +562,7 @@
       "total": "Total",
       "add": "Add the set to cart",
       "sold_out": "Sold out in this colour",
+      "sold_out_plain": "Sold out",
       "missing": "Not available in this colour",
       "error": "We couldn't add the set to your cart. Please try again.",
       "added": "The set is in your cart.",

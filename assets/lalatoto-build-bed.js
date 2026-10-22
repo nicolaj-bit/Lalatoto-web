@@ -157,7 +157,7 @@
         row.classList.toggle('is-unavailable', !usable);
         row.classList.toggle('is-off', !toggle.checked);
         if (!variant) note.textContent = this.texts.missing || '';
-        else if (!variant.available) note.textContent = this.texts.soldOut || '';
+        else if (!variant.available) note.textContent = (item.extra ? this.texts.soldOutPlain : this.texts.soldOut) || '';
         else note.textContent = variant.plan ? this.texts.preorder || '' : '';
 
         var shown = variant ? this.priceFor(item, variant, bundle && toggle.checked) : 0;
