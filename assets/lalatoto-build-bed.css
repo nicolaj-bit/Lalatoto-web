@@ -135,25 +135,64 @@
   pointer-events: none;
 }
 
+/* Til/fra som kurvens plus-knapper: tynd rund ring med et plus; valgt er
+   ringen fyldt med et tyndt flueben. */
 .lalatoto-bed__check {
-  width: 1.125rem;
-  height: 1.125rem;
-  border: 1px solid #000;
-  background: #fff;
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid #2a2724;
+  border-radius: 50%;
+  color: #2a2724;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.lalatoto-bed__check::before,
+.lalatoto-bed__check::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background: currentColor;
+  transition: opacity 0.2s ease;
+}
+
+.lalatoto-bed__check::before {
+  width: 11px;
+  height: 1px;
+  transform: translate(-50%, -50%);
+}
+
+.lalatoto-bed__check::after {
+  width: 1px;
+  height: 11px;
+  transform: translate(-50%, -50%);
+}
+
+.lalatoto-bed__item-label:hover .lalatoto-bed__check {
+  background: rgb(42 39 36 / 0.06);
 }
 
 .lalatoto-bed__item-label input:checked + .lalatoto-bed__check {
-  background: #000 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 8.5l3 3 6-7' fill='none' stroke='%23fff' stroke-width='1.6'/%3E%3C/svg%3E") center / 80% no-repeat;
+  background: #2a2724 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.25l2.5 2.5L12 5.25' fill='none' stroke='%23efebe4' stroke-width='1.1'/%3E%3C/svg%3E") center / 1.125rem no-repeat;
+}
+
+.lalatoto-bed__item-label input:checked + .lalatoto-bed__check::before,
+.lalatoto-bed__item-label input:checked + .lalatoto-bed__check::after {
+  opacity: 0;
 }
 
 .lalatoto-bed__item-label input:disabled + .lalatoto-bed__check {
-  border-color: rgb(0 0 0 / 0.25);
+  border-color: rgb(42 39 36 / 0.2);
+  color: rgb(42 39 36 / 0.25);
   background: transparent;
 }
 
 .lalatoto-bed__item-label input:focus-visible + .lalatoto-bed__check {
-  outline: 2px solid #000;
-  outline-offset: 2px;
+  outline: none;
+  box-shadow: 0 0 0 2px #efebe4, 0 0 0 3px #2a2724;
 }
 
 .lalatoto-bed__thumb {
@@ -195,7 +234,7 @@
 
 .lalatoto-bed__item-link {
   grid-column: 1 / -1;
-  padding-inline-start: calc(1.125rem + 1rem + 3.5rem + 1rem);
+  padding-inline-start: calc(2rem + 1rem + 3.5rem + 1rem);
   color: #6e675e;
   font-size: 0.8125rem;
   text-decoration: underline;
@@ -220,7 +259,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-  margin-inline-start: calc(1.125rem + 1rem + 3.5rem + 1rem);
+  margin-inline-start: calc(2rem + 1rem + 3.5rem + 1rem);
 }
 
 .lalatoto-bed__swatch--small .lalatoto-bed__swatch-dot {
@@ -241,7 +280,7 @@
 .lalatoto-bed__variant {
   grid-column: 1 / -1;
   justify-self: start;
-  margin-inline-start: calc(1.125rem + 1rem + 3.5rem + 1rem);
+  margin-inline-start: calc(2rem + 1rem + 3.5rem + 1rem);
   padding: 0.375rem 2rem 0.375rem 0.75rem;
   border: 1px solid rgb(0 0 0 / 0.25);
   background: transparent;

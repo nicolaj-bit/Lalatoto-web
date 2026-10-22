@@ -69,7 +69,7 @@
       // men lægges aldrig i kurven.
       if (this.hasAttribute('data-test-stock')) {
         this.items.forEach((item) => {
-          Object.values(item.variants || {}).forEach((variant) => {
+          (item.variants || []).forEach((variant) => {
             if (!variant.available) {
               variant.available = true;
               variant.fake = true;
@@ -82,7 +82,7 @@
         if (event.target.matches('[data-all-color]')) this.setColor(event.target.value);
         if (event.target.matches('[data-item-color]')) this.setItemColor(event.target);
         if (event.target.matches('[data-item-toggle]')) this.update();
-        if (event.target.matches('[data-item-variant]')) this.update();
+        if (event.target.matches('[data-item-variant], [data-item-option]')) this.update();
       });
       this.button.addEventListener('click', () => this.add());
 
@@ -138,14 +138,21 @@
       return this.items.find((entry) => entry.handle === handle) || null;
     }
 
-    // Farvevarer følger den valgte farve; ekstra varer bruger deres egen vælger.
-    variantFor(row) {
+    // Farvevarer: varianten med den valgte farve og de valgte øvrige
+    // valgmuligheder (fx størrelse). Ekstra varer: varianten fra egen vælger.
+    variantFor(row, color) {
       var item = this.itemFor(row);
-      if (!item || !item.variants) return null;
-      if (!item.extra) return item.variants[this.colorFor(row)] || null;
-      var select = row.querySelector('[data-item-variant]');
-      var key = select ? select.value : Object.keys(item.variants)[0];
-      return item.variants[key] || null;
+      if (!item || !item.variants || !item.variants.length) return null;
+      if (item.extra) {
+        var select = row.querySelector('[data-item-variant]');
+        if (!select) return item.variants[0];
+        return item.variants.find((variant) => String(variant.id) === select.value) || null;
+      }
+      var wanted = [color || this.colorFor(row)];
+      row.querySelectorAll('[data-item-option]').forEach((option) => wanted.push(option.value));
+      return (
+        item.variants.find((variant) => wanted.every((value) => variant.options.indexOf(value) !== -1)) || null
+      );
     }
 
     // Sætrabatten gælder, når mindst to af sættets varer er valgt – samme regel
@@ -189,7 +196,7 @@
         var item = this.itemFor(row);
         if (!item || item.extra) return;
         row.querySelectorAll('[data-item-color]').forEach((input) => {
-          input.disabled = !item.variants[input.value];
+          input.disabled = !this.variantFor(row, input.value);
         });
       });
       this.syncAllColor();

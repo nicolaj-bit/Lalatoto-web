@@ -19,8 +19,11 @@
 -%}
 
 {%- comment -%}
-  Varer 1–3 følger farven. Ekstra varer (fx Hvalen LALA) følger ikke farven;
-  kunden vælger dem til og vælger selv variant.
+  Varer 1–3 har hver sine farver; har varen en valgmulighed mere (fx
+  sengetøjets størrelse), får den sin egen vælger. Ekstra varer (fx Hvalen
+  LALA) følger ikke farven; kunden vælger dem til og vælger selv variant.
+  Alle varianter sendes med deres valgmuligheder, og scriptet finder den, der
+  passer til kundens valg.
 {%- endcomment -%}
 {%- capture items_json -%}
   [
@@ -47,39 +50,12 @@
       {%- assign preorder_plan_id = item.metafields.lalatoto_preorder.info.value.sellingPlanId | split: '/' | last -%}
       {%- unless first_item -%},{%- endunless -%}
       {%- assign first_item = false -%}
-      {"handle": {{ item.handle | json }}, "extra": {{ is_extra | json }}, "bundle": {{ in_bundle | json }}, "variants": {
-      {%- if is_extra -%}
-        {%- for variant in item.variants -%}
-          {%- unless forloop.first -%},{%- endunless -%}
-          "{{ variant.id }}": {%- render 'lalatoto-build-bed-variant', variant: variant, tilbud: tilbud, plan_id: preorder_plan_id -%}
-        {%- endfor -%}
-      {%- else -%}
-        {%- assign first_color = true -%}
-        {%- for block in section.blocks -%}
-          {%- assign color = block.settings.name | strip -%}
-          {%- assign match = nil -%}
-          {%- for variant in item.variants -%}
-            {%- assign has_color = false -%}
-            {%- assign has_size = true -%}
-            {%- for value in variant.options -%}
-              {%- if value == color -%}{%- assign has_color = true -%}{%- endif -%}
-            {%- endfor -%}
-            {%- if variant.options.size > 1 and size != blank -%}
-              {%- assign has_size = false -%}
-              {%- for value in variant.options -%}
-                {%- if value == size -%}{%- assign has_size = true -%}{%- endif -%}
-              {%- endfor -%}
-            {%- endif -%}
-            {%- if has_color and has_size and match == nil -%}{%- assign match = variant -%}{%- endif -%}
-          {%- endfor -%}
-          {%- if match -%}
-            {%- unless first_color -%},{%- endunless -%}
-            {%- assign first_color = false -%}
-            {{ color | json }}: {%- render 'lalatoto-build-bed-variant', variant: match, tilbud: tilbud, plan_id: preorder_plan_id -%}
-          {%- endif -%}
-        {%- endfor -%}
-      {%- endif -%}
-      }}
+      {"handle": {{ item.handle | json }}, "extra": {{ is_extra | json }}, "bundle": {{ in_bundle | json }}, "variants": [
+      {%- for variant in item.variants -%}
+        {%- unless forloop.first -%},{%- endunless -%}
+        {%- render 'lalatoto-build-bed-variant', variant: variant, tilbud: tilbud, plan_id: preorder_plan_id -%}
+      {%- endfor -%}
+      ]}
     {%- endif -%}
   {%- endfor -%}
   ]
@@ -189,6 +165,22 @@
                     </label>
                   {%- endfor -%}
                 </div>
+                {%- assign color_names = section.blocks | map: 'settings' | map: 'name' -%}
+                {%- for option in item.options_with_values -%}
+                  {%- assign is_color_option = false -%}
+                  {%- for value in option.values -%}
+                    {%- assign value_text = value | append: '' -%}
+                    {%- if color_names contains value_text -%}{%- assign is_color_option = true -%}{%- endif -%}
+                  {%- endfor -%}
+                  {%- unless is_color_option -%}
+                    <select class="lalatoto-bed__variant" data-item-option aria-label="{{ option.name | escape }}: {{ item.title | escape }}">
+                      {%- for value in option.values -%}
+                        {%- assign value_text = value | append: '' -%}
+                        <option value="{{ value_text | escape }}" {% if value_text == size %}selected{% endif %}>{{ value_text | escape }}</option>
+                      {%- endfor -%}
+                    </select>
+                  {%- endunless -%}
+                {%- endfor -%}
               {%- endunless -%}
               {%- if is_extra and item.has_only_default_variant == false -%}
                 <select class="lalatoto-bed__variant" data-item-variant aria-label="{{ item.title | escape }}">
@@ -313,8 +305,8 @@
     {
       "type": "text",
       "id": "bedding_size",
-      "label": "Størrelse på sengetøj",
-      "info": "Skal stå præcis som størrelsen hedder på varen, fx «Baby».",
+      "label": "Forvalgt størrelse på sengetøj",
+      "info": "Kunden kan selv vælge en anden. Skal stå præcis som størrelsen hedder på varen, fx «Baby».",
       "default": "Baby"
     },
     {

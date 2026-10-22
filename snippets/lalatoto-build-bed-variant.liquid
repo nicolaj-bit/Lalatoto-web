@@ -26,4 +26,4 @@
     endfor
   endif
 -%}
-{"id": {{ variant.id }}, "title": {{ variant.title | json }}, "price": {{ sale_price }}, "base": {{ variant.price }}, "compare": {{ regular_price }}, "available": {{ variant.available | json }}, "plan": {{ plan }}, "image": {% if variant.featured_image %}{{ variant.featured_image | image_url: width: 160 | json }}{% else %}null{% endif %}}
+{"id": {{ variant.id }}, "title": {{ variant.title | json }}, "options": {{ variant.options | json }}, "price": {{ sale_price }}, "base": {{ variant.price }}, "compare": {{ regular_price }}, "available": {{ variant.available | json }}, "plan": {{ plan }}, "image": {% if variant.featured_image %}{{ variant.featured_image | image_url: width: 160 | json }}{% else %}null{% endif %}}
