@@ -7,7 +7,7 @@
   @param {string} [id_prefix] - an optional prefix to help dissociate the ID in case this is included several times in the same section
   @param {string} [placement] - the placement of the popover, default is "bottom-start". It can be set to any of the popover placements available in the theme (top, top-start, top-end, bottom, bottom-start, bottom-end, left, left-start, left-end, right, right-start, right-end)
   @param {object} [section]
-  @param {boolean} [long] - Lalatoto: viser «Danmark / Dansk» i stedet for sprogkoden (bruges i mobilmenuen)
+  @param {boolean} [long] - Lalatoto: viser «Dansk» i stedet for sprogkoden og «Danmark · DKK» i stedet for valutakoden (bruges i mobilmenuen)
 {%- enddoc -%}
 
 {%- capture localization_form_id -%}localization-form-{{ id_prefix }}-{{ section.id }}-{{ type }}{%- endcapture -%}
@@ -33,16 +33,19 @@
           {{- localization.country | image_url: width: 60, format: 'jpg' | image_tag: class: 'country-flag' -}}
         {%- endif -%}
 
-        {%- if show_country_name -%}
+        {%- comment -%}
+          Lalatoto: kun valutakoden (DKK, EUR, NOK) i samme skrift som sprogkoden.
+          I mobilmenuen (long) står landet og valutaen: «Danmark · DKK».
+        {%- endcomment -%}
+        {%- if long -%}
+          <span class="lalatoto-locale-code">{{ localization.country.name }} · {{ localization.country.currency.iso_code }}</span>
+        {%- elsif show_country_name -%}
           <span>
             {{- localization.country.name }} ({{ localization.country.currency.iso_code }}
             {% if localization.country.currency.symbol %}{{ localization.country.currency.symbol }}){%- endif -%}
           </span>
         {%- else -%}
-          <span>
-            {{- localization.country.currency.iso_code }}
-            {% if localization.country.currency.symbol %}{{ localization.country.currency.symbol }}{%- endif -%}
-          </span>
+          <span class="lalatoto-locale-code">{{- localization.country.currency.iso_code -}}</span>
         {%- endif -%}
 
         {%- render 'icon' with 'chevron-down' -%}
@@ -107,7 +110,7 @@
         {%- assign locale_code = localization.language.iso_code | split: '-' | first | upcase -%}
         {%- if locale_code == 'DA' -%}{%- assign locale_code = 'DK' -%}{%- endif -%}
         {%- if long -%}
-          <span class="lalatoto-locale-code">{{ localization.country.name }} / {{ localization.language.endonym_name | capitalize }}</span>
+          <span class="lalatoto-locale-code">{{ localization.language.endonym_name | capitalize }}</span>
         {%- else -%}
           <span class="lalatoto-locale-code">{{- locale_code -}}</span>
         {%- endif -%}

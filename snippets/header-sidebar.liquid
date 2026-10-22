@@ -104,6 +104,12 @@
             <span>{{ 'lalatoto.header.contact' | t }}</span>
           </a>
         </li>
+        {%- if show_country_selector -%}
+          <li class="lalatoto-sidebar-links__locale">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5" /><path d="M14.6 9.2a3 3 0 0 0-2.6-1.4c-1.6 0-2.8.9-2.8 2.1 0 2.9 5.8 1.4 5.8 4.2 0 1.2-1.3 2.1-3 2.1a3.2 3.2 0 0 1-2.8-1.5M12 6.3v1.5M12 16.2v1.5" /></svg>
+            {%- render 'localization-selector', type: 'country', placement: 'top-start', id_prefix: 'header-sidebar', long: true -%}
+          </li>
+        {%- endif -%}
         {%- if show_locale_selector -%}
           <li class="lalatoto-sidebar-links__locale">
             <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5" /><path d="M3.5 12h17M12 3.5c2.4 2.3 3.6 5.1 3.6 8.5s-1.2 6.2-3.6 8.5c-2.4-2.3-3.6-5.1-3.6-8.5s1.2-6.2 3.6-8.5z" /></svg>
