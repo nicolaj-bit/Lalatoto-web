@@ -68,6 +68,8 @@
   ]
 {%- endcapture -%}
 
+{{ 'lalatoto-build-bed.css' | asset_url | stylesheet_tag }}
+
 <section class="lalatoto-bed color-scheme color-scheme--{{ section.settings.color_scheme.id }}" id="lalatoto-bed-{{ section.id }}">
   <lalatoto-build-bed class="lalatoto-bed__inner" data-money-format="{{ shop.money_format | escape }}" data-cart-url="{{ routes.cart_add_url }}">
     <div class="lalatoto-bed__media">
