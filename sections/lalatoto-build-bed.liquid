@@ -28,6 +28,8 @@
       {%- assign tilbud = item.metafields.lalatoto.tilbud.value | default: 0 | plus: 0 -%}
       {%- if tilbud < 1 or tilbud > 90 -%}{%- assign tilbud = 0 -%}{%- endif -%}
       {%- assign factor = 100 | minus: tilbud -%}
+      {%- comment -%} Forudbestilling: samme salgsplan som appens knap på produktsiden. {%- endcomment -%}
+      {%- assign preorder_plan_id = item.metafields.lalatoto_preorder.info.value.sellingPlanId | split: '/' | last -%}
       {%- unless first_item -%},{%- endunless -%}
       {%- assign first_item = false -%}
       {"handle": {{ item.handle | json }}, "variants": {
@@ -59,7 +61,14 @@
             {%- assign sale_price = match.price -%}
             {%- assign regular_price = match.compare_at_price | default: match.price -%}
           {%- endif -%}
-          {{ color | json }}: {"id": {{ match.id }}, "price": {{ sale_price }}, "compare": {{ regular_price }}, "available": {{ match.available | json }}}
+          {%- assign plan = 'null' -%}
+          {%- if preorder_plan_id != blank -%}
+            {%- for allocation in match.selling_plan_allocations -%}
+              {%- assign allocation_plan_id = allocation.selling_plan.id | append: '' -%}
+              {%- if allocation_plan_id == preorder_plan_id -%}{%- assign plan = allocation.selling_plan.id -%}{%- endif -%}
+            {%- endfor -%}
+          {%- endif -%}
+          {{ color | json }}: {"id": {{ match.id }}, "price": {{ sale_price }}, "compare": {{ regular_price }}, "available": {{ match.available | json }}, "plan": {{ plan }}}
         {%- endif -%}
       {%- endfor -%}
       }}
@@ -166,7 +175,8 @@
         "missing": {{ 'lalatoto.bed.missing' | t | json }},
         "error": {{ 'lalatoto.bed.error' | t | json }},
         "added": {{ 'lalatoto.bed.added' | t | json }},
-        "none": {{ 'lalatoto.bed.none' | t | json }}
+        "none": {{ 'lalatoto.bed.none' | t | json }},
+        "preorder": {{ 'lalatoto.bed.preorder' | t | json }}
       }
     </script>
   </lalatoto-build-bed>

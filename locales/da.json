@@ -569,7 +569,8 @@
       "missing": "Findes ikke i denne farve",
       "error": "Det lykkedes ikke at lægge sættet i kurven. Prøv igen.",
       "added": "Sættet ligger i kurven.",
-      "none": "Vælg mindst én vare."
+      "none": "Vælg mindst én vare.",
+      "preorder": "Forudbestilling – sendes, så snart den er på lager"
     },
     "faq": {
       "kicker": "FAQ",

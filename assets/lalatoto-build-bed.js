@@ -104,7 +104,9 @@
         toggle.disabled = !usable;
         row.classList.toggle('is-unavailable', !usable);
         row.classList.toggle('is-off', !toggle.checked);
-        note.textContent = !variant ? this.texts.missing || '' : variant.available ? '' : this.texts.soldOut || '';
+        if (!variant) note.textContent = this.texts.missing || '';
+        else if (!variant.available) note.textContent = this.texts.soldOut || '';
+        else note.textContent = variant.plan ? this.texts.preorder || '' : '';
 
         if (variant) {
           var html = '<span>' + formatMoney(variant.price, this.format) + '</span>';
@@ -131,7 +133,10 @@
       this.querySelectorAll('[data-handle]').forEach((row) => {
         var toggle = row.querySelector('[data-item-toggle]');
         var variant = this.variantFor(row.getAttribute('data-handle'));
-        if (toggle.checked && variant && variant.available) lines.push({ id: variant.id, quantity: 1 });
+        if (!toggle.checked || !variant || !variant.available) return;
+        var line = { id: variant.id, quantity: 1 };
+        if (variant.plan) line.selling_plan = variant.plan;
+        lines.push(line);
       });
       return lines;
     }

@@ -565,7 +565,8 @@
       "missing": "Not available in this colour",
       "error": "We couldn't add the set to your cart. Please try again.",
       "added": "The set is in your cart.",
-      "none": "Choose at least one item."
+      "none": "Choose at least one item.",
+      "preorder": "Pre-order – ships as soon as it is in stock"
     },
     "faq": {
       "kicker": "FAQ",
