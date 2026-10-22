@@ -15,72 +15,94 @@
 
 {%- liquid
   assign size = section.settings.bedding_size | strip
+  assign bundle_percent = section.settings.bundle_percent
 -%}
 
+{%- comment -%}
+  Varer 1–3 følger farven. Ekstra varer (fx Hvalen LALA) følger ikke farven;
+  kunden vælger dem til og vælger selv variant.
+{%- endcomment -%}
 {%- capture items_json -%}
   [
   {%- assign first_item = true -%}
-  {%- for i in (1..3) -%}
-    {%- assign setting_key = 'product_' | append: i -%}
+  {%- for i in (1..5) -%}
+    {%- if i > 3 -%}
+      {%- assign extra_index = i | minus: 3 -%}
+      {%- assign setting_key = 'extra_' | append: extra_index -%}
+      {%- assign is_extra = true -%}
+      {%- assign in_bundle = false -%}
+    {%- else -%}
+      {%- assign setting_key = 'product_' | append: i -%}
+      {%- assign is_extra = false -%}
+      {%- assign bundle_key = 'product_' | append: i | append: '_bundle' -%}
+      {%- assign in_bundle = section.settings[bundle_key] -%}
+    {%- endif -%}
     {%- assign item = section.settings[setting_key] -%}
     {%- if item != blank -%}
       {%- comment -%} Tilbud i procent (lalatoto.tilbud) vises som i resten af shoppen; rabatten gives i kassen. {%- endcomment -%}
       {%- assign tilbud = item.metafields.lalatoto.tilbud.value | default: 0 | plus: 0 -%}
       {%- if tilbud < 1 or tilbud > 90 -%}{%- assign tilbud = 0 -%}{%- endif -%}
-      {%- assign factor = 100 | minus: tilbud -%}
       {%- comment -%} Forudbestilling: samme salgsplan som appens knap på produktsiden. {%- endcomment -%}
       {%- assign preorder_plan_id = item.metafields.lalatoto_preorder.info.value.sellingPlanId | split: '/' | last -%}
       {%- unless first_item -%},{%- endunless -%}
       {%- assign first_item = false -%}
-      {"handle": {{ item.handle | json }}, "variants": {
-      {%- assign first_color = true -%}
-      {%- for block in section.blocks -%}
-        {%- assign color = block.settings.name | strip -%}
-        {%- assign match = nil -%}
+      {"handle": {{ item.handle | json }}, "extra": {{ is_extra | json }}, "bundle": {{ in_bundle | json }}, "variants": {
+      {%- if is_extra -%}
         {%- for variant in item.variants -%}
-          {%- assign has_color = false -%}
-          {%- assign has_size = true -%}
-          {%- for value in variant.options -%}
-            {%- if value == color -%}{%- assign has_color = true -%}{%- endif -%}
-          {%- endfor -%}
-          {%- if variant.options.size > 1 and size != blank -%}
-            {%- assign has_size = false -%}
-            {%- for value in variant.options -%}
-              {%- if value == size -%}{%- assign has_size = true -%}{%- endif -%}
-            {%- endfor -%}
-          {%- endif -%}
-          {%- if has_color and has_size and match == nil -%}{%- assign match = variant -%}{%- endif -%}
+          {%- unless forloop.first -%},{%- endunless -%}
+          "{{ variant.id }}": {%- render 'lalatoto-build-bed-variant', variant: variant, tilbud: tilbud, plan_id: preorder_plan_id -%}
         {%- endfor -%}
-        {%- if match -%}
-          {%- unless first_color -%},{%- endunless -%}
-          {%- assign first_color = false -%}
-          {%- if tilbud > 0 -%}
-            {%- assign sale_price = match.price | times: factor | divided_by: 100.0 | round -%}
-            {%- assign regular_price = match.price -%}
-          {%- else -%}
-            {%- assign sale_price = match.price -%}
-            {%- assign regular_price = match.compare_at_price | default: match.price -%}
-          {%- endif -%}
-          {%- assign plan = 'null' -%}
-          {%- if preorder_plan_id != blank -%}
-            {%- for allocation in match.selling_plan_allocations -%}
-              {%- assign allocation_plan_id = allocation.selling_plan.id | append: '' -%}
-              {%- if allocation_plan_id == preorder_plan_id -%}{%- assign plan = allocation.selling_plan.id -%}{%- endif -%}
+      {%- else -%}
+        {%- assign first_color = true -%}
+        {%- for block in section.blocks -%}
+          {%- assign color = block.settings.name | strip -%}
+          {%- assign match = nil -%}
+          {%- for variant in item.variants -%}
+            {%- assign has_color = false -%}
+            {%- assign has_size = true -%}
+            {%- for value in variant.options -%}
+              {%- if value == color -%}{%- assign has_color = true -%}{%- endif -%}
             {%- endfor -%}
+            {%- if variant.options.size > 1 and size != blank -%}
+              {%- assign has_size = false -%}
+              {%- for value in variant.options -%}
+                {%- if value == size -%}{%- assign has_size = true -%}{%- endif -%}
+              {%- endfor -%}
+            {%- endif -%}
+            {%- if has_color and has_size and match == nil -%}{%- assign match = variant -%}{%- endif -%}
+          {%- endfor -%}
+          {%- if match -%}
+            {%- unless first_color -%},{%- endunless -%}
+            {%- assign first_color = false -%}
+            {{ color | json }}: {%- render 'lalatoto-build-bed-variant', variant: match, tilbud: tilbud, plan_id: preorder_plan_id -%}
           {%- endif -%}
-          {{ color | json }}: {"id": {{ match.id }}, "price": {{ sale_price }}, "compare": {{ regular_price }}, "available": {{ match.available | json }}, "plan": {{ plan }}, "image": {% if match.featured_image %}{{ match.featured_image | image_url: width: 160 | json }}{% else %}null{% endif %}}
-        {%- endif -%}
-      {%- endfor -%}
+        {%- endfor -%}
+      {%- endif -%}
       }}
     {%- endif -%}
   {%- endfor -%}
   ]
 {%- endcapture -%}
 
+{%- comment -%} Navnene på varerne i sætrabatten, til teksten under listen. {%- endcomment -%}
+{%- assign bundle_names = '' -%}
+{%- for i in (1..3) -%}
+  {%- assign setting_key = 'product_' | append: i -%}
+  {%- assign bundle_key = 'product_' | append: i | append: '_bundle' -%}
+  {%- if section.settings[setting_key] != blank and section.settings[bundle_key] -%}
+    {%- assign bundle_name = section.settings[setting_key].title | downcase -%}
+    {%- if bundle_names == blank -%}
+      {%- assign bundle_names = bundle_name -%}
+    {%- else -%}
+      {%- assign bundle_names = bundle_names | append: ' + ' | append: bundle_name -%}
+    {%- endif -%}
+  {%- endif -%}
+{%- endfor -%}
+
 {{ 'lalatoto-build-bed.css' | asset_url | stylesheet_tag }}
 
 <section class="lalatoto-bed color-scheme color-scheme--{{ section.settings.color_scheme.id }}" id="lalatoto-bed-{{ section.id }}">
-  <lalatoto-build-bed class="lalatoto-bed__inner" data-money-format="{{ shop.money_format | escape }}" data-cart-url="{{ routes.cart_add_url }}">
+  <lalatoto-build-bed class="lalatoto-bed__inner" data-money-format="{{ shop.money_format | escape }}" data-bundle-percent="{{ bundle_percent }}" data-cart-url="{{ routes.cart_add_url }}">
     <div class="lalatoto-bed__media">
       {%- for block in section.blocks -%}
         <div class="lalatoto-bed__image{% if forloop.first %} is-active{% endif %}" data-color="{{ block.settings.name | strip | escape }}" {{ block.shopify_attributes }}>
@@ -132,13 +154,20 @@
       </fieldset>
 
       <ul class="lalatoto-bed__items">
-        {%- for i in (1..3) -%}
-          {%- assign setting_key = 'product_' | append: i -%}
+        {%- for i in (1..5) -%}
+          {%- if i > 3 -%}
+            {%- assign extra_index = i | minus: 3 -%}
+            {%- assign setting_key = 'extra_' | append: extra_index -%}
+            {%- assign is_extra = true -%}
+          {%- else -%}
+            {%- assign setting_key = 'product_' | append: i -%}
+            {%- assign is_extra = false -%}
+          {%- endif -%}
           {%- assign item = section.settings[setting_key] -%}
           {%- if item != blank -%}
-            <li class="lalatoto-bed__item" data-handle="{{ item.handle }}">
+            <li class="lalatoto-bed__item{% if is_extra %} lalatoto-bed__item--extra{% endif %}" data-handle="{{ item.handle }}">
               <label class="lalatoto-bed__item-label">
-                <input type="checkbox" checked data-item-toggle>
+                <input type="checkbox" {% unless is_extra %}checked{% endunless %} data-item-toggle>
                 <span class="lalatoto-bed__check" aria-hidden="true"></span>
                 <span class="lalatoto-bed__thumb" data-item-thumb>
                   {%- if item.featured_media -%}
@@ -151,11 +180,28 @@
                 </span>
                 <span class="lalatoto-bed__item-price" data-item-price></span>
               </label>
+              {%- if is_extra and item.has_only_default_variant == false -%}
+                <select class="lalatoto-bed__variant" data-item-variant aria-label="{{ item.title | escape }}">
+                  {%- for variant in item.variants -%}
+                    <option value="{{ variant.id }}" {% if variant == item.selected_or_first_available_variant %}selected{% endif %}>{{ variant.title | escape }}</option>
+                  {%- endfor -%}
+                </select>
+              {%- endif -%}
               <a class="lalatoto-bed__item-link" href="{{ item.url }}">{{ 'lalatoto.bed.read_more' | t }}</a>
             </li>
           {%- endif -%}
         {%- endfor -%}
       </ul>
+
+      {%- if bundle_percent > 0 and bundle_names != blank -%}
+        <p class="lalatoto-bed__bundle" data-bundle-hint>
+          {{- 'lalatoto.bed.bundle_hint' | t: percent: bundle_percent, items: bundle_names -}}
+        </p>
+        <div class="lalatoto-bed__saving" data-bundle-saving hidden>
+          <span>{{ 'lalatoto.bed.bundle_saving' | t: percent: bundle_percent }}</span>
+          <span data-saving></span>
+        </div>
+      {%- endif -%}
 
       <div class="lalatoto-bed__total">
         <span>{{ 'lalatoto.bed.total' | t }}</span>
@@ -224,9 +270,21 @@
       "label": "Vare 1"
     },
     {
+      "type": "checkbox",
+      "id": "product_1_bundle",
+      "label": "Vare 1 er med i sætrabatten",
+      "default": false
+    },
+    {
       "type": "product",
       "id": "product_2",
       "label": "Vare 2"
+    },
+    {
+      "type": "checkbox",
+      "id": "product_2_bundle",
+      "label": "Vare 2 er med i sætrabatten",
+      "default": false
     },
     {
       "type": "product",
@@ -234,11 +292,50 @@
       "label": "Vare 3"
     },
     {
+      "type": "checkbox",
+      "id": "product_3_bundle",
+      "label": "Vare 3 er med i sætrabatten",
+      "default": false
+    },
+    {
       "type": "text",
       "id": "bedding_size",
       "label": "Størrelse på sengetøj",
       "info": "Skal stå præcis som størrelsen hedder på varen, fx «Baby».",
       "default": "Baby"
+    },
+    {
+      "type": "header",
+      "content": "Sætrabat"
+    },
+    {
+      "type": "range",
+      "id": "bundle_percent",
+      "label": "Sætrabat",
+      "info": "Vises kun på siden. Selve rabatten gives af den automatiske rabat «Sæt: sengerand + sengeslange» under Rabatter – procenten skal være den samme begge steder.",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "%",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Ekstra varer"
+    },
+    {
+      "type": "paragraph",
+      "content": "Varer, der ikke følger farven, fx Hvalen LALA. Kunden vælger dem til og vælger selv variant."
+    },
+    {
+      "type": "product",
+      "id": "extra_1",
+      "label": "Ekstra vare 1"
+    },
+    {
+      "type": "product",
+      "id": "extra_2",
+      "label": "Ekstra vare 2"
     }
   ],
   "blocks": [

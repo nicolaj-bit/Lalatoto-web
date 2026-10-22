@@ -570,7 +570,9 @@
       "error": "Det lykkedes ikke at lægge sættet i kurven. Prøv igen.",
       "added": "Sættet ligger i kurven.",
       "none": "Vælg mindst én vare.",
-      "preorder": "Forudbestilling – sendes, så snart den er på lager"
+      "preorder": "Forudbestilling – sendes, så snart den er på lager",
+      "bundle_hint": "Vælg {{ items }} sammen, og spar {{ percent }} %.",
+      "bundle_saving": "Sætrabat {{ percent }} %"
     },
     "faq": {
       "kicker": "FAQ",

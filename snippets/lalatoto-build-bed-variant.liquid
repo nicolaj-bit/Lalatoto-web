@@ -1,0 +1,29 @@
+{%- comment -%}
+  Lalatoto «Byg sengen»: én variant som JSON til sektionens script.
+  - variant: varianten
+  - tilbud: «Tilbud i procent» på varen (0 = intet tilbud)
+  - plan_id: forudbestillingens salgsplan (fra lalatoto_preorder.info), eller tom
+  «price» er det, kunden betaler uden sætrabat; «base» er den almindelige pris,
+  som sætrabatten regnes af; «compare» er den overstregede pris.
+{%- endcomment -%}
+{%- liquid
+  if tilbud > 0
+    assign factor = 100 | minus: tilbud
+    assign sale_price = variant.price | times: factor | divided_by: 100.0 | round
+    assign regular_price = variant.price
+  else
+    assign sale_price = variant.price
+    assign regular_price = variant.compare_at_price | default: variant.price
+  endif
+
+  assign plan = 'null'
+  if plan_id != blank
+    for allocation in variant.selling_plan_allocations
+      assign allocation_plan_id = allocation.selling_plan.id | append: ''
+      if allocation_plan_id == plan_id
+        assign plan = allocation.selling_plan.id
+      endif
+    endfor
+  endif
+-%}
+{"id": {{ variant.id }}, "title": {{ variant.title | json }}, "price": {{ sale_price }}, "base": {{ variant.price }}, "compare": {{ regular_price }}, "available": {{ variant.available | json }}, "plan": {{ plan }}, "image": {% if variant.featured_image %}{{ variant.featured_image | image_url: width: 160 | json }}{% else %}null{% endif %}}

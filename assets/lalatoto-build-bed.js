@@ -63,10 +63,12 @@
       this.button = this.querySelector('[data-add]');
       this.label = this.querySelector('[data-add-label]');
       this.message = this.querySelector('[data-message]');
+      this.bundlePercent = Number(this.getAttribute('data-bundle-percent')) || 0;
 
       this.addEventListener('change', (event) => {
         if (event.target.matches('input[type="radio"]')) this.setColor(event.target.value);
         if (event.target.matches('[data-item-toggle]')) this.update();
+        if (event.target.matches('[data-item-variant]')) this.update();
       });
       this.button.addEventListener('click', () => this.add());
 
@@ -85,26 +87,67 @@
       this.update();
     }
 
-    variantFor(handle) {
-      var item = this.items.find((entry) => entry.handle === handle);
-      return item && item.variants ? item.variants[this.color] : null;
+    itemFor(row) {
+      var handle = row.getAttribute('data-handle');
+      return this.items.find((entry) => entry.handle === handle) || null;
+    }
+
+    // Farvevarer følger den valgte farve; ekstra varer bruger deres egen vælger.
+    variantFor(row) {
+      var item = this.itemFor(row);
+      if (!item || !item.variants) return null;
+      if (!item.extra) return item.variants[this.color] || null;
+      var select = row.querySelector('[data-item-variant]');
+      var key = select ? select.value : Object.keys(item.variants)[0];
+      return item.variants[key] || null;
+    }
+
+    // Sætrabatten gælder, når mindst to af sættets varer er valgt – samme regel
+    // som den automatiske rabat i Shopify. Har en vare et større tilbud, vinder det.
+    bundleActive() {
+      if (!this.bundlePercent) return false;
+      var count = 0;
+      this.querySelectorAll('[data-handle]').forEach((row) => {
+        var item = this.itemFor(row);
+        var variant = this.variantFor(row);
+        var toggle = row.querySelector('[data-item-toggle]');
+        if (item && item.bundle && variant && variant.available && toggle.checked) count += 1;
+      });
+      return count >= 2;
+    }
+
+    priceFor(item, variant, bundle) {
+      if (!bundle || !item.bundle) return variant.price;
+      var bundlePrice = Math.round((variant.base * (100 - this.bundlePercent)) / 100);
+      return Math.min(variant.price, bundlePrice);
     }
 
     update() {
       var total = 0;
       var count = 0;
+      var saving = 0;
+
+      // Først tilgængelighed og flueben, så sætrabatten regnes ud fra de rigtige valg.
+      this.querySelectorAll('[data-handle]').forEach((row) => {
+        var item = this.itemFor(row);
+        var variant = this.variantFor(row);
+        var toggle = row.querySelector('[data-item-toggle]');
+        var usable = Boolean(variant && variant.available);
+        toggle.disabled = !usable;
+        if (!usable) toggle.checked = false;
+        else if (row.dataset.wasUnavailable === 'true' && item && !item.extra) toggle.checked = true;
+        row.dataset.wasUnavailable = String(!usable);
+      });
+
+      var bundle = this.bundleActive();
 
       this.querySelectorAll('[data-handle]').forEach((row) => {
-        var variant = this.variantFor(row.getAttribute('data-handle'));
+        var item = this.itemFor(row) || {};
+        var variant = this.variantFor(row);
         var toggle = row.querySelector('[data-item-toggle]');
         var note = row.querySelector('[data-item-note]');
         var price = row.querySelector('[data-item-price]');
         var usable = Boolean(variant && variant.available);
-
-        toggle.disabled = !usable;
-        if (!usable) toggle.checked = false;
-        else if (row.dataset.wasUnavailable === 'true') toggle.checked = true;
-        row.dataset.wasUnavailable = String(!usable);
 
         var thumb = row.querySelector('[data-item-thumb] img');
         if (thumb && variant && variant.image && thumb.getAttribute('src') !== variant.image) {
@@ -117,10 +160,12 @@
         else if (!variant.available) note.textContent = this.texts.soldOut || '';
         else note.textContent = variant.plan ? this.texts.preorder || '' : '';
 
+        var shown = variant ? this.priceFor(item, variant, bundle && toggle.checked) : 0;
         if (variant) {
-          var html = '<span>' + formatMoney(variant.price, this.format) + '</span>';
-          if (variant.compare > variant.price) {
-            html += ' <s>' + formatMoney(variant.compare, this.format) + '</s>';
+          var compare = Math.max(variant.compare, variant.base);
+          var html = '<span>' + formatMoney(shown, this.format) + '</span>';
+          if (compare > shown) {
+            html += ' <s>' + formatMoney(compare, this.format) + '</s>';
           }
           price.innerHTML = html;
         } else {
@@ -128,10 +173,19 @@
         }
 
         if (usable && toggle.checked) {
-          total += variant.price;
+          total += shown;
+          saving += variant.price - shown;
           count += 1;
         }
       });
+
+      var hint = this.querySelector('[data-bundle-hint]');
+      var savingRow = this.querySelector('[data-bundle-saving]');
+      if (hint) hint.hidden = bundle;
+      if (savingRow) {
+        savingRow.hidden = !bundle || saving <= 0;
+        savingRow.querySelector('[data-saving]').textContent = '−' + formatMoney(saving, this.format);
+      }
 
       this.querySelector('[data-total]').textContent = formatMoney(total, this.format);
       this.button.disabled = count === 0;
@@ -141,7 +195,7 @@
       var lines = [];
       this.querySelectorAll('[data-handle]').forEach((row) => {
         var toggle = row.querySelector('[data-item-toggle]');
-        var variant = this.variantFor(row.getAttribute('data-handle'));
+        var variant = this.variantFor(row);
         if (!toggle.checked || !variant || !variant.available) return;
         var line = { id: variant.id, quantity: 1 };
         if (variant.plan) line.selling_plan = variant.plan;

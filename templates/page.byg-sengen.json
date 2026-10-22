@@ -54,11 +54,16 @@
         "color_scheme": "scheme-1",
         "kicker": "Sæt",
         "heading": "Byg sengen",
-        "text": "<p>Vælg en farve, og få sengerand, sengeslange og sengetøj, der passer sammen. Fravælg det, I allerede har.</p>",
+        "text": "",
         "product_1": "sengerand",
+        "product_1_bundle": true,
         "product_2": "luksus-sengeslange",
+        "product_2_bundle": true,
         "product_3": "sengetoj",
-        "bedding_size": "Baby"
+        "product_3_bundle": false,
+        "bedding_size": "Baby",
+        "bundle_percent": 20,
+        "extra_1": "lala-hvalen"
       }
     }
   },

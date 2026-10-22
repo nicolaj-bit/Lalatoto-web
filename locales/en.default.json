@@ -566,7 +566,9 @@
       "error": "We couldn't add the set to your cart. Please try again.",
       "added": "The set is in your cart.",
       "none": "Choose at least one item.",
-      "preorder": "Pre-order – ships as soon as it is in stock"
+      "preorder": "Pre-order – ships as soon as it is in stock",
+      "bundle_hint": "Choose {{ items }} together and save {{ percent }}%.",
+      "bundle_saving": "Set discount {{ percent }}%"
     },
     "faq": {
       "kicker": "FAQ",
