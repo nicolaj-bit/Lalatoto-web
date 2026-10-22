@@ -55,6 +55,11 @@
           "fallback_language": "en"
         }
       },
+      "1732888969108105213": {
+        "type": "shopify://apps/oenskeskyen/blocks/serverside-tracking/be6e5a80-54ea-40af-aa80-5746282173b8",
+        "disabled": false,
+        "settings": {}
+      },
       "15683396631634586217": {
         "type": "shopify://apps/inbox/blocks/chat/841fc607-4181-4ad1-842d-e24d7f8bad6b",
         "disabled": false,
@@ -65,9 +70,9 @@
             "luksus-sengeslange",
             "lala-hvalen"
           ],
-          "background_color": "#ffffff",
-          "font_color": "#000000",
-          "agent_invert_activator_colors": true,
+          "background_color": "#DDD6CB",
+          "font_color": "#FFFFFF",
+          "agent_invert_activator_colors": false,
           "button_color": "#000000",
           "button_icon": "hand_wave",
           "button_text": "help",
@@ -79,11 +84,6 @@
           "agent_activator_font_size": 16,
           "agent_border_radius": 16
         }
-      },
-      "1732888969108105213": {
-        "type": "shopify://apps/oenskeskyen/blocks/serverside-tracking/be6e5a80-54ea-40af-aa80-5746282173b8",
-        "disabled": false,
-        "settings": {}
       }
     },
     "color_schemes": {
