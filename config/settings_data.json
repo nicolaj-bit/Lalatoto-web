@@ -46,6 +46,16 @@
     "social_instagram": "https://www.instagram.com/lalatoto_of_denmark/",
     "favicon": "shopify://shop_images/LALATOTO_LOGOFILER_3_23ca1a07-be52-4941-b3ea-f785b2ccd8b1.png",
     "content_for_index": [],
+    "blocks": {
+      "12952638929673284128": {
+        "type": "shopify://apps/lalatoto-forudbestilling-live/blocks/sprog-og-land/01a14eb5-d2ab-7a46-9a9d-d7d0cafee864",
+        "disabled": false,
+        "settings": {
+          "home_country": "DK",
+          "fallback_language": "en"
+        }
+      }
+    },
     "color_schemes": {
       "scheme-1": {
         "settings": {
