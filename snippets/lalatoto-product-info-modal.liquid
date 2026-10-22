@@ -3,7 +3,8 @@
   modalen samler produktets information med en indholdsfortegnelse øverst.
 
   Afsnittenes indhold hentes fra produktets metafelter i navnerummet «lalatoto»
-  (flerlinjet tekst): about, made, care, specs, safety og shipping. Et afsnit
+  (flerlinjet tekst): about, made, care, specs, safety og shipping. Efter
+  «Om …» kommer en kundeanmeldelse fra lalatoto.anmeldelse (se nedenfor). Et afsnit
   med tomt metafelt vises ikke og står heller ikke i indholdsfortegnelsen,
   undtagen Levering & retur, som har en standardtekst, og Vaskevejledning,
   som altid har linket til vaskevejledningen. En tom linje i feltet giver et
@@ -32,9 +33,21 @@
     produkt har dem udfyldt.
   endcomment
   if sections == 'tyngdedyne'
-    assign keys = 'about,made,materials,care,specs,dimensions,weight,weight_guide,safety,shipping' | split: ','
+    assign keys = 'about,review,made,materials,care,specs,dimensions,weight,weight_guide,safety,shipping' | split: ','
   else
-    assign keys = 'about,made,materials,care,specs,dimensions,safety,shipping' | split: ','
+    assign keys = 'about,review,made,materials,care,specs,dimensions,safety,shipping' | split: ','
+  endif
+
+  comment
+    Anmeldelse: én kundeanmeldelse af netop dette produkt, lige efter «Om …».
+    Teksten står i lalatoto.anmeldelse, navnet i lalatoto.anmeldelse_navn og
+    stjernerne (1–5) i lalatoto.anmeldelse_stjerner. Uden tekst vises intet.
+  endcomment
+  assign review_text = product.metafields.lalatoto.anmeldelse.value | strip
+  assign review_name = product.metafields.lalatoto.anmeldelse_navn.value | strip
+  assign review_stars = product.metafields.lalatoto.anmeldelse_stjerner.value | default: 5 | plus: 0
+  if review_stars < 1 or review_stars > 5
+    assign review_stars = 5
   endif
 
   comment
@@ -120,6 +133,7 @@
                   {%- assign value = product.metafields.lalatoto[key].value -%}
                   {%- if key == 'shipping' and value == blank -%}{%- assign value = shipping_default -%}{%- endif -%}
                   {%- if key == 'preorder' -%}{%- assign value = preorder_text -%}{%- endif -%}
+                  {%- if key == 'review' -%}{%- assign value = review_text -%}{%- endif -%}
                   {%- if value != blank or key == 'care' and wash_url != blank -%}
                     <li><a href="#{{ modal_id }}-{{ key }}">{% render 'lalatoto-product-info-title', key: key, product: product %}</a></li>
                   {%- endif -%}
@@ -132,10 +146,27 @@
                 {%- assign value = product.metafields.lalatoto[key].value -%}
                 {%- if key == 'shipping' and value == blank -%}{%- assign value = shipping_default -%}{%- endif -%}
                   {%- if key == 'preorder' -%}{%- assign value = preorder_text -%}{%- endif -%}
+                  {%- if key == 'review' -%}{%- assign value = review_text -%}{%- endif -%}
                 {%- if value != blank or key == 'care' and wash_url != blank -%}
                   {%- assign paragraphs = value | strip | split: blank_line -%}
                   <section id="{{ modal_id }}-{{ key }}" class="lalatoto-info-modal__section">
                     <h3 class="lalatoto-info-modal__section-title">{% render 'lalatoto-product-info-title', key: key, product: product %}</h3>
+                    {%- if key == 'review' -%}
+                      <figure class="lalatoto-info-modal__review">
+                        <p class="lalatoto-info-modal__stars" role="img" aria-label="{{ 'lalatoto.product.review_stars' | t: count: review_stars }}">
+                          {%- for i in (1..5) -%}<span aria-hidden="true"{% if i > review_stars %} class="is-empty"{% endif %}>★</span>{%- endfor -%}
+                        </p>
+                        <blockquote class="lalatoto-info-modal__text">
+                          {%- for paragraph in paragraphs -%}
+                            {%- assign paragraph = paragraph | strip -%}
+                            {%- if paragraph != blank -%}<p>{{ paragraph | escape | newline_to_br }}</p>{%- endif -%}
+                          {%- endfor -%}
+                        </blockquote>
+                        {%- if review_name != blank -%}
+                          <figcaption class="lalatoto-info-modal__review-name">{{ review_name | escape }}<span> · {{ 'lalatoto.product.review_source' | t }}</span></figcaption>
+                        {%- endif -%}
+                      </figure>
+                    {%- else -%}
                     <div class="lalatoto-info-modal__text">
                       {%- for paragraph in paragraphs -%}
                         {%- assign paragraph = paragraph | strip -%}
@@ -172,6 +203,7 @@
                         <p><a class="lalatoto-info-modal__link" href="{{ terms_url }}">{{ 'lalatoto.product.terms_link' | t }} <span aria-hidden="true">→</span></a></p>
                       {%- endif -%}
                     </div>
+                    {%- endif -%}
                   </section>
                 {%- endif -%}
               {%- endfor -%}

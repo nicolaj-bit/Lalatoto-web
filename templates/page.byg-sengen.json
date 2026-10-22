@@ -1,0 +1,72 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "lalatoto-build-bed",
+      "blocks": {
+        "sage": {
+          "type": "color",
+          "settings": {
+            "name": "Sage",
+            "image": "shopify://shop_images/108.png",
+            "swatch": "shopify://shop_images/05582-021_1.jpg",
+            "swatch_color": "#b9bfa8"
+          }
+        },
+        "baby_blue": {
+          "type": "color",
+          "settings": {
+            "name": "Baby Blue",
+            "image": "shopify://shop_images/107.png",
+            "swatch": "shopify://shop_images/05582-002_2.jpg",
+            "swatch_color": "#c3d3e0"
+          }
+        },
+        "sunflower": {
+          "type": "color",
+          "settings": {
+            "name": "Sunflower",
+            "image": "shopify://shop_images/106.png",
+            "swatch": "shopify://shop_images/05582-034_1.jpg",
+            "swatch_color": "#ecd590"
+          }
+        },
+        "beige": {
+          "type": "color",
+          "settings": {
+            "name": "Beige",
+            "image": "shopify://shop_images/109.png",
+            "swatch": "shopify://shop_images/05582-053_1.jpg",
+            "swatch_color": "#ddd0bd"
+          }
+        }
+      },
+      "block_order": ["sage", "baby_blue", "sunflower", "beige"],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "kicker": "Sæt",
+        "heading": "Byg sengen",
+        "text": "",
+        "product_1": "sengerand",
+        "product_1_bundle": true,
+        "product_2": "luksus-sengeslange",
+        "product_2_bundle": true,
+        "product_3": "sengetoj",
+        "product_3_bundle": true,
+        "bedding_size": "Baby",
+        "bundle_percent": 20,
+        "extra_1": "lala-hvalen",
+        "extra_1_bundle": true
+      }
+    }
+  },
+  "order": ["main"]
+}

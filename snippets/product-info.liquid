@@ -615,10 +615,30 @@
             {%- assign lalatoto_preorder_date = lalatoto_preorder_date | strip -%}
             {%- if lalatoto_preorder_date == blank and product.selected_or_first_available_variant.available -%}
               {%- assign lalatoto_delivery = product.metafields.lalatoto.leveringstid.value | default: block.settings.text -%}
-              {%- if lalatoto_delivery == blank -%}
-                {%- assign lalatoto_delivery = 'lalatoto.product.delivery_default' | t -%}
+              {%- if lalatoto_delivery == blank and localization.country.iso_code == 'DK' -%}
+                {%- comment -%}
+                  Danmark uden egen leveringstekst: datoen regnes ud i browseren
+                  (assets/lalatoto-product.js, <lalatoto-delivery-date>). Bestilt
+                  før kl. 10 på en hverdag sendes varen samme dag, ellers næste
+                  hverdag, og den er hos kunden hverdagen efter. Indtil scriptet
+                  har kørt, og uden JavaScript, står standardteksten.
+                {%- endcomment -%}
+                {%- assign lalatoto_delivery_fallback = 'lalatoto.product.delivery_default' | t -%}
+                <p class="lalatoto-delivery">
+                  <lalatoto-delivery-date
+                    data-cutoff="10"
+                    data-locale="{{ request.locale.iso_code }}-DK"
+                    data-before="{{ 'lalatoto.product.delivery_before_cutoff' | t: time: '{time}', date: '{date}' | escape }}"
+                    data-after="{{ 'lalatoto.product.delivery_after_cutoff' | t: ship: '{ship}', date: '{date}' | escape }}"
+                    data-tomorrow="{{ 'lalatoto.product.delivery_tomorrow' | t | escape }}"
+                  >{{ lalatoto_delivery_fallback | escape }}</lalatoto-delivery-date>
+                </p>
+              {%- else -%}
+                {%- if lalatoto_delivery == blank -%}
+                  {%- assign lalatoto_delivery = 'lalatoto.product.delivery_default' | t -%}
+                {%- endif -%}
+                <p class="lalatoto-delivery">{{ lalatoto_delivery | escape }}</p>
               {%- endif -%}
-              <p class="lalatoto-delivery">{{ lalatoto_delivery | escape }}</p>
             {%- endif -%}
 
           {%- when 'lalatoto_waitlist' -%}

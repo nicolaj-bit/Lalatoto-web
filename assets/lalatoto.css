@@ -493,6 +493,37 @@ svg.lalatoto-full-image__image {
   margin-top: 0;
 }
 
+/* Kundeanmeldelse i «Fortæl mig mere» */
+.lalatoto-info-modal__review {
+  margin: 0;
+}
+
+.lalatoto-info-modal__stars {
+  margin: 0 0 0.75rem;
+  font-size: 0.875rem;
+  letter-spacing: 0.16em;
+  color: #2a2724;
+}
+
+.lalatoto-info-modal__stars .is-empty {
+  color: #d7d0c4;
+}
+
+.lalatoto-info-modal__review blockquote {
+  margin: 0;
+  font-style: italic;
+}
+
+.lalatoto-info-modal__review-name {
+  margin-top: 0.75rem;
+  font-size: 0.8125rem;
+  color: #2a2724;
+}
+
+.lalatoto-info-modal__review-name span {
+  color: #6e675e;
+}
+
 .lalatoto-info-modal__link {
   color: rgb(var(--text-color));
   text-decoration: underline;

@@ -1,0 +1,369 @@
+/* ===============================================================
+ * BYG SENGEN: billede af sættet til venstre, farver og varer til højre
+ * =============================================================== */
+.lalatoto-bed {
+  max-width: var(--lalatoto-max-width);
+  margin-inline: auto;
+  padding: var(--section-vertical-spacing) var(--container-gutter);
+}
+
+.lalatoto-bed__inner {
+  display: grid;
+  gap: 2rem;
+}
+
+.lalatoto-bed__media {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: #f3efe9;
+}
+
+.lalatoto-bed__image {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.lalatoto-bed__image.is-active {
+  opacity: 1;
+}
+
+.lalatoto-bed__image img,
+.lalatoto-bed__placeholder {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.lalatoto-bed__content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.lalatoto-bed__title {
+  margin: 0;
+}
+
+.lalatoto-bed__colors {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.lalatoto-bed__label {
+  padding: 0;
+  margin-block-end: 0.75rem;
+  font-size: var(--lalatoto-label-size);
+  letter-spacing: var(--lalatoto-label-spacing);
+  text-transform: uppercase;
+}
+
+.lalatoto-bed__swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.lalatoto-bed__swatch {
+  position: relative;
+  cursor: pointer;
+}
+
+.lalatoto-bed__swatch input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.lalatoto-bed__swatch-dot {
+  display: block;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 0 0 1px rgb(0 0 0 / 0.12);
+  transition: box-shadow 0.2s ease;
+}
+
+.lalatoto-bed__swatch-dot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.lalatoto-bed__swatch input:checked + .lalatoto-bed__swatch-dot {
+  box-shadow: 0 0 0 2px #fff, 0 0 0 3px #000;
+}
+
+.lalatoto-bed__swatch input:focus-visible + .lalatoto-bed__swatch-dot {
+  outline: 2px solid #000;
+  outline-offset: 4px;
+}
+
+.lalatoto-bed__items {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-block-start: 1px solid rgb(0 0 0 / 0.12);
+}
+
+.lalatoto-bed__item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 0.25rem 1rem;
+  padding-block: 1rem;
+  border-block-end: 1px solid rgb(0 0 0 / 0.12);
+}
+
+.lalatoto-bed__item-label {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: auto 3.5rem 1fr auto;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+}
+
+.lalatoto-bed__item-label input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Til/fra som kurvens plus-knapper: tynd rund ring med et plus; valgt er
+   ringen fyldt med et tyndt flueben. */
+.lalatoto-bed__check {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid #2a2724;
+  border-radius: 50%;
+  color: #2a2724;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.lalatoto-bed__check::before,
+.lalatoto-bed__check::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background: currentColor;
+  transition: opacity 0.2s ease;
+}
+
+.lalatoto-bed__check::before {
+  width: 11px;
+  height: 1px;
+  transform: translate(-50%, -50%);
+}
+
+.lalatoto-bed__check::after {
+  width: 1px;
+  height: 11px;
+  transform: translate(-50%, -50%);
+}
+
+.lalatoto-bed__item-label:hover .lalatoto-bed__check {
+  background: rgb(42 39 36 / 0.06);
+}
+
+.lalatoto-bed__item-label input:checked + .lalatoto-bed__check {
+  background: #2a2724 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.25l2.5 2.5L12 5.25' fill='none' stroke='%23efebe4' stroke-width='1.1'/%3E%3C/svg%3E") center / 1.125rem no-repeat;
+}
+
+.lalatoto-bed__item-label input:checked + .lalatoto-bed__check::before,
+.lalatoto-bed__item-label input:checked + .lalatoto-bed__check::after {
+  opacity: 0;
+}
+
+.lalatoto-bed__item-label input:disabled + .lalatoto-bed__check {
+  border-color: rgb(42 39 36 / 0.2);
+  color: rgb(42 39 36 / 0.25);
+  background: transparent;
+}
+
+.lalatoto-bed__item-label input:focus-visible + .lalatoto-bed__check {
+  outline: none;
+  box-shadow: 0 0 0 2px #efebe4, 0 0 0 3px #2a2724;
+}
+
+.lalatoto-bed__thumb {
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: #f3efe9;
+}
+
+.lalatoto-bed__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.lalatoto-bed__item-text {
+  display: grid;
+  gap: 0.125rem;
+}
+
+.lalatoto-bed__item-note {
+  color: #6e675e;
+  font-size: 0.8125rem;
+}
+
+.lalatoto-bed__item-note:empty {
+  display: none;
+}
+
+.lalatoto-bed__item-price {
+  text-align: end;
+  white-space: nowrap;
+}
+
+.lalatoto-bed__item-price s {
+  display: block;
+  color: #6e675e;
+  font-size: 0.8125rem;
+}
+
+.lalatoto-bed__item-link {
+  grid-column: 1 / -1;
+  padding-inline-start: calc(2rem + 1rem + 3.5rem + 1rem);
+  color: #6e675e;
+  font-size: 0.8125rem;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.lalatoto-bed__item.is-off .lalatoto-bed__thumb,
+.lalatoto-bed__item.is-off .lalatoto-bed__item-name,
+.lalatoto-bed__item.is-off .lalatoto-bed__item-price,
+.lalatoto-bed__item.is-unavailable .lalatoto-bed__thumb,
+.lalatoto-bed__item.is-unavailable .lalatoto-bed__item-name,
+.lalatoto-bed__item.is-unavailable .lalatoto-bed__item-price {
+  opacity: 0.45;
+}
+
+.lalatoto-bed__item.is-unavailable .lalatoto-bed__item-label {
+  cursor: default;
+}
+
+.lalatoto-bed__item-colors {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-inline-start: calc(2rem + 1rem + 3.5rem + 1rem);
+}
+
+.lalatoto-bed__swatch--small .lalatoto-bed__swatch-dot {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+.lalatoto-bed__swatch input:disabled + .lalatoto-bed__swatch-dot {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.lalatoto-bed__item.is-unavailable .lalatoto-bed__item-colors,
+.lalatoto-bed__item.is-off .lalatoto-bed__item-colors {
+  opacity: 1;
+}
+
+.lalatoto-bed__variant {
+  grid-column: 1 / -1;
+  justify-self: start;
+  min-width: 12rem;
+  margin-inline-start: calc(2rem + 1rem + 3.5rem + 1rem);
+  padding: 0.375rem 2rem 0.375rem 0.75rem;
+  border: 1px solid rgb(0 0 0 / 0.25);
+  background: transparent;
+  font: inherit;
+  font-size: 0.8125rem;
+}
+
+.lalatoto-bed__bundle {
+  margin: 0;
+  padding: 0.875rem 1rem;
+  background: rgb(0 0 0 / 0.04);
+  font-size: 0.875rem;
+}
+
+.lalatoto-bed__bundle[hidden],
+.lalatoto-bed__saving[hidden] {
+  display: none;
+}
+
+.lalatoto-bed__saving {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.875rem;
+}
+
+.lalatoto-bed__total {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--lalatoto-label-size);
+  letter-spacing: var(--lalatoto-label-spacing);
+  text-transform: uppercase;
+}
+
+.lalatoto-bed__total [data-total] {
+  font-size: 1rem;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.lalatoto-bed__button {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  border: 1px solid #000;
+  background: #000;
+  color: #fff;
+  font-size: var(--lalatoto-label-size);
+  letter-spacing: var(--lalatoto-label-spacing);
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.lalatoto-bed__button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.lalatoto-bed__button[aria-busy="true"] {
+  opacity: 0.7;
+}
+
+.lalatoto-bed__message {
+  margin: 0;
+  font-size: 0.8125rem;
+}
+
+.lalatoto-bed__message:empty {
+  display: none;
+}
+
+@media screen and (min-width: 1000px) {
+  .lalatoto-bed__inner {
+    grid-template-columns: 55fr 45fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .lalatoto-bed__media {
+    position: sticky;
+    top: calc(var(--sticky-area-height, 0px) + 1.5rem);
+  }
+
+  .lalatoto-bed__content {
+    max-width: 32rem;
+  }
+}

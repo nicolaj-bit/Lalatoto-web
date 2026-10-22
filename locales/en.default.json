@@ -526,6 +526,9 @@
       "preorder_info_date": "Expected to ship: {{ date }}. If the date changes, we'll let you know by email.",
       "contents": "Contents",
       "delivery_default": "Delivery in 1-2 business days",
+      "delivery_before_cutoff": "Order before {{ time }} and we ship today. Expected with you {{ date }}.",
+      "delivery_after_cutoff": "Ships {{ ship }}. Expected with you {{ date }}.",
+      "delivery_tomorrow": "tomorrow",
       "sections": {
         "materials": "Materials",
         "dimensions": "Dimensions",
@@ -536,12 +539,15 @@
         "weight": "Weight",
         "weight_guide": "Choosing the right weight",
         "about": "About {{ product }}",
+        "review": "What a customer says",
         "made": "Made with care",
         "specs": "Details"
       },
       "fits": "Fits",
       "weight_help": "Help choosing the right weight",
       "care_link": "See care instructions",
+      "review_stars": "{{ count }} out of 5 stars",
+      "review_source": "review on Trustpilot",
       "terms_link": "Read our terms & conditions",
       "shipping_default": "Ships within 1–2 business days.\nPre-order items will show their expected delivery date on the product page.\n\nReturns are accepted within 14 days of receiving your order."
     },
@@ -549,6 +555,24 @@
       "kicker": "Shop",
       "view_all": "View the collection",
       "tabs": "Collections"
+    },
+    "bed": {
+      "color": "Colour",
+      "color_all": "Whole set",
+      "mixed": "Mixed",
+      "read_more": "Read more",
+      "total": "Total",
+      "add": "Add the set to cart",
+      "sold_out": "Sold out in this colour",
+      "sold_out_plain": "Sold out",
+      "test_stock": "Test view: only items in stock were added to the cart.",
+      "missing": "Not available in this colour",
+      "error": "We couldn't add the set to your cart. Please try again.",
+      "added": "The set is in your cart.",
+      "none": "Choose at least one item.",
+      "preorder": "Pre-order – ships as soon as it is in stock",
+      "bundle_hint": "Choose at least two pieces and save {{ percent }}% on all of them.",
+      "bundle_saving": "Set discount {{ percent }}%"
     },
     "faq": {
       "kicker": "FAQ",
