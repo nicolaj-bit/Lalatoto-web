@@ -3495,6 +3495,11 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   transform: rotate(-2deg);
 }
 
+/* Telefon: kun ugens telefon i åbningen */
+.lalatoto-apppage__phone--hero:not(.is-week) {
+  display: none;
+}
+
 /* Indledning */
 .lalatoto-apppage__intro {
   max-width: 40rem;
@@ -3624,6 +3629,27 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 
   .lalatoto-apppage__hero-text {
     justify-self: start;
+  }
+
+  /* Computer: begge telefoner side om side, som på forsiden */
+  .lalatoto-apppage__hero-phones {
+    display: flex;
+    gap: 22px;
+    justify-content: center;
+    align-items: flex-end;
+  }
+
+  .lalatoto-apppage__phone--hero:not(.is-week) {
+    display: block;
+  }
+
+  .lalatoto-apppage__hero-phones .lalatoto-apppage__phone--hero.lalatoto-app__phone {
+    width: min(250px, 19vw);
+    transform: rotate(-3deg) translateY(-14px);
+  }
+
+  .lalatoto-apppage__hero-phones .lalatoto-apppage__phone--hero.lalatoto-app__phone + .lalatoto-apppage__phone--hero {
+    transform: rotate(2.5deg);
   }
 
   .lalatoto-apppage__story {
