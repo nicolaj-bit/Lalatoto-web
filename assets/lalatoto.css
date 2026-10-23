@@ -2302,6 +2302,10 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   height: 18px;
 }
 
+.lalatoto-footer .social-media .social-media__item {
+  opacity: 1;
+}
+
 .lalatoto-footer .social-media a {
   color: #2a2724;
 }
