@@ -14,7 +14,8 @@
     "lalatoto_footer": {
       "type": "lalatoto-footer",
       "settings": {
-        "color_scheme": "scheme-1",
+        "color_scheme": "scheme-2",
+        "show_wordmark": true,
         "nl_title": "Hør fra os",
         "nl_text": "Vi skriver kun, når vi har noget på hjertet.",
         "nl_button": "Tilmeld mig",

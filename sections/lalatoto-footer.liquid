@@ -1,10 +1,10 @@
 {%- comment -%}
   Lalatoto: footer.
 
-  Fire kolonner: en kompakt tilmelding til nyhedsbrevet (overskrift, en
-  linje og to felter med etiketten foran en tynd streg), to menuer og
-  virksomhedens oplysninger: navn, adresse, CVR, e-mail, telefon og
-  åbningstider. Nederst copyright, sociale medier og betalingsikoner.
+  Øverst tilmelding til nyhedsbrevet til venstre og tre kolonner til højre
+  (to menuer og kontakt). Alle fire starter med en lille etiket, så de står
+  på linje. Under dem logoets bogstaver i stor størrelse og en dæmpet tone,
+  og nederst copyright og sociale medier.
 
   Tilmeldingen bruger Shopifys kundeformular. Kunden oprettes med mærkerne
   «newsletter», «nyhedsbrev» og «nyhedsbrev-samtykke». «newsletter» er det
@@ -51,10 +51,10 @@
 
 <footer class="lalatoto-footer color-scheme color-scheme--{{ section.settings.color_scheme.id }}">
   <div class="lalatoto-footer__inner">
-    {%- comment -%} Menuer og virksomhedens oplysninger {%- endcomment -%}
     <div class="lalatoto-footer__columns">
       {%- comment -%} Nyhedsbrev {%- endcomment -%}
       <div class="lalatoto-footer__col lalatoto-footer__col--newsletter">
+        <p class="lalatoto-footer__heading">{{ 'lalatoto.footer.kicker' | t }}</p>
         <h2 class="lalatoto-footer__nl-title">{{ nl_title }}</h2>
         <p class="lalatoto-footer__muted">{{ nl_text | escape }}</p>
 
@@ -69,31 +69,33 @@
             <div class="lalatoto-footer__fields">
               <input type="hidden" name="contact[tags]" value="newsletter,nyhedsbrev,nyhedsbrev-samtykke">
 
-              <div class="lalatoto-footer__line">
-                <label for="{{ form_id }}-name">{{ 'lalatoto.footer.name_label' | t }}</label>
-                <input
-                  type="text"
-                  id="{{ form_id }}-name"
-                  name="contact[first_name]"
-                  autocomplete="given-name"
-                  required
-                >
-              </div>
+              <div class="lalatoto-footer__lines">
+                <div class="lalatoto-footer__line">
+                  <label for="{{ form_id }}-name">{{ 'lalatoto.footer.name_label' | t }}</label>
+                  <input
+                    type="text"
+                    id="{{ form_id }}-name"
+                    name="contact[first_name]"
+                    autocomplete="given-name"
+                    required
+                  >
+                </div>
 
-              <div class="lalatoto-footer__line{% if form.errors %} has-error{% endif %}">
-                <label for="{{ form_id }}-email">{{ 'lalatoto.footer.email_label' | t }}</label>
-                <input
-                  type="email"
-                  id="{{ form_id }}-email"
-                  name="contact[email]"
-                  autocomplete="email"
-                  inputmode="email"
-                  spellcheck="false"
-                  required
-                  {% if form.errors %}
-                    aria-invalid="true" aria-describedby="{{ form_id }}-error"
-                  {% endif %}
-                >
+                <div class="lalatoto-footer__line{% if form.errors %} has-error{% endif %}">
+                  <label for="{{ form_id }}-email">{{ 'lalatoto.footer.email_label' | t }}</label>
+                  <input
+                    type="email"
+                    id="{{ form_id }}-email"
+                    name="contact[email]"
+                    autocomplete="email"
+                    inputmode="email"
+                    spellcheck="false"
+                    required
+                    {% if form.errors %}
+                      aria-invalid="true" aria-describedby="{{ form_id }}-error"
+                    {% endif %}
+                  >
+                </div>
               </div>
 
               {%- if form.errors -%}
@@ -118,62 +120,71 @@
         {%- endform -%}
       </div>
 
-      {%- for menu_key in (1..2) -%}
-        {%- liquid
-          if menu_key == 1
-            assign menu = section.settings.menu_1
-          else
-            assign menu = section.settings.menu_2
-          endif
-        -%}
-        {%- if menu != blank and menu.links.size > 0 -%}
-          <details class="lalatoto-footer__col lalatoto-footer__group" data-lalatoto-footer-group open>
-            <summary class="lalatoto-footer__heading">
-              {{- menu.title -}}
-              <span class="lalatoto-footer__plus" aria-hidden="true"></span>
-            </summary>
-            <nav aria-label="{{ menu.title | escape }}">
-              <ul class="lalatoto-footer__list unstyled-list" role="list">
-                {%- for link in menu.links -%}
-                  <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-                {%- endfor -%}
-              </ul>
-            </nav>
-          </details>
-        {%- endif -%}
-      {%- endfor -%}
-
-      <details class="lalatoto-footer__col lalatoto-footer__group" data-lalatoto-footer-group open>
-        <summary class="lalatoto-footer__heading">
-          {{- 'lalatoto.footer.contact_heading' | t -}}
-          <span class="lalatoto-footer__plus" aria-hidden="true"></span>
-        </summary>
-        <div class="lalatoto-footer__group-body">
-          <address class="lalatoto-footer__address">
-            {%- if section.settings.company != blank -%}
-              <span>{{ section.settings.company }}</span>
-            {%- endif -%}
-            {%- if section.settings.address != blank -%}
-              <span class="lalatoto-footer__muted">{{ section.settings.address | newline_to_br }}</span>
-            {%- endif -%}
-            {%- if section.settings.cvr != blank -%}
-              <span class="lalatoto-footer__muted">{{ 'lalatoto.footer.cvr' | t }} {{ section.settings.cvr }}</span>
-            {%- endif -%}
-            {%- if section.settings.email != blank -%}
-              <a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a>
-            {%- endif -%}
-            {%- if section.settings.phone != blank -%}
-              <a href="tel:{{ phone_link }}">{{ section.settings.phone }}</a>
-            {%- endif -%}
-          </address>
-
-          {%- if section.settings.hours != blank -%}
-            <p class="lalatoto-footer__heading lalatoto-footer__heading--sub">{{ 'lalatoto.footer.hours_heading' | t }}</p>
-            <p class="lalatoto-footer__muted">{{ section.settings.hours | newline_to_br }}</p>
+      <div class="lalatoto-footer__groups">
+        {%- for menu_key in (1..2) -%}
+          {%- liquid
+            if menu_key == 1
+              assign menu = section.settings.menu_1
+            else
+              assign menu = section.settings.menu_2
+            endif
+          -%}
+          {%- if menu != blank and menu.links.size > 0 -%}
+            <details class="lalatoto-footer__col lalatoto-footer__group" data-lalatoto-footer-group open>
+              <summary class="lalatoto-footer__heading">
+                {{- menu.title -}}
+                <span class="lalatoto-footer__plus" aria-hidden="true"></span>
+              </summary>
+              <nav aria-label="{{ menu.title | escape }}">
+                <ul class="lalatoto-footer__list unstyled-list" role="list">
+                  {%- for link in menu.links -%}
+                    <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                  {%- endfor -%}
+                </ul>
+              </nav>
+            </details>
           {%- endif -%}
-        </div>
-      </details>
+        {%- endfor -%}
+
+        <details class="lalatoto-footer__col lalatoto-footer__group" data-lalatoto-footer-group open>
+          <summary class="lalatoto-footer__heading">
+            {{- 'lalatoto.footer.contact_heading' | t -}}
+            <span class="lalatoto-footer__plus" aria-hidden="true"></span>
+          </summary>
+          <div class="lalatoto-footer__group-body">
+            <address class="lalatoto-footer__address">
+              {%- if section.settings.company != blank -%}
+                <span>{{ section.settings.company }}</span>
+              {%- endif -%}
+              {%- if section.settings.address != blank -%}
+                <span class="lalatoto-footer__muted">{{ section.settings.address | newline_to_br }}</span>
+              {%- endif -%}
+              {%- if section.settings.cvr != blank -%}
+                <span class="lalatoto-footer__muted">{{ 'lalatoto.footer.cvr' | t }} {{ section.settings.cvr }}</span>
+              {%- endif -%}
+              {%- if section.settings.email != blank -%}
+                <a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a>
+              {%- endif -%}
+              {%- if section.settings.phone != blank -%}
+                <a href="tel:{{ phone_link }}">{{ section.settings.phone }}</a>
+              {%- endif -%}
+            </address>
+
+            {%- if section.settings.hours != blank -%}
+              <p class="lalatoto-footer__heading lalatoto-footer__heading--sub">{{ 'lalatoto.footer.hours_heading' | t }}</p>
+              <p class="lalatoto-footer__muted">{{ section.settings.hours | newline_to_br }}</p>
+            {%- endif -%}
+          </div>
+        </details>
+      </div>
     </div>
+
+    {%- if section.settings.show_wordmark -%}
+      <div class="lalatoto-footer__wordmark">
+        {%- render 'lalatoto-wordmark' -%}
+        <span class="sr-only">{{ shop.name }}</span>
+      </div>
+    {%- endif -%}
 
     {%- comment -%} Bundlinje {%- endcomment -%}
     <div class="lalatoto-footer__bottom">
@@ -239,6 +250,12 @@
       "id": "color_scheme",
       "label": "Farveskema",
       "default": "scheme-1"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_wordmark",
+      "label": "Vis Lalatoto med store bogstaver nederst",
+      "default": true
     },
     {
       "type": "header",
