@@ -39,12 +39,12 @@
     {%- liquid
       assign hero_images = ''
       if section.settings.hero_image != blank
-        assign hero_images = 'hero_image'
+        assign hero_images = 'hero_image,'
       endif
       if section.settings.hero_image_2 != blank
-        assign hero_images = hero_images | append: ',hero_image_2'
+        assign hero_images = hero_images | append: 'hero_image_2,'
       endif
-      assign hero_images = hero_images | remove_first: ',' | split: ','
+      assign hero_images = hero_images | split: ','
     -%}
     {%- if hero_images.size > 0 -%}
       {%- comment -%}
