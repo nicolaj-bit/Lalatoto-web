@@ -3390,8 +3390,8 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   display: none;
 }
 
-.lalatoto-faqpage__empty,
-.lalatoto-faqpage__foot {
+.lalatoto-legal__body .lalatoto-faqpage__empty,
+.lalatoto-legal__body .lalatoto-faqpage__foot {
   margin: 2.5rem 0 0;
   color: #6e675e;
   font-size: 0.9375rem;
