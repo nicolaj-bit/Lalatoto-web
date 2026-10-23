@@ -3261,86 +3261,180 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 }
 
 /* ===============================================================
- * FAQ-SIDEN: små links til grupperne øverst, derunder én gruppe ad
- * gangen med overskriften til venstre og spørgsmålene til højre (på
- * telefon over hinanden). Punkterne er vaskevejledningens.
+ * FAQ-SIDEN: samme opbygning som handelsbetingelserne (.lalatoto-legal).
+ * Over spørgsmålene et søgefelt og, på telefon, en bjælke med emnerne,
+ * der bliver hængende under menuen. Punkterne er vaskevejledningens.
  * =============================================================== */
-.lalatoto-faqpage {
-  display: grid;
-  gap: clamp(2rem, 4vw, 3rem);
-  padding-block-end: clamp(4rem, 9vw, 7rem);
-}
-
-.lalatoto-faqpage .lalatoto-faq__head .lalatoto-lead {
+.lalatoto-faqpage__lead {
+  margin: 0.875rem 0 0;
   max-width: 34rem;
-  margin-block-start: 0.25rem;
+  color: #6e675e;
+  font-size: 0.9375rem;
+  line-height: 1.6;
 }
 
-.lalatoto-faqpage__nav {
+.lalatoto-faqpage__tools {
+  display: grid;
+  gap: 0.75rem;
+  margin-block-end: 0.5rem;
+}
+
+.lalatoto-faqpage__search {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.5rem 1.5rem;
-  width: 100%;
-  max-width: 1040px;
-  margin-inline: auto;
-  padding-block: 1rem;
-  border-block: 1px solid #d7d0c4;
+  align-items: center;
+  gap: 0.75rem;
+  border-block-end: 1px solid #2a2724;
+  padding-block: 0.25rem;
 }
 
-.lalatoto-faqpage__nav a {
+.lalatoto-faqpage__search svg {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: #2a2724;
+  stroke-width: 1.25;
+  stroke-linecap: round;
+}
+
+.lalatoto-faqpage__search input {
+  flex: 1;
+  min-width: 0;
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #2a2724;
+  font: inherit;
+  font-size: 1rem;
+  letter-spacing: normal;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.lalatoto-faqpage__search input::placeholder {
+  color: #8a8279;
+}
+
+.lalatoto-faqpage__search:focus-within {
+  border-block-end-width: 2px;
+  padding-block-end: calc(0.25rem - 1px);
+}
+
+.lalatoto-faqpage__chips {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  padding-block: 0.875rem;
+  border-block-end: 1px solid #d7d0c4;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.lalatoto-faqpage__chips::-webkit-scrollbar {
+  display: none;
+}
+
+.lalatoto-faqpage__chips a {
+  flex: none;
   color: #6e675e;
   font-size: var(--lalatoto-label-size);
   letter-spacing: var(--lalatoto-label-spacing);
   text-decoration: none;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
-.lalatoto-faqpage__nav a:hover,
-.lalatoto-faqpage__nav a:focus-visible {
+.lalatoto-faqpage__chips a[aria-current='true'] {
   color: #2a2724;
+  text-decoration: underline;
+  text-underline-offset: 6px;
 }
 
-.lalatoto-faqpage__groups {
-  display: grid;
-  gap: clamp(2.5rem, 6vw, 4.5rem);
-  width: 100%;
-  max-width: 1040px;
-  margin-inline: auto;
+.lalatoto-faqpage__chips a[hidden],
+.lalatoto-faqpage .lalatoto-legal__toc li[hidden] {
+  display: none;
 }
 
-.lalatoto-faqpage__group {
-  display: grid;
-  gap: 1rem;
-  scroll-margin-top: calc(var(--sticky-area-height, 0px) + 1.5rem);
+/* Emnerne: overskrift som afsnittene i handelsbetingelserne */
+.lalatoto-legal__body .lalatoto-faqpage__group h2 {
+  margin: 3rem 0 1rem;
+  scroll-margin-top: calc(var(--sticky-area-height, 64px) + 1.5rem);
 }
 
-.lalatoto-faqpage__group-title {
-  margin: 0;
-  font-family: var(--heading-font-family);
-  font-weight: 400;
-  font-size: clamp(1.5rem, 2.4vw, 1.875rem);
-  line-height: 1.2;
-  letter-spacing: normal;
-  text-transform: none;
-  color: #4a453f;
+.lalatoto-faqpage__group[hidden] {
+  display: none;
 }
 
 .lalatoto-faqpage .lalatoto-wash__list {
   max-width: none;
 }
 
-@media screen and (min-width: 1000px) {
-  .lalatoto-faqpage__group {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
-    gap: 3rem;
-    align-items: start;
+.lalatoto-faqpage .lalatoto-wash__summary {
+  grid-template-columns: minmax(0, 1fr) 20px;
+}
+
+.lalatoto-faqpage .lalatoto-wash__name {
+  font-size: 1.0625rem;
+  line-height: 1.4;
+}
+
+.lalatoto-faqpage .lalatoto-wash__text {
+  color: #4a453f;
+  font-size: 0.9375rem;
+  line-height: 1.7;
+}
+
+.lalatoto-faqpage .lalatoto-wash__item[hidden] {
+  display: none;
+}
+
+.lalatoto-legal__body .lalatoto-faqpage__empty,
+.lalatoto-legal__body .lalatoto-faqpage__foot {
+  margin: 2.5rem 0 0;
+  color: #6e675e;
+  font-size: 0.9375rem;
+}
+
+.lalatoto-faqpage__empty[hidden] {
+  display: none;
+}
+
+/* Telefon og tablet: søgefelt og emner hænger fast under menuen */
+@media screen and (max-width: 999px) {
+  .lalatoto-faqpage__tools {
+    position: sticky;
+    top: var(--sticky-area-height, 0px);
+    z-index: 2;
+    margin-inline: calc(-1 * var(--container-gutter));
+    padding: 0.5rem var(--container-gutter) 0;
+    background: rgb(var(--background));
   }
 
-  .lalatoto-faqpage__group-title {
+  .lalatoto-faqpage__chips {
+    margin-inline: calc(-1 * var(--container-gutter));
+    padding-inline: var(--container-gutter);
+  }
+
+  .lalatoto-legal__body .lalatoto-faqpage__group h2 {
+    margin-top: 2.25rem;
+    font-size: 1.5rem;
+  }
+}
+
+/* Computer: indholdsfortegnelsen viser emnerne, så bjælken skjules */
+@media screen and (min-width: 1000px) {
+  .lalatoto-faqpage__chips {
+    display: none;
+  }
+
+  .lalatoto-faqpage .lalatoto-legal__toc {
+    display: block;
     position: sticky;
-    top: calc(var(--sticky-area-height, 0px) + 1.5rem);
-    padding-block-start: 1.125rem;
+    top: calc(var(--sticky-area-height, 64px) + 1.5rem);
+    font-size: 0.84375rem;
+    line-height: 1.45;
   }
 }
 

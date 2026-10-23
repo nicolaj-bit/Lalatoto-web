@@ -581,7 +581,10 @@
       "contact_html": "Fandt du ikke svaret? Skriv til os på <a href=\"mailto:kundeservice@lalatoto.dk\">kundeservice@lalatoto.dk</a>.",
       "lead": "Her har vi samlet det, vi oftest bliver spurgt om.",
       "general": "Bestilling, levering og retur",
-      "topics": "Emner"
+      "topics": "Emner",
+      "search_label": "Søg i spørgsmål og svar",
+      "search_placeholder": "Søg, fx «retur» eller «vask»",
+      "no_results": "Vi fandt ikke noget, der passer. Prøv et andet ord, eller skriv til os."
     },
     "contact": {
       "phone_heading": "Ring til os",
