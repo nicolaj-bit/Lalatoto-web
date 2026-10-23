@@ -2386,15 +2386,14 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 
 /* Computer: nyhedsbrevet til venstre, de tre kolonner til højre */
 @media screen and (min-width: 1000px) {
+  /* Kolonnerne til højre er så brede som deres indhold, så en lang
+     e-mailadresse aldrig stikker ud; nyhedsbrevet tager resten. */
   .lalatoto-footer__columns {
     display: grid;
-    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
-    gap: clamp(4rem, 8vw, 9rem);
+    grid-template-columns: minmax(0, 34rem) auto;
+    justify-content: space-between;
+    gap: 4rem;
     padding-block: clamp(4rem, 6vw, 5.5rem) 0;
-  }
-
-  .lalatoto-footer__col--newsletter {
-    max-width: 34rem;
   }
 
   .lalatoto-footer__lines {
@@ -2402,9 +2401,19 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   }
 
   .lalatoto-footer__groups {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 2rem;
+    display: flex;
+    gap: clamp(2.5rem, 5vw, 6rem);
+  }
+
+  .lalatoto-footer__group-body .lalatoto-footer__muted {
+    white-space: nowrap;
+  }
+
+  /* Alt i bundlinjen står til venstre, så Hjælp-knappen nederst til højre
+     ikke dækker ikonerne. */
+  .lalatoto-footer__bottom {
+    justify-content: flex-start;
+    gap: 1rem 2.5rem;
   }
 
   .lalatoto-footer__group > summary {
