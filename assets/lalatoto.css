@@ -2040,9 +2040,9 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 /* ===============================================================
  * FOOTER
  * Dæmpet baggrund (farveskema 2) adskiller footeren fra siden. Øverst
- * nyhedsbrevet og tre kolonner, der alle starter med en lille etiket, så
- * de står på linje. Derunder logoets bogstaver i fuld bredde i en tone
- * lidt mørkere end baggrunden, og nederst en lav bundlinje.
+ * nyhedsbrevet og fire kolonner, der alle starter med en lille etiket, så
+ * de står på linje. Nederst en lav bundlinje med virksomhedens oplysninger
+ * (kun computer), vilkår og sociale medier.
  * =============================================================== */
 .lalatoto-footer {
   color: #2a2724;
@@ -2239,17 +2239,10 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   font-size: inherit;
 }
 
-/* Logoets bogstaver i fuld bredde */
-.lalatoto-footer__wordmark {
-  padding-block: clamp(2.5rem, 6vw, 5rem) clamp(1.5rem, 3vw, 2.5rem);
-  color: #d7d0c4;
-  line-height: 0;
-}
-
-.lalatoto-wordmark {
-  display: block;
-  width: 100%;
-  height: auto;
+.lalatoto-footer__company {
+  display: grid;
+  gap: 0.375rem;
+  margin-block-end: 0.5rem;
 }
 
 /* Bundlinje */
@@ -2264,11 +2257,41 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 }
 
 .lalatoto-footer__copy {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0;
   margin: 0;
   color: #6e675e;
-  font-size: var(--lalatoto-label-size);
-  letter-spacing: var(--lalatoto-label-spacing);
-  text-transform: uppercase;
+  font-size: 0.8125rem;
+}
+
+/* Adresse og CVR i bundlinjen: kun computer (på telefon står de under Kontakt) */
+.lalatoto-footer__copy-extra {
+  display: none;
+}
+
+.lalatoto-footer__copy-extra::before {
+  content: '·';
+  margin-inline: 0.625rem;
+}
+
+.lalatoto-footer__legal ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  font-size: 0.8125rem;
+}
+
+.lalatoto-footer__legal a {
+  color: #6e675e;
+  text-decoration: none;
+  background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+  transition: background-size 0.25s ease-in-out, color 0.2s ease;
+}
+
+.lalatoto-footer__legal a:hover {
+  color: #2a2724;
+  background-size: 100% 1px;
 }
 
 .lalatoto-footer .social-media {
@@ -2369,8 +2392,18 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
     flex-direction: column;
     justify-content: center;
     gap: 1.25rem;
-    padding-block: 1.5rem 2rem;
+    padding-block: 1.75rem 2rem;
+    border-block-start: 0;
     text-align: center;
+  }
+
+  .lalatoto-footer__copy {
+    order: 3;
+    justify-content: center;
+  }
+
+  .lalatoto-footer__legal ul {
+    justify-content: center;
   }
 
   .lalatoto-footer .payment-methods {
@@ -2386,14 +2419,15 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 
 /* Computer: nyhedsbrevet til venstre, de tre kolonner til højre */
 @media screen and (min-width: 1000px) {
-  /* Kolonnerne til højre er så brede som deres indhold, så en lang
-     e-mailadresse aldrig stikker ud; nyhedsbrevet tager resten. */
+  /* Under 1280 px: nyhedsbrevet øverst og de fire kolonner under det */
   .lalatoto-footer__columns {
     display: grid;
-    grid-template-columns: minmax(0, 34rem) auto;
-    justify-content: space-between;
-    gap: 4rem;
-    padding-block: clamp(4rem, 6vw, 5.5rem) 0;
+    gap: 3.5rem;
+    padding-block: clamp(4rem, 6vw, 5.5rem) clamp(3.5rem, 5vw, 4.5rem);
+  }
+
+  .lalatoto-footer__col--newsletter {
+    max-width: 34rem;
   }
 
   .lalatoto-footer__lines {
@@ -2401,19 +2435,14 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   }
 
   .lalatoto-footer__groups {
-    display: flex;
-    gap: clamp(2.5rem, 5vw, 6rem);
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, auto));
+    justify-content: space-between;
+    gap: 2.5rem;
   }
 
   .lalatoto-footer__group-body .lalatoto-footer__muted {
     white-space: nowrap;
-  }
-
-  /* Alt i bundlinjen står til venstre, så Hjælp-knappen nederst til højre
-     ikke dækker ikonerne. */
-  .lalatoto-footer__bottom {
-    justify-content: flex-start;
-    gap: 1rem 2.5rem;
   }
 
   .lalatoto-footer__group > summary {
@@ -2422,6 +2451,39 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 
   .lalatoto-footer__plus {
     display: none;
+  }
+
+  /* Navn, adresse og CVR står i bundlinjen på computer */
+  .lalatoto-footer__company {
+    display: none;
+  }
+
+  .lalatoto-footer__copy-extra {
+    display: inline;
+  }
+
+  /* Alt i bundlinjen står til venstre, så Hjælp-knappen nederst til højre
+     ikke dækker noget. */
+  .lalatoto-footer__bottom {
+    justify-content: flex-start;
+    gap: 1rem 3rem;
+    padding-block: 1.5rem 1.75rem;
+  }
+}
+
+/* Fra 1280 px: nyhedsbrevet til venstre og de fire kolonner til højre.
+   Kolonnerne er så brede som deres indhold, så en lang e-mailadresse aldrig
+   stikker ud; nyhedsbrevet tager resten. */
+@media screen and (min-width: 1280px) {
+  .lalatoto-footer__columns {
+    grid-template-columns: minmax(0, 30rem) auto;
+    justify-content: space-between;
+    gap: 4rem;
+  }
+
+  .lalatoto-footer__groups {
+    display: flex;
+    gap: clamp(2.5rem, 4vw, 5rem);
   }
 }
 
