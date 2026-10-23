@@ -2042,7 +2042,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
  * Dæmpet baggrund (farveskema 2) adskiller footeren fra siden. Øverst
  * nyhedsbrevet og fire kolonner, der alle starter med en lille etiket, så
  * de står på linje. Nederst en lav bundlinje med virksomhedens oplysninger
- * (kun computer), vilkår og sociale medier.
+ * (kun computer), vilkår og sociale medier. Al tekst står i samme mørke farve.
  * =============================================================== */
 .lalatoto-footer {
   color: #2a2724;
@@ -2057,7 +2057,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 
 .lalatoto-footer__heading {
   margin: 0 0 1rem;
-  color: #6e675e;
+  color: #2a2724;
   font-size: var(--lalatoto-label-size);
   font-weight: 400;
   letter-spacing: var(--lalatoto-label-spacing);
@@ -2124,7 +2124,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 
 .lalatoto-footer__line label {
   flex: none;
-  color: #6e675e;
+  color: #2a2724;
   font-size: var(--lalatoto-label-size);
   letter-spacing: var(--lalatoto-label-spacing);
   text-transform: uppercase;
@@ -2176,7 +2176,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 .lalatoto-footer__fine {
   max-width: 30rem;
   margin: 0;
-  color: #6e675e;
+  color: #2a2724;
   font-size: 0.75rem;
   line-height: 1.6;
 }
@@ -2230,7 +2230,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 
 .lalatoto-footer__muted {
   margin: 0;
-  color: #6e675e;
+  color: #2a2724;
   font-size: 0.875rem;
   line-height: 1.6;
 }
@@ -2261,7 +2261,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   flex-wrap: wrap;
   gap: 0.25rem 0;
   margin: 0;
-  color: #6e675e;
+  color: #2a2724;
   font-size: 0.8125rem;
 }
 
@@ -2283,14 +2283,13 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 }
 
 .lalatoto-footer__legal a {
-  color: #6e675e;
+  color: #2a2724;
   text-decoration: none;
   background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
-  transition: background-size 0.25s ease-in-out, color 0.2s ease;
+  transition: background-size 0.25s ease-in-out;
 }
 
 .lalatoto-footer__legal a:hover {
-  color: #2a2724;
   background-size: 100% 1px;
 }
 
@@ -2305,12 +2304,6 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 
 .lalatoto-footer .social-media a {
   color: #2a2724;
-  opacity: 0.75;
-  transition: opacity 0.2s ease;
-}
-
-.lalatoto-footer .social-media a:hover {
-  opacity: 1;
 }
 
 .lalatoto-footer .payment-methods {
