@@ -1,22 +1,21 @@
 {%- comment -%}
-  Lalatoto: FAQ-siden. Henter alle spørgsmål fra Indhold → Metaobjekter →
-  «FAQ (produkter)», de samme som vises under produkterne, så et svar kun
-  skal rettes ét sted.
+  Lalatoto: FAQ-siden. Samme opbygning som handelsbetingelserne: titlen
+  øverst til venstre, «Indhold» i venstre side (følger med og markerer det
+  emne, man er nået til) og spørgsmålene til højre.
 
-  Spørgsmålene grupperes:
-    1. «Vis på alle produkter» → den generelle gruppe (bestilling, levering
-       og retur) øverst.
+  På telefon er indholdsfortegnelsen skiftet ud med en bjælke med emnerne,
+  der bliver hængende under menuen, og et søgefelt, der skjuler de
+  spørgsmål, der ikke passer, mens man skriver.
+
+  Spørgsmålene hentes fra Indhold → Metaobjekter → «FAQ (produkter)», de
+  samme som under produkterne, så et svar kun skal rettes ét sted:
+    1. «Vis på alle produkter» → den generelle gruppe øverst.
     2. Ellers efter den første produkttype i «Vis på disse produkttyper»
        (fx «Sengerand») eller, hvis den er tom, det første valgte produkt.
-  Grupperne står i den rækkefølge, deres første spørgsmål har i Shopify.
 
-  Øverst er der små links til grupperne. Hver gruppe har sin overskrift til
-  venstre og spørgsmålene til højre (på telefon over hinanden). Punkterne
-  ser ud og virker som vaskevejledningen: én linje pr. spørgsmål, et tyndt
-  plus, og kun ét svar er åbent ad gangen i hver gruppe.
-
-  Siden får også struktureret data (FAQPage), så søgemaskiner kan læse
-  spørgsmål og svar.
+  Punkterne ser ud og virker som vaskevejledningen (lalatoto-accordion.js):
+  én linje pr. spørgsmål, et tyndt plus, og ét åbent svar ad gangen pr.
+  emne. Siden får også struktureret data (FAQPage) til søgemaskiner.
 {%- endcomment -%}
 
 {%- liquid
@@ -73,73 +72,96 @@
   endfor
 -%}
 
-<div class="lalatoto-faq lalatoto-faqpage color-scheme color-scheme--{{ section.settings.color_scheme.id }}">
-  <header class="lalatoto-faq__head">
-    <p class="lalatoto-kicker">{{ 'lalatoto.faq.kicker' | t }}</p>
-    <h1 class="lalatoto-faq__title">{{ heading | escape }}</h1>
-    {%- if lead != blank -%}
-      <p class="lalatoto-lead">{{ lead | escape }}</p>
-    {%- endif -%}
-  </header>
+<div id="lalatoto-faq-{{ section.id }}" class="lalatoto-legal lalatoto-faqpage color-scheme color-scheme--{{ section.settings.color_scheme.id }}">
+  <div class="lalatoto-legal__inner">
+    <header class="lalatoto-legal__head">
+      <h1 class="lalatoto-legal__title">{{ heading | escape }}</h1>
+      {%- if lead != blank -%}
+        <p class="lalatoto-faqpage__lead">{{ lead | escape }}</p>
+      {%- endif -%}
+    </header>
 
-  {%- if group_count > 1 -%}
-    <nav class="lalatoto-faqpage__nav" aria-label="{{ 'lalatoto.faq.topics' | t | escape }}">
-      {%- for name in group_names -%}
-        {%- if name != blank -%}
-          <a href="#faq-{{ name | handleize }}">{{ name | escape }}</a>
-        {%- endif -%}
-      {%- endfor -%}
-    </nav>
-  {%- endif -%}
-
-  <div class="lalatoto-faqpage__groups">
-    {%- for name in group_names -%}
-      {%- if name == blank -%}{%- continue -%}{%- endif -%}
-      {%- assign is_general_group = false -%}
-      {%- if has_general and name == general_title -%}{%- assign is_general_group = true -%}{%- endif -%}
-
-      <section class="lalatoto-faqpage__group" id="faq-{{ name | handleize }}" aria-labelledby="faq-{{ name | handleize }}-title">
-        <h2 class="lalatoto-faqpage__group-title" id="faq-{{ name | handleize }}-title">{{ name | escape }}</h2>
-        <div class="lalatoto-wash__list" data-lalatoto-accordion>
-          {%- for entry in shop.metaobjects.lalatoto_faq.values -%}
-            {%- liquid
-              if entry.sporgsmal.value == blank
-                continue
-              endif
-              assign belongs = false
-              if is_general_group
-                if entry.alle_produkter.value == true
-                  assign belongs = true
-                endif
-              elsif entry.alle_produkter.value != true
-                assign entry_group = entry.produkttyper.value.first | strip
-                if entry_group == blank
-                  assign entry_group = entry.produkter.value.first.title | strip
-                endif
-                if entry_group == name
-                  assign belongs = true
-                endif
-              endif
-              unless belongs
-                continue
-              endunless
-            -%}
-            <details class="lalatoto-wash__item">
-              <summary class="lalatoto-wash__summary">
-                <span class="lalatoto-wash__name">{{ entry.sporgsmal.value | escape }}</span>
-                <span class="lalatoto-wash__sign" aria-hidden="true"></span>
-              </summary>
-              <div class="lalatoto-wash__body">
-                <div class="lalatoto-wash__text">{{ entry.svar | metafield_tag }}</div>
-              </div>
-            </details>
+    {%- if group_count > 1 -%}
+      <nav class="lalatoto-legal__toc" aria-label="{{ 'lalatoto.legal.toc_title' | t | escape }}">
+        <p class="lalatoto-legal__toc-title">{{ 'lalatoto.legal.toc_title' | t }}</p>
+        <ol>
+          {%- for name in group_names -%}
+            {%- if name != blank -%}
+              <li><a href="#faq-{{ name | handleize }}" data-faq-link>{{ name | escape }}</a></li>
+            {%- endif -%}
           {%- endfor -%}
-        </div>
-      </section>
-    {%- endfor -%}
-  </div>
+        </ol>
+      </nav>
+    {%- endif -%}
 
-  <p class="lalatoto-wash__foot">{{ 'lalatoto.faq.contact_html' | t }}</p>
+    <div class="lalatoto-legal__body lalatoto-faqpage__body">
+      <div class="lalatoto-faqpage__tools">
+        <label class="lalatoto-faqpage__search">
+          <span class="sr-only">{{ 'lalatoto.faq.search_label' | t }}</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5" /><path d="M15.5 15.5 20 20" /></svg>
+          <input type="search" placeholder="{{ 'lalatoto.faq.search_placeholder' | t | escape }}" autocomplete="off" data-faq-search>
+        </label>
+
+        {%- if group_count > 1 -%}
+          <nav class="lalatoto-faqpage__chips" aria-label="{{ 'lalatoto.faq.topics' | t | escape }}">
+            {%- for name in group_names -%}
+              {%- if name != blank -%}
+                <a href="#faq-{{ name | handleize }}" data-faq-link>{{ name | escape }}</a>
+              {%- endif -%}
+            {%- endfor -%}
+          </nav>
+        {%- endif -%}
+      </div>
+
+      {%- for name in group_names -%}
+        {%- if name == blank -%}{%- continue -%}{%- endif -%}
+        {%- assign is_general_group = false -%}
+        {%- if has_general and name == general_title -%}{%- assign is_general_group = true -%}{%- endif -%}
+
+        <section class="lalatoto-faqpage__group" id="faq-{{ name | handleize }}" data-faq-group>
+          <h2>{{ name | escape }}</h2>
+          <div class="lalatoto-wash__list" data-lalatoto-accordion>
+            {%- for entry in shop.metaobjects.lalatoto_faq.values -%}
+              {%- liquid
+                if entry.sporgsmal.value == blank
+                  continue
+                endif
+                assign belongs = false
+                if is_general_group
+                  if entry.alle_produkter.value == true
+                    assign belongs = true
+                  endif
+                elsif entry.alle_produkter.value != true
+                  assign entry_group = entry.produkttyper.value.first | strip
+                  if entry_group == blank
+                    assign entry_group = entry.produkter.value.first.title | strip
+                  endif
+                  if entry_group == name
+                    assign belongs = true
+                  endif
+                endif
+                unless belongs
+                  continue
+                endunless
+              -%}
+              <details class="lalatoto-wash__item" data-faq-item>
+                <summary class="lalatoto-wash__summary">
+                  <span class="lalatoto-wash__name">{{ entry.sporgsmal.value | escape }}</span>
+                  <span class="lalatoto-wash__sign" aria-hidden="true"></span>
+                </summary>
+                <div class="lalatoto-wash__body">
+                  <div class="lalatoto-wash__text">{{ entry.svar | metafield_tag }}</div>
+                </div>
+              </details>
+            {%- endfor -%}
+          </div>
+        </section>
+      {%- endfor -%}
+
+      <p class="lalatoto-faqpage__empty" data-faq-empty hidden>{{ 'lalatoto.faq.no_results' | t }}</p>
+      <p class="lalatoto-faqpage__foot">{{ 'lalatoto.faq.contact_html' | t }}</p>
+    </div>
+  </div>
 </div>
 
 {%- comment -%} Struktureret data til søgemaskiner {%- endcomment -%}
@@ -159,6 +181,95 @@
 {%- endif -%}
 
 <script src="{{ 'lalatoto-accordion.js' | asset_url }}" defer></script>
+<script>
+  (function () {
+    var root = document.getElementById('lalatoto-faq-{{ section.id }}');
+    if (!root || root.dataset.faqReady === '1') return;
+    root.dataset.faqReady = '1';
+
+    var groups = Array.prototype.slice.call(root.querySelectorAll('[data-faq-group]'));
+    var links = Array.prototype.slice.call(root.querySelectorAll('[data-faq-link]'));
+    var chips = root.querySelector('.lalatoto-faqpage__chips');
+    var tools = root.querySelector('.lalatoto-faqpage__tools');
+    var smooth = !(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+
+    function stickyOffset() {
+      var header = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--sticky-area-height')) || 64;
+      var bar = tools && getComputedStyle(tools).position === 'sticky' ? tools.offsetHeight : 0;
+      return header + bar + 16;
+    }
+
+    /* Klik på et emne: rul blødt ned, så overskriften ikke gemmer sig under menuen og bjælken. */
+    links.forEach(function (link) {
+      link.addEventListener('click', function (event) {
+        var target = document.getElementById(link.getAttribute('href').slice(1));
+        if (!target) return;
+        event.preventDefault();
+        var top = target.getBoundingClientRect().top + window.pageYOffset - stickyOffset() + 8;
+        window.scrollTo({ top: top, behavior: smooth ? 'smooth' : 'auto' });
+        if (history.replaceState) history.replaceState(null, '', link.getAttribute('href'));
+      });
+    });
+
+    /* Markér det emne, man er nået til, både i indholdsfortegnelsen og i bjælken. */
+    var waiting = false;
+    function mark() {
+      waiting = false;
+      var limit = stickyOffset() + 24;
+      var active = null;
+      groups.forEach(function (group) {
+        if (!group.hidden && group.getBoundingClientRect().top <= limit) active = group;
+      });
+      if (!active) active = groups.filter(function (g) { return !g.hidden; })[0];
+      var id = active ? active.id : '';
+      links.forEach(function (link) {
+        var on = link.getAttribute('href') === '#' + id;
+        if (on) link.setAttribute('aria-current', 'true');
+        else link.removeAttribute('aria-current');
+        if (on && chips && link.parentElement === chips) {
+          var left = link.offsetLeft - (chips.clientWidth - link.offsetWidth) / 2;
+          if (Math.abs(chips.scrollLeft - left) > 4) chips.scrollTo({ left: left, behavior: smooth ? 'smooth' : 'auto' });
+        }
+      });
+    }
+    window.addEventListener('scroll', function () {
+      if (waiting) return;
+      waiting = true;
+      requestAnimationFrame(mark);
+    }, { passive: true });
+    mark();
+
+    /* Søgning: viser kun de spørgsmål, hvor ordene står i spørgsmålet eller svaret. */
+    var input = root.querySelector('[data-faq-search]');
+    var empty = root.querySelector('[data-faq-empty]');
+    var items = Array.prototype.slice.call(root.querySelectorAll('[data-faq-item]'));
+    items.forEach(function (item) {
+      item.dataset.faqText = item.textContent.toLowerCase().replace(/\s+/g, ' ');
+    });
+    if (input) {
+      input.addEventListener('input', function () {
+        var words = input.value.toLowerCase().trim().split(/\s+/).filter(Boolean);
+        var shown = 0;
+        items.forEach(function (item) {
+          var match = words.every(function (word) { return item.dataset.faqText.indexOf(word) !== -1; });
+          item.hidden = !match;
+          if (match) shown += 1;
+        });
+        groups.forEach(function (group) {
+          group.hidden = !group.querySelector('[data-faq-item]:not([hidden])');
+        });
+        links.forEach(function (link) {
+          var group = document.getElementById(link.getAttribute('href').slice(1));
+          var hide = group && group.hidden;
+          if (link.parentElement.tagName === 'LI') link.parentElement.hidden = hide;
+          else link.hidden = hide;
+        });
+        if (empty) empty.hidden = shown > 0;
+        mark();
+      });
+    }
+  })();
+</script>
 
 {% schema %}
 {
