@@ -3621,10 +3621,14 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 }
 
 @media screen and (min-width: 1000px) {
-  .lalatoto-apppage__hero {
-    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  /* Tekst og telefoner står som én samlet gruppe midt på siden, så der ikke
+     opstår et tomt felt mellem dem på brede skærme. */
+  .lalatoto-apppage__hero,
+  .lalatoto-apppage__story {
+    grid-template-columns: minmax(0, 34rem) auto;
+    justify-content: center;
     align-items: center;
-    gap: 4rem;
+    column-gap: clamp(4rem, 8vw, 9rem);
   }
 
   .lalatoto-apppage__hero-text {
@@ -3652,10 +3656,8 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
     transform: rotate(2.5deg);
   }
 
-  .lalatoto-apppage__story {
-    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-    align-items: center;
-    gap: 4rem;
+  .lalatoto-apppage__story--flip {
+    grid-template-columns: auto minmax(0, 34rem);
   }
 
   .lalatoto-apppage__story-text {
@@ -3666,7 +3668,10 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
     order: 2;
   }
 
+  /* Samme bredde som gruppen i åbningen, så kanterne flugter. */
   .lalatoto-apppage__features {
+    max-width: 76rem;
+    margin-inline: auto;
     grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
     gap: 4rem;
     align-items: start;
