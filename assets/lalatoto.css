@@ -2468,9 +2468,6 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   }
 }
 
-/* Fra 1280 px: nyhedsbrevet til venstre og de fire kolonner til højre.
-   Kolonnerne er så brede som deres indhold, så en lang e-mailadresse aldrig
-   stikker ud; nyhedsbrevet tager resten. */
 /* 1000–1279 px: oplysningerne på første linje, vilkår og ikoner på anden */
 @media screen and (min-width: 1000px) and (max-width: 1279px) {
   .lalatoto-footer__copy {
@@ -2478,16 +2475,20 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   }
 }
 
+/* Fra 1280 px: nyhedsbrevet til venstre og de fire kolonner fordelt jævnt
+   over resten af bredden, så der ikke opstår et tomt felt i midten på brede
+   skærme. En kolonne er aldrig smallere end sit indhold, så en lang
+   e-mailadresse aldrig stikker ud. */
 @media screen and (min-width: 1280px) {
   .lalatoto-footer__columns {
-    grid-template-columns: minmax(0, 30rem) auto;
-    justify-content: space-between;
-    gap: 4rem;
+    grid-template-columns: minmax(0, 30rem) minmax(max-content, 1fr);
+    gap: clamp(4rem, 7vw, 9rem);
   }
 
   .lalatoto-footer__groups {
-    display: flex;
-    gap: clamp(2.5rem, 4vw, 5rem);
+    grid-template-columns: repeat(4, minmax(max-content, 1fr));
+    justify-content: stretch;
+    gap: clamp(2rem, 3vw, 4rem);
   }
 }
 
