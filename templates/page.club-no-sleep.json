@@ -15,7 +15,6 @@
         "lys": {
           "type": "story",
           "settings": {
-            "time": "03.41",
             "heading": "Et lys i mørket",
             "text": "<p>Når du starter en søvnlog, tændes dit lys på kortet. Andre vågne mødre ser det, og du ser deres. Ikke navne, ikke adresser — bare lys.</p><p>Vil du skrive til en af dem, kan du det. Vil du bare vide, at de er der, er det også nok. De fleste nætter er det nok.</p>",
             "image": "shopify://shop_images/club-no-sleep-et-lys-i-moerket.png"
@@ -66,7 +65,6 @@
         "partner": {
           "type": "story",
           "settings": {
-            "time": "05.55",
             "heading": "Du skal ikke stå med det hele alene",
             "text": "<p>Én konto rummer altid en bruger mere, uden at det koster ekstra. Din partner får sin egen adgang på sin egen telefon og kan følge søvnlog, kalender og tigerspring med dig.</p><p>Så er det ikke længere dig, der skal huske det hele og fortælle det videre.</p>",
             "image": "shopify://shop_images/club-no-sleep-forside.png"
@@ -92,13 +90,10 @@
         "app_store_url": "https://apps.apple.com/app/id6764388095",
         "google_play_url": "https://play.google.com/store/apps/details?id=com.base699f47a86e7e0a874d1159ed.app",
         "trial_note": "Prøv gratis i 7 dage · Derefter 59 kr. pr. måned · Opsig når som helst",
-        "intro_time": "02.14",
         "intro_heading": "Der findes en helt særlig form for ensomhed i moderskabet.",
         "intro_text": "<p>Den kommer snigende om natten, når baby igen er vågen og resten af verden er stille. Frygten for natten starter allerede i løbet af eftermiddagen. Far sover på sofaen, mor sover siddende, og ingen forstår helt, hvad du står i.</p><p>Club No Sleep er skabt til de timer. Ikke for at fikse noget — men for at du ikke skal sidde i dem alene.</p>",
-        "features_time": "04.20",
         "features_heading": "Det, du har brug for klokken fire",
         "features_image": "",
-        "closing_time": "06.30",
         "closing_heading": "Kom med i klubben",
         "closing_text": "<p>Vi har været der. Der hvor nætterne er svære, dagene er lange, og ingen helt forstår, hvad du står i.</p><p>Club No Sleep er skabt til dig, som savner et sted at blive spejlet og finde andre, der er vågne sammen med dig. Kom med — for din egen skyld, og for alle de mødre, der føler sig alene netop nu.</p><p>Sammen kan vi mindske ensomheden i moderskabet.</p>",
         "signature": "Kærligst og kram fra Sara & Nicolaj",

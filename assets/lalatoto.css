@@ -3411,7 +3411,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
  * Telefonrammen og butiksknapperne er de samme som på forsiden.
  * =============================================================== */
 .lalatoto-apppage {
-  max-width: 1120px;
+  max-width: var(--lalatoto-max-width);
   margin-inline: auto;
   padding: clamp(3rem, 7vw, 5.5rem) var(--container-gutter) clamp(4.5rem, 10vw, 7.5rem);
   color: #2a2724;
@@ -3441,14 +3441,6 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 .lalatoto-apppage__quote {
   font-size: clamp(1.5rem, 3vw, 2rem);
   line-height: 1.3;
-}
-
-.lalatoto-apppage__time {
-  margin: 0 0 0.875rem;
-  color: #8a8279;
-  font-size: var(--lalatoto-label-size);
-  letter-spacing: var(--lalatoto-label-spacing);
-  font-variant-numeric: tabular-nums;
 }
 
 .lalatoto-apppage__lead,
