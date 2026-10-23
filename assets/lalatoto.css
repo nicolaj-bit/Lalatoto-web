@@ -2474,6 +2474,13 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 /* Fra 1280 px: nyhedsbrevet til venstre og de fire kolonner til højre.
    Kolonnerne er så brede som deres indhold, så en lang e-mailadresse aldrig
    stikker ud; nyhedsbrevet tager resten. */
+/* 1000–1279 px: oplysningerne på første linje, vilkår og ikoner på anden */
+@media screen and (min-width: 1000px) and (max-width: 1279px) {
+  .lalatoto-footer__copy {
+    flex-basis: 100%;
+  }
+}
+
 @media screen and (min-width: 1280px) {
   .lalatoto-footer__columns {
     grid-template-columns: minmax(0, 30rem) auto;
