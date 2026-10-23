@@ -57,7 +57,8 @@
           {%- if section.settings.heading_line_1 != blank -%}
             <span class="lalatoto-hero__line">{{ section.settings.heading_line_1 }}</span>
           {%- endif -%}
-          {%- if section.settings.heading_line_1 != blank and section.settings.heading_line_2 != blank %} {% endif -%}
+          {%- comment -%} Mellemrum mellem linjerne, så Google læser «polyester. Ingen» og ikke «polyester.Ingen» {%- endcomment -%}
+          {%- if section.settings.heading_line_1 != blank and section.settings.heading_line_2 != blank -%}&#32;{%- endif -%}
           {%- if section.settings.heading_line_2 != blank -%}
             <span class="lalatoto-hero__line">{{ section.settings.heading_line_2 }}</span>
           {%- endif -%}
