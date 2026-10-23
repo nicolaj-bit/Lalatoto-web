@@ -3385,6 +3385,16 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
     margin-top: 0;
   }
 
+  /* Hele FAQ'en samlet i midten: indhold, titel og spørgsmål i én blok */
+  .lalatoto-faqpage .lalatoto-legal__inner {
+    max-width: calc(236px + 3.5rem + 720px + 2 * var(--container-gutter));
+  }
+
+  .lalatoto-faqpage .lalatoto-legal__body {
+    width: 720px;
+    max-width: 100%;
+  }
+
   .lalatoto-faqpage .lalatoto-legal__toc {
     display: block;
     position: sticky;
