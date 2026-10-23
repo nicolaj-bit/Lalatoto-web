@@ -150,18 +150,41 @@
             Lalatoto: sociale profiler fra temaindstillingerne og fra Brand i
             Shopify. Google bruger dem til at koble butikken og profilerne.
           endcomment
-          assign same_as = ''
+          comment
+            Samme profil kan stå to steder med forskellig stavemåde (fx
+            facebook.com/lalatoto.dk og www.facebook.com/Lalatoto.dk). Derfor
+            sammenlignes en forenklet nøgle (små bogstaver, uden https:// og www.
+            og uden skråstreg til sidst), så hver profil kun kommer med én gang.
+          endcomment
+          assign candidates = ''
           for social_link in shop.brand.metafields.social_links
-            assign same_as = same_as | append: social_link.last.value | append: '|'
+            assign candidates = candidates | append: social_link.last.value | append: '|'
           endfor
           assign networks = 'facebook,instagram,pinterest,tiktok,youtube,linkedin' | split: ','
           for network in networks
             assign key = 'social_' | append: network
             if settings[key] != blank
-              unless same_as contains settings[key]
-                assign same_as = same_as | append: settings[key] | append: '|'
-              endunless
+              assign candidates = candidates | append: settings[key] | append: '|'
             endif
+          endfor
+          assign same_as = ''
+          assign seen = '|'
+          assign candidate_list = candidates | split: '|'
+          for candidate in candidate_list
+            assign url = candidate | strip
+            if url == blank
+              continue
+            endif
+            assign url_key = url | downcase | remove: 'https://' | remove: 'http://' | remove_first: 'www.'
+            assign url_key_last = url_key | slice: -1
+            if url_key_last == '/'
+              assign url_key = url_key | remove_last: '/'
+            endif
+            assign url_marker = '|' | append: url_key | append: '|'
+            unless seen contains url_marker
+              assign seen = seen | append: url_key | append: '|'
+              assign same_as = same_as | append: url | append: '|'
+            endunless
           endfor
           assign same_as = same_as | split: '|' | compact
         -%}
