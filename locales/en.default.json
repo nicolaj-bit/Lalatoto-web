@@ -577,10 +577,7 @@
       "contact_html": "Didn't find your answer? Write to us at <a href=\"mailto:kundeservice@lalatoto.dk\">kundeservice@lalatoto.dk</a>.",
       "lead": "Here are the questions we hear most often.",
       "general": "Orders, delivery and returns",
-      "topics": "Topics",
-      "search_label": "Search questions and answers",
-      "search_placeholder": "Search, e.g. “returns” or “washing”",
-      "no_results": "We couldn't find a match. Try another word or write to us."
+      "topics": "Topics"
     },
     "contact": {
       "phone_heading": "Call us",

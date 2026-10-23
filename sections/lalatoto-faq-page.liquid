@@ -4,8 +4,7 @@
   emne, man er nået til) og spørgsmålene til højre.
 
   På telefon er indholdsfortegnelsen skiftet ud med en bjælke med emnerne,
-  der bliver hængende under menuen, og et søgefelt, der skjuler de
-  spørgsmål, der ikke passer, mens man skriver.
+  der bliver hængende under menuen.
 
   Spørgsmålene hentes fra Indhold → Metaobjekter → «FAQ (produkter)», de
   samme som under produkterne, så et svar kun skal rettes ét sted:
@@ -96,12 +95,6 @@
 
     <div class="lalatoto-legal__body lalatoto-faqpage__body">
       <div class="lalatoto-faqpage__tools">
-        <label class="lalatoto-faqpage__search">
-          <span class="sr-only">{{ 'lalatoto.faq.search_label' | t }}</span>
-          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5" /><path d="M15.5 15.5 20 20" /></svg>
-          <input type="search" placeholder="{{ 'lalatoto.faq.search_placeholder' | t | escape }}" autocomplete="off" data-faq-search>
-        </label>
-
         {%- if group_count > 1 -%}
           <nav class="lalatoto-faqpage__chips" aria-label="{{ 'lalatoto.faq.topics' | t | escape }}">
             {%- for name in group_names -%}
@@ -158,7 +151,6 @@
         </section>
       {%- endfor -%}
 
-      <p class="lalatoto-faqpage__empty" data-faq-empty hidden>{{ 'lalatoto.faq.no_results' | t }}</p>
       <p class="lalatoto-faqpage__foot">{{ 'lalatoto.faq.contact_html' | t }}</p>
     </div>
   </div>
@@ -239,35 +231,6 @@
     }, { passive: true });
     mark();
 
-    /* Søgning: viser kun de spørgsmål, hvor ordene står i spørgsmålet eller svaret. */
-    var input = root.querySelector('[data-faq-search]');
-    var empty = root.querySelector('[data-faq-empty]');
-    var items = Array.prototype.slice.call(root.querySelectorAll('[data-faq-item]'));
-    items.forEach(function (item) {
-      item.dataset.faqText = item.textContent.toLowerCase().replace(/\s+/g, ' ');
-    });
-    if (input) {
-      input.addEventListener('input', function () {
-        var words = input.value.toLowerCase().trim().split(/\s+/).filter(Boolean);
-        var shown = 0;
-        items.forEach(function (item) {
-          var match = words.every(function (word) { return item.dataset.faqText.indexOf(word) !== -1; });
-          item.hidden = !match;
-          if (match) shown += 1;
-        });
-        groups.forEach(function (group) {
-          group.hidden = !group.querySelector('[data-faq-item]:not([hidden])');
-        });
-        links.forEach(function (link) {
-          var group = document.getElementById(link.getAttribute('href').slice(1));
-          var hide = group && group.hidden;
-          if (link.parentElement.tagName === 'LI') link.parentElement.hidden = hide;
-          else link.hidden = hide;
-        });
-        if (empty) empty.hidden = shown > 0;
-        mark();
-      });
-    }
   })();
 </script>
 
