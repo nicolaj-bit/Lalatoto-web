@@ -59,6 +59,15 @@
         <p class="h4" slot="header">{{ 'general.localization.country' | t }}</p>
 
         {%- form 'localization', id: localization_form_id -%}
+          {%- comment -%}
+            Lalatoto: vælger kunden et tysktalende land, skifter sproget med det
+            samme til tysk. Går en kunde, der læser på tysk, til et andet land,
+            skifter sproget til engelsk, som er standard uden for Danmark. Sproget
+            sendes med i samme formular som landet; feltet er slået fra, indtil der
+            er klikket på et land, så Shopify ellers selv vælger markedets sprog.
+          {%- endcomment -%}
+          {%- assign lalatoto_current_language = localization.language.iso_code | split: '-' | first -%}
+          <input type="hidden" name="locale_code" value="" disabled data-lalatoto-locale>
           <x-listbox class="popover__value-list">
             {%- for country in localization.available_countries -%}
               {%- assign is_selected = false -%}
@@ -67,6 +76,15 @@
                 {%- assign is_selected = true -%}
               {%- endif -%}
 
+              {%- liquid
+                assign lalatoto_target_language = ''
+                if country.iso_code == 'DE' or country.iso_code == 'AT' or country.iso_code == 'CH'
+                  assign lalatoto_target_language = 'de'
+                elsif lalatoto_current_language == 'de'
+                  assign lalatoto_target_language = 'en'
+                endif
+              -%}
+
               <button
                 type="submit"
                 name="country_code"
@@ -74,6 +92,10 @@
                 role="option"
                 value="{{ country.iso_code }}"
                 aria-selected="{% if is_selected %}true{% else %}false{% endif %}"
+                {%- if lalatoto_target_language != blank %}
+                  data-lalatoto-language="{{ lalatoto_target_language }}"
+                  onclick="var l = this.form.querySelector('[data-lalatoto-locale]'); if (l) { l.value = this.getAttribute('data-lalatoto-language'); l.disabled = false; }"
+                {%- endif %}
               >
                 {%- if show_country_flag -%}
                   {{- country | image_url: width: 60, format: 'jpg' | image_tag: loading: 'lazy', class: 'country-flag' -}}
