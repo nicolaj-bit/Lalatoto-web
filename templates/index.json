@@ -20,7 +20,7 @@
         "heading_line_1": "Ingen polyester.",
         "heading_line_2": "Ingen kompromis.",
         "text": "<p>Hvis naturen er dit sprog, taler vi det samme.</p>",
-        "button_text": "Se produkterne",
+        "button_text": "Little checks kollektion",
         "button_url": "shopify://collections/produkter"
       }
     },
@@ -48,13 +48,13 @@
       ],
       "settings": {
         "color_scheme": "scheme-1",
-        "kicker": "Shop",
-        "heading": "Sengeslange, sengerand og sengetøj",
+        "kicker": "",
+        "heading": "Shop",
         "show_view_all": false,
         "products_count": 4,
         "hover_image": true,
         "hide_sold_out": false,
-        "show_price": true
+        "show_price": false
       }
     },
     "materialer": {
@@ -64,9 +64,9 @@
         "image": "shopify://shop_images/1.jpg",
         "image_alt": "Børnehænder i ren, uvasket uld",
         "image_position": "left",
-        "heading": "Hvorfor vi bruger uld",
-        "text": "<p>Nogle ting klarer naturen bare bedst selv. Uld er én af dem.</p><p>Uld tilpasser sig temperatur og fugt, så barnet hverken får for varmt eller for koldt. Og modsat syntetiske fibre afgiver uld ikke mikroplast til sovemiljøet.</p>",
-        "button_text": "Læs om vores materialer",
+        "heading": "Don’t mess with nature",
+        "text": "<p>Nogle ting klarer naturen bare bedst selv.&nbsp;<br/>Uld er én af dem.</p>",
+        "button_text": "LÆS MERE OM VORES MATERIALEVALG HER",
         "button_url": "shopify://pages/materialer"
       }
     },
@@ -198,9 +198,9 @@
   "order": [
     "hero",
     "usp",
+    "billede",
     "shop",
     "intro",
-    "billede",
     "materialer",
     "faq",
     "journal",
