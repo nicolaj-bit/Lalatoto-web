@@ -150,6 +150,28 @@
         <p class="h4" slot="header">{{ 'general.localization.language' | t }}</p>
 
         {%- form 'localization', id: localization_form_id -%}
+          {%- liquid
+            comment
+              Lalatoto: tysk er kun slået til i EU-markedet. Står kunden i et
+              marked uden tysk (fx Danmark), vises «Deutsch» alligevel. Et klik
+              skifter både sprog og land til Tyskland, så priserne følger med i euro.
+            endcomment
+            assign lalatoto_has_german = false
+            for language in localization.available_languages
+              if language.iso_code == 'de'
+                assign lalatoto_has_german = true
+              endif
+            endfor
+            assign lalatoto_germany_available = false
+            for country in localization.available_countries
+              if country.iso_code == 'DE'
+                assign lalatoto_germany_available = true
+              endif
+            endfor
+          -%}
+          {%- if lalatoto_has_german == false and lalatoto_germany_available -%}
+            <input type="hidden" name="country_code" value="DE" disabled data-lalatoto-country>
+          {%- endif -%}
           <x-listbox class="popover__value-list">
             {%- for language in localization.available_languages -%}
               {%- assign is_selected = false -%}
@@ -169,6 +191,20 @@
                 {{- language.endonym_name | capitalize -}}
               </button>
             {%- endfor -%}
+
+            {%- if lalatoto_has_german == false and lalatoto_germany_available -%}
+              <button
+                type="submit"
+                name="locale_code"
+                class="popover__value-option"
+                role="option"
+                value="de"
+                aria-selected="false"
+                onclick="var c = this.form.querySelector('[data-lalatoto-country]'); if (c) { c.disabled = false; }"
+              >
+                Deutsch
+              </button>
+            {%- endif -%}
           </x-listbox>
         {%- endform -%}
       </x-popover>
