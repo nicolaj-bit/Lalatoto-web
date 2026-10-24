@@ -531,13 +531,22 @@
         "weight_guide": "Das richtige Gewicht wählen",
         "about": "Über {{ product }}",
         "made": "Mit Sorgfalt gemacht",
-        "specs": "Spezifikationen"
+        "specs": "Spezifikationen",
+        "preorder": "Vorbestellung"
       },
       "fits": "Passt zu",
       "weight_help": "Hilfe bei der Wahl des richtigen Gewichts",
       "care_link": "Zur Waschanleitung",
       "terms_link": "Unsere AGB lesen",
-      "shipping_default": "Versand innerhalb von 1–2 Werktagen.\nBei Vorbestellungen steht die voraussichtliche Lieferzeit auf der Produktseite.\n\nDu hast ein 14-tägiges Widerrufsrecht ab Erhalt deiner Bestellung."
+      "shipping_default": "Versand innerhalb von 1–2 Werktagen.\nBei Vorbestellungen steht die voraussichtliche Lieferzeit auf der Produktseite.\n\nDu hast ein 14-tägiges Widerrufsrecht ab Erhalt deiner Bestellung.",
+      "preorder_shipping": "Voraussichtlicher Versand: {{ date }}",
+      "preorder_info_intro": "Als kleines Unternehmen können wir kein großes Lager halten. Deshalb öffnen wir regelmäßig für Vorbestellungen. So sicherst du dir genau die Variante, die du möchtest.\n\nSobald du vorbestellst, reservieren wir dein Produkt für dich.",
+      "preorder_info_payment": "Sobald das Produkt in unserem Lager in Høng ankommt, packen wir es und schicken es dir. Wir buchen den Betrag erst ab, wenn die Bestellung verschickt ist.",
+      "preorder_info_payment_deposit": "Du zahlst {{ percent }} % bei der Bestellung. Sobald das Produkt in unserem Lager in Høng ankommt, packen wir es und schicken es dir. Den Rest buchen wir erst ab, wenn die Bestellung verschickt ist.",
+      "preorder_info_date": "Voraussichtlicher Versand: {{ date }}. Ändert sich das Datum, sagen wir dir per E-Mail Bescheid.",
+      "delivery_before_cutoff": "Bestelle vor {{ time }} Uhr, dann versenden wir heute. Voraussichtlich bei dir am {{ date }}.",
+      "delivery_after_cutoff": "Wird {{ ship }} versendet. Voraussichtlich bei dir am {{ date }}.",
+      "delivery_tomorrow": "morgen"
     },
     "featured": {
       "kicker": "Shop",
@@ -547,7 +556,10 @@
     "faq": {
       "kicker": "FAQ",
       "heading": "Fragen und Antworten",
-      "contact_html": "Keine Antwort gefunden? Schreib uns an <a href=\"mailto:kundeservice@lalatoto.dk\">kundeservice@lalatoto.dk</a>."
+      "contact_html": "Keine Antwort gefunden? Schreib uns an <a href=\"mailto:kundeservice@lalatoto.dk\">kundeservice@lalatoto.dk</a>.",
+      "lead": "Hier sind die Fragen, die wir am häufigsten hören.",
+      "general": "Bestellung, Lieferung und Rückgabe",
+      "topics": "Themen"
     },
     "contact": {
       "phone_heading": "Ruf uns an",
@@ -567,7 +579,8 @@
     "collection": {
       "kicker": "Kollektion",
       "empty": "Hier gibt es noch keine Produkte.",
-      "sold_out": "Ausverkauft"
+      "sold_out": "Ausverkauft",
+      "coming_soon": "Bald erhältlich"
     },
     "cart": {
       "title": "Warenkorb",
@@ -587,7 +600,12 @@
       "upsell_add_named": "{{ title }} in den Warenkorb legen",
       "upsell_choose": "Wählen",
       "upsell_choose_named": "Größe oder Farbe für {{ title }} wählen",
-      "upsell_from": "Ab {{ price }}"
+      "upsell_from": "Ab {{ price }}",
+      "preorder_now": "Heute fällig",
+      "preorder_later": "Wird beim Versand abgebucht",
+      "preorder_line_deposit": "{{ deposit }} heute fällig. Der Rest, {{ rest }}, wird beim Versand abgebucht.",
+      "preorder_line_later": "Heute ist nichts fällig. {{ rest }} wird beim Versand abgebucht.",
+      "preorder_expected": "Voraussichtlicher Versand: {{ date }}"
     },
     "app": {
       "kicker": "Club No Sleep",
@@ -691,6 +709,24 @@
       "related": "Weiterlesen",
       "teaser_heading": "Aus dem Journal",
       "all_articles": "Alle Artikel"
+    },
+    "bed": {
+      "color": "Farbe",
+      "color_all": "Ganzes Set",
+      "mixed": "Gemischt",
+      "read_more": "Mehr lesen",
+      "total": "Gesamt",
+      "add": "Set in den Warenkorb",
+      "sold_out": "In dieser Farbe ausverkauft",
+      "sold_out_plain": "Ausverkauft",
+      "test_stock": "Testansicht: Nur Artikel auf Lager wurden in den Warenkorb gelegt.",
+      "missing": "In dieser Farbe nicht erhältlich",
+      "error": "Wir konnten das Set nicht in deinen Warenkorb legen. Bitte versuche es noch einmal.",
+      "added": "Das Set liegt in deinem Warenkorb.",
+      "none": "Wähle mindestens einen Artikel.",
+      "preorder": "Vorbestellung – wird versendet, sobald es auf Lager ist",
+      "bundle_hint": "Wähle mindestens zwei Teile und spare {{ percent }} % auf alle.",
+      "bundle_saving": "Set-Rabatt {{ percent }} %"
     }
   }
 }
