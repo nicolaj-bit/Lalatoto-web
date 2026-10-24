@@ -1,0 +1,73 @@
+{%- comment -%}
+  Lalatoto: kort, centreret tekstafsnit (forsidens præsentation).
+
+  Lille etiket, overskrift i Playfair og et par afsnit tekst. Teksten er med
+  for både kunder og søgemaskiner: den siger, hvad vi laver, til hvem, og af
+  hvilke materialer. Knappen vises kun, hvis den har en tekst.
+{%- endcomment -%}
+
+<div class="lalatoto-intro color-scheme color-scheme--{{ section.settings.color_scheme.id }}">
+  <div class="lalatoto-intro__inner">
+    {%- if section.settings.kicker != blank -%}
+      <p class="lalatoto-kicker">{{ section.settings.kicker | escape }}</p>
+    {%- endif -%}
+    {%- if section.settings.heading != blank -%}
+      <h2 class="lalatoto-intro__title">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+    {%- if section.settings.text != blank -%}
+      <div class="lalatoto-intro__text">{{ section.settings.text }}</div>
+    {%- endif -%}
+    {%- if section.settings.button_text != blank -%}
+      <a href="{{ section.settings.button_url | default: '#' }}" class="lalatoto-image-text__link">
+        {{- section.settings.button_text | escape -}}
+      </a>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Lalatoto tekst",
+  "class": "shopify-section--lalatoto-intro",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Farveskema",
+      "default": "scheme-1"
+    },
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Lille etiket over overskriften"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Overskrift"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Tekst"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Knaptekst",
+      "info": "Tom: ingen knap."
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Knaplink"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Lalatoto tekst"
+    }
+  ]
+}
+{% endschema %}

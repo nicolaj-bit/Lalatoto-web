@@ -1,0 +1,60 @@
+{%- comment -%}
+  Lalatoto: smal bjælke med korte løfter (fx «14 dages fortrydelsesret»).
+
+  Én linje pr. punkt med et lille flueben foran. På computer står punkterne
+  på én række med luft imellem; på telefon står de to og to.
+  Punkterne rettes i temaredigeringen. Skriv kun ting, der står i
+  handelsbetingelserne, og som gælder på alle markeder.
+{%- endcomment -%}
+
+{%- if section.blocks.size > 0 -%}
+  <div class="lalatoto-usp color-scheme color-scheme--{{ section.settings.color_scheme.id }}">
+    <ul class="lalatoto-usp__list unstyled-list" role="list">
+      {%- for block in section.blocks -%}
+        {%- if block.settings.text != blank -%}
+          <li class="lalatoto-usp__item" {{ block.shopify_attributes }}>
+            <svg class="lalatoto-usp__icon" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" focusable="false"><path d="M2 7.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="1.3"/></svg>
+            <span>{{ block.settings.text }}</span>
+          </li>
+        {%- endif -%}
+      {%- endfor -%}
+    </ul>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Lalatoto løfter",
+  "class": "shopify-section--lalatoto-usp",
+  "tag": "section",
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Farveskema",
+      "default": "scheme-2"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Punkt",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "text",
+          "label": "Tekst",
+          "default": "14 dages fortrydelsesret"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Lalatoto løfter",
+      "blocks": [{ "type": "item" }, { "type": "item" }, { "type": "item" }]
+    }
+  ]
+}
+{% endschema %}
