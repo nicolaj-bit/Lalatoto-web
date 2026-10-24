@@ -24,79 +24,6 @@
         "button_url": "shopify://collections/produkter"
       }
     },
-    "billede": {
-      "type": "lalatoto-full-image",
-      "settings": {
-        "color_scheme": "scheme-1",
-        "image": "shopify://shop_images/Design_uden_navn_2.jpg",
-        "image_alt": "Luksus sengeslange og babysengetøj i ternet gul bomuld i en tremmeseng"
-      }
-    },
-    "shop": {
-      "type": "lalatoto-featured-collection",
-      "blocks": {
-        "collection": {
-          "type": "collection",
-          "settings": {
-            "collection": "produkter",
-            "title": ""
-          }
-        }
-      },
-      "block_order": [
-        "collection"
-      ],
-      "settings": {
-        "color_scheme": "scheme-1",
-        "kicker": "",
-        "heading": "Shop",
-        "show_view_all": false,
-        "products_count": 4,
-        "hover_image": true,
-        "hide_sold_out": false,
-        "show_price": false
-      }
-    },
-    "materialer": {
-      "type": "lalatoto-image-text",
-      "settings": {
-        "color_scheme": "scheme-1",
-        "image": "shopify://shop_images/1.jpg",
-        "image_alt": "Børnehænder i ren, uvasket uld",
-        "image_position": "left",
-        "heading": "Don’t mess with nature",
-        "text": "<p>Nogle ting klarer naturen bare bedst selv.&nbsp;<br/>Uld er én af dem.</p>",
-        "button_text": "LÆS MERE OM VORES MATERIALEVALG HER",
-        "button_url": "shopify://pages/materialer"
-      }
-    },
-    "journal": {
-      "type": "lalatoto-journal-teaser",
-      "disabled": true,
-      "settings": {
-        "color_scheme": "scheme-1",
-        "blog": "bloggen",
-        "kicker": "",
-        "heading": "Blog",
-        "count": 3,
-        "show_excerpt": true
-      }
-    },
-    "app": {
-      "type": "lalatoto-app",
-      "disabled": true,
-      "settings": {
-        "color_scheme": "scheme-2",
-        "kicker": "Club No Sleep",
-        "heading_line_1": "Appen til de nætter,",
-        "heading_line_2": "hvor ingen sover",
-        "text": "Vi laver også en app til gravide og nybagte mødre. Søvnlog, milepæle og et fællesskab, der er vågent, når du er.",
-        "image_1": "shopify://shop_images/etlys-186-v2_1.png",
-        "image_2": "shopify://shop_images/IMG_2585.png",
-        "app_store_url": "https://apps.apple.com/dk/app/id6764388095",
-        "google_play_url": "https://play.google.com/store/apps/details?id=com.base699f47a86e7e0a874d1159ed.app"
-      }
-    },
     "usp": {
       "type": "lalatoto-usp",
       "blocks": {
@@ -131,8 +58,42 @@
         "u3",
         "u4"
       ],
+      "disabled": true,
       "settings": {
         "color_scheme": "scheme-2"
+      }
+    },
+    "billede": {
+      "type": "lalatoto-full-image",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "image": "shopify://shop_images/Design_uden_navn_2.jpg",
+        "image_alt": "Luksus sengeslange og babysengetøj i ternet gul bomuld i en tremmeseng"
+      }
+    },
+    "shop": {
+      "type": "lalatoto-featured-collection",
+      "blocks": {
+        "collection": {
+          "type": "collection",
+          "settings": {
+            "collection": "produkter",
+            "title": ""
+          }
+        }
+      },
+      "block_order": [
+        "collection"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "kicker": "",
+        "heading": "Shop",
+        "show_view_all": false,
+        "products_count": 4,
+        "hover_image": true,
+        "hide_sold_out": false,
+        "show_price": false
       }
     },
     "intro": {
@@ -144,6 +105,19 @@
         "text": "<p>Vi laver sengeslanger, sengerande, sengetøj og bamser til de mindste. Fyldet er ren uld, og stoffet er OEKO-TEX®-certificeret bomuld. Der er ingen polyester – heller ikke dér, hvor du ikke kan se det.</p><p>Vi er en lille dansk virksomhed, og vores produkter bliver syet hos en mindre systue i Bulgarien med fokus på godt håndværk og ordentlige arbejdsforhold. Det giver ting, der holder til mange vaske og mange nætter.</p>",
         "button_text": "Læs om os",
         "button_url": "shopify://pages/om-os"
+      }
+    },
+    "materialer": {
+      "type": "lalatoto-image-text",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "image": "shopify://shop_images/1.jpg",
+        "image_alt": "Børnehænder i ren, uvasket uld",
+        "image_position": "left",
+        "heading": "Don’t mess with nature",
+        "text": "<p>Nogle ting klarer naturen bare bedst selv.&nbsp;<br/>Uld er én af dem.</p>",
+        "button_text": "LÆS MERE OM VORES MATERIALEVALG HER",
+        "button_url": "shopify://pages/materialer"
       }
     },
     "faq": {
@@ -187,11 +161,39 @@
         "q4",
         "q5"
       ],
+      "disabled": true,
       "settings": {
         "color_scheme": "scheme-1",
         "heading": "",
         "link_text": "Se alle spørgsmål",
         "link_url": "shopify://pages/faq"
+      }
+    },
+    "journal": {
+      "type": "lalatoto-journal-teaser",
+      "disabled": true,
+      "settings": {
+        "color_scheme": "scheme-1",
+        "blog": "bloggen",
+        "kicker": "",
+        "heading": "Blog",
+        "count": 3,
+        "show_excerpt": true
+      }
+    },
+    "app": {
+      "type": "lalatoto-app",
+      "disabled": true,
+      "settings": {
+        "color_scheme": "scheme-2",
+        "kicker": "Club No Sleep",
+        "heading_line_1": "Appen til de nætter,",
+        "heading_line_2": "hvor ingen sover",
+        "text": "Vi laver også en app til gravide og nybagte mødre. Søvnlog, milepæle og et fællesskab, der er vågent, når du er.",
+        "image_1": "shopify://shop_images/etlys-186-v2_1.png",
+        "image_2": "shopify://shop_images/IMG_2585.png",
+        "app_store_url": "https://apps.apple.com/dk/app/id6764388095",
+        "google_play_url": "https://play.google.com/store/apps/details?id=com.base699f47a86e7e0a874d1159ed.app"
       }
     }
   },
