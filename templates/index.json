@@ -20,7 +20,7 @@
         "heading_line_1": "Ingen polyester.",
         "heading_line_2": "Ingen kompromis.",
         "text": "<p>Hvis naturen er dit sprog, taler vi det samme.</p>",
-        "button_text": "Little checks kollektion",
+        "button_text": "Se produkterne",
         "button_url": "shopify://collections/produkter"
       }
     },
@@ -48,13 +48,13 @@
       ],
       "settings": {
         "color_scheme": "scheme-1",
-        "kicker": "",
-        "heading": "Shop",
+        "kicker": "Shop",
+        "heading": "Sengeslange, sengerand og sengetøj",
         "show_view_all": false,
         "products_count": 4,
         "hover_image": true,
         "hide_sold_out": false,
-        "show_price": false
+        "show_price": true
       }
     },
     "materialer": {
@@ -64,9 +64,9 @@
         "image": "shopify://shop_images/1.jpg",
         "image_alt": "Børnehænder i ren, uvasket uld",
         "image_position": "left",
-        "heading": "Don’t mess with nature",
-        "text": "<p>Nogle ting klarer naturen bare bedst selv.&nbsp;<br/>Uld er én af dem.</p>",
-        "button_text": "LÆS MERE OM VORES MATERIALEVALG HER",
+        "heading": "Hvorfor vi bruger uld",
+        "text": "<p>Nogle ting klarer naturen bare bedst selv. Uld er én af dem.</p><p>Uld tilpasser sig temperatur og fugt, så barnet hverken får for varmt eller for koldt. Og modsat syntetiske fibre afgiver uld ikke mikroplast til sovemiljøet.</p>",
+        "button_text": "Læs om vores materialer",
         "button_url": "shopify://pages/materialer"
       }
     },
@@ -96,13 +96,113 @@
         "app_store_url": "https://apps.apple.com/dk/app/id6764388095",
         "google_play_url": "https://play.google.com/store/apps/details?id=com.base699f47a86e7e0a874d1159ed.app"
       }
+    },
+    "usp": {
+      "type": "lalatoto-usp",
+      "blocks": {
+        "u1": {
+          "type": "item",
+          "settings": {
+            "text": "Ren uld og bomuld"
+          }
+        },
+        "u2": {
+          "type": "item",
+          "settings": {
+            "text": "OEKO-TEX®-certificeret bomuld"
+          }
+        },
+        "u3": {
+          "type": "item",
+          "settings": {
+            "text": "Designet i Danmark"
+          }
+        },
+        "u4": {
+          "type": "item",
+          "settings": {
+            "text": "14 dages fortrydelsesret"
+          }
+        }
+      },
+      "block_order": [
+        "u1",
+        "u2",
+        "u3",
+        "u4"
+      ],
+      "settings": {
+        "color_scheme": "scheme-2"
+      }
+    },
+    "intro": {
+      "type": "lalatoto-intro",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "kicker": "Om LALATOTO",
+        "heading": "Sengetøj og sengeslanger til baby – uden polyester",
+        "text": "<p>Vi laver sengeslanger, sengerande, sengetøj og bamser til de mindste. Fyldet er ren uld, og stoffet er OEKO-TEX®-certificeret bomuld. Der er ingen polyester – heller ikke dér, hvor du ikke kan se det.</p><p>Vi er en lille dansk virksomhed, og vores produkter bliver syet hos en mindre systue i Bulgarien med fokus på godt håndværk og ordentlige arbejdsforhold. Det giver ting, der holder til mange vaske og mange nætter.</p>",
+        "button_text": "Læs om os",
+        "button_url": "shopify://pages/om-os"
+      }
+    },
+    "faq": {
+      "type": "lalatoto-home-faq",
+      "blocks": {
+        "q1": {
+          "type": "question",
+          "settings": {
+            "question": "hvad-er-sengeslangen-fyldt-med"
+          }
+        },
+        "q2": {
+          "type": "question",
+          "settings": {
+            "question": "hvad-kan-sengeslangen-bruges-til"
+          }
+        },
+        "q3": {
+          "type": "question",
+          "settings": {
+            "question": "hvad-er-sengetoejet-lavet-af"
+          }
+        },
+        "q4": {
+          "type": "question",
+          "settings": {
+            "question": "hvornaar-kan-jeg-forvente-min-ordre"
+          }
+        },
+        "q5": {
+          "type": "question",
+          "settings": {
+            "question": "hvordan-returnerer-jeg"
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "heading": "",
+        "link_text": "Se alle spørgsmål",
+        "link_url": "shopify://pages/faq"
+      }
     }
   },
   "order": [
     "hero",
-    "billede",
+    "usp",
     "shop",
+    "intro",
+    "billede",
     "materialer",
+    "faq",
     "journal",
     "app"
   ]

@@ -4811,3 +4811,86 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
     max-width: 85%;
   }
 }
+
+/* ---------------------------------------------------------------
+ * Løfter (smal bjælke under forsidens top) og tekstafsnit
+ * --------------------------------------------------------------- */
+.lalatoto-usp {
+  padding: 0.875rem var(--container-gutter, 1.25rem);
+  color: #2a2724;
+}
+
+.lalatoto-usp__list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.625rem 1rem;
+  max-width: var(--lalatoto-max-width);
+  margin-inline: auto;
+}
+
+.lalatoto-usp__item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: var(--lalatoto-label-size);
+  letter-spacing: var(--lalatoto-label-spacing);
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+
+.lalatoto-usp__icon {
+  flex: none;
+}
+
+@media screen and (min-width: 1000px) {
+  .lalatoto-usp__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem clamp(2rem, 5vw, 5rem);
+  }
+}
+
+.lalatoto-intro {
+  padding: clamp(3.5rem, 7vw, 6rem) var(--container-gutter, 1.25rem);
+  color: #2a2724;
+}
+
+.lalatoto-intro__inner {
+  display: grid;
+  justify-items: center;
+  gap: 1rem;
+  max-width: 40rem;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.lalatoto-intro__title {
+  margin: 0;
+  font-family: var(--heading-font-family);
+  font-weight: 400;
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  line-height: 1.15;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+.lalatoto-intro__text {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: #4a453f;
+}
+
+.lalatoto-intro__text p {
+  margin: 0 0 0.875rem;
+}
+
+.lalatoto-intro__text p:last-child {
+  margin-bottom: 0;
+}
+
+.lalatoto-intro__text a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
