@@ -61,8 +61,9 @@
         {%- form 'localization', id: localization_form_id -%}
           {%- comment -%}
             Lalatoto: vælger kunden et tysktalende land, skifter sproget med det
-            samme til tysk. Går en kunde, der læser på tysk, til et andet land,
-            skifter sproget til engelsk, som er standard uden for Danmark. Sproget
+            samme til tysk, og Danmark giver altid dansk. Går en kunde, der læser
+            på tysk, til et andet land, skifter sproget til engelsk, som er
+            standard uden for Danmark. Sproget
             sendes med i samme formular som landet; feltet er slået fra, indtil der
             er klikket på et land, så Shopify ellers selv vælger markedets sprog.
           {%- endcomment -%}
@@ -80,6 +81,8 @@
                 assign lalatoto_target_language = ''
                 if country.iso_code == 'DE' or country.iso_code == 'AT' or country.iso_code == 'CH'
                   assign lalatoto_target_language = 'de'
+                elsif country.iso_code == 'DK'
+                  assign lalatoto_target_language = 'da'
                 elsif lalatoto_current_language == 'de'
                   assign lalatoto_target_language = 'en'
                 endif
