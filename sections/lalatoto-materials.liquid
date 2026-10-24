@@ -5,7 +5,8 @@
   tre principper i hver sin kolonne (nummereret 01, 02, 03), og derefter et
   afsnit pr. materiale med tre små mellemrubrikker: hvad det er, hvorfor vi
   bruger det, og hvor du finder det. På telefon står kolonnerne under
-  hinanden. Alt rettes i temaredigeringen; Shift+Enter giver ny linje.
+  hinanden. Nederst et afsluttende stykke («Vi er ikke perfekte. Endnu.»).
+  Alt rettes i temaredigeringen; Shift+Enter giver ny linje.
 {%- endcomment -%}
 
 {%- assign principles = section.blocks | where: 'type', 'principle' -%}
@@ -60,6 +61,15 @@
         {%- endif -%}
       </section>
     {%- endfor -%}
+
+    {%- if section.settings.closing_heading != blank or section.settings.closing_text != blank -%}
+      <section class="lalatoto-materials__group lalatoto-materials__closing">
+        {%- if section.settings.closing_heading != blank -%}
+          <h2 class="lalatoto-materials__heading">{{ section.settings.closing_heading }}</h2>
+        {%- endif -%}
+        <div class="lalatoto-materials__text">{{ section.settings.closing_text }}</div>
+      </section>
+    {%- endif -%}
   </div>
 </div>
 
@@ -114,6 +124,21 @@
       "id": "label_where",
       "label": "Hvor du finder det",
       "default": "Where you'll find it"
+    },
+    {
+      "type": "header",
+      "content": "Afslutning nederst på siden"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "closing_heading",
+      "label": "Overskrift"
+    },
+    {
+      "type": "richtext",
+      "id": "closing_text",
+      "label": "Tekst",
+      "info": "Shift+Enter giver ny linje i samme afsnit."
     }
   ],
   "blocks": [

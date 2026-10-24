@@ -4778,6 +4778,13 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   margin-bottom: 0;
 }
 
+/* Afslutningen: links (Saras mail) i samme farve som teksten, med streg under. */
+.lalatoto-materials__closing a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
 @media screen and (min-width: 1000px) {
   /* Som Saras udkast: indholdet fylder ca. tre fjerdedele af bredden,
      med omkring 12 % luft i hver side — også på brede skærme. */
@@ -4799,7 +4806,8 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
     column-gap: 4rem;
   }
 
-  .lalatoto-materials__material .lalatoto-materials__text {
+  .lalatoto-materials__material .lalatoto-materials__text,
+  .lalatoto-materials__closing .lalatoto-materials__text {
     max-width: 85%;
   }
 }
