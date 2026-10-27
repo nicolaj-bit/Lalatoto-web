@@ -90,7 +90,7 @@
               <div class="h-stack justify-start gap-4">
                 <span class="discount-badge text-xs">
                   {%- render 'icon' with 'discount', width: 12 -%}
-                  {{ discount_application.title }} (-{{ discount_application.total_allocated_amount | money }})
+                  {{ discount_application.title }} (-{{ discount_application.total_allocated_amount | money_without_trailing_zeros }})
 
                   {%- if section.settings.allow_discount_application and discount_application.type != '' -%}
                     <cart-discount-remove-button discount-code="{{ discount_application.title | escape }}" class="h-stack align-center">
@@ -111,11 +111,11 @@
           {%- if cart.total_discount > 0 -%}
             <div class="lalatoto-cart__line">
               <span>{{ 'lalatoto.cart.subtotal' | t }}</span>
-              <span>{{ cart.original_total_price | money }}</span>
+              <span>{{ cart.original_total_price | money_without_trailing_zeros }}</span>
             </div>
             <div class="lalatoto-cart__line lalatoto-cart__line--discount">
               <span>{{ 'lalatoto.cart.discount' | t }}</span>
-              <span>−{{ cart.total_discount | money }}</span>
+              <span>−{{ cart.total_discount | money_without_trailing_zeros }}</span>
             </div>
           {%- endif -%}
           {%- comment -%}
@@ -126,20 +126,20 @@
           {%- if cart.checkout_charge_amount < cart.total_price -%}
             <div class="lalatoto-cart__line">
               <span>{{ 'lalatoto.cart.total' | t }}</span>
-              <span>{{ cart.total_price | money }}</span>
+              <span>{{ cart.total_price | money_without_trailing_zeros }}</span>
             </div>
             <div class="lalatoto-cart__line">
               <span>{{ 'lalatoto.cart.preorder_later' | t }}</span>
-              <span>{{ cart.total_price | minus: cart.checkout_charge_amount | money }}</span>
+              <span>{{ cart.total_price | minus: cart.checkout_charge_amount | money_without_trailing_zeros }}</span>
             </div>
             <div class="lalatoto-cart__sum">
               <span>{{ 'lalatoto.cart.preorder_now' | t }}</span>
-              <span>{{ cart.checkout_charge_amount | money }}</span>
+              <span>{{ cart.checkout_charge_amount | money_without_trailing_zeros }}</span>
             </div>
           {%- else -%}
             <div class="lalatoto-cart__sum">
               <span>{{ 'lalatoto.cart.total' | t }}</span>
-              <span>{{ cart.total_price | money }}</span>
+              <span>{{ cart.total_price | money_without_trailing_zeros }}</span>
             </div>
           {%- endif -%}
         </div>
@@ -164,7 +164,7 @@
               {{- 'lalatoto.cart.checkout' | t -}}
 
               {%- if section.settings.show_price_in_checkout_button -%}
-                <span class="cart-drawer__button-price">{{- cart.checkout_charge_amount | money -}}</span>
+                <span class="cart-drawer__button-price">{{- cart.checkout_charge_amount | money_without_trailing_zeros -}}</span>
               {%- endif -%}
             {%- endcapture -%}
 

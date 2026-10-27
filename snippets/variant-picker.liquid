@@ -253,7 +253,7 @@
 
         {%- capture select_options -%}
           {%- for variant in product.variants -%}
-            <option {% if variant == product.selected_or_first_available_variant %}selected="selected"{% endif %} {% unless variant.available %}disabled="disabled"{% endunless %} value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
+            <option {% if variant == product.selected_or_first_available_variant %}selected="selected"{% endif %} {% unless variant.available %}disabled="disabled"{% endunless %} value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money_without_trailing_zeros }}</option>
           {%- endfor -%}
         {%- endcapture -%}
 

@@ -29,7 +29,7 @@
     assign upsell_price = variant.price
     assign upsell_compare = variant.compare_at_price
   endif
-  assign min_price = min_price | money
+  assign min_price = min_price | money_without_trailing_zeros
 -%}
 
 <article class="lalatoto-upsell__card" data-lalatoto-upsell-item data-product-id="{{ product.id }}">
@@ -52,9 +52,9 @@
         {{- 'lalatoto.cart.upsell_from' | t: price: min_price -}}
       {%- else -%}
         {%- if upsell_compare > upsell_price -%}
-          <s>{{ upsell_compare | money }}</s>
+          <s>{{ upsell_compare | money_without_trailing_zeros }}</s>
         {%- endif -%}
-        {{ upsell_price | money }}
+        {{ upsell_price | money_without_trailing_zeros }}
       {%- endif -%}
     </p>
   </div>
