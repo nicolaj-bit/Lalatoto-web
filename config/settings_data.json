@@ -91,11 +91,11 @@
         "settings": {
           "background": "#efebe4",
           "background_gradient": "",
-          "text_color": "#2a2724",
+          "text_color": "#545454",
           "primary_button_background": "#ddd6cb",
-          "primary_button_text_color": "#2a2724",
+          "primary_button_text_color": "#545454",
           "circle_button_background": "#efebe4",
-          "circle_button_icon": "#2a2724"
+          "circle_button_icon": "#545454"
         }
       },
       "scheme-2": {

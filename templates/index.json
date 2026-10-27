@@ -18,7 +18,7 @@
         "image_alt": "",
         "mobile_image": "shopify://shop_images/Mobil.jpg",
         "heading_line_1": "Ingen polyester.",
-        "heading_line_2": "Ingen kompromis.",
+        "heading_line_2": "Ingen kompromiser.",
         "text": "<p>Hvis naturen er dit sprog, taler vi det samme.</p>",
         "button_text": "Little checks kollektion",
         "button_url": "shopify://collections/produkter"
@@ -111,7 +111,7 @@
       "type": "lalatoto-image-text",
       "settings": {
         "color_scheme": "scheme-1",
-        "image": "shopify://shop_images/1.jpg",
+        "image": "shopify://shop_images/Drengnes_haender_i_uld.jpg",
         "image_alt": "Børnehænder i ren, uvasket uld",
         "image_position": "left",
         "heading": "Don’t mess with nature",
