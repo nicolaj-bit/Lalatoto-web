@@ -112,14 +112,14 @@
           {%- if sold_out -%}
             {{- sold_out_label -}}
           {%- elsif show_from -%}
-            {%- assign price_min = card_price_min | money -%}
+            {%- assign price_min = card_price_min | money_without_trailing_zeros -%}
             {{- 'product.price.from_price_html' | t: price_min: price_min -}}
           {%- else -%}
             {%- if card_compare > card_price -%}
-              <s class="lalatoto-tile__compare">{{ card_compare | money }}</s>
-              <span class="lalatoto-tile__sale">{{ card_price | money }}</span>
+              <s class="lalatoto-tile__compare">{{ card_compare | money_without_trailing_zeros }}</s>
+              <span class="lalatoto-tile__sale">{{ card_price | money_without_trailing_zeros }}</span>
             {%- else -%}
-              {{ card_price | money }}
+              {{ card_price | money_without_trailing_zeros }}
             {%- endif -%}
           {%- endif -%}
         </span>

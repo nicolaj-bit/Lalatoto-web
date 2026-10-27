@@ -129,14 +129,14 @@
                                   assign popover_id = section.id | append: '-quantity-break-popover-' | append: variant.id
 
                                   if variant.quantity_price_breaks.size <= 1
-                                    assign price = variant.price | money
+                                    assign price = variant.price | money_without_trailing_zeros
                                   else
                                     assign price_breaks_array = variant.quantity_price_breaks | sort: 'quantity' | reverse
                                     assign cart_quantity = cart | item_count_for_variant: variant.id
 
                                     for price_break in price_breaks_array
                                       if cart_quantity >= price_break.minimum_quantity
-                                        assign price = price_break.price | money
+                                        assign price = price_break.price | money_without_trailing_zeros
                                         break
                                       endif
                                     endfor
@@ -257,7 +257,7 @@
                                   <ol class="quantity-breaks-table border-t divide-y">
                                     {%- for quantity_break in variant.quantity_price_breaks -%}
                                       <li class="h-stack justify-between">
-                                        {%- assign price = quantity_break.price | money -%}
+                                        {%- assign price = quantity_break.price | money_without_trailing_zeros -%}
 
                                         <span class="text-sm">{{ quantity_break.minimum_quantity }}+</span>
                                         <span class="text-sm">{{ 'product.volume_pricing.price_at_each' | t: price: price }}</span>
@@ -291,14 +291,14 @@
                     <td class="text-center">
                       {%- liquid
                         if variant.quantity_price_breaks.size <= 1
-                          assign price = variant.price | money
+                          assign price = variant.price | money_without_trailing_zeros
                         else
                           assign price_breaks_array = variant.quantity_price_breaks | sort: 'quantity' | reverse
                           assign cart_quantity = cart | item_count_for_variant: variant.id
 
                           for price_break in price_breaks_array
                             if cart_quantity >= price_break.minimum_quantity
-                              assign price = price_break.price | money
+                              assign price = price_break.price | money_without_trailing_zeros
                               break
                             endif
                           endfor
@@ -309,7 +309,7 @@
                     </td>
 
                     <td class="text-end">
-                      {{- line_items_for_variant | sum: 'original_line_price' | default: 0 | money -}}
+                      {{- line_items_for_variant | sum: 'original_line_price' | default: 0 | money_without_trailing_zeros -}}
                     </td>
                   </tr>
                 {%- endfor -%}
@@ -346,7 +346,7 @@
 
                 <td colspan="2" class="sm:text-end">
                   <p class="h6 sm:hidden">{{ 'sections.quick_order_list.item_count' | t: count: total_item_count }}</p>
-                  <p class="text-lg">{{ 'sections.quick_order_list.product_subtotal' | t }}: {{ total_price | money }}</p>
+                  <p class="text-lg">{{ 'sections.quick_order_list.product_subtotal' | t }}: {{ total_price | money_without_trailing_zeros }}</p>
 
                   {%- if cart.taxes_included and shop.shipping_policy.body != blank -%}
                     <p class="text-subdued">{{ 'cart.general.taxes_included_and_shipping_policy_html' | t: link: shop.shipping_policy.url }}</p>

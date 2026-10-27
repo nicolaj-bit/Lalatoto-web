@@ -68,7 +68,7 @@
             {%- if settings.discount_mode == 'percentage' -%}
               {%- assign savings = variant.compare_at_price | minus: variant.price | times: 100.0 | divided_by: variant.compare_at_price | round | append: '%' -%}
             {%- else -%}
-              {%- capture savings -%}{{ variant.compare_at_price | minus: variant.price | money }}{%- endcapture -%}
+              {%- capture savings -%}{{ variant.compare_at_price | minus: variant.price | money_without_trailing_zeros }}{%- endcapture -%}
             {%- endif -%}
 
             {%- if show_on_sale_badge -%}

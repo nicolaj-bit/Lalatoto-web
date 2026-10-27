@@ -66,8 +66,8 @@
           -%}
           {%- if preorder_rest > 0 -%}
             {%- liquid
-              assign preorder_rest_text = preorder_rest | money
-              assign preorder_deposit_text = preorder_deposit | money
+              assign preorder_rest_text = preorder_rest | money_without_trailing_zeros
+              assign preorder_deposit_text = preorder_deposit | money_without_trailing_zeros
               assign preorder_date = line_item.product.metafields.lalatoto_preorder.info.value.chargeDateText
             -%}
             <p class="lalatoto-preorder-note text-subdued">
@@ -129,7 +129,7 @@
           {%- for discount_allocation in line_item.line_level_discount_allocations -%}
             <li class="discount-badge text-xs">
               {%- render 'icon' with 'discount', width: 12 -%}
-              {{ discount_allocation.discount_application.title }} (-{{ discount_allocation.amount | money }})
+              {{ discount_allocation.discount_application.title }} (-{{ discount_allocation.amount | money_without_trailing_zeros }})
 
               {%- if section.settings.allow_discount_application and discount_allocation.discount_application.type != '' -%}
                 <cart-discount-remove-button discount-code="{{ discount_allocation.discount_application.title }}" class="h-stack align-center">

@@ -16,7 +16,7 @@
           <td>{{ 'product.volume_pricing.minimum' | t: minimum_quantity: quantity_break.minimum_quantity }}</td>
 
           <td>
-            {%- assign break_price = quantity_break.price | money -%}
+            {%- assign break_price = quantity_break.price | money_without_trailing_zeros -%}
             {{- 'product.volume_pricing.price_at_each' | t: price: break_price -}}
           </td>
         </tr>
