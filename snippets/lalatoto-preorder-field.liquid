@@ -8,6 +8,10 @@
   @param {object} product - produktet
   @param {object} [variant] - varianten; standard er den valgte
   @param {string} field - 'date' (fx «6. november 2026») eller 'deposit' (procent ved køb)
+
+  Datoen skrives på kundens sprog ud fra appens chargeAt (dansk, engelsk og
+  tysk). På andre sprog, eller hvis chargeAt mangler, bruges appens danske
+  tekst (chargeDateText) som før.
 {%- enddoc -%}
 {%- liquid
   assign info = product.metafields.lalatoto_preorder.info.value
@@ -23,7 +27,18 @@
     endfor
     if has_plan
       if field == 'date'
-        echo info.chargeDateText
+        assign date_text = info.chargeDateText
+        assign lang = request.locale.iso_code | split: '-' | first
+        if info.chargeAt != blank
+          if lang == 'da' or lang == 'en' or lang == 'de'
+            assign day = info.chargeAt | date: '%-d'
+            assign month_key = info.chargeAt | date: '%m' | prepend: 'lalatoto.months.m'
+            assign month = month_key | t
+            assign year = info.chargeAt | date: '%Y'
+            assign date_text = 'lalatoto.product.preorder_date_format' | t: day: day, month: month, year: year
+          endif
+        endif
+        echo date_text
       elsif field == 'deposit'
         echo info.depositPercent | default: 0
       endif
