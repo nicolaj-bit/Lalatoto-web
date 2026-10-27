@@ -442,10 +442,16 @@ svg.lalatoto-full-image__image {
 }
 
 .lalatoto-preorder-button__when {
-  font-size: 0.75em;
+  font-size: 11px;
   letter-spacing: 0.02em;
   text-transform: none;
-  opacity: 0.8;
+  color: #4a453f;
+}
+
+/* Købsknappens tekst og «Fortæl mig mere» i samme mørke farve som resten
+   af butikken. Den beige knapbaggrund gjorde ellers knapteksten blegere. */
+buy-buttons button.button {
+  --button-text-color: 42 39 36;
 }
 
 /* «Fortæl mere →» */
@@ -456,7 +462,7 @@ svg.lalatoto-full-image__image {
   padding: 0;
   border: 0;
   background: none;
-  color: rgb(var(--text-color));
+  color: #2a2724;
   font-family: var(--text-font-family);
   font-size: var(--lalatoto-label-size);
   text-transform: uppercase;
