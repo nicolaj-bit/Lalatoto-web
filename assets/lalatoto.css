@@ -454,6 +454,16 @@ buy-buttons button.button {
   --button-text-color: 42 39 36;
 }
 
+/* Udsolgt: en udfyldt, lys beige knap med dæmpet tekst i stedet for en
+   gennemsigtig ramme, så det står tydeligt, at varen ikke kan købes. */
+buy-buttons button.button[disabled] {
+  opacity: 1;
+  background-color: #ddd6cb;
+  border-color: #ddd6cb;
+  color: #6e675e;
+  cursor: not-allowed;
+}
+
 /* «Fortæl mere →» */
 .lalatoto-more-info-link {
   display: inline-flex;
