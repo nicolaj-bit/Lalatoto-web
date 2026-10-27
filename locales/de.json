@@ -517,6 +517,20 @@
     }
   },
   "lalatoto": {
+    "months": {
+      "m01": "Januar",
+      "m02": "Februar",
+      "m03": "März",
+      "m04": "April",
+      "m05": "Mai",
+      "m06": "Juni",
+      "m07": "Juli",
+      "m08": "August",
+      "m09": "September",
+      "m10": "Oktober",
+      "m11": "November",
+      "m12": "Dezember"
+    },
     "product": {
       "tell_more": "Mehr erfahren",
       "contents": "Inhalt",
@@ -544,6 +558,7 @@
       "preorder_info_payment": "Sobald das Produkt in unserem Lager in Høng ankommt, packen wir es und schicken es dir. Wir buchen den Betrag erst ab, wenn die Bestellung verschickt ist.",
       "preorder_info_payment_deposit": "Du zahlst {{ percent }} % bei der Bestellung. Sobald das Produkt in unserem Lager in Høng ankommt, packen wir es und schicken es dir. Den Rest buchen wir erst ab, wenn die Bestellung verschickt ist.",
       "preorder_info_date": "Voraussichtlicher Versand: {{ date }}. Ändert sich das Datum, sagen wir dir per E-Mail Bescheid.",
+      "preorder_date_format": "{{ day }}. {{ month }} {{ year }}",
       "delivery_before_cutoff": "Bestelle vor {{ time }} Uhr, dann versenden wir heute. Voraussichtlich bei dir am {{ date }}.",
       "delivery_after_cutoff": "Wird {{ ship }} versendet. Voraussichtlich bei dir am {{ date }}.",
       "delivery_tomorrow": "morgen"
