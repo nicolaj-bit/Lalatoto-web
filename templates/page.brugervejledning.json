@@ -49,7 +49,7 @@
             "standard": "sengetoej",
             "name": "Sengetøj",
             "temperature": "VASK & VEDLIGEHOLDELSE",
-            "text": "<p><strong>VASK & VEDLIGEHOLDELSE</strong></p><p>Vend sengetøjet på vrangen og luk lynlåsen inden vask.</p><p>Maskinvask ved op til 60°C.</p><p>Lufttør eller tør i tørretumbler.</p>"
+            "text": "<p><strong>VASK & VEDLIGEHOLDELSE</strong></p><p>Vend sengetøjet på vrangen inden vask.</p><p>Maskinvask ved op til 60°C.</p><p>Lufttør eller tør i tørretumbler.</p>"
           }
         },
         "item_maanepude": {
