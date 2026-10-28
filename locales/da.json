@@ -611,7 +611,16 @@
       "message": "Besked",
       "submit": "Send besked",
       "error": "Tjek, at navn, e-mail og besked er udfyldt, og prøv igen.",
-      "done_title": "Tak for din besked"
+      "done_title": "Tak for din besked",
+      "done_text": "Vi vender normalvis tilbage til dig inden for 24 timer på hverdage.",
+      "page_title": "Kontakt os",
+      "page_subtitle": "Du vælger, hvordan.",
+      "chat_title": "Chat",
+      "chat_text": "Og nej, du bliver ikke mødt af en chatbot. Hos os sidder rigtige mennesker og besvarer dine spørgsmål.",
+      "mail_title": "E-mail",
+      "mail_text_html": "Foretrækker du e-mail, så send os dine spørgsmål på {{ email }}. Vi svarer normalvis inden for 24 timer på hverdage.",
+      "form_title": "Kontaktformular",
+      "form_text": "Udfyld kontaktformularen nedenunder, så vender vi normalvis tilbage til dig inden for 24 timer på hverdage."
     },
     "collection": {
       "kicker": "Kollektion",
