@@ -3340,44 +3340,125 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 
 /* ===============================================================
  * FAQ UNDER PRODUKTET
- * Samme liste som vaskevejledningen, men med spørgsmålet i fuld bredde
- * og plus-tegnet yderst til højre.
+ * Overskrift til venstre, faner (produktet / levering og retur) som små
+ * piller, spørgsmålene i brødteksten og et plus i en tynd cirkel.
+ * Afgrænset til .lalatoto-faq, så vaskevejledningen og FAQ-siden, der
+ * bruger de samme punkter, ikke ændres.
  * =============================================================== */
 .lalatoto-faq {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
   max-width: var(--lalatoto-max-width);
   margin-inline: auto;
   padding: clamp(3rem, 6vw, 5rem) var(--container-gutter);
   color: #2a2724;
 }
 
+.lalatoto-faq__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  max-width: 720px;
+  margin-inline: auto;
+}
+
 .lalatoto-faq__head {
   display: grid;
-  justify-items: center;
   gap: 0.625rem;
-  text-align: center;
 }
 
 .lalatoto-faq__title {
   margin: 0;
   font-family: var(--heading-font-family);
   font-weight: 400;
-  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
-  line-height: 1.1;
+  font-size: clamp(1.75rem, 3.5vw, 2.25rem);
+  line-height: 1.15;
   letter-spacing: normal;
   text-transform: none;
 }
 
+.lalatoto-faq__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.lalatoto-faq__tabs[hidden] {
+  display: none;
+}
+
+.lalatoto-faq__tab {
+  min-height: 36px;
+  padding: 0 0.875rem;
+  border: 1px solid #cfc7bb;
+  border-radius: 999px;
+  background: transparent;
+  color: #2a2724;
+  font: inherit;
+  font-size: 0.8125rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.lalatoto-faq__tab[aria-selected="true"] {
+  border-color: #2a2724;
+  background: #2a2724;
+  color: #efebe4;
+}
+
+.lalatoto-faq__tab:focus-visible {
+  outline: 1px solid #2a2724;
+  outline-offset: 3px;
+}
+
+.lalatoto-faq .lalatoto-wash__list {
+  max-width: none;
+  border-block-start-color: #cfc7bb;
+}
+
+.lalatoto-faq .lalatoto-wash__item {
+  border-block-end-color: #cfc7bb;
+}
+
 .lalatoto-faq .lalatoto-wash__summary {
-  grid-template-columns: minmax(0, 1fr) 20px;
+  grid-template-columns: minmax(0, 1fr) 28px;
+  align-items: center;
+  gap: 1rem;
+  min-height: 56px;
+  padding: 1rem 0;
 }
 
 .lalatoto-faq .lalatoto-wash__name {
-  font-size: 1.125rem;
-  line-height: 1.35;
+  font-family: var(--text-font-family);
+  font-size: 0.9375rem;
+  line-height: 1.4;
+}
+
+/* Plusset i en tynd cirkel */
+.lalatoto-faq .lalatoto-wash__sign {
+  width: 28px;
+  height: 28px;
+  border: 1px solid #cfc7bb;
+  border-radius: 50%;
+  box-sizing: border-box;
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.lalatoto-faq .lalatoto-wash__sign::before {
+  left: 8px;
+  top: 13px;
+  width: 10px;
+}
+
+.lalatoto-faq .lalatoto-wash__sign::after {
+  left: 13px;
+  top: 8px;
+  height: 10px;
+}
+
+.lalatoto-faq .lalatoto-wash__text {
+  padding: 0 44px 1.25rem 0;
+  color: #4a453f;
+  font-size: 0.875rem;
 }
 
 .lalatoto-faq .lalatoto-wash__text a {
