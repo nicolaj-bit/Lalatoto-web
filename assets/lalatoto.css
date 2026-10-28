@@ -3149,8 +3149,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   display: grid;
   gap: 2rem;
   width: 100%;
-  max-width: 1080px;
-  margin: 0 auto;
+  margin: 0;
   padding: 0;
 }
 
@@ -3158,7 +3157,6 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   display: grid;
   align-content: start;
   gap: 0.375rem;
-  max-width: 34ch;
 }
 
 .lalatoto-contact__num {
@@ -3196,19 +3194,19 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   line-height: 1.6;
 }
 
+/* Formularen har samme stil som nyhedsbrevet i footeren: ingen ramme,
+   etiketten med store bogstaver foran en tynd streg og den mørke knap. */
 .lalatoto-contact__card {
   box-sizing: border-box;
   width: 100%;
   max-width: 720px;
   margin-inline: auto;
   scroll-margin-top: 6rem;
-  padding: clamp(1.75rem, 4vw, 3rem);
-  border: 1px solid #d7d0c4;
 }
 
 .lalatoto-contact__form {
   display: grid;
-  gap: 1.75rem;
+  gap: 2.25rem;
   margin: 0;
 }
 
@@ -3223,68 +3221,86 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 
 .lalatoto-contact__row {
   display: grid;
-  gap: 1.5rem;
+  gap: 1.5rem 2.5rem;
 }
 
-.lalatoto-contact__field {
-  display: grid;
-  gap: 0.375rem;
+.lalatoto-contact__line {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  border-block-end: 1px solid #a39b90;
+  transition: border-color 0.2s ease;
 }
 
-.lalatoto-contact__field label {
-  font-size: 0.8125rem;
-  font-weight: 500;
+.lalatoto-contact__line:focus-within {
+  border-block-end-color: #2a2724;
 }
 
-.lalatoto-contact__field label span {
+.lalatoto-contact__line label {
+  flex: none;
+  color: #2a2724;
+  font-size: var(--lalatoto-label-size);
+  letter-spacing: var(--lalatoto-label-spacing);
+  text-transform: uppercase;
+}
+
+.lalatoto-contact__line label span {
   color: #6e675e;
-  font-weight: 400;
+  letter-spacing: normal;
+  text-transform: none;
 }
 
-.lalatoto-contact__field input,
-.lalatoto-contact__field textarea {
-  width: 100%;
-  padding: 0.375rem 0;
+.lalatoto-contact__line input,
+.lalatoto-contact__line textarea {
+  flex: 1;
+  min-width: 0;
+  padding: 0.625rem 0;
   border: 0;
-  border-block-end: 1px solid #6e675e;
   border-radius: 0;
   background: transparent;
   color: #2a2724;
   font: inherit;
-  font-size: 1rem;
+  font-size: 0.9375rem;
   box-shadow: none;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.lalatoto-contact__field textarea {
-  min-height: 7.5rem;
+.lalatoto-contact__line input:focus,
+.lalatoto-contact__line textarea:focus {
+  outline: none;
+}
+
+/* Beskedfeltet: etiketten over feltet, så der er plads til at skrive */
+.lalatoto-contact__line--area {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
+  padding-block-start: 0.625rem;
+}
+
+.lalatoto-contact__line--area textarea {
+  min-height: 7rem;
   resize: vertical;
 }
 
-.lalatoto-contact__field input:focus,
-.lalatoto-contact__field textarea:focus {
-  outline: none;
-  border-block-end-color: #2a2724;
-  box-shadow: 0 1px 0 #2a2724;
-}
-
+/* Samme mørke knap som nyhedsbrevet */
 .lalatoto-contact__submit {
   justify-self: stretch;
   min-height: 48px;
-  padding: 0 1.75rem;
-  border: 1px solid rgb(var(--button-background));
-  background: rgb(var(--button-background));
-  color: rgb(var(--button-text-color));
+  padding: 0 2rem;
+  border: 1px solid #2a2724;
+  background: #2a2724;
+  color: #efebe4;
   font-family: var(--text-font-family);
   font-size: var(--lalatoto-label-size);
   letter-spacing: var(--lalatoto-label-spacing);
   text-transform: uppercase;
   cursor: pointer;
-  transition: border-color 0.2s ease;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .lalatoto-contact__submit:hover {
-  border-color: rgb(var(--button-text-color));
+  background: transparent;
+  color: #2a2724;
 }
 
 .lalatoto-contact__submit:focus-visible {
@@ -3309,18 +3325,16 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   .lalatoto-contact__row {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .lalatoto-contact__submit {
+    justify-self: start;
+  }
 }
 
 @media screen and (min-width: 800px) {
   .lalatoto-contact__ways {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: clamp(2rem, 4vw, 4rem);
-  }
-}
-
-@media screen and (min-width: 1000px) {
-  .lalatoto-contact__submit {
-    justify-self: start;
   }
 }
 
