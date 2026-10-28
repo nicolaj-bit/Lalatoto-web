@@ -574,7 +574,8 @@
       "contact_html": "Keine Antwort gefunden? Schreib uns an <a href=\"mailto:kundeservice@lalatoto.dk\">kundeservice@lalatoto.dk</a>.",
       "lead": "Hier sind die Fragen, die wir am häufigsten hören.",
       "general": "Bestellung, Lieferung und Rückgabe",
-      "topics": "Themen"
+      "topics": "Themen",
+      "general_short": "Lieferung und Rückgabe"
     },
     "contact": {
       "phone_heading": "Ruf uns an",

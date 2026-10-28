@@ -10,8 +10,9 @@
   Spørgsmål, der handler om produktet, står først, de generelle sidst.
   Finder sektionen ingen spørgsmål, vises den slet ikke.
 
-  Udseendet er det samme som vaskevejledningen: én linje pr. spørgsmål, et
-  tyndt plus til højre, og kun ét svar er åbent ad gangen.
+  Spørgsmålene står i to faner: produktets egne og de generelle (levering
+  og retur). Første spørgsmål er åbent, og kun ét svar er åbent ad gangen.
+  Uden JavaScript vises begge lister under hinanden.
 {%- endcomment -%}
 
 {%- liquid
@@ -74,21 +75,78 @@
 -%}
 
 {%- if count > 0 -%}
-  <div class="lalatoto-faq color-scheme color-scheme--{{ section.settings.color_scheme.id }}">
-    <header class="lalatoto-faq__head">
-      <p class="lalatoto-kicker">{{ 'lalatoto.faq.kicker' | t }}</p>
-      <h2 class="lalatoto-faq__title">{{ heading | escape }}</h2>
-    </header>
+  {%- liquid
+    assign has_tabs = false
+    if specific != blank and general != blank
+      assign has_tabs = true
+    endif
+    assign tab_id = 'lalatoto-faq-' | append: section.id
+    if specific != blank
+      assign specific = specific | replace_first: '<details class="lalatoto-wash__item"', '<details open class="lalatoto-wash__item"'
+    else
+      assign general = general | replace_first: '<details class="lalatoto-wash__item"', '<details open class="lalatoto-wash__item"'
+    endif
+  -%}
+  <div class="lalatoto-faq color-scheme color-scheme--{{ section.settings.color_scheme.id }}" id="{{ tab_id }}-root">
+    <div class="lalatoto-faq__inner">
+      <header class="lalatoto-faq__head">
+        <p class="lalatoto-kicker">{{ 'lalatoto.faq.kicker' | t }}</p>
+        <h2 class="lalatoto-faq__title">{{ heading | escape }}</h2>
+      </header>
 
-    <div class="lalatoto-wash__list" data-lalatoto-accordion>
-      {{- specific -}}
-      {{- general -}}
+      {%- if has_tabs -%}
+        <div class="lalatoto-faq__tabs" role="tablist" hidden>
+          <button type="button" class="lalatoto-faq__tab" role="tab" id="{{ tab_id }}-t1" aria-controls="{{ tab_id }}-p1" aria-selected="true">{{ product.title | escape }}</button>
+          <button type="button" class="lalatoto-faq__tab" role="tab" id="{{ tab_id }}-t2" aria-controls="{{ tab_id }}-p2" aria-selected="false" tabindex="-1">{{ 'lalatoto.faq.general_short' | t }}</button>
+        </div>
+      {%- endif -%}
+
+      {%- if specific != blank -%}
+        <div class="lalatoto-wash__list" id="{{ tab_id }}-p1" {% if has_tabs %}role="tabpanel" aria-labelledby="{{ tab_id }}-t1"{% endif %} data-lalatoto-accordion>
+          {{- specific -}}
+        </div>
+      {%- endif -%}
+      {%- if general != blank -%}
+        <div class="lalatoto-wash__list" id="{{ tab_id }}-p2" {% if has_tabs %}role="tabpanel" aria-labelledby="{{ tab_id }}-t2"{% endif %} data-lalatoto-accordion>
+          {{- general -}}
+        </div>
+      {%- endif -%}
+
+      <p class="lalatoto-wash__foot">{{ 'lalatoto.faq.contact_html' | t }}</p>
     </div>
-
-    <p class="lalatoto-wash__foot">{{ 'lalatoto.faq.contact_html' | t }}</p>
   </div>
 
   <script src="{{ 'lalatoto-accordion.js' | asset_url }}" defer></script>
+  {%- if has_tabs -%}
+    <script>
+      /* Fanerne: viser én liste ad gangen. Uden JavaScript står begge lister fremme. */
+      (function () {
+        var root = document.getElementById('{{ tab_id }}-root');
+        var bar = root.querySelector('.lalatoto-faq__tabs');
+        if (!bar) return;
+        var tabs = Array.prototype.slice.call(bar.querySelectorAll('[role="tab"]'));
+        function select(tab, focus) {
+          tabs.forEach(function (t) {
+            var on = t === tab;
+            t.setAttribute('aria-selected', on ? 'true' : 'false');
+            t.tabIndex = on ? 0 : -1;
+            document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+          });
+          if (focus) tab.focus();
+        }
+        tabs.forEach(function (tab, i) {
+          tab.addEventListener('click', function () { select(tab, false); });
+          tab.addEventListener('keydown', function (e) {
+            if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+            e.preventDefault();
+            select(tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length], true);
+          });
+        });
+        bar.hidden = false;
+        select(tabs[0], false);
+      })();
+    </script>
+  {%- endif -%}
 {%- endif -%}
 
 {% schema %}
