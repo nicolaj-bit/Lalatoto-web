@@ -589,7 +589,16 @@
       "message": "Nachricht",
       "submit": "Nachricht senden",
       "error": "Bitte prüfe, ob Name, E-Mail und Nachricht ausgefüllt sind, und versuche es erneut.",
-      "done_title": "Danke für deine Nachricht"
+      "done_title": "Danke für deine Nachricht",
+      "done_text": "Wir melden uns in der Regel innerhalb von 24 Stunden an Werktagen bei dir.",
+      "page_title": "Kontakt",
+      "page_subtitle": "Ganz wie es dir passt.",
+      "chat_title": "Chat",
+      "chat_text": "Und nein, hier antwortet kein Chatbot. Bei uns beantworten echte Menschen deine Fragen.",
+      "mail_title": "E-Mail",
+      "mail_text_html": "Du schreibst lieber eine E-Mail? Dann schick uns deine Fragen an {{ email }}. Wir antworten in der Regel innerhalb von 24 Stunden an Werktagen.",
+      "form_title": "Kontaktformular",
+      "form_text": "Füll das Kontaktformular unten aus, dann melden wir uns in der Regel innerhalb von 24 Stunden an Werktagen bei dir."
     },
     "collection": {
       "kicker": "Kollektion",

@@ -607,7 +607,16 @@
       "message": "Message",
       "submit": "Send message",
       "error": "Please check that name, email and message are filled in, and try again.",
-      "done_title": "Thank you for your message"
+      "done_title": "Thank you for your message",
+      "done_text": "We’ll get back to you within 24 hours on business days.",
+      "page_title": "Contact us",
+      "page_subtitle": "Whatever works for you",
+      "chat_title": "Chat",
+      "chat_text": "No chatbots here. Just real people answering your questions.",
+      "mail_title": "E-mail",
+      "mail_text_html": "Prefer email? Write to us at {{ email }}. We’ll get back to you within 24 hours on business days.",
+      "form_title": "Contact form",
+      "form_text": "Fill out the form below, and we’ll get back to you within 24 hours on business days."
     },
     "collection": {
       "kicker": "Collection",
