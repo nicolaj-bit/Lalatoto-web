@@ -3199,6 +3199,8 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 .lalatoto-contact__card {
   box-sizing: border-box;
   width: 100%;
+  max-width: 720px;
+  margin-inline: auto;
   scroll-margin-top: 6rem;
 }
 
