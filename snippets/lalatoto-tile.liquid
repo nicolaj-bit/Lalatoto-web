@@ -5,6 +5,11 @@
   @param {object} product - produktet
   @param {object} variant - varianten, kortet står for (farven i første tilgængelige størrelse)
   @param {object} [media] - billedet; tomt: variantens billede og ellers produktets
+
+  «Billede til kort» (metafeltet lalatoto.kortbillede, stående 4:5) bruges
+  før alt andet: først farvens eget, så produktets (kun på kort for hele
+  produktet). Er der et kortbillede, toner det almindelige billede frem ved
+  mus-over.
   @param {boolean} [sold_out] - true dæmper kortet
   @param {boolean} [eager] - true indlæser billedet med det samme (de første kort)
   @param {boolean} [priority] - true beder browseren hente billedet først (første kort)
@@ -15,6 +20,15 @@
 
 {%- liquid
   assign image = media | default: variant.featured_media | default: product.featured_media
+
+  assign card_image = variant.metafields.lalatoto.kortbillede.value
+  if card_image == blank and variant_label == blank
+    assign card_image = product.metafields.lalatoto.kortbillede.value
+  endif
+  if card_image != blank
+    assign hover_media = image
+    assign image = card_image
+  endif
   assign url = variant.url | default: product.url
   assign loading = 'lazy'
   if eager
