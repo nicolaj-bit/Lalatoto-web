@@ -882,8 +882,9 @@ html.lalatoto-scroll-lock body {
   text-decoration: none;
 }
 
+/* Kvadratisk, så produktbillederne (1:1) vises hele uden at blive skåret */
 .lalatoto-tile__media {
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 1;
   overflow: hidden;
   background: #e7e1d8;
 }
@@ -1292,7 +1293,7 @@ html.lalatoto-scroll-lock body {
 
 .lalatoto-upsell__media {
   display: block;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 1;
   overflow: hidden;
   background: #e7e1d8;
 }

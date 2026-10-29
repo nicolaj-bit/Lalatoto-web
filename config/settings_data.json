@@ -32,7 +32,7 @@
     "button_text_transform": "uppercase",
     "button_letter_spacing": 12,
     "round_color_swatches": true,
-    "product_image_aspect_ratio": "portrait_crop",
+    "product_image_aspect_ratio": "square_crop",
     "show_secondary_image": false,
     "show_vendor": false,
     "product_card_text_font": "body",
