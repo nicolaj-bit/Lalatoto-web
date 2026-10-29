@@ -882,8 +882,11 @@ html.lalatoto-scroll-lock body {
   text-decoration: none;
 }
 
+/* Kortet er altid kvadratisk, og billedet tilpasser sig rammen uden at
+   blive skåret (object-fit: contain). Et billede i et andet format end 1:1
+   får en smal kant i kortets baggrundsfarve. */
 .lalatoto-tile__media {
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 1;
   overflow: hidden;
   background: #e7e1d8;
 }
@@ -893,7 +896,7 @@ html.lalatoto-scroll-lock body {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .lalatoto-tile__name {
@@ -1292,7 +1295,7 @@ html.lalatoto-scroll-lock body {
 
 .lalatoto-upsell__media {
   display: block;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 1;
   overflow: hidden;
   background: #e7e1d8;
 }
@@ -1302,7 +1305,7 @@ html.lalatoto-scroll-lock body {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .lalatoto-upsell__info {
