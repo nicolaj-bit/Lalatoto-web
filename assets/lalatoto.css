@@ -882,11 +882,12 @@ html.lalatoto-scroll-lock body {
   text-decoration: none;
 }
 
-/* Kortet er altid kvadratisk, og billedet tilpasser sig rammen uden at
-   blive skåret (object-fit: contain). Et billede i et andet format end 1:1
-   får en smal kant i kortets baggrundsfarve. */
+/* Kortet er stående (4:5) som hos Tekla, og billedet fylder hele rammen
+   (object-fit: cover) – også billedet ved mus-over. «Billede til kort»
+   (lalatoto.kortbillede) lægges ind i 4:5 og vises helt; et kvadratisk
+   produktbillede mister en smal stribe i siderne. */
 .lalatoto-tile__media {
-  aspect-ratio: 1;
+  aspect-ratio: 4 / 5;
   overflow: hidden;
   background: #e7e1d8;
 }
@@ -896,16 +897,15 @@ html.lalatoto-scroll-lock body {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
 }
 
 .lalatoto-tile__name {
   font-family: var(--text-font-family);
-  font-size: 0.6875rem;
+  font-size: 0.8125rem;
   line-height: 1.4;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  text-align: center;
+  letter-spacing: normal;
+  text-transform: none;
 }
 
 .lalatoto-collection .pagination {
@@ -1305,7 +1305,7 @@ html.lalatoto-scroll-lock body {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
 }
 
 .lalatoto-upsell__info {
@@ -4519,9 +4519,41 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 
 .lalatoto-tile__info {
   display: grid;
-  justify-items: center;
-  gap: 0.3125rem;
-  text-align: center;
+  justify-items: start;
+  gap: 0.25rem;
+  padding-inline: 0.75rem;
+  text-align: left;
+}
+
+@media screen and (min-width: 1000px) {
+  .lalatoto-tile__info {
+    padding-inline: 1rem;
+  }
+}
+
+/* Kort fra kant til kant med en hårfin linje imellem, som hos Tekla:
+   sektionerne fylder hele bredden, og kun overskrift, faner og sideskift
+   holder sig inden for den normale bredde og margen. */
+.lalatoto-collection,
+.lalatoto-featured {
+  max-width: none;
+  padding-inline: 0;
+}
+
+.lalatoto-collection__head,
+.lalatoto-collection .pagination,
+.lalatoto-collection__empty,
+.lalatoto-featured__head,
+.lalatoto-featured__tabs {
+  box-sizing: border-box;
+  max-width: var(--lalatoto-max-width);
+  margin-inline: auto;
+  padding-inline: var(--container-gutter);
+}
+
+.lalatoto-collection .lalatoto-tiles,
+.lalatoto-featured__row {
+  gap: 2rem 2px;
 }
 
 .lalatoto-tile__variant {
@@ -4551,11 +4583,10 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   .lalatoto-featured__row {
     grid-template-columns: none;
     grid-auto-flow: column;
-    grid-auto-columns: 68%;
-    gap: 0.875rem;
-    margin-inline: calc(-1 * var(--container-gutter));
-    padding-inline: var(--container-gutter);
-    scroll-padding-inline: var(--container-gutter);
+    grid-auto-columns: 72%;
+    gap: 2px;
+    margin-inline: 0;
+    padding-inline: 0;
     overflow-x: auto;
     overscroll-behavior-x: contain;
     scroll-snap-type: x mandatory;
