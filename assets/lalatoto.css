@@ -882,9 +882,10 @@ html.lalatoto-scroll-lock body {
   text-decoration: none;
 }
 
-/* Kortet er altid kvadratisk, og billedet tilpasser sig rammen uden at
-   blive skåret (object-fit: contain). Et billede i et andet format end 1:1
-   får en smal kant i kortets baggrundsfarve. */
+/* Kortet er altid kvadratisk, og billedet fylder hele rammen
+   (object-fit: cover) – også billedet, der toner frem ved mus-over. Et
+   kvadratisk billede vises helt; et billede i et andet format mister en
+   smal stribe i kanten i stedet for at få grå bjælker. */
 .lalatoto-tile__media {
   aspect-ratio: 1;
   overflow: hidden;
@@ -896,7 +897,7 @@ html.lalatoto-scroll-lock body {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
 }
 
 .lalatoto-tile__name {
@@ -1305,7 +1306,7 @@ html.lalatoto-scroll-lock body {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
 }
 
 .lalatoto-upsell__info {
