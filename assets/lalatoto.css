@@ -4578,35 +4578,9 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   color: rgb(var(--on-sale-text));
 }
 
-/* Telefon og tablet: vandret række med kig ind til næste kort */
-@media screen and (max-width: 999px) {
-  .lalatoto-featured__row {
-    grid-template-columns: none;
-    grid-auto-flow: column;
-    grid-auto-columns: 72%;
-    gap: 2px;
-    margin-inline: 0;
-    padding-inline: 0;
-    overflow-x: auto;
-    overscroll-behavior-x: contain;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
-  }
-
-  .lalatoto-featured__row::-webkit-scrollbar {
-    display: none;
-  }
-
-  .lalatoto-featured__row > li {
-    scroll-snap-align: start;
-  }
-}
-
-@media screen and (min-width: 700px) and (max-width: 999px) {
-  .lalatoto-featured__row {
-    grid-auto-columns: 40%;
-  }
-}
+/* Telefon og tablet: to kort side om side fra kant til kant, som i
+   kollektionen (nettet kommer fra .lalatoto-tiles). Ingen vandret række,
+   hvor det næste kort bliver skåret af. */
 
 @media (prefers-reduced-motion: reduce) {
   .lalatoto-tile__media .lalatoto-tile__hover,
