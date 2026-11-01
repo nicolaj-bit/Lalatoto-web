@@ -93,7 +93,7 @@
         "products_count": 4,
         "hover_image": true,
         "hide_sold_out": false,
-        "show_price": false
+        "show_price": true
       }
     },
     "intro": {
