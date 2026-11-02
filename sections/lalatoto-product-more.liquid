@@ -1,0 +1,201 @@
+{%- comment -%}
+  Lalatoto: nederst på produktsiden, over FAQ'en.
+
+  1. En beige boks med billede og en kort tekst om materialerne og et link
+     til materialesiden. Billedet vælges i temaeditoren; er det tomt,
+     bruges produktets tredje (ellers andet) billede.
+  2. «Andre kiggede også på»: Shopifys anbefalinger til produktet (de
+     samme som «relaterede produkter»), vist som kortene fra kollektionen.
+     Temaets <product-recommendations> henter dem, når siden er indlæst.
+     Uden anbefalinger vises rækken ikke.
+
+  Teksterne står i sprogfilerne (lalatoto.product_more.*) og kan rettes i
+  temaeditoren.
+{%- endcomment -%}
+
+{%- liquid
+  assign image = section.settings.image
+  if image == blank
+    assign media_index = 2
+    if product.media.size < 3
+      assign media_index = 1
+    endif
+    assign candidate = product.media[media_index]
+    if candidate.media_type == 'image'
+      assign image = candidate
+    endif
+  endif
+
+  assign kicker = section.settings.kicker
+  if kicker == blank
+    assign kicker = 'lalatoto.product_more.kicker' | t
+  endif
+  assign heading = section.settings.heading
+  if heading == blank
+    assign heading = 'lalatoto.product_more.heading_html' | t
+  endif
+  assign text = section.settings.text
+  if text == blank
+    assign text = 'lalatoto.product_more.text' | t
+  endif
+  assign link_label = section.settings.link_label
+  if link_label == blank
+    assign link_label = 'lalatoto.product_more.link' | t
+  endif
+  assign link_url = section.settings.link_url
+  if link_url == blank
+    assign link_url = pages.materialer.url | default: routes.root_url
+  endif
+  assign related_heading = section.settings.related_heading
+  if related_heading == blank
+    assign related_heading = 'lalatoto.product_more.related' | t
+  endif
+-%}
+
+<div class="lalatoto-more color-scheme color-scheme--{{ section.settings.color_scheme.id }}">
+  {%- if section.settings.show_story -%}
+    <div class="lalatoto-more__story">
+      {%- if image != blank -%}
+        <div class="lalatoto-more__media">
+          {{- image | image_url: width: 1600 | image_tag: loading: 'lazy', sizes: '(max-width: 999px) 100vw, 50vw', widths: '400,600,800,1000,1200,1600', alt: '' -}}
+        </div>
+      {%- endif -%}
+      <div class="lalatoto-more__text">
+        <p class="lalatoto-kicker">{{ kicker | escape }}</p>
+        <h2 class="lalatoto-more__title">{{ heading }}</h2>
+        <p class="lalatoto-more__lead">{{ text | escape }}</p>
+        <a class="lalatoto-more__link" href="{{ link_url }}">{{ link_label | escape }}</a>
+      </div>
+    </div>
+  {%- endif -%}
+
+  {%- if section.settings.show_related -%}
+    <product-recommendations class="lalatoto-more__related" product="{{ product.id }}" limit="{{ section.settings.related_count }}" intent="related">
+      {%- if recommendations.performed and recommendations.products_count > 0 -%}
+        <h2 class="lalatoto-more__related-title">{{ related_heading | escape }}</h2>
+        <ul class="lalatoto-tiles lalatoto-featured__row unstyled-list" role="list">
+          {%- for product in recommendations.products -%}
+            {%- liquid
+              assign hover = nil
+              if product.media.size > 1
+                assign hover = product.media[1]
+                if hover.media_type != 'image'
+                  assign hover = nil
+                endif
+              endif
+              assign sold_out = true
+              if product.available
+                assign sold_out = false
+              endif
+            -%}
+            {%- render 'lalatoto-tile',
+              product: product,
+              variant: product.selected_or_first_available_variant,
+              sold_out: sold_out,
+              hover_media: hover,
+              show_price: true
+            -%}
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+    </product-recommendations>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Mere om produktet",
+  "class": "shopify-section--lalatoto-more",
+  "tag": "section",
+  "enabled_on": {
+    "templates": ["product"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Farveskema",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Boks om materialerne"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_story",
+      "label": "Vis boksen",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Billede",
+      "info": "Tomt: produktets tredje billede."
+    },
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Lille etiket",
+      "info": "Tom: «Vores materialer»."
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Overskrift",
+      "info": "Tom: «Ren uld og bomuld. Ingen polyester.»"
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Tekst"
+    },
+    {
+      "type": "text",
+      "id": "link_label",
+      "label": "Linktekst",
+      "info": "Tom: «Læs om materialerne»."
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Link",
+      "info": "Tomt: materialesiden."
+    },
+    {
+      "type": "header",
+      "content": "Andre kiggede også på"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_related",
+      "label": "Vis produkter",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "related_heading",
+      "label": "Overskrift",
+      "info": "Tom: «Andre kiggede også på»."
+    },
+    {
+      "type": "range",
+      "id": "related_count",
+      "label": "Antal produkter",
+      "min": 2,
+      "max": 8,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "paragraph",
+      "content": "Produkterne er Shopifys anbefalinger. Vil I selv vælge, så brug appen Search & Discovery → Produktanbefalinger."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Mere om produktet"
+    }
+  ]
+}
+{% endschema %}

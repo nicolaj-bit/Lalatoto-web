@@ -586,6 +586,13 @@
       "bundle_hint": "Choose at least two pieces and save {{ percent }}% on all of them.",
       "bundle_saving": "Set discount {{ percent }}%"
     },
+    "product_more": {
+      "kicker": "Our materials",
+      "heading_html": "Pure wool and cotton.<br>No polyester.",
+      "text": "We only use natural materials – even where you can’t see them.",
+      "link": "Read about our materials",
+      "related": "Others also looked at"
+    },
     "faq": {
       "kicker": "FAQ",
       "heading": "Questions and answers",
