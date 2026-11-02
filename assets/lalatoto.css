@@ -3353,6 +3353,17 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   display: none;
 }
 
+/* Uden billede står teksten alene i ét felt, centreret */
+.lalatoto-image-text.lalatoto-image-text--no-media {
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+  text-align: center;
+}
+
+.lalatoto-image-text--no-media .lalatoto-image-text__content {
+  justify-items: center;
+}
+
 /* ===============================================================
  * FAQ UNDER PRODUKTET
  * Overskrift til venstre, faner (produktet / levering og retur) som små

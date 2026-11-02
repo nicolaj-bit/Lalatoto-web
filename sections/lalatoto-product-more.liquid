@@ -3,8 +3,11 @@
 
   1. Billede med en kort tekst om materialerne og et link til
      materialesiden – samme opbygning og stil som «billede med tekst» på
-     forsiden (lalatoto-image-text). Billedet vælges i temaeditoren; er det tomt,
-     bruges produktets tredje (ellers andet) billede.
+     forsiden (lalatoto-image-text). Billedet vælges pr. produkt i metafeltet
+     «Billede til «Mere om produktet»» (lalatoto.materiale_billede). Er det
+     tomt, bruges billedet fra temaeditoren og ellers produktets tredje
+     (eller andet) billede. Videoer springes over, og findes der intet
+     billede, vises teksten alene – aldrig en pladsholder.
   2. «Andre kiggede også på»: produkter fra kollektionen «produkter»
      (kan ændres i temaeditoren), valgt automatisk og vist med overskrift
      og kort som «Shop» på forsiden (lalatoto-featured).
@@ -14,15 +17,20 @@
 {%- endcomment -%}
 
 {%- liquid
-  assign image = section.settings.image
+  assign image = product.metafields.lalatoto.materiale_billede.value
   if image == blank
-    assign media_index = 2
-    if product.media.size < 3
-      assign media_index = 1
-    endif
-    assign candidate = product.media[media_index]
-    if candidate.media_type == 'image'
-      assign image = candidate
+    assign image = section.settings.image
+  endif
+  if image == blank
+    comment
+      Produktets egne billeder uden videoer. Det første er allerede vist
+      øverst, så vi tager det tredje, ellers det andet.
+    endcomment
+    assign product_images = product.media | where: 'media_type', 'image'
+    if product_images.size > 2
+      assign image = product_images[2]
+    elsif product_images.size > 1
+      assign image = product_images[1]
     endif
   endif
 
@@ -51,14 +59,12 @@
 <div class="lalatoto-more color-scheme color-scheme--{{ section.settings.color_scheme.id }}">
   {%- if section.settings.show_story -%}
     {%- comment -%} Samme opbygning og stil som «billede med tekst» på forsiden {%- endcomment -%}
-    <div class="lalatoto-image-text">
-      <div class="lalatoto-image-text__media">
-        {%- if image != blank -%}
+    <div class="lalatoto-image-text{% if image == blank %} lalatoto-image-text--no-media{% endif %}">
+      {%- if image != blank -%}
+        <div class="lalatoto-image-text__media">
           {{- image | image_url: width: 1600 | image_tag: loading: 'lazy', sizes: '(min-width: 1000px) 55vw, 100vw', widths: '600,800,1000,1200,1400,1600', alt: '' -}}
-        {%- else -%}
-          {{- 'lifestyle-2' | placeholder_svg_tag: 'placeholder' -}}
-        {%- endif -%}
-      </div>
+        </div>
+      {%- endif -%}
       <div class="lalatoto-image-text__content">
         {%- if section.settings.kicker != blank -%}
           <p class="lalatoto-kicker">{{ section.settings.kicker | escape }}</p>
@@ -193,7 +199,7 @@
       "type": "image_picker",
       "id": "image",
       "label": "Billede",
-      "info": "Tomt: produktets tredje billede."
+      "info": "Bruges når produktets metafelt «Billede til «Mere om produktet»» er tomt. Tomt her: produktets tredje billede."
     },
     {
       "type": "text",
