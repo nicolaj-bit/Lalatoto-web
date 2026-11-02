@@ -100,10 +100,20 @@
         "heading": "",
         "show_general": true
       }
+    },
+    "more": {
+      "type": "lalatoto-product-more",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "show_story": true,
+        "show_related": true,
+        "related_count": 4
+      }
     }
   },
   "order": [
     "main",
+    "more",
     "faq",
     "related-products"
   ]

@@ -590,6 +590,13 @@
       "bundle_hint": "Vælg mindst to dele af sættet, og spar {{ percent }} % på dem alle.",
       "bundle_saving": "Sætrabat {{ percent }} %"
     },
+    "product_more": {
+      "kicker": "Vores materialer",
+      "heading_html": "Ren uld og bomuld.<br>Ingen polyester.",
+      "text": "Vi bruger kun naturlige materialer – også dér, hvor du ikke kan se det.",
+      "link": "Læs om materialerne",
+      "related": "Andre kiggede også på"
+    },
     "faq": {
       "kicker": "FAQ",
       "heading": "Spørgsmål og svar",

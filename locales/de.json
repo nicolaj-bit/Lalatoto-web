@@ -568,6 +568,13 @@
       "view_all": "Zur Kollektion",
       "tabs": "Kollektionen"
     },
+    "product_more": {
+      "kicker": "Unsere Materialien",
+      "heading_html": "Reine Wolle und Baumwolle.<br>Kein Polyester.",
+      "text": "Wir verwenden nur natürliche Materialien – auch dort, wo man sie nicht sieht.",
+      "link": "Mehr über unsere Materialien",
+      "related": "Andere sahen sich auch an"
+    },
     "faq": {
       "kicker": "FAQ",
       "heading": "Fragen und Antworten",
