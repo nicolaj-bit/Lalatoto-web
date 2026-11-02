@@ -1,0 +1,171 @@
+{%- doc -%}
+  Lalatoto: «Byg sengen færdig» i kurven.
+
+  Ligger der én eller flere af sengens dele (standard: sengeslange,
+  sengerand og sengetøj) i kurven, viser blokken, hvor mange af delene
+  kunden har i farven fra den første del, og foreslår de manglende dele i
+  samme farve. Har kunden alle dele eller ingen af dem, vises intet.
+
+  Farven er produktets første valg («Dit valg»), så delene skal hedde det
+  samme (fx «Sunflower») på tværs af produkterne.
+
+  Produkter med flere valg end farven (sengetøjets størrelse) åbner
+  Prestiges hurtigkøb med farven valgt, så kunden selv vælger størrelsen.
+  Er farven udsolgt, linker rækken til produktet i stedet for at tilføje.
+
+  @param {product[]} [products] - delene valgt i temaeditoren
+{%- enddoc -%}
+
+{%- liquid
+  assign bed_products = products
+  if bed_products == blank or bed_products.size == 0
+    assign bed_handles = 'luksus-sengeslange,sengerand,sengetoj' | split: ','
+    assign bed_products = ''
+    for handle in bed_handles
+      if all_products[handle].id != blank
+        assign bed_products = bed_products | append: handle | append: ','
+      endif
+    endfor
+    assign bed_products = bed_products | split: ','
+  else
+    assign bed_products = bed_products | map: 'handle'
+  endif
+
+  assign total = bed_products.size
+
+  comment
+    Farven og de dele, der allerede ligger i kurven
+  endcomment
+  assign color = ''
+  assign in_cart = ','
+  assign count = 0
+  for line_item in cart.items
+    assign item_key = ',' | append: line_item.product.handle | append: ','
+    if bed_products contains line_item.product.handle
+      if color == blank
+        assign color = line_item.variant.option1
+      endif
+      unless in_cart contains item_key
+        assign in_cart = in_cart | append: line_item.product.handle | append: ','
+        assign count = count | plus: 1
+      endunless
+    endif
+  endfor
+-%}
+
+{%- if color != blank and count < total and total > 1 -%}
+  {%- capture rows -%}
+    {%- for handle in bed_products -%}
+      {%- assign handle_mark = ',' | append: handle | append: ',' -%}
+      {%- if in_cart contains handle_mark -%}{%- continue -%}{%- endif -%}
+
+      {%- liquid
+        assign part = all_products[handle]
+        assign variant = blank
+        assign first_match = blank
+        for candidate in part.variants
+          if candidate.option1 == color
+            if first_match == blank
+              assign first_match = candidate
+            endif
+            if candidate.available
+              assign variant = candidate
+              break
+            endif
+          endif
+        endfor
+        if variant == blank
+          assign variant = first_match
+        endif
+      -%}
+      {%- if variant == blank -%}{%- continue -%}{%- endif -%}
+
+      {%- liquid
+        assign tilbud = part.metafields.lalatoto.tilbud.value | default: 0 | plus: 0
+        if tilbud < 1 or tilbud > 90
+          assign tilbud = 0
+        endif
+        assign price = variant.price
+        if tilbud > 0
+          assign tilbud_factor = 100 | minus: tilbud
+          assign price = variant.price | times: tilbud_factor | divided_by: 100.0 | round
+        endif
+        assign price_text = price | money_without_trailing_zeros
+
+        assign image = variant.featured_image | default: part.featured_media
+        assign variant_url = part.url | append: '?variant=' | append: variant.id
+        assign modal_id = 'lalatoto-bed-modal-' | append: part.id
+      -%}
+
+      <article class="lalatoto-upsell__card lalatoto-bed__item" data-product-id="{{ part.id }}">
+        <a href="{{ variant_url }}" class="lalatoto-upsell__media" tabindex="-1" aria-hidden="true">
+          {%- if image != blank -%}
+            {{- image | image_url: width: 192 | image_tag: loading: 'lazy', sizes: '64px', widths: '64,128,192', alt: '' -}}
+          {%- endif -%}
+        </a>
+
+        <div class="lalatoto-upsell__info">
+          <a href="{{ variant_url }}" class="lalatoto-upsell__name">{{ part.title }}</a>
+          <p class="lalatoto-upsell__price">
+            {{- color | escape }} ·
+            {% if variant.available -%}
+              {%- if part.price_varies -%}
+                {{- 'lalatoto.cart.upsell_from' | t: price: price_text -}}
+              {%- else -%}
+                {{- price_text -}}
+              {%- endif -%}
+            {%- else -%}
+              {{- 'lalatoto.cart.bed_sold_out' | t -}}
+            {%- endif -%}
+          </p>
+        </div>
+
+        {%- if variant.available == false -%}
+          <a href="{{ variant_url }}" class="lalatoto-upsell__add lalatoto-bed__see" aria-label="{{ 'lalatoto.cart.bed_see_named' | t: title: part.title | escape }}">
+            <span class="lalatoto-bed__arrow" aria-hidden="true"></span>
+          </a>
+        {%- elsif part.variants.size == 1 or part.options.size == 1 -%}
+          <product-form class="lalatoto-upsell__form">
+            {%- form 'product', part -%}
+              <input type="hidden" name="id" value="{{ variant.id }}">
+              <input type="hidden" name="quantity" value="1">
+              <input type="hidden" name="on_success" value="force_open_drawer">
+              <button type="submit" class="lalatoto-upsell__add" aria-label="{{ 'lalatoto.cart.upsell_add_named' | t: title: part.title | escape }}">
+                <span class="lalatoto-upsell__plus" aria-hidden="true"></span>
+              </button>
+            {%- endform -%}
+          </product-form>
+        {%- else -%}
+          <quick-buy-modal
+            id="{{ modal_id }}"
+            handle="{{ part.handle }}?variant={{ variant.id }}"
+            class="quick-buy-modal modal modal--lg color-scheme color-scheme--dialog"
+            aria-label="{{ 'product.general.choose_options_with_title' | t: title: part.title | escape }}"
+          ></quick-buy-modal>
+          <button type="button" class="lalatoto-upsell__add" aria-controls="{{ modal_id }}" aria-label="{{ 'lalatoto.cart.upsell_choose_named' | t: title: part.title | escape }}">
+            <span class="lalatoto-upsell__plus" aria-hidden="true"></span>
+          </button>
+        {%- endif -%}
+      </article>
+    {%- endfor -%}
+  {%- endcapture -%}
+
+  {%- if rows != blank -%}
+    {%- assign percent = count | times: 100 | divided_by: total -%}
+    <div class="lalatoto-bed">
+      <p class="lalatoto-kicker lalatoto-bed__kicker">{{ 'lalatoto.cart.bed_kicker' | t }}</p>
+      <p class="lalatoto-bed__title">{{ 'lalatoto.cart.bed_progress' | t: count: count, total: total, color: color }}</p>
+      <div
+        class="lalatoto-bed__bar"
+        role="progressbar"
+        aria-valuemin="0"
+        aria-valuemax="{{ total }}"
+        aria-valuenow="{{ count }}"
+        aria-label="{{ 'lalatoto.cart.bed_progress_label' | t: count: count, total: total | escape }}"
+      >
+        <span style="width: {{ percent }}%"></span>
+      </div>
+      <div class="lalatoto-upsell__list lalatoto-bed__list" role="list">{{ rows }}</div>
+    </div>
+  {%- endif -%}
+{%- endif -%}

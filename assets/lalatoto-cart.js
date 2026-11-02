@@ -9,7 +9,8 @@
  *      d. produkter, kunden senest har kigget på (gemt af produktsiden).
  *    Kortene hentes som færdig HTML fra sektionen lalatoto-cart-upsell, så
  *    pris, sprog og tilføj-knap følger temaet. Intet, der allerede ligger i
- *    kurven, vises. Resultatet huskes, så kurven ikke blinker, når den
+ *    kurven eller i «Byg sengen færdig», vises. Resultatet huskes, så
+ *    kurven ikke blinker, når den
  *    genindlæses efter fx et ændret antal.
  *
  * 2. Handelsbetingelser (<lalatoto-terms>): betalingen går ikke videre, før
@@ -93,7 +94,14 @@
   class LalatotoCartUpsell extends HTMLElement {
     connectedCallback() {
       this.list = this.querySelector('.lalatoto-upsell__list');
-      this.inCart = ids(this.dataset.cartIds);
+      /* Dele, som «Byg sengen færdig» allerede foreslår, gentages ikke her */
+      var bedIds = Array.prototype.map.call(
+        (this.parentElement || this).querySelectorAll('.lalatoto-bed__item'),
+        function (item) {
+          return item.dataset.productId;
+        }
+      );
+      this.inCart = ids(this.dataset.cartIds).concat(bedIds);
       this.manual = ids(this.dataset.manualIds);
       this.limit = parseInt(this.dataset.limit, 10) || 3;
       this.key = this.inCart.join(',') + '|' + this.manual.join(',') + '|' + this.limit;

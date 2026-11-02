@@ -1419,6 +1419,59 @@ html.lalatoto-scroll-lock body {
   }
 }
 
+/* ---------------------------------------------------------------
+ * Byg sengen færdig (kurven): status for sengens dele i samme farve
+ * og de manglende dele som almindelige forslagskort.
+ * --------------------------------------------------------------- */
+.lalatoto-bed {
+  display: grid;
+  gap: 0.5rem;
+  margin-block-start: 1rem;
+  padding-block: 1rem 0.25rem;
+  border-block-start: 1px solid #d7d0c4;
+  color: #2a2724;
+}
+
+.lalatoto-bed__kicker {
+  margin: 0;
+  color: #6e675e;
+}
+
+.lalatoto-bed__title {
+  margin: 0;
+  font-family: var(--heading-font-family);
+  font-size: 1.25rem;
+  line-height: 1.25;
+}
+
+.lalatoto-bed__bar {
+  height: 4px;
+  margin-block: 0.25rem 0.5rem;
+  background: #d7d0c4;
+}
+
+.lalatoto-bed__bar span {
+  display: block;
+  height: 100%;
+  background: #2a2724;
+  transition: width 0.4s ease;
+}
+
+/* Pil i stedet for plus, når farven er udsolgt: rækken linker til produktet */
+.lalatoto-bed__arrow {
+  width: 7px;
+  height: 7px;
+  margin-inline-start: -3px;
+  border-block-start: 1px solid currentColor;
+  border-inline-end: 1px solid currentColor;
+  transform: rotate(45deg);
+}
+
+/* Står «Byg sengen færdig» lige over, rykkes forslagene lidt tættere på */
+.lalatoto-bed + .lalatoto-upsell {
+  margin-block-start: 0.5rem;
+}
+
 /* ===============================================================
  * CLUB NO SLEEP-APPEN (nederst på forsiden)
  * Dæmpet baggrund i fuld bredde, tekst til venstre og to telefoner til højre.

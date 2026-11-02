@@ -655,6 +655,11 @@
       "upsell_add_named": "Add {{ title }} to cart",
       "upsell_choose": "Choose",
       "upsell_choose_named": "Choose size or colour for {{ title }}",
+      "bed_kicker": "Complete the bed",
+      "bed_progress": "{{ count }} of {{ total }} pieces in {{ color }}",
+      "bed_progress_label": "{{ count }} of {{ total }} pieces are in your cart",
+      "bed_sold_out": "Sold out right now",
+      "bed_see_named": "View {{ title }}",
       "upsell_from": "From {{ price }}"
     },
     "app": {
