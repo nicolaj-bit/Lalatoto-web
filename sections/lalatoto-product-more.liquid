@@ -5,11 +5,9 @@
      materialesiden – samme opbygning og stil som «billede med tekst» på
      forsiden (lalatoto-image-text). Billedet vælges i temaeditoren; er det tomt,
      bruges produktets tredje (ellers andet) billede.
-  2. «Andre kiggede også på»: Shopifys anbefalinger til produktet (de
-     samme som «relaterede produkter»), med overskrift og kort som «Shop»
-     på forsiden (lalatoto-featured).
-     Temaets <product-recommendations> henter dem, når siden er indlæst.
-     Uden anbefalinger vises rækken ikke.
+  2. «Andre kiggede også på»: produkter fra kollektionen «produkter»
+     (kan ændres i temaeditoren), valgt automatisk og vist med overskrift
+     og kort som «Shop» på forsiden (lalatoto-featured).
 
   Teksterne står i sprogfilerne (lalatoto.product_more.*) og kan rettes i
   temaeditoren.
@@ -73,40 +71,96 @@
   {%- endif -%}
 
   {%- if section.settings.show_related -%}
-    {%- comment -%} Samme overskrift og kort som «Shop» på forsiden {%- endcomment -%}
-    <product-recommendations class="lalatoto-featured lalatoto-more__related" product="{{ product.id }}" limit="{{ section.settings.related_count }}" intent="related">
-      {%- if recommendations.performed and recommendations.products_count > 0 -%}
+    {%- liquid
+      comment
+        Produkterne tages fra kollektionen (standard «produkter»). Det viste
+        produkt springes over, og listen starter lige efter det i
+        kollektionen, så hver produktside viser sine «naboer» og ikke de
+        samme fire. Udsolgte produkter kommer kun med, hvis der ikke er nok
+        andre.
+      endcomment
+      assign source = section.settings.related_collection
+      if source == blank
+        assign source = collections['produkter']
+      endif
+      assign limit = section.settings.related_count
+
+      assign current_index = 0
+      for p in source.products limit: 50
+        if p.id == product.id
+          assign current_index = forloop.index
+          break
+        endif
+      endfor
+
+      assign picked = ''
+      assign picked_count = 0
+      for round in (1..2)
+        for step in (1..50)
+          if picked_count >= limit
+            break
+          endif
+          assign total = source.products.size | at_most: 50
+          if total == 0
+            break
+          endif
+          if step > total
+            break
+          endif
+          assign i = current_index | plus: step | minus: 1 | modulo: total
+          assign p = source.products[i]
+          if p.id == product.id
+            continue
+          endif
+          assign marker = '|' | append: p.handle | append: '|'
+          if picked contains marker
+            continue
+          endif
+          if round == 1 and p.available == false
+            continue
+          endif
+          assign picked = picked | append: marker
+          assign picked_count = picked_count | plus: 1
+        endfor
+      endfor
+    -%}
+    {%- if picked_count > 0 -%}
+      {%- comment -%} Samme overskrift og kort som «Shop» på forsiden {%- endcomment -%}
+      <div class="lalatoto-featured lalatoto-more__related">
         <header class="lalatoto-featured__head">
           <div>
             <h2 class="lalatoto-featured__title">{{ related_heading | escape }}</h2>
           </div>
         </header>
         <ul class="lalatoto-tiles lalatoto-featured__row unstyled-list" role="list">
-          {%- for product in recommendations.products -%}
+          {%- assign handles = picked | split: '|' -%}
+          {%- for h in handles -%}
+            {%- if h == blank -%}{%- continue -%}{%- endif -%}
             {%- liquid
+              assign p = all_products[h]
               assign hover = nil
-              if product.media.size > 1
-                assign hover = product.media[1]
+              if p.media.size > 1
+                assign hover = p.media[1]
                 if hover.media_type != 'image'
                   assign hover = nil
                 endif
               endif
               assign sold_out = true
-              if product.available
+              if p.available
                 assign sold_out = false
               endif
             -%}
             {%- render 'lalatoto-tile',
-              product: product,
-              variant: product.selected_or_first_available_variant,
+              product: p,
+              variant: p.selected_or_first_available_variant,
               sold_out: sold_out,
               hover_media: hover,
               show_price: true
             -%}
           {%- endfor -%}
         </ul>
-      {%- endif -%}
-    </product-recommendations>
+      </div>
+    {%- endif -%}
   {%- endif -%}
 </div>
 
@@ -187,6 +241,12 @@
       "info": "Tom: «Andre kiggede også på»."
     },
     {
+      "type": "collection",
+      "id": "related_collection",
+      "label": "Kollektion",
+      "info": "Tom: kollektionen «produkter»."
+    },
+    {
       "type": "range",
       "id": "related_count",
       "label": "Antal produkter",
@@ -197,7 +257,7 @@
     },
     {
       "type": "paragraph",
-      "content": "Produkterne er Shopifys anbefalinger. Vil I selv vælge, så brug appen Search & Discovery → Produktanbefalinger."
+      "content": "Produkterne vælges selv fra kollektionen: det viste produkt springes over, og der vises de produkter, der står efter det i kollektionen. Udsolgte kommer sidst."
     }
   ],
   "presets": [
