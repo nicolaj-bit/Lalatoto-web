@@ -1,11 +1,13 @@
 {%- comment -%}
   Lalatoto: nederst på produktsiden, over FAQ'en.
 
-  1. En beige boks med billede og en kort tekst om materialerne og et link
-     til materialesiden. Billedet vælges i temaeditoren; er det tomt,
+  1. Billede med en kort tekst om materialerne og et link til
+     materialesiden – samme opbygning og stil som «billede med tekst» på
+     forsiden (lalatoto-image-text). Billedet vælges i temaeditoren; er det tomt,
      bruges produktets tredje (ellers andet) billede.
   2. «Andre kiggede også på»: Shopifys anbefalinger til produktet (de
-     samme som «relaterede produkter»), vist som kortene fra kollektionen.
+     samme som «relaterede produkter»), med overskrift og kort som «Shop»
+     på forsiden (lalatoto-featured).
      Temaets <product-recommendations> henter dem, når siden er indlæst.
      Uden anbefalinger vises rækken ikke.
 
@@ -26,10 +28,6 @@
     endif
   endif
 
-  assign kicker = section.settings.kicker
-  if kicker == blank
-    assign kicker = 'lalatoto.product_more.kicker' | t
-  endif
   assign heading = section.settings.heading
   if heading == blank
     assign heading = 'lalatoto.product_more.heading_html' | t
@@ -54,25 +52,35 @@
 
 <div class="lalatoto-more color-scheme color-scheme--{{ section.settings.color_scheme.id }}">
   {%- if section.settings.show_story -%}
-    <div class="lalatoto-more__story">
-      {%- if image != blank -%}
-        <div class="lalatoto-more__media">
-          {{- image | image_url: width: 1600 | image_tag: loading: 'lazy', sizes: '(max-width: 999px) 100vw, 50vw', widths: '400,600,800,1000,1200,1600', alt: '' -}}
-        </div>
-      {%- endif -%}
-      <div class="lalatoto-more__text">
-        <p class="lalatoto-kicker">{{ kicker | escape }}</p>
-        <h2 class="lalatoto-more__title">{{ heading }}</h2>
-        <p class="lalatoto-more__lead">{{ text | escape }}</p>
-        <a class="lalatoto-more__link" href="{{ link_url }}">{{ link_label | escape }}</a>
+    {%- comment -%} Samme opbygning og stil som «billede med tekst» på forsiden {%- endcomment -%}
+    <div class="lalatoto-image-text">
+      <div class="lalatoto-image-text__media">
+        {%- if image != blank -%}
+          {{- image | image_url: width: 1600 | image_tag: loading: 'lazy', sizes: '(min-width: 1000px) 55vw, 100vw', widths: '600,800,1000,1200,1400,1600', alt: '' -}}
+        {%- else -%}
+          {{- 'lifestyle-2' | placeholder_svg_tag: 'placeholder' -}}
+        {%- endif -%}
+      </div>
+      <div class="lalatoto-image-text__content">
+        {%- if section.settings.kicker != blank -%}
+          <p class="lalatoto-kicker">{{ section.settings.kicker | escape }}</p>
+        {%- endif -%}
+        <h2 class="lalatoto-image-text__title">{{ heading }}</h2>
+        <div class="lalatoto-image-text__text"><p>{{ text | escape }}</p></div>
+        <a href="{{ link_url }}" class="lalatoto-image-text__link">{{ link_label | escape }}</a>
       </div>
     </div>
   {%- endif -%}
 
   {%- if section.settings.show_related -%}
-    <product-recommendations class="lalatoto-more__related" product="{{ product.id }}" limit="{{ section.settings.related_count }}" intent="related">
+    {%- comment -%} Samme overskrift og kort som «Shop» på forsiden {%- endcomment -%}
+    <product-recommendations class="lalatoto-featured lalatoto-more__related" product="{{ product.id }}" limit="{{ section.settings.related_count }}" intent="related">
       {%- if recommendations.performed and recommendations.products_count > 0 -%}
-        <h2 class="lalatoto-more__related-title">{{ related_heading | escape }}</h2>
+        <header class="lalatoto-featured__head">
+          <div>
+            <h2 class="lalatoto-featured__title">{{ related_heading | escape }}</h2>
+          </div>
+        </header>
         <ul class="lalatoto-tiles lalatoto-featured__row unstyled-list" role="list">
           {%- for product in recommendations.products -%}
             {%- liquid
@@ -137,7 +145,7 @@
       "type": "text",
       "id": "kicker",
       "label": "Lille etiket",
-      "info": "Tom: «Vores materialer»."
+      "info": "Vises kun, når den er udfyldt."
     },
     {
       "type": "inline_richtext",
