@@ -67,7 +67,8 @@
         "more_info": {
           "type": "lalatoto_more_info",
           "settings": {
-            "sections": "standard"
+            "sections": "standard",
+            "preorder_text": "Som lille virksomhed kan det være svært at føre et stort lager, og derfor åbner vi med jævne mellemrum op for forudbestillinger, så du kan sikre dig lige præcis dén variant, som du drømmer om.\n\nNår du placerer en forudbestilling hos os, reserverer vi dit ønskede produkt med det samme.\n\nSå snart produktet ankommer på vores lager i Høng, pakker og sender vi det til dig, og først når ordren er afsendt, trækker vi beløbet.\n\nForventet afsendelse: {dato}. Flytter datoen sig, får du besked på mail."
           }
         },
         "waitlist": {
@@ -81,7 +82,7 @@
           }
         },
         "onskeskyen": {
-          "type": "shopify://apps/onskeskyen/blocks/wishlist-button/be6e5a80-54ea-40af-aa80-5746282173b8",
+          "type": "shopify://apps/oenskeskyen/blocks/wishlist-button/be6e5a80-54ea-40af-aa80-5746282173b8",
           "disabled": true,
           "settings": {
             "text": "Add to wish cloud",
