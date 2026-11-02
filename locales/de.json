@@ -636,7 +636,6 @@
       "bed_progress": "{{ count }} von {{ total }} Teilen in {{ color }}",
       "bed_progress_label": "{{ count }} von {{ total }} Teilen im Warenkorb",
       "bed_sold_out": "Gerade ausverkauft",
-      "bed_see_named": "{{ title }} ansehen",
       "upsell_from": "Ab {{ price }}",
       "preorder_now": "Heute fällig",
       "preorder_later": "Wird beim Versand abgebucht",

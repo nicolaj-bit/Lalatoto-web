@@ -663,7 +663,6 @@
       "bed_progress": "{{ count }} af {{ total }} dele i {{ color }}",
       "bed_progress_label": "{{ count }} af {{ total }} dele er i kurven",
       "bed_sold_out": "Udsolgt lige nu",
-      "bed_see_named": "Se {{ title }}",
       "upsell_from": "Fra {{ price }}"
     },
     "app": {
