@@ -1457,7 +1457,7 @@ html.lalatoto-scroll-lock body {
   transition: width 0.4s ease;
 }
 
-/* Pil i stedet for plus, når farven er udsolgt: rækken linker til produktet */
+/* Pil i stedet for plus, når farven er udsolgt */
 .lalatoto-bed__arrow {
   width: 7px;
   height: 7px;

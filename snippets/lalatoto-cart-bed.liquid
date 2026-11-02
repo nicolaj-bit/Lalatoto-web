@@ -9,9 +9,9 @@
   Farven er produktets første valg («Dit valg»), så delene skal hedde det
   samme (fx «Sunflower») på tværs af produkterne.
 
-  Produkter med flere valg end farven (sengetøjets størrelse) åbner
-  Prestiges hurtigkøb med farven valgt, så kunden selv vælger størrelsen.
-  Er farven udsolgt, linker rækken til produktet i stedet for at tilføje.
+  Knappen åbner Prestiges hurtigkøb med farven valgt – som de øvrige
+  forslag i kurven – så kunden kan vælge farve og størrelse. Er farven
+  udsolgt, står det i rækken, og knappen er en pil i stedet for et plus.
 
   @param {product[]} [products] - delene valgt i temaeditoren
 {%- enddoc -%}
@@ -120,32 +120,24 @@
           </p>
         </div>
 
-        {%- if variant.available == false -%}
-          <a href="{{ variant_url }}" class="lalatoto-upsell__add lalatoto-bed__see" aria-label="{{ 'lalatoto.cart.bed_see_named' | t: title: part.title | escape }}">
-            <span class="lalatoto-bed__arrow" aria-hidden="true"></span>
-          </a>
-        {%- elsif part.variants.size == 1 or part.options.size == 1 -%}
-          <product-form class="lalatoto-upsell__form">
-            {%- form 'product', part -%}
-              <input type="hidden" name="id" value="{{ variant.id }}">
-              <input type="hidden" name="quantity" value="1">
-              <input type="hidden" name="on_success" value="force_open_drawer">
-              <button type="submit" class="lalatoto-upsell__add" aria-label="{{ 'lalatoto.cart.upsell_add_named' | t: title: part.title | escape }}">
-                <span class="lalatoto-upsell__plus" aria-hidden="true"></span>
-              </button>
-            {%- endform -%}
-          </product-form>
-        {%- else -%}
-          <quick-buy-modal
-            id="{{ modal_id }}"
-            handle="{{ part.handle }}?variant={{ variant.id }}"
-            class="quick-buy-modal modal modal--lg color-scheme color-scheme--dialog"
-            aria-label="{{ 'product.general.choose_options_with_title' | t: title: part.title | escape }}"
-          ></quick-buy-modal>
-          <button type="button" class="lalatoto-upsell__add" aria-controls="{{ modal_id }}" aria-label="{{ 'lalatoto.cart.upsell_choose_named' | t: title: part.title | escape }}">
+        {%- comment -%}
+          Altid Prestiges hurtigkøb med farven valgt, så kunden kan se
+          produktet og vælge farve eller størrelse, før det lægges i kurven.
+          Er farven udsolgt, er knappen en pil i stedet for et plus.
+        {%- endcomment -%}
+        <quick-buy-modal
+          id="{{ modal_id }}"
+          handle="{{ part.handle }}?variant={{ variant.id }}"
+          class="quick-buy-modal modal modal--lg color-scheme color-scheme--dialog"
+          aria-label="{{ 'product.general.choose_options_with_title' | t: title: part.title | escape }}"
+        ></quick-buy-modal>
+        <button type="button" class="lalatoto-upsell__add" aria-controls="{{ modal_id }}" aria-label="{{ 'lalatoto.cart.upsell_choose_named' | t: title: part.title | escape }}">
+          {%- if variant.available -%}
             <span class="lalatoto-upsell__plus" aria-hidden="true"></span>
-          </button>
-        {%- endif -%}
+          {%- else -%}
+            <span class="lalatoto-bed__arrow" aria-hidden="true"></span>
+          {%- endif -%}
+        </button>
       </article>
     {%- endfor -%}
   {%- endcapture -%}
