@@ -22,6 +22,14 @@
     </div>
 
     {%- comment -%}
+      Lalatoto: «Byg sengen færdig» – de dele af sengen, der mangler i den
+      farve, kunden har valgt. Se snippets/lalatoto-cart-bed.liquid.
+    {%- endcomment -%}
+    {%- if section.settings.lalatoto_bed -%}
+      {%- render 'lalatoto-cart-bed', products: section.settings.lalatoto_bed_products -%}
+    {%- endif -%}
+
+    {%- comment -%}
       Lalatoto: forslag, der passer til kurven. Scriptet (assets/lalatoto-cart.js)
       vælger i denne rækkefølge: produkter valgt i temaeditoren, Shopifys
       «passer godt til» og «lignende» for produkterne i kurven, og til sidst
@@ -235,6 +243,24 @@
     {
       "type": "header",
       "content": "t:sections.cart_drawer.cross_sell_category"
+    },
+    {
+      "type": "header",
+      "content": "Lalatoto: byg sengen færdig"
+    },
+    {
+      "type": "checkbox",
+      "id": "lalatoto_bed",
+      "label": "Vis «Byg sengen færdig»",
+      "info": "Når en af sengens dele ligger i kurven, foreslås de manglende dele i samme farve.",
+      "default": true
+    },
+    {
+      "type": "product_list",
+      "id": "lalatoto_bed_products",
+      "label": "Sengens dele",
+      "info": "Tom: sengeslange, sengerand og sengetøj. Farven skal hedde det samme på alle delene.",
+      "limit": 4
     },
     {
       "type": "header",
