@@ -755,6 +755,11 @@
     "journal": {
       "kicker": "Journal",
       "reading_time": "{{ minutes }} min. læsning",
+      "app_kicker": "Gratis app fra Lalatoto",
+      "app_text": "Til dig, der er gravid eller lige har født. Følg babys søvn, få besked før tigerspring, og læs over hundrede artikler på dansk.",
+      "app_link": "Læs mere på clubnosleep.com",
+      "shop_kicker": "Fra artiklen",
+      "shop_title": "Mere ro i sengen",
       "read_more": "Læs artiklen",
       "topics": "Emner",
       "all": "Alle",

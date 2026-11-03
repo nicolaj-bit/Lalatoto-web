@@ -733,6 +733,11 @@
     "journal": {
       "kicker": "Journal",
       "reading_time": "{{ minutes }} Min. Lesezeit",
+      "app_kicker": "Kostenlose App von Lalatoto",
+      "app_text": "Für dich, wenn du schwanger bist oder gerade entbunden hast. Verfolge den Schlaf deines Babys, erfahre vorab von Entwicklungssprüngen und lies über hundert Artikel.",
+      "app_link": "Mehr auf clubnosleep.com",
+      "shop_kicker": "Aus dem Artikel",
+      "shop_title": "Mehr Ruhe im Bett",
       "read_more": "Artikel lesen",
       "topics": "Themen",
       "all": "Alle",

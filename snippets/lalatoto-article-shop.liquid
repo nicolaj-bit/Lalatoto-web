@@ -1,0 +1,85 @@
+{%- doc -%}
+  Lalatoto: «Fra artiklen» nederst i en artikel, før «Læs også».
+
+  Op til tre produkter med et plus, i samme kort som forslagene i kurven
+  (lalatoto-upsell-card): ét valg lægges direkte i kurven, ellers åbner
+  hurtigkøb, så farve eller størrelse kan vælges.
+
+  Produkterne vælges i denne rækkefølge:
+    1. artiklens metafelt «Produkter til artiklen» (lalatoto.produkter),
+    2. produkter, artiklen nævner ved navn (fx «tyngdedyne», «sengeslange»),
+    3. standardprodukterne valgt i temaeditoren.
+  Udsolgte produkter springes over.
+
+  @param {object} article - artiklen
+  @param {object} section - artiklens sektion (overskrift og standardprodukter)
+{%- enddoc -%}
+
+{%- liquid
+  assign limit = 3
+  assign picked = ','
+  assign count = 0
+
+  comment
+    Ord i artiklen og det produkt, de peger på. Ordet matches uden store
+    bogstaver, så «Tyngdedyner» også rammer «tyngdedyne».
+  endcomment
+  assign keywords = 'tyngdedyne:tyngdedyne-baby,sengeslange:luksus-sengeslange,sengerand:sengerand,sengetøj:sengetoj,månepude:manepude,sengelomme:sengelomme,hvalen:lala-hvalen' | split: ','
+  assign body = article.title | append: ' ' | append: article.content | strip_html | downcase
+
+  assign heading = section.settings.shop_heading
+  if heading == blank
+    assign heading = 'lalatoto.journal.shop_title' | t
+  endif
+-%}
+
+{%- capture cards -%}
+  {%- for product in article.metafields.lalatoto.produkter.value -%}
+    {%- if count >= limit -%}{%- break -%}{%- endif -%}
+    {%- assign key = ',' | append: product.handle | append: ',' -%}
+    {%- if product.available -%}
+      {%- unless picked contains key -%}
+        {%- render 'lalatoto-upsell-card', product: product -%}
+        {%- assign picked = picked | append: product.handle | append: ',' -%}
+        {%- assign count = count | plus: 1 -%}
+      {%- endunless -%}
+    {%- endif -%}
+  {%- endfor -%}
+
+  {%- for pair in keywords -%}
+    {%- if count >= limit -%}{%- break -%}{%- endif -%}
+    {%- assign word = pair | split: ':' | first -%}
+    {%- assign handle = pair | split: ':' | last -%}
+    {%- assign key = ',' | append: handle | append: ',' -%}
+    {%- if body contains word -%}
+      {%- assign product = all_products[handle] -%}
+      {%- if product.available -%}
+        {%- unless picked contains key -%}
+          {%- render 'lalatoto-upsell-card', product: product -%}
+          {%- assign picked = picked | append: handle | append: ',' -%}
+          {%- assign count = count | plus: 1 -%}
+        {%- endunless -%}
+      {%- endif -%}
+    {%- endif -%}
+  {%- endfor -%}
+
+  {%- for product in section.settings.shop_products -%}
+    {%- if count >= limit -%}{%- break -%}{%- endif -%}
+    {%- assign key = ',' | append: product.handle | append: ',' -%}
+    {%- if product.available -%}
+      {%- unless picked contains key -%}
+        {%- render 'lalatoto-upsell-card', product: product -%}
+        {%- assign picked = picked | append: product.handle | append: ',' -%}
+        {%- assign count = count | plus: 1 -%}
+      {%- endunless -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endcapture -%}
+
+{%- if count > 0 -%}
+  <section class="lalatoto-article-shop" aria-labelledby="lalatoto-article-shop-{{ section.id }}">
+    <p class="lalatoto-kicker">{{ 'lalatoto.journal.shop_kicker' | t }}</p>
+    <h2 class="lalatoto-article-shop__title" id="lalatoto-article-shop-{{ section.id }}">{{ heading | escape }}</h2>
+    <div class="lalatoto-upsell__list lalatoto-article-shop__list" role="list">{{ cards }}</div>
+  </section>
+{%- endif -%}

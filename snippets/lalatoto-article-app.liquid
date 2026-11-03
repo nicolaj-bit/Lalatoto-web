@@ -1,0 +1,32 @@
+{%- doc -%}
+  Lalatoto: kort om appen Club No Sleep inde i en artikel.
+
+  Lyst kort i sidens egen stil: tynde streger, etiket, titel i Playfair,
+  knapper med tynd ramme til App Store og Google Play og et link til
+  clubnosleep.com. Appen er på dansk, så kortet vises kun på den danske
+  side (det tjekkes i sektionen).
+
+  @param {object} section - artiklens sektion (links og til/fra)
+{%- enddoc -%}
+
+{%- liquid
+  assign app_store = section.settings.app_store_url | default: 'https://apps.apple.com/dk/app/id6764388095'
+  assign google_play = section.settings.google_play_url | default: 'https://play.google.com/store/apps/details?id=com.base699f47a86e7e0a874d1159ed.app'
+  assign site = section.settings.app_site_url | default: 'https://clubnosleep.com'
+-%}
+
+<aside class="lalatoto-article-app" aria-label="Club No Sleep">
+  <div class="lalatoto-article-app__head">
+    {{- 'club-no-sleep-ikon.png' | asset_url | image_tag: width: 56, height: 56, loading: 'lazy', alt: '', class: 'lalatoto-article-app__icon' -}}
+    <div>
+      <p class="lalatoto-kicker lalatoto-article-app__kicker">{{ 'lalatoto.journal.app_kicker' | t }}</p>
+      <p class="lalatoto-article-app__title">Club No Sleep</p>
+    </div>
+  </div>
+  <p class="lalatoto-article-app__text">{{ 'lalatoto.journal.app_text' | t }}</p>
+  <div class="lalatoto-article-app__stores">
+    <a href="{{ app_store }}" class="lalatoto-button-outline" target="_blank" rel="noopener">App Store</a>
+    <a href="{{ google_play }}" class="lalatoto-button-outline" target="_blank" rel="noopener">Google Play</a>
+  </div>
+  <a href="{{ site }}" class="lalatoto-article-app__link" target="_blank" rel="noopener">{{ 'lalatoto.journal.app_link' | t }}</a>
+</aside>
