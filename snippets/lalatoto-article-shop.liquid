@@ -8,7 +8,8 @@
   Produkterne vælges i denne rækkefølge:
     1. artiklens metafelt «Produkter til artiklen» (lalatoto.produkter),
     2. produkter, artiklen nævner ved navn (fx «tyngdedyne», «sengeslange»),
-    3. standardprodukterne valgt i temaeditoren.
+    3. standardprodukterne valgt i temaeditoren, ellers kollektionen
+       «produkter».
   Udsolgte produkter springes over.
 
   @param {object} article - artiklen
@@ -63,7 +64,13 @@
     {%- endif -%}
   {%- endfor -%}
 
-  {%- for product in section.settings.shop_products -%}
+  {%- liquid
+    assign fallback = section.settings.shop_products
+    if fallback == blank or fallback.size == 0
+      assign fallback = collections['produkter'].products
+    endif
+  -%}
+  {%- for product in fallback -%}
     {%- if count >= limit -%}{%- break -%}{%- endif -%}
     {%- assign key = ',' | append: product.handle | append: ',' -%}
     {%- if product.available -%}
