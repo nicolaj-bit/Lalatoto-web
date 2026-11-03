@@ -3,9 +3,10 @@
 
   Øverst en lille etiket (første emne, ellers journalens navn), titel i
   Playfair og en linje med dato, forfatter og læsetid. Derefter artiklens
-  billede i fuld bredde og selve teksten i en rolig læsebredde. Nederst
-  emner, et link tilbage og tre artikler under «Læs også»: helst med samme
-  emne, ellers de nyeste.
+  billede i fuld bredde og selve teksten i en rolig læsebredde, med et kort
+  om Club No Sleep inde i teksten. Nederst emner, et link tilbage, «Fra
+  artiklen» med op til tre produkter og tre artikler under «Læs også»:
+  helst med samme emne, ellers de nyeste.
 
   Tekst indsat fra Word har ofte sine egne skrifttyper og størrelser.
   De fjernes i CSS, så alle artikler ser ens ud.
@@ -51,8 +52,39 @@
     </div>
   {%- endif -%}
 
+  {%- liquid
+    comment
+      Club No Sleep: kortet lægges ind efter ca. en tredjedel af teksten
+      (efter mindst to afsnit). Appen er på dansk, så kortet vises kun på
+      den danske side, og det kan skjules pr. artikel med metafeltet
+      «Skjul Club No Sleep» (lalatoto.skjul_app).
+    endcomment
+    assign show_app = false
+    if section.settings.show_app and request.locale.iso_code == 'da' and article.metafields.lalatoto.skjul_app.value != true
+      assign show_app = true
+    endif
+
+    assign paragraphs = article.content | split: '</p>'
+    assign app_after = paragraphs.size | divided_by: 3 | at_least: 2
+    if paragraphs.size <= app_after
+      assign app_after = -1
+    endif
+  -%}
+
   <div class="lalatoto-article__body">
-    {{ article.content }}
+    {%- if show_app and app_after > 0 -%}
+      {%- for part in paragraphs -%}
+        {{- part -}}{%- unless forloop.last -%}</p>{%- endunless -%}
+        {%- if forloop.index == app_after -%}
+          {%- render 'lalatoto-article-app', section: section -%}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- else -%}
+      {{ article.content }}
+      {%- if show_app -%}
+        {%- render 'lalatoto-article-app', section: section -%}
+      {%- endif -%}
+    {%- endif -%}
   </div>
 
   <footer class="lalatoto-article__foot">
@@ -68,6 +100,10 @@
     </a>
   </footer>
 </article>
+
+{%- if section.settings.show_shop -%}
+  {%- render 'lalatoto-article-shop', article: article, section: section -%}
+{%- endif -%}
 
 {%- if section.settings.show_related -%}
   {%- liquid
@@ -136,6 +172,58 @@
       "id": "show_related",
       "label": "Vis «Læs også» nederst",
       "default": true
+    },
+    {
+      "type": "header",
+      "content": "Club No Sleep i artiklen"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_app",
+      "label": "Vis kort om appen",
+      "info": "Lægges ind efter ca. en tredjedel af teksten, kun på dansk. Skjules i en enkelt artikel med metafeltet «Skjul Club No Sleep».",
+      "default": true
+    },
+    {
+      "type": "url",
+      "id": "app_store_url",
+      "label": "Link til App Store",
+      "info": "Tom: Club No Sleep i App Store."
+    },
+    {
+      "type": "url",
+      "id": "google_play_url",
+      "label": "Link til Google Play",
+      "info": "Tom: Club No Sleep i Google Play."
+    },
+    {
+      "type": "url",
+      "id": "app_site_url",
+      "label": "Link til hjemmesiden",
+      "info": "Tom: clubnosleep.com."
+    },
+    {
+      "type": "header",
+      "content": "Fra artiklen"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_shop",
+      "label": "Vis produkter nederst",
+      "info": "Op til tre: først artiklens metafelt «Produkter til artiklen», så produkter, artiklen nævner, og til sidst standardprodukterne herunder (tom: kollektionen «produkter»).",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "shop_heading",
+      "label": "Overskrift",
+      "info": "Tom: «Mere ro i sengen»."
+    },
+    {
+      "type": "product_list",
+      "id": "shop_products",
+      "label": "Standardprodukter",
+      "limit": 3
     },
     {
       "type": "paragraph",

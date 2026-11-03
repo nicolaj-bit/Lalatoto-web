@@ -751,6 +751,11 @@
     "journal": {
       "kicker": "Journal",
       "reading_time": "{{ minutes }} min read",
+      "app_kicker": "Free app from Lalatoto",
+      "app_text": "For you who are expecting or have just given birth. Track your baby’s sleep, get a heads-up before developmental leaps, and read more than a hundred articles.",
+      "app_link": "Read more at clubnosleep.com",
+      "shop_kicker": "From the article",
+      "shop_title": "More calm in bed",
       "read_more": "Read the article",
       "topics": "Topics",
       "all": "All",

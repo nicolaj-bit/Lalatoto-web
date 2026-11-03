@@ -4439,6 +4439,113 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   border-block-start: 1px solid #d7d0c4;
 }
 
+/* ---------------------------------------------------------------
+ * Club No Sleep inde i artiklen: lyst kort mellem to streger, med
+ * etiket, titel i Playfair og knapper med tynd ramme.
+ * --------------------------------------------------------------- */
+.lalatoto-article__body .lalatoto-article-app {
+  display: grid;
+  gap: 1rem;
+  margin-block: 2.5rem;
+  padding-block: 1.75rem;
+  border-block: 1px solid #d7d0c4;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+.lalatoto-article-app__head {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.lalatoto-article__body .lalatoto-article-app__icon {
+  width: 3.5rem;
+  height: 3.5rem;
+  margin: 0;
+  border-radius: 0.75rem;
+}
+
+.lalatoto-article-app__kicker,
+.lalatoto-article__body .lalatoto-article-app p {
+  margin: 0;
+}
+
+.lalatoto-article-app__title {
+  font-family: var(--heading-font-family);
+  font-size: 1.5rem;
+  line-height: 1.2;
+}
+
+.lalatoto-article__body .lalatoto-article-app__text {
+  color: #6e675e;
+}
+
+.lalatoto-article-app__stores {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.lalatoto-article__body .lalatoto-article-app__stores a {
+  display: flex;
+  flex: 1 1 9rem;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0.75rem 1rem;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+/* Samme link som «billede med tekst»: stregen tegnes ind ved musen */
+.lalatoto-article__body .lalatoto-article-app__link {
+  justify-self: start;
+  padding-block-end: 0.25rem;
+  font-size: var(--lalatoto-label-size);
+  letter-spacing: var(--lalatoto-label-spacing);
+  text-transform: uppercase;
+  text-decoration: none;
+  background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+  transition: background-size 0.25s ease-in-out;
+}
+
+.lalatoto-article__body .lalatoto-article-app__link:hover,
+.lalatoto-article__body .lalatoto-article-app__link:focus-visible {
+  background-size: 100% 1px;
+}
+
+/* ---------------------------------------------------------------
+ * Fra artiklen: op til tre produkter nederst i artiklen, i samme kort
+ * som forslagene i kurven.
+ * --------------------------------------------------------------- */
+.lalatoto-article-shop {
+  display: grid;
+  gap: 0.5rem;
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: clamp(2.5rem, 5vw, 3.5rem) var(--container-gutter) 0;
+  color: #2a2724;
+}
+
+.lalatoto-article-shop .lalatoto-kicker {
+  margin: 0;
+}
+
+.lalatoto-article-shop__title {
+  margin: 0 0 0.75rem;
+  font-family: var(--heading-font-family);
+  font-weight: 400;
+  font-size: clamp(1.5rem, 3vw, 1.875rem);
+  line-height: 1.2;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+.lalatoto-article-shop__list {
+  border-block: 1px solid #e3ddd3;
+}
+
 @media screen and (min-width: 700px) {
   .lalatoto-journal__grid,
   .lalatoto-journal-teaser__grid,
