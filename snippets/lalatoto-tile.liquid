@@ -9,7 +9,8 @@
   «Billede til kort» (metafeltet lalatoto.kortbillede, stående 4:5) bruges
   før alt andet: først farvens eget, så produktets (kun på kort for hele
   produktet). Er der et kortbillede, toner det almindelige billede frem ved
-  mus-over.
+  mus-over – medmindre «Billede til kort, mus over»
+  (lalatoto.kortbillede_hover) er udfyldt; så er det det billede.
   @param {boolean} [sold_out] - true dæmper kortet
   @param {boolean} [eager] - true indlæser billedet med det samme (de første kort)
   @param {boolean} [priority] - true beder browseren hente billedet først (første kort)
@@ -28,6 +29,19 @@
   if card_image != blank
     assign hover_media = image
     assign image = card_image
+  endif
+
+  comment
+    «Billede til kort, mus over» (lalatoto.kortbillede_hover) vælger selv
+    billedet, der toner frem: først farvens eget, så produktets (kun på
+    kort for hele produktet). Tomt: som før.
+  endcomment
+  assign card_hover = variant.metafields.lalatoto.kortbillede_hover.value
+  if card_hover == blank and variant_label == blank
+    assign card_hover = product.metafields.lalatoto.kortbillede_hover.value
+  endif
+  if card_hover != blank
+    assign hover_media = card_hover
   endif
   assign url = variant.url | default: product.url
   assign loading = 'lazy'
