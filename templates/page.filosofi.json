@@ -13,7 +13,8 @@
       "type": "lalatoto-letter",
       "settings": {
         "color_scheme": "scheme-1",
-        "image": "shopify://shop_images/Design_uden_navn_3.jpg",
+        "video": "shopify://files/videos/IMG_4559.mov",
+        "video_controls": false,
         "image_alt": "Sara og Nicolaj Aagaard Baudtler",
         "caption": "Sara and Nicolaj Aagaard Baudtler. \nMarried, the parents of two boys and founders of LALATOTO of Denmark.",
         "heading": "Vores filosofi",
