@@ -1,8 +1,8 @@
 {%- comment -%}
   Lalatoto: et brev med portræt, fx filosofi-siden.
 
-  På computer står portrættet til venstre (lodret centreret) med en lille
-  billedtekst under, og til højre overskrift, brødtekst og underskrift. På
+  På computer står portrættet – et billede eller en video – til venstre
+  (lodret centreret) med en lille billedtekst under, og til højre overskrift, brødtekst og underskrift. På
   telefon står portrættet øverst og teksten under. Alt rettes i
   temaredigeringen; linjeskift i teksten laves med Shift+Enter.
 {%- endcomment -%}
@@ -15,7 +15,29 @@
 <div class="lalatoto-letter color-scheme color-scheme--{{ section.settings.color_scheme.id }}">
   <div class="lalatoto-letter__inner">
     <figure class="lalatoto-letter__media">
-      {%- if section.settings.image != blank -%}
+      {%- if section.settings.video != blank -%}
+        {%- comment -%}
+          Video i stedet for billedet: kører af sig selv uden lyd og i
+          ring, som et levende portræt. Billedet bruges som stillbillede,
+          indtil videoen er hentet.
+        {%- endcomment -%}
+        {%- liquid
+          assign poster = section.settings.image | default: section.settings.video.preview_image
+          assign poster_url = poster | image_url: width: 1000
+        -%}
+        {{-
+          section.settings.video
+          | video_tag:
+            autoplay: true,
+            loop: true,
+            muted: true,
+            playsinline: true,
+            controls: section.settings.video_controls,
+            preload: 'metadata',
+            poster: poster_url,
+            class: 'lalatoto-letter__image lalatoto-letter__video'
+        -}}
+      {%- elsif section.settings.image != blank -%}
         {{-
           section.settings.image
           | image_url: width: 1000
@@ -82,6 +104,19 @@
       "id": "image",
       "label": "Billede",
       "info": "Anbefalet: stående, fx 1000 × 1500 px (2:3). JPG, under ca. 300 KB."
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Video i stedet for billede",
+      "info": "Vises i stedet for billedet. Kører af sig selv uden lyd og i ring. Stående 2:3 (fx 1080 × 1620 px), MP4, kort og gerne under 10 MB. Billedet ovenfor bruges som stillbillede, indtil videoen er hentet."
+    },
+    {
+      "type": "checkbox",
+      "id": "video_controls",
+      "label": "Vis knapper på videoen",
+      "info": "Så kan besøgende sætte på pause og slå lyd til.",
+      "default": false
     },
     {
       "type": "text",

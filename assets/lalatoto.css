@@ -4939,6 +4939,11 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   object-fit: cover;
 }
 
+/* Video i stedet for portrættet: samme 2:3-ramme, lys baggrund mens den hentes */
+.lalatoto-letter__video {
+  background: #e7e1d8;
+}
+
 .lalatoto-letter__image--placeholder {
   background: rgba(0, 0, 0, 0.05);
 }

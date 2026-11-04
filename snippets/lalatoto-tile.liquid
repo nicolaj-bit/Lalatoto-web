@@ -6,11 +6,15 @@
   @param {object} variant - varianten, kortet står for (farven i første tilgængelige størrelse)
   @param {object} [media] - billedet; tomt: variantens billede og ellers produktets
 
-  «Billede til kort» (metafeltet lalatoto.kortbillede, stående 4:5) bruges
-  før alt andet: først farvens eget, så produktets (kun på kort for hele
-  produktet). Er der et kortbillede, toner det almindelige billede frem ved
-  mus-over – medmindre «Billede til kort, mus over»
-  (lalatoto.kortbillede_hover) er udfyldt; så er det det billede.
+  «Billeder til kort» (metafeltet lalatoto.kortbilleder, stående 4:5) bruges
+  før alt andet: først farvens egne, så produktets (kun på kort for hele
+  produktet). 1. billede vises på kortet, 2. billede toner frem ved
+  mus-over. Er der kun ét, toner det almindelige billede frem.
+
+  Billedstørrelsen (sizes) regner med, at kortet fylder 25 % af bredden på
+  computer og 72 % på mobil, og at et kvadratisk billede beskæres til 4:5
+  og derfor skal være 1,25 gange bredere end kortet. Ellers bliver det
+  sløret på store skærme.
   @param {boolean} [sold_out] - true dæmper kortet
   @param {boolean} [eager] - true indlæser billedet med det samme (de første kort)
   @param {boolean} [priority] - true beder browseren hente billedet først (første kort)
@@ -22,26 +26,30 @@
 {%- liquid
   assign image = media | default: variant.featured_media | default: product.featured_media
 
-  assign card_image = variant.metafields.lalatoto.kortbillede.value
-  if card_image == blank and variant_label == blank
-    assign card_image = product.metafields.lalatoto.kortbillede.value
+  comment
+    «Billeder til kort» (lalatoto.kortbilleder, en liste): 1. billede vises
+    på kortet, 2. billede toner frem ved mus-over. Først farvens egne, så
+    produktets (kun på kort for hele produktet). Det gamle felt «Billede
+    til kort» (lalatoto.kortbillede) bruges, hvis listen er tom.
+  endcomment
+  assign card_images = variant.metafields.lalatoto.kortbilleder.value
+  if card_images == blank and variant_label == blank
+    assign card_images = product.metafields.lalatoto.kortbilleder.value
+  endif
+
+  assign card_image = card_images.first
+  if card_image == blank
+    assign card_image = variant.metafields.lalatoto.kortbillede.value
+    if card_image == blank and variant_label == blank
+      assign card_image = product.metafields.lalatoto.kortbillede.value
+    endif
   endif
   if card_image != blank
     assign hover_media = image
     assign image = card_image
   endif
-
-  comment
-    «Billede til kort, mus over» (lalatoto.kortbillede_hover) vælger selv
-    billedet, der toner frem: først farvens eget, så produktets (kun på
-    kort for hele produktet). Tomt: som før.
-  endcomment
-  assign card_hover = variant.metafields.lalatoto.kortbillede_hover.value
-  if card_hover == blank and variant_label == blank
-    assign card_hover = product.metafields.lalatoto.kortbillede_hover.value
-  endif
-  if card_hover != blank
-    assign hover_media = card_hover
+  if card_images.size > 1
+    assign hover_media = card_images[1]
   endif
   assign url = variant.url | default: product.url
   assign loading = 'lazy'
@@ -76,22 +84,22 @@
       {%- if image != blank -%}
         {{-
           image
-          | image_url: width: 1200
+          | image_url: width: 1600
           | image_tag:
             loading: loading,
             fetchpriority: fetchpriority,
-            sizes: '(max-width: 999px) 50vw, (max-width: 1400px) 25vw, 350px',
-            widths: '300,400,500,600,800,1000,1200',
+            sizes: '(max-width: 999px) 90vw, 32vw',
+            widths: '400,600,800,1000,1200,1400,1600',
             alt: image_alt
         -}}
         {%- if hover_media != blank and hover_media.id != image.id -%}
           {{-
             hover_media
-            | image_url: width: 1200
+            | image_url: width: 1600
             | image_tag:
               loading: 'lazy',
-              sizes: '(max-width: 999px) 50vw, (max-width: 1400px) 25vw, 350px',
-              widths: '300,400,500,600,800,1000,1200',
+              sizes: '(max-width: 999px) 90vw, 32vw',
+              widths: '400,600,800,1000,1200,1400,1600',
               alt: '',
               class: 'lalatoto-tile__hover'
           -}}
