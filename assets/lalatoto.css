@@ -40,7 +40,7 @@
 }
 
 .text-subdued {
-  color: #6e675e;
+  color: rgb(var(--text-color));
 }
 
 /* ---------------------------------------------------------------
@@ -117,17 +117,18 @@ h1, h2, h3, h4, h5, h6,
 }
 
 /* ---------------------------------------------------------------
- * Mobilmenuen: rolige rækker som på prada.com. Menupunkterne står i
- * almindelig skrift (ikke versaler), og nederst følger genveje med tynde
- * ikoner: kurv, Ønskeskyen, kontakt og sprog.
+ * Mobilmenuen: rolige rækker som på prada.com. Alt i menuen står i
+ * samme lille versal-stil som menuen på computer (12 px, 1,5 px
+ * bogstavafstand, temaets tekstfarve), og nederst følger genveje med
+ * tynde ikoner: kontakt og sprog.
  * --------------------------------------------------------------- */
 .header-sidebar .header-sidebar__linklist-button,
 .header-sidebar .header-sidebar__back-button {
   min-height: 3rem;
   padding-block: 0.75rem;
-  font-size: 1.0625rem;
-  letter-spacing: normal;
-  text-transform: none;
+  font-size: var(--lalatoto-label-size);
+  letter-spacing: var(--lalatoto-label-spacing);
+  text-transform: uppercase;
 }
 
 .header-sidebar .header-sidebar__linklist-button svg {
@@ -161,7 +162,9 @@ h1, h2, h3, h4, h5, h6,
   gap: 1rem;
   min-height: 2.75rem;
   color: rgb(var(--text-color));
-  font-size: 0.9375rem;
+  font-size: var(--lalatoto-label-size);
+  letter-spacing: var(--lalatoto-label-spacing);
+  text-transform: uppercase;
   text-decoration: none;
 }
 
@@ -179,9 +182,9 @@ h1, h2, h3, h4, h5, h6,
 .lalatoto-sidebar-links .localization-toggle {
   column-gap: 0.5rem;
   font-family: var(--text-font-family);
-  font-size: 0.9375rem;
-  letter-spacing: normal;
-  text-transform: none;
+  font-size: var(--lalatoto-label-size);
+  letter-spacing: var(--lalatoto-label-spacing);
+  text-transform: uppercase;
   color: rgb(var(--text-color));
   opacity: 1;
 }
@@ -260,7 +263,7 @@ h1, h2, h3, h4, h5, h6,
 
 .lalatoto-hero__text {
   max-width: 28rem;
-  color: #6e675e;
+  color: rgb(var(--text-color));
 }
 
 /* Computer: stor overskrift, en lille tekst i smal spalte og en bred knap
@@ -423,7 +426,7 @@ svg.lalatoto-full-image__image {
 .lalatoto-delivery {
   margin: 0;
   font-size: var(--lalatoto-label-size);
-  color: #6e675e;
+  color: rgb(var(--text-color));
 }
 
 /* Forudbestillingsappens blok er usynlig: den skal stadig ligge på siden,
@@ -460,7 +463,7 @@ buy-buttons button.button[disabled] {
   opacity: 1;
   background-color: #ddd6cb;
   border-color: #ddd6cb;
-  color: #6e675e;
+  color: rgb(var(--text-color));
   cursor: not-allowed;
 }
 
@@ -472,7 +475,7 @@ buy-buttons button.button[disabled] {
   padding: 0;
   border: 0;
   background: none;
-  color: #2a2724;
+  color: rgb(var(--text-color));
   font-family: var(--text-font-family);
   font-size: var(--lalatoto-label-size);
   text-transform: uppercase;
@@ -563,7 +566,7 @@ html.lalatoto-scroll-lock body {
   border-radius: 0;
   box-shadow: none;
   background: transparent;
-  color: #2a2724;
+  color: rgb(var(--text-color));
   overflow: hidden;
 }
 
@@ -634,7 +637,7 @@ html.lalatoto-scroll-lock body {
   border: 0;
   border-radius: 0;
   background: none;
-  color: #2a2724;
+  color: rgb(var(--text-color));
   cursor: pointer;
 }
 
@@ -668,7 +671,7 @@ html.lalatoto-scroll-lock body {
 .lalatoto-info-modal__toc a {
   display: block;
   padding-block: 0.375rem;
-  color: #6e675e;
+  color: rgb(var(--text-color));
   font-family: var(--text-font-family);
   font-size: 0.9375rem;
   text-decoration: none;
@@ -677,7 +680,7 @@ html.lalatoto-scroll-lock body {
 
 .lalatoto-info-modal__toc a:hover,
 .lalatoto-info-modal__toc a[aria-current='true'] {
-  color: #2a2724;
+  color: rgb(var(--text-color));
 }
 
 .lalatoto-info-modal__toc a:focus-visible,
@@ -697,9 +700,9 @@ html.lalatoto-scroll-lock body {
   font-weight: var(--text-font-weight);
   font-size: var(--lalatoto-label-size);
   line-height: 1.4;
-  letter-spacing: 0.14em;
+  letter-spacing: var(--lalatoto-label-spacing);
   text-transform: uppercase;
-  color: #6e675e;
+  color: rgb(var(--text-color));
 }
 
 .lalatoto-info-modal__text {
@@ -795,16 +798,16 @@ html.lalatoto-scroll-lock body {
   margin: 0;
   font-family: var(--text-font-family);
   font-weight: var(--text-font-weight);
-  font-size: 0.6875rem; /* 11px */
+  font-size: var(--lalatoto-label-size);
   line-height: 1.4;
-  letter-spacing: 0.18em;
+  letter-spacing: var(--lalatoto-label-spacing);
   text-transform: uppercase;
-  color: #6e675e;
+  color: rgb(var(--text-color));
 }
 
 .lalatoto-lead {
   margin: 0;
-  color: #6e675e;
+  color: rgb(var(--text-color));
   font-size: 0.9375rem;
   line-height: 1.6;
 }
@@ -849,7 +852,7 @@ html.lalatoto-scroll-lock body {
 
 .lalatoto-collection__empty {
   text-align: center;
-  color: #6e675e;
+  color: rgb(var(--text-color));
 }
 
 .lalatoto-tiles {
@@ -878,7 +881,7 @@ html.lalatoto-scroll-lock body {
 .lalatoto-tile__link {
   display: grid;
   gap: 0.875rem;
-  color: #2a2724;
+  color: rgb(var(--text-color));
   text-decoration: none;
 }
 
@@ -988,9 +991,9 @@ html.lalatoto-scroll-lock body {
   font-weight: var(--text-font-weight);
   font-size: var(--lalatoto-label-size);
   line-height: 1.4;
-  letter-spacing: 0.14em;
+  letter-spacing: var(--lalatoto-label-spacing);
   text-transform: uppercase;
-  color: #6e675e;
+  color: rgb(var(--text-color));
 }
 
 .lalatoto-content__block p {
@@ -1072,7 +1075,7 @@ html.lalatoto-scroll-lock body {
   font-size: 0.75rem;
   letter-spacing: normal;
   text-transform: none;
-  color: #6e675e;
+  color: rgb(var(--text-color));
 }
 
 .cart-drawer .quantity-selector,
@@ -1094,7 +1097,7 @@ html.lalatoto-scroll-lock body {
 .lalatoto-cart__note {
   margin: 0;
   font-size: 0.75rem;
-  color: #6e675e;
+  color: rgb(var(--text-color));
 }
 
 .cart-drawer .button-group,
@@ -1115,7 +1118,7 @@ html.lalatoto-scroll-lock body {
   display: flex;
   justify-content: space-between;
   gap: 1rem;
-  color: #6e675e;
+  color: rgb(var(--text-color));
   font-size: 0.8125rem;
 }
 
@@ -1126,7 +1129,7 @@ html.lalatoto-scroll-lock body {
 }
 
 .lalatoto-cart__line--discount {
-  color: #2a2724;
+  color: rgb(var(--text-color));
 }
 
 .lalatoto-cart__totals .lalatoto-cart__sum {
@@ -1140,9 +1143,9 @@ html.lalatoto-scroll-lock body {
   border: 1px solid #d7d0c4;
   border-radius: 0;
   background: transparent;
-  color: #2a2724;
-  font-size: 0.6875rem;
-  letter-spacing: 0.08em;
+  color: rgb(var(--text-color));
+  font-size: var(--lalatoto-label-size);
+  letter-spacing: var(--lalatoto-label-spacing);
   text-transform: uppercase;
 }
 
@@ -1187,7 +1190,7 @@ html.lalatoto-scroll-lock body {
   border: 0;
   border-block-end: 1px solid #2a2724;
   background: none;
-  color: #2a2724;
+  color: rgb(var(--text-color));
   font-family: var(--text-font-family);
   font-size: var(--lalatoto-label-size);
   letter-spacing: var(--lalatoto-label-spacing);
@@ -1316,7 +1319,7 @@ html.lalatoto-scroll-lock body {
 
 .lalatoto-upsell__name {
   overflow: hidden;
-  color: #2a2724;
+  color: rgb(var(--text-color));
   font-family: var(--heading-font-family);
   font-size: 0.9375rem;
   line-height: 1.25;
@@ -1327,7 +1330,7 @@ html.lalatoto-scroll-lock body {
 
 .lalatoto-upsell__price {
   margin: 0;
-  color: #6e675e;
+  color: rgb(var(--text-color));
   font-size: 0.75rem;
 }
 
@@ -1350,7 +1353,7 @@ html.lalatoto-scroll-lock body {
   padding: 0;
   border: 0;
   background: none;
-  color: #2a2724;
+  color: rgb(var(--text-color));
   cursor: pointer;
 }
 
@@ -1429,12 +1432,12 @@ html.lalatoto-scroll-lock body {
   margin-block-start: 1rem;
   padding-block: 1rem 0.25rem;
   border-block-start: 1px solid #d7d0c4;
-  color: #2a2724;
+  color: rgb(var(--text-color));
 }
 
 .lalatoto-bed__kicker {
   margin: 0;
-  color: #6e675e;
+  color: rgb(var(--text-color));
 }
 
 .lalatoto-bed__title {
@@ -1478,7 +1481,7 @@ html.lalatoto-scroll-lock body {
  * =============================================================== */
 .lalatoto-app {
   background: #e7e1d8;
-  color: #2a2724;
+  color: rgb(var(--text-color));
   padding-block: var(--section-vertical-spacing);
 }
 
@@ -1523,7 +1526,7 @@ html.lalatoto-scroll-lock body {
 .lalatoto-app__text {
   margin: 0;
   max-width: 38ch;
-  color: #6e675e;
+  color: rgb(var(--text-color));
   font-size: 0.9375rem;
   line-height: 1.6;
 }
@@ -1545,7 +1548,7 @@ html.lalatoto-scroll-lock body {
   padding: 0.5rem 1.375rem 0.5rem 1.125rem;
   border: 1px solid #2a2724;
   background: transparent;
-  color: #2a2724;
+  color: rgb(var(--text-color));
   text-decoration: none;
   transition: background-color 0.2s ease, color 0.2s ease;
 }
@@ -1581,9 +1584,9 @@ html.lalatoto-scroll-lock body {
 }
 
 .lalatoto-store-button__kicker {
-  font-size: 0.625rem;
+  font-size: var(--lalatoto-label-size);
   line-height: 1;
-  letter-spacing: 0.16em;
+  letter-spacing: var(--lalatoto-label-spacing);
   text-transform: uppercase;
   opacity: 0.75;
 }
@@ -1663,7 +1666,7 @@ html.lalatoto-scroll-lock body {
 .shopify-section--main-product :checked + .block-swatch,
 .shopify-section--main-product .block-swatch.is-selected {
   border-color: transparent;
-  color: #6e675e;
+  color: rgb(var(--text-color));
 }
 
 .shopify-section--main-product .block-swatch.is-disabled {
@@ -1702,11 +1705,11 @@ html.lalatoto-scroll-lock body {
 }
 
 .lalatoto-fits__label {
-  color: #6e675e;
+  color: rgb(var(--text-color));
 }
 
 .lalatoto-fits__link {
-  color: #2a2724;
+  color: rgb(var(--text-color));
   text-decoration: underline;
   text-decoration-color: #d7d0c4;
   text-underline-offset: 3px;
@@ -1734,7 +1737,7 @@ html.lalatoto-scroll-lock body {
   border: 1px solid #d7d0c4;
   border-radius: 0;
   background: transparent;
-  color: #6e675e;
+  color: rgb(var(--text-color));
   letter-spacing: 0.06em;
   text-transform: none;
   font-variant-numeric: tabular-nums;
@@ -1748,7 +1751,7 @@ html.lalatoto-scroll-lock body {
 }
 
 .variant-picker__option--weight .block-swatch:hover {
-  color: #2a2724;
+  color: rgb(var(--text-color));
 }
 
 .variant-picker__option--weight :checked + .block-swatch,
@@ -1757,7 +1760,7 @@ html.lalatoto-scroll-lock body {
   z-index: 1;
   background: #ddd6cb;
   border-color: #2a2724;
-  color: #2a2724;
+  color: rgb(var(--text-color));
 }
 
 /* Kun én vægt til størrelsen: vis den som ren tekst */
@@ -1771,7 +1774,7 @@ html.lalatoto-scroll-lock body {
   padding: 0;
   border: 0;
   background: none;
-  color: #2a2724;
+  color: rgb(var(--text-color));
   font-size: 0.9375rem;
   letter-spacing: normal;
   pointer-events: none;
@@ -1785,7 +1788,7 @@ html.lalatoto-scroll-lock body {
   padding: 0;
   border: 0;
   background: none;
-  color: #6e675e;
+  color: rgb(var(--text-color));
   font-family: var(--text-font-family);
   font-size: 0.8125rem;
   text-decoration: underline;
@@ -1795,7 +1798,7 @@ html.lalatoto-scroll-lock body {
 }
 
 .lalatoto-weight-help:hover {
-  color: #2a2724;
+  color: rgb(var(--text-color));
   text-decoration-color: currentColor;
 }
 
@@ -1820,7 +1823,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 .lalatoto-waitlist {
   padding-block: 1.75rem 1.5rem;
   border-block: 1px solid #d7d0c4;
-  color: #2a2724;
+  color: rgb(var(--text-color));
 }
 
 .lalatoto-waitlist__form {
@@ -1883,7 +1886,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 .lalatoto-waitlist__text {
   margin: -0.5rem 0 0;
   max-width: 36ch;
-  color: #6e675e;
+  color: rgb(var(--text-color));
   font-size: 0.9375rem;
   line-height: 1.6;
 }
@@ -1891,7 +1894,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 .lalatoto-waitlist__text em {
   font-family: var(--heading-font-family);
   font-style: italic;
-  color: #2a2724;
+  color: rgb(var(--text-color));
 }
 
 /* E-mailfelt med svævende label på én linje */
@@ -1908,7 +1911,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   border-block-end: 1px solid #d7d0c4;
   border-radius: 0;
   background: transparent;
-  color: #2a2724;
+  color: rgb(var(--text-color));
   font-family: var(--text-font-family);
   font-size: 1rem; /* 16 px: iPhone zoomer ikke ind ved fokus */
   box-shadow: none;
@@ -1925,7 +1928,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   position: absolute;
   left: 0;
   top: 1.375rem;
-  color: #6e675e;
+  color: rgb(var(--text-color));
   font-size: 1rem;
   pointer-events: none;
   transform-origin: left top;
@@ -1935,7 +1938,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 .lalatoto-waitlist__field input:focus + label,
 .lalatoto-waitlist__field input:not(:placeholder-shown) + label {
   transform: translateY(-1.125rem) scale(0.72);
-  letter-spacing: 0.14em;
+  letter-spacing: var(--lalatoto-label-spacing);
   text-transform: uppercase;
 }
 
@@ -1959,7 +1962,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   border: 1px solid #ddd6cb;
   border-radius: 0;
   background: #ddd6cb;
-  color: #2a2724;
+  color: rgb(var(--text-color));
   font-family: var(--text-font-family);
   font-size: var(--lalatoto-label-size);
   letter-spacing: var(--lalatoto-label-spacing);
@@ -2036,7 +2039,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 .lalatoto-waitlist__fine {
   margin: -0.5rem 0 0;
   max-width: 44ch;
-  color: #6e675e;
+  color: rgb(var(--text-color));
   font-size: 0.75rem;
   line-height: 1.55;
 }
@@ -2117,7 +2120,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
  * (kun computer), vilkår og sociale medier. Al tekst står i samme mørke farve.
  * =============================================================== */
 .lalatoto-footer {
-  color: #2a2724;
+  color: rgb(var(--text-color));
 }
 
 .lalatoto-footer__inner {
@@ -2129,7 +2132,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 
 .lalatoto-footer__heading {
   margin: 0 0 1rem;
-  color: #2a2724;
+  color: rgb(var(--text-color));
   font-size: var(--lalatoto-label-size);
   font-weight: 400;
   letter-spacing: var(--lalatoto-label-spacing);
@@ -2196,7 +2199,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 
 .lalatoto-footer__line label {
   flex: none;
-  color: #2a2724;
+  color: rgb(var(--text-color));
   font-size: var(--lalatoto-label-size);
   letter-spacing: var(--lalatoto-label-spacing);
   text-transform: uppercase;
@@ -2209,7 +2212,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   border: 0;
   border-radius: 0;
   background: transparent;
-  color: #2a2724;
+  color: rgb(var(--text-color));
   font: inherit;
   font-size: 0.9375rem;
   box-shadow: none;
@@ -2237,7 +2240,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 
 .lalatoto-footer__nl-button:hover {
   background: transparent;
-  color: #2a2724;
+  color: rgb(var(--text-color));
 }
 
 .lalatoto-footer__nl-button:focus-visible {
@@ -2248,7 +2251,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 .lalatoto-footer__fine {
   max-width: 30rem;
   margin: 0;
-  color: #2a2724;
+  color: rgb(var(--text-color));
   font-size: 0.75rem;
   line-height: 1.6;
 }
@@ -2281,7 +2284,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 
 .lalatoto-footer__list a,
 .lalatoto-footer__address a {
-  color: #2a2724;
+  color: rgb(var(--text-color));
   text-decoration: none;
   background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
   transition: background-size 0.25s ease-in-out;
@@ -2302,7 +2305,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 
 .lalatoto-footer__muted {
   margin: 0;
-  color: #2a2724;
+  color: rgb(var(--text-color));
   font-size: 0.875rem;
   line-height: 1.6;
 }
@@ -2333,7 +2336,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   flex-wrap: wrap;
   gap: 0.25rem 0;
   margin: 0;
-  color: #2a2724;
+  color: rgb(var(--text-color));
   font-size: 0.8125rem;
 }
 
@@ -2355,7 +2358,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 }
 
 .lalatoto-footer__legal a {
-  color: #2a2724;
+  color: rgb(var(--text-color));
   text-decoration: none;
   background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
   transition: background-size 0.25s ease-in-out;
@@ -2379,7 +2382,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 }
 
 .lalatoto-footer .social-media a {
-  color: #2a2724;
+  color: rgb(var(--text-color));
 }
 
 .lalatoto-footer .payment-methods {
@@ -2449,7 +2452,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   .lalatoto-footer__group > summary {
     min-height: 3.5rem;
     margin: 0;
-    color: #2a2724;
+    color: rgb(var(--text-color));
   }
 
   .lalatoto-footer__group > nav,
@@ -2579,7 +2582,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
  * =============================================================== */
 .lalatoto-legal {
   padding-block: clamp(3rem, 7vw, 5.5rem) clamp(4.5rem, 10vw, 7.5rem);
-  color: #2a2724;
+  color: rgb(var(--text-color));
 }
 
 .lalatoto-legal__inner {
@@ -2604,7 +2607,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 
 .lalatoto-legal__meta {
   margin: 0.875rem 0 0;
-  color: #6e675e;
+  color: rgb(var(--text-color));
   font-size: var(--lalatoto-label-size);
   letter-spacing: var(--lalatoto-label-spacing);
   text-transform: uppercase;
@@ -2680,7 +2683,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 .lalatoto-legal__body a.lalatoto-legal__button--outline {
   border-color: #2a2724;
   background: transparent;
-  color: #2a2724;
+  color: rgb(var(--text-color));
 }
 
 .lalatoto-legal__body a.lalatoto-legal__button--outline:hover {
@@ -2728,7 +2731,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 }
 
 .lalatoto-legal__body li::marker {
-  color: #6e675e;
+  color: rgb(var(--text-color));
 }
 
 .lalatoto-legal__body strong {
@@ -2780,9 +2783,9 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 
 .lalatoto-legal__toc-title {
   margin: 0 0 0.875rem;
-  color: #6e675e;
-  font-size: 0.6875rem;
-  letter-spacing: 0.22em;
+  color: rgb(var(--text-color));
+  font-size: var(--lalatoto-label-size);
+  letter-spacing: var(--lalatoto-label-spacing);
   text-transform: uppercase;
 }
 
@@ -2798,13 +2801,13 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   margin-inline-start: -1px;
   padding: 0.4375rem 0 0.4375rem 0.875rem;
   border-inline-start: 1px solid transparent;
-  color: #6e675e;
+  color: rgb(var(--text-color));
   text-decoration: none;
 }
 
 .lalatoto-legal__toc a:hover,
 .lalatoto-legal__toc a[aria-current='true'] {
-  color: #2a2724;
+  color: rgb(var(--text-color));
 }
 
 .lalatoto-legal__toc a[aria-current='true'] {
@@ -2887,7 +2890,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   max-width: var(--lalatoto-max-width);
   margin-inline: auto;
   padding: clamp(3rem, 7vw, 5.5rem) var(--container-gutter) clamp(4rem, 9vw, 7rem);
-  color: #2a2724;
+  color: rgb(var(--text-color));
 }
 
 .lalatoto-wash__head {
@@ -2946,9 +2949,9 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 }
 
 .lalatoto-wash__temp {
-  color: #6e675e;
-  font-size: 0.625rem;
-  letter-spacing: 0.16em;
+  color: rgb(var(--text-color));
+  font-size: var(--lalatoto-label-size);
+  letter-spacing: var(--lalatoto-label-spacing);
   text-transform: uppercase;
   white-space: nowrap;
 }
@@ -2995,7 +2998,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 
 .lalatoto-wash__text {
   padding: 0 44px 1.5rem 2px;
-  color: #6e675e;
+  color: rgb(var(--text-color));
   font-size: 0.90625rem;
   line-height: 1.65;
 }
@@ -3011,7 +3014,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 
 .lalatoto-wash__foot {
   margin: 0;
-  color: #6e675e;
+  color: rgb(var(--text-color));
   font-size: 0.8125rem;
   text-align: center;
 }
@@ -3029,7 +3032,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 .lalatoto-wash .lalatoto-wash__temp,
 .lalatoto-wash .lalatoto-wash__text,
 .lalatoto-wash .lalatoto-wash__foot {
-  color: #2a2724;
+  color: rgb(var(--text-color));
 }
 
 /* Teksten inde i punkterne et trin mindre end før (14,5 px → 13 px).
@@ -3121,7 +3124,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   padding: 0;
   border: 0;
   background: none;
-  color: #2a2724;
+  color: rgb(var(--text-color));
   cursor: pointer;
 }
 
@@ -3174,7 +3177,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   max-width: var(--lalatoto-max-width);
   margin-inline: auto;
   padding: clamp(3rem, 7vw, 5.5rem) var(--container-gutter) clamp(4rem, 9vw, 7rem);
-  color: #2a2724;
+  color: rgb(var(--text-color));
 }
 
 .lalatoto-contact__intro {
@@ -3218,7 +3221,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 }
 
 .lalatoto-contact__num {
-  color: #6e675e;
+  color: rgb(var(--text-color));
   font-size: 0.75rem;
 }
 
@@ -3247,7 +3250,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 
 .lalatoto-contact__muted {
   margin: 0;
-  color: #6e675e;
+  color: rgb(var(--text-color));
   font-size: 0.9375rem;
   line-height: 1.6;
 }
@@ -3296,14 +3299,14 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 
 .lalatoto-contact__line label {
   flex: none;
-  color: #2a2724;
+  color: rgb(var(--text-color));
   font-size: var(--lalatoto-label-size);
   letter-spacing: var(--lalatoto-label-spacing);
   text-transform: uppercase;
 }
 
 .lalatoto-contact__line label span {
-  color: #6e675e;
+  color: rgb(var(--text-color));
   letter-spacing: normal;
   text-transform: none;
 }
@@ -3316,7 +3319,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   border: 0;
   border-radius: 0;
   background: transparent;
-  color: #2a2724;
+  color: rgb(var(--text-color));
   font: inherit;
   font-size: 0.9375rem;
   box-shadow: none;
@@ -3358,7 +3361,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 
 .lalatoto-contact__submit:hover {
   background: transparent;
-  color: #2a2724;
+  color: rgb(var(--text-color));
 }
 
 .lalatoto-contact__submit:focus-visible {
@@ -3428,7 +3431,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   max-width: var(--lalatoto-max-width);
   margin-inline: auto;
   padding: clamp(3rem, 6vw, 5rem) var(--container-gutter);
-  color: #2a2724;
+  color: rgb(var(--text-color));
 }
 
 .lalatoto-faq__inner {
@@ -3470,7 +3473,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   border: 1px solid #cfc7bb;
   border-radius: 999px;
   background: transparent;
-  color: #2a2724;
+  color: rgb(var(--text-color));
   font: inherit;
   font-size: 0.8125rem;
   cursor: pointer;
@@ -3541,7 +3544,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 }
 
 .lalatoto-faq .lalatoto-wash__text a {
-  color: #2a2724;
+  color: rgb(var(--text-color));
   text-decoration: underline;
   text-underline-offset: 3px;
 }
@@ -3554,7 +3557,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 .lalatoto-faqpage__lead {
   margin: 0.875rem 0 0;
   max-width: 34rem;
-  color: #6e675e;
+  color: rgb(var(--text-color));
   font-size: 0.9375rem;
   line-height: 1.6;
 }
@@ -3581,7 +3584,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 
 .lalatoto-faqpage__chips a {
   flex: none;
-  color: #6e675e;
+  color: rgb(var(--text-color));
   font-size: var(--lalatoto-label-size);
   letter-spacing: var(--lalatoto-label-spacing);
   text-decoration: none;
@@ -3590,7 +3593,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 }
 
 .lalatoto-faqpage__chips a[aria-current='true'] {
-  color: #2a2724;
+  color: rgb(var(--text-color));
   text-decoration: underline;
   text-underline-offset: 6px;
 }
@@ -3635,7 +3638,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 
 .lalatoto-legal__body .lalatoto-faqpage__foot {
   margin: 2.5rem 0 0;
-  color: #6e675e;
+  color: rgb(var(--text-color));
   font-size: 0.9375rem;
 }
 
@@ -3700,7 +3703,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   max-width: var(--lalatoto-max-width);
   margin-inline: auto;
   padding: clamp(3rem, 7vw, 5.5rem) var(--container-gutter) clamp(4.5rem, 10vw, 7.5rem);
-  color: #2a2724;
+  color: rgb(var(--text-color));
 }
 
 .lalatoto-apppage__title,
@@ -3711,7 +3714,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   font-weight: 400;
   letter-spacing: normal;
   text-transform: none;
-  color: #2a2724;
+  color: rgb(var(--text-color));
 }
 
 .lalatoto-apppage__title {
@@ -3754,7 +3757,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 
 .lalatoto-apppage__note {
   margin: 0;
-  color: #6e675e;
+  color: rgb(var(--text-color));
   font-size: 0.8125rem;
 }
 
@@ -3853,7 +3856,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 
 .lalatoto-apppage__label {
   margin: 0 0 0.375rem;
-  color: #2a2724;
+  color: rgb(var(--text-color));
   font-size: var(--lalatoto-label-size);
   font-weight: 600;
   letter-spacing: var(--lalatoto-label-spacing);
@@ -3987,7 +3990,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   max-width: var(--lalatoto-max-width);
   margin-inline: auto;
   padding-inline: var(--container-gutter);
-  color: #2a2724;
+  color: rgb(var(--text-color));
 }
 
 .lalatoto-journal {
@@ -4024,7 +4027,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 }
 
 .lalatoto-journal__tags a {
-  color: #6e675e;
+  color: rgb(var(--text-color));
   font-size: var(--lalatoto-label-size);
   letter-spacing: var(--lalatoto-label-spacing);
   text-decoration: none;
@@ -4033,7 +4036,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 
 .lalatoto-journal__tags a:hover,
 .lalatoto-journal__tags a[aria-current='page'] {
-  color: #2a2724;
+  color: rgb(var(--text-color));
 }
 
 .lalatoto-journal__tags a[aria-current='page'] {
@@ -4055,7 +4058,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 
 .lalatoto-journal__empty {
   text-align: center;
-  color: #6e675e;
+  color: rgb(var(--text-color));
 }
 
 /* Kortet */
@@ -4096,9 +4099,9 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   flex-wrap: wrap;
   gap: 0.5rem;
   margin: 0;
-  color: #6e675e;
-  font-size: 0.6875rem;
-  letter-spacing: 0.14em;
+  color: rgb(var(--text-color));
+  font-size: var(--lalatoto-label-size);
+  letter-spacing: var(--lalatoto-label-spacing);
   text-transform: uppercase;
 }
 
@@ -4127,7 +4130,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 .lalatoto-journal-card__excerpt {
   margin: 0;
   max-width: 52ch;
-  color: #6e675e;
+  color: rgb(var(--text-color));
   font-size: 0.9375rem;
   line-height: 1.6;
 }
@@ -4137,7 +4140,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   margin-block-start: 0.5rem;
   padding-block-end: 0.25rem;
   border-block-end: 1px solid #2a2724;
-  color: #2a2724;
+  color: rgb(var(--text-color));
   font-size: var(--lalatoto-label-size);
   letter-spacing: var(--lalatoto-label-spacing);
   text-decoration: none;
@@ -4163,7 +4166,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 }
 
 .lalatoto-journal__page-link {
-  color: #2a2724;
+  color: rgb(var(--text-color));
   text-decoration: none;
 }
 
@@ -4172,7 +4175,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 }
 
 .lalatoto-journal__page-count {
-  color: #6e675e;
+  color: rgb(var(--text-color));
 }
 
 /* Forsiden: «Fra journalen» */
@@ -4207,7 +4210,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 .lalatoto-journal-teaser__all {
   padding-block-end: 0.25rem;
   border-block-end: 1px solid #2a2724;
-  color: #2a2724;
+  color: rgb(var(--text-color));
   font-size: var(--lalatoto-label-size);
   letter-spacing: var(--lalatoto-label-spacing);
   text-decoration: none;
@@ -4217,7 +4220,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 /* Artiklen */
 .lalatoto-article {
   padding-block: clamp(3rem, 7vw, 5.5rem) clamp(2.5rem, 5vw, 4rem);
-  color: #2a2724;
+  color: rgb(var(--text-color));
 }
 
 .lalatoto-article__head {
@@ -4251,9 +4254,9 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   justify-content: center;
   gap: 0.5rem;
   margin: 0;
-  color: #6e675e;
-  font-size: 0.6875rem;
-  letter-spacing: 0.14em;
+  color: rgb(var(--text-color));
+  font-size: var(--lalatoto-label-size);
+  letter-spacing: var(--lalatoto-label-spacing);
   text-transform: uppercase;
 }
 
@@ -4370,7 +4373,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 }
 
 .lalatoto-article__body li::marker {
-  color: #6e675e;
+  color: rgb(var(--text-color));
 }
 
 .lalatoto-article__body img,
@@ -4435,9 +4438,9 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   display: inline-block;
   padding: 0.375rem 0.75rem;
   border: 1px solid #d7d0c4;
-  color: #2a2724;
-  font-size: 0.6875rem;
-  letter-spacing: 0.12em;
+  color: rgb(var(--text-color));
+  font-size: var(--lalatoto-label-size);
+  letter-spacing: var(--lalatoto-label-spacing);
   text-decoration: none;
   text-transform: uppercase;
 }
@@ -4448,7 +4451,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 
 .lalatoto-article__back {
   justify-self: start;
-  color: #2a2724;
+  color: rgb(var(--text-color));
   font-size: var(--lalatoto-label-size);
   letter-spacing: var(--lalatoto-label-spacing);
   text-decoration: none;
@@ -4492,7 +4495,6 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   border-radius: 0.75rem;
 }
 
-.lalatoto-article-app__kicker,
 .lalatoto-article__body .lalatoto-article-app p {
   margin: 0;
 }
@@ -4504,7 +4506,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 }
 
 .lalatoto-article__body .lalatoto-article-app__text {
-  color: #6e675e;
+  color: rgb(var(--text-color));
 }
 
 .lalatoto-article-app__stores {
@@ -4552,7 +4554,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   max-width: var(--lalatoto-article-width);
   margin: 0 auto;
   padding: clamp(2.5rem, 5vw, 3.5rem) var(--container-gutter) 0;
-  color: #2a2724;
+  color: rgb(var(--text-color));
 }
 
 .lalatoto-article-shop .lalatoto-kicker {
@@ -4617,7 +4619,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   max-width: var(--lalatoto-max-width);
   margin-inline: auto;
   padding: var(--section-vertical-spacing, 4.5rem) var(--container-gutter);
-  color: #2a2724;
+  color: rgb(var(--text-color));
 }
 
 .lalatoto-featured__head {
@@ -4652,7 +4654,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 .lalatoto-featured__all {
   padding-block-end: 0.25rem;
   border-block-end: 1px solid #2a2724;
-  color: #2a2724;
+  color: rgb(var(--text-color));
   font-size: var(--lalatoto-label-size);
   letter-spacing: var(--lalatoto-label-spacing);
   text-decoration: none;
@@ -4684,7 +4686,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   border: 0;
   border-block-end: 1px solid transparent;
   background: none;
-  color: #6e675e;
+  color: rgb(var(--text-color));
   font: inherit;
   font-size: var(--lalatoto-label-size);
   letter-spacing: var(--lalatoto-label-spacing);
@@ -4695,7 +4697,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 
 .lalatoto-featured__tabs [role='tab']:hover,
 .lalatoto-featured__tabs [role='tab'][aria-selected='true'] {
-  color: #2a2724;
+  color: rgb(var(--text-color));
 }
 
 .lalatoto-featured__tabs [role='tab'][aria-selected='true'] {
@@ -4765,20 +4767,20 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 }
 
 .lalatoto-tile__variant {
-  color: #6e675e;
+  color: rgb(var(--text-color));
   font-size: 0.8125rem;
   line-height: 1.4;
 }
 
 .lalatoto-tile__price {
-  color: #2a2724;
+  color: rgb(var(--text-color));
   font-size: 0.8125rem;
   line-height: 1.4;
 }
 
 .lalatoto-tile__compare {
   margin-inline-end: 0.375rem;
-  color: #6e675e;
+  color: rgb(var(--text-color));
 }
 
 /* Tilbudsprisen i temaets tilbudsfarve (Temaindstillinger → Farver) */
@@ -4837,7 +4839,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   max-width: var(--lalatoto-max-width);
   margin-inline: auto;
   padding: var(--section-vertical-spacing, 4.5rem) var(--container-gutter);
-  color: #2a2724;
+  color: rgb(var(--text-color));
 }
 
 .lalatoto-image-text__media img,
@@ -4867,7 +4869,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 }
 
 .lalatoto-image-text__text {
-  color: #6e675e;
+  color: rgb(var(--text-color));
   font-size: 0.875rem;
   line-height: 1.6;
 }
@@ -4962,7 +4964,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 }
 
 .lalatoto-letter__text {
-  color: #6e675e;
+  color: rgb(var(--text-color));
   font-size: 0.875rem;
   line-height: 1.6;
 }
@@ -4988,7 +4990,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 
 .lalatoto-letter__signature-text {
   margin: 0.375rem 0 0;
-  color: #6e675e;
+  color: rgb(var(--text-color));
   font-size: 0.6875rem;
 }
 
@@ -5026,7 +5028,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   max-width: 62rem;
   margin-inline: auto;
   padding: 3rem var(--container-gutter, 1.25rem) 4rem;
-  color: #6e675e;
+  color: rgb(var(--text-color));
 }
 
 .lalatoto-materials__header {
@@ -5053,7 +5055,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   margin: 0.75rem 0 0;
   font-family: var(--heading-font-family);
   font-size: clamp(1rem, 1.6vw, 1.125rem);
-  color: #6e675e;
+  color: rgb(var(--text-color));
 }
 
 .lalatoto-materials__group + .lalatoto-materials__group {
@@ -5147,7 +5149,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
  * --------------------------------------------------------------- */
 .lalatoto-usp {
   padding: 0.875rem var(--container-gutter, 1.25rem);
-  color: #2a2724;
+  color: rgb(var(--text-color));
 }
 
 .lalatoto-usp__list {
@@ -5183,7 +5185,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 
 .lalatoto-intro {
   padding: clamp(3.5rem, 7vw, 6rem) var(--container-gutter, 1.25rem);
-  color: #2a2724;
+  color: rgb(var(--text-color));
 }
 
 .lalatoto-intro__inner {
