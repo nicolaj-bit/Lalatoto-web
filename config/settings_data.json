@@ -13,7 +13,7 @@
     "button_border_radius": 0,
     "input_border_radius": 0,
     "default_color_scheme": "scheme-1",
-    "modal_color_scheme": "scheme-1",
+    "modal_color_scheme": "scheme-4",
     "product_rating_color": "#2a2724",
     "product_on_sale_accent": "#e32c2b",
     "product_sold_out_badge_background": "#e7e1d8",
@@ -102,33 +102,33 @@
         "settings": {
           "background": "#e7e1d8",
           "background_gradient": "",
-          "text_color": "#2a2724",
+          "text_color": "#545454",
           "primary_button_background": "#ddd6cb",
-          "primary_button_text_color": "#2a2724",
+          "primary_button_text_color": "#545454",
           "circle_button_background": "#efebe4",
-          "circle_button_icon": "#2a2724"
+          "circle_button_icon": "#545454"
         }
       },
       "scheme-3": {
         "settings": {
           "background": "#ddd6cb",
           "background_gradient": "",
-          "text_color": "#2a2724",
+          "text_color": "#545454",
           "primary_button_background": "#ddd6cb",
-          "primary_button_text_color": "#2a2724",
+          "primary_button_text_color": "#545454",
           "circle_button_background": "#efebe4",
-          "circle_button_icon": "#2a2724"
+          "circle_button_icon": "#545454"
         }
       },
       "scheme-4": {
         "settings": {
           "background": "rgba(0,0,0,0)",
           "background_gradient": "",
-          "text_color": "#2a2724",
+          "text_color": "#545454",
           "primary_button_background": "#ddd6cb",
-          "primary_button_text_color": "#2a2724",
+          "primary_button_text_color": "#545454",
           "circle_button_background": "#efebe4",
-          "circle_button_icon": "#2a2724"
+          "circle_button_icon": "#545454"
         }
       }
     }
