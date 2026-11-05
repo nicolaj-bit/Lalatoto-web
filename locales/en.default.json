@@ -624,6 +624,7 @@
       "page_subtitle": "Whatever works for you",
       "chat_title": "Chat",
       "chat_text": "No chatbots here. Just real people answering your questions.",
+      "chat_link": "Start a chat",
       "mail_title": "E-mail",
       "mail_text_html": "Prefer email? Write to us at {{ email }}. We’ll get back to you within 24 hours on business days.",
       "form_title": "Contact form",

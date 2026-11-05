@@ -628,6 +628,7 @@
       "page_subtitle": "Du vælger, hvordan.",
       "chat_title": "Chat",
       "chat_text": "Og nej, du bliver ikke mødt af en chatbot. Hos os sidder rigtige mennesker og besvarer dine spørgsmål.",
+      "chat_link": "Start en chat",
       "mail_title": "E-mail",
       "mail_text_html": "Foretrækker du e-mail, så send os dine spørgsmål på {{ email }}. Vi svarer normalvis inden for 24 timer på hverdage.",
       "form_title": "Kontaktformular",

@@ -44,6 +44,19 @@
       <span class="lalatoto-contact__num" aria-hidden="true">01</span>
       <h2 class="lalatoto-contact__way-title">{{ 'lalatoto.contact.chat_title' | t }}</h2>
       <p>{{ 'lalatoto.contact.chat_text' | t }}</p>
+      {%- comment -%}
+        Åbner Shopify Inbox (shopify-chat) med dens egen show(), som «Chat
+        med os» i mobilmenuen. Mangler chatten, hopper linket til formularen.
+      {%- endcomment -%}
+      <p>
+        <a
+          href="#kontaktformular"
+          data-lalatoto-chat
+          onclick="var c = document.querySelector('shopify-chat'); if (c && typeof c.show === 'function') { event.preventDefault(); c.show(); }"
+        >
+          {{- 'lalatoto.contact.chat_link' | t -}}
+        </a>
+      </p>
     </li>
     <li class="lalatoto-contact__way">
       <span class="lalatoto-contact__num" aria-hidden="true">02</span>
