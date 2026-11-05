@@ -5024,6 +5024,13 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   }
 }
 
+/* Telefon: billede eller video under teksten. Computer er uændret. */
+@media screen and (max-width: 999px) {
+  .lalatoto-letter--mobile-media-below .lalatoto-letter__media {
+    order: 2;
+  }
+}
+
 /* ---------------------------------------------------------------
  * Materialer (materiale-siden efter Saras udkast)
  * Centreret overskrift, tre principper i kolonner, et afsnit pr.

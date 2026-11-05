@@ -2,17 +2,27 @@
   Lalatoto: et brev med portræt, fx filosofi-siden.
 
   På computer står portrættet – et billede eller en video – til venstre
-  (lodret centreret) med en lille billedtekst under, og til højre overskrift, brødtekst og underskrift. På
-  telefon står portrættet øverst og teksten under. Alt rettes i
+  (lodret centreret) med en lille billedtekst under, og til højre
+  overskrift, brødtekst og underskrift. På telefon står portrættet som
+  standard under teksten (kan ændres til over). Alt rettes i
   temaredigeringen; linjeskift i teksten laves med Shift+Enter.
 {%- endcomment -%}
 
 {%- liquid
+  comment
+    På telefon står billedet eller videoen som standard under teksten. På
+    computer står det altid til venstre for teksten. «Over teksten» giver
+    den gamle opstilling på telefon.
+  endcomment
+  assign media_below = true
+  if section.settings.mobile_media_position == 'above'
+    assign media_below = false
+  endif
   assign image_alt = section.settings.image_alt | default: section.settings.image.alt
   assign signature_alt = section.settings.signature_alt | default: section.settings.signature.alt
 -%}
 
-<div class="lalatoto-letter color-scheme color-scheme--{{ section.settings.color_scheme.id }}">
+<div class="lalatoto-letter{% if media_below %} lalatoto-letter--mobile-media-below{% endif %} color-scheme color-scheme--{{ section.settings.color_scheme.id }}">
   <div class="lalatoto-letter__inner">
     <figure class="lalatoto-letter__media">
       {%- if section.settings.video != blank -%}
@@ -98,6 +108,17 @@
     {
       "type": "header",
       "content": "Portræt"
+    },
+    {
+      "type": "select",
+      "id": "mobile_media_position",
+      "label": "Billede eller video på telefon",
+      "info": "På computer står det altid til venstre for teksten.",
+      "options": [
+        { "value": "below", "label": "Under teksten" },
+        { "value": "above", "label": "Over teksten" }
+      ],
+      "default": "below"
     },
     {
       "type": "image_picker",
