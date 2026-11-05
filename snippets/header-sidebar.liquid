@@ -98,6 +98,21 @@
             </a>
           </li>
         {%- endif -%}
+        {%- comment -%}
+          Chat: åbner Shopify Inbox (elementet shopify-chat) med dens egen
+          show(). Knappen i hjørnet er skjult på telefon (lalatoto.css), så
+          chatten nås herfra. Mangler chatten, går linket til kontaktsiden.
+        {%- endcomment -%}
+        <li>
+          <a
+            href="{{ contact_url }}"
+            data-lalatoto-chat
+            onclick="var c = document.querySelector('shopify-chat'); if (c && typeof c.show === 'function') { event.preventDefault(); var m = document.getElementById('sidebar-menu'); if (m && typeof m.hide === 'function') { m.hide(); } c.show(); }"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4.5 6.5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v7.5a2 2 0 0 1-2 2H10l-4.5 3.5V16h0a2 2 0 0 1-1-1.7z" /></svg>
+            <span>{{ 'lalatoto.header.chat' | t }}</span>
+          </a>
+        </li>
         <li>
           <a href="{{ contact_url }}">
             <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7.2 3.8h2.6l1.3 4-2 1.3a10.5 10.5 0 0 0 5.8 5.8l1.3-2 4 1.3v2.6a2 2 0 0 1-2.2 2A15.8 15.8 0 0 1 5.2 6a2 2 0 0 1 2-2.2z" /></svg>
