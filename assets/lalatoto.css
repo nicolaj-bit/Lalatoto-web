@@ -5024,6 +5024,28 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   }
 }
 
+/* Billede eller video under teksten: én kolonne, også på computer */
+.lalatoto-letter--media-below .lalatoto-letter__inner {
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+}
+
+.lalatoto-letter--media-below .lalatoto-letter__content {
+  width: 100%;
+  max-width: 46rem;
+}
+
+@media screen and (min-width: 1000px) {
+  .lalatoto-letter--media-below .lalatoto-letter__inner {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 4rem;
+  }
+
+  .lalatoto-letter--media-below .lalatoto-letter__media {
+    width: min(100%, 24rem);
+  }
+}
+
 /* ---------------------------------------------------------------
  * Materialer (materiale-siden efter Saras udkast)
  * Centreret overskrift, tre principper i kolonner, et afsnit pr.

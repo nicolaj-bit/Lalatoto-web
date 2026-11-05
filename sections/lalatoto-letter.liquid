@@ -1,19 +1,28 @@
 {%- comment -%}
   Lalatoto: et brev med portræt, fx filosofi-siden.
 
-  På computer står portrættet – et billede eller en video – til venstre
-  (lodret centreret) med en lille billedtekst under, og til højre overskrift, brødtekst og underskrift. På
+  Portrættet – et billede eller en video – står som standard under teksten.
+  Med «Ved siden af teksten» står det på computer til venstre (lodret
+  centreret) med en lille billedtekst under, og til højre overskrift, brødtekst og underskrift. På
   telefon står portrættet øverst og teksten under. Alt rettes i
   temaredigeringen; linjeskift i teksten laves med Shift+Enter.
 {%- endcomment -%}
 
 {%- liquid
+  comment
+    Billedet eller videoen står som standard under teksten (også på
+    computer). «Ved siden af teksten» giver den gamle opstilling med
+    portrættet til venstre på computer og øverst på telefon.
+  endcomment
+  assign media_below = true
+  if section.settings.media_position == 'side'
+    assign media_below = false
+  endif
   assign image_alt = section.settings.image_alt | default: section.settings.image.alt
   assign signature_alt = section.settings.signature_alt | default: section.settings.signature.alt
 -%}
 
-<div class="lalatoto-letter color-scheme color-scheme--{{ section.settings.color_scheme.id }}">
-  <div class="lalatoto-letter__inner">
+{%- capture portrait -%}
     <figure class="lalatoto-letter__media">
       {%- if section.settings.video != blank -%}
         {%- comment -%}
@@ -55,6 +64,11 @@
         <figcaption class="lalatoto-letter__caption">{{ section.settings.caption | escape | newline_to_br }}</figcaption>
       {%- endif -%}
     </figure>
+{%- endcapture -%}
+
+<div class="lalatoto-letter{% if media_below %} lalatoto-letter--media-below{% endif %} color-scheme color-scheme--{{ section.settings.color_scheme.id }}">
+  <div class="lalatoto-letter__inner">
+    {%- unless media_below -%}{{ portrait }}{%- endunless -%}
 
     <div class="lalatoto-letter__content">
       {%- if section.settings.heading != blank -%}
@@ -80,6 +94,8 @@
         </div>
       {%- endif -%}
     </div>
+
+    {%- if media_below -%}{{ portrait }}{%- endif -%}
   </div>
 </div>
 
@@ -98,6 +114,16 @@
     {
       "type": "header",
       "content": "Portræt"
+    },
+    {
+      "type": "select",
+      "id": "media_position",
+      "label": "Placering af billede eller video",
+      "options": [
+        { "value": "below", "label": "Under teksten" },
+        { "value": "side", "label": "Ved siden af teksten" }
+      ],
+      "default": "below"
     },
     {
       "type": "image_picker",
