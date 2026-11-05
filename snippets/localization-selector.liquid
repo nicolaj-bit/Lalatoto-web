@@ -7,7 +7,7 @@
   @param {string} [id_prefix] - an optional prefix to help dissociate the ID in case this is included several times in the same section
   @param {string} [placement] - the placement of the popover, default is "bottom-start". It can be set to any of the popover placements available in the theme (top, top-start, top-end, bottom, bottom-start, bottom-end, left, left-start, left-end, right, right-start, right-end)
   @param {object} [section]
-  @param {boolean} [long] - Lalatoto: viser «Dansk» i stedet for sprogkoden og «Danmark · DKK» i stedet for valutakoden (bruges i mobilmenuen)
+  @param {boolean} [long] - Lalatoto: viser «Dansk» i stedet for sprogkoden og «Valuta · DKK» i stedet for valutakoden (bruges i mobilmenuen)
 {%- enddoc -%}
 
 {%- capture localization_form_id -%}localization-form-{{ id_prefix }}-{{ section.id }}-{{ type }}{%- endcapture -%}
@@ -34,11 +34,11 @@
         {%- endif -%}
 
         {%- comment -%}
-          Lalatoto: kun valutakoden (DKK, EUR, NOK) i samme skrift som sprogkoden.
-          I mobilmenuen (long) står landet og valutaen: «Danmark · DKK».
+          Lalatoto: kun valutakoden (DKK, EUR, NOK, SEK) i samme skrift som
+          sprogkoden. I mobilmenuen (long) står «Valuta · DKK».
         {%- endcomment -%}
         {%- if long -%}
-          <span class="lalatoto-locale-code">{{ localization.country.name }} · {{ localization.country.currency.iso_code }}</span>
+          <span class="lalatoto-locale-code">{{ 'lalatoto.localization.currency' | t }} · {{ localization.country.currency.iso_code }}</span>
         {%- elsif show_country_name -%}
           <span>
             {{- localization.country.name }} ({{ localization.country.currency.iso_code }}
@@ -56,35 +56,56 @@
         initial-focus="[aria-selected='true']"
         class="popover popover--{{ placement | default: 'bottom-start' }} color-scheme color-scheme--dialog"
       >
-        <p class="h4" slot="header">{{ 'general.localization.country' | t }}</p>
+        <p class="h4" slot="header">{{ 'lalatoto.localization.currency' | t }}</p>
 
         {%- form 'localization', id: localization_form_id -%}
           {%- comment -%}
-            Lalatoto: vælger kunden et tysktalende land, skifter sproget med det
-            samme til tysk, og Danmark giver altid dansk. Går en kunde, der læser
-            på tysk, til et andet land, skifter sproget til engelsk, som er
-            standard uden for Danmark. Sproget
-            sendes med i samme formular som landet; feltet er slået fra, indtil der
-            er klikket på et land, så Shopify ellers selv vælger markedets sprog.
+            Lalatoto: kun én linje pr. valuta (DKK, EUR, NOK, SEK) i stedet for
+            alle lande. Shopify skal have et land, så hver valuta sender et land
+            med den valuta: det, kunden allerede er i, hvis det passer, ellers
+            det foretrukne (DK, NL, NO, SE) og til sidst det første med valutaen.
+            DKK giver dansk, de øvrige valutaer giver engelsk. Sproget sendes med
+            i samme formular som landet.
           {%- endcomment -%}
-          {%- assign lalatoto_current_language = localization.language.iso_code | split: '-' | first -%}
-          <input type="hidden" name="locale_code" value="" disabled data-lalatoto-locale>
+          {%- liquid
+            assign lalatoto_currencies = 'DKK,EUR,NOK,SEK' | split: ','
+            assign lalatoto_preferred = 'DK,NL,NO,SE' | split: ','
+          -%}
           <x-listbox class="popover__value-list">
-            {%- for country in localization.available_countries -%}
-              {%- assign is_selected = false -%}
-
-              {%- if country.iso_code == localization.country.iso_code -%}
-                {%- assign is_selected = true -%}
-              {%- endif -%}
+            {%- for currency_code in lalatoto_currencies -%}
+              {%- liquid
+                assign currency_country = nil
+                assign preferred_code = lalatoto_preferred[forloop.index0]
+                if localization.country.currency.iso_code == currency_code
+                  assign currency_country = localization.country
+                endif
+                if currency_country == nil
+                  for country in localization.available_countries
+                    if country.iso_code == preferred_code and country.currency.iso_code == currency_code
+                      assign currency_country = country
+                      break
+                    endif
+                  endfor
+                endif
+                if currency_country == nil
+                  for country in localization.available_countries
+                    if country.currency.iso_code == currency_code
+                      assign currency_country = country
+                      break
+                    endif
+                  endfor
+                endif
+              -%}
+              {%- if currency_country == nil -%}{%- continue -%}{%- endif -%}
 
               {%- liquid
-                assign lalatoto_target_language = ''
-                if country.iso_code == 'DE' or country.iso_code == 'AT' or country.iso_code == 'CH'
-                  assign lalatoto_target_language = 'de'
-                elsif country.iso_code == 'DK'
+                assign is_selected = false
+                if localization.country.currency.iso_code == currency_code
+                  assign is_selected = true
+                endif
+                assign lalatoto_target_language = 'en'
+                if currency_code == 'DKK'
                   assign lalatoto_target_language = 'da'
-                elsif lalatoto_current_language == 'de'
-                  assign lalatoto_target_language = 'en'
                 endif
               -%}
 
@@ -93,25 +114,18 @@
                 name="country_code"
                 class="popover__value-option h-stack gap-2.5"
                 role="option"
-                value="{{ country.iso_code }}"
+                value="{{ currency_country.iso_code }}"
                 aria-selected="{% if is_selected %}true{% else %}false{% endif %}"
-                {%- if lalatoto_target_language != blank %}
-                  data-lalatoto-language="{{ lalatoto_target_language }}"
-                  onclick="var l = this.form.querySelector('[data-lalatoto-locale]'); if (l) { l.value = this.getAttribute('data-lalatoto-language'); l.disabled = false; }"
-                {%- endif %}
+                onclick="var l = this.form.querySelector('[name=locale_code]'); if (l) { l.value = '{{ lalatoto_target_language }}'; }"
               >
-                {%- if show_country_flag -%}
-                  {{- country | image_url: width: 60, format: 'jpg' | image_tag: loading: 'lazy', class: 'country-flag' -}}
-                {%- endif -%}
-
                 <span>
-                  {{- country.name }} ({{ country.currency.iso_code }}
-                  {% if country.currency.symbol %}{{ country.currency.symbol }}{%- endif -%}
-                  )</span
-                >
+                  {{- currency_code -}}
+                  {%- if currency_country.currency.symbol %} {{ currency_country.currency.symbol }}{%- endif -%}
+                </span>
               </button>
             {%- endfor -%}
           </x-listbox>
+          <input type="hidden" name="locale_code" value="{% if localization.country.currency.iso_code == 'DKK' %}da{% else %}en{% endif %}">
         {%- endform -%}
       </x-popover>
     </div>
