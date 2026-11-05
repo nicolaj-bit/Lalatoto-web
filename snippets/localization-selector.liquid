@@ -58,75 +58,78 @@
       >
         <p class="h4" slot="header">{{ 'lalatoto.localization.currency' | t }}</p>
 
-        {%- form 'localization', id: localization_form_id -%}
-          {%- comment -%}
-            Lalatoto: kun én linje pr. valuta (DKK, EUR, NOK, SEK) i stedet for
-            alle lande. Shopify skal have et land, så hver valuta sender et land
-            med den valuta: det, kunden allerede er i, hvis det passer, ellers
-            det foretrukne (DK, NL, NO, SE) og til sidst det første med valutaen.
-            DKK giver dansk, de øvrige valutaer giver engelsk. Sproget sendes med
-            i samme formular som landet.
-          {%- endcomment -%}
-          {%- liquid
-            assign lalatoto_currencies = 'DKK,EUR,NOK,SEK' | split: ','
-            assign lalatoto_preferred = 'DK,NL,NO,SE' | split: ','
-          -%}
-          <x-listbox class="popover__value-list">
-            {%- for currency_code in lalatoto_currencies -%}
-              {%- liquid
-                assign currency_country = nil
-                assign preferred_code = lalatoto_preferred[forloop.index0]
-                if localization.country.currency.iso_code == currency_code
-                  assign currency_country = localization.country
-                endif
-                if currency_country == nil
-                  for country in localization.available_countries
-                    if country.iso_code == preferred_code and country.currency.iso_code == currency_code
-                      assign currency_country = country
-                      break
-                    endif
-                  endfor
-                endif
-                if currency_country == nil
-                  for country in localization.available_countries
-                    if country.currency.iso_code == currency_code
-                      assign currency_country = country
-                      break
-                    endif
-                  endfor
-                endif
-              -%}
-              {%- if currency_country == nil -%}{%- continue -%}{%- endif -%}
+        {%- comment -%}
+          Lalatoto: kun én linje pr. valuta (DKK, EUR, NOK, SEK) i stedet for
+          alle lande. Shopify skal have et land, så hver valuta sender et land
+          med den valuta: det, kunden allerede er i, hvis det passer, ellers
+          det foretrukne (DK, NL, NO, SE) og til sidst det første med valutaen.
+          DKK giver dansk, de øvrige valutaer giver engelsk.
 
-              {%- liquid
-                assign is_selected = false
-                if localization.country.currency.iso_code == currency_code
-                  assign is_selected = true
-                endif
-                assign lalatoto_target_language = 'en'
-                if currency_code == 'DKK'
-                  assign lalatoto_target_language = 'da'
-                endif
-              -%}
+          Hver valuta har sin egen lille formular med land og sprog som faste
+          felter, så valget virker uden JavaScript og ens i alle browsere
+          (også Safari på iPhone).
+        {%- endcomment -%}
+        {%- liquid
+          assign lalatoto_currencies = 'DKK,EUR,NOK,SEK' | split: ','
+          assign lalatoto_preferred = 'DK,NL,NO,SE' | split: ','
+        -%}
+        <x-listbox class="popover__value-list">
+          {%- for currency_code in lalatoto_currencies -%}
+            {%- liquid
+              assign currency_country = nil
+              assign preferred_code = lalatoto_preferred[forloop.index0]
+              if localization.country.currency.iso_code == currency_code
+                assign currency_country = localization.country
+              endif
+              if currency_country == nil
+                for country in localization.available_countries
+                  if country.iso_code == preferred_code and country.currency.iso_code == currency_code
+                    assign currency_country = country
+                    break
+                  endif
+                endfor
+              endif
+              if currency_country == nil
+                for country in localization.available_countries
+                  if country.currency.iso_code == currency_code
+                    assign currency_country = country
+                    break
+                  endif
+                endfor
+              endif
+            -%}
+            {%- if currency_country == nil -%}{%- continue -%}{%- endif -%}
 
+            {%- liquid
+              assign is_selected = false
+              if localization.country.currency.iso_code == currency_code
+                assign is_selected = true
+              endif
+              assign lalatoto_target_language = 'en'
+              if currency_code == 'DKK'
+                assign lalatoto_target_language = 'da'
+              endif
+              assign currency_form_id = localization_form_id | append: '-' | append: currency_code
+            -%}
+
+            {%- form 'localization', id: currency_form_id, class: 'contents' -%}
+              <input type="hidden" name="country_code" value="{{ currency_country.iso_code }}">
+              <input type="hidden" name="language_code" value="{{ lalatoto_target_language }}">
               <button
                 type="submit"
-                name="country_code"
                 class="popover__value-option h-stack gap-2.5"
                 role="option"
-                value="{{ currency_country.iso_code }}"
+                value="{{ currency_code }}"
                 aria-selected="{% if is_selected %}true{% else %}false{% endif %}"
-                onclick="var l = this.form.querySelector('[name=locale_code]'); if (l) { l.value = '{{ lalatoto_target_language }}'; }"
               >
                 <span>
                   {{- currency_code -}}
                   {%- if currency_country.currency.symbol %} {{ currency_country.currency.symbol }}{%- endif -%}
                 </span>
               </button>
-            {%- endfor -%}
-          </x-listbox>
-          <input type="hidden" name="locale_code" value="{% if localization.country.currency.iso_code == 'DKK' %}da{% else %}en{% endif %}">
-        {%- endform -%}
+            {%- endform -%}
+          {%- endfor -%}
+        </x-listbox>
       </x-popover>
     </div>
 
