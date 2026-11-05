@@ -9,7 +9,8 @@
   «Billeder til kort» (metafeltet lalatoto.kortbilleder, stående 4:5) bruges
   før alt andet: først farvens egne, så produktets (kun på kort for hele
   produktet). 1. billede vises på kortet, 2. billede toner frem ved
-  mus-over. Er der kun ét, toner det almindelige billede frem.
+  mus-over. Er der kun ét, toner det gamle «Billede til kort» frem, og
+  ellers produktets almindelige billede.
 
   Billedstørrelsen (sizes) regner med, at kortet fylder 25 % af bredden på
   computer og 72 % på mobil, og at et kvadratisk billede beskæres til 4:5
@@ -29,27 +30,47 @@
   comment
     «Billeder til kort» (lalatoto.kortbilleder, en liste): 1. billede vises
     på kortet, 2. billede toner frem ved mus-over. Først farvens egne, så
-    produktets (kun på kort for hele produktet). Det gamle felt «Billede
-    til kort» (lalatoto.kortbillede) bruges, hvis listen er tom.
+    produktets (kun på kort for hele produktet).
+
+    Listen kan kun læses med en for-løkke; .first og [0] giver intet på en
+    liste fra et metafelt.
+
+    Det gamle felt «Billede til kort» (lalatoto.kortbillede) bruges, hvis
+    listen er tom, og som billede ved mus-over, hvis listen kun har ét.
+    Først derefter bruges produktets almindelige billede.
   endcomment
-  assign card_images = variant.metafields.lalatoto.kortbilleder.value
-  if card_images == blank and variant_label == blank
-    assign card_images = product.metafields.lalatoto.kortbilleder.value
+  assign card_list = variant.metafields.lalatoto.kortbilleder.value
+  if card_list == blank and variant_label == blank
+    assign card_list = product.metafields.lalatoto.kortbilleder.value
   endif
 
-  assign card_image = card_images.first
-  if card_image == blank
-    assign card_image = variant.metafields.lalatoto.kortbillede.value
-    if card_image == blank and variant_label == blank
-      assign card_image = product.metafields.lalatoto.kortbillede.value
+  assign card_image = nil
+  assign card_hover = nil
+  for file in card_list
+    if forloop.index == 1
+      assign card_image = file
+    elsif forloop.index == 2
+      assign card_hover = file
     endif
+  endfor
+
+  assign old_card = variant.metafields.lalatoto.kortbillede.value
+  if old_card == blank and variant_label == blank
+    assign old_card = product.metafields.lalatoto.kortbillede.value
   endif
+
+  if card_image == blank
+    assign card_image = old_card
+  elsif card_hover == blank and old_card != blank and old_card.id != card_image.id
+    assign card_hover = old_card
+  endif
+
   if card_image != blank
     assign hover_media = image
     assign image = card_image
   endif
-  if card_images.size > 1
-    assign hover_media = card_images[1]
+  if card_hover != blank
+    assign hover_media = card_hover
   endif
   assign url = variant.url | default: product.url
   assign loading = 'lazy'
