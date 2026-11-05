@@ -4155,10 +4155,6 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   text-transform: uppercase;
 }
 
-.lalatoto-journal-card--large .lalatoto-journal-card__title {
-  font-size: clamp(1.75rem, 3.5vw, 2.625rem);
-  line-height: 1.12;
-}
 
 /* Sider */
 .lalatoto-journal__pages {
@@ -4607,6 +4603,13 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 
   .lalatoto-journal-card--large .lalatoto-journal-card__body {
     gap: 1rem;
+  }
+
+  /* Den nyeste artikels overskrift er kun større på computer. På telefon
+     har den samme størrelse som de øvrige artikler. */
+  .lalatoto-journal-card--large .lalatoto-journal-card__title {
+    font-size: clamp(1.75rem, 3.5vw, 2.625rem);
+    line-height: 1.12;
   }
 }
 
