@@ -517,6 +517,9 @@
     }
   },
   "lalatoto": {
+    "localization": {
+      "currency": "Währung"
+    },
     "months": {
       "m01": "Januar",
       "m02": "Februar",
