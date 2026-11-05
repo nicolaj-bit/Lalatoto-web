@@ -11,15 +11,14 @@
   assign heading = section.settings.heading | default: blog.title
   assign lead = section.settings.lead
   assign kicker = section.settings.kicker
-  if kicker == blank
-    assign kicker = 'lalatoto.journal.kicker' | t
-  endif
 -%}
 
 {%- paginate blog.articles by section.settings.per_page -%}
   <div class="lalatoto-journal color-scheme color-scheme--{{ section.settings.color_scheme.id }}">
     <header class="lalatoto-journal__head">
-      <p class="lalatoto-kicker">{{ kicker | escape }}</p>
+      {%- if kicker != blank -%}
+        <p class="lalatoto-kicker">{{ kicker | escape }}</p>
+      {%- endif -%}
       <h1 class="lalatoto-journal__title">{{ heading | escape }}</h1>
       {%- if lead != blank -%}
         <p class="lalatoto-lead lalatoto-journal__lead">{{ lead | escape }}</p>
@@ -104,7 +103,7 @@
       "type": "text",
       "id": "kicker",
       "label": "Lille etiket over overskriften",
-      "info": "Tom: «Journal»."
+      "info": "Tom: ingen etiket."
     },
     {
       "type": "text",
@@ -121,7 +120,7 @@
       "type": "checkbox",
       "id": "show_tags",
       "label": "Vis emner",
-      "info": "Emnerne er artiklernes tags. Giv artiklerne tags som «Søvn», «Børn» og «Familieliv», så kan læserne filtrere.",
+      "info": "Emnerne er artiklernes tags (Søvn, Graviditet, Den første tid, Børn og familieliv, Materialer). Giv nye artikler ét af dem, så kan læserne filtrere.",
       "default": true
     },
     {
