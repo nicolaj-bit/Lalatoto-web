@@ -1,8 +1,9 @@
 {%- comment -%}
   Lalatoto: journalens forside (/blogs/…).
 
-  Centreret overskrift med en lille etiket og en kort tekst. Derunder emner
-  (bloggens tags) som små links. Den nyeste artikel står stort, og resten
+  Centreret overskrift (etiketten over den kun, hvis den er udfyldt) og en
+  kort tekst. Derunder emner (artiklernes tags, i rækkefølgen fra
+  temaeditoren) som små links. Den nyeste artikel står stort, og resten
   står i et gitter med tre kolonner på computer, to på tablet og én på
   telefon. Nederst sider.
 {%- endcomment -%}
@@ -11,25 +12,44 @@
   assign heading = section.settings.heading | default: blog.title
   assign lead = section.settings.lead
   assign kicker = section.settings.kicker
-  if kicker == blank
-    assign kicker = 'lalatoto.journal.kicker' | t
-  endif
 -%}
 
 {%- paginate blog.articles by section.settings.per_page -%}
   <div class="lalatoto-journal color-scheme color-scheme--{{ section.settings.color_scheme.id }}">
     <header class="lalatoto-journal__head">
-      <p class="lalatoto-kicker">{{ kicker | escape }}</p>
+      {%- if kicker != blank -%}
+        <p class="lalatoto-kicker">{{ kicker | escape }}</p>
+      {%- endif -%}
       <h1 class="lalatoto-journal__title">{{ heading | escape }}</h1>
       {%- if lead != blank -%}
         <p class="lalatoto-lead lalatoto-journal__lead">{{ lead | escape }}</p>
       {%- endif -%}
     </header>
 
-    {%- if section.settings.show_tags and blog.all_tags.size > 0 -%}
+    {%- liquid
+      comment
+        Emnerne står i temaeditoren i fast rækkefølge, adskilt af komma.
+        Shopifys egen liste (blog.all_tags) er ikke til at stole på – den
+        kan stå tom, selv om artiklerne har tags – så den bruges kun, hvis
+        feltet er tomt.
+      endcomment
+      assign topics = section.settings.topics | split: ','
+      assign topic_list = ''
+      for topic in topics
+        assign clean = topic | strip
+        if clean != blank
+          assign topic_list = topic_list | append: clean | append: '|'
+        endif
+      endfor
+      assign topics = topic_list | split: '|'
+      if topics.size == 0
+        assign topics = blog.all_tags
+      endif
+    -%}
+    {%- if section.settings.show_tags and topics.size > 0 -%}
       <nav class="lalatoto-journal__tags" aria-label="{{ 'lalatoto.journal.topics' | t | escape }}">
         <a href="{{ blog.url }}" {% if current_tags == blank %}aria-current="page"{% endif %}>{{ 'lalatoto.journal.all' | t }}</a>
-        {%- for tag in blog.all_tags -%}
+        {%- for tag in topics -%}
           <a href="{{ blog.url }}/tagged/{{ tag | handleize }}" {% if current_tags contains tag %}aria-current="page"{% endif %}>{{ tag }}</a>
         {%- endfor -%}
       </nav>
@@ -104,7 +124,7 @@
       "type": "text",
       "id": "kicker",
       "label": "Lille etiket over overskriften",
-      "info": "Tom: «Journal»."
+      "info": "Tom: ingen etiket."
     },
     {
       "type": "text",
@@ -121,8 +141,15 @@
       "type": "checkbox",
       "id": "show_tags",
       "label": "Vis emner",
-      "info": "Emnerne er artiklernes tags. Giv artiklerne tags som «Søvn», «Børn» og «Familieliv», så kan læserne filtrere.",
+      "info": "Emnerne er artiklernes tags. Giv hver ny artikel ét af emnerne herunder som tag, så kan læserne filtrere.",
       "default": true
+    },
+    {
+      "type": "text",
+      "id": "topics",
+      "label": "Emner",
+      "info": "Adskilt af komma, i den rækkefølge de skal stå. Skal staves præcis som artiklernes tags.",
+      "default": "Søvn, Sovemiljø, Graviditet, Den første tid, Børn og familieliv"
     },
     {
       "type": "range",
