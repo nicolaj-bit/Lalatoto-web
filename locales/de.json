@@ -606,6 +606,7 @@
       "page_subtitle": "Ganz wie es dir passt.",
       "chat_title": "Chat",
       "chat_text": "Und nein, hier antwortet kein Chatbot. Bei uns beantworten echte Menschen deine Fragen.",
+      "chat_link": "Chat starten",
       "mail_title": "E-Mail",
       "mail_text_html": "Du schreibst lieber eine E-Mail? Dann schick uns deine Fragen an {{ email }}. Wir antworten in der Regel innerhalb von 24 Stunden an Werktagen.",
       "form_title": "Kontaktformular",
