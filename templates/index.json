@@ -171,6 +171,7 @@
     },
     "journal": {
       "type": "lalatoto-journal-teaser",
+      "disabled": true,
       "settings": {
         "color_scheme": "scheme-1",
         "blog": "bloggen",
