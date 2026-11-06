@@ -517,6 +517,11 @@
     }
   },
   "lalatoto": {
+    "slideshow": {
+      "carousel": "Diashow",
+      "slide": "Folie",
+      "go_to": "Zu Folie {{ number }}"
+    },
     "localization": {
       "currency": "Währung"
     },
