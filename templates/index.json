@@ -62,11 +62,11 @@
         "slide_materialer"
       ],
       "settings": {
+        "visibility": "mobile",
         "height": "image",
         "autoplay": true,
         "speed": 6,
-        "label": "Udvalgt på forsiden",
-        "visibility": "mobile"
+        "label": "Udvalgt på forsiden"
       }
     },
     "usp": {
@@ -133,7 +133,7 @@
       "settings": {
         "color_scheme": "scheme-1",
         "kicker": "",
-        "heading": "Shop",
+        "heading": "",
         "show_view_all": false,
         "products_count": 4,
         "hover_image": true,
