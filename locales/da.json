@@ -521,6 +521,11 @@
     }
   },
   "lalatoto": {
+    "slideshow": {
+      "carousel": "Slideshow",
+      "slide": "Slide",
+      "go_to": "Gå til slide {{ number }}"
+    },
     "localization": {
       "currency": "Valuta"
     },
