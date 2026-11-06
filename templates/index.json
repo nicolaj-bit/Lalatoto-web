@@ -39,7 +39,7 @@
             "button_label": "Se kollektionen",
             "button_link": "shopify://collections/produkter",
             "text_position": "left",
-            "overlay": 45
+            "overlay": 25
           }
         },
         "slide_materialer": {
