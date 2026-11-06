@@ -581,12 +581,25 @@ h1, h2, h3, h4, h5, h6,
 @media screen and (min-width: 1000px) {
   .lalatoto-slideshow {
     height: min(86svh, 54rem);
+    margin-block-end: var(--section-vertical-spacing, 5rem);
+  }
+
+  /* Mørk tone fra nederste venstre hjørne, hvor teksten står */
+  .lalatoto-slideshow__slide--left .lalatoto-slideshow__media::after {
+    background: radial-gradient(
+      ellipse 75% 95% at 0% 100%,
+      rgb(20 18 16 / calc(var(--lalatoto-slideshow-overlay, 0.4) * 1.6)) 0%,
+      rgb(20 18 16 / calc(var(--lalatoto-slideshow-overlay, 0.4) * 1.1)) 38%,
+      rgb(20 18 16 / calc(var(--lalatoto-slideshow-overlay, 0.4) * 0.35)) 68%,
+      rgb(20 18 16 / 0) 100%
+    );
   }
 
   .lalatoto-slideshow__slide--left .lalatoto-slideshow__content {
     justify-items: start;
-    max-width: 44rem;
-    padding: 0 0 5.5rem clamp(2rem, 6vw, 7rem);
+    gap: 1.125rem;
+    max-width: 40rem;
+    padding: 0 0 clamp(4rem, 9svh, 6rem) clamp(2.5rem, 6vw, 7rem);
     text-align: start;
   }
 
@@ -602,13 +615,28 @@ h1, h2, h3, h4, h5, h6,
     background: rgb(20 18 16 / calc(var(--lalatoto-slideshow-overlay, 0.4) * 0.6));
   }
 
-  .lalatoto-slideshow__heading {
-    font-size: clamp(2.75rem, 4.4vw, 4.25rem);
+  .lalatoto-slideshow__kicker {
+    font-size: 0.75rem;
   }
 
+  .lalatoto-slideshow__heading {
+    font-size: clamp(2.75rem, 3.7vw, 3.75rem);
+    line-height: 1.06;
+  }
+
+  .lalatoto-slideshow__text {
+    max-width: 28rem;
+    font-size: 1rem;
+  }
+
+  .lalatoto-slideshow__button {
+    margin-block-start: 0.875rem;
+  }
+
+  /* Stregerne nede til højre, væk fra knappen */
   .lalatoto-slideshow__dots {
-    inset-inline: auto clamp(2rem, 6vw, 7rem);
-    bottom: 5.5rem;
+    inset-inline: auto clamp(2.5rem, 6vw, 7rem);
+    bottom: 2rem;
   }
 }
 
