@@ -17,6 +17,19 @@
        skal stå tydeligt).
 {%- endcomment -%}
 
+{%- liquid
+  comment
+    Link til appens egen side, clubnosleep.com. Et almindeligt link (uden
+    nofollow) med beskrivende tekst, så Google kobler de to sider sammen.
+  endcomment
+  assign site_url = section.settings.site_url | default: 'https://clubnosleep.com'
+  assign site_link_text = section.settings.site_link_text | default: 'Læs mere om Club No Sleep på clubnosleep.com'
+-%}
+
+{%- capture site_link -%}
+  <a href="{{ site_url }}" class="lalatoto-apppage__site-link" target="_blank" rel="noopener">{{ site_link_text | escape }}</a>
+{%- endcapture -%}
+
 {%- capture app_buttons -%}
   {%- render 'lalatoto-store-buttons', app_store_url: section.settings.app_store_url, google_play_url: section.settings.google_play_url -%}
 {%- endcapture -%}
@@ -35,6 +48,7 @@
       {%- if section.settings.trial_note != blank -%}
         <p class="lalatoto-apppage__note">{{ section.settings.trial_note | escape }}</p>
       {%- endif -%}
+      {{ site_link }}
     </div>
     {%- liquid
       assign hero_images = ''
@@ -138,11 +152,34 @@
     {%- if section.settings.trial_note != blank -%}
       <p class="lalatoto-apppage__note">{{ section.settings.trial_note | escape }}</p>
     {%- endif -%}
+    {{ site_link }}
     {%- if section.settings.terms != blank -%}
       <p class="lalatoto-apppage__terms">{{ section.settings.terms | escape }}</p>
     {%- endif -%}
   </div>
 </div>
+
+{%- comment -%}
+  Fortæller Google, at appen hedder Club No Sleep, har sin egen side på
+  clubnosleep.com og ligger i App Store og Google Play.
+{%- endcomment -%}
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    "name": "Club No Sleep",
+    "url": {{ site_url | json }},
+    "operatingSystem": "iOS, Android",
+    "applicationCategory": "HealthApplication",
+    "inLanguage": "da",
+    "publisher": { "@type": "Organization", "name": "LALATOTO of Denmark ApS", "url": {{ shop.url | json }} },
+    "sameAs": [
+      {{ site_url | json }}
+      {%- if section.settings.app_store_url != blank -%}, {{ section.settings.app_store_url | json }}{%- endif -%}
+      {%- if section.settings.google_play_url != blank -%}, {{ section.settings.google_play_url | json }}{%- endif %}
+    ]
+  }
+</script>
 
 <script>
   (function () {
@@ -180,6 +217,8 @@
     { "type": "url", "id": "app_store_url", "label": "Link til App Store" },
     { "type": "url", "id": "google_play_url", "label": "Link til Google Play" },
     { "type": "text", "id": "trial_note", "label": "Prøveperiode og pris", "info": "Vises under knapperne øverst og nederst." },
+    { "type": "url", "id": "site_url", "label": "Link til appens hjemmeside", "info": "Tomt: https://clubnosleep.com" },
+    { "type": "text", "id": "site_link_text", "label": "Tekst på linket", "default": "Læs mere om Club No Sleep på clubnosleep.com", "info": "Vises under knapperne øverst og nederst. Skriv hvad siden handler om, det hjælper Google." },
     { "type": "header", "content": "Indledning" },
     { "type": "text", "id": "intro_heading", "label": "Overskrift" },
     { "type": "richtext", "id": "intro_text", "label": "Tekst" },
