@@ -46,7 +46,7 @@
         "slide_materialer"
       ],
       "settings": {
-        "height": "large",
+        "height": "image",
         "autoplay": true,
         "speed": 6,
         "label": "Udvalgt på forsiden"
