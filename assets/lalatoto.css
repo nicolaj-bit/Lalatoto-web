@@ -319,6 +319,15 @@ h1, h2, h3, h4, h5, h6,
   }
 }
 
+/* «Vis på»: sektioner, der kun skal vises på computer eller telefon */
+@media screen and (max-width: 999px) {
+  .lalatoto-visibility--desktop { display: none !important; }
+}
+
+@media screen and (min-width: 1000px) {
+  .lalatoto-visibility--mobile { display: none !important; }
+}
+
 /* ---------------------------------------------------------------
  * Slideshow på forsiden (sections/lalatoto-slideshow.liquid)
  * Billede i fuld bredde med tekst ovenpå: etiket i versaler, overskrift i

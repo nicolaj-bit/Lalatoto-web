@@ -16,7 +16,7 @@
 -%}
 
 <div
-  class="lalatoto-hero color-scheme color-scheme--{{ section.settings.color_scheme.id }}"
+  class="lalatoto-hero lalatoto-visibility--{{ section.settings.visibility | default: 'all' }} color-scheme color-scheme--{{ section.settings.color_scheme.id }}"
   {% if section.settings.allow_transparent_header %}
     allow-transparent-header
   {% endif %}
@@ -25,6 +25,10 @@
     <div class="lalatoto-hero__media">
       {%- if section.settings.image != blank -%}
         <picture>
+          {%- if section.settings.visibility == 'desktop' -%}
+            {%- comment -%} Skjult på telefon: hent ikke billedet dér {%- endcomment -%}
+            <source media="(max-width: 999px)" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+          {%- endif -%}
           {%- if section.settings.mobile_image != blank -%}
             <source
               media="(max-width: 699px)"
@@ -84,6 +88,18 @@
   "class": "shopify-section--lalatoto-hero",
   "tag": "section",
   "settings": [
+    {
+      "type": "select",
+      "id": "visibility",
+      "label": "Vis på",
+      "options": [
+        { "value": "all", "label": "Computer og telefon" },
+        { "value": "desktop", "label": "Kun computer" },
+        { "value": "mobile", "label": "Kun telefon" }
+      ],
+      "default": "all",
+      "info": "Brug fx en hero på computer og et slideshow på telefon."
+    },
     {
       "type": "color_scheme",
       "id": "color_scheme",
