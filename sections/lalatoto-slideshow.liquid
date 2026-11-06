@@ -30,7 +30,7 @@
 
 {%- if slide_count > 0 -%}
   <lalatoto-slideshow
-    class="lalatoto-slideshow lalatoto-slideshow--{{ section.settings.height }}"
+    class="lalatoto-slideshow lalatoto-slideshow--{{ section.settings.height }} lalatoto-visibility--{{ section.settings.visibility | default: 'all' }}"
     {% if section.settings.autoplay and slide_count > 1 %}data-autoplay="{{ speed }}"{% endif %}
     role="region"
     aria-roledescription="{{ 'lalatoto.slideshow.carousel' | t | escape }}"
@@ -54,6 +54,10 @@
         <div class="lalatoto-slideshow__media">
           {%- if block.settings.image != blank -%}
             <picture>
+              {%- if section.settings.visibility == 'mobile' -%}
+                {%- comment -%} Skjult på computer: hent ikke billedet dér {%- endcomment -%}
+                <source media="(min-width: 1000px)" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+              {%- endif -%}
               {%- if block.settings.mobile_image != blank -%}
                 <source
                   media="(max-width: 699px)"
@@ -135,6 +139,18 @@
   "class": "shopify-section--lalatoto-slideshow",
   "tag": "section",
   "settings": [
+    {
+      "type": "select",
+      "id": "visibility",
+      "label": "Vis på",
+      "options": [
+        { "value": "all", "label": "Computer og telefon" },
+        { "value": "desktop", "label": "Kun computer" },
+        { "value": "mobile", "label": "Kun telefon" }
+      ],
+      "default": "all",
+      "info": "Brug fx en hero på computer og et slideshow på telefon."
+    },
     {
       "type": "select",
       "id": "height",

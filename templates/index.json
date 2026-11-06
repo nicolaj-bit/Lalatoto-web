@@ -9,6 +9,22 @@
  */
 {
   "sections": {
+    "hero": {
+      "type": "lalatoto-hero",
+      "settings": {
+        "visibility": "desktop",
+        "color_scheme": "scheme-1",
+        "allow_transparent_header": false,
+        "image": "shopify://shop_images/computer_d307a74b-b172-4968-b7d7-866cdc832734.jpg",
+        "image_alt": "",
+        "mobile_image": "shopify://shop_images/Design_uden_navn_4.jpg",
+        "heading_line_1": "Ingen polyester.",
+        "heading_line_2": "Ingen kompromiser.",
+        "text": "<p>Vi kæmper for en ny normal.&nbsp;<br/>Vil du være med?</p>",
+        "button_text": "Little checks collection",
+        "button_url": "shopify://collections/produkter"
+      }
+    },
     "lalatoto_slideshow": {
       "type": "lalatoto-slideshow",
       "blocks": {
@@ -49,7 +65,8 @@
         "height": "image",
         "autoplay": true,
         "speed": 6,
-        "label": "Udvalgt på forsiden"
+        "label": "Udvalgt på forsiden",
+        "visibility": "mobile"
       }
     },
     "usp": {
@@ -226,6 +243,7 @@
     }
   },
   "order": [
+    "hero",
     "lalatoto_slideshow",
     "usp",
     "billede",
