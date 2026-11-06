@@ -584,6 +584,13 @@ h1, h2, h3, h4, h5, h6,
     margin-block-end: var(--section-vertical-spacing, 5rem);
   }
 
+  /* Følg billedet: samme format som billedet, så intet skæres af */
+  .lalatoto-slideshow--image {
+    height: auto;
+    min-height: 30rem;
+    aspect-ratio: var(--lalatoto-slideshow-ratio, 2.667);
+  }
+
   /* Mørk tone fra nederste venstre hjørne, hvor teksten står */
   .lalatoto-slideshow__slide--left .lalatoto-slideshow__media::after {
     background: radial-gradient(

@@ -13,6 +13,19 @@
 {%- liquid
   assign slide_count = section.blocks.size
   assign speed = section.settings.speed | default: 6
+
+  comment
+    «Følg billedet»: på computer får slideshowet samme format som det
+    første liggende billede (mindst 16:10), så det vises helt. Stående
+    billeder kan ikke vises helt i et bredt banner og beskæres derfor.
+  endcomment
+  assign ratio = 2.667
+  for block in section.blocks
+    if block.settings.image.aspect_ratio >= 1.6
+      assign ratio = block.settings.image.aspect_ratio
+      break
+    endif
+  endfor
 -%}
 
 {%- if slide_count > 0 -%}
@@ -22,7 +35,7 @@
     role="region"
     aria-roledescription="{{ 'lalatoto.slideshow.carousel' | t | escape }}"
     aria-label="{{ section.settings.label | default: 'Lalatoto' | escape }}"
-    style="--lalatoto-slideshow-speed: {{ speed }}s;"
+    style="--lalatoto-slideshow-speed: {{ speed }}s; --lalatoto-slideshow-ratio: {{ ratio }};"
   >
     {%- for block in section.blocks -%}
       {%- liquid
@@ -127,11 +140,13 @@
       "id": "height",
       "label": "Højde",
       "options": [
+        { "value": "image", "label": "Følg billedet på computer" },
         { "value": "medium", "label": "Mellem" },
         { "value": "large", "label": "Stor" },
         { "value": "full", "label": "Hele skærmen" }
       ],
-      "default": "large"
+      "default": "image",
+      "info": "«Følg billedet»: hele billedet vises på computer. Brug liggende billeder i samme format, fx 3200 × 1200 px."
     },
     {
       "type": "checkbox",
@@ -165,7 +180,7 @@
           "type": "image_picker",
           "id": "image",
           "label": "Billede",
-          "info": "Liggende, fx 2800 × 1600 px."
+          "info": "Liggende, fx 3200 × 1200 px. Alle slides bør have samme format."
         },
         {
           "type": "image_picker",
