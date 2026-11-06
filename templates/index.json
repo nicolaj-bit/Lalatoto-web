@@ -44,6 +44,7 @@
         },
         "slide_materialer": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/Forsidebillede_computer_1.png",
             "mobile_image": "shopify://shop_images/Forsidebillede_mobil.png",
