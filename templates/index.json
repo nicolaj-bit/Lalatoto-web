@@ -9,19 +9,80 @@
  */
 {
   "sections": {
-    "hero": {
-      "type": "lalatoto-hero",
+    "slideshow": {
+      "type": "slideshow",
+      "blocks": {
+        "slide_hero": {
+          "type": "image",
+          "settings": {
+            "mobile_text_position": "place-self-end-center text-center",
+            "desktop_text_position": "sm:place-self-center sm:text-center",
+            "content_max_width": 780,
+            "heading_style": "h1",
+            "button_1_style": "outline",
+            "button_1_background": "#ffffff",
+            "button_1_text_color": "#ffffff",
+            "button_2_text": "",
+            "button_2_link": "",
+            "button_2_style": "outline",
+            "button_2_background": "#ffffff",
+            "button_2_text_color": "#000000",
+            "background": "#000000",
+            "background_opacity": 20,
+            "text_color": "#ffffff",
+            "border_color": "",
+            "gradient_overlay": "",
+            "image": "shopify://shop_images/computer_d307a74b-b172-4968-b7d7-866cdc832734.jpg",
+            "mobile_image": "shopify://shop_images/Design_uden_navn_4.jpg",
+            "subheading": "Vi kæmper for en ny normal",
+            "title": "Ingen polyester. Ingen kompromiser.",
+            "button_1_text": "Little checks collection",
+            "button_1_link": "shopify://collections/produkter"
+          }
+        },
+        "slide_materialer": {
+          "type": "image",
+          "settings": {
+            "mobile_text_position": "place-self-end-center text-center",
+            "desktop_text_position": "sm:place-self-center sm:text-center",
+            "content_max_width": 780,
+            "heading_style": "h1",
+            "button_1_style": "outline",
+            "button_1_background": "#ffffff",
+            "button_1_text_color": "#ffffff",
+            "button_2_text": "",
+            "button_2_link": "",
+            "button_2_style": "outline",
+            "button_2_background": "#ffffff",
+            "button_2_text_color": "#000000",
+            "background": "#000000",
+            "background_opacity": 20,
+            "text_color": "#ffffff",
+            "border_color": "",
+            "gradient_overlay": "",
+            "image": "shopify://shop_images/Forsidebillede_computer_1.png",
+            "mobile_image": "shopify://shop_images/Forsidebillede_mobil.png",
+            "subheading": "Materialer",
+            "title": "Don’t mess with nature",
+            "button_1_text": "Læs om materialerne",
+            "button_1_link": "shopify://pages/materialer"
+          }
+        }
+      },
+      "block_order": [
+        "slide_hero",
+        "slide_materialer"
+      ],
       "settings": {
-        "color_scheme": "scheme-1",
         "allow_transparent_header": true,
-        "image": "shopify://shop_images/computer_d307a74b-b172-4968-b7d7-866cdc832734.jpg",
-        "image_alt": "",
-        "mobile_image": "shopify://shop_images/Design_uden_navn_4.jpg",
-        "heading_line_1": "Ingen polyester.",
-        "heading_line_2": "Ingen kompromiser.",
-        "text": "<p>Vi kæmper for en ny normal.&nbsp;<br/>Vil du være med?</p>",
-        "button_text": "Little checks collection",
-        "button_url": "shopify://collections/produkter"
+        "show_next_section_button": false,
+        "media_size": "lg",
+        "show_initial_transition": false,
+        "autoplay": true,
+        "autoplay_pause_on_video": false,
+        "cycle_speed": 6,
+        "background": "#000000",
+        "controls_color": "#ffffff"
       }
     },
     "usp": {
@@ -198,7 +259,7 @@
     }
   },
   "order": [
-    "hero",
+    "slideshow",
     "usp",
     "billede",
     "shop",
