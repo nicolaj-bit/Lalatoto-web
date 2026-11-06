@@ -4118,6 +4118,24 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   font-size: 0.8125rem;
 }
 
+/* Link til clubnosleep.com, samme streg-link som i artiklerne */
+.lalatoto-apppage__site-link {
+  justify-self: start;
+  padding-block-end: 0.25rem;
+  color: rgb(var(--text-color));
+  font-size: var(--lalatoto-label-size);
+  letter-spacing: var(--lalatoto-label-spacing);
+  text-transform: uppercase;
+  text-decoration: none;
+  background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+  transition: background-size 0.25s ease-in-out;
+}
+
+.lalatoto-apppage__site-link:hover,
+.lalatoto-apppage__site-link:focus-visible {
+  background-size: 100% 1px;
+}
+
 /* Åbning */
 .lalatoto-apppage__hero {
   display: grid;
@@ -4237,6 +4255,10 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   padding-top: clamp(3rem, 6vw, 4.5rem);
   border-top: 1px solid #d7d0c4;
   text-align: center;
+}
+
+.lalatoto-apppage__closing .lalatoto-apppage__site-link {
+  justify-self: center;
 }
 
 .lalatoto-apppage__closing .lalatoto-apppage__buttons {
