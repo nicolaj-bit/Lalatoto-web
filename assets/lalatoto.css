@@ -531,6 +531,53 @@ h1, h2, h3, h4, h5, h6,
   to { transform: scaleX(1); }
 }
 
+/* Telefon: kraftigere tone nedefra bag teksten, så den kan læses på
+   travle billeder (fx tern), lidt mindre tekst samlet i bunden, streger med
+   luft til knappen og luft før næste sektion. Toppen af billedet står rent. */
+@media screen and (max-width: 999px) {
+  .lalatoto-slideshow {
+    margin-block-end: var(--section-vertical-spacing, 4rem);
+  }
+
+  .lalatoto-slideshow__media::after {
+    background: linear-gradient(
+      to top,
+      rgb(20 18 16 / calc(var(--lalatoto-slideshow-overlay, 0.4) * 1.75)) 0%,
+      rgb(20 18 16 / calc(var(--lalatoto-slideshow-overlay, 0.4) * 1.35)) 28%,
+      rgb(20 18 16 / calc(var(--lalatoto-slideshow-overlay, 0.4) * 0.45)) 52%,
+      rgb(20 18 16 / 0) 68%
+    );
+  }
+
+  .lalatoto-slideshow__content {
+    gap: 0.625rem;
+    padding-block-end: 4rem;
+  }
+
+  .lalatoto-slideshow__kicker {
+    font-size: 0.6875rem;
+  }
+
+  .lalatoto-slideshow__heading {
+    font-size: clamp(1.75rem, 7.6vw, 2.125rem);
+    line-height: 1.1;
+  }
+
+  .lalatoto-slideshow__text {
+    max-width: 19rem;
+    font-size: 0.875rem;
+  }
+
+  .lalatoto-slideshow__button {
+    margin-block-start: 0.875rem;
+    padding: 0.875rem 1.75rem;
+  }
+
+  .lalatoto-slideshow__dots {
+    bottom: 1.125rem;
+  }
+}
+
 @media screen and (min-width: 1000px) {
   .lalatoto-slideshow {
     height: min(86svh, 54rem);
