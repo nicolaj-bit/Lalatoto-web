@@ -568,7 +568,7 @@ h1, h2, h3, h4, h5, h6,
 
   .lalatoto-slideshow__content {
     gap: 0.625rem;
-    padding-block-end: 4rem;
+    padding-block-end: 4.5rem;
   }
 
   .lalatoto-slideshow__kicker {
@@ -577,7 +577,7 @@ h1, h2, h3, h4, h5, h6,
 
   .lalatoto-slideshow__heading {
     font-size: clamp(1.75rem, 7.6vw, 2.125rem);
-    line-height: 1.1;
+    line-height: 1.15;
   }
 
   .lalatoto-slideshow__text {
@@ -586,8 +586,13 @@ h1, h2, h3, h4, h5, h6,
   }
 
   .lalatoto-slideshow__button {
-    margin-block-start: 0.875rem;
+    margin-block-start: 1.75rem;
     padding: 0.875rem 1.75rem;
+  }
+
+  /* Mere luft mellem overskrift, linjen under og knappen (Saras ønske) */
+  .lalatoto-slideshow__subheading {
+    margin-block-start: 0.5rem;
   }
 
   /* Venstrestillet tekst på telefon (Saras skitse) */
