@@ -80,8 +80,8 @@
         "short_description",
         "variant_picker",
         "buy_buttons",
-        "more_info",
         "delivery",
+        "more_info",
         "waitlist"
       ],
       "settings": {
