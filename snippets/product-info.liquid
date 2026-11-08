@@ -658,6 +658,8 @@
           {%- when 'lalatoto_more_info' -%}
             {%- if product != blank -%}
               {%- render 'lalatoto-product-info-modal', product: product, mode: 'button', modal_id: 'lalatoto-info-modal', sections: block.settings.sections -%}
+              {%- comment -%} Tilbudsvarer: andre fund fra Archive sale lige under {%- endcomment -%}
+              {%- render 'lalatoto-sale-upsell', product: product -%}
             {%- endif -%}
         {%- endcase -%}
       {%- endcapture -%}

@@ -1,0 +1,37 @@
+{%- doc -%}
+  Lalatoto: «Gør et godt fund mere» under købsknappen, kun på produkter på
+  tilbud (metafeltet «Tilbud i procent», lalatoto.tilbud, er udfyldt).
+
+  Viser op til tre andre produkter fra kollektionen «archive-sale» i samme
+  kort som forslagene i kurven (lalatoto-upsell-card): ét valg lægges direkte
+  i kurven, ellers åbner hurtigkøb. Produktet selv og udsolgte produkter
+  springes over.
+
+  @param {object} product - produktet, der vises
+{%- enddoc -%}
+
+{%- liquid
+  assign tilbud = product.metafields.lalatoto.tilbud.value | default: 0 | plus: 0
+  assign sale = collections['archive-sale']
+  assign limit = 3
+  assign count = 0
+-%}
+
+{%- if tilbud > 0 and sale != blank -%}
+  {%- capture cards -%}
+    {%- for item in sale.products -%}
+      {%- if count >= limit -%}{%- break -%}{%- endif -%}
+      {%- if item.id == product.id or item.available == false -%}{%- continue -%}{%- endif -%}
+      {%- render 'lalatoto-upsell-card', product: item -%}
+      {%- assign count = count | plus: 1 -%}
+    {%- endfor -%}
+  {%- endcapture -%}
+
+  {%- if count > 0 -%}
+    <section class="lalatoto-sale-upsell" aria-labelledby="lalatoto-sale-upsell-{{ product.id }}">
+      <p class="lalatoto-sale-upsell__title" id="lalatoto-sale-upsell-{{ product.id }}">{{ 'lalatoto.product.sale_upsell_title' | t }}</p>
+      <div class="lalatoto-upsell__list lalatoto-sale-upsell__list" role="list">{{ cards }}</div>
+      <a href="{{ sale.url }}" class="lalatoto-sale-upsell__all">{{ 'lalatoto.product.sale_upsell_all' | t }} <span aria-hidden="true">→</span></a>
+    </section>
+  {%- endif -%}
+{%- endif -%}
