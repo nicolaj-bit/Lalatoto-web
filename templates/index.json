@@ -31,8 +31,8 @@
         "slide_hero": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/Design_uden_navn_4_dfb8c12e-10fc-4ee9-8b80-e23a4e213ff3.jpg",
-            "mobile_image": "shopify://shop_images/Design_uden_navn_4_dfb8c12e-10fc-4ee9-8b80-e23a4e213ff3.jpg",
+            "image": "shopify://shop_images/Forside_mobil.jpg",
+            "mobile_image": "shopify://shop_images/Forside_mobil.jpg",
             "kicker": "",
             "heading": "Ingen polyester.\nIngen kompromiser.",
             "subheading": "Raising the standard again.",
@@ -133,12 +133,12 @@
       "type": "lalatoto-intro",
       "settings": {
         "color_scheme": "scheme-1",
+        "text_style": "manifest",
         "kicker": "Om LALATOTO",
         "heading": "",
         "text": "<p>Vi havde aldrig forestillet os, at vi skulle udfordre en hel branche.<br/>Men her står vi så.</p><p>At vælge naturmaterialer frem for polyester, når vi laver produkter til babyer og børn, har krævet mere mod, end vi havde regnet med.</p><p>Mod til at kræve noget bedre.<br/>Mod til at tro på, at andre også ønsker noget bedre.<br/>Og mod til at udfordre det, vi har vænnet os til at kalde normalt.</p><p>At du er her gør os modigere.</p><p>Tak.</p>",
         "button_text": "Læs om os",
-        "button_url": "shopify://pages/om-os",
-        "text_style": "manifest"
+        "button_url": "shopify://pages/om-os"
       }
     },
     "materialer": {
@@ -158,6 +158,7 @@
       "type": "lalatoto-intro",
       "settings": {
         "color_scheme": "scheme-1",
+        "text_style": "normal",
         "kicker": "Vores produkter",
         "heading": "Sengetøj og sengeslanger til baby – uden polyester",
         "text": "<p>Vi laver sengeslanger, sengerande, sengetøj og bamser til de mindste. Fyldet er ren uld, og stoffet er OEKO-TEX®-certificeret bomuld. Der er ingen polyester – heller ikke dér, hvor du ikke kan se det.</p><p>Vi er en lille dansk virksomhed, og vores produkter bliver syet hos en mindre systue i Bulgarien med fokus på godt håndværk og ordentlige arbejdsforhold. Det giver ting, der holder til mange vaske og mange nætter.</p>",
