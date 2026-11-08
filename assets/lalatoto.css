@@ -819,6 +819,20 @@ svg.lalatoto-full-image__image {
   height: 7px;
   border-radius: 50%;
   background: #8fa58a;
+  /* Rolig puls: en svag ring breder sig ud fra prikken */
+  animation: lalatoto-delivery-pulse 2.2s ease-out infinite;
+}
+
+@keyframes lalatoto-delivery-pulse {
+  0% { box-shadow: 0 0 0 0 rgb(143 165 138 / 0.55); }
+  70% { box-shadow: 0 0 0 7px rgb(143 165 138 / 0); }
+  100% { box-shadow: 0 0 0 0 rgb(143 165 138 / 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lalatoto-delivery::before {
+    animation: none;
+  }
 }
 
 .product-info__block-item[data-block-type="buy-buttons"]:has(+ [data-block-type="lalatoto-delivery"] .lalatoto-delivery) {
