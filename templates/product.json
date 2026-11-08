@@ -41,6 +41,7 @@
         },
         "lalatoto_forudbestilling_live_preorder_rDUX66": {
           "type": "shopify://apps/lalatoto-forudbestilling-live/blocks/preorder/01a14eb5-d2ab-7a46-9a9d-d7d0cafee864",
+          "disabled": true,
           "settings": {
             "mode": "theme",
             "button_text": "",
@@ -64,6 +65,12 @@
             "payment_button_text_color": ""
           }
         },
+        "delivery": {
+          "type": "lalatoto_delivery",
+          "settings": {
+            "text": ""
+          }
+        },
         "more_info": {
           "type": "lalatoto_more_info",
           "settings": {
@@ -75,14 +82,8 @@
           "type": "lalatoto_waitlist",
           "settings": {}
         },
-        "delivery": {
-          "type": "lalatoto_delivery",
-          "settings": {
-            "text": ""
-          }
-        },
         "onskeskyen": {
-          "type": "shopify://apps/onskeskyen/blocks/wishlist-button/be6e5a80-54ea-40af-aa80-5746282173b8",
+          "type": "shopify://apps/oenskeskyen/blocks/wishlist-button/be6e5a80-54ea-40af-aa80-5746282173b8",
           "disabled": true,
           "settings": {
             "text": "Add to wish cloud",
@@ -129,21 +130,28 @@
         "max_image_zoom_level": 3
       }
     },
+    "more": {
+      "type": "lalatoto-product-more",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "show_story": true,
+        "kicker": "",
+        "heading": "",
+        "text": "",
+        "link_label": "",
+        "link_url": "",
+        "show_related": true,
+        "related_heading": "",
+        "related_collection": "",
+        "related_count": 4
+      }
+    },
     "faq": {
       "type": "lalatoto-product-faq",
       "settings": {
         "color_scheme": "scheme-1",
         "heading": "",
         "show_general": true
-      }
-    },
-    "more": {
-      "type": "lalatoto-product-more",
-      "settings": {
-        "color_scheme": "scheme-1",
-        "show_story": true,
-        "show_related": true,
-        "related_count": 4
       }
     }
   },
