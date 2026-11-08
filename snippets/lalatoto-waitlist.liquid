@@ -85,6 +85,25 @@
         if product.metafields.lalatoto.kon.value == 'et'
           assign wl_pron = 'det'
         endif
+
+        comment
+          [produktet] bliver til navnet i bestemt form fra produktets felt
+          «Navn i bestemt form» (metafeltet lalatoto.navn_bestemt), fx
+          «sengetøjet». Uden værdi bruges produktets navn.
+        endcomment
+        assign wl_def_name = product.metafields.lalatoto.navn_bestemt.value | default: product.title
+        assign wl_def_name = wl_def_name | escape
+        assign wl_def_html = '<em>' | append: wl_def_name | append: '</em>'
+        comment
+          Teksten under overskriften er ren tekst: den escapes først, så
+          produktnavnet kan sættes ind i kursiv bagefter.
+        endcomment
+        assign wl_text = wl_text | escape
+        assign wl_title = wl_title | replace: '[produktet]', wl_def_html | replace: '[Produktet]', wl_def_html
+        assign wl_text = wl_text | replace: '[produktet]', wl_def_html | replace: '[Produktet]', wl_def_html
+        assign wl_done_title = wl_done_title | replace: '[produktet]', wl_def_html | replace: '[Produktet]', wl_def_html
+        assign wl_done_text = wl_done_text | replace: '[produktet]', wl_def_html | replace: '[Produktet]', wl_def_html
+
         assign wl_title = wl_title | replace: '[den/det]', wl_pron
         assign wl_text = wl_text | replace: '[den/det]', wl_pron
         assign wl_done_title = wl_done_title | replace: '[den/det]', wl_pron
@@ -119,7 +138,7 @@
           </div>
 
           <p class="lalatoto-waitlist__title">{{ wl_title }}</p>
-          <p class="lalatoto-waitlist__text">{{ wl_text | escape }}</p>
+          <p class="lalatoto-waitlist__text">{{ wl_text }}</p>
 
           <input type="hidden" name="contact[tags]" value="{{ tags | escape }}" data-base-tags="{{ tags | escape }}">
 

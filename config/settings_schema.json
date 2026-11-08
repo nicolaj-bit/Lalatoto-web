@@ -850,7 +850,7 @@
     "settings": [
       {
         "type": "paragraph",
-        "content": "Teksterne på ventelisten, som vises i stedet for «Læg i kurv», når en vare er udsolgt. Skriv [produkt], hvor produktnavnet skal stå – det skifter automatisk og står i kursiv. Skriv [den/det], så står der «den» eller «det» efter produktets felt «Køn (en/et)». Et tomt felt bruger standardteksten."
+        "content": "Teksterne på ventelisten, som vises i stedet for «Læg i kurv», når en vare er udsolgt. Skriv [produkt], hvor produktnavnet skal stå – det skifter automatisk og står i kursiv. Skriv [produktet] for navnet med -en/-et (fx sengetøjet) fra produktets felt «Navn i bestemt form». Skriv [den/det], så står der «den» eller «det» efter produktets felt «Køn (en/et)». Et tomt felt bruger standardteksten."
       },
       {
         "type": "text",
