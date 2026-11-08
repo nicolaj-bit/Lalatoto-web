@@ -102,6 +102,12 @@ h1, h2, h3, h4, h5, h6,
   white-space: nowrap;
 }
 
+/* «KURV (0)» i fuld tekstfarve: den falmede farve var for svag at læse */
+.header .lalatoto-cart-link.link-faded {
+  opacity: 1;
+  color: rgb(var(--text-color));
+}
+
 /* ---------------------------------------------------------------
  * Header: går helt ud i skærmens bredde med kun den faste margen, så
  * logo og kurv står ude ved kanten, også på store skærme. Footeren
@@ -2094,7 +2100,8 @@ html.lalatoto-scroll-lock body {
 .shopify-section--main-product .block-swatch {
   position: relative;
   border-color: transparent;
-  color: rgb(var(--text-color) / 0.45);
+  /* Lysere end den valgte, men stadig mørk nok til at kunne læses */
+  color: rgb(var(--text-color) / 0.8);
   transition: color 0.2s ease-in-out;
 }
 
@@ -5476,7 +5483,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 
 .lalatoto-letter__caption {
   margin-top: 0.75rem;
-  color: #8a8379;
+  color: #6b655d;
   font-size: 0.6875rem;
   font-style: italic;
   line-height: 1.5;
@@ -5774,6 +5781,12 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 
 .lalatoto-intro--manifest .lalatoto-intro__text p {
   margin-block-end: 0.75rem;
+}
+
+/* Tekst formateret som overskrift i editoren: samme størrelse som før
+   (browserens standard for små overskrifter), men som almindeligt afsnit */
+.lalatoto-intro__text .lalatoto-intro__small {
+  font-size: 0.83em;
 }
 
 .lalatoto-intro--manifest .lalatoto-intro__text p:last-child {

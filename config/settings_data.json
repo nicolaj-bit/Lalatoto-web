@@ -75,7 +75,7 @@
             "lala-hvalen"
           ],
           "background_color": "#DDD6CB",
-          "font_color": "#FFFFFF",
+          "font_color": "#545454",
           "agent_invert_activator_colors": false,
           "button_color": "#000000",
           "button_icon": "hand_wave",
