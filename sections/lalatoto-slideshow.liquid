@@ -43,7 +43,7 @@
         assign overlay = block.settings.overlay | divided_by: 100.0
       -%}
       <div
-        class="lalatoto-slideshow__slide lalatoto-slideshow__slide--{{ block.settings.text_position }}{% if forloop.first %} is-active{% endif %}"
+        class="lalatoto-slideshow__slide lalatoto-slideshow__slide--{{ block.settings.text_position }} lalatoto-slideshow__slide--mobile-{{ block.settings.mobile_text_position | default: 'center' }}{% if forloop.first %} is-active{% endif %}"
         role="group"
         aria-roledescription="{{ 'lalatoto.slideshow.slide' | t | escape }}"
         aria-label="{{ forloop.index }} / {{ slide_count }}"
@@ -102,6 +102,9 @@
             {%- else -%}
               <h2 class="lalatoto-slideshow__heading">{{ block.settings.heading | escape | newline_to_br }}</h2>
             {%- endif -%}
+          {%- endif -%}
+          {%- if block.settings.subheading != blank -%}
+            <p class="lalatoto-slideshow__subheading">{{ block.settings.subheading | escape }}</p>
           {%- endif -%}
           {%- if block.settings.text != blank -%}
             <div class="lalatoto-slideshow__text">{{ block.settings.text }}</div>
@@ -217,9 +220,16 @@
           "default": "Ingen polyester.\nIngen kompromiser."
         },
         {
+          "type": "text",
+          "id": "subheading",
+          "label": "Linje lige under overskriften",
+          "info": "Fx «Raising the standard again.»"
+        },
+        {
           "type": "richtext",
           "id": "text",
-          "label": "Tekst"
+          "label": "Tekst",
+          "info": "Står under linjen ovenfor, med lidt mere luft."
         },
         {
           "type": "text",
@@ -240,6 +250,16 @@
             { "value": "center", "label": "Midt for" }
           ],
           "default": "left"
+        },
+        {
+          "type": "select",
+          "id": "mobile_text_position",
+          "label": "Tekstens placering på telefon",
+          "options": [
+            { "value": "center", "label": "Midt for" },
+            { "value": "left", "label": "Til venstre" }
+          ],
+          "default": "center"
         },
         {
           "type": "range",

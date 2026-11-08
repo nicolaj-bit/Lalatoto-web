@@ -444,6 +444,16 @@ h1, h2, h3, h4, h5, h6,
   opacity: 0.92;
 }
 
+.lalatoto-slideshow__subheading {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.4;
+}
+
+.lalatoto-slideshow__subheading + .lalatoto-slideshow__text {
+  margin-block-start: 0.5rem;
+}
+
 .lalatoto-slideshow__text p {
   margin: 0;
 }
@@ -482,6 +492,7 @@ h1, h2, h3, h4, h5, h6,
 .lalatoto-slideshow__slide.is-active .lalatoto-slideshow__content > :nth-child(2) { transition-delay: 0.1s; }
 .lalatoto-slideshow__slide.is-active .lalatoto-slideshow__content > :nth-child(3) { transition-delay: 0.2s; }
 .lalatoto-slideshow__slide.is-active .lalatoto-slideshow__content > :nth-child(4) { transition-delay: 0.3s; }
+.lalatoto-slideshow__slide.is-active .lalatoto-slideshow__content > :nth-child(5) { transition-delay: 0.4s; }
 
 /* Tynde streger: hvilket slide man er på, og hvor længe til det næste */
 .lalatoto-slideshow__dots {
@@ -577,6 +588,12 @@ h1, h2, h3, h4, h5, h6,
   .lalatoto-slideshow__button {
     margin-block-start: 0.875rem;
     padding: 0.875rem 1.75rem;
+  }
+
+  /* Venstrestillet tekst på telefon (Saras skitse) */
+  .lalatoto-slideshow__slide--mobile-left .lalatoto-slideshow__content {
+    justify-items: start;
+    text-align: start;
   }
 
   .lalatoto-slideshow__dots {
