@@ -26,6 +26,57 @@
     {%- form 'customer', id: form_id, class: 'lalatoto-waitlist__form' -%}
       {%- capture item_html -%}<em>{{ product.title | escape }}</em>{%- endcapture -%}
 
+      {%- comment -%}
+        Teksterne rettes i temaeditoren under Temaindstillinger → Venteliste og
+        oversættes som andre temaindstillinger. [produkt] bliver til produktets
+        navn i kursiv (også [product], hvis en oversættelse har skrevet det om).
+        Er et felt tomt, bruges standardteksten fra sprogfilen.
+      {%- endcomment -%}
+      {%- liquid
+        assign wl_kicker = settings.waitlist_kicker
+        if wl_kicker == blank
+          assign wl_kicker = 'lalatoto.waitlist.kicker' | t
+        endif
+        assign wl_text = settings.waitlist_text
+        if wl_text == blank
+          assign wl_text = 'lalatoto.waitlist.text' | t
+        endif
+        assign wl_email = settings.waitlist_email_label
+        if wl_email == blank
+          assign wl_email = 'lalatoto.waitlist.email_label' | t
+        endif
+        assign wl_submit = settings.waitlist_submit
+        if wl_submit == blank
+          assign wl_submit = 'lalatoto.waitlist.submit' | t
+        endif
+        assign wl_newsletter = settings.waitlist_newsletter
+        if wl_newsletter == blank
+          assign wl_newsletter = 'lalatoto.waitlist.newsletter' | t
+        endif
+        assign wl_fine = settings.waitlist_fine_print
+        if wl_fine == blank
+          assign wl_fine = 'lalatoto.waitlist.fine_print' | t
+        endif
+
+        if settings.waitlist_title != blank
+          assign wl_title = settings.waitlist_title | replace: '[produkt]', item_html | replace: '[Produkt]', item_html | replace: '[product]', item_html | replace: '[Product]', item_html
+        else
+          assign wl_title = 'lalatoto.waitlist.title_html' | t: item: item_html
+        endif
+
+        if settings.waitlist_done_title != blank
+          assign wl_done_title = settings.waitlist_done_title
+        else
+          assign wl_done_title = 'lalatoto.waitlist.done_title_html' | t
+        endif
+
+        if settings.waitlist_done_text != blank
+          assign wl_done_text = settings.waitlist_done_text | replace: '[produkt]', item_html | replace: '[Produkt]', item_html | replace: '[product]', item_html | replace: '[Product]', item_html
+        else
+          assign wl_done_text = 'lalatoto.waitlist.done_text_html' | t: item: item_html
+        endif
+      -%}
+
       {%- liquid
         assign done = false
         if form.posted_successfully?
@@ -42,18 +93,18 @@
             <circle cx="24" cy="24" r="23" />
             <path d="M15 24.5l6 6 12-13" />
           </svg>
-          <p class="lalatoto-waitlist__title">{{ 'lalatoto.waitlist.done_title_html' | t }}</p>
-          <p class="lalatoto-waitlist__text">{{ 'lalatoto.waitlist.done_text_html' | t: item: item_html }}</p>
+          <p class="lalatoto-waitlist__title">{{ wl_done_title }}</p>
+          <p class="lalatoto-waitlist__text">{{ wl_done_text }}</p>
         </div>
 
         <div class="lalatoto-waitlist__fields">
           <div class="lalatoto-waitlist__status">
             <span class="lalatoto-waitlist__dot" aria-hidden="true"></span>
-            <span class="lalatoto-kicker">{{ 'lalatoto.waitlist.kicker' | t }}</span>
+            <span class="lalatoto-kicker">{{ wl_kicker | escape }}</span>
           </div>
 
-          <p class="lalatoto-waitlist__title">{{ 'lalatoto.waitlist.title_html' | t: item: item_html }}</p>
-          <p class="lalatoto-waitlist__text">{{ 'lalatoto.waitlist.text' | t }}</p>
+          <p class="lalatoto-waitlist__title">{{ wl_title }}</p>
+          <p class="lalatoto-waitlist__text">{{ wl_text | escape }}</p>
 
           <input type="hidden" name="contact[tags]" value="{{ tags | escape }}" data-base-tags="{{ tags | escape }}">
 
@@ -71,7 +122,7 @@
                 aria-invalid="true" aria-describedby="{{ form_id }}-error"
               {% endif %}
             >
-            <label for="{{ form_id }}-email">{{ 'lalatoto.waitlist.email_label' | t }}</label>
+            <label for="{{ form_id }}-email">{{ wl_email | escape }}</label>
           </div>
 
           {%- if form.errors -%}
@@ -79,17 +130,17 @@
           {%- endif -%}
 
           <button type="submit" class="lalatoto-waitlist__submit">
-            <span>{{ 'lalatoto.waitlist.submit' | t }}</span>
+            <span>{{ wl_submit | escape }}</span>
             <span class="lalatoto-waitlist__arrow" aria-hidden="true">→</span>
           </button>
 
           <label class="lalatoto-waitlist__consent">
             <input type="checkbox" data-lalatoto-newsletter>
             <span class="lalatoto-waitlist__box" aria-hidden="true"></span>
-            <span>{{ 'lalatoto.waitlist.newsletter' | t }}</span>
+            <span>{{ wl_newsletter | escape }}</span>
           </label>
 
-          <p class="lalatoto-waitlist__fine">{{ 'lalatoto.waitlist.fine_print' | t }}</p>
+          <p class="lalatoto-waitlist__fine">{{ wl_fine | escape }}</p>
         </div>
       </div>
     {%- endform -%}
