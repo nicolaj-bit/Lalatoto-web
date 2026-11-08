@@ -41,26 +41,10 @@
             "text_position": "left",
             "overlay": 25
           }
-        },
-        "slide_materialer": {
-          "type": "slide",
-          "disabled": true,
-          "settings": {
-            "image": "shopify://shop_images/Forsidebillede_computer_1.png",
-            "mobile_image": "shopify://shop_images/Forsidebillede_mobil.png",
-            "kicker": "Materialer",
-            "heading": "Don’t mess\nwith nature",
-            "text": "<p>Nogle ting klarer naturen bare bedst selv.</p>",
-            "button_label": "Læs om materialerne",
-            "button_link": "shopify://pages/materialer",
-            "text_position": "left",
-            "overlay": 45
-          }
         }
       },
       "block_order": [
-        "slide_hero",
-        "slide_materialer"
+        "slide_hero"
       ],
       "settings": {
         "visibility": "mobile",
