@@ -76,6 +76,20 @@
         else
           assign wl_done_text = 'lalatoto.waitlist.done_text_html' | t: item: item_html
         endif
+
+        comment
+          [den/det] bliver til «den» eller «det» efter produktets felt
+          «Køn (en/et)» (metafeltet lalatoto.kon). Uden værdi står der «den».
+        endcomment
+        assign wl_pron = 'den'
+        if product.metafields.lalatoto.kon.value == 'et'
+          assign wl_pron = 'det'
+        endif
+        assign wl_title = wl_title | replace: '[den/det]', wl_pron
+        assign wl_text = wl_text | replace: '[den/det]', wl_pron
+        assign wl_done_title = wl_done_title | replace: '[den/det]', wl_pron
+        assign wl_done_text = wl_done_text | replace: '[den/det]', wl_pron
+        assign wl_fine = wl_fine | replace: '[den/det]', wl_pron
       -%}
 
       {%- liquid
