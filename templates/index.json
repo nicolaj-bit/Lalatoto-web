@@ -156,7 +156,6 @@
     },
     "produkter_intro": {
       "type": "lalatoto-intro",
-      "disabled": true,
       "settings": {
         "color_scheme": "scheme-1",
         "text_style": "normal",
