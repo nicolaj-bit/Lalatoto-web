@@ -127,7 +127,9 @@
               -%}
               {%- render 'lalatoto-tile', product: product, variant: product.selected_or_first_available_variant, hover_media: hover, sold_out: sold_out, eager: eager, priority: priority, show_price: section.settings.show_price -%}
             {%- endcapture -%}
-            {%- if sold_out and product.metafields.lalatoto.waitlist.value == true -%}
+            {%- if sold_out and section.settings.hide_sold_out -%}
+              {%- comment -%} Udsolgt og «Skjul udsolgte» slået til: kortet vises ikke {%- endcomment -%}
+            {%- elsif sold_out and product.metafields.lalatoto.waitlist.value == true -%}
               {%- assign coming_soon_cards = coming_soon_cards | append: card -%}
             {%- elsif sold_out -%}
               {%- assign sold_out_cards = sold_out_cards | append: card -%}
@@ -238,7 +240,9 @@
                     show_price: section.settings.show_price
                   -%}
                 {%- endcapture -%}
-                {%- if sold_out and product.metafields.lalatoto.waitlist.value == true -%}
+                {%- if sold_out and section.settings.hide_sold_out -%}
+              {%- comment -%} Udsolgt og «Skjul udsolgte» slået til: kortet vises ikke {%- endcomment -%}
+            {%- elsif sold_out and product.metafields.lalatoto.waitlist.value == true -%}
                   {%- assign coming_soon_cards = coming_soon_cards | append: card -%}
                 {%- elsif sold_out -%}
                   {%- assign sold_out_cards = sold_out_cards | append: card -%}
@@ -303,6 +307,13 @@
       "label": "Vis et andet billede, når musen holdes over",
       "info": "Produkter med én farve viser produktets andet billede. Farvekort viser det næste billede af samme farve.",
       "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_sold_out",
+      "label": "Skjul udsolgte",
+      "info": "Udsolgte produkter og farver vises ikke, heller ikke dem med «Kommer snart». Bruges fx på Archive sale.",
+      "default": false
     },
     {
       "type": "checkbox",
