@@ -5252,8 +5252,16 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   display: block;
   width: 100%;
   height: auto;
-  aspect-ratio: 4 / 3;
+  /* Billedets eget format (sat i sektionen), ellers 4:3 */
+  aspect-ratio: var(--lalatoto-image-text-ratio, 4 / 3);
   object-fit: cover;
+}
+
+/* Telefon: billedet går helt ud til kanten */
+@media screen and (max-width: 999px) {
+  .lalatoto-image-text__media {
+    margin-inline: calc(-1 * var(--container-gutter));
+  }
 }
 
 .lalatoto-image-text__content {
@@ -5310,6 +5318,11 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 
   .lalatoto-image-text--reverse .lalatoto-image-text__media {
     order: 2;
+  }
+
+  /* Høje billeder må ikke blive højere end skærmen */
+  .lalatoto-image-text__media img {
+    max-height: 88svh;
   }
 }
 
