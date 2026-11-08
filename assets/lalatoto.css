@@ -798,9 +798,11 @@ svg.lalatoto-full-image__image {
 }
 
 /* Leveringstid: lille og dæmpet */
+/* Leveringstid lige under «Læg i kurv», i samme skrift som beskrivelsen */
 .lalatoto-delivery {
   margin: 0;
-  font-size: var(--lalatoto-label-size);
+  font-size: 0.875rem;
+  line-height: 1.6;
   color: rgb(var(--text-color));
 }
 
