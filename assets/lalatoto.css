@@ -5692,6 +5692,25 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   margin-bottom: 0;
 }
 
+/* Manifest: ren tekst uden overskrift, lidt større og med god luft */
+.lalatoto-intro--manifest .lalatoto-intro__inner {
+  max-width: 34rem;
+  gap: 1.75rem;
+}
+
+.lalatoto-intro--manifest .lalatoto-intro__text {
+  font-size: 1.0625rem;
+  line-height: 1.85;
+}
+
+.lalatoto-intro--manifest .lalatoto-intro__text p {
+  margin-block-end: 1.5rem;
+}
+
+.lalatoto-intro--manifest .lalatoto-intro__text p:last-child {
+  margin-block-end: 0;
+}
+
 .lalatoto-intro__text a {
   color: inherit;
   text-decoration: underline;
