@@ -846,6 +846,73 @@
     ]
   },
   {
+    "name": "Venteliste",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Teksterne på ventelisten, som vises i stedet for «Læg i kurv», når en vare er udsolgt. Skriv [produkt], hvor produktnavnet skal stå – det skifter automatisk og står i kursiv. Et tomt felt bruger standardteksten."
+      },
+      {
+        "type": "text",
+        "id": "waitlist_kicker",
+        "label": "Lille etiket",
+        "default": "Venteliste"
+      },
+      {
+        "type": "inline_richtext",
+        "id": "waitlist_title",
+        "label": "Overskrift",
+        "default": "Vær den første, når [produkt] er her"
+      },
+      {
+        "type": "text",
+        "id": "waitlist_text",
+        "label": "Tekst under overskriften",
+        "default": "Skriv din e-mail, så sender vi én besked, så snart den kan købes."
+      },
+      {
+        "type": "text",
+        "id": "waitlist_email_label",
+        "label": "E-mailfelt",
+        "default": "Din e-mail"
+      },
+      {
+        "type": "text",
+        "id": "waitlist_submit",
+        "label": "Knap",
+        "default": "Skriv mig op"
+      },
+      {
+        "type": "text",
+        "id": "waitlist_newsletter",
+        "label": "Afkrydsning for nyhedsbrev",
+        "default": "Send mig også nyhedsbrevet"
+      },
+      {
+        "type": "textarea",
+        "id": "waitlist_fine_print",
+        "label": "Det med småt",
+        "default": "Vi skriver kun om denne vare, medmindre du også vælger nyhedsbrevet. Du kan altid framelde dig."
+      },
+      {
+        "type": "header",
+        "content": "Efter tilmelding"
+      },
+      {
+        "type": "inline_richtext",
+        "id": "waitlist_done_title",
+        "label": "Overskrift",
+        "default": "Tak. <em>Du er på listen.</em>"
+      },
+      {
+        "type": "inline_richtext",
+        "id": "waitlist_done_text",
+        "label": "Tekst",
+        "default": "Vi sender én besked, når [produkt] kan købes."
+      }
+    ]
+  },
+  {
     "name": "t:theme_settings.favicon.name",
     "settings": [
       {

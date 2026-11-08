@@ -2323,7 +2323,8 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   text-wrap: balance;
 }
 
-.lalatoto-waitlist__title em {
+.lalatoto-waitlist__title em,
+.lalatoto-waitlist__title i {
   font-style: italic;
 }
 
@@ -2335,7 +2336,8 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   line-height: 1.6;
 }
 
-.lalatoto-waitlist__text em {
+.lalatoto-waitlist__text em,
+.lalatoto-waitlist__text i {
   font-family: var(--heading-font-family);
   font-style: italic;
   color: rgb(var(--text-color));
