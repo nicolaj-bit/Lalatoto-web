@@ -542,12 +542,9 @@ h1, h2, h3, h4, h5, h6,
 
 /* Telefon: kraftigere tone nedefra bag teksten, så den kan læses på
    travle billeder (fx tern), lidt mindre tekst samlet i bunden, streger med
-   luft til knappen og luft før næste sektion. Toppen af billedet står rent. */
+   luft til knappen. Toppen af billedet står rent. Luften før næste sektion
+   kommer fra den sektion selv, så der ikke opstår en mørkere stribe. */
 @media screen and (max-width: 999px) {
-  .lalatoto-slideshow {
-    margin-block-end: var(--section-vertical-spacing, 4rem);
-  }
-
   .lalatoto-slideshow__media::after {
     background: linear-gradient(
       to top,
@@ -590,7 +587,6 @@ h1, h2, h3, h4, h5, h6,
 @media screen and (min-width: 1000px) {
   .lalatoto-slideshow {
     height: min(86svh, 54rem);
-    margin-block-end: var(--section-vertical-spacing, 5rem);
   }
 
   /* Følg billedet: samme format som billedet, så intet skæres af */
@@ -5011,6 +5007,11 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   text-align: center;
   gap: 1rem 2rem;
   margin-block-end: clamp(1.75rem, 3vw, 2.5rem);
+}
+
+/* Uden etiket, overskrift og link: ingen tom luft over produkterne */
+.lalatoto-featured__head:not(:has(.lalatoto-kicker, .lalatoto-featured__title, .lalatoto-featured__all)) {
+  display: none;
 }
 
 .lalatoto-featured__head > div {
