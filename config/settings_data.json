@@ -10,12 +10,12 @@
 {
   "current": {
     "waitlist_kicker": "Venteliste",
-    "waitlist_title": "Vær den første, når [produkt] er her",
-    "waitlist_text": "Skriv din e-mail, så sender vi én besked, så snart den kan købes.",
+    "waitlist_title": "Vær den første til at få besked, når [produkt] er her.",
+    "waitlist_text": "Skriv din e-mail, så giver vi dig besked, så snart det kan købes.",
     "waitlist_email_label": "Din e-mail",
     "waitlist_submit": "Skriv mig op",
     "waitlist_newsletter": "Send mig også nyhedsbrevet",
-    "waitlist_fine_print": "Vi skriver kun om denne vare, medmindre du også vælger nyhedsbrevet. Du kan altid framelde dig.",
+    "waitlist_fine_print": "",
     "waitlist_done_title": "Tak. <em>Du er på listen.</em>",
     "waitlist_done_text": "Vi sender én besked, når [produkt] kan købes.",
     "section_vertical_spacing": "xl",

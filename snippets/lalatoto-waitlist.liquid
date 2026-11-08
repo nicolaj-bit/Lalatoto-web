@@ -53,10 +53,11 @@
         if wl_newsletter == blank
           assign wl_newsletter = 'lalatoto.waitlist.newsletter' | t
         endif
+        comment
+          Det med småt vises kun, når der står noget i feltet. Et tomt felt
+          skjuler det, i stedet for at falde tilbage til sprogfilen.
+        endcomment
         assign wl_fine = settings.waitlist_fine_print
-        if wl_fine == blank
-          assign wl_fine = 'lalatoto.waitlist.fine_print' | t
-        endif
 
         if settings.waitlist_title != blank
           assign wl_title = settings.waitlist_title | replace: '[produkt]', item_html | replace: '[Produkt]', item_html | replace: '[product]', item_html | replace: '[Product]', item_html
@@ -140,7 +141,9 @@
             <span>{{ wl_newsletter | escape }}</span>
           </label>
 
-          <p class="lalatoto-waitlist__fine">{{ wl_fine | escape }}</p>
+          {%- if wl_fine != blank -%}
+            <p class="lalatoto-waitlist__fine">{{ wl_fine | escape }}</p>
+          {%- endif -%}
         </div>
       </div>
     {%- endform -%}

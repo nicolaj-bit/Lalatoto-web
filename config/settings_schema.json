@@ -892,6 +892,7 @@
         "type": "textarea",
         "id": "waitlist_fine_print",
         "label": "Det med småt",
+        "info": "Lad feltet stå tomt for at skjule teksten.",
         "default": "Vi skriver kun om denne vare, medmindre du også vælger nyhedsbrevet. Du kan altid framelde dig."
       },
       {
