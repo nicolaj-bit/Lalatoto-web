@@ -33,13 +33,15 @@
           "settings": {
             "image": "shopify://shop_images/Design_uden_navn_4_dfb8c12e-10fc-4ee9-8b80-e23a4e213ff3.jpg",
             "mobile_image": "shopify://shop_images/Design_uden_navn_4_dfb8c12e-10fc-4ee9-8b80-e23a4e213ff3.jpg",
-            "kicker": "Little checks collection",
+            "kicker": "",
             "heading": "Ingen polyester.\nIngen kompromiser.",
-            "text": "<p>Vi kæmper for en ny normal. Vil du være med?</p>",
-            "button_label": "Se kollektionen",
+            "text": "<p>Naturlige materialer til trygge nætter i barnesengen.</p>",
+            "button_label": "Se produkterne",
             "button_link": "shopify://collections/produkter",
             "text_position": "left",
-            "overlay": 25
+            "overlay": 25,
+            "subheading": "Raising the standard again.",
+            "mobile_text_position": "left"
           }
         }
       },
