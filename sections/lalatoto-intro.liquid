@@ -6,7 +6,7 @@
   hvilke materialer. Knappen vises kun, hvis den har en tekst.
 {%- endcomment -%}
 
-<div class="lalatoto-intro color-scheme color-scheme--{{ section.settings.color_scheme.id }}">
+<div class="lalatoto-intro{% if section.settings.text_style == 'manifest' %} lalatoto-intro--manifest{% endif %} color-scheme color-scheme--{{ section.settings.color_scheme.id }}">
   <div class="lalatoto-intro__inner">
     {%- if section.settings.kicker != blank -%}
       <p class="lalatoto-kicker">{{ section.settings.kicker | escape }}</p>
@@ -36,6 +36,17 @@
       "id": "color_scheme",
       "label": "Farveskema",
       "default": "scheme-1"
+    },
+    {
+      "type": "select",
+      "id": "text_style",
+      "label": "Tekstens udseende",
+      "options": [
+        { "value": "normal", "label": "Almindelig" },
+        { "value": "manifest", "label": "Manifest: større tekst og mere luft" }
+      ],
+      "default": "normal",
+      "info": "Manifest passer til en tekst uden overskrift, der står linje for linje."
     },
     {
       "type": "text",
