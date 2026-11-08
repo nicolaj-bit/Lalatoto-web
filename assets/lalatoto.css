@@ -2101,7 +2101,7 @@ html.lalatoto-scroll-lock body {
   position: relative;
   border-color: transparent;
   /* Lysere end den valgte, men stadig mørk nok til at kunne læses */
-  color: rgb(var(--text-color) / 0.8);
+  color: rgb(var(--text-color) / 0.9);
   transition: color 0.2s ease-in-out;
 }
 
