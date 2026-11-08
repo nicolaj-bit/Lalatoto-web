@@ -15,7 +15,13 @@
       <h2 class="lalatoto-intro__title">{{ section.settings.heading }}</h2>
     {%- endif -%}
     {%- if section.settings.text != blank -%}
-      <div class="lalatoto-intro__text">{{ section.settings.text }}</div>
+      {%- comment -%}
+        Tekst, der er formateret som overskrift i editoren (fx H5), vises som
+        afsnit med samme udseende. Ellers springer siden overskriftsniveauer
+        over, og det trækker ned i Googles test af hjælpefunktioner.
+      {%- endcomment -%}
+      {%- assign intro_text = section.settings.text | replace: '<h4>', '<p class="lalatoto-intro__small">' | replace: '</h4>', '</p>' | replace: '<h5>', '<p class="lalatoto-intro__small">' | replace: '</h5>', '</p>' | replace: '<h6>', '<p class="lalatoto-intro__small">' | replace: '</h6>', '</p>' -%}
+      <div class="lalatoto-intro__text">{{ intro_text }}</div>
     {%- endif -%}
     {%- if section.settings.button_text != blank -%}
       <a href="{{ section.settings.button_url | default: '#' }}" class="lalatoto-image-text__link">
