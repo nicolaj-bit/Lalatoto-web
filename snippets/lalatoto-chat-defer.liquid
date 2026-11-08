@@ -1,0 +1,55 @@
+{%- comment -%}
+  Lalatoto: Shopify Inbox-chatten «vækkes» først, når kunden rører siden
+  (tryk, tast, scroll) eller efter et par sekunder i ro. Chattens kode
+  hentes stadig af Shopify, men den tegner og starter ikke, før det er
+  sket. Så kan forsidebilledet vises først på telefoner.
+
+  Teknikken: chat.js registrerer elementet <shopify-chat> med
+  customElements.define. Vi holder netop den registrering tilbage og
+  udfører den senere. Alt andet registreres som normalt. Virker noget
+  ikke, frigives chatten med det samme.
+{%- endcomment -%}
+<script>
+  (function () {
+    try {
+      var registry = window.customElements;
+      if (!registry || !registry.define) return;
+      var originalDefine = registry.define.bind(registry);
+      var held = null;
+      var released = false;
+
+      function release() {
+        if (released) return;
+        released = true;
+        registry.define = originalDefine;
+        ['pointerdown', 'keydown', 'touchstart', 'scroll'].forEach(function (type) {
+          window.removeEventListener(type, release, true);
+        });
+        if (held) {
+          try { originalDefine(held[0], held[1], held[2]); } catch (error) {}
+        }
+      }
+
+      registry.define = function (name, constructor, options) {
+        if (name === 'shopify-chat' && !released) {
+          held = [name, constructor, options];
+          return;
+        }
+        return originalDefine(name, constructor, options);
+      };
+
+      ['pointerdown', 'keydown', 'touchstart', 'scroll'].forEach(function (type) {
+        window.addEventListener(type, release, { capture: true, passive: true });
+      });
+      window.addEventListener('load', function () {
+        setTimeout(function () {
+          if ('requestIdleCallback' in window) {
+            window.requestIdleCallback(release, { timeout: 2000 });
+          } else {
+            release();
+          }
+        }, 3500);
+      });
+    } catch (error) {}
+  })();
+</script>
