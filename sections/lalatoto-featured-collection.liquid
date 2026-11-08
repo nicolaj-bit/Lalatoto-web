@@ -88,10 +88,11 @@
             {%- if section.settings.hide_sold_out and product.available == false -%}{%- continue -%}{%- endif -%}
             {%- liquid
               assign shown = shown | plus: 1
+              comment
+                Kortene ligger altid under forsidens store billede, så de
+                hentes «lazy» og konkurrerer ikke med det om båndbredden.
+              endcomment
               assign eager = false
-              if forloop.parentloop.first and shown <= 2
-                assign eager = true
-              endif
               assign hover = nil
               if section.settings.hover_image and product.media.size > 1
                 assign hover = product.media[1]
