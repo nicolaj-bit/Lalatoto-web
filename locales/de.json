@@ -542,6 +542,8 @@
     "product": {
       "tell_more": "Mehr erfahren",
       "contents": "Inhalt",
+      "sale_upsell_title": "Noch ein guter Fund",
+      "sale_upsell_all": "Ganzen Archive Sale ansehen",
       "delivery_default": "Lieferung in 1-2 Werktagen",
       "sections": {
         "materials": "Materialien",

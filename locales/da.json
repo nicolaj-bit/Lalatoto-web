@@ -552,6 +552,8 @@
       "preorder_info_date": "Forventet afsendelse: {{ date }}. Flytter datoen sig, får du besked på mail.",
       "preorder_date_format": "{{ day }}. {{ month }} {{ year }}",
       "contents": "Indhold",
+      "sale_upsell_title": "Gør et godt fund mere",
+      "sale_upsell_all": "Se hele Archive sale",
       "delivery_default": "Levering 1-2 hverdage",
       "delivery_before_cutoff": "Bestil inden kl. {{ time }}, så sender vi i dag. Forventet hos dig {{ date }}.",
       "delivery_after_cutoff": "Sendes {{ ship }}. Forventet hos dig {{ date }}.",

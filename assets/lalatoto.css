@@ -5005,6 +5005,42 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   text-transform: none;
 }
 
+/* «Gør et godt fund mere» under købsknappen på tilbudsvarer */
+.lalatoto-sale-upsell {
+  display: grid;
+  gap: 0.75rem;
+  margin-block-start: 1.75rem;
+  color: rgb(var(--text-color));
+}
+
+.lalatoto-sale-upsell__title {
+  margin: 0;
+  font-size: var(--lalatoto-label-size);
+  letter-spacing: var(--lalatoto-label-spacing);
+  text-transform: uppercase;
+}
+
+.lalatoto-sale-upsell__list {
+  border-block: 1px solid #e3ddd3;
+}
+
+.lalatoto-sale-upsell__all {
+  justify-self: start;
+  padding-block-end: 0.25rem;
+  color: rgb(var(--text-color));
+  font-size: var(--lalatoto-label-size);
+  letter-spacing: var(--lalatoto-label-spacing);
+  text-transform: uppercase;
+  text-decoration: none;
+  background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+  transition: background-size 0.25s ease-in-out;
+}
+
+.lalatoto-sale-upsell__all:hover,
+.lalatoto-sale-upsell__all:focus-visible {
+  background-size: 100% 1px;
+}
+
 .lalatoto-article-shop__list {
   border-block: 1px solid #e3ddd3;
 }
