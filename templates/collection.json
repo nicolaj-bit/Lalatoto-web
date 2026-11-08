@@ -13,8 +13,11 @@
       "type": "lalatoto-collection",
       "settings": {
         "color_scheme": "scheme-1",
+        "kicker": "",
         "products_per_page": 24,
-        "kicker": ""
+        "hover_image": true,
+        "hide_sold_out": false,
+        "show_price": true
       }
     }
   },
