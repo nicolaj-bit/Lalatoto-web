@@ -1266,6 +1266,18 @@ html.lalatoto-scroll-lock body {
   max-width: 60ch;
 }
 
+/* Kollektionens tekst under produkterne */
+.lalatoto-collection__foot {
+  display: grid;
+  justify-items: center;
+  margin-block-start: 4rem;
+  text-align: center;
+}
+
+.lalatoto-collection__foot .lalatoto-lead {
+  max-width: 60ch;
+}
+
 .lalatoto-collection__empty {
   text-align: center;
   color: rgb(var(--text-color));
@@ -5249,6 +5261,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 }
 
 .lalatoto-collection__head,
+.lalatoto-collection__foot,
 .lalatoto-collection .pagination,
 .lalatoto-collection__empty,
 .lalatoto-featured__head,
