@@ -461,8 +461,10 @@ h1, h2, h3, h4, h5, h6,
 .lalatoto-slideshow__button {
   margin-block-start: 0.75rem;
   padding: 1rem 2.25rem;
-  border: 1px solid rgb(255 255 255 / 0.85);
-  color: #fff;
+  /* Samme farver som temaets øvrige knapper, fx «Læg i kurv» */
+  border: 1px solid rgb(var(--button-background, 221 214 203));
+  background: rgb(var(--button-background, 221 214 203));
+  color: rgb(var(--button-text-color, 84 84 84));
   font-size: var(--lalatoto-label-size);
   letter-spacing: var(--lalatoto-label-spacing);
   line-height: 1;
@@ -472,9 +474,9 @@ h1, h2, h3, h4, h5, h6,
 }
 
 .lalatoto-slideshow__button:hover,
-.lalatoto-slideshow__button:focus-visible {
-  background: #fff;
-  color: #2a2724;
+.lalatoto-slideshow__button:focus-visible,
+.lalatoto-slideshow__button:active {
+  background: color-mix(in srgb, rgb(var(--button-background, 221 214 203)) 88%, rgb(var(--button-text-color, 84 84 84)));
 }
 
 /* Tekstens indtoning, når et slide bliver aktivt */
