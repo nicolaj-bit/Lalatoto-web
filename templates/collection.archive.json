@@ -1,0 +1,16 @@
+{
+  "sections": {
+    "main": {
+      "type": "lalatoto-collection",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "products_per_page": 24,
+        "kicker": "Kollektion",
+        "hide_sold_out": true
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}
