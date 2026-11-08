@@ -798,12 +798,35 @@ svg.lalatoto-full-image__image {
 }
 
 /* Leveringstid: lille og dæmpet */
-/* Leveringstid lige under «Læg i kurv», i samme skrift som beskrivelsen */
+/* Leveringstid lige under «Læg i kurv», venstrestillet og med en lille grøn
+   prik, der viser, at varen er klar til at blive sendt. Afstanden til knappen
+   gøres kun mindre, når leveringsteksten faktisk vises (ikke ved udsolgt
+   eller forudbestilling). */
 .lalatoto-delivery {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   margin: 0;
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   line-height: 1.6;
   color: rgb(var(--text-color));
+}
+
+.lalatoto-delivery::before {
+  content: '';
+  flex: none;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #8fa58a;
+}
+
+.product-info__block-item[data-block-type="buy-buttons"]:has(+ [data-block-type="lalatoto-delivery"] .lalatoto-delivery) {
+  margin-block-end: 0.875rem;
+}
+
+.product-info__block-item[data-block-type="lalatoto-delivery"] {
+  margin-block-start: 0;
 }
 
 /* Forudbestillingsappens blok er usynlig: den skal stadig ligge på siden,
