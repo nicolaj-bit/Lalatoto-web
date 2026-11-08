@@ -29,9 +29,10 @@
     Afsnittene i den rækkefølge, Sara har skrevet dem: Om produktet, Lavet
     med omtanke, Vaskevejledning, Specifikationer, Sikkerhed og Levering &
     retur. Materialer og Mål er de gamle felter; de vises stadig, hvis et
-    produkt har dem udfyldt.
+    produkt har dem udfyldt. Vægt og Valg af rigtig vægt kommer med, når
+    blokken står til tyngdedyne, eller når produktet har en vægtguide.
   endcomment
-  if sections == 'tyngdedyne'
+  if sections == 'tyngdedyne' or product.metafields.lalatoto.weight_guide != blank
     assign keys = 'about,made,materials,care,specs,dimensions,weight,weight_guide,safety,shipping' | split: ','
   else
     assign keys = 'about,made,materials,care,specs,dimensions,safety,shipping' | split: ','
