@@ -53,10 +53,11 @@
         if wl_newsletter == blank
           assign wl_newsletter = 'lalatoto.waitlist.newsletter' | t
         endif
+        comment
+          Det med småt vises kun, når der står noget i feltet. Et tomt felt
+          skjuler det, i stedet for at falde tilbage til sprogfilen.
+        endcomment
         assign wl_fine = settings.waitlist_fine_print
-        if wl_fine == blank
-          assign wl_fine = 'lalatoto.waitlist.fine_print' | t
-        endif
 
         if settings.waitlist_title != blank
           assign wl_title = settings.waitlist_title | replace: '[produkt]', item_html | replace: '[Produkt]', item_html | replace: '[product]', item_html | replace: '[Product]', item_html
@@ -75,6 +76,20 @@
         else
           assign wl_done_text = 'lalatoto.waitlist.done_text_html' | t: item: item_html
         endif
+
+        comment
+          [den/det] bliver til «den» eller «det» efter produktets felt
+          «Køn (en/et)» (metafeltet lalatoto.kon). Uden værdi står der «den».
+        endcomment
+        assign wl_pron = 'den'
+        if product.metafields.lalatoto.kon.value == 'et'
+          assign wl_pron = 'det'
+        endif
+        assign wl_title = wl_title | replace: '[den/det]', wl_pron
+        assign wl_text = wl_text | replace: '[den/det]', wl_pron
+        assign wl_done_title = wl_done_title | replace: '[den/det]', wl_pron
+        assign wl_done_text = wl_done_text | replace: '[den/det]', wl_pron
+        assign wl_fine = wl_fine | replace: '[den/det]', wl_pron
       -%}
 
       {%- liquid
@@ -140,7 +155,9 @@
             <span>{{ wl_newsletter | escape }}</span>
           </label>
 
-          <p class="lalatoto-waitlist__fine">{{ wl_fine | escape }}</p>
+          {%- if wl_fine != blank -%}
+            <p class="lalatoto-waitlist__fine">{{ wl_fine | escape }}</p>
+          {%- endif -%}
         </div>
       </div>
     {%- endform -%}

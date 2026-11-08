@@ -850,7 +850,7 @@
     "settings": [
       {
         "type": "paragraph",
-        "content": "Teksterne på ventelisten, som vises i stedet for «Læg i kurv», når en vare er udsolgt. Skriv [produkt], hvor produktnavnet skal stå – det skifter automatisk og står i kursiv. Et tomt felt bruger standardteksten."
+        "content": "Teksterne på ventelisten, som vises i stedet for «Læg i kurv», når en vare er udsolgt. Skriv [produkt], hvor produktnavnet skal stå – det skifter automatisk og står i kursiv. Skriv [den/det], så står der «den» eller «det» efter produktets felt «Køn (en/et)». Et tomt felt bruger standardteksten."
       },
       {
         "type": "text",
@@ -892,6 +892,7 @@
         "type": "textarea",
         "id": "waitlist_fine_print",
         "label": "Det med småt",
+        "info": "Lad feltet stå tomt for at skjule teksten.",
         "default": "Vi skriver kun om denne vare, medmindre du også vælger nyhedsbrevet. Du kan altid framelde dig."
       },
       {
