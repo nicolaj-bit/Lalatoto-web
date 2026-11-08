@@ -153,6 +153,17 @@
         "button_url": "shopify://pages/materialer"
       }
     },
+    "produkter_intro": {
+      "type": "lalatoto-intro",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "kicker": "Vores produkter",
+        "heading": "Sengetøj og sengeslanger til baby – uden polyester",
+        "text": "<p>Vi laver sengeslanger, sengerande, sengetøj og bamser til de mindste. Fyldet er ren uld, og stoffet er OEKO-TEX®-certificeret bomuld. Der er ingen polyester – heller ikke dér, hvor du ikke kan se det.</p><p>Vi er en lille dansk virksomhed, og vores produkter bliver syet hos en mindre systue i Bulgarien med fokus på godt håndværk og ordentlige arbejdsforhold. Det giver ting, der holder til mange vaske og mange nætter.</p>",
+        "button_text": "Se alle produkter",
+        "button_url": "shopify://collections/produkter"
+      }
+    },
     "faq": {
       "type": "lalatoto-home-faq",
       "blocks": {
@@ -238,6 +249,7 @@
     "shop",
     "intro",
     "materialer",
+    "produkter_intro",
     "faq",
     "journal",
     "app"
