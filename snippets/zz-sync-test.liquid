@@ -1,0 +1,8 @@
+{%- comment -%}
+  Pladsholderne med krøllede parenteser må ikke stå som strenge inde i
+  et Liquid-udtryk: så afviser Shopify hele filen uden at sige det.
+{%- endcomment -%}
+{%- capture ph_time -%}{time}{%- endcapture -%}
+{%- capture ph_date -%}{date}{%- endcapture -%}
+{%- capture ph_ship -%}{ship}{%- endcapture -%}
+<p data-before="{{ 'lalatoto.product.delivery_before_cutoff' | t: time: ph_time, date: ph_date | escape }}" data-after="{{ 'lalatoto.product.delivery_after_cutoff' | t: ship: ph_ship, date: ph_date | escape }}"></p>
