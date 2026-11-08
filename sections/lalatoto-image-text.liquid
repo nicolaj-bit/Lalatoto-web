@@ -3,14 +3,18 @@
 
   På computer står billedet til venstre (eller højre) og fylder godt halvdelen,
   og teksten står lodret centreret ved siden af: overskrift i Playfair, en
-  kort tekst og et link med versaler. På telefon står teksten under billedet.
+  kort tekst og et link med versaler. På telefon står billedet i fuld bredde
+  helt ud til kanten, og teksten står under. Billedet vises i sit eget format.
 {%- endcomment -%}
 
 {%- liquid
   assign image_alt = section.settings.image_alt | default: section.settings.image.alt
 -%}
 
-<div class="lalatoto-image-text color-scheme color-scheme--{{ section.settings.color_scheme.id }}{% if section.settings.image_position == 'right' %} lalatoto-image-text--reverse{% endif %}">
+<div
+  class="lalatoto-image-text color-scheme color-scheme--{{ section.settings.color_scheme.id }}{% if section.settings.image_position == 'right' %} lalatoto-image-text--reverse{% endif %}"
+  {% if section.settings.image != blank %}style="--lalatoto-image-text-ratio: {{ section.settings.image.aspect_ratio }};"{% endif %}
+>
   <div class="lalatoto-image-text__media">
     {%- if section.settings.image != blank -%}
       {{-
@@ -58,7 +62,7 @@
       "type": "image_picker",
       "id": "image",
       "label": "Billede",
-      "info": "Anbefalet: 1600 × 1200 px (4:3, liggende). JPG, under ca. 300 KB."
+      "info": "Vises i sit eget format. Stående (fx 1200 × 1600 px) fylder skærmen på telefon. JPG, under ca. 300 KB."
     },
     {
       "type": "text",
