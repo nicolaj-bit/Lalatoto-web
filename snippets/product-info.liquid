@@ -624,12 +624,20 @@
                   har kørt, og uden JavaScript, står standardteksten.
                 {%- endcomment -%}
                 {%- assign lalatoto_delivery_fallback = 'lalatoto.product.delivery_default' | t -%}
+                {%- comment -%}
+                  Pladsholderne med krøllede parenteser må ikke stå som strenge inde i
+                  et Liquid-udtryk: så afviser Shopify hele filen uden at sige det.
+                  De fanges derfor som ren tekst.
+                {%- endcomment -%}
+                {%- capture ph_time -%}{time}{%- endcapture -%}
+                {%- capture ph_date -%}{date}{%- endcapture -%}
+                {%- capture ph_ship -%}{ship}{%- endcapture -%}
                 <p class="lalatoto-delivery">
                   <lalatoto-delivery-date
                     data-cutoff="10"
                     data-locale="{{ request.locale.iso_code }}-DK"
-                    data-before="{{ 'lalatoto.product.delivery_before_cutoff' | t: time: '{time}', date: '{date}' | escape }}"
-                    data-after="{{ 'lalatoto.product.delivery_after_cutoff' | t: ship: '{ship}', date: '{date}' | escape }}"
+                    data-before="{{ 'lalatoto.product.delivery_before_cutoff' | t: time: ph_time, date: ph_date | escape }}"
+                    data-after="{{ 'lalatoto.product.delivery_after_cutoff' | t: ship: ph_ship, date: ph_date | escape }}"
                     data-tomorrow="{{ 'lalatoto.product.delivery_tomorrow' | t | escape }}"
                   >{{ lalatoto_delivery_fallback | escape }}</lalatoto-delivery-date>
                 </p>
