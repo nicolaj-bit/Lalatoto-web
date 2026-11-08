@@ -5763,15 +5763,15 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   gap: 1.75rem;
 }
 
-/* Linjerne i et afsnit står tæt, og der er tydelig luft mellem afsnittene,
-   så afsnittene læses som grupper og ikke som én lang række linjer. */
+/* Hver sætning står på sin egen linje med en lille luft imellem. Linjerne
+   i en sætning, der brydes, står tættere, så sætningerne kan skelnes. */
 .lalatoto-intro--manifest .lalatoto-intro__text {
   font-size: 1.0625rem;
   line-height: 1.6;
 }
 
 .lalatoto-intro--manifest .lalatoto-intro__text p {
-  margin-block-end: 1.75rem;
+  margin-block-end: 0.75rem;
 }
 
 .lalatoto-intro--manifest .lalatoto-intro__text p:last-child {
