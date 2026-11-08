@@ -1,6 +1,6 @@
 {%- comment -%}
-  Lalatoto: kollektionsside. Centreret overskrift med en kort linje under og
-  derefter produkterne med kun billede og navn. Ingen priser, filtre eller
+  Lalatoto: kollektionsside. Centreret overskrift, derefter produkterne med
+  kun billede og navn, og til sidst kollektionens tekst. Ingen priser, filtre eller
   sortering. Fire kolonner på computer og to på telefon.
 
   Overskriften hentes fra kollektionens metafelt lalatoto.heading og ellers fra
@@ -28,27 +28,14 @@
 {%- paginate collection.products by section.settings.products_per_page -%}
   <div class="lalatoto-collection color-scheme color-scheme--{{ section.settings.color_scheme.id }}">
     <header class="lalatoto-collection__head">
-      {%- liquid
-        assign kicker = section.settings.kicker
-        if kicker == blank
-          assign kicker = 'lalatoto.collection.kicker' | t
-        endif
-      -%}
-      <p class="lalatoto-kicker">{{ kicker | escape }}</p>
-      <h1 class="lalatoto-collection__title">{{ heading | escape }}</h1>
-
-      {%- if intro != blank -%}
-        <div class="lalatoto-lead"><p>{{ intro | escape }}</p></div>
-      {%- elsif intro_parts.size > 0 -%}
-        <div class="lalatoto-lead">
-          {%- for part in intro_parts -%}
-            {%- assign part = part | strip -%}
-            {%- if part != blank -%}
-              <p>{{ part }}</p>
-            {%- endif -%}
-          {%- endfor -%}
-        </div>
+      {%- comment -%}
+        Ingen etiket over overskriften som standard. Den vises kun, hvis der er
+        skrevet en i sektionens indstillinger.
+      {%- endcomment -%}
+      {%- if section.settings.kicker != blank -%}
+        <p class="lalatoto-kicker">{{ section.settings.kicker | escape }}</p>
       {%- endif -%}
+      <h1 class="lalatoto-collection__title">{{ heading | escape }}</h1>
     </header>
 
     {%- if collection.products.size > 0 -%}
@@ -264,6 +251,24 @@
     {%- else -%}
       <p class="lalatoto-collection__empty">{{ 'lalatoto.collection.empty' | t }}</p>
     {%- endif -%}
+
+    {%- comment -%} Kollektionens tekst står under produkterne {%- endcomment -%}
+    {%- if intro != blank or intro_parts.size > 0 -%}
+      <footer class="lalatoto-collection__foot">
+        {%- if intro != blank -%}
+          <div class="lalatoto-lead"><p>{{ intro | escape }}</p></div>
+        {%- elsif intro_parts.size > 0 -%}
+          <div class="lalatoto-lead">
+            {%- for part in intro_parts -%}
+              {%- assign part = part | strip -%}
+              {%- if part != blank -%}
+                <p>{{ part }}</p>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </footer>
+    {%- endif -%}
   </div>
 {%- endpaginate -%}
 
@@ -286,11 +291,12 @@
     {
       "type": "text",
       "id": "kicker",
-      "label": "Lille etiket over overskriften"
+      "label": "Lille etiket over overskriften",
+      "info": "Lad feltet stå tomt for ingen etiket."
     },
     {
       "type": "paragraph",
-      "content": "Overskriften og linjen under den rettes på selve kollektionen under Produkter → Kollektioner (metafelterne Overskrift og Indledning, ellers kollektionens navn og beskrivelse)."
+      "content": "Overskriften og teksten under produkterne rettes på selve kollektionen under Produkter → Kollektioner (metafelterne Overskrift og Indledning, ellers kollektionens navn og beskrivelse)."
     },
     {
       "type": "range",

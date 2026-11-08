@@ -1266,6 +1266,18 @@ html.lalatoto-scroll-lock body {
   max-width: 60ch;
 }
 
+/* Kollektionens tekst under produkterne */
+.lalatoto-collection__foot {
+  display: grid;
+  justify-items: center;
+  margin-block-start: 4rem;
+  text-align: center;
+}
+
+.lalatoto-collection__foot .lalatoto-lead {
+  max-width: 60ch;
+}
+
 .lalatoto-collection__empty {
   text-align: center;
   color: rgb(var(--text-color));
@@ -2076,12 +2088,17 @@ html.lalatoto-scroll-lock body {
    navn og pris). Kun teksten «Udsolgt» viser forskellen, og kortet står sidst. */
 
 /* Produktsiden: størrelser står som ren tekst uden kant og uden streg
-   over udsolgte størrelser, som på Hvalen LALA. Den valgte er mørk, de
-   andre lysere. (Vægtene på tyngdedynerne har deres egen stil længere nede.) */
-.shopify-section--main-product .block-swatch,
-.shopify-section--main-product :checked + .block-swatch,
-.shopify-section--main-product .block-swatch.is-selected {
+   over udsolgte størrelser, som på Hvalen LALA. Den valgte er mørk med en
+   tynd streg under, de andre lysere. (Vægtene på tyngdedynerne har deres
+   egen stil længere nede.) */
+.shopify-section--main-product .block-swatch {
+  position: relative;
   border-color: transparent;
+  color: rgb(var(--text-color) / 0.45);
+  transition: color 0.2s ease-in-out;
+}
+
+.shopify-section--main-product .block-swatch:hover {
   color: rgb(var(--text-color));
 }
 
@@ -2096,7 +2113,18 @@ html.lalatoto-scroll-lock body {
 
 .shopify-section--main-product :checked + .block-swatch,
 .shopify-section--main-product .block-swatch.is-selected {
+  border-color: transparent;
   color: rgb(var(--text-color));
+}
+
+.shopify-section--main-product .variant-picker__option:not(.variant-picker__option--weight) :checked + .block-swatch::after,
+.shopify-section--main-product .variant-picker__option:not(.variant-picker__option--weight) .block-swatch.is-selected::after {
+  content: '';
+  position: absolute;
+  inset-inline: 1.25rem;
+  bottom: 0.35rem;
+  height: 1px;
+  background: currentColor;
 }
 
 .shopify-section--main-product .color-swatch.is-disabled {
@@ -5233,6 +5261,7 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 }
 
 .lalatoto-collection__head,
+.lalatoto-collection__foot,
 .lalatoto-collection .pagination,
 .lalatoto-collection__empty,
 .lalatoto-featured__head,
