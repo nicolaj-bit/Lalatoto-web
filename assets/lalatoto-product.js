@@ -133,16 +133,26 @@
       })
     })
       .then(function (response) {
+        // 400: forkert e-mail eller lignende — vis fejlen. Alle andre fejl
+        // (funktionen findes ikke, serverfejl) sendes videre til reserven.
+        if (response.status === 400) return 'invalid';
+        if (!response.ok) return 'fallback';
         return response.json().then(
-          function (body) { return response.ok && body && body.ok === true; },
-          function () { return false; }
+          function (body) { return body && body.ok === true ? 'ok' : 'fallback'; },
+          function () { return 'fallback'; }
         );
       })
-      .catch(function () { return false; })
-      .then(function (ok) {
+      .catch(function () { return 'fallback'; })
+      .then(function (result) {
+        if (result === 'fallback') {
+          // Reserve: Shopifys egen formular. form.submit() udløser ikke
+          // submit-hændelsen igen, så den går direkte til Shopify.
+          form.submit();
+          return;
+        }
         if (button) button.disabled = false;
         form.removeAttribute('aria-busy');
-        if (!ok) {
+        if (result !== 'ok') {
           waitlistError(form, true);
           return;
         }
