@@ -166,6 +166,16 @@
           <p class="lalatoto-waitlist__text">{{ wl_text }}</p>
 
           <input type="hidden" name="contact[tags]" value="{{ tags | escape }}" data-base-tags="{{ tags | escape }}">
+          {%- comment -%}
+            Med JavaScript sendes tilmeldingen til Base44-funktionen waitlistSignup
+            (assets/lalatoto-product.js), så kunden kun tilmeldes nyhedsbrevet ved
+            flueben. Funktionen danner selv tags ud fra varianten. Uden
+            JavaScript bruges Shopifys formular som reserve.
+          {%- endcomment -%}
+          <input type="hidden" name="lalatoto_variant" value="{{ variant.id }}" data-error="{{ 'lalatoto.waitlist.error' | t | escape }}">
+          <div class="lalatoto-waitlist__trap" aria-hidden="true">
+            <label>Firma <input type="text" name="company" tabindex="-1" autocomplete="off"></label>
+          </div>
 
           <div class="lalatoto-waitlist__field{% if form.errors %} has-error{% endif %}">
             <input
