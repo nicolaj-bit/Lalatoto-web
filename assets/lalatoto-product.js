@@ -76,4 +76,78 @@
     var base = tags.getAttribute('data-base-tags');
     tags.value = box.checked ? base + ',nyhedsbrev-samtykke' : base;
   });
+
+  /*
+   * Ventelisten sendes til Base44-funktionen waitlistSignup i stedet for
+   * Shopifys kundeformular. Shopifys formular tilmelder altid kunden
+   * nyhedsbrevet; funktionen gør det kun ved flueben og danner selv tags ud
+   * fra varianten. Fejler kaldet, vises fejlbeskeden, og intet sendes videre.
+   */
+  var WAITLIST_APP_ID = '6ad0540094b2b23633a4f532';
+  var WAITLIST_ENDPOINT =
+    'https://lala-order-flow.base44.app/api/apps/' + WAITLIST_APP_ID + '/functions/waitlistSignup';
+
+  function waitlistError(form, show) {
+    var field = form.querySelector('.lalatoto-waitlist__field');
+    var error = form.querySelector('.lalatoto-waitlist__error');
+    if (!error && show) {
+      error = document.createElement('p');
+      error.className = 'lalatoto-waitlist__error';
+      error.setAttribute('role', 'alert');
+      var source = form.querySelector('input[name="lalatoto_variant"]');
+      error.textContent = (source && source.getAttribute('data-error')) || '';
+      field.insertAdjacentElement('afterend', error);
+    }
+    if (error) error.hidden = !show;
+    if (field) field.classList.toggle('has-error', show);
+  }
+
+  document.addEventListener('submit', function (event) {
+    var form = event.target;
+    if (!form.matches || !form.matches('.lalatoto-waitlist__form')) return;
+    var variant = form.querySelector('input[name="lalatoto_variant"]');
+    if (!variant || !window.fetch) return;
+    event.preventDefault();
+
+    var email = form.querySelector('input[name="contact[email]"]');
+    if (email && !email.checkValidity()) {
+      email.reportValidity();
+      return;
+    }
+
+    var box = form.querySelector('[data-lalatoto-newsletter]');
+    var trap = form.querySelector('input[name="company"]');
+    var button = form.querySelector('.lalatoto-waitlist__submit');
+    if (button) button.disabled = true;
+    form.setAttribute('aria-busy', 'true');
+    waitlistError(form, false);
+
+    fetch(WAITLIST_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-App-Id': WAITLIST_APP_ID },
+      body: JSON.stringify({
+        email: email ? email.value : '',
+        variantId: variant.value,
+        newsletter: !!(box && box.checked),
+        company: trap ? trap.value : ''
+      })
+    })
+      .then(function (response) {
+        return response.json().then(
+          function (body) { return response.ok && body && body.ok === true; },
+          function () { return false; }
+        );
+      })
+      .catch(function () { return false; })
+      .then(function (ok) {
+        if (button) button.disabled = false;
+        form.removeAttribute('aria-busy');
+        if (!ok) {
+          waitlistError(form, true);
+          return;
+        }
+        var state = form.querySelector('.lalatoto-waitlist__state');
+        if (state) state.classList.add('is-done');
+      });
+  });
 })();

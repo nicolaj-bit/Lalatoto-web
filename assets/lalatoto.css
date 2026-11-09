@@ -2489,6 +2489,15 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   outline-offset: 3px;
 }
 
+/* Skjult felt mod robotter: uden for skærmen, så mennesker ikke ser det */
+.lalatoto-waitlist__trap {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 .lalatoto-waitlist__fine {
   margin: -0.5rem 0 0;
   max-width: 44ch;

@@ -5,7 +5,8 @@
   «Udsolgt»-knap.
 
   Tilmeldingen bruger Shopifys kundeformular og opretter kunden med mærkerne
-  «venteliste», «venteliste-<produkt>» og «venteliste-<produkt>-<variant>», så
+  «venteliste», «venteliste-<produkt>», «venteliste-<produkt>-<variant>» og et
+  mærke pr. farve og størrelse (se nedenfor), så
   listen kan findes under Kunder. Sætter kunden flueben ved nyhedsbrevet,
   tilføjes også mærket «nyhedsbrev-samtykke» som dokumentation for samtykket.
 
@@ -20,6 +21,30 @@
     assign tag_product = 'venteliste-' | append: product.handle
     assign tag_variant = tag_product | append: '-' | append: variant.title | handleize
     assign tags = 'venteliste,' | append: tag_product | append: ',' | append: tag_variant
+
+    comment
+      Ét tag pr. valgmulighed, så kunderne kan findes på farve eller størrelse
+      alene. En valgmulighed med «størrelse» eller «size» i navnet bliver til
+      «str», alt andet (fx «Dit valg») til «farve». Eksempel for Sengetøj i
+      Sage / Baby:
+        venteliste-sengetoj-farve-sage
+        venteliste-sengetoj-str-baby
+        venteliste-farve-sage   (på tværs af produkter)
+    endcomment
+    for option in product.options_with_values
+      assign option_name = option.name | downcase
+      assign option_kind = 'farve'
+      if option_name contains 'størrelse' or option_name contains 'size' or option_name contains 'größe'
+        assign option_kind = 'str'
+      endif
+      assign option_value = variant.options[forloop.index0] | handleize
+      if option_value != blank
+        assign tags = tags | append: ',' | append: tag_product | append: '-' | append: option_kind | append: '-' | append: option_value
+        if option_kind == 'farve'
+          assign tags = tags | append: ',venteliste-farve-' | append: option_value
+        endif
+      endif
+    endfor
   -%}
 
   <div class="lalatoto-waitlist" id="{{ form_id }}-wrap">
@@ -141,6 +166,16 @@
           <p class="lalatoto-waitlist__text">{{ wl_text }}</p>
 
           <input type="hidden" name="contact[tags]" value="{{ tags | escape }}" data-base-tags="{{ tags | escape }}">
+          {%- comment -%}
+            Med JavaScript sendes tilmeldingen til Base44-funktionen waitlistSignup
+            (assets/lalatoto-product.js), så kunden kun tilmeldes nyhedsbrevet ved
+            flueben. Funktionen danner selv tags ud fra varianten. Uden
+            JavaScript bruges Shopifys formular som reserve.
+          {%- endcomment -%}
+          <input type="hidden" name="lalatoto_variant" value="{{ variant.id }}" data-error="{{ 'lalatoto.waitlist.error' | t | escape }}">
+          <div class="lalatoto-waitlist__trap" aria-hidden="true">
+            <label>Firma <input type="text" name="company" tabindex="-1" autocomplete="off"></label>
+          </div>
 
           <div class="lalatoto-waitlist__field{% if form.errors %} has-error{% endif %}">
             <input
