@@ -778,7 +778,21 @@
       "back": "Tilbage til {{ blog }}",
       "related": "Læs også",
       "teaser_heading": "Fra journalen",
-      "all_articles": "Alle artikler"
+      "all_articles": "Alle artikler",
+      "cta": {
+        "kicker": "Fra Lalatoto",
+        "waitlist_kicker": "Venteliste",
+        "waitlist_button": "Få besked",
+        "notify": "Få besked",
+        "sengeslange_text": "Tryghed hele vejen rundt i sengen. Syet i bomuld og fyldt med ren uld – ingen polyester.",
+        "sengeslange_button": "Se sengeslangen",
+        "sengerand_text": "Lukker helt af for tremmerne, så små arme og ben bliver i sengen. Ren uld og bomuld.",
+        "sengerand_button": "Se sengeranden",
+        "sengetoj_text": "Tætvævet bomuld, der ånder – også på varme nætter. Ingen polyester.",
+        "sengetoj_button": "Se sengetøjet",
+        "default_text": "Syet i naturlige materialer. Ingen polyester.",
+        "default_button": "Se produktet"
+      }
     }
   }
 }

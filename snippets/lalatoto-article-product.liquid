@@ -1,0 +1,86 @@
+{%- doc -%}
+  Lalatoto: ét produkt inde i en artikel, efter ca. to tredjedele af teksten.
+
+  Produktet vælges sådan:
+    1. det første produkt i artiklens metafelt «Produkter til artiklen»
+       (lalatoto.produkter),
+    2. ellers ud fra artiklens emne, først i titlen og så i teksten:
+       sengerand, tremmeseng, eget værelse og «på siden» giver sengeranden;
+       sengetøj og varme giver sengetøjet,
+    3. ellers luksus sengeslangen.
+
+  Er produktet udsolgt eller ikke kommet endnu, står der «Venteliste», og
+  knappen «Få besked» fører til ventelisten på produktsiden.
+
+  @param {object} article - artiklen
+{%- enddoc -%}
+
+{%- liquid
+  assign product = article.metafields.lalatoto.produkter.value | first
+  assign key = 'default'
+
+  if product == blank
+    comment
+      Titlen vægtes først, så «Sådan hjælper du dit barn til at finde ro i
+      sommervarmen» får sengetøjet, selv om teksten også nævner tremmesengen.
+    endcomment
+    assign title = article.title | downcase
+    assign body = article.content | strip_html | downcase
+    if title contains 'sengerand' or title contains 'tremmeseng' or title contains 'eget værelse' or title contains 'på siden'
+      assign handle = 'sengerand'
+    elsif title contains 'sengetøj' or title contains 'sommervarme' or title contains 'varmen'
+      assign handle = 'sengetoj'
+    elsif title contains 'sengeslange'
+      assign handle = 'luksus-sengeslange'
+    elsif body contains 'sengerand' or body contains 'tremmeseng' or body contains 'eget værelse' or body contains 'på siden'
+      assign handle = 'sengerand'
+    elsif body contains 'sengetøj' or body contains 'sommervarme' or body contains 'varmen'
+      assign handle = 'sengetoj'
+    else
+      assign handle = 'luksus-sengeslange'
+    endif
+    assign product = all_products[handle]
+  endif
+
+  case product.handle
+    when 'luksus-sengeslange'
+      assign key = 'sengeslange'
+    when 'sengerand'
+      assign key = 'sengerand'
+    when 'sengetoj'
+      assign key = 'sengetoj'
+  endcase
+
+  assign text_key = 'lalatoto.journal.cta.' | append: key | append: '_text'
+  assign button_key = 'lalatoto.journal.cta.' | append: key | append: '_button'
+-%}
+
+{%- if product != blank -%}
+  <aside class="lalatoto-article-product" aria-label="{{ product.title | escape }}">
+    <a href="{{ product.url }}" class="lalatoto-article-product__media" tabindex="-1" aria-hidden="true">
+      {%- if product.featured_media -%}
+        {{-
+          product.featured_media
+          | image_url: width: 360
+          | image_tag: loading: 'lazy', sizes: '120px', widths: '120,240,360', alt: ''
+        -}}
+      {%- endif -%}
+    </a>
+    <div class="lalatoto-article-product__info">
+      <p class="lalatoto-kicker">
+        {%- if product.available -%}
+          {{- 'lalatoto.journal.cta.kicker' | t -}}
+        {%- else -%}
+          {{- 'lalatoto.journal.cta.waitlist_kicker' | t -}}
+        {%- endif -%}
+      </p>
+      <p class="lalatoto-article-product__title">{{ product.title | escape }}</p>
+      <p class="lalatoto-article-product__text">{{ text_key | t }}</p>
+      {%- if product.available -%}
+        <a href="{{ product.url }}" class="button lalatoto-article-product__button">{{ button_key | t }}</a>
+      {%- else -%}
+        <a href="{{ product.url }}" class="button button--outline lalatoto-article-product__button">{{ 'lalatoto.journal.cta.waitlist_button' | t }}</a>
+      {%- endif -%}
+    </div>
+  </aside>
+{%- endif -%}
