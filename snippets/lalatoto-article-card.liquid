@@ -17,7 +17,8 @@
   assign minutes = words | divided_by: 200 | at_least: 1
   assign excerpt = article.excerpt | strip_html | strip
   if excerpt == blank
-    assign excerpt = article.content | strip_html | strip
+    assign cross_sell = '{' | append: '{ cross_sell }' | append: '}'
+    assign excerpt = article.content | remove: cross_sell | strip_html | strip
   endif
   if size == 'large'
     assign excerpt = excerpt | truncatewords: 42
