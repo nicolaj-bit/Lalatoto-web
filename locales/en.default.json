@@ -774,7 +774,21 @@
       "back": "Back to {{ blog }}",
       "related": "Read next",
       "teaser_heading": "From the journal",
-      "all_articles": "All articles"
+      "all_articles": "All articles",
+      "cta": {
+        "kicker": "From Lalatoto",
+        "waitlist_kicker": "Waitlist",
+        "waitlist_button": "Notify me",
+        "notify": "Notify me",
+        "sengeslange_text": "Comfort all the way around the bed. Cotton filled with pure wool – no polyester.",
+        "sengeslange_button": "See the bed bumper",
+        "sengerand_text": "Closes the gap to the bars, so little arms and legs stay in bed. Pure wool and cotton.",
+        "sengerand_button": "See the cot bumper",
+        "sengetoj_text": "Tightly woven cotton that breathes – even on warm nights. No polyester.",
+        "sengetoj_button": "See the bedding",
+        "default_text": "Made from natural materials. No polyester.",
+        "default_button": "See the product"
+      }
     }
   }
 }

@@ -2,7 +2,8 @@
   Lalatoto: ét forslag i kurvens upsell. Billede, navn, pris og en
   tilføj-knap. Produkter med kun én variant lægges direkte i kurven; har
   produktet flere valg (størrelse, farve), åbner Prestiges hurtigkøb, så
-  kunden kan vælge først.
+  kunden kan vælge først. Er produktet udsolgt, står der «Få besked» i stedet
+  for plusset, og linket fører til ventelisten på produktsiden.
 
   @param {object} product - produktet
 {%- enddoc -%}
@@ -59,7 +60,9 @@
     </p>
   </div>
 
-  {%- if product.variants.size == 1 -%}
+  {%- if product.available == false -%}
+    <a href="{{ product.url }}" class="lalatoto-upsell__notify">{{ 'lalatoto.journal.cta.notify' | t }}</a>
+  {%- elsif product.variants.size == 1 -%}
     <product-form class="lalatoto-upsell__form">
       {%- form 'product', product -%}
         <input type="hidden" name="id" value="{{ variant.id }}">

@@ -756,7 +756,21 @@
       "back": "Zurück zu {{ blog }}",
       "related": "Weiterlesen",
       "teaser_heading": "Aus dem Journal",
-      "all_articles": "Alle Artikel"
+      "all_articles": "Alle Artikel",
+      "cta": {
+        "kicker": "Von Lalatoto",
+        "waitlist_kicker": "Warteliste",
+        "waitlist_button": "Benachrichtigen",
+        "notify": "Benachrichtigen",
+        "sengeslange_text": "Geborgenheit rund ums Bett. Baumwolle mit reiner Wolle gefüllt – ohne Polyester.",
+        "sengeslange_button": "Zur Bettschlange",
+        "sengerand_text": "Schließt die Lücke zu den Gitterstäben, damit kleine Arme und Beine im Bett bleiben. Reine Wolle und Baumwolle.",
+        "sengerand_button": "Zur Bettumrandung",
+        "sengetoj_text": "Dicht gewebte Baumwolle, die atmet – auch in warmen Nächten. Ohne Polyester.",
+        "sengetoj_button": "Zur Bettwäsche",
+        "default_text": "Aus natürlichen Materialien. Ohne Polyester.",
+        "default_button": "Zum Produkt"
+      }
     },
     "bed": {
       "color": "Farbe",

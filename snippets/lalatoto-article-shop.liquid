@@ -7,10 +7,11 @@
 
   Produkterne vælges i denne rækkefølge:
     1. artiklens metafelt «Produkter til artiklen» (lalatoto.produkter),
-    2. produkter, artiklen nævner ved navn (fx «tyngdedyne», «sengeslange»),
+    2. produkter, artiklen nævner ved navn (fx «sengerand», «sengeslange»),
     3. standardprodukterne valgt i temaeditoren, ellers kollektionen
        «produkter».
-  Udsolgte produkter springes over.
+  Udsolgte produkter fra 1 og 2 vises med «Få besked», som fører til
+  ventelisten. Udsolgte standardprodukter springes over.
 
   @param {object} article - artiklen
   @param {object} section - artiklens sektion (overskrift og standardprodukter)
@@ -25,7 +26,7 @@
     Ord i artiklen og det produkt, de peger på. Ordet matches uden store
     bogstaver, så «Tyngdedyner» også rammer «tyngdedyne».
   endcomment
-  assign keywords = 'tyngdedyne:tyngdedyne-baby,sengeslange:luksus-sengeslange,sengerand:sengerand,sengetøj:sengetoj,månepude:manepude,sengelomme:sengelomme,hvalen:lala-hvalen' | split: ','
+  assign keywords = 'sengeslange:luksus-sengeslange,sengerand:sengerand,sengetøj:sengetoj,månepude:manepude,sengelomme:sengelomme,hvalen:lala-hvalen' | split: ','
   assign body = article.title | append: ' ' | append: article.content | strip_html | downcase
 
   assign heading = section.settings.shop_heading
@@ -38,13 +39,11 @@
   {%- for product in article.metafields.lalatoto.produkter.value -%}
     {%- if count >= limit -%}{%- break -%}{%- endif -%}
     {%- assign key = ',' | append: product.handle | append: ',' -%}
-    {%- if product.available -%}
-      {%- unless picked contains key -%}
-        {%- render 'lalatoto-upsell-card', product: product -%}
-        {%- assign picked = picked | append: product.handle | append: ',' -%}
-        {%- assign count = count | plus: 1 -%}
-      {%- endunless -%}
-    {%- endif -%}
+    {%- unless picked contains key -%}
+      {%- render 'lalatoto-upsell-card', product: product -%}
+      {%- assign picked = picked | append: product.handle | append: ',' -%}
+      {%- assign count = count | plus: 1 -%}
+    {%- endunless -%}
   {%- endfor -%}
 
   {%- for pair in keywords -%}
@@ -54,7 +53,7 @@
     {%- assign key = ',' | append: handle | append: ',' -%}
     {%- if body contains word -%}
       {%- assign product = all_products[handle] -%}
-      {%- if product.available -%}
+      {%- if product != blank -%}
         {%- unless picked contains key -%}
           {%- render 'lalatoto-upsell-card', product: product -%}
           {%- assign picked = picked | append: handle | append: ',' -%}

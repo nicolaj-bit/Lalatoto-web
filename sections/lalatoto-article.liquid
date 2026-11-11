@@ -23,6 +23,8 @@
   endif
 -%}
 
+{{ 'lalatoto-article-product.css' | asset_url | stylesheet_tag }}
+
 <article class="lalatoto-article color-scheme color-scheme--{{ section.settings.color_scheme.id }}">
   <header class="lalatoto-article__head">
     <a href="{{ kicker_url }}" class="lalatoto-kicker lalatoto-article__kicker">{{ kicker | escape }}</a>
@@ -69,21 +71,36 @@
     if paragraphs.size <= app_after
       assign app_after = -1
     endif
+
+    comment
+      Produktkortet lægges ind efter ca. to tredjedele af teksten, altid
+      efter appens kort. Er artiklen for kort, kommer det til sidst.
+    endcomment
+    assign show_product = section.settings.show_product
+    assign product_after = paragraphs.size | times: 2 | divided_by: 3
+    if product_after <= app_after
+      assign product_after = app_after | plus: 1
+    endif
+    if paragraphs.size <= product_after
+      assign product_after = -1
+    endif
   -%}
 
   <div class="lalatoto-article__body">
-    {%- if show_app and app_after > 0 -%}
-      {%- for part in paragraphs -%}
-        {{- part -}}{%- unless forloop.last -%}</p>{%- endunless -%}
-        {%- if forloop.index == app_after -%}
-          {%- render 'lalatoto-article-app', section: section -%}
-        {%- endif -%}
-      {%- endfor -%}
-    {%- else -%}
-      {{ article.content }}
-      {%- if show_app -%}
+    {%- for part in paragraphs -%}
+      {{- part -}}{%- unless forloop.last -%}</p>{%- endunless -%}
+      {%- if show_app and forloop.index == app_after -%}
         {%- render 'lalatoto-article-app', section: section -%}
       {%- endif -%}
+      {%- if show_product and forloop.index == product_after -%}
+        {%- render 'lalatoto-article-product', article: article -%}
+      {%- endif -%}
+    {%- endfor -%}
+    {%- if show_app and app_after < 1 -%}
+      {%- render 'lalatoto-article-app', section: section -%}
+    {%- endif -%}
+    {%- if show_product and product_after < 1 -%}
+      {%- render 'lalatoto-article-product', article: article -%}
     {%- endif -%}
   </div>
 
@@ -201,6 +218,17 @@
       "id": "app_site_url",
       "label": "Link til hjemmesiden",
       "info": "Tom: clubnosleep.com."
+    },
+    {
+      "type": "header",
+      "content": "Produkt i teksten"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_product",
+      "label": "Vis et produkt inde i teksten",
+      "info": "Lægges ind efter ca. to tredjedele af teksten. Produktet er det første i artiklens metafelt «Produkter til artiklen», ellers sengerand, sengetøj eller luksus sengeslange efter artiklens emne. Er det udsolgt, fører knappen til ventelisten.",
+      "default": true
     },
     {
       "type": "header",
