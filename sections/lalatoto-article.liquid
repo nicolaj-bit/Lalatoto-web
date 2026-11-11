@@ -13,7 +13,15 @@
 {%- endcomment -%}
 
 {%- liquid
-  assign words = article.content | strip_html | split: ' ' | size
+  comment
+    Gamle indlæg har koden «cross_sell» i dobbelte krøllede parenteser
+    stående i teksten fra en app, der ikke bruges mere. Den fjernes her, så
+    den ikke vises på nogen sprog. Teksten bygges i stykker, så Shopify ikke
+    læser den som Liquid.
+  endcomment
+  assign cross_sell = '{' | append: '{ cross_sell }' | append: '}'
+  assign content = article.content | remove: cross_sell
+  assign words = content | strip_html | split: ' ' | size
   assign minutes = words | divided_by: 200 | at_least: 1
   assign kicker = article.tags.first | default: blog.title
   assign kicker_url = blog.url
@@ -66,7 +74,7 @@
       assign show_app = true
     endif
 
-    assign paragraphs = article.content | split: '</p>'
+    assign paragraphs = content | split: '</p>'
     assign app_after = paragraphs.size | divided_by: 3 | at_least: 2
     if paragraphs.size <= app_after
       assign app_after = -1
