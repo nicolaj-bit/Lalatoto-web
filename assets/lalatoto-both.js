@@ -3,7 +3,7 @@
  *
  * «Begge» er ikke en rigtig variant. Vælges det:
  *   - prisen øverst viser den samlede pris med rabat, normalprisen overstreget
- *     og «Spar 20 %»
+ *     (rød, som tilbudspriser i kurven) og «Spar 20 %»
  *   - knappen hedder «Læg begge i kurv» og lægger begge varianter i kurven
  *     hver for sig, så lager og ordrer er som altid. Rabatten gives af en
  *     automatisk rabat i Shopify.
@@ -44,7 +44,7 @@
     var fragment = document.createDocumentFragment();
     var sale = el('sale-price', 'h4 text-subdued');
     sale.append(el('span', 'sr-only', both.getAttribute('data-label-sale')), both.getAttribute('data-price'));
-    var compare = el('compare-at-price', 'h5 text-subdued line-through');
+    var compare = el('compare-at-price', 'h5 text-on-sale line-through');
     compare.append(el('span', 'sr-only', both.getAttribute('data-label-regular')), both.getAttribute('data-compare'));
     fragment.append(sale, compare, el('span', 'lalatoto-both__save', both.getAttribute('data-save')));
     return fragment;
