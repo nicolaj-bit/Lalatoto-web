@@ -5840,3 +5840,10 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   font-size: 0.875rem;
   color: rgb(var(--error-text, 222 42 42));
 }
+
+/* «kg.» efter den eneste vægt (snippets/variant-picker.liquid) */
+.lalatoto-swatch-unit {
+  align-self: center;
+  margin-inline-start: -0.25rem;
+  color: rgb(var(--text-color));
+}
