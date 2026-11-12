@@ -1,0 +1,61 @@
+{%- doc -%}
+  Lalatoto: «Begge» som tredje valg ved siden af størrelserne (fx Hvalen LALA
+  Lille + Stor). Vælges det, viser prisen øverst den samlede pris med
+  rabat, den overstregede normalpris og «Spar 20 %», og knappen lægger begge
+  varianter i kurven (assets/lalatoto-both.js).
+
+  Slås til med produktets metafelt lalatoto.begge_rabat (procent, 1-90).
+  Vises kun for et produkt med præcis to varianter, der begge kan købes.
+
+  VIGTIGT: Selve rabatten gives af den automatiske rabat «Hvalen LALA: Begge
+  −20 %» under Rabatter (20 % på produktet ved mindst 2 stk.). Procenten her
+  er kun det, der vises — den skal være den samme begge steder.
+
+  @param {object} product
+  @param {string} form_id
+{%- enddoc -%}
+
+{%- liquid
+  assign both_percent = product.metafields.lalatoto.begge_rabat.value | default: 0 | plus: 0
+  assign both_ok = false
+  if both_percent >= 1 and both_percent <= 90 and product.variants.size == 2
+    assign first_variant = product.variants[0]
+    assign second_variant = product.variants[1]
+    if first_variant.available and second_variant.available
+      assign both_ok = true
+    endif
+  endif
+-%}
+
+{%- if both_ok -%}
+  {%- liquid
+    assign both_total = first_variant.price | plus: second_variant.price
+    assign both_factor = 100 | minus: both_percent
+    assign both_price = both_total | times: both_factor | divided_by: 100.0 | round
+    if settings.currency_code_enabled
+      assign both_price_text = both_price | money_with_currency
+      assign both_total_text = both_total | money_with_currency
+    else
+      assign both_price_text = both_price | money_without_trailing_zeros
+      assign both_total_text = both_total | money_without_trailing_zeros
+    endif
+  -%}
+  <button
+    type="button"
+    class="block-swatch lalatoto-both"
+    aria-pressed="false"
+    data-lalatoto-both
+    data-form="{{ form_id | escape }}"
+    data-variants="{{ first_variant.id }},{{ second_variant.id }}"
+    data-price="{{ both_price_text | escape }}"
+    data-compare="{{ both_total_text | escape }}"
+    data-save="{{ 'lalatoto.product.both_save' | t: percent: both_percent | escape }}"
+    data-add="{{ 'lalatoto.product.both_add' | t | escape }}"
+    data-error="{{ 'lalatoto.product.both_error' | t | escape }}"
+    data-label-sale="{{ 'product.price.sale_price' | t | escape }}"
+    data-label-regular="{{ 'product.price.regular_price' | t | escape }}"
+  >
+    <span>{{ 'lalatoto.product.both' | t }}</span>
+    <span class="lalatoto-both__badge">−{{ both_percent }} %</span>
+  </button>
+{%- endif -%}

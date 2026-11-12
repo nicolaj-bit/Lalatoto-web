@@ -235,6 +235,10 @@
                 endcase
               endfor
             %}
+            {%- comment -%}Lalatoto: «Begge» som tredje valg, se snippets/lalatoto-both-option.liquid{%- endcomment -%}
+            {%- if is_main_product and option.position == 1 -%}
+              {%- render 'lalatoto-both-option', product: product, form_id: form_id -%}
+            {%- endif -%}
           </div>
         {%- endif -%}
 

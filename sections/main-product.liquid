@@ -157,6 +157,8 @@
 {%- endcomment -%}
 {%- comment -%}Lalatoto: genindlæser vores egne blokke ved variantskift (se filen){%- endcomment -%}
 <script src="{{ 'lalatoto-product.js' | asset_url }}" defer></script>
+{%- comment -%}Lalatoto: «Begge»-valget (Lille + Stor med rabat){%- endcomment -%}
+<script src="{{ 'lalatoto-both.js' | asset_url }}" defer></script>
 
 {%- assign lalatoto_more_info_block = section.blocks | where: 'type', 'lalatoto_more_info' | first -%}
 {%- if lalatoto_more_info_block != blank and product != blank -%}

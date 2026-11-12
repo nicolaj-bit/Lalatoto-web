@@ -555,6 +555,10 @@
       "sale_upsell_title": "Gør et godt fund mere",
       "sale_upsell_all": "Se hele Archive sale",
       "delivery_default": "Levering 1-2 hverdage",
+      "both": "Begge",
+      "both_add": "Læg begge i kurv",
+      "both_save": "Spar {{ percent }} %",
+      "both_error": "Det lykkedes ikke at lægge dem i kurven. Prøv igen.",
       "sections": {
         "materials": "Materialer",
         "dimensions": "Mål",
