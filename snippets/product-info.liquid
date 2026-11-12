@@ -219,7 +219,10 @@
             {%- endif -%}
 
           {%- when 'variant_picker' -%}
-            {%- if product != blank -%}
+            {%- if product != blank and product.gift_card? -%}
+              {%- comment -%}Lalatoto: gavekort har et beløbsfelt i stedet for knapper{%- endcomment -%}
+              {%- render 'lalatoto-gift-amount', product: product, form_id: product_form_id -%}
+            {%- elsif product != blank -%}
               {%- render 'variant-picker',
                   product: product,
                   form_id: product_form_id,
@@ -620,6 +623,9 @@
                 det tidligere tema ikke slår igennem.
               {%- endcomment -%}
               {%- assign lalatoto_delivery = block.settings.text -%}
+              {%- if product.gift_card? -%}
+                {%- assign lalatoto_delivery = 'lalatoto.product.delivery_gift_card' | t -%}
+              {%- endif -%}
               {%- if lalatoto_delivery == blank -%}
                 {%- assign lalatoto_delivery = 'lalatoto.product.delivery_default' | t -%}
               {%- endif -%}

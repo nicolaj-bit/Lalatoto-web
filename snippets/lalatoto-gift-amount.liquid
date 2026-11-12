@@ -1,0 +1,88 @@
+{%- doc -%}
+  Lalatoto: beløbsvælger til gavekortet. Fire hurtige beløb og et felt, hvor
+  kunden selv skriver beløbet.
+
+  Shopify kan ikke lave et gavekort med frit beløb. Hvert beløb findes derfor
+  som en variant (100-5.000 kr i spring på 50 kr), og feltet vælger den
+  variant, der passer til det skrevne beløb. Et beløb uden variant (fx 637
+  kr) kan ikke lægges i kurven. Skal der flere beløb til, oprettes de som
+  varianter på produktet — så virker de her af sig selv.
+
+  @param {object} product
+  @param {string} form_id
+{%- enddoc -%}
+
+{%- liquid
+  assign step = 50
+  assign quick = '250,500,1000,1500' | split: ','
+  assign selected = product.selected_or_first_available_variant
+  assign selected_kr = selected.price | divided_by: 100
+  assign min_kr = 999999
+  assign max_kr = 0
+  for variant in product.variants
+    if variant.available
+      assign kr = variant.price | divided_by: 100
+      assign rest = kr | modulo: step
+      if rest == 0
+        if kr < min_kr
+          assign min_kr = kr
+        endif
+        if kr > max_kr
+          assign max_kr = kr
+        endif
+      endif
+    endif
+  endfor
+  assign min_text = min_kr | times: 100 | money_without_trailing_zeros | remove: ' kr' | remove: 'kr' | strip
+  assign max_text = max_kr | times: 100 | money_without_trailing_zeros | remove: ' kr' | remove: 'kr' | strip
+-%}
+
+<lalatoto-gift-amount
+  class="lalatoto-gift"
+  data-form="{{ form_id | escape }}"
+  data-step="{{ step }}"
+  data-min="{{ min_kr }}"
+  data-max="{{ max_kr }}"
+>
+  <script type="application/json" data-variants>
+    {
+      {%- assign first = true -%}
+      {%- for variant in product.variants -%}
+        {%- if variant.available -%}
+          {%- unless first -%},{%- endunless -%}
+          "{{ variant.price | divided_by: 100 }}": {{ variant.id }}
+          {%- assign first = false -%}
+        {%- endif -%}
+      {%- endfor -%}
+    }
+  </script>
+
+  <span class="lalatoto-gift__label" id="lalatoto-gift-label-{{ form_id | escape }}">{{ 'lalatoto.product.gift_amount_label' | t }}</span>
+  <div class="lalatoto-gift__quick" role="group" aria-labelledby="lalatoto-gift-label-{{ form_id | escape }}">
+    {%- for q in quick -%}
+      {%- assign q_kr = q | plus: 0 -%}
+      <button type="button" class="lalatoto-gift__chip" data-amount="{{ q_kr }}" aria-pressed="{% if q_kr == selected_kr %}true{% else %}false{% endif %}">
+        {{- q_kr | times: 100 | money_without_trailing_zeros -}}
+      </button>
+    {%- endfor -%}
+  </div>
+
+  <label class="lalatoto-gift__label" for="lalatoto-gift-input-{{ form_id | escape }}">{{ 'lalatoto.product.gift_amount_custom' | t }}</label>
+  <div class="lalatoto-gift__field">
+    <input
+      id="lalatoto-gift-input-{{ form_id | escape }}"
+      class="lalatoto-gift__input"
+      type="text"
+      inputmode="numeric"
+      autocomplete="off"
+      value="{{ selected_kr }}"
+      aria-describedby="lalatoto-gift-hint-{{ form_id | escape }}"
+    >
+    <span aria-hidden="true">kr</span>
+  </div>
+  <p class="lalatoto-gift__hint" id="lalatoto-gift-hint-{{ form_id | escape }}">
+    {{- 'lalatoto.product.gift_amount_hint' | t: min: min_text, max: max_text -}}
+  </p>
+</lalatoto-gift-amount>
+
+<script src="{{ 'lalatoto-gift-amount.js' | asset_url }}" defer></script>
