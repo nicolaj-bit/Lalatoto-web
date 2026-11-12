@@ -1,0 +1,41 @@
+{%- doc -%}
+  Lalatoto: giver Microsoft Clarity besked om kundens samtykke fra Shopifys
+  cookiebanner.
+
+  Clarity kommer fra appen «Microsoft Clarity» (app-indlejring). Siden 31.
+  oktober 2025 kører Clarity uden cookies for besøgende fra EU, Storbritannien
+  og Schweiz, indtil den får et samtykke. Uden cookies kan en kundes besøg
+  ikke følges fra side til side.
+
+  Her læses samtykket fra Shopifys Customer Privacy API og sendes videre med
+  Clarity Consent API v2: statistik giver analytics_Storage, markedsføring
+  giver ad_Storage. Siger kunden nej, sendes «denied», og Clarity sætter ingen
+  cookies. Kaldet stilles i kø, hvis Clarity ikke er indlæst endnu.
+{%- enddoc -%}
+
+<script>
+  (function () {
+    window.clarity = window.clarity || function () {
+      (window.clarity.q = window.clarity.q || []).push(arguments);
+    };
+
+    function send() {
+      var privacy = window.Shopify && window.Shopify.customerPrivacy;
+      if (!privacy || typeof privacy.analyticsProcessingAllowed !== 'function') return;
+      window.clarity('consentv2', {
+        analytics_Storage: privacy.analyticsProcessingAllowed() ? 'granted' : 'denied',
+        ad_Storage: privacy.marketingAllowed && privacy.marketingAllowed() ? 'granted' : 'denied'
+      });
+    }
+
+    // Når kunden svarer i banneret.
+    document.addEventListener('visitorConsentCollected', send);
+
+    // Ved hver sidevisning: et svar, kunden allerede har givet.
+    if (window.Shopify && typeof window.Shopify.loadFeatures === 'function') {
+      window.Shopify.loadFeatures([{ name: 'consent-tracking-api', version: '0.1' }], function (error) {
+        if (!error) send();
+      });
+    }
+  })();
+</script>
