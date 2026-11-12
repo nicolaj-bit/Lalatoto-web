@@ -9,15 +9,6 @@
  */
 {
   "current": {
-    "waitlist_kicker": "Venteliste",
-    "waitlist_title": "Få besked når [produktet] er her",
-    "waitlist_text": "Skriv din e-mail, så giver vi dig besked, så snart [den/det] kan købes.",
-    "waitlist_email_label": "Din e-mail",
-    "waitlist_submit": "Skriv mig op",
-    "waitlist_newsletter": "Send mig også nyhedsbrevet",
-    "waitlist_fine_print": "",
-    "waitlist_done_title": "Tak. <em>Du er på listen.</em>",
-    "waitlist_done_text": "Vi sender én besked, når [produkt] kan købes.",
     "section_vertical_spacing": "xl",
     "button_border_radius": 0,
     "input_border_radius": 0,
@@ -53,6 +44,15 @@
     "cart_free_shipping_threshold": "399",
     "social_facebook": "https://www.facebook.com/Lalatoto.dk",
     "social_instagram": "https://www.instagram.com/lalatoto_of_denmark/",
+    "waitlist_kicker": "Venteliste",
+    "waitlist_title": "Få besked når [produktet] er her",
+    "waitlist_text": "Skriv din e-mail, så giver vi dig besked, så snart [den/det] kan købes.",
+    "waitlist_email_label": "Din e-mail",
+    "waitlist_submit": "Skriv mig op",
+    "waitlist_newsletter": "Send mig også nyhedsbrevet",
+    "waitlist_fine_print": "",
+    "waitlist_done_title": "Tak. <em>Du er på listen.</em>",
+    "waitlist_done_text": "Vi sender én besked, når [produkt] kan købes.",
     "favicon": "shopify://shop_images/LALATOTO_LOGOFILER_3_23ca1a07-be52-4941-b3ea-f785b2ccd8b1.png",
     "content_for_index": [],
     "blocks": {
@@ -92,6 +92,11 @@
       "1732888969108105213": {
         "type": "shopify://apps/oenskeskyen/blocks/serverside-tracking/be6e5a80-54ea-40af-aa80-5746282173b8",
         "disabled": true,
+        "settings": {}
+      },
+      "2567389343055140935": {
+        "type": "shopify://apps/microsoft-clarity/blocks/clarity_js/31c3d126-8116-4b4a-8ba1-baeda7c4aeea",
+        "disabled": false,
         "settings": {}
       }
     },
