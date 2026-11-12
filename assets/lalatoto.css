@@ -5936,3 +5936,23 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 .lalatoto-gift__hint.is-error {
   color: rgb(var(--on-sale-text));
 }
+
+/* Gavekort i kurven (snippets/lalatoto-cart-gift-note.liquid): en stille
+   tekstlinje, ikke et tilbud */
+.lalatoto-cart-gift {
+  margin: 0.875rem 0 0;
+  font-size: 0.8125rem;
+  text-align: center;
+  color: rgb(var(--text-color) / 0.75);
+}
+
+.lalatoto-cart-gift--empty {
+  margin-top: 1.75rem;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.lalatoto-cart-gift a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}

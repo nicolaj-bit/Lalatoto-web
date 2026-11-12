@@ -1,0 +1,39 @@
+{%- doc -%}
+  Lalatoto: en stille henvisning til gavekortet i kurven, skrevet som en hjælp
+  og ikke som mersalg. Ingen knap, intet billede, kun en tekstlinje.
+
+  - Tom kurv: «Leder du efter en gave? Se vores gavekort – modtageren vælger selv.»
+  - Kurv med varer: «Køber du til en anden? Giv et gavekort» under betalingsknappen.
+    Vises ikke, hvis der allerede ligger et gavekort i kurven.
+
+  @param {string} mode - 'empty' eller 'full'
+{%- enddoc -%}
+
+{%- liquid
+  assign gift = all_products['gavekort']
+  assign show = false
+  if gift != blank and gift.available
+    assign show = true
+  endif
+  if mode == 'full'
+    for item in cart.items
+      if item.product.gift_card?
+        assign show = false
+        break
+      endif
+    endfor
+  endif
+-%}
+
+{%- if show -%}
+  {%- if mode == 'empty' -%}
+    <p class="lalatoto-cart-gift lalatoto-cart-gift--empty">
+      {{- 'lalatoto.cart.gift_empty_question' | t -}}<br>
+      <a href="{{ gift.url }}">{{ 'lalatoto.cart.gift_empty_link' | t }}</a> {{ 'lalatoto.cart.gift_empty_after' | t -}}
+    </p>
+  {%- else -%}
+    <p class="lalatoto-cart-gift">
+      {{- 'lalatoto.cart.gift_full_question' | t }} <a href="{{ gift.url }}">{{ 'lalatoto.cart.gift_full_link' | t }}</a>
+    </p>
+  {%- endif -%}
+{%- endif -%}
