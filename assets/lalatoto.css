@@ -5866,44 +5866,53 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 }
 
 .lalatoto-gift__quick {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.75rem;
   margin-bottom: 0.5rem;
 }
 
+/* Beløbene står som størrelserne på Hvalen LALA: ren tekst uden kant, den
+   valgte mørk med en tynd streg under */
 .lalatoto-gift__chip {
-  padding: 0.875rem 0;
-  border: 1px solid rgb(var(--text-color) / 0.25);
+  position: relative;
+  padding: 0.625rem 0;
+  border: 0;
   background: none;
-  color: rgb(var(--text-color));
-  font-size: 0.8125rem;
-  letter-spacing: 0.08em;
+  color: rgb(var(--text-color) / 0.65);
+  font-size: var(--lalatoto-label-size, 0.8125rem);
+  letter-spacing: var(--lalatoto-label-spacing, 0.2em);
+  text-transform: uppercase;
   cursor: pointer;
-  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+  transition: color 0.2s ease-in-out;
 }
 
-.lalatoto-gift__chip:hover {
-  border-color: rgb(var(--text-color));
-}
-
+.lalatoto-gift__chip:hover,
 .lalatoto-gift__chip[aria-pressed="true"] {
-  background: rgb(var(--text-color));
-  border-color: rgb(var(--text-color));
-  color: #efebe4;
+  color: rgb(var(--text-color));
 }
 
+.lalatoto-gift__chip[aria-pressed="true"]::after {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0.25rem;
+  height: 1px;
+  background: currentColor;
+}
+
+/* Feltet til eget beløb: kun en streg under, ingen boks */
 .lalatoto-gift__field {
   display: flex;
-  align-items: center;
-  border: 1px solid rgb(var(--text-color));
-  background: rgb(255 255 255 / 0.35);
+  align-items: baseline;
+  border-bottom: 1px solid rgb(var(--text-color) / 0.5);
+  transition: border-color 0.2s ease-in-out;
 }
 
 .lalatoto-gift__input {
   flex: 1;
   min-width: 0;
-  padding: 0.875rem 1rem;
+  padding: 0.5rem 0;
   border: 0;
   background: none;
   font: inherit;
@@ -5913,18 +5922,18 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
 }
 
 .lalatoto-gift__field:focus-within {
-  box-shadow: inset 0 0 0 1px rgb(var(--text-color));
+  border-bottom-color: rgb(var(--text-color));
+}
+
+.lalatoto-gift__field > span {
+  padding-inline-start: 0.5rem;
+  color: rgb(var(--text-color) / 0.7);
 }
 
 /* Et beløb, der ikke findes, kan ikke lægges i kurven */
 .product-info:has(.lalatoto-gift) button[type="submit"]:disabled {
   opacity: 0.45;
   cursor: not-allowed;
-}
-
-.lalatoto-gift__field > span {
-  padding-inline: 1rem;
-  color: rgb(var(--text-color) / 0.7);
 }
 
 .lalatoto-gift__hint {
