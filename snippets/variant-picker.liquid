@@ -235,6 +235,17 @@
                 endcase
               endfor
             %}
+            {%- comment -%}
+              Lalatoto: findes der kun én vægt (fx Tyngdedyne voksen ekstra
+              længde, «11 kilo»), viser billedet kun tallet. Så står «kg.»
+              lige efter, så man kan se, hvad tallet betyder.
+            {%- endcomment -%}
+            {%- assign lalatoto_unit_word = option.values.first | downcase | split: ' ' | last -%}
+            {%- if lalatoto_value_count == 1 and lalatoto_unit_word == 'kilo' -%}
+              {%- if resolved_option_selector_style == 'swatch' or resolved_option_selector_style == 'swatch_underline' -%}
+                <span class="lalatoto-swatch-unit">kg.</span>
+              {%- endif -%}
+            {%- endif -%}
             {%- comment -%}Lalatoto: «Begge» som tredje valg, se snippets/lalatoto-both-option.liquid{%- endcomment -%}
             {%- if is_main_product and option.position == 1 -%}
               {%- render 'lalatoto-both-option', product: product, form_id: form_id -%}
