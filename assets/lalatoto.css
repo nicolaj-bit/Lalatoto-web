@@ -5807,3 +5807,36 @@ body:has(.lalatoto-waitlist) .product-sticky-bar {
   text-decoration: underline;
   text-underline-offset: 3px;
 }
+
+/* «Begge» som tredje valg ved størrelserne (snippets/lalatoto-both-option.liquid).
+   Knappen ligner størrelserne; når den er valgt, mister den valgte størrelse
+   sin streg. Grøn er en mørkere udgave af prikken ved leveringstiden, så
+   teksten kan læses på den lyse baggrund. */
+.lalatoto-both {
+  --lalatoto-both-green: #5f7a5a;
+  background: none;
+  cursor: pointer;
+  font: inherit;
+}
+
+.lalatoto-both__badge {
+  color: var(--lalatoto-both-green);
+}
+
+.shopify-section--main-product .variant-picker__option-values.is-both :checked + .block-swatch {
+  color: rgb(var(--text-color) / 0.9);
+}
+
+.shopify-section--main-product .variant-picker__option-values.is-both :checked + .block-swatch::after {
+  content: none;
+}
+
+.lalatoto-both__save {
+  color: #5f7a5a;
+}
+
+.lalatoto-both__error {
+  margin: 0.5rem 0 0;
+  font-size: 0.875rem;
+  color: rgb(var(--error-text, 222 42 42));
+}

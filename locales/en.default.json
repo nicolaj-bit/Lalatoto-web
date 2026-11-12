@@ -551,6 +551,10 @@
       "sale_upsell_title": "Find one more treasure",
       "sale_upsell_all": "See all of Archive sale",
       "delivery_default": "Delivery in 1-2 business days",
+      "both": "Both",
+      "both_add": "Add both to cart",
+      "both_save": "Save {{ percent }}%",
+      "both_error": "We couldn’t add them to your cart. Please try again.",
       "sections": {
         "materials": "Materials",
         "dimensions": "Dimensions",
