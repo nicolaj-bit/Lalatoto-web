@@ -62,7 +62,8 @@
       "settings": {
         "enabled": true,
         "delay": 15,
-        "image": "shopify://shop_images/Sengetoej_groen.jpg"
+        "image": "shopify://shop_images/Sengetoej_groen.jpg",
+        "code": "VELKOMMEN15"
       }
     }
   },
