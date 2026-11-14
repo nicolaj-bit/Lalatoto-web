@@ -517,6 +517,23 @@
     }
   },
   "lalatoto": {
+    "newsletter_popup": {
+      "kicker": "Newsletter",
+      "title": "15 % auf deine erste Bestellung",
+      "text": "Melde dich an und erfahre als Erste:r von neuen Farben, Schlaftipps und Angeboten. Wir schreiben höchstens ein paar Mal im Monat.",
+      "name_label": "Dein Vorname",
+      "email_label": "Deine E-Mail",
+      "phone_label": "Telefonnummer (optional)",
+      "consent": "Ja, Lalatoto darf mir Newsletter mit Angeboten per E-Mail senden. Ich kann mich jederzeit abmelden.",
+      "button": "Rabattcode erhalten",
+      "terms": "Gilt nicht für reduzierte Artikel · Einmal pro Kunde",
+      "error": "Das hat nicht geklappt. Bitte prüfe E-Mail und Telefonnummer und versuche es erneut.",
+      "done_kicker": "Danke für deine Anmeldung",
+      "done_title": "Hier ist dein Rabattcode",
+      "done_text": "Gib den Code beim Bezahlen im Feld für Rabattcodes ein. Er kann einmal verwendet werden.",
+      "copy": "Code kopieren",
+      "copied": "Code kopiert"
+    },
     "slideshow": {
       "carousel": "Diashow",
       "slide": "Folie",

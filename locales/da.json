@@ -521,6 +521,23 @@
     }
   },
   "lalatoto": {
+    "newsletter_popup": {
+      "kicker": "Nyhedsbrev",
+      "title": "15 % på din første ordre",
+      "text": "Skriv dig op og få nyt om farver, søvnråd og tilbud før alle andre. Vi skriver højst et par gange om måneden.",
+      "name_label": "Dit fornavn",
+      "email_label": "Din e-mail",
+      "phone_label": "Telefonnummer (valgfrit)",
+      "consent": "Ja tak, Lalatoto må sende mig nyhedsbreve med tilbud på mail. Jeg kan afmelde mig når som helst.",
+      "button": "Få min rabatkode",
+      "terms": "Gælder ikke varer på udsalg · Én gang pr. kunde",
+      "error": "Det lykkedes ikke. Tjek e-mail og telefonnummer, og prøv igen.",
+      "done_kicker": "Tak, du er skrevet op",
+      "done_title": "Her er din rabatkode",
+      "done_text": "Skriv koden i feltet til rabatkode, når du betaler. Den kan bruges én gang.",
+      "copy": "Kopiér koden",
+      "copied": "Koden er kopieret"
+    },
     "slideshow": {
       "carousel": "Slideshow",
       "slide": "Slide",

@@ -16,6 +16,8 @@
   (extensions/nyhedsbrev-rabat i lalatoto-preorder): 15 % på alt, der ikke er
   på tilbud. Koden her skal være den samme som koden under Rabatter.
 
+  Teksterne står i sprogfilerne under lalatoto.newsletter_popup.
+
   Pop-up'en vises ikke på kurv-, konto- og gavekortsider, ikke for kunder, der
   allerede får nyhedsbrevet, og ikke igen i 30 dage, når den er lukket.
 {%- endcomment -%}
@@ -64,36 +66,36 @@
 
       <div class="lalatoto-nl__body">
         {%- if posted -%}
-          <p class="lalatoto-nl__kicker">{{ section.settings.done_kicker | escape }}</p>
-          <h2 class="lalatoto-nl__title" id="lalatoto-nl-title">{{ section.settings.done_title | escape }}</h2>
-          <p class="lalatoto-nl__text">{{ section.settings.done_text | escape }}</p>
+          <p class="lalatoto-nl__kicker">{{ 'lalatoto.newsletter_popup.done_kicker' | t | escape }}</p>
+          <h2 class="lalatoto-nl__title" id="lalatoto-nl-title">{{ 'lalatoto.newsletter_popup.done_title' | t | escape }}</h2>
+          <p class="lalatoto-nl__text">{{ 'lalatoto.newsletter_popup.done_text' | t | escape }}</p>
           <p class="lalatoto-nl__code" data-lalatoto-nl-code>{{ section.settings.code | escape }}</p>
-          <button type="button" class="lalatoto-nl__button" data-lalatoto-nl-copy data-copied="{{ section.settings.copied | escape }}">{{ section.settings.copy | escape }}</button>
-          <p class="lalatoto-nl__fine">{{ section.settings.terms | escape }}</p>
+          <button type="button" class="lalatoto-nl__button" data-lalatoto-nl-copy data-copied="{{ 'lalatoto.newsletter_popup.copied' | t | escape }}">{{ 'lalatoto.newsletter_popup.copy' | t | escape }}</button>
+          <p class="lalatoto-nl__fine">{{ 'lalatoto.newsletter_popup.terms' | t | escape }}</p>
         {%- else -%}
-          <p class="lalatoto-nl__kicker">{{ section.settings.kicker | escape }}</p>
-          <h2 class="lalatoto-nl__title" id="lalatoto-nl-title">{{ section.settings.title | escape }}</h2>
-          <p class="lalatoto-nl__text">{{ section.settings.text | escape }}</p>
+          <p class="lalatoto-nl__kicker">{{ 'lalatoto.newsletter_popup.kicker' | t | escape }}</p>
+          <h2 class="lalatoto-nl__title" id="lalatoto-nl-title">{{ 'lalatoto.newsletter_popup.title' | t | escape }}</h2>
+          <p class="lalatoto-nl__text">{{ 'lalatoto.newsletter_popup.text' | t | escape }}</p>
 
           {%- form 'customer', id: form_id, class: 'lalatoto-nl__form' -%}
             <input type="hidden" name="contact[tags]" value="newsletter,nyhedsbrev,nyhedsbrev-samtykke,velkomstrabat">
-            <label class="sr-only" for="{{ form_id }}-name">{{ section.settings.name_label | escape }}</label>
+            <label class="sr-only" for="{{ form_id }}-name">{{ 'lalatoto.newsletter_popup.name_label' | t | escape }}</label>
             <input
               class="lalatoto-nl__input"
               type="text"
               id="{{ form_id }}-name"
               name="contact[first_name]"
-              placeholder="{{ section.settings.name_label | escape }}"
+              placeholder="{{ 'lalatoto.newsletter_popup.name_label' | t | escape }}"
               autocomplete="given-name"
               required
             >
-            <label class="sr-only" for="{{ form_id }}-email">{{ section.settings.email_label | escape }}</label>
+            <label class="sr-only" for="{{ form_id }}-email">{{ 'lalatoto.newsletter_popup.email_label' | t | escape }}</label>
             <input
               class="lalatoto-nl__input"
               type="email"
               id="{{ form_id }}-email"
               name="contact[email]"
-              placeholder="{{ section.settings.email_label | escape }}"
+              placeholder="{{ 'lalatoto.newsletter_popup.email_label' | t | escape }}"
               autocomplete="email"
               inputmode="email"
               spellcheck="false"
@@ -105,30 +107,30 @@
               Shopify vil have nummeret med landekode; et dansk nummer på 8
               cifre får +45 foran, før formularen sendes (se scriptet nedenfor).
             {%- endcomment -%}
-            <label class="sr-only" for="{{ form_id }}-phone">{{ section.settings.phone_label | escape }}</label>
+            <label class="sr-only" for="{{ form_id }}-phone">{{ 'lalatoto.newsletter_popup.phone_label' | t | escape }}</label>
             <input
               class="lalatoto-nl__input"
               type="tel"
               id="{{ form_id }}-phone"
               name="contact[phone]"
-              placeholder="{{ section.settings.phone_label | escape }}"
+              placeholder="{{ 'lalatoto.newsletter_popup.phone_label' | t | escape }}"
               autocomplete="tel"
               inputmode="tel"
               data-lalatoto-nl-phone
             >
             {%- if form.errors -%}
-              <p class="lalatoto-nl__error" id="{{ form_id }}-error">{{ section.settings.error | escape }}</p>
+              <p class="lalatoto-nl__error" id="{{ form_id }}-error">{{ 'lalatoto.newsletter_popup.error' | t | escape }}</p>
             {%- endif -%}
 
             <label class="lalatoto-nl__consent">
               <input type="checkbox" required>
-              <span>{{ section.settings.consent | escape }}</span>
+              <span>{{ 'lalatoto.newsletter_popup.consent' | t | escape }}</span>
             </label>
 
-            <button type="submit" class="lalatoto-nl__button">{{ section.settings.button | escape }}</button>
+            <button type="submit" class="lalatoto-nl__button">{{ 'lalatoto.newsletter_popup.button' | t | escape }}</button>
           {%- endform -%}
 
-          <p class="lalatoto-nl__fine">{{ section.settings.terms | escape }}</p>
+          <p class="lalatoto-nl__fine">{{ 'lalatoto.newsletter_popup.terms' | t | escape }}</p>
         {%- endif -%}
       </div>
     </div>
@@ -219,26 +221,38 @@
   "name": "Nyhedsbrev (pop-up)",
   "class": "shopify-section--lalatoto-nl",
   "settings": [
-    { "type": "checkbox", "id": "enabled", "label": "Vis pop-up'en", "default": true },
-    { "type": "range", "id": "delay", "label": "Vis efter", "min": 3, "max": 60, "step": 1, "unit": "sek", "default": 15 },
-    { "type": "image_picker", "id": "image", "label": "Billede" },
-    { "type": "text", "id": "kicker", "label": "Lille overskrift", "default": "Nyhedsbrev" },
-    { "type": "text", "id": "title", "label": "Overskrift", "default": "15 % på din første ordre" },
-    { "type": "textarea", "id": "text", "label": "Tekst", "default": "Skriv dig op og få nyt om farver, søvnråd og tilbud før alle andre. Vi skriver højst et par gange om måneden." },
-    { "type": "text", "id": "name_label", "label": "Feltet til navn", "default": "Dit fornavn" },
-    { "type": "text", "id": "email_label", "label": "Feltet til e-mail", "default": "Din e-mail" },
-    { "type": "text", "id": "phone_label", "label": "Feltet til telefon", "default": "Telefonnummer (valgfrit)" },
-    { "type": "textarea", "id": "consent", "label": "Samtykke ved fluebenet", "default": "Ja tak, Lalatoto må sende mig nyhedsbreve med tilbud på mail. Jeg kan afmelde mig når som helst." },
-    { "type": "text", "id": "button", "label": "Knap", "default": "Få min rabatkode" },
-    { "type": "text", "id": "terms", "label": "Vilkår under knappen", "default": "Gælder ikke varer på udsalg · Én gang pr. kunde" },
-    { "type": "text", "id": "error", "label": "Fejl", "default": "Det lykkedes ikke. Tjek e-mail og telefonnummer, og prøv igen." },
-    { "type": "header", "content": "Efter tilmelding" },
-    { "type": "text", "id": "code", "label": "Rabatkode", "info": "Skal være den samme som koden under Rabatter.", "default": "VELKOMMEN15" },
-    { "type": "text", "id": "done_kicker", "label": "Lille overskrift", "default": "Tak, du er skrevet op" },
-    { "type": "text", "id": "done_title", "label": "Overskrift", "default": "Her er din rabatkode" },
-    { "type": "textarea", "id": "done_text", "label": "Tekst", "default": "Skriv koden i feltet til rabatkode, når du betaler. Den kan bruges én gang." },
-    { "type": "text", "id": "copy", "label": "Knap", "default": "Kopiér koden" },
-    { "type": "text", "id": "copied", "label": "Når koden er kopieret", "default": "Koden er kopieret" }
+    {
+      "type": "checkbox",
+      "id": "enabled",
+      "label": "Vis pop-up'en",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "delay",
+      "label": "Vis efter",
+      "min": 3,
+      "max": 60,
+      "step": 1,
+      "unit": "sek",
+      "default": 15
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Billede"
+    },
+    {
+      "type": "paragraph",
+      "content": "Teksterne står i temaets sprog (Indhold → Sprog / Translate & Adapt) under lalatoto.newsletter_popup, så de findes på dansk, engelsk og tysk."
+    },
+    {
+      "type": "text",
+      "id": "code",
+      "label": "Rabatkode",
+      "info": "Skal være den samme som koden under Rabatter.",
+      "default": "VELKOMMEN15"
+    }
   ]
 }
 {% endschema %}
