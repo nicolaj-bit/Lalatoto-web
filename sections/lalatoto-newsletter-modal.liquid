@@ -122,6 +122,16 @@
               <p class="lalatoto-nl__error" id="{{ form_id }}-error">{{ 'lalatoto.newsletter_popup.error' | t | escape }}</p>
             {%- endif -%}
 
+            {%- comment -%}
+              Valgfrit samtykke til sms. Sættes fluebenet, får kunden også
+              mærket «sms-samtykke» (se scriptet), som flowet bruger.
+              Telefonnummeret alene giver ikke lov til at sende sms.
+            {%- endcomment -%}
+            <label class="lalatoto-nl__consent lalatoto-nl__consent--sms" hidden data-lalatoto-nl-sms>
+              <input type="checkbox">
+              <span>{{ 'lalatoto.newsletter_popup.sms_consent' | t | escape }}</span>
+            </label>
+
             <label class="lalatoto-nl__consent">
               <input type="checkbox" required>
               <span>{{ 'lalatoto.newsletter_popup.consent' | t | escape }}</span>
@@ -185,6 +195,20 @@
       /* Telefon: mellemrum væk, og +45 foran et dansk nummer på 8 cifre.
          Et tomt felt sendes slet ikke, så Shopify ikke afviser formularen. */
       var phone = dialog.querySelector('[data-lalatoto-nl-phone]');
+      var sms = dialog.querySelector('[data-lalatoto-nl-sms]');
+      if (phone && sms) {
+        /* Fluebenet for sms vises først, når der står et nummer */
+        phone.addEventListener('input', function () {
+          sms.hidden = !phone.value.trim();
+          if (sms.hidden) sms.querySelector('input').checked = false;
+        });
+        phone.form.addEventListener('submit', function () {
+          var tags = phone.form.querySelector('input[name="contact[tags]"]');
+          if (!sms.hidden && sms.querySelector('input').checked && tags.value.indexOf('sms-samtykke') === -1) {
+            tags.value += ',sms-samtykke';
+          }
+        });
+      }
       if (phone) {
         phone.form.addEventListener('submit', function () {
           var value = phone.value.replace(/[\s\-().]/g, '');

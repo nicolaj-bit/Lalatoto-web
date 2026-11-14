@@ -518,6 +518,7 @@
   },
   "lalatoto": {
     "newsletter_popup": {
+      "sms_consent": "Yes please, also send me offers by text message. I can unsubscribe at any time.",
       "kicker": "Newsletter",
       "title": "15% off your first order",
       "text": "Sign up for new colours, sleep advice and offers before everyone else. We write a couple of times a month at most.",

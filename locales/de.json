@@ -518,6 +518,7 @@
   },
   "lalatoto": {
     "newsletter_popup": {
+      "sms_consent": "Ja, schickt mir Angebote auch per SMS. Ich kann mich jederzeit abmelden.",
       "kicker": "Newsletter",
       "title": "15 % auf deine erste Bestellung",
       "text": "Melde dich an und erfahre als Erste:r von neuen Farben, Schlaftipps und Angeboten. Wir schreiben höchstens ein paar Mal im Monat.",

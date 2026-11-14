@@ -522,6 +522,7 @@
   },
   "lalatoto": {
     "newsletter_popup": {
+      "sms_consent": "Ja tak, send mig også tilbud på sms. Jeg kan afmelde når som helst.",
       "kicker": "Nyhedsbrev",
       "title": "15 % på din første ordre",
       "text": "Skriv dig op og få nyt om farver, søvnråd og tilbud før alle andre. Vi skriver højst et par gange om måneden.",
