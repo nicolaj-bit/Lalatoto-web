@@ -1,0 +1,194 @@
+{%- comment -%}
+  Lalatoto: nyhedsbrevets pop-up med velkomstrabat.
+
+  Vises som et kort midt på skærmen efter nogle sekunder. Kunden skriver sin
+  e-mail, sætter selv fluebenet for samtykke (markedsføringsloven) og får
+  rabatkoden vist med det samme, når formularen er sendt.
+
+  Formularen er Shopifys almindelige kundeformular. Den sender siden igen, så
+  Shopifys eget spamfilter (hCaptcha) virker. Kommer siden tilbage med
+  «posted_successfully», åbner pop-up'en straks med koden.
+
+  Mærker på kunden: newsletter (Shopifys tilmelding), nyhedsbrev,
+  nyhedsbrev-samtykke (dokumentation for fluebenet) og velkomstrabat.
+
+  Selve rabatten er app-rabatten fra Lalatoto Forudbestilling Live
+  (extensions/nyhedsbrev-rabat i lalatoto-preorder): 15 % på alt, der ikke er
+  på tilbud. Koden her skal være den samme som koden under Rabatter.
+
+  Pop-up'en vises ikke på kurv-, konto- og gavekortsider, ikke for kunder, der
+  allerede får nyhedsbrevet, og ikke igen i 30 dage, når den er lukket.
+{%- endcomment -%}
+
+{%- liquid
+  assign skip_pages = 'cart,captcha,password,gift_card,customers/account,customers/login,customers/register,customers/order,customers/addresses,customers/reset_password,customers/activate_account' | split: ','
+  assign show = section.settings.enabled
+  if skip_pages contains request.page_type
+    assign show = false
+  endif
+  if customer and customer.accepts_marketing
+    assign show = false
+  endif
+  assign form_id = 'lalatoto-nl-' | append: section.id
+-%}
+
+{%- capture _form_state -%}
+  {%- form 'customer', id: form_id -%}{%- if form.posted_successfully? -%}ok{%- endif -%}{%- endform -%}
+{%- endcapture -%}
+{%- assign posted = false -%}
+{%- if _form_state contains 'ok' -%}{%- assign posted = true -%}{%- endif -%}
+
+{%- if show or posted -%}
+  <dialog
+    class="lalatoto-nl"
+    id="lalatoto-nl"
+    aria-labelledby="lalatoto-nl-title"
+    data-delay="{{ section.settings.delay }}"
+    {% if posted %}data-posted{% endif %}
+  >
+    {%- comment -%}Fokus lægges på kortet, så krydset ikke får en fokusring og mobilens tastatur ikke åbner{%- endcomment -%}
+    <div class="lalatoto-nl__card{% if section.settings.image != blank %} has-image{% endif %}" tabindex="-1" autofocus>
+      <button type="button" class="lalatoto-nl__close" data-lalatoto-nl-close>
+        <span class="sr-only">{{ 'general.accessibility.close' | t }}</span>
+        {%- render 'icon' with 'close' -%}
+      </button>
+
+      {%- if section.settings.image != blank -%}
+        <div class="lalatoto-nl__media">
+          {{- section.settings.image | image_url: width: 900 | image_tag: loading: 'lazy', sizes: '(min-width: 800px) 380px, 100vw', widths: '400,600,900', alt: '' -}}
+        </div>
+      {%- endif -%}
+
+      <div class="lalatoto-nl__body">
+        {%- if posted -%}
+          <p class="lalatoto-nl__kicker">{{ section.settings.done_kicker | escape }}</p>
+          <h2 class="lalatoto-nl__title" id="lalatoto-nl-title">{{ section.settings.done_title | escape }}</h2>
+          <p class="lalatoto-nl__text">{{ section.settings.done_text | escape }}</p>
+          <p class="lalatoto-nl__code" data-lalatoto-nl-code>{{ section.settings.code | escape }}</p>
+          <button type="button" class="lalatoto-nl__button" data-lalatoto-nl-copy data-copied="{{ section.settings.copied | escape }}">{{ section.settings.copy | escape }}</button>
+          <p class="lalatoto-nl__fine">{{ section.settings.terms | escape }}</p>
+        {%- else -%}
+          <p class="lalatoto-nl__kicker">{{ section.settings.kicker | escape }}</p>
+          <h2 class="lalatoto-nl__title" id="lalatoto-nl-title">{{ section.settings.title | escape }}</h2>
+          <p class="lalatoto-nl__text">{{ section.settings.text | escape }}</p>
+
+          {%- form 'customer', id: form_id, class: 'lalatoto-nl__form' -%}
+            <input type="hidden" name="contact[tags]" value="newsletter,nyhedsbrev,nyhedsbrev-samtykke,velkomstrabat">
+            <label class="sr-only" for="{{ form_id }}-email">{{ section.settings.email_label | escape }}</label>
+            <input
+              class="lalatoto-nl__input"
+              type="email"
+              id="{{ form_id }}-email"
+              name="contact[email]"
+              placeholder="{{ section.settings.email_label | escape }}"
+              autocomplete="email"
+              inputmode="email"
+              spellcheck="false"
+              required
+              {% if form.errors %}aria-invalid="true" aria-describedby="{{ form_id }}-error"{% endif %}
+            >
+            {%- if form.errors -%}
+              <p class="lalatoto-nl__error" id="{{ form_id }}-error">{{ section.settings.error | escape }}</p>
+            {%- endif -%}
+
+            <label class="lalatoto-nl__consent">
+              <input type="checkbox" required>
+              <span>{{ section.settings.consent | escape }}</span>
+            </label>
+
+            <button type="submit" class="lalatoto-nl__button">{{ section.settings.button | escape }}</button>
+          {%- endform -%}
+
+          <p class="lalatoto-nl__fine">{{ section.settings.terms | escape }}</p>
+        {%- endif -%}
+      </div>
+    </div>
+  </dialog>
+
+  <script>
+    (function () {
+      var dialog = document.getElementById('lalatoto-nl');
+      if (!dialog || typeof dialog.showModal !== 'function') return;
+      var KEY = 'lalatoto-nyhedsbrev-popup';
+      var DAYS = 30;
+
+      function read() {
+        try { return JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) { return null; }
+      }
+      function write(value) {
+        try { localStorage.setItem(KEY, JSON.stringify(value)); } catch (e) {}
+      }
+      function open() {
+        if (dialog.open) return;
+        /* Vent, hvis en anden dialog (fx landevalget) er åben */
+        if (document.querySelector('dialog[open]:not(#lalatoto-nl)')) {
+          setTimeout(open, 4000);
+          return;
+        }
+        dialog.showModal();
+      }
+      function close() {
+        dialog.close();
+      }
+
+      dialog.addEventListener('close', function () {
+        var state = read() || {};
+        if (!state.tilmeldt) write({ lukket: Date.now() });
+      });
+      dialog.addEventListener('click', function (event) {
+        if (event.target === dialog || event.target.closest('[data-lalatoto-nl-close]')) close();
+      });
+
+      var copy = dialog.querySelector('[data-lalatoto-nl-copy]');
+      if (copy) {
+        copy.addEventListener('click', function () {
+          var code = dialog.querySelector('[data-lalatoto-nl-code]').textContent.trim();
+          var done = function () { copy.textContent = copy.dataset.copied; };
+          if (navigator.clipboard) navigator.clipboard.writeText(code).then(done, done); else done();
+        });
+      }
+
+      /* Alle kundeformularer på siden melder «sendt», også footerens. Shopify
+         sender kunden tilbage til #formularens-id, så pop-up'en åbner kun,
+         når det var dens egen formular. */
+      if (dialog.hasAttribute('data-posted')) {
+        write({ tilmeldt: Date.now() });
+        if (location.hash === '#{{ form_id }}') open();
+        return;
+      }
+
+      var state = read();
+      if (state && state.tilmeldt) return;
+      if (state && state.lukket && Date.now() - state.lukket < DAYS * 86400000) return;
+
+      setTimeout(open, (Number(dialog.dataset.delay) || 15) * 1000);
+    })();
+  </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Nyhedsbrev (pop-up)",
+  "class": "shopify-section--lalatoto-nl",
+  "settings": [
+    { "type": "checkbox", "id": "enabled", "label": "Vis pop-up'en", "default": true },
+    { "type": "range", "id": "delay", "label": "Vis efter", "min": 3, "max": 60, "step": 1, "unit": "sek", "default": 15 },
+    { "type": "image_picker", "id": "image", "label": "Billede" },
+    { "type": "text", "id": "kicker", "label": "Lille overskrift", "default": "Nyhedsbrev" },
+    { "type": "text", "id": "title", "label": "Overskrift", "default": "15 % på din første ordre" },
+    { "type": "textarea", "id": "text", "label": "Tekst", "default": "Skriv dig op og få nyt om farver, søvnråd og tilbud før alle andre. Vi skriver højst et par gange om måneden." },
+    { "type": "text", "id": "email_label", "label": "Feltet til e-mail", "default": "Din e-mail" },
+    { "type": "textarea", "id": "consent", "label": "Samtykke ved fluebenet", "default": "Ja tak, Lalatoto må sende mig nyhedsbreve med tilbud på mail. Jeg kan afmelde mig når som helst." },
+    { "type": "text", "id": "button", "label": "Knap", "default": "Få min rabatkode" },
+    { "type": "text", "id": "terms", "label": "Vilkår under knappen", "default": "Gælder ikke varer på udsalg · Én gang pr. kunde" },
+    { "type": "text", "id": "error", "label": "Fejl", "default": "Tjek e-mailadressen og prøv igen." },
+    { "type": "header", "content": "Efter tilmelding" },
+    { "type": "text", "id": "code", "label": "Rabatkode", "info": "Skal være den samme som koden under Rabatter.", "default": "VELKOMMEN15" },
+    { "type": "text", "id": "done_kicker", "label": "Lille overskrift", "default": "Tak, du er skrevet op" },
+    { "type": "text", "id": "done_title", "label": "Overskrift", "default": "Her er din rabatkode" },
+    { "type": "textarea", "id": "done_text", "label": "Tekst", "default": "Skriv koden i feltet til rabatkode, når du betaler. Den kan bruges én gang." },
+    { "type": "text", "id": "copy", "label": "Knap", "default": "Kopiér koden" },
+    { "type": "text", "id": "copied", "label": "Når koden er kopieret", "default": "Koden er kopieret" }
+  ]
+}
+{% endschema %}
