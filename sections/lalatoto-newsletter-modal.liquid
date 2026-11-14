@@ -1,0 +1,282 @@
+{%- comment -%}
+  Lalatoto: nyhedsbrevets pop-up med velkomstrabat.
+
+  Vises som et kort midt på skærmen efter nogle sekunder. Kunden skriver sin
+  e-mail, sætter selv fluebenet for samtykke (markedsføringsloven) og får
+  rabatkoden vist med det samme, når formularen er sendt.
+
+  Formularen er Shopifys almindelige kundeformular. Den sender siden igen, så
+  Shopifys eget spamfilter (hCaptcha) virker. Kommer siden tilbage med
+  «posted_successfully», åbner pop-up'en straks med koden.
+
+  Mærker på kunden: newsletter (Shopifys tilmelding), nyhedsbrev,
+  nyhedsbrev-samtykke (dokumentation for fluebenet) og velkomstrabat.
+
+  Selve rabatten er app-rabatten fra Lalatoto Forudbestilling Live
+  (extensions/nyhedsbrev-rabat i lalatoto-preorder): 15 % på alt, der ikke er
+  på tilbud. Koden her skal være den samme som koden under Rabatter.
+
+  Teksterne står i sprogfilerne under lalatoto.newsletter_popup.
+
+  Pop-up'en vises ikke på kurv-, konto- og gavekortsider, ikke for kunder, der
+  allerede får nyhedsbrevet, og ikke igen i 30 dage, når den er lukket.
+{%- endcomment -%}
+
+{%- liquid
+  assign skip_pages = 'cart,captcha,password,gift_card,customers/account,customers/login,customers/register,customers/order,customers/addresses,customers/reset_password,customers/activate_account' | split: ','
+  assign show = section.settings.enabled
+  if skip_pages contains request.page_type
+    assign show = false
+  endif
+  if customer and customer.accepts_marketing
+    assign show = false
+  endif
+  assign form_id = 'lalatoto-nl-' | append: section.id
+-%}
+
+{%- capture _form_state -%}
+  {%- form 'customer', id: form_id -%}{%- if form.posted_successfully? -%}LALATOTO-NL-OK{%- elsif form.errors -%}LALATOTO-NL-FEJL{%- endif -%}{%- endform -%}
+{%- endcapture -%}
+{%- assign posted = false -%}
+{%- assign failed = false -%}
+{%- if _form_state contains 'LALATOTO-NL-OK' -%}{%- assign posted = true -%}{%- endif -%}
+{%- if _form_state contains 'LALATOTO-NL-FEJL' -%}{%- assign failed = true -%}{%- endif -%}
+
+{%- if show or posted or failed -%}
+  <dialog
+    class="lalatoto-nl"
+    id="lalatoto-nl"
+    aria-labelledby="lalatoto-nl-title"
+    data-delay="{{ section.settings.delay }}"
+    {% if posted %}data-posted{% endif %}
+    {% if failed %}data-failed{% endif %}
+  >
+    {%- comment -%}Fokus lægges på kortet, så krydset ikke får en fokusring og mobilens tastatur ikke åbner{%- endcomment -%}
+    <div class="lalatoto-nl__card{% if section.settings.image != blank %} has-image{% endif %}" tabindex="-1" autofocus>
+      <button type="button" class="lalatoto-nl__close" data-lalatoto-nl-close>
+        <span class="sr-only">{{ 'general.accessibility.close' | t }}</span>
+        {%- render 'icon' with 'close' -%}
+      </button>
+
+      {%- if section.settings.image != blank -%}
+        <div class="lalatoto-nl__media">
+          {{- section.settings.image | image_url: width: 900 | image_tag: loading: 'lazy', sizes: '(min-width: 800px) 380px, 100vw', widths: '400,600,900', alt: '' -}}
+        </div>
+      {%- endif -%}
+
+      <div class="lalatoto-nl__body">
+        {%- if posted -%}
+          <p class="lalatoto-nl__kicker">{{ 'lalatoto.newsletter_popup.done_kicker' | t | escape }}</p>
+          <h2 class="lalatoto-nl__title" id="lalatoto-nl-title">{{ 'lalatoto.newsletter_popup.done_title' | t | escape }}</h2>
+          <p class="lalatoto-nl__text">{{ 'lalatoto.newsletter_popup.done_text' | t | escape }}</p>
+          <p class="lalatoto-nl__code" data-lalatoto-nl-code>{{ section.settings.code | escape }}</p>
+          <button type="button" class="lalatoto-nl__button" data-lalatoto-nl-copy data-copied="{{ 'lalatoto.newsletter_popup.copied' | t | escape }}">{{ 'lalatoto.newsletter_popup.copy' | t | escape }}</button>
+          <p class="lalatoto-nl__fine">{{ 'lalatoto.newsletter_popup.terms' | t | escape }}</p>
+        {%- else -%}
+          <p class="lalatoto-nl__kicker">{{ 'lalatoto.newsletter_popup.kicker' | t | escape }}</p>
+          <h2 class="lalatoto-nl__title" id="lalatoto-nl-title">{{ 'lalatoto.newsletter_popup.title' | t | escape }}</h2>
+          <p class="lalatoto-nl__text">{{ 'lalatoto.newsletter_popup.text' | t | escape }}</p>
+
+          {%- form 'customer', id: form_id, class: 'lalatoto-nl__form' -%}
+            <input type="hidden" name="contact[tags]" value="newsletter,nyhedsbrev,nyhedsbrev-samtykke,velkomstrabat">
+            <label class="sr-only" for="{{ form_id }}-name">{{ 'lalatoto.newsletter_popup.name_label' | t | escape }}</label>
+            <input
+              class="lalatoto-nl__input"
+              type="text"
+              id="{{ form_id }}-name"
+              name="contact[first_name]"
+              placeholder="{{ 'lalatoto.newsletter_popup.name_label' | t | escape }}"
+              autocomplete="given-name"
+              required
+            >
+            <label class="sr-only" for="{{ form_id }}-email">{{ 'lalatoto.newsletter_popup.email_label' | t | escape }}</label>
+            <input
+              class="lalatoto-nl__input"
+              type="email"
+              id="{{ form_id }}-email"
+              name="contact[email]"
+              placeholder="{{ 'lalatoto.newsletter_popup.email_label' | t | escape }}"
+              autocomplete="email"
+              inputmode="email"
+              spellcheck="false"
+              required
+              {% if form.errors %}aria-invalid="true" aria-describedby="{{ form_id }}-error"{% endif %}
+            >
+            {%- comment -%}
+              Telefonnummeret er valgfrit og giver ikke samtykke til sms.
+              Shopify vil have nummeret med landekode; et dansk nummer på 8
+              cifre får +45 foran, før formularen sendes (se scriptet nedenfor).
+            {%- endcomment -%}
+            <label class="sr-only" for="{{ form_id }}-phone">{{ 'lalatoto.newsletter_popup.phone_label' | t | escape }}</label>
+            <input
+              class="lalatoto-nl__input"
+              type="tel"
+              id="{{ form_id }}-phone"
+              name="contact[phone]"
+              placeholder="{{ 'lalatoto.newsletter_popup.phone_label' | t | escape }}"
+              autocomplete="tel"
+              inputmode="tel"
+              data-lalatoto-nl-phone
+            >
+            {%- if form.errors -%}
+              <p class="lalatoto-nl__error" id="{{ form_id }}-error">{{ 'lalatoto.newsletter_popup.error' | t | escape }}</p>
+            {%- endif -%}
+
+            {%- comment -%}
+              Valgfrit samtykke til sms. Sættes fluebenet, får kunden også
+              mærket «sms-samtykke» (se scriptet), som flowet bruger.
+              Telefonnummeret alene giver ikke lov til at sende sms.
+            {%- endcomment -%}
+            <label class="lalatoto-nl__consent lalatoto-nl__consent--sms" hidden data-lalatoto-nl-sms>
+              <input type="checkbox">
+              <span>{{ 'lalatoto.newsletter_popup.sms_consent' | t | escape }}</span>
+            </label>
+
+            <label class="lalatoto-nl__consent">
+              <input type="checkbox" required>
+              <span>{{ 'lalatoto.newsletter_popup.consent' | t | escape }}</span>
+            </label>
+
+            <button type="submit" class="lalatoto-nl__button">{{ 'lalatoto.newsletter_popup.button' | t | escape }}</button>
+          {%- endform -%}
+
+          <p class="lalatoto-nl__fine">{{ 'lalatoto.newsletter_popup.terms' | t | escape }}</p>
+        {%- endif -%}
+      </div>
+    </div>
+  </dialog>
+
+  <script>
+    (function () {
+      var dialog = document.getElementById('lalatoto-nl');
+      if (!dialog || typeof dialog.showModal !== 'function') return;
+      var KEY = 'lalatoto-nyhedsbrev-popup';
+      var DAYS = 30;
+
+      function read() {
+        try { return JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) { return null; }
+      }
+      function write(value) {
+        try { localStorage.setItem(KEY, JSON.stringify(value)); } catch (e) {}
+      }
+      function open() {
+        if (dialog.open) return;
+        /* Vent, hvis en anden dialog (fx landevalget) er åben */
+        if (document.querySelector('dialog[open]:not(#lalatoto-nl)')) {
+          setTimeout(open, 4000);
+          return;
+        }
+        dialog.showModal();
+      }
+      function close() {
+        dialog.close();
+      }
+
+      dialog.addEventListener('close', function () {
+        var state = read() || {};
+        if (!state.tilmeldt) write({ lukket: Date.now() });
+      });
+      dialog.addEventListener('click', function (event) {
+        if (event.target === dialog || event.target.closest('[data-lalatoto-nl-close]')) close();
+      });
+
+      var copy = dialog.querySelector('[data-lalatoto-nl-copy]');
+      if (copy) {
+        copy.addEventListener('click', function () {
+          var code = dialog.querySelector('[data-lalatoto-nl-code]').textContent.trim();
+          var done = function () { copy.textContent = copy.dataset.copied; };
+          if (navigator.clipboard) navigator.clipboard.writeText(code).then(done, done); else done();
+        });
+      }
+
+      /* Alle kundeformularer på siden melder «sendt», også footerens. Shopify
+         sender kunden tilbage til #formularens-id, så pop-up'en åbner kun,
+         når det var dens egen formular. */
+      /* Telefon: mellemrum væk, og +45 foran et dansk nummer på 8 cifre.
+         Et tomt felt sendes slet ikke, så Shopify ikke afviser formularen. */
+      var phone = dialog.querySelector('[data-lalatoto-nl-phone]');
+      var sms = dialog.querySelector('[data-lalatoto-nl-sms]');
+      if (phone && sms) {
+        /* Fluebenet for sms vises først, når der står et nummer */
+        phone.addEventListener('input', function () {
+          sms.hidden = !phone.value.trim();
+          if (sms.hidden) sms.querySelector('input').checked = false;
+        });
+        phone.form.addEventListener('submit', function () {
+          var tags = phone.form.querySelector('input[name="contact[tags]"]');
+          if (!sms.hidden && sms.querySelector('input').checked && tags.value.indexOf('sms-samtykke') === -1) {
+            tags.value += ',sms-samtykke';
+          }
+        });
+      }
+      if (phone) {
+        phone.form.addEventListener('submit', function () {
+          var value = phone.value.replace(/[\s\-().]/g, '');
+          if (!value) { phone.disabled = true; return; }
+          if (/^\d{8}$/.test(value)) value = '+45' + value;
+          else if (/^00\d+$/.test(value)) value = '+' + value.slice(2);
+          phone.value = value;
+        });
+      }
+
+      /* Afvist formular (fx ugyldigt telefonnummer): åbn igen med fejlen */
+      if (dialog.hasAttribute('data-failed') && location.hash === '#{{ form_id }}') {
+        open();
+        return;
+      }
+
+      if (dialog.hasAttribute('data-posted')) {
+        write({ tilmeldt: Date.now() });
+        if (location.hash === '#{{ form_id }}') open();
+        return;
+      }
+
+      var state = read();
+      if (state && state.tilmeldt) return;
+      if (state && state.lukket && Date.now() - state.lukket < DAYS * 86400000) return;
+
+      setTimeout(open, (Number(dialog.dataset.delay) || 15) * 1000);
+    })();
+  </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Nyhedsbrev (pop-up)",
+  "class": "shopify-section--lalatoto-nl",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enabled",
+      "label": "Vis pop-up'en",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "delay",
+      "label": "Vis efter",
+      "min": 3,
+      "max": 60,
+      "step": 1,
+      "unit": "sek",
+      "default": 15
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Billede"
+    },
+    {
+      "type": "paragraph",
+      "content": "Teksterne står i temaets sprog (Indhold → Sprog / Translate & Adapt) under lalatoto.newsletter_popup, så de findes på dansk, engelsk og tysk."
+    },
+    {
+      "type": "text",
+      "id": "code",
+      "label": "Rabatkode",
+      "info": "Skal være den samme som koden under Rabatter.",
+      "default": "VELKOMMEN15"
+    }
+  ]
+}
+{% endschema %}

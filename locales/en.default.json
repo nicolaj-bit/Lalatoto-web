@@ -517,6 +517,24 @@
     }
   },
   "lalatoto": {
+    "newsletter_popup": {
+      "sms_consent": "Yes please, also send me offers by text message. I can unsubscribe at any time.",
+      "kicker": "Newsletter",
+      "title": "15% off your first order",
+      "text": "Sign up for new colours, sleep advice and offers before everyone else. We write a couple of times a month at most.",
+      "name_label": "Your first name",
+      "email_label": "Your email",
+      "phone_label": "Phone number (optional)",
+      "consent": "Yes please, Lalatoto may send me newsletters with offers by email. I can unsubscribe at any time.",
+      "button": "Get my discount code",
+      "terms": "Not valid on sale items · One use per customer",
+      "error": "That didn’t work. Please check your email and phone number and try again.",
+      "done_kicker": "Thank you for signing up",
+      "done_title": "Here is your discount code",
+      "done_text": "Enter the code in the discount field at checkout. It can be used once.",
+      "copy": "Copy code",
+      "copied": "Code copied"
+    },
     "slideshow": {
       "carousel": "Slideshow",
       "slide": "Slide",
