@@ -623,8 +623,15 @@
                 det tidligere tema ikke slår igennem.
               {%- endcomment -%}
               {%- assign lalatoto_delivery = block.settings.text -%}
+              {%- comment -%}
+                EU og Tyskland har gratis fragt (fragten ligger i europriserne)
+                og 3-5 hverdages levering. Markederne genkendes på deres handle.
+              {%- endcomment -%}
+              {%- assign lalatoto_market = localization.market.handle -%}
               {%- if product.gift_card? -%}
                 {%- assign lalatoto_delivery = 'lalatoto.product.delivery_gift_card' | t -%}
+              {%- elsif lalatoto_market == 'eu' or lalatoto_market == 'tyskland' -%}
+                {%- assign lalatoto_delivery = 'lalatoto.product.delivery_eu' | t -%}
               {%- endif -%}
               {%- if lalatoto_delivery == blank -%}
                 {%- assign lalatoto_delivery = 'lalatoto.product.delivery_default' | t -%}
