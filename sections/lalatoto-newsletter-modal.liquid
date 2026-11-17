@@ -16,7 +16,10 @@
   (extensions/nyhedsbrev-rabat i lalatoto-preorder): 15 % på alt, der ikke er
   på tilbud. Koden her skal være den samme som koden under Rabatter.
 
-  Teksterne står i sprogfilerne under lalatoto.newsletter_popup.
+  Teksterne kan skrives i temaeditoren. Et tomt felt bruger sprogfilen
+  (lalatoto.newsletter_popup), som findes på dansk, engelsk og tysk. Tekst
+  skrevet i editoren oversættes i Translate & Adapt — ellers ser engelske og
+  tyske kunder den danske tekst.
 
   Pop-up'en vises ikke på kurv-, konto- og gavekortsider, ikke for kunder, der
   allerede får nyhedsbrevet, og ikke igen i 30 dage, når den er lukket.
@@ -32,6 +35,44 @@
     assign show = false
   endif
   assign form_id = 'lalatoto-nl-' | append: section.id
+
+  # Tekst skrevet i temaeditoren vinder; et tomt felt bruger sprogfilen
+  assign nl_kicker = section.settings.kicker | strip
+  if nl_kicker == blank
+    assign nl_kicker = 'lalatoto.newsletter_popup.kicker' | t
+  endif
+  assign nl_title = section.settings.title | strip
+  if nl_title == blank
+    assign nl_title = 'lalatoto.newsletter_popup.title' | t
+  endif
+  assign nl_text = section.settings.text | strip
+  if nl_text == blank
+    assign nl_text = 'lalatoto.newsletter_popup.text' | t
+  endif
+  assign nl_consent = section.settings.consent | strip
+  if nl_consent == blank
+    assign nl_consent = 'lalatoto.newsletter_popup.consent' | t
+  endif
+  assign nl_button = section.settings.button | strip
+  if nl_button == blank
+    assign nl_button = 'lalatoto.newsletter_popup.button' | t
+  endif
+  assign nl_terms = section.settings.terms | strip
+  if nl_terms == blank
+    assign nl_terms = 'lalatoto.newsletter_popup.terms' | t
+  endif
+  assign nl_done_kicker = section.settings.done_kicker | strip
+  if nl_done_kicker == blank
+    assign nl_done_kicker = 'lalatoto.newsletter_popup.done_kicker' | t
+  endif
+  assign nl_done_title = section.settings.done_title | strip
+  if nl_done_title == blank
+    assign nl_done_title = 'lalatoto.newsletter_popup.done_title' | t
+  endif
+  assign nl_done_text = section.settings.done_text | strip
+  if nl_done_text == blank
+    assign nl_done_text = 'lalatoto.newsletter_popup.done_text' | t
+  endif
 -%}
 
 {%- capture _form_state -%}
@@ -66,16 +107,16 @@
 
       <div class="lalatoto-nl__body">
         {%- if posted -%}
-          <p class="lalatoto-nl__kicker">{{ 'lalatoto.newsletter_popup.done_kicker' | t | escape }}</p>
-          <h2 class="lalatoto-nl__title" id="lalatoto-nl-title">{{ 'lalatoto.newsletter_popup.done_title' | t | escape }}</h2>
-          <p class="lalatoto-nl__text">{{ 'lalatoto.newsletter_popup.done_text' | t | escape }}</p>
+          <p class="lalatoto-nl__kicker">{{ nl_done_kicker | escape }}</p>
+          <h2 class="lalatoto-nl__title" id="lalatoto-nl-title">{{ nl_done_title | escape }}</h2>
+          <p class="lalatoto-nl__text">{{ nl_done_text | escape }}</p>
           <p class="lalatoto-nl__code" data-lalatoto-nl-code>{{ section.settings.code | escape }}</p>
           <button type="button" class="lalatoto-nl__button" data-lalatoto-nl-copy data-copied="{{ 'lalatoto.newsletter_popup.copied' | t | escape }}">{{ 'lalatoto.newsletter_popup.copy' | t | escape }}</button>
-          <p class="lalatoto-nl__fine">{{ 'lalatoto.newsletter_popup.terms' | t | escape }}</p>
+          <p class="lalatoto-nl__fine">{{ nl_terms | escape }}</p>
         {%- else -%}
-          <p class="lalatoto-nl__kicker">{{ 'lalatoto.newsletter_popup.kicker' | t | escape }}</p>
-          <h2 class="lalatoto-nl__title" id="lalatoto-nl-title">{{ 'lalatoto.newsletter_popup.title' | t | escape }}</h2>
-          <p class="lalatoto-nl__text">{{ 'lalatoto.newsletter_popup.text' | t | escape }}</p>
+          <p class="lalatoto-nl__kicker">{{ nl_kicker | escape }}</p>
+          <h2 class="lalatoto-nl__title" id="lalatoto-nl-title">{{ nl_title | escape }}</h2>
+          <p class="lalatoto-nl__text">{{ nl_text | escape }}</p>
 
           {%- form 'customer', id: form_id, class: 'lalatoto-nl__form' -%}
             <input type="hidden" name="contact[tags]" value="newsletter,nyhedsbrev,nyhedsbrev-samtykke,velkomstrabat">
@@ -134,13 +175,13 @@
 
             <label class="lalatoto-nl__consent">
               <input type="checkbox" required>
-              <span>{{ 'lalatoto.newsletter_popup.consent' | t | escape }}</span>
+              <span>{{ nl_consent | escape }}</span>
             </label>
 
-            <button type="submit" class="lalatoto-nl__button">{{ 'lalatoto.newsletter_popup.button' | t | escape }}</button>
+            <button type="submit" class="lalatoto-nl__button">{{ nl_button | escape }}</button>
           {%- endform -%}
 
-          <p class="lalatoto-nl__fine">{{ 'lalatoto.newsletter_popup.terms' | t | escape }}</p>
+          <p class="lalatoto-nl__fine">{{ nl_terms | escape }}</p>
         {%- endif -%}
       </div>
     </div>
@@ -266,10 +307,17 @@
       "id": "image",
       "label": "Billede"
     },
-    {
-      "type": "paragraph",
-      "content": "Teksterne står i temaets sprog (Indhold → Sprog / Translate & Adapt) under lalatoto.newsletter_popup, så de findes på dansk, engelsk og tysk."
-    },
+    {"type": "header", "content": "Tekster"},
+    {"type": "paragraph", "content": "Lad et felt stå tomt for at bruge standardteksten, som allerede findes på dansk, engelsk og tysk. Skriver du din egen tekst, skal den oversættes i Translate & Adapt."},
+    {"type": "text", "id": "kicker", "label": "Lille overskrift"},
+    {"type": "text", "id": "title", "label": "Overskrift"},
+    {"type": "textarea", "id": "text", "label": "Tekst"},
+    {"type": "textarea", "id": "consent", "label": "Samtykke til mail"},
+    {"type": "text", "id": "button", "label": "Knap"},
+    {"type": "text", "id": "terms", "label": "Lille tekst nederst"},
+    {"type": "text", "id": "done_kicker", "label": "Efter tilmelding: lille overskrift"},
+    {"type": "text", "id": "done_title", "label": "Efter tilmelding: overskrift"},
+    {"type": "textarea", "id": "done_text", "label": "Efter tilmelding: tekst"},
     {
       "type": "text",
       "id": "code",
