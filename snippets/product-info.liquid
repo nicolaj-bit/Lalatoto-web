@@ -632,15 +632,10 @@
                 {%- assign lalatoto_delivery = 'lalatoto.product.delivery_gift_card' | t -%}
               {%- elsif lalatoto_market == 'eu' or lalatoto_market == 'tyskland' -%}
                 {%- comment -%}
-                  Fragten til EU er gratis fra 499 kr. og ellers 75 kr. Kronen
-                  følger euroen, så grænsen er 67 €. I andre valutaer (fx SEK)
-                  nævnes grænsen ikke, fordi den ikke kan regnes om her.
+                  Fri fragt uden beløbsgrænse, så længe rabatten «Fri fragt
+                  (Danmark og EU)» er slået til.
                 {%- endcomment -%}
-                {%- if cart.currency.iso_code == 'EUR' -%}
-                  {%- assign lalatoto_delivery = 'lalatoto.product.delivery_eu' | t -%}
-                {%- else -%}
-                  {%- assign lalatoto_delivery = 'lalatoto.product.delivery_eu_days' | t -%}
-                {%- endif -%}
+                {%- assign lalatoto_delivery = 'lalatoto.product.delivery_eu' | t -%}
               {%- endif -%}
               {%- if lalatoto_delivery == blank -%}
                 {%- assign lalatoto_delivery = 'lalatoto.product.delivery_default' | t -%}
