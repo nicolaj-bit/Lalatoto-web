@@ -61,8 +61,17 @@
       "type": "lalatoto-newsletter-modal",
       "settings": {
         "enabled": true,
-        "delay": 15,
+        "delay": 3,
         "image": "shopify://shop_images/Sengetoej_groen.jpg",
+        "kicker": "",
+        "title": "Vent ikke på Black Friday.",
+        "text": "Vi tror på gode beslutninger, og overforbrug er ikke en af dem.\nTil gengæld har vi fjernet fragten på hele webshoppen, og som altid får du 15%, når du skriver dig op til vores nyhedsbrev.",
+        "consent": "",
+        "button": "",
+        "terms": "",
+        "done_kicker": "",
+        "done_title": "",
+        "done_text": "",
         "code": "VELKOMMEN15"
       }
     }
