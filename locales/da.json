@@ -573,6 +573,8 @@
       "sale_upsell_title": "Gør et godt fund mere",
       "sale_upsell_all": "Se hele Archive sale",
       "delivery_default": "Levering 1-2 hverdage",
+      "delivery_eu": "Gratis fragt over 67 € · Levering 3-5 hverdage",
+      "delivery_eu_days": "Levering 3-5 hverdage",
       "delivery_gift_card": "Sendes på mail med det samme",
       "gift_amount_label": "Vælg beløb",
       "gift_amount_custom": "Eller skriv dit eget beløb",
@@ -673,6 +675,8 @@
     "cart": {
       "title": "Kurv",
       "total": "I alt",
+      "shipping_free": "Gratis fragt",
+      "shipping_missing": "Køb for {{ amount }} mere, så er fragten gratis",
       "shipping_note": "Fragt beregnes ved betaling.",
       "gift_empty_question": "Leder du efter en gave?",
       "gift_empty_link": "Se vores gavekort",

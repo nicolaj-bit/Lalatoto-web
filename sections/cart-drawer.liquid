@@ -153,7 +153,23 @@
             </div>
           {%- endif -%}
         </div>
-        <p class="lalatoto-cart__note">{{ 'lalatoto.cart.shipping_note' | t }}</p>
+        {%- comment -%}
+          EU og Tyskland: gratis fragt fra 499 kr. (67 €), ellers 75 kr. (10 €).
+          Vises kun i euro; andre valutaer får den almindelige tekst.
+        {%- endcomment -%}
+        {%- assign lalatoto_free_from = 6700 -%}
+        {%- if localization.market.handle == 'eu' or localization.market.handle == 'tyskland' -%}
+          {%- if cart.currency.iso_code == 'EUR' and cart.total_price >= lalatoto_free_from -%}
+            <p class="lalatoto-cart__note lalatoto-cart__note--free">{{ 'lalatoto.cart.shipping_free' | t }}</p>
+          {%- elsif cart.currency.iso_code == 'EUR' -%}
+            {%- assign lalatoto_missing = lalatoto_free_from | minus: cart.total_price | money_without_trailing_zeros -%}
+            <p class="lalatoto-cart__note">{{ 'lalatoto.cart.shipping_missing' | t: amount: lalatoto_missing }}</p>
+          {%- else -%}
+            <p class="lalatoto-cart__note">{{ 'lalatoto.cart.shipping_note' | t }}</p>
+          {%- endif -%}
+        {%- else -%}
+          <p class="lalatoto-cart__note">{{ 'lalatoto.cart.shipping_note' | t }}</p>
+        {%- endif -%}
 
         {%- comment -%}
           Lalatoto: kunden skal acceptere handelsbetingelserne, før betalingen.

@@ -569,6 +569,8 @@
       "sale_upsell_title": "Find one more treasure",
       "sale_upsell_all": "See all of Archive sale",
       "delivery_default": "Delivery in 1-2 business days",
+      "delivery_eu": "Free shipping over €67 · Delivery in 3-5 business days",
+      "delivery_eu_days": "Delivery in 3-5 business days",
       "delivery_gift_card": "Sent by email right away",
       "gift_amount_label": "Choose amount",
       "gift_amount_custom": "Or enter your own amount",
@@ -669,6 +671,8 @@
     "cart": {
       "title": "Cart",
       "total": "Total",
+      "shipping_free": "Free shipping",
+      "shipping_missing": "Spend {{ amount }} more for free shipping",
       "shipping_note": "Shipping is calculated at checkout.",
       "gift_empty_question": "Looking for a gift?",
       "gift_empty_link": "See our gift card",
