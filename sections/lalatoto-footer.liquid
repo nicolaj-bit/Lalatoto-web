@@ -144,6 +144,11 @@
               <nav aria-label="{{ menu.title | escape }}">
                 <ul class="lalatoto-footer__list unstyled-list" role="list">
                   {%- for link in menu.links -%}
+                    {%- comment -%}
+                      Et produkt, der ikke sælges i kundens marked (fx gavekortet i
+                      EU), har intet produkt bag linket. Så vises linket ikke.
+                    {%- endcomment -%}
+                    {%- if link.type == 'product_link' and link.object == blank -%}{%- continue -%}{%- endif -%}
                     <li><a href="{{ link.url }}">{{ link.title }}</a></li>
                   {%- endfor -%}
                 </ul>
