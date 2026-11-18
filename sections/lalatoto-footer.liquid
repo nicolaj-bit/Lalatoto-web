@@ -145,10 +145,13 @@
                 <ul class="lalatoto-footer__list unstyled-list" role="list">
                   {%- for link in menu.links -%}
                     {%- comment -%}
-                      Et produkt, der ikke sælges i kundens marked (fx gavekortet i
-                      EU), har intet produkt bag linket. Så vises linket ikke.
+                      Gavekortet sælges kun i Danmark. I EU findes produktet stadig
+                      bag linket, men det kan ikke købes, så linket skjules.
                     {%- endcomment -%}
-                    {%- if link.type == 'product_link' and link.object == blank -%}{%- continue -%}{%- endif -%}
+                    {%- if link.type == 'product_link' -%}
+                      {%- if link.object == blank -%}{%- continue -%}{%- endif -%}
+                      {%- if link.object.gift_card? and link.object.available == false -%}{%- continue -%}{%- endif -%}
+                    {%- endif -%}
                     <li><a href="{{ link.url }}">{{ link.title }}</a></li>
                   {%- endfor -%}
                 </ul>
