@@ -15,6 +15,10 @@
   if gift != blank and gift.available
     assign show = true
   endif
+  # Gavekortet sælges kun i kroner (Danmark og Norge), ikke i EU
+  if cart.currency.iso_code != 'DKK'
+    assign show = false
+  endif
   if mode == 'full'
     for item in cart.items
       if item.product.gift_card?

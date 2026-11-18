@@ -50,7 +50,7 @@
       <nav class="lalatoto-journal__tags" aria-label="{{ 'lalatoto.journal.topics' | t | escape }}">
         <a href="{{ blog.url }}" {% if current_tags == blank %}aria-current="page"{% endif %}>{{ 'lalatoto.journal.all' | t }}</a>
         {%- for tag in topics -%}
-          <a href="{{ blog.url }}/tagged/{{ tag | handleize }}" {% if current_tags contains tag %}aria-current="page"{% endif %}>{{ tag }}</a>
+          <a href="{{ blog.url }}/tagged/{{ tag | handleize }}" {% if current_tags contains tag %}aria-current="page"{% endif %}>{% render 'lalatoto-tag-name', tag: tag %}</a>
         {%- endfor -%}
       </nav>
     {%- endif -%}

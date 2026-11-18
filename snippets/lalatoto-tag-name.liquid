@@ -1,0 +1,18 @@
+{%- doc -%}
+  Lalatoto: et blog-emnes (tags) navn på kundens sprog.
+
+  Shopify kan ikke oversætte artiklernes tags, så de faste emner står i
+  sprogfilerne under lalatoto.journal.tag_names (nøglen er tagget som handle,
+  fx «sovn» for «Søvn»). Et tag uden oversættelse vises som det står.
+
+  @param {string} tag
+{%- enddoc -%}
+{%- liquid
+  assign tag_handle = tag | handleize
+  assign tag_key = 'lalatoto.journal.tag_names.' | append: tag_handle
+  assign tag_label = tag_key | t
+  if tag_label contains 'translation missing' or tag_label == tag_key or tag_label == blank
+    assign tag_label = tag
+  endif
+  echo tag_label | escape
+-%}

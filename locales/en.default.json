@@ -793,6 +793,13 @@
       }
     },
     "journal": {
+      "tag_names": {
+        "sovn": "Sleep",
+        "sovemiljo": "Sleep environment",
+        "graviditet": "Pregnancy",
+        "den-forste-tid": "The early days",
+        "born-og-familieliv": "Children & family life"
+      },
       "reading_time": "{{ minutes }} min read",
       "app_text": "For you who are expecting or have just given birth. Track your baby’s sleep, get a heads-up before developmental leaps, and read more than a hundred articles.",
       "app_link": "Read more at clubnosleep.com",

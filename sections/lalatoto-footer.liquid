@@ -145,13 +145,11 @@
                 <ul class="lalatoto-footer__list unstyled-list" role="list">
                   {%- for link in menu.links -%}
                     {%- comment -%}
-                      Gavekortet sælges kun i Danmark. I EU findes produktet stadig
-                      bag linket, men det kan ikke købes, så linket skjules.
+                      Gavekortet sælges kun i kroner (Danmark og Norge). Handler
+                      kunden i en anden valuta (EU), skjules linket. Shopify melder
+                      gavekortet som til salg i menuen, også hvor det ikke er.
                     {%- endcomment -%}
-                    {%- if link.type == 'product_link' -%}
-                      {%- if link.object == blank -%}{%- continue -%}{%- endif -%}
-                      {%- if link.object.gift_card? and link.object.available == false -%}{%- continue -%}{%- endif -%}
-                    {%- endif -%}
+                    {%- if link.type == 'product_link' and link.object.gift_card? and cart.currency.iso_code != 'DKK' -%}{%- continue -%}{%- endif -%}
                     <li><a href="{{ link.url }}">{{ link.title }}</a></li>
                   {%- endfor -%}
                 </ul>
