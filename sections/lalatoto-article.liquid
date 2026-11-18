@@ -35,7 +35,7 @@
 
 <article class="lalatoto-article color-scheme color-scheme--{{ section.settings.color_scheme.id }}">
   <header class="lalatoto-article__head">
-    <a href="{{ kicker_url }}" class="lalatoto-kicker lalatoto-article__kicker">{{ kicker | escape }}</a>
+    <a href="{{ kicker_url }}" class="lalatoto-kicker lalatoto-article__kicker">{% if article.tags.first != blank %}{% render 'lalatoto-tag-name', tag: article.tags.first %}{% else %}{{ kicker | escape }}{% endif %}</a>
     <h1 class="lalatoto-article__title">{{ article.title | escape }}</h1>
     <p class="lalatoto-article__meta">
       {{- article.published_at | time_tag: format: 'date' -}}
@@ -116,7 +116,7 @@
     {%- if article.tags.size > 0 -%}
       <ul class="lalatoto-article__tags unstyled-list" role="list">
         {%- for tag in article.tags -%}
-          <li><a href="{{ blog.url }}/tagged/{{ tag | handleize }}">{{ tag }}</a></li>
+          <li><a href="{{ blog.url }}/tagged/{{ tag | handleize }}">{% render 'lalatoto-tag-name', tag: tag %}</a></li>
         {%- endfor -%}
       </ul>
     {%- endif -%}
