@@ -61,7 +61,7 @@
       "type": "lalatoto-newsletter-modal",
       "settings": {
         "enabled": true,
-        "delay": 3,
+        "delay": 11,
         "image": "shopify://shop_images/Sengetoej_groen.jpg",
         "kicker": "",
         "title": "Vent ikke på Black Friday.",
