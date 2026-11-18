@@ -11,8 +11,9 @@
   assign tag_handle = tag | handleize
   assign tag_key = 'lalatoto.journal.tag_names.' | append: tag_handle
   assign tag_label = tag_key | t
+  # Oversættelsen er allerede gjort sikker af t-filtret; kun et rå tag escapes
   if tag_label contains 'translation missing' or tag_label == tag_key or tag_label == blank
-    assign tag_label = tag
+    assign tag_label = tag | escape
   endif
-  echo tag_label | escape
+  echo tag_label
 -%}
