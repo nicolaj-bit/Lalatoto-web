@@ -1451,7 +1451,9 @@ html.lalatoto-scroll-lock body {
  * Prestige klarer kryds, Escape, klik udenfor og låsning af siden bagved.
  * =============================================================== */
 .cart-drawer {
-  --drawer-max-width: min(100vw, 32.5rem); /* 520 px */
+  /* På mobil fylder skuffen ikke hele skærmen: en stribe af siden bagved
+     bliver stående, så man kan se, at kurven ligger ovenpå, og trykke sig ud. */
+  --drawer-max-width: min(88vw, 32.5rem); /* 520 px */
   --drawer-header-padding-inline: var(--container-gutter);
   --drawer-body-padding-inline: var(--container-gutter);
   --drawer-footer-padding-inline: var(--container-gutter);
